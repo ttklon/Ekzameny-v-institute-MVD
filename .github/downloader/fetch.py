@@ -232,9 +232,9 @@ def op_kontur(url, out):
     if a < 0 or b < a:
         return 'ошибка: текст акта на странице не найден', code, ctype, url
     printable = ('<html><head><meta charset="utf-8"><style>body{font-family:serif;font-size:12pt;line-height:1.35}'
-                 'table{border-collapse:collapse;width:100%!important;max-width:100%!important;table-layout:fixed;font-size:9pt}'
+                 'table{border-collapse:collapse;width:100%%!important;max-width:100%%!important;table-layout:fixed;font-size:9pt}'
                  'td,th{border:1px solid #888;padding:2px 3px;vertical-align:top;width:auto!important;overflow-wrap:anywhere;word-break:break-word}'
-                 'col{width:auto!important}div,p{max-width:100%;overflow:visible!important}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:9pt;margin:0}'
+                 'col{width:auto!important}div,p{max-width:100%%;overflow:visible!important}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:9pt;margin:0}'
                  '.src{font-family:sans-serif;font-size:9pt;color:#444;border-bottom:1px solid #888;padding-bottom:6px}</style></head><body>'
                  '<div class="src">Источник: %s (справочная система «Контур.Норматив»). %s. Статус: %s. Сохранено %s.</div>'
                  '<h2>%s</h2><p><b>%s</b></p>%s</body></html>') % (
@@ -261,9 +261,9 @@ def _reference_copy(src_url, site, title, body_html, out, src, code, expect):
         os.remove(src)
         return 'ошибка: на странице нет полного текста (%d знаков)' % len(plain), code, 'text/html', src_url
     printable = ('<html><head><meta charset="utf-8"><style>body{font-family:serif;font-size:12pt;line-height:1.35}'
-                 'table{border-collapse:collapse;width:100%!important;max-width:100%!important;table-layout:fixed;font-size:9pt}'
+                 'table{border-collapse:collapse;width:100%%!important;max-width:100%%!important;table-layout:fixed;font-size:9pt}'
                  'td,th{border:1px solid #888;padding:2px 3px;vertical-align:top;width:auto!important;overflow-wrap:anywhere;word-break:break-word}'
-                 'col{width:auto!important}div,p{max-width:100%;overflow:visible!important}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:9pt;margin:0}'
+                 'col{width:auto!important}div,p{max-width:100%%;overflow:visible!important}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:9pt;margin:0}'
                  'pre{white-space:pre-wrap;font-size:9pt}a{color:inherit;text-decoration:none}'
                  '.src{font-family:sans-serif;font-size:9pt;color:#444;border-bottom:1px solid #888;padding-bottom:6px}</style></head><body>'
                  '<div class="src">Источник: %s (%s). Сохранено %s.</div><h3>%s</h3>%s</body></html>') % (
