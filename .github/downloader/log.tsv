@@ -485,3 +485,14 @@ curl: (28) Fai"	000	0
 2026-11-14 12:43:13	get	https://sudact.ru/law/postanovlenie-plenuma-verkhovnogo-suda-rf-ot-28062022-n-21/	.work/sa_p21.html	ошибка: HTTP 404	404	0	text/html; charset=utf-8	
 2026-11-14 12:43:15	get	https://sudact.ru/law/prikaz-mvd-rossii-ot-29032019-n-205/prikaz/	.work/sa_205_prikaz.html	ok	200	39879	text/html; charset=utf-8	81661c2dd3e1c520bdd3627c5f9d245b7c1a5eeefe4fe382c2ad7e07c48a81db
 2026-11-14 12:43:17	get	https://sudact.ru/law/prikaz-mvd-rossii-ot-29032019-n-205/prilozhenie-n-1/i/	.work/sa_205_p1.html	ok	200	57609	text/html; charset=utf-8	1e9646f036d880ac7dd40fa948867f2d2f226dd5cba2c733af842b5d14f26552
+2026-11-14 12:45:31	get	https://sudact.ru/law/print/prikaz-mvd-rossii-ot-29032019-n-205/	.work/sp_205.html	ok	200	224576	text/html; charset=utf-8	108a9178f22eb464098c7a6a5c6222ed86d5b33e61e93be40944727af5ddd851
+2026-11-14 12:45:34	get	https://sudact.ru/law/print/prikaz-mvd-rossii-ot-30042012-n-389/	.work/sp_389.html	ok	200	105146	text/html; charset=utf-8	ee56309d7ac08d86191e8d5095a40bf302186dc9a42659c31098894849dbe2de
+2026-11-14 12:45:37	get	https://sudact.ru/law/print/prikaz-mvd-rossii-ot-15102013-n-845/	.work/sp_845.html	ok	200	524669	text/html; charset=utf-8	f1d22dd0dfe632b5c638e1a514cb420a5baf9e2e153324fd2165f71531dc10b9
+2026-11-14 12:45:40	get	https://sudact.ru/law/print/prikaz-mvd-rossii-ot-27112023-n-908/	.work/sp_908.html	ok	200	124057	text/html; charset=utf-8	23741c2c49f0ad9be83f219b3fe08aaf6550f229817ca8b6a3b179ae5adf5012
+2026-11-14 12:45:43	get	https://base.spinform.ru/show_doc.fwx?rgn=24076	.work/spin_p5.html	ok	200	92590	text/html; charset=utf-8	e73ce15a96c6c6495d7fddefe9d8fd29323159f2470bd8e6a5c29ea71e50506d
+2026-11-14 12:45:46	get	https://www.consultant.ru/document/cons_doc_LAW_52681/	.work/cons_p5.html	ok	200	440292	text/html; charset=UTF-8	91e8c522d0ed6be8717cc215178d8dee09697a55299709f1315266961c6e95ae
+2026-11-14 12:45:48	get	https://base.garant.ru/410618382/	.work/gar_495.html	ok	200	73324	text/html; charset=windows-1251	28f76659f0fd26345c8983de9d468f60dbd0aa900741851999603cc70e8d55c3
+2026-11-14 12:45:50	get	https://base.garant.ru/12139487/	.work/gar_p5.html	ok	200	191767	text/html; charset=windows-1251	19dabe13acfa063955c4d35a18f371c30ba3e5f51e835dc1d9d4430efb51a13c
+2026-11-14 12:45:53	get	https://pravo.ppt.ru/postanovlenie/verkhovny-sud/n-5-92105	.work/ppt_p5.html	ok	200	285795	text/html; charset=UTF-8	e6fbd031fb3bee1789eef763f7da4dae42b4066c6d8a2c2af11549068540b259
+2026-11-14 12:45:54	get	https://sudact.ru/law/postanovlenie-plenuma-verkhovnogo-suda-rf-ot-24032005-n-5/	.work/sa_p5.html	ошибка: HTTP 404	404	0	text/html; charset=utf-8	
+2026-11-14 12:45:56	get	https://sudact.ru/law/prikaz-mvd-rossii-ot-28062021-n-495/	.work/sa_495.html	ошибка: HTTP 404	404	0	text/html; charset=utf-8	
