@@ -493,6 +493,38 @@ def op_sudtitles(listfile, out):
     return ('ok' if n else 'ошибка: ничего не найдено'), '200', 'найдено: %d из %d' % (n, total), listfile
 
 
+def op_conshead(listfile, out):
+    """consultant.ru: для каждого номера документа записать заголовок <h1> страницы (в нём — дата действующей редакции;
+    <title> страницы бывает устаревшим) и пометку об утрате силы."""
+    import re, html
+    n = total = 0
+    with open(out, 'w', encoding='utf-8') as f:
+        for line in open(listfile, encoding='utf-8'):
+            cid = line.strip()
+            if not cid:
+                continue
+            total += 1
+            tmp = out + '.page'
+            r = subprocess.run(['curl', '-sS', '-L', '--connect-timeout', '15', '--max-time', '60', '-A', UA, '-o', tmp,
+                                '-w', '%{http_code}', 'https://www.consultant.ru/document/cons_doc_LAW_%s/' % cid],
+                               capture_output=True, text=True)
+            time.sleep(0.7)
+            h1 = flag = ''
+            if os.path.exists(tmp):
+                page = open(tmp, encoding='utf-8', errors='replace').read()
+                os.remove(tmp)
+                m = re.search(r'<h1[^>]*>(.*?)</h1>', page, re.S)
+                h1 = ' '.join(html.unescape(re.sub(r'<[^>]+>', ' ', m.group(1))).split()) if m else ''
+                if 'Документ утратил силу или отменен' in page:
+                    flag = 'утратил силу'
+                elif 'с изменениями, не вступившими в силу' in page:
+                    flag = 'есть будущая редакция'
+            n += bool(h1)
+            f.write('\t'.join((cid, r.stdout.strip(), h1, flag)) + '\n')
+            f.flush()
+    return ('ok' if n else 'ошибка'), '200', 'заголовков: %d из %d' % (n, total), listfile
+
+
 def op_pub(url, out):
     """Официальное опубликование (publication.pravo.gov.ru): найти акт через поиск портала
     (адрес = запрос к /api/Documents, после # — дата акта ГГГГ-ММ-ДД) и скачать PDF."""
@@ -546,6 +578,8 @@ def main(tasks_path):
                 res, code, ctype, url = op_ipscards(url, out)
             elif op == 'sudtitles':
                 res, code, ctype, url = op_sudtitles(url, out)
+            elif op == 'conshead':
+                res, code, ctype, url = op_conshead(url, out)
             elif op == 'ipsact':
                 res, code, ctype, url = op_ipsact(url, out)
             elif op == 'ipscard':
