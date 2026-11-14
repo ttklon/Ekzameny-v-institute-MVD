@@ -46,45 +46,58 @@ def op_get(url, out):
 
 
 def op_pdf(url, out):
+    """Сохранить страницу как PDF через Chrome (страница печатается так, как её отдаёт сайт)."""
+    import shutil, tempfile
     tmp = os.path.abspath(out + '.part.pdf')
-    base = ['--no-sandbox', '--disable-gpu', '--hide-scrollbars', '--lang=ru-RU',
-            '--user-agent=' + UA, '--print-to-pdf=' + tmp, url]
-    variants = [
-        ['google-chrome', '--headless=new', '--virtual-time-budget=15000'],
-        ['google-chrome', '--headless=new'],
-        ['google-chrome', '--headless'],
-    ]
+    exe = shutil.which('google-chrome') or shutil.which('chromium-browser') or shutil.which('chromium') or 'google-chrome'
     err = ''
-    for v in variants:
+    for mode in ('--headless=new', '--headless=old', '--headless'):
+        prof = tempfile.mkdtemp(prefix='chr')
+        cmd = [exe, mode, '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage', '--no-first-run',
+               '--user-data-dir=' + prof, '--lang=ru-RU', '--no-pdf-header-footer', '--timeout=60000',
+               '--print-to-pdf=' + tmp, url]
         try:
-            r = subprocess.run(v + base, capture_output=True, text=True, timeout=180)
-            err = ' '.join(r.stderr.split())[-300:]
-        except subprocess.TimeoutExpired:
-            err = 'превышено время'
+            r = subprocess.run(cmd, capture_output=True, text=True, timeout=240)
+            err = 'код %s; %s' % (r.returncode, r.stderr)
+        except subprocess.TimeoutExpired as e:
+            err = 'превышено время; %s' % (e.stderr or '')
+        shutil.rmtree(prof, ignore_errors=True)
         if os.path.exists(tmp) and os.path.getsize(tmp) > 2000:
             os.replace(tmp, out)
-            return 'ok', '', 'application/pdf; ' + ' '.join(v[1:])
+            return 'ok', '', 'application/pdf; ' + mode
         if os.path.exists(tmp):
             os.remove(tmp)
-    return 'ошибка: ' + err, '', ''
+        with open(out + '.chrome-error.txt', 'a', encoding='utf-8') as f:
+            f.write('=== %s\n%s\n' % (' '.join(cmd), err))
+    return 'ошибка: ' + ' '.join(err.split())[-200:], '', ''
 
 
 def op_kremlin(url, out):
-    """Банк документов kremlin.ru: найти акт поиском (адрес = поисковый запрос) и
-    сохранить версию для печати — полный текст акта в действующей редакции."""
+    """Банк документов kremlin.ru: найти акт поиском и сохранить версию для печати —
+    полный текст акта в действующей редакции. Адрес = поисковый запрос; после # можно
+    указать дату акта ДД.ММ.ГГГГ (нужно для актов до 2000 года: поиск по дате их не находит)."""
     import re, urllib.parse
-    tmp = out + '.search'
-    res, code, ctype = op_get(url, tmp)
-    if res != 'ok':
-        return res, code, ctype, url
-    page = open(tmp, encoding='utf-8', errors='replace').read()
-    os.remove(tmp)
-    num = urllib.parse.parse_qs(urllib.parse.urlparse(url).query).get('title', [''])[0]
-    found = []
-    for m in re.finditer(r'href="/acts/bank/(\d+)"[^>]*>(.*?)</a>', page, re.S):
-        title = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', m.group(2))).replace('\xa0', ' ')
-        if not num or ('№ ' + num + ' ') in title + ' ':
-            found.append((m.group(1), title.strip()[:120]))
+    search, _, date = url.partition('#')
+    num = urllib.parse.parse_qs(urllib.parse.urlparse(search).query).get('title', [''])[0]
+    found, code, ctype = [], '', ''
+    for page_no in range(1, 9):
+        tmp = out + '.search'
+        res, code, ctype = op_get(search + ('&page=%d' % page_no if page_no > 1 else ''), tmp)
+        if res != 'ok':
+            return res, code, ctype, url
+        page = open(tmp, encoding='utf-8', errors='replace').read()
+        os.remove(tmp)
+        links = re.findall(r'href="/acts/bank/(\d+)"[^>]*>(.*?)</a>', page, re.S)
+        for ident, raw in links:
+            title = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', raw)).replace('\xa0', ' ') + ' '
+            if num and ('№ ' + num + ' ') not in title:
+                continue
+            if date and ('от ' + date) not in title:
+                continue
+            found.append((ident, title.strip()[:120]))
+        if found or not links or ('page=%d' % (page_no + 1)) not in page:
+            break
+        time.sleep(1.0)
     ids = sorted({f[0] for f in found})
     if len(ids) != 1:
         return 'ошибка: найдено актов: %d %s' % (len(ids), '; '.join('%s %s' % f for f in found[:4])), code, ctype, url
@@ -107,7 +120,8 @@ def op_pub(url, out):
     os.remove(tmp)
     items = [i for i in data.get('items', []) if not date or (i.get('documentDate') or '').startswith(date)]
     if len(items) != 1:
-        return 'ошибка: найдено публикаций: %d' % len(items), code, ctype, url
+        seen = '; '.join('%s %s' % ((i.get('documentDate') or '')[:10], i.get('number')) for i in data.get('items', [])[:8])
+        return 'ошибка: найдено публикаций: %d из %d (%s)' % (len(items), len(data.get('items', [])), seen), code, ctype, url
     purl = 'http://publication.pravo.gov.ru/file/pdf?eoNumber=' + items[0]['eoNumber']
     time.sleep(1.0)
     res, code, ctype = op_get(purl, out)
