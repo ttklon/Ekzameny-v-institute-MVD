@@ -7,3 +7,8 @@ sudact	https://sudact.ru/law/postanovlenie-plenuma-verkhovnogo-suda-rf-ot-231220
 crawl	http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Административная деятельность полиции/#6,600	.work/lib_adp.tsv
 crawl	http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/#3,300	.work/lib_top.tsv
 crawl	http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/#5,400	.work/lib_bp.tsv
+get	https://yurlibrary.ru/prikazyi-mvd-rf/prikazy-mvd-2021-goda/prikaz-mvd-rossii-ot-16-08-2021-n-610	.work/y610.html
+get	https://base.garant.ru/1355153/	.work/g619.html
+get	https://artis-consult.ru/prikaz-mvd-200-dsp-ot-2013-goda-tekst-93448/	.work/a200.html
+get	https://konsaltdo.ru/prikaz-140dsp-o-sluzhebnoj-deyatelnosti-ivs.html	.work/k140.html
+get	https://www.donland.ru/activity/1101/	.work/kpt.html

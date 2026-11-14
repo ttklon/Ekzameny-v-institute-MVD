@@ -636,46 +636,50 @@ def main(tasks_path):
                 continue
             op, url, out = (p.strip() for p in parts)
             os.makedirs(os.path.dirname(out) or '.', exist_ok=True)
-            if op == 'kremlin':
-                res, code, ctype, url = op_kremlin(url, out)
-            elif op == 'kontur':
-                res, code, ctype, url = op_kontur(url, out)
-            elif op == 'sudact':
-                res, code, ctype, url = op_sudact(url, out)
-            elif op == 'cons':
-                res, code, ctype, url = op_cons(url, out)
-            elif op == 'consfind':
-                res, code, ctype, url = op_consfind(url, out)
-            elif op == 'constitles':
-                res, code, ctype, url = op_constitles(url, out)
-            elif op == 'ipscards':
-                res, code, ctype, url = op_ipscards(url, out)
-            elif op == 'sudtitles':
-                res, code, ctype, url = op_sudtitles(url, out)
-            elif op == 'conshead':
-                res, code, ctype, url = op_conshead(url, out)
-            elif op == 'yadisk':
-                res, code, ctype, url = op_yadisk(url, out)
-            elif op == 'crawl':
-                res, code, ctype, url = op_crawl(url, out)
-            elif op == 'ipsact':
-                res, code, ctype, url = op_ipsact(url, out)
-            elif op == 'ipscard':
-                res, code, ctype, url = op_ipscard(url, out)
-            elif op in ('ips', 'ipswide'):
-                globals()['WIDE'] = op == 'ipswide'
-                res, code, ctype, url = kremlin_save(url, out)
-                globals()['WIDE'] = False
-            elif op == 'pub':
-                res, code, ctype, url = op_pub(url, out)
-            elif op == 'pdf':
-                res, code, ctype = op_pdf(url, out)
-            elif op == 'post':
-                res, code, ctype = op_get(url, out, post=True)
-            else:
-                res, code, ctype = op_get(url, out)
-            size = os.path.getsize(out) if res == 'ok' else 0
-            digest = sha256(out) if res == 'ok' else ''
+            try:
+                if op == 'kremlin':
+                    res, code, ctype, url = op_kremlin(url, out)
+                elif op == 'kontur':
+                    res, code, ctype, url = op_kontur(url, out)
+                elif op == 'sudact':
+                    res, code, ctype, url = op_sudact(url, out)
+                elif op == 'cons':
+                    res, code, ctype, url = op_cons(url, out)
+                elif op == 'consfind':
+                    res, code, ctype, url = op_consfind(url, out)
+                elif op == 'constitles':
+                    res, code, ctype, url = op_constitles(url, out)
+                elif op == 'ipscards':
+                    res, code, ctype, url = op_ipscards(url, out)
+                elif op == 'sudtitles':
+                    res, code, ctype, url = op_sudtitles(url, out)
+                elif op == 'conshead':
+                    res, code, ctype, url = op_conshead(url, out)
+                elif op == 'yadisk':
+                    res, code, ctype, url = op_yadisk(url, out)
+                elif op == 'crawl':
+                    res, code, ctype, url = op_crawl(url, out)
+                elif op == 'ipsact':
+                    res, code, ctype, url = op_ipsact(url, out)
+                elif op == 'ipscard':
+                    res, code, ctype, url = op_ipscard(url, out)
+                elif op in ('ips', 'ipswide'):
+                    globals()['WIDE'] = op == 'ipswide'
+                    res, code, ctype, url = kremlin_save(url, out)
+                    globals()['WIDE'] = False
+                elif op == 'pub':
+                    res, code, ctype, url = op_pub(url, out)
+                elif op == 'pdf':
+                    res, code, ctype = op_pdf(url, out)
+                elif op == 'post':
+                    res, code, ctype = op_get(url, out, post=True)
+                else:
+                    res, code, ctype = op_get(url, out)
+            except Exception as e:  # одно неудачное задание не должно обрывать весь прогон
+                res, code, ctype = 'ошибка: %s: %s' % (type(e).__name__, str(e)[:200]), '', ''
+            is_file = res == 'ok' and os.path.isfile(out)
+            size = os.path.getsize(out) if is_file else 0
+            digest = sha256(out) if is_file else ''
             now = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
             log.writerow([now, op, url, out, res, code, size, ctype, digest])
             lf.flush()
