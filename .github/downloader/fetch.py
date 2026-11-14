@@ -11,6 +11,8 @@
          (ips.pravo.gov.ru): исходная страница и PDF с неё;
   kontur — действующая редакция акта из справочной системы «Контур.Норматив»
          (для приказов МВД и постановлений Пленума ВС РФ, которых нет в «Законодательстве России»);
+  sudact, cons — тексты актов с внесёнными изменениями из sudact.ru (версия для печати)
+         и consultant.ru; после адреса через # указываются реквизиты для сверки с заголовком страницы;
   post — запрос методом POST (параметры после знака вопроса);
   pub  — найти акт на портале официального опубликования publication.pravo.gov.ru
          и скачать PDF официальной публикации.
@@ -239,6 +241,76 @@ def op_kontur(url, out):
     return res, code, '%s; %s; статус: %s; html sha256=%s' % (kind, label, st, sha256(src)), url
 
 
+def _reference_copy(src_url, site, title, body_html, out, src, code, expect):
+    """Общая часть для справочных систем: проверка реквизитов и объёма текста, печать PDF из локальной копии."""
+    import re, html as htmlmod
+    plain = re.sub(r'\s+', ' ', htmlmod.unescape(re.sub(r'<[^>]+>', ' ', body_html)))
+    title = ' '.join(htmlmod.unescape(title).split())
+    if expect and expect not in title:
+        os.remove(src)
+        return 'ошибка: на странице другой документ: ' + title[:120], code, 'text/html', src_url
+    if len(plain) < 3000:
+        os.remove(src)
+        return 'ошибка: на странице нет полного текста (%d знаков)' % len(plain), code, 'text/html', src_url
+    printable = ('<html><head><meta charset="utf-8"><style>body{font-family:serif;font-size:12pt;line-height:1.35}'
+                 'table{border-collapse:collapse}td,th{border:1px solid #888;padding:2px 4px;vertical-align:top}'
+                 'pre{white-space:pre-wrap;font-size:9pt}a{color:inherit;text-decoration:none}'
+                 '.src{font-family:sans-serif;font-size:9pt;color:#444;border-bottom:1px solid #888;padding-bottom:6px}</style></head><body>'
+                 '<div class="src">Источник: %s (%s). Сохранено %s.</div><h3>%s</h3>%s</body></html>') % (
+                     htmlmod.escape(src_url), site, datetime.datetime.now(datetime.timezone.utc).strftime('%d.%m.%Y'),
+                     htmlmod.escape(title), body_html)
+    tmp_html = os.path.abspath(out + '.print.html')
+    open(tmp_html, 'w', encoding='utf-8').write(printable)
+    try:
+        res, _, kind = op_pdf('file://' + tmp_html, out)
+    finally:
+        os.remove(tmp_html)
+    return res, code, '%s; %s; знаков текста: %d; html sha256=%s' % (kind, title[:150], len(plain), sha256(src)), src_url
+
+
+def _src_path(out):
+    folder = os.path.join(os.path.dirname(out), 'Исходные страницы (HTML)')
+    os.makedirs(folder, exist_ok=True)
+    return os.path.join(folder, os.path.basename(out)[:-4] + '.html')
+
+
+def op_sudact(url, out):
+    """sudact.ru: версия для печати содержит полный текст акта одной страницей.
+    Адрес: https://sudact.ru/law/<имя>/#<реквизиты, которые должны быть в заголовке>."""
+    import re
+    url, _, expect = url.partition('#')
+    slug = re.search(r'/law/(?:print/)?([^/]+)/?', url).group(1)
+    purl = 'https://sudact.ru/law/print/%s/' % slug
+    src = _src_path(out)
+    res, code, ctype = op_get(purl, src)
+    if res != 'ok':
+        return res, code, ctype, purl
+    page = open(src, encoding='utf-8', errors='replace').read()
+    t = re.search(r'<title>(.*?)</title>', page, re.S)
+    title = (t.group(1) if t else '').split(' :: ')[0]
+    b = re.search(r'<body[^>]*>(.*)</body>', page, re.S)
+    body = re.sub(r'<h1>.*?</h1>', '', re.sub(r'<script.*?</script>', '', b.group(1) if b else '', flags=re.S), count=1, flags=re.S)
+    return _reference_copy(purl, 'sudact.ru, версия для печати', title, body, out, src, code, expect)
+
+
+def op_cons(url, out):
+    """consultant.ru: документ, размещённый одной страницей.
+    Адрес: https://www.consultant.ru/document/cons_doc_LAW_<n>/#<реквизиты, которые должны быть в заголовке>."""
+    import re
+    url, _, expect = url.partition('#')
+    src = _src_path(out)
+    res, code, ctype = op_get(url, src)
+    if res != 'ok':
+        return res, code, ctype, url
+    page = open(src, encoding='utf-8', errors='replace').read()
+    t = re.search(r'<title>(.*?)</title>', page, re.S)
+    title = (t.group(1) if t else '').split(' \\ ')[0]
+    a = page.find('<div class="document-page__content')
+    ends = [i for i in (page.find(m, a) for m in ('<div class="document-page__notes', '<div class="full-text', '<div class="document-page__separator')) if i > 0]
+    body = re.sub(r'<script.*?</script>', '', page[a:min(ends)] if a > 0 and ends else '', flags=re.S)
+    return _reference_copy(url, 'consultant.ru, некоммерческая интернет-версия КонсультантПлюс', title, body, out, src, code, expect)
+
+
 def op_pub(url, out):
     """Официальное опубликование (publication.pravo.gov.ru): найти акт через поиск портала
     (адрес = запрос к /api/Documents, после # — дата акта ГГГГ-ММ-ДД) и скачать PDF."""
@@ -280,6 +352,10 @@ def main(tasks_path):
                 res, code, ctype, url = op_kremlin(url, out)
             elif op == 'kontur':
                 res, code, ctype, url = op_kontur(url, out)
+            elif op == 'sudact':
+                res, code, ctype, url = op_sudact(url, out)
+            elif op == 'cons':
+                res, code, ctype, url = op_cons(url, out)
             elif op == 'ipscard':
                 res, code, ctype, url = op_ipscard(url, out)
             elif op == 'ips':

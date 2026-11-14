@@ -1,11 +1,24 @@
-get	https://sudact.ru/law/print/prikaz-mvd-rossii-ot-29032019-n-205/	.work/sp_205.html
-get	https://sudact.ru/law/print/prikaz-mvd-rossii-ot-30042012-n-389/	.work/sp_389.html
-get	https://sudact.ru/law/print/prikaz-mvd-rossii-ot-15102013-n-845/	.work/sp_845.html
-get	https://sudact.ru/law/print/prikaz-mvd-rossii-ot-27112023-n-908/	.work/sp_908.html
-get	https://base.spinform.ru/show_doc.fwx?rgn=24076	.work/spin_p5.html
-get	https://www.consultant.ru/document/cons_doc_LAW_52681/	.work/cons_p5.html
-get	https://base.garant.ru/410618382/	.work/gar_495.html
-get	https://base.garant.ru/12139487/	.work/gar_p5.html
-get	https://pravo.ppt.ru/postanovlenie/verkhovny-sud/n-5-92105	.work/ppt_p5.html
-get	https://sudact.ru/law/postanovlenie-plenuma-verkhovnogo-suda-rf-ot-24032005-n-5/	.work/sa_p5.html
-get	https://sudact.ru/law/prikaz-mvd-rossii-ot-28062021-n-495/	.work/sa_495.html
+sudact	https://sudact.ru/law/prikaz-mvd-rossii-ot-29032019-n-205/#от 29.03.2019 N 205	Административная деятельность полиции/2. Источники/1. Нормативные правовые акты/7. Приказы МВД России/Приказ МВД России от 29.03.2019 № 205 (действующая редакция).pdf
+sudact	https://sudact.ru/law/prikaz-mvd-rossii-ot-30082017-n-685/#от 30.08.2017 N 685	Административная деятельность полиции/2. Источники/1. Нормативные правовые акты/7. Приказы МВД России/Приказ МВД России от 30.08.2017 № 685 (действующая редакция).pdf
+sudact	https://sudact.ru/law/prikaz-mvd-rossii-ot-05062017-n-355/#от 05.06.2017 N 355	Административная деятельность полиции/2. Источники/1. Нормативные правовые акты/7. Приказы МВД России/Приказ МВД России от 05.06.2017 № 355 (действующая редакция).pdf
+sudact	https://sudact.ru/law/prikaz-mvd-rf-ot-22112005-n-950/#от 22.11.2005 N 950	Административная деятельность полиции/2. Источники/1. Нормативные правовые акты/7. Приказы МВД России/Приказ МВД России от 22.11.2005 № 950 (действующая редакция).pdf
+sudact	https://sudact.ru/law/prikaz-mvd-rossii-ot-15102013-n-845/#от 15.10.2013 N 845	Административная деятельность полиции/2. Источники/1. Нормативные правовые акты/7. Приказы МВД России/Приказ МВД России от 15.10.2013 № 845 (действующая редакция).pdf
+sudact	https://sudact.ru/law/prikaz-mvd-rossii-ot-30042012-n-389/#от 30.04.2012 N 389	Административная деятельность полиции/2. Источники/1. Нормативные правовые акты/7. Приказы МВД России/Приказ МВД России от 30.04.2012 № 389 (действующая редакция).pdf
+sudact	https://sudact.ru/law/prikaz-mvd-rossii-ot-27112023-n-908/#от 27.11.2023 N 908	Административная деятельность полиции/2. Источники/1. Нормативные правовые акты/7. Приказы МВД России/Приказ МВД России от 27.11.2023 № 908 (действующая редакция).pdf
+cons	https://www.consultant.ru/document/cons_doc_LAW_52681/#от 24.03.2005 N 5	Административная деятельность полиции/2. Источники/2. Судебная практика/2. Пленум Верховного Суда РФ/Постановление Пленума ВС РФ от 24.03.2005 № 5.pdf
+cons	https://www.consultant.ru/document/cons_doc_LAW_216883/#от 16.05.2017 N 15	Административная деятельность полиции/2. Источники/2. Судебная практика/2. Пленум Верховного Суда РФ/Постановление Пленума ВС РФ от 16.05.2017 № 15.pdf
+get	https://www.consultant.ru/document/cons_doc_LAW_301031/	.work/cons_p28.html
+get	https://www.consultant.ru/document/cons_doc_LAW_420838/	.work/cons_p21.html
+get	https://www.consultant.ru/document/cons_doc_LAW_390993/	.work/cons_495.html
+get	https://www.consultant.ru/document/cons_doc_LAW_327611/	.work/cons_p20.html
+get	https://www.consultant.ru/document/cons_doc_LAW_301031/0e0085e57a2aaa4760bee9a5224658eb794d9cd0/	.work/cons_p28_sub.html
+ips	http://ips.pravo.gov.ru/api/ips/legislation/document?bpa=c000000000&nd=1000000000602293988&target_format=html	Административная деятельность полиции/2. Источники/1. Нормативные правовые акты/6. Постановления Правительства РФ/Постановление Правительства РФ от 30.06.2021 № 1101 О федеральном надзоре в области безопасности дорожного движения.pdf
+get	http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?bpa=c000000000&nd=1000000000602293988	.work/cards/1000000000602293988.json
+ips	http://ips.pravo.gov.ru/api/ips/legislation/document?bpa=c000000000&nd=1000000000102015099&target_format=html	Административная деятельность полиции/2. Источники/1. Нормативные правовые акты/4. Федеральные законы и законы РФ/Закон РФ от 11.03.1992 № 2487-1 О частной детективной и охранной деятельности.pdf
+get	http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?bpa=c000000000&nd=1000000000102015099	.work/cards/1000000000102015099.json
+ips	http://ips.pravo.gov.ru/api/ips/legislation/document?bpa=c000000000&nd=1000000000609386259&target_format=html	Административная деятельность полиции/2. Источники/2. Судебная практика/1. Конституционный Суд РФ/Постановление КС РФ от 27.02.2026 № 10-П.pdf
+get	http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?bpa=c000000000&nd=1000000000609386259	.work/cards/1000000000609386259.json
+ips	http://ips.pravo.gov.ru/api/ips/legislation/document?bpa=c000000000&nd=1000000000606928933&target_format=html	Административная деятельность полиции/2. Источники/2. Судебная практика/1. Конституционный Суд РФ/Постановление КС РФ от 17.07.2025 № 29-П.pdf
+get	http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?bpa=c000000000&nd=1000000000606928933	.work/cards/1000000000606928933.json
+ips	http://ips.pravo.gov.ru/api/ips/legislation/document?bpa=c000000000&nd=1000000000605718529&target_format=html	Административная деятельность полиции/2. Источники/2. Судебная практика/1. Конституционный Суд РФ/Постановление КС РФ от 17.07.2023 № 42-П.pdf
+get	http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?bpa=c000000000&nd=1000000000605718529	.work/cards/1000000000605718529.json
