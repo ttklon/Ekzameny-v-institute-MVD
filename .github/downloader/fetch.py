@@ -28,12 +28,16 @@ def sha256(path):
     return h.hexdigest()
 
 
-def op_get(url, out):
+def op_get(url, out, post=False):
     tmp = out + '.part'
+    data = []
+    if post:
+        url, _, body = url.partition('?')
+        data = ['--data', body]
     cmd = ['curl', '-sS', '-L', '--connect-timeout', '20', '--max-time', '150', '--retry', '1', '--retry-delay', '3',
            '--max-filesize', str(MAX_BYTES), '-A', UA,
            '-H', 'Accept-Language: ru-RU,ru;q=0.9', '-o', tmp,
-           '-w', '%{http_code}\t%{content_type}', url]
+           '-w', '%{http_code}\t%{content_type}'] + data + [url]
     r = subprocess.run(cmd, capture_output=True, text=True)
     code, _, ctype = r.stdout.partition('\t')
     ok = r.returncode == 0 and code.startswith('2') and os.path.exists(tmp) and os.path.getsize(tmp) > 0
@@ -49,6 +53,22 @@ def op_pdf(url, out):
     """Сохранить страницу как PDF через Chrome (страница печатается так, как её отдаёт сайт)."""
     import shutil, tempfile
     tmp = os.path.abspath(out + '.part.pdf')
+    if not url.startswith('file:'):
+        # сайт отдаёт страницу по http, а Chrome на сборочной машине такие адреса блокирует:
+        # страница скачивается, и печатается её локальная копия (текст не меняется;
+        # добавляется только указание кодировки и убирается автозапуск окна печати)
+        src = os.path.abspath(out + '.src.html')
+        res, code, ctype = op_get(url, src)
+        if res != 'ok':
+            return res, code, ctype
+        page = open(src, encoding='utf-8', errors='replace').read()
+        page = page.replace('<head>', '<head><meta charset="utf-8">', 1).replace(' onload="window.print()"', '')
+        page = page.replace('<link rel="stylesheet" href="/static/css/all_fonts.css">', '')
+        open(src, 'w', encoding='utf-8').write(page)
+        try:
+            return op_pdf('file://' + src, out)
+        finally:
+            os.remove(src)
     exe = shutil.which('google-chrome') or shutil.which('chromium-browser') or shutil.which('chromium') or 'google-chrome'
     err = ''
     for mode in ('--headless=new', '--headless=old', '--headless'):
@@ -150,6 +170,8 @@ def main(tasks_path):
                 res, code, ctype, url = op_pub(url, out)
             elif op == 'pdf':
                 res, code, ctype = op_pdf(url, out)
+            elif op == 'post':
+                res, code, ctype = op_get(url, out, post=True)
             else:
                 res, code, ctype = op_get(url, out)
             size = os.path.getsize(out) if res == 'ok' else 0
