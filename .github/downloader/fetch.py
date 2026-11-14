@@ -312,6 +312,9 @@ def op_kontur(url, out):
     return res, code, '%s; %s; статус: %s; html sha256=%s' % (kind, label, st, sha256(src)), url
 
 
+MIN_CHARS = 3000
+
+
 def _reference_copy(src_url, site, title, body_html, out, src, code, expect):
     """Общая часть для справочных систем: проверка реквизитов и объёма текста, печать PDF из локальной копии."""
     import re, html as htmlmod
@@ -320,7 +323,7 @@ def _reference_copy(src_url, site, title, body_html, out, src, code, expect):
     if expect and expect not in title:
         os.remove(src)
         return 'ошибка: на странице другой документ: ' + title[:120], code, 'text/html', src_url
-    if len(plain) < 3000:
+    if len(plain) < MIN_CHARS:
         os.remove(src)
         return 'ошибка: на странице нет полного текста (%d знаков)' % len(plain), code, 'text/html', src_url
     printable = ('<html><head><meta charset="utf-8"><style>body{font-family:serif;font-size:12pt;line-height:1.35}'
@@ -554,6 +557,23 @@ def op_yadisk(url, outdir):
     return ('ok' if n else 'ошибка: файлы не получены'), '200', 'файлов: %d; %s' % (n, meta.get('name', '')), url
 
 
+def op_docx2pdf(src, out):
+    """Преобразовать файл Word из репозитория в PDF (LibreOffice)."""
+    import shutil, tempfile
+    if not shutil.which('soffice'):
+        subprocess.run('sudo apt-get update -qq && sudo apt-get install -y -qq libreoffice-writer fonts-liberation',
+                       shell=True, capture_output=True)
+    if not shutil.which('soffice'):
+        return 'ошибка: нет LibreOffice', '', '', src
+    d = tempfile.mkdtemp()
+    r = subprocess.run(['soffice', '--headless', '--convert-to', 'pdf', '--outdir', d, src], capture_output=True, text=True)
+    made = [f for f in os.listdir(d) if f.endswith('.pdf')]
+    if not made:
+        return 'ошибка: ' + ' '.join((r.stderr or r.stdout).split())[:200], '', '', src
+    shutil.move(os.path.join(d, made[0]), out)
+    return 'ok', '', 'application/pdf; LibreOffice', src
+
+
 def op_crawl(url, out):
     """Обход открытого каталога веб-сервера (страницы «Index of»). Адрес: <каталог>#<глубина>,<предел числа каталогов>.
     Пишет таблицу: путь <TAB> размер <TAB> дата."""
@@ -655,6 +675,12 @@ def main(tasks_path):
                     res, code, ctype, url = op_sudtitles(url, out)
                 elif op == 'conshead':
                     res, code, ctype, url = op_conshead(url, out)
+                elif op in ('sudactshort', 'consshort'):
+                    globals()['MIN_CHARS'] = 700  # выписки и короткие акты
+                    res, code, ctype, url = (op_sudact if op == 'sudactshort' else op_cons)(url, out)
+                    globals()['MIN_CHARS'] = 3000
+                elif op == 'docx2pdf':
+                    res, code, ctype, url = op_docx2pdf(url, out)
                 elif op == 'yadisk':
                     res, code, ctype, url = op_yadisk(url, out)
                 elif op == 'crawl':
