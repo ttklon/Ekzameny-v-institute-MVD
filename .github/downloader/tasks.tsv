@@ -9,14 +9,14 @@ get	http://actual.pravo.gov.ru/config.js	.work/actual_config.js
 get	http://publication.pravo.gov.ru/document/0001202509300014	.work/pub_doc.html
 get	http://publication.pravo.gov.ru/api/Documents?Number=608&NumberSearchType=0&PageSize=10&Index=1	.work/pub_api1.json
 get	http://publication.pravo.gov.ru/api/Document?eoNumber=0001202509300014	.work/pub_api2.json
+get	https://legalacts.ru/doc/ukaz-prezidenta-rf-ot-21122016-n-699-ob-utverzhdenii/	.work/legalacts_699.html
+get	https://base.garant.ru/12182530/	.work/garant_3fz.html
 get	http://ips.pravo.gov.ru/	.work/ips_root.html
 get	http://ips.pravo.gov.ru:8080/default.aspx?pn=0001202509300014	.work/ips_8080.html
 get	https://www.kontur-extern.ru/info/normativ/document/1/350354-prikaz-mvd-rf-ot-29-08-2014-n-736	.work/kontur_736.html
-get	https://legalacts.ru/doc/ukaz-prezidenta-rf-ot-21122016-n-699-ob-utverzhdenii/	.work/legalacts_699.html
 get	http://government.ru/docs/	.work/gov_docs.html
 get	https://vsrf.ru/documents/own/	.work/vsrf_own.html
 get	https://www.vsrf.ru/	.work/vsrf_root.html
 get	https://media.mvd.ru/	.work/mvd_media.html
 get	https://mvd.ru/	.work/mvd_ru.html
-get	https://base.garant.ru/12182530/	.work/garant_3fz.html
 get	https://rg.ru/documents/2025/10/03/mvd-prikaz608-site-dok.html	.work/rg_608.html

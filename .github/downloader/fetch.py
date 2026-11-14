@@ -27,7 +27,7 @@ def sha256(path):
 
 def op_get(url, out):
     tmp = out + '.part'
-    cmd = ['curl', '-sS', '-L', '--max-time', '180', '--retry', '2', '--retry-delay', '3',
+    cmd = ['curl', '-sS', '-L', '--connect-timeout', '20', '--max-time', '150', '--retry', '1', '--retry-delay', '3',
            '--max-filesize', str(MAX_BYTES), '-A', UA,
            '-H', 'Accept-Language: ru-RU,ru;q=0.9', '-o', tmp,
            '-w', '%{http_code}\t%{content_type}', url]
