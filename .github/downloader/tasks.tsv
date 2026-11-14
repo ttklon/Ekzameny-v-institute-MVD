@@ -1,42 +1,15 @@
-ips	http://ips.pravo.gov.ru/api/ips/legislation/document?bpa=c000000000&nd=1000000000102415823&target_format=html	Административная деятельность полиции/2. Источники/2. Судебная практика/1. Конституционный Суд РФ/Постановление КС РФ от 17.11.2016 № 25-П.pdf
-get	http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?bpa=c000000000&nd=1000000000102415823	.work/cards/1000000000102415823.json
-ips	http://ips.pravo.gov.ru/api/ips/legislation/document?bpa=c000000000&nd=1000000000102428186&target_format=html	Административная деятельность полиции/2. Источники/2. Судебная практика/1. Конституционный Суд РФ/Постановление КС РФ от 17.03.2017 № 8-П.pdf
-get	http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?bpa=c000000000&nd=1000000000102428186	.work/cards/1000000000102428186.json
-ips	http://ips.pravo.gov.ru/api/ips/legislation/document?bpa=c000000000&nd=1000000000603080618&target_format=html	Административная деятельность полиции/2. Источники/2. Судебная практика/1. Конституционный Суд РФ/Постановление КС РФ от 26.05.2022 № 21-П.pdf
-get	http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?bpa=c000000000&nd=1000000000603080618	.work/cards/1000000000603080618.json
-ips	http://ips.pravo.gov.ru/api/ips/legislation/document?bpa=c000000000&nd=1000000000102367461&target_format=html	Административная деятельность полиции/2. Источники/2. Судебная практика/1. Конституционный Суд РФ/Постановление КС РФ от 10.02.2015 № 1-П.pdf
-get	http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?bpa=c000000000&nd=1000000000102367461	.work/cards/1000000000102367461.json
-ips	http://ips.pravo.gov.ru/api/ips/legislation/document?bpa=c000000000&nd=1000000000102426465&target_format=html	Административная деятельность полиции/2. Источники/2. Судебная практика/1. Конституционный Суд РФ/Постановление КС РФ от 01.03.2017 № 3-П.pdf
-get	http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?bpa=c000000000&nd=1000000000102426465	.work/cards/1000000000102426465.json
-ips	http://ips.pravo.gov.ru/api/ips/legislation/document?bpa=c000000000&nd=1000000000102163433&target_format=html	Административная деятельность полиции/2. Источники/2. Судебная практика/1. Конституционный Суд РФ/Постановление КС РФ от 14.02.2013 № 4-П.pdf
-get	http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?bpa=c000000000&nd=1000000000102163433	.work/cards/1000000000102163433.json
-ips	http://ips.pravo.gov.ru/api/ips/legislation/document?bpa=c000000000&nd=1000000000102156678&target_format=html	Административная деятельность полиции/2. Источники/2. Судебная практика/1. Конституционный Суд РФ/Постановление КС РФ от 18.05.2012 № 12-П.pdf
-get	http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?bpa=c000000000&nd=1000000000102156678	.work/cards/1000000000102156678.json
-ips	http://ips.pravo.gov.ru/api/ips/legislation/document?bpa=c000000000&nd=1000000000102349928&target_format=html	Административная деятельность полиции/2. Источники/2. Судебная практика/1. Конституционный Суд РФ/Постановление КС РФ от 13.05.2014 № 14-П.pdf
-get	http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?bpa=c000000000&nd=1000000000102349928	.work/cards/1000000000102349928.json
-ips	http://ips.pravo.gov.ru/api/ips/legislation/document?bpa=c000000000&nd=1000000000102562118&target_format=html	Административная деятельность полиции/2. Источники/2. Судебная практика/1. Конституционный Суд РФ/Постановление КС РФ от 18.06.2019 № 24-П.pdf
-get	http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?bpa=c000000000&nd=1000000000102562118	.work/cards/1000000000102562118.json
-ips	http://ips.pravo.gov.ru/api/ips/legislation/document?bpa=c000000000&nd=1000000000602194206&target_format=html	Административная деятельность полиции/2. Источники/2. Судебная практика/1. Конституционный Суд РФ/Постановление КС РФ от 17.05.2021 № 19-П.pdf
-get	http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?bpa=c000000000&nd=1000000000602194206	.work/cards/1000000000602194206.json
-ips	http://ips.pravo.gov.ru/api/ips/legislation/document?bpa=c000000000&nd=1000000000602293988&target_format=html	Административная деятельность полиции/2. Источники/1. Нормативные правовые акты/6. Постановления Правительства РФ/Постановление Правительства РФ от 30.06.2021 № 1101 Положение о федеральном государственном контроле (надзоре) в области безопасности дорожного движения.pdf
-get	http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?bpa=c000000000&nd=1000000000602293988	.work/cards/1000000000602293988.json
-get	https://normativ.kontur.ru/document?moduleId=1&documentId=288422	.work/seed_a.html
-get	https://normativ.kontur.ru/document?moduleId=1&documentId=284494	.work/seed_b.html
-get	https://normativ.kontur.ru/document?moduleId=7&documentId=194528	.work/seed_c.html
-get	https://normativ.kontur.ru/document?moduleId=7&documentId=194607	.work/seed_d.html
-get	https://normativ.kontur.ru/document?moduleId=1&documentId=250618	.work/seed_e.html
-get	https://normativ.kontur.ru/document?moduleId=1&documentId=459894	.work/seed_f.html
-get	https://normativ.kontur.ru/document?moduleId=1&documentId=391930	.work/seed_g.html
-get	https://html.duckduckgo.com/html/?q=site%3Akontur-extern.ru%20%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%92%D0%94%20%D0%A0%D0%A4%20%D0%BE%D1%82%2029.03.2019%20N%20205	.work/ddg_205.html
-get	https://html.duckduckgo.com/html/?q=site%3Akontur-extern.ru%20%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%92%D0%94%20%D0%A0%D0%A4%20%D0%BE%D1%82%2030.08.2017%20N%20685	.work/ddg_685.html
-get	https://html.duckduckgo.com/html/?q=site%3Akontur-extern.ru%20%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%92%D0%94%20%D0%A0%D0%A4%20%D0%BE%D1%82%2005.06.2017%20N%20355	.work/ddg_355.html
-get	https://html.duckduckgo.com/html/?q=site%3Akontur-extern.ru%20%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%92%D0%94%20%D0%A0%D0%A4%20%D0%BE%D1%82%2022.11.2005%20N%20950	.work/ddg_950.html
-get	https://html.duckduckgo.com/html/?q=site%3Akontur-extern.ru%20%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%92%D0%94%20%D0%A0%D0%A4%20%D0%BE%D1%82%2028.06.2021%20N%20495	.work/ddg_495.html
-get	https://html.duckduckgo.com/html/?q=site%3Akontur-extern.ru%20%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%92%D0%94%20%D0%A0%D0%A4%20%D0%BE%D1%82%2015.10.2013%20N%20845	.work/ddg_845.html
-get	https://html.duckduckgo.com/html/?q=site%3Akontur-extern.ru%20%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%92%D0%94%20%D0%A0%D0%A4%20%D0%BE%D1%82%2030.04.2012%20N%20389	.work/ddg_389.html
-get	https://html.duckduckgo.com/html/?q=site%3Akontur-extern.ru%20%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%92%D0%94%20%D0%A0%D0%A4%20%D0%BE%D1%82%2027.11.2023%20N%20908	.work/ddg_908.html
-get	https://html.duckduckgo.com/html/?q=site%3Akontur-extern.ru%20%D0%9F%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%9F%D0%BB%D0%B5%D0%BD%D1%83%D0%BC%D0%B0%20%D0%92%D0%B5%D1%80%D1%85%D0%BE%D0%B2%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%A1%D1%83%D0%B4%D0%B0%20%D0%A0%D0%A4%20%D0%BE%D1%82%2024.03.2005%20N%205	.work/ddg_p5.html
-get	https://html.duckduckgo.com/html/?q=site%3Akontur-extern.ru%20%D0%9F%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%9F%D0%BB%D0%B5%D0%BD%D1%83%D0%BC%D0%B0%20%D0%92%D0%B5%D1%80%D1%85%D0%BE%D0%B2%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%A1%D1%83%D0%B4%D0%B0%20%D0%A0%D0%A4%20%D0%BE%D1%82%2026.06.2018%20N%2028	.work/ddg_p28.html
-get	https://html.duckduckgo.com/html/?q=site%3Akontur-extern.ru%20%D0%9F%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%9F%D0%BB%D0%B5%D0%BD%D1%83%D0%BC%D0%B0%20%D0%92%D0%B5%D1%80%D1%85%D0%BE%D0%B2%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%A1%D1%83%D0%B4%D0%B0%20%D0%A0%D0%A4%20%D0%BE%D1%82%2016.05.2017%20N%2015	.work/ddg_p15.html
-get	https://html.duckduckgo.com/html/?q=site%3Akontur-extern.ru%20%D0%9F%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%9F%D0%BB%D0%B5%D0%BD%D1%83%D0%BC%D0%B0%20%D0%92%D0%B5%D1%80%D1%85%D0%BE%D0%B2%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%A1%D1%83%D0%B4%D0%B0%20%D0%A0%D0%A4%20%D0%BE%D1%82%2028.06.2022%20N%2021	.work/ddg_p21.html
-get	https://www.bing.com/search?q=site%3Akontur-extern.ru%20%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%92%D0%94%20%D0%A0%D0%A4%20%D0%BE%D1%82%2029.03.2019%20N%20205	.work/bing_205.html
+get	https://sudact.ru/law/prikaz-mvd-rossii-ot-29032019-n-205/	.work/sa_205.html
+get	https://sudact.ru/law/prikaz-mvd-rossii-ot-30082017-n-685/	.work/sa_685.html
+get	https://sudact.ru/law/prikaz-mvd-rossii-ot-05062017-n-355/	.work/sa_355.html
+get	https://sudact.ru/law/prikaz-mvd-rf-ot-22112005-n-950/	.work/sa_950.html
+get	https://sudact.ru/law/prikaz-mvd-rossii-ot-22112005-n-950/	.work/sa_950b.html
+get	https://sudact.ru/law/prikaz-mvd-rossii-ot-28062021-n-495/	.work/sa_495.html
+get	https://sudact.ru/law/prikaz-mvd-rossii-ot-15102013-n-845/	.work/sa_845.html
+get	https://sudact.ru/law/prikaz-mvd-rossii-ot-30042012-n-389/	.work/sa_389.html
+get	https://sudact.ru/law/prikaz-mvd-rossii-ot-27112023-n-908/	.work/sa_908.html
+get	https://sudact.ru/law/postanovlenie-plenuma-verkhovnogo-suda-rf-ot-24032005-n-5/	.work/sa_p5.html
+get	https://sudact.ru/law/postanovlenie-plenuma-verkhovnogo-suda-rf-ot-26062018-n-28/	.work/sa_p28.html
+get	https://sudact.ru/law/postanovlenie-plenuma-verkhovnogo-suda-rf-ot-16052017-n-15/	.work/sa_p15.html
+get	https://sudact.ru/law/postanovlenie-plenuma-verkhovnogo-suda-rf-ot-28062022-n-21/	.work/sa_p21.html
+get	https://sudact.ru/law/prikaz-mvd-rossii-ot-29032019-n-205/prikaz/	.work/sa_205_prikaz.html
+get	https://sudact.ru/law/prikaz-mvd-rossii-ot-29032019-n-205/prilozhenie-n-1/i/	.work/sa_205_p1.html
