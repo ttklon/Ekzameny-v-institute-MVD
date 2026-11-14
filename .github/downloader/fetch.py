@@ -156,6 +156,27 @@ def kremlin_save(purl, out):
     return res, code, kind + '; html sha256=' + sha256(src), purl
 
 
+def op_ipscard(url, out):
+    """«Законодательство России»: найти акт поиском (после # — точные реквизиты акта)
+    и сохранить его карточку со списком редакций."""
+    import json, urllib.parse
+    search, _, adoption = url.partition('#')
+    tmp = out + '.search'
+    res, code, ctype = op_get(search, tmp, post=True)
+    if res != 'ok':
+        return res, code, ctype, url
+    docs = json.load(open(tmp, encoding='utf-8')).get('docs') or []
+    os.remove(tmp)
+    hits = [d for d in docs if d.get('adoption') == adoption]
+    if len(hits) != 1:
+        return 'ошибка: найдено актов: %d из %d' % (len(hits), len(docs)), code, ctype, url
+    curl = ('http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?' +
+            urllib.parse.urlencode({'bpa': hits[0]['baseid'], 'nd': hits[0]['nd']}))
+    time.sleep(1.0)
+    res, code, ctype = op_get(curl, out)
+    return res, code, ctype, curl
+
+
 def op_pub(url, out):
     """Официальное опубликование (publication.pravo.gov.ru): найти акт через поиск портала
     (адрес = запрос к /api/Documents, после # — дата акта ГГГГ-ММ-ДД) и скачать PDF."""
@@ -195,6 +216,8 @@ def main(tasks_path):
             os.makedirs(os.path.dirname(out) or '.', exist_ok=True)
             if op == 'kremlin':
                 res, code, ctype, url = op_kremlin(url, out)
+            elif op == 'ipscard':
+                res, code, ctype, url = op_ipscard(url, out)
             elif op == 'ips':
                 res, code, ctype, url = kremlin_save(url, out)
             elif op == 'pub':
