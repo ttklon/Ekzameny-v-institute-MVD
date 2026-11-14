@@ -525,6 +525,80 @@ def op_conshead(listfile, out):
     return ('ok' if n else 'ошибка'), '200', 'заголовков: %d из %d' % (n, total), listfile
 
 
+def op_yadisk(url, outdir):
+    """Яндекс.Диск: скачать файл (или все файлы папки) по публичной ссылке в каталог outdir."""
+    import json as _j, urllib.parse as _u
+    os.makedirs(outdir, exist_ok=True)
+    api = 'https://cloud-api.yandex.net/v1/disk/public/resources'
+    meta_path = os.path.join(outdir, '_meta.json')
+    res, code, ctype = op_get(api + '?limit=200&public_key=' + _u.quote(url, safe=''), meta_path)
+    if res != 'ok':
+        return res, code, ctype, url
+    meta = _j.load(open(meta_path, encoding='utf-8'))
+    items = meta.get('_embedded', {}).get('items') if meta.get('type') == 'dir' else [meta]
+    n = 0
+    for it in (items or [])[:40]:
+        if it.get('type') != 'file' or it.get('size', 0) > 80 * 1024 * 1024:
+            continue
+        q = api + '/download?public_key=' + _u.quote(url, safe='')
+        if meta.get('type') == 'dir':
+            q += '&path=' + _u.quote(it['path'], safe='')
+        tmp = os.path.join(outdir, '_href.json')
+        r1 = op_get(q, tmp)
+        if r1[0] != 'ok':
+            continue
+        href = _j.load(open(tmp, encoding='utf-8')).get('href')
+        os.remove(tmp)
+        if href and op_get(href, os.path.join(outdir, it['name'].replace('/', '_')))[0] == 'ok':
+            n += 1
+    return ('ok' if n else 'ошибка: файлы не получены'), '200', 'файлов: %d; %s' % (n, meta.get('name', '')), url
+
+
+def op_crawl(url, out):
+    """Обход открытого каталога веб-сервера (страницы «Index of»). Адрес: <каталог>#<глубина>,<предел числа каталогов>.
+    Пишет таблицу: путь <TAB> размер <TAB> дата."""
+    import re, html, urllib.parse as _u
+    url, _, lim = url.partition('#')
+    depth, maxdirs = (lim.split(',') + ['400'])[:2] if lim else ('3', '400')
+    depth, maxdirs = int(depth), int(maxdirs)
+    if not url.endswith('/'):
+        url += '/'
+    url = _u.quote(url, safe=':/%')
+    queue, seen, rows, errors = [(url, 0)], set(), [], 0
+    while queue and len(seen) < maxdirs:
+        u, d = queue.pop(0)
+        if u in seen:
+            continue
+        seen.add(u)
+        r = subprocess.run(['curl', '-sS', '-L', '--connect-timeout', '20', '--max-time', '90', '-A', UA, u],
+                           capture_output=True)
+        page = r.stdout.decode('utf-8', 'replace')
+        if 'Index of' not in page:
+            errors += 1
+            rows.append((_u.unquote(u), 'ОШИБКА', (r.stderr.decode('utf-8', 'replace') or page[:80]).strip().replace('\n', ' ')[:120]))
+            continue
+        for m in re.finditer(r'<a href="([^"?#]+)">.*?</a>\s*(?:</td>)?(.*?)(?:</tr>|\n)', page, re.S):
+            href, rest = m.group(1), html.unescape(re.sub(r'<[^>]+>', ' ', m.group(2)))
+            if href.startswith('/') or href.startswith('..') or '://' in href:
+                continue
+            full = _u.urljoin(u, href)
+            dm = re.search(r'(\d{4}-\d\d-\d\d)', rest)
+            sm = re.search(r'\s([\d.]+[KMG]?)\s*$', rest.strip() + ' ')
+            if href.endswith('/'):
+                rows.append((_u.unquote(full), 'каталог', dm.group(1) if dm else ''))
+                if d + 1 < depth:
+                    queue.append((full, d + 1))
+            else:
+                rows.append((_u.unquote(full), sm.group(1) if sm else '', dm.group(1) if dm else ''))
+        time.sleep(0.3)
+    os.makedirs(os.path.dirname(out) or '.', exist_ok=True)
+    with open(out, 'w', encoding='utf-8') as f:
+        for row in rows:
+            f.write('\t'.join(row) + '\n')
+    ok = len(rows) > errors
+    return ('ok' if ok else 'ошибка: каталог недоступен'), '200', 'каталогов: %d; строк: %d; ошибок: %d' % (len(seen), len(rows), errors), url
+
+
 def op_pub(url, out):
     """Официальное опубликование (publication.pravo.gov.ru): найти акт через поиск портала
     (адрес = запрос к /api/Documents, после # — дата акта ГГГГ-ММ-ДД) и скачать PDF."""
@@ -580,6 +654,10 @@ def main(tasks_path):
                 res, code, ctype, url = op_sudtitles(url, out)
             elif op == 'conshead':
                 res, code, ctype, url = op_conshead(url, out)
+            elif op == 'yadisk':
+                res, code, ctype, url = op_yadisk(url, out)
+            elif op == 'crawl':
+                res, code, ctype, url = op_crawl(url, out)
             elif op == 'ipsact':
                 res, code, ctype, url = op_ipsact(url, out)
             elif op == 'ipscard':
