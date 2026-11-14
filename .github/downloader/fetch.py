@@ -217,6 +217,14 @@ def op_ipsact(url, out):
     time.sleep(1.0)
     op_get('http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?' + q, '.work/cards/%s.json' % hits[0]['nd'])
     time.sleep(1.0)
+    # Редакцию берём по полю actualrdk карточки: без него сервер может отдать предыдущую редакцию
+    # (так было с Земельным кодексом 14.11.2026 — отдана редакция от 01.09.2026 вместо 13.11.2026).
+    try:
+        rdk = json.load(open('.work/cards/%s.json' % hits[0]['nd'], encoding='utf-8')).get('actualrdk')
+    except Exception:
+        rdk = None
+    if rdk is not None:
+        q += '&rdk=%s' % rdk
     globals()['WIDE'] = wide
     try:
         res, code, kind, purl = kremlin_save('http://ips.pravo.gov.ru/api/ips/legislation/document?' + q + '&target_format=html', out)
