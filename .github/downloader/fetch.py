@@ -37,7 +37,7 @@ def op_get(url, out, post=False):
     if post:
         url, _, body = url.partition('?')
         data = ['--data', body]
-    cmd = ['curl', '-sS', '-L', '--connect-timeout', '20', '--max-time', '150', '--retry', '1', '--retry-delay', '3',
+    cmd = ['curl', '-sS', '-L', '--connect-timeout', '15, '--max-time', '150', '--retry', '1', '--retry-delay', '3',
            '--max-filesize', str(MAX_BYTES), '-A', UA,
            '-H', 'Accept-Language: ru-RU,ru;q=0.9', '-o', tmp,
            '-w', '%{http_code}\t%{content_type}'] + data + [url]
