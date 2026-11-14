@@ -1,0 +1,34 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-14 10:44:09	get	http://www.kremlin.ru/acts/bank/32728	.work/kremlin_32728.html	ok	200	42132	text/html; charset=UTF-8	ffdbb009d02985b4dacb3c109f86a5fac6798c3db574ab1a35d2363fc82734af
+2026-11-14 10:44:11	get	http://www.kremlin.ru/acts/bank/32728/print	.work/kremlin_32728_print.html	ok	200	10263	text/html; charset=UTF-8	d0b9481d172337b238cd9380e0821473d245c859ddefb0caafd46f82755b7163
+2026-11-14 10:44:13	get	http://www.kremlin.ru/acts/bank/12536	.work/kremlin_12536.html	ok	200	69058	text/html; charset=UTF-8	ac4d845d5fb20cfa566bd2e6feece9f430ccc0fba942ad3a08539df8ff674a62
+2026-11-14 10:44:16	get	http://www.kremlin.ru/acts/bank	.work/kremlin_bank.html	ok	200	45261	text/html; charset=UTF-8	5eaeadd03d88e8570c6bb10b8cbe600a36bd50e9e6db1e1d87a8cef88c68374f
+2026-11-14 10:44:18	get	http://www.kremlin.ru/acts/bank/search?title=%D0%9E+%D0%BF%D0%BE%D0%BB%D0%B8%D1%86%D0%B8%D0%B8	.work/kremlin_search.html	ok	200	46134	text/html; charset=UTF-8	8d13c5910d7eba7759a82e1cc7d93208848cee89808dd408411c144059959cb3
+2026-11-14 10:44:43	pdf	http://www.kremlin.ru/acts/bank/32728	.work/kremlin_32728.pdf	"ошибка: _path= /org/freedesktop/DBus: unknown error type: 
+[2196:2196:1114/104443.736143:ERROR:components/headless/command_handler/headless_command_handler.cc:403] Page load failed: net::ERR_BLOCKED_BY_CLIENT"		0		
+2026-11-14 10:44:46	get	http://actual.pravo.gov.ru/content/content.html	.work/actual_content.html	ok	200	8349	text/html	5a558d59c7a35db29d6e9192b358e3695e010b6d1def214bd8dc838ed7db8309
+2026-11-14 10:44:47	get	http://actual.pravo.gov.ru/config.js	.work/actual_config.js	ok	200	106	application/javascript	230bf1def7786d1464bf14772a13f06aec96e1d0b2273e2f3b8147cdf31535fa
+2026-11-14 10:44:50	get	http://publication.pravo.gov.ru/document/0001202509300014	.work/pub_doc.html	ok	200	23256	text/html; charset=utf-8	d9cf917c8bc639fd954afacd278895a827b527440abaeca1a0131616f273b855
+2026-11-14 10:44:53	get	http://publication.pravo.gov.ru/api/Documents?Number=608&NumberSearchType=0&PageSize=10&Index=1	.work/pub_api1.json	ok	200	17912	application/json; charset=utf-8	47c78ff41cd4149e71374417d8f0ff006778b9f6b96c511665e47f5aca7be491
+2026-11-14 10:44:55	get	http://publication.pravo.gov.ru/api/Document?eoNumber=0001202509300014	.work/pub_api2.json	ok	200	2897	application/json; charset=utf-8	e1b772428c5bc2b5f698616cc8749983a7a6c928d9c2fadca4f3024558296e00
+2026-11-14 10:44:57	get	http://ips.pravo.gov.ru/	.work/ips_root.html	ok	200	2380	text/html	e2b24660b05273b141a96233d9bb4200063cc4acf412fad5d7a2736043c9a16f
+2026-11-14 10:51:49	get	http://ips.pravo.gov.ru:8080/default.aspx?pn=0001202509300014	.work/ips_8080.html	"ошибка: curl: (28) Failed to connect to ips.pravo.gov.ru port 8080 after 132793 ms: Could not connect to server
+curl: (28) Failed to connect to ips.pravo.gov.ru port 8080 after 136260 ms: Could not connect to"	000	0		
+2026-11-14 10:58:43	get	https://www.kontur-extern.ru/info/normativ/document/1/350354-prikaz-mvd-rf-ot-29-08-2014-n-736	.work/kontur_736.html	"ошибка: curl: (28) Failed to connect to www.kontur-extern.ru port 443 after 134159 ms: Could not connect to server
+curl: (28) Failed to connect to www.kontur-extern.ru port 443 after 136258 ms: Could not conn"	000	0		
+2026-11-14 10:59:10	get	https://legalacts.ru/doc/ukaz-prezidenta-rf-ot-21122016-n-699-ob-utverzhdenii/	.work/legalacts_699.html	ok	200	290683	text/html; charset=utf-8	f1256db7a7de09a637fa5bccbed598d7757473ee273e80531946cd8024721bd3
+2026-11-14 10:59:13	get	http://government.ru/docs/	.work/gov_docs.html	ok	200	92953	text/html; charset=UTF-8	e2f68020916d216ef06b1a1548d3188af7ab5dab5ac985f51fb3326d7241a5a2
+2026-11-14 11:06:09	get	https://vsrf.ru/documents/own/	.work/vsrf_own.html	"ошибка: curl: (28) Failed to connect to vsrf.ru port 443 after 136476 ms: Could not connect to server
+curl: (28) Failed to connect to vsrf.ru port 443 after 136259 ms: Could not connect to server
+curl: (28) F"	000	0		
+2026-11-14 11:13:03	get	https://www.vsrf.ru/	.work/vsrf_root.html	"ошибка: curl: (28) Failed to connect to www.vsrf.ru port 443 after 134159 ms: Could not connect to server
+curl: (28) Failed to connect to www.vsrf.ru port 443 after 136258 ms: Could not connect to server
+curl"	000	0		
+2026-11-14 11:19:57	get	https://media.mvd.ru/	.work/mvd_media.html	"ошибка: curl: (28) Failed to connect to media.mvd.ru port 443 after 134159 ms: Could not connect to server
+curl: (28) Failed to connect to media.mvd.ru port 443 after 136258 ms: Could not connect to server
+cu"	000	0		
+2026-11-14 11:26:50	get	https://mvd.ru/	.work/mvd_ru.html	"ошибка: curl: (28) Failed to connect to mvd.ru port 443 after 134160 ms: Could not connect to server
+curl: (28) Failed to connect to mvd.ru port 443 after 136258 ms: Could not connect to server
+curl: (28) Fai"	000	0		
+2026-11-14 11:26:53	get	https://base.garant.ru/12182530/	.work/garant_3fz.html	ok	200	123351	text/html; charset=windows-1251	046e218b5db8ff81e969b0868979470506ffffe4275423443fb9d084f5e3a3d9
+2026-11-14 11:26:58	get	https://rg.ru/documents/2025/10/03/mvd-prikaz608-site-dok.html	.work/rg_608.html	ok	200	80919	text/html; charset=utf-8	2251e7b78db34259a91da126a3b29f802d28696af794d216669ed6afdaf5cc05
