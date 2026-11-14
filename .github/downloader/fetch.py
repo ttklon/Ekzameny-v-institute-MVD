@@ -45,7 +45,10 @@ def op_get(url, out, post=False):
         os.replace(tmp, out)
         return 'ok', code, ctype
     if os.path.exists(tmp):
-        os.remove(tmp)
+        if out.startswith('.work/') and os.path.getsize(tmp) > 0:
+            os.replace(tmp, out + '.err')
+        else:
+            os.remove(tmp)
     return 'ошибка: ' + (' '.join(r.stderr.split())[:200] or 'HTTP ' + code), code, ctype
 
 
@@ -53,22 +56,25 @@ def op_pdf(url, out):
     """Сохранить страницу как PDF через Chrome (страница печатается так, как её отдаёт сайт)."""
     import shutil, tempfile
     tmp = os.path.abspath(out + '.part.pdf')
-    if not url.startswith('file:'):
-        # сайт отдаёт страницу по http, а Chrome на сборочной машине такие адреса блокирует:
-        # страница скачивается, и печатается её локальная копия (текст не меняется;
-        # добавляется только указание кодировки и убирается автозапуск окна печати)
-        src = os.path.abspath(out + '.src.html')
-        res, code, ctype = op_get(url, src)
-        if res != 'ok':
-            return res, code, ctype
-        page = open(src, encoding='utf-8', errors='replace').read()
+    if not url.endswith('.print.html'):
+        # сайт отдаёт страницу по http, а Chrome на сборочной машине такие адреса блокирует,
+        # поэтому печатается локальная копия. Текст не меняется: во временную копию только
+        # добавляется указание кодировки и убирается автозапуск окна печати.
+        tmp_html = os.path.abspath(out + '.print.html')
+        if url.startswith('file://'):
+            page = open(url[7:], encoding='utf-8', errors='replace').read()
+        else:
+            res, code, ctype = op_get(url, tmp_html)
+            if res != 'ok':
+                return res, code, ctype
+            page = open(tmp_html, encoding='utf-8', errors='replace').read()
         page = page.replace('<head>', '<head><meta charset="utf-8">', 1).replace(' onload="window.print()"', '')
         page = page.replace('<link rel="stylesheet" href="/static/css/all_fonts.css">', '')
-        open(src, 'w', encoding='utf-8').write(page)
+        open(tmp_html, 'w', encoding='utf-8').write(page)
         try:
-            return op_pdf('file://' + src, out)
+            return op_pdf('file://' + tmp_html, out)
         finally:
-            os.remove(src)
+            os.remove(tmp_html)
     exe = shutil.which('google-chrome') or shutil.which('chromium-browser') or shutil.which('chromium') or 'google-chrome'
     err = ''
     for mode in ('--headless=new', '--headless=old', '--headless'):
@@ -97,6 +103,8 @@ def op_kremlin(url, out):
     полный текст акта в действующей редакции. Адрес = поисковый запрос; после # можно
     указать дату акта ДД.ММ.ГГГГ (нужно для актов до 2000 года: поиск по дате их не находит)."""
     import re, urllib.parse
+    if '/acts/bank/search' not in url:
+        return kremlin_save(url, out)
     search, _, date = url.partition('#')
     num = urllib.parse.parse_qs(urllib.parse.urlparse(search).query).get('title', [''])[0]
     found, code, ctype = [], '', ''
@@ -121,10 +129,25 @@ def op_kremlin(url, out):
     ids = sorted({f[0] for f in found})
     if len(ids) != 1:
         return 'ошибка: найдено актов: %d %s' % (len(ids), '; '.join('%s %s' % f for f in found[:4])), code, ctype, url
-    purl = 'http://www.kremlin.ru/acts/bank/%s/print' % ids[0]
     time.sleep(1.0)
-    res, code, ctype = op_get(purl, out)
-    return res, code, ctype, purl
+    return kremlin_save('http://www.kremlin.ru/acts/bank/%s/print' % ids[0], out)
+
+
+def kremlin_save(purl, out):
+    """Сохранить версию для печати. Если путь оканчивается на .pdf, рядом в папке
+    «Исходные страницы (HTML)» сохраняется страница в том виде, в каком её отдал сайт,
+    а PDF печатается с неё (для чтения)."""
+    if not out.lower().endswith('.pdf'):
+        res, code, ctype = op_get(purl, out)
+        return res, code, ctype, purl
+    folder = os.path.join(os.path.dirname(out), 'Исходные страницы (HTML)')
+    os.makedirs(folder, exist_ok=True)
+    src = os.path.join(folder, os.path.basename(out)[:-4] + '.html')
+    res, code, ctype = op_get(purl, src)
+    if res != 'ok':
+        return res, code, ctype, purl
+    res, _, kind = op_pdf('file://' + os.path.abspath(src), out)
+    return res, code, kind + '; html sha256=' + sha256(src), purl
 
 
 def op_pub(url, out):
