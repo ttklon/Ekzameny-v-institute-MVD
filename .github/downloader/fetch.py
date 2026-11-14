@@ -382,10 +382,13 @@ def op_cons(url, out):
     ends = [i for i in (page.find(m, a) for m in ('<div class="document-page__notes', '<div class="full-text', '<div class="document-page__separator')) if i > 0]
     body = re.sub(r'<script.*?</script>', '', page[a:min(ends)] if a > 0 and ends else '', flags=re.S)
     # документ, разбитый на части: части перечислены ссылками на главной странице документа
-    n = re.search(r'cons_doc_LAW_(\d+)', url).group(1)
-    parts = list(dict.fromkeys(re.findall(r'href="(/document/cons_doc_LAW_%s/[0-9a-f]{20,}/)"' % n, page)))
+    # (номер в адресе может отличаться от номера в ссылках на части: сайт перенаправляет на основную карточку)
+    found = re.findall(r'href="(/document/cons_doc_LAW_(\d+)/[0-9a-f]{20,}/)"', page)
+    ids = [i for _, i in found]
+    n = max(set(ids), key=ids.count) if ids else ''
+    parts = list(dict.fromkeys(h for h, i in found if i == n))
     for link in parts:
-        time.sleep(1.0)
+        time.sleep(1.2)
         purl = 'https://www.consultant.ru' + link
         tmp = src + '.part.html'
         res, code2, _ = op_get(purl, tmp)
