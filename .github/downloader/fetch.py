@@ -4,8 +4,11 @@
 Файл заданий — TSV, по одному заданию в строке:  операция <TAB> адрес <TAB> путь_для_сохранения
 Операции:
   get  — скачать файл как есть (байт в байт);
-  pdf  — открыть страницу в браузере Chrome и сохранить её как PDF
-         (в колонтитулах PDF остаются адрес страницы и дата сохранения).
+  pdf  — открыть страницу в браузере Chrome и сохранить её как PDF;
+  kremlin — найти акт в Банке документов kremlin.ru и сохранить полный текст
+         в действующей редакции (версия для печати);
+  pub  — найти акт на портале официального опубликования publication.pravo.gov.ru
+         и скачать PDF официальной публикации.
 Каждая попытка записывается в журнал .github/downloader/log.tsv:
 время (UTC), операция, адрес, путь, результат, код HTTP, размер, тип, SHA-256.
 """
@@ -66,6 +69,51 @@ def op_pdf(url, out):
     return 'ошибка: ' + err, '', ''
 
 
+def op_kremlin(url, out):
+    """Банк документов kremlin.ru: найти акт поиском (адрес = поисковый запрос) и
+    сохранить версию для печати — полный текст акта в действующей редакции."""
+    import re, urllib.parse
+    tmp = out + '.search'
+    res, code, ctype = op_get(url, tmp)
+    if res != 'ok':
+        return res, code, ctype, url
+    page = open(tmp, encoding='utf-8', errors='replace').read()
+    os.remove(tmp)
+    num = urllib.parse.parse_qs(urllib.parse.urlparse(url).query).get('title', [''])[0]
+    found = []
+    for m in re.finditer(r'href="/acts/bank/(\d+)"[^>]*>(.*?)</a>', page, re.S):
+        title = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', m.group(2))).replace('\xa0', ' ')
+        if not num or ('№ ' + num + ' ') in title + ' ':
+            found.append((m.group(1), title.strip()[:120]))
+    ids = sorted({f[0] for f in found})
+    if len(ids) != 1:
+        return 'ошибка: найдено актов: %d %s' % (len(ids), '; '.join('%s %s' % f for f in found[:4])), code, ctype, url
+    purl = 'http://www.kremlin.ru/acts/bank/%s/print' % ids[0]
+    time.sleep(1.0)
+    res, code, ctype = op_get(purl, out)
+    return res, code, ctype, purl
+
+
+def op_pub(url, out):
+    """Официальное опубликование (publication.pravo.gov.ru): найти акт через поиск портала
+    (адрес = запрос к /api/Documents, после # — дата акта ГГГГ-ММ-ДД) и скачать PDF."""
+    import json
+    api, _, date = url.partition('#')
+    tmp = out + '.search'
+    res, code, ctype = op_get(api, tmp)
+    if res != 'ok':
+        return res, code, ctype, url
+    data = json.load(open(tmp, encoding='utf-8'))
+    os.remove(tmp)
+    items = [i for i in data.get('items', []) if not date or (i.get('documentDate') or '').startswith(date)]
+    if len(items) != 1:
+        return 'ошибка: найдено публикаций: %d' % len(items), code, ctype, url
+    purl = 'http://publication.pravo.gov.ru/file/pdf?eoNumber=' + items[0]['eoNumber']
+    time.sleep(1.0)
+    res, code, ctype = op_get(purl, out)
+    return res, code, ctype, purl
+
+
 def main(tasks_path):
     new_log = not os.path.exists(LOG)
     with open(tasks_path, encoding='utf-8') as f, open(LOG, 'a', encoding='utf-8', newline='') as lf:
@@ -82,7 +130,14 @@ def main(tasks_path):
                 continue
             op, url, out = (p.strip() for p in parts)
             os.makedirs(os.path.dirname(out) or '.', exist_ok=True)
-            res, code, ctype = (op_get if op == 'get' else op_pdf)(url, out)
+            if op == 'kremlin':
+                res, code, ctype, url = op_kremlin(url, out)
+            elif op == 'pub':
+                res, code, ctype, url = op_pub(url, out)
+            elif op == 'pdf':
+                res, code, ctype = op_pdf(url, out)
+            else:
+                res, code, ctype = op_get(url, out)
             size = os.path.getsize(out) if res == 'ok' else 0
             digest = sha256(out) if res == 'ok' else ''
             now = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
