@@ -11,6 +11,7 @@
          (ips.pravo.gov.ru): исходная страница и PDF с неё;
   kontur — действующая редакция акта из справочной системы «Контур.Норматив»
          (для приказов МВД и постановлений Пленума ВС РФ, которых нет в «Законодательстве России»);
+  ipsact — то же, что ips, но акт сначала находится поиском по реквизитам (указываются после #);
   ipswide — то же, что ips, но PDF печатается в альбомной ориентации (для актов с широкими таблицами);
   sudact, cons — тексты актов с внесёнными изменениями из sudact.ru (версия для печати)
          и consultant.ru; после адреса через # указываются реквизиты для сверки с заголовком страницы;
@@ -186,6 +187,41 @@ def op_ipscard(url, out):
     time.sleep(1.0)
     res, code, ctype = op_get(curl, out)
     return res, code, ctype, curl
+
+
+def op_ipsact(url, out):
+    """«Законодательство России»: найти акт поиском по реквизитам (после # — реквизиты акта,
+    например «Федеральный закон от 21.11.2011 № 323-ФЗ»), сохранить текст в действующей редакции
+    (исходная страница и PDF) и карточку акта со списком редакций (.work/cards)."""
+    import json, urllib.parse
+    search, _, adoption = url.partition('#')
+    wide = adoption.endswith('|wide')
+    adoption = adoption.replace('|wide', '')
+    os.makedirs('.work/cards', exist_ok=True)
+    tmp = '.work/cards/search.tmp'
+    res, code, ctype = op_get(search, tmp, post=True)
+    if res != 'ok':
+        return res, code, ctype, url
+    docs = json.load(open(tmp, encoding='utf-8')).get('docs') or []
+    os.remove(tmp)
+    norm = lambda x: ' '.join((x or '').split())
+    hits = [d for d in docs if norm(d.get('adoption')) == adoption]
+    if not hits:
+        tail = adoption[adoption.index(' от '):]
+        hits = [d for d in docs if norm(d.get('adoption')).endswith(tail)]
+    if len(hits) != 1:
+        seen = '; '.join(norm(d.get('adoption')) for d in docs[:4])
+        return 'ошибка: найдено актов: %d из %d (%s)' % (len(hits), len(docs), seen[:300]), code, ctype, url
+    q = urllib.parse.urlencode({'bpa': hits[0]['baseid'], 'nd': hits[0]['nd']})
+    time.sleep(1.0)
+    op_get('http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?' + q, '.work/cards/%s.json' % hits[0]['nd'])
+    time.sleep(1.0)
+    globals()['WIDE'] = wide
+    try:
+        res, code, kind, purl = kremlin_save('http://ips.pravo.gov.ru/api/ips/legislation/document?' + q + '&target_format=html', out)
+    finally:
+        globals()['WIDE'] = False
+    return res, code, kind + '; ' + norm(hits[0].get('adoption')) + '; ' + norm(hits[0].get('state')), purl
 
 
 def op_kontur(url, out):
@@ -388,6 +424,8 @@ def main(tasks_path):
                 res, code, ctype, url = op_sudact(url, out)
             elif op == 'cons':
                 res, code, ctype, url = op_cons(url, out)
+            elif op == 'ipsact':
+                res, code, ctype, url = op_ipsact(url, out)
             elif op == 'ipscard':
                 res, code, ctype, url = op_ipscard(url, out)
             elif op in ('ips', 'ipswide'):
