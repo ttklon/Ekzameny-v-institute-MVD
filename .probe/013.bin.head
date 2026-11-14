@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="https://cyberleninka.ru/" />
+
+    <title>КиберЛенинка предоставляет возможность читать тексты научных статей бесплатно. Приглашаем к сотрудничеству научные журналы и издательства для публикации научно-исследовательских работ в открытом доступе (Open Access) и популяризации открытой науки (Open Science) в России.</title>
+    <meta name="keywords" content="Научная электронная библиотека КиберЛенинка предоставляет возможность читать тексты научных статей бесплатно. Приглашаем к сотрудничеству научные журналы и издательства для публикации научных работ в открытом доступе (Open Access) и популяризации науки в России. cyberleninka" />
+    <meta name="description" content="Научная электронная библиотека КиберЛенинка предоставляет возможность читать тексты научных статей бесплатно. Приглашаем к сотрудничеству научные журналы и издательства для публикации научных работ в открытом доступе (Open Access) и популяризации науки в России." />
+
+    <link rel="stylesheet" media="all" href="/app.css?988363466" />
+    <link rel="preload" href="/fonts/ProximaNovaBold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/ProximaNovaRegular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/ProximaNovaExtraCondensedLight.woff2" as="font" type="font/woff2" crossorigin>
+    
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+  <meta name="robots" content="NOODP" />
+  <meta name="robots" content="noyaca" />
+
+  <meta property="og:url" content="https://cyberleninka.ru/" />
+  <meta property="og:site_name" content="КиберЛенинка" />
+  <meta property="og:title" content="КиберЛенинка предоставляет возможность читать тексты научных статей бесплатно. Приглашаем к сотрудничеству научные журналы и издательства для публикации научно-исследовательских работ в открытом доступе (Open Access) и популяризации открытой науки (Open Science) в России." />
+  <meta property="og:description" content="Научная электронная библиотека КиберЛенинка предоставляет возможность читать тексты научных статей бесплатно. Приглашаем к сотрудничеству научные журналы и издательства для публикации научных работ в открытом доступе (Open Access) и популяризации науки в России." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://cyberleninka.ru/images/og/4.jpg" />
+  <meta property="og:image:width" content="1074" />
+  <meta property="og:image:height" content="480" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@CyberLeninka" />
+
+    
+  </head>
+
+  <body id="body">
+    <div id="vk_api_transport"></div>
+    <div id="menu" style="height: 55px;"></div>
+
+    <div class="content" style="overflow: visible;">
+      <div class="main">
+        
+  <h1 class="bigheader">Научная электронная библиотека «КиберЛенинка»</h1>
+  <div class="search" id="search">
+    <div id="search-box-light"></div>
+  </div>
+  <p>
+  КиберЛенинка — это&nbsp;научная электронная библиотека, построенная на&nbsp;парадигме <a href="/article/n/vozmozhnye-puti-razvitiya-otkrytoy-nauki-v-rossii">открытой науки</a> (Open Science), основными задачами которой является популяризация науки и&nbsp;научной деятельности, общественный контроль качества научных публикаций, развитие междисциплинарных исследований, современного института научной рецензии, повышение цитируемости российской науки и построение <a href="/article/n/infrastruktura-otkrytoy-nauki">инфраструктуры знаний</a>.
+  </p>
+
+<style type="text/css">
+	.newpop { overflow: hidden; } 
+</style>
+
+  <div id="popular">
+  </div>
+
+  
+<h2 class="right-title">Каталог тем научных статей<span>  на базе рубрикатора Организации экономического сотрудничества и развития (ОЭСР, OECD)</span></h2>
+<div class="half">
+  <ul class="oecd">
+    <li class="letter">Медицинские науки</li>
+    <li><a href="/article/c/basic-medicine">Фундаментальная медицина</a></li>
+    <li><a href=
