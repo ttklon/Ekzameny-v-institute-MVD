@@ -408,6 +408,37 @@ def op_cons(url, out):
     return _reference_copy(url, 'consultant.ru, некоммерческая интернет-версия КонсультантПлюс', title, body, out, src, code, expect)
 
 
+def op_constitles(listfile, out):
+    """consultant.ru: для каждого номера документа из файла-списка открыть страницу документа и записать
+    её заголовок (в нём сайт указывает дату действующей редакции). Нужна для сверки редакций."""
+    import re, html
+    ids = [x.strip() for x in open(listfile, encoding='utf-8') if x.strip()]
+    n = 0
+    with open(out, 'w', encoding='utf-8') as f:
+        for i in ids:
+            tmp = out + '.page'
+            cmd = ['curl', '-sS', '-L', '--connect-timeout', '15', '--max-time', '60', '-A', UA,
+                   '-H', 'Accept-Language: ru-RU,ru;q=0.9', '-o', tmp, '-w', '%{http_code}\t%{url_effective}',
+                   'https://www.consultant.ru/document/cons_doc_LAW_%s/' % i]
+            r = subprocess.run(cmd, capture_output=True, text=True)
+            code, _, eff = r.stdout.partition('\t')
+            title = ''
+            if os.path.exists(tmp):
+                page = open(tmp, encoding='utf-8', errors='replace').read()
+                m = re.search(r'<title>(.*?)</title>', page, re.S)
+                title = ' '.join(html.unescape(m.group(1)).split()) if m else ''
+                lost = 'утратил силу' in page[:60000].lower() and 'Документ утратил силу' in page
+                os.remove(tmp)
+                if lost:
+                    title += ' [на странице: документ утратил силу]'
+            if title:
+                n += 1
+            f.write('%s\t%s\t%s\t%s\n' % (i, code, eff, title))
+            f.flush()
+            time.sleep(0.7)
+    return ('ok' if n else 'ошибка: ни одного заголовка'), '200', 'text/tab-separated-values; заголовков: %d из %d' % (n, len(ids)), listfile
+
+
 def op_pub(url, out):
     """Официальное опубликование (publication.pravo.gov.ru): найти акт через поиск портала
     (адрес = запрос к /api/Documents, после # — дата акта ГГГГ-ММ-ДД) и скачать PDF."""
@@ -455,6 +486,8 @@ def main(tasks_path):
                 res, code, ctype, url = op_cons(url, out)
             elif op == 'consfind':
                 res, code, ctype, url = op_consfind(url, out)
+            elif op == 'constitles':
+                res, code, ctype, url = op_constitles(url, out)
             elif op == 'ipsact':
                 res, code, ctype, url = op_ipsact(url, out)
             elif op == 'ipscard':
