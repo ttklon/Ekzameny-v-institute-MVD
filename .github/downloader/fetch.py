@@ -11,6 +11,7 @@
          (ips.pravo.gov.ru): исходная страница и PDF с неё;
   kontur — действующая редакция акта из справочной системы «Контур.Норматив»
          (для приказов МВД и постановлений Пленума ВС РФ, которых нет в «Законодательстве России»);
+  consfind — поиск по сайту consultant.ru: краткий список найденного (название с пометкой редакции, ссылка);
   ipsact — то же, что ips, но акт сначала находится поиском по реквизитам (указываются после #);
   ipswide — то же, что ips, но PDF печатается в альбомной ориентации (для актов с широкими таблицами);
   sudact, cons — тексты актов с внесёнными изменениями из sudact.ru (версия для печати)
@@ -224,6 +225,31 @@ def op_ipsact(url, out):
     return res, code, kind + '; ' + norm(hits[0].get('adoption')) + '; ' + norm(hits[0].get('state')), purl
 
 
+def op_consfind(url, out):
+    """Поиск по сайту consultant.ru (после паузы — сайт ограничивает частые запросы): в файл пишется
+    краткий список найденного — доступность текста, отметка об утрате силы, название, ссылка."""
+    import re, html as _h
+    time.sleep(14.0)
+    tmp = out + '.html'
+    res, code, ctype = op_get(url, tmp)
+    if res != 'ok':
+        return res, code, ctype, url
+    s = open(tmp, encoding='utf-8', errors='replace').read()
+    os.remove(tmp)
+    rows = []
+    for m in re.finditer(r'<li class="search-results__item[^"]*"(.*?)</li>', s, re.S):
+        it = m.group(1)
+        href = re.search(r'href="([^"]+)"', it)
+        avail = re.search(r'data-avail="([^"]*)"', it)
+        text = ' '.join(_h.unescape(re.sub(r'<[^>]+>', '', re.sub(r'<span class="search-results__number">.*?</span>', '', it, flags=re.S))).split())
+        lost = 'утратил' if 'утратил силу' in text else ''
+        text = text.replace('Документ утратил силу или отменён', '').strip()
+        rows.append('\t'.join([avail.group(1) if avail else '', lost, text[:420], href.group(1) if href else '']))
+    with open(out, 'w', encoding='utf-8') as f:
+        f.write('\n'.join(rows) + '\n')
+    return 'ok', code, 'найдено: %d' % len(rows), url
+
+
 def op_kontur(url, out):
     """Справочная система «Контур.Норматив» (тексты актов с внесёнными изменениями).
     По адресу любой редакции акта находит действующую (по списку редакций на странице),
@@ -424,6 +450,8 @@ def main(tasks_path):
                 res, code, ctype, url = op_sudact(url, out)
             elif op == 'cons':
                 res, code, ctype, url = op_cons(url, out)
+            elif op == 'consfind':
+                res, code, ctype, url = op_consfind(url, out)
             elif op == 'ipsact':
                 res, code, ctype, url = op_ipsact(url, out)
             elif op == 'ipscard':
