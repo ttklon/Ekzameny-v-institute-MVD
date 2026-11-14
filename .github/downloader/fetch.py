@@ -308,6 +308,27 @@ def op_cons(url, out):
     a = page.find('<div class="document-page__content')
     ends = [i for i in (page.find(m, a) for m in ('<div class="document-page__notes', '<div class="full-text', '<div class="document-page__separator')) if i > 0]
     body = re.sub(r'<script.*?</script>', '', page[a:min(ends)] if a > 0 and ends else '', flags=re.S)
+    # документ, разбитый на части: части перечислены ссылками на главной странице документа
+    n = re.search(r'cons_doc_LAW_(\d+)', url).group(1)
+    parts = list(dict.fromkeys(re.findall(r'href="(/document/cons_doc_LAW_%s/[0-9a-f]{20,}/)"' % n, page)))
+    for link in parts:
+        time.sleep(1.0)
+        purl = 'https://www.consultant.ru' + link
+        tmp = src + '.part.html'
+        res, code2, _ = op_get(purl, tmp)
+        if res != 'ok':
+            os.remove(src)
+            return res + ' (часть ' + purl + ')', code2, ctype, url
+        part = open(tmp, encoding='utf-8', errors='replace').read()
+        os.remove(tmp)
+        a = part.find('<div class="document-page__content')
+        ends = [i for i in (part.find(m, a) for m in ('<div class="document-page__notes', '<div class="full-text', '<div class="document-page__separator')) if i > 0]
+        if a < 0 or not ends:
+            os.remove(src)
+            return 'ошибка: в части нет текста: ' + purl, code2, ctype, url
+        body += '\n<hr>\n' + re.sub(r'<script.*?</script>', '', part[a:min(ends)], flags=re.S)
+        with open(src, 'a', encoding='utf-8') as f:
+            f.write('\n<!-- ===== часть документа: %s ===== -->\n' % purl + part)
     return _reference_copy(url, 'consultant.ru, некоммерческая интернет-версия КонсультантПлюс', title, body, out, src, code, expect)
 
 
