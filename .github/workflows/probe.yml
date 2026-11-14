@@ -1,0 +1,38 @@
+name: probe
+on:
+  push:
+    branches: ['arena/**']
+    paths: ['.github/downloader/probe.txt', '.github/workflows/probe.yml']
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: probe
+        run: |
+          mkdir -p .probe
+          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36'
+          : > .probe/report.tsv
+          (google-chrome --version || chromium --version || echo no-chrome) > .probe/env.txt 2>&1
+          (curl -s -m 10 https://ipinfo.io/json || true) >> .probe/env.txt
+          n=0
+          while IFS= read -r url; do
+            [ -z "$url" ] && continue
+            n=$((n+1)); f=$(printf '.probe/%03d.bin' $n)
+            res=$(curl -sS -L -m 40 -A "$UA" -H 'Accept-Language: ru-RU,ru;q=0.9' -o "$f" -w '%{http_code}\t%{size_download}\t%{content_type}\t%{url_effective}' "$url" 2>&1 || true)
+            printf '%03d\t%s\t%s\n' $n "$url" "$res" >> .probe/report.tsv
+            # keep only the first 6000 bytes of each body
+            if [ -f "$f" ]; then head -c 6000 "$f" > "$f.head"; rm -f "$f"; fi
+          done < .github/downloader/probe.txt
+          cat .probe/report.tsv
+      - name: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A .probe
+          git commit -m "probe results" || exit 0
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
