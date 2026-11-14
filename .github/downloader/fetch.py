@@ -73,6 +73,8 @@ def op_pdf(url, out):
             page = open(tmp_html, encoding='utf-8', errors='replace').read()
         page = page.replace('<head>', '<head><meta charset="utf-8">', 1).replace(' onload="window.print()"', '')
         page = page.replace('<link rel="stylesheet" href="/static/css/all_fonts.css">', '')
+        # ips.pravo.gov.ru: «Список изменяющих документов» на странице свёрнут — в PDF печатается развёрнутым
+        page = page.replace('<input class="cap" ', '<input class="cap" checked ')
         open(tmp_html, 'w', encoding='utf-8').write(page)
         try:
             return op_pdf('file://' + tmp_html, out)
