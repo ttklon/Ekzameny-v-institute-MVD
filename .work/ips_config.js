@@ -1,0 +1,1 @@
+const Config={baseURL:"http://ips.pravo.gov.ru/",appID:"647016aa-e2a0c7924ab879d771f0038",appName:"front",auth:"Basic aXBzOm5ld3Bhc3N3b3JkMjAyMA==",siteHomeUrl:"",resendCount:0,baseUrlImage:"http://ips.pravo.gov.ru/"};"undefined"!=typeof module&&module.exports&&(module.exports=Config);
