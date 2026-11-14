@@ -39,25 +39,31 @@ def op_get(url, out):
         return 'ok', code, ctype
     if os.path.exists(tmp):
         os.remove(tmp)
-    return 'ошибка: ' + (r.stderr.strip()[:200] or 'HTTP ' + code), code, ctype
+    return 'ошибка: ' + (' '.join(r.stderr.split())[:200] or 'HTTP ' + code), code, ctype
 
 
 def op_pdf(url, out):
     tmp = os.path.abspath(out + '.part.pdf')
-    cmd = ['google-chrome', '--headless=new', '--no-sandbox', '--disable-gpu',
-           '--hide-scrollbars', '--lang=ru-RU', '--user-agent=' + UA,
-           '--virtual-time-budget=20000', '--run-all-compositor-stages-before-draw',
-           '--print-to-pdf=' + tmp, url]
-    try:
-        r = subprocess.run(cmd, capture_output=True, text=True, timeout=240)
-    except subprocess.TimeoutExpired:
-        return 'ошибка: превышено время', '', ''
-    if os.path.exists(tmp) and os.path.getsize(tmp) > 2000:
-        os.replace(tmp, out)
-        return 'ok', '', 'application/pdf'
-    if os.path.exists(tmp):
-        os.remove(tmp)
-    return 'ошибка: ' + r.stderr.strip()[-200:], '', ''
+    base = ['--no-sandbox', '--disable-gpu', '--hide-scrollbars', '--lang=ru-RU',
+            '--user-agent=' + UA, '--print-to-pdf=' + tmp, url]
+    variants = [
+        ['google-chrome', '--headless=new', '--virtual-time-budget=15000'],
+        ['google-chrome', '--headless=new'],
+        ['google-chrome', '--headless'],
+    ]
+    err = ''
+    for v in variants:
+        try:
+            r = subprocess.run(v + base, capture_output=True, text=True, timeout=180)
+            err = ' '.join(r.stderr.split())[-300:]
+        except subprocess.TimeoutExpired:
+            err = 'превышено время'
+        if os.path.exists(tmp) and os.path.getsize(tmp) > 2000:
+            os.replace(tmp, out)
+            return 'ok', '', 'application/pdf; ' + ' '.join(v[1:])
+        if os.path.exists(tmp):
+            os.remove(tmp)
+    return 'ошибка: ' + err, '', ''
 
 
 def main(tasks_path):
