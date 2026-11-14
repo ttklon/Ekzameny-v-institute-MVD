@@ -9,6 +9,8 @@
          в действующей редакции (версия для печати);
   ips  — сохранить текст акта в действующей редакции из системы «Законодательство России»
          (ips.pravo.gov.ru): исходная страница и PDF с неё;
+  kontur — действующая редакция акта из справочной системы «Контур.Норматив»
+         (для приказов МВД и постановлений Пленума ВС РФ, которых нет в «Законодательстве России»);
   post — запрос методом POST (параметры после знака вопроса);
   pub  — найти акт на портале официального опубликования publication.pravo.gov.ru
          и скачать PDF официальной публикации.
@@ -177,6 +179,66 @@ def op_ipscard(url, out):
     return res, code, ctype, curl
 
 
+def op_kontur(url, out):
+    """Справочная система «Контур.Норматив» (тексты актов с внесёнными изменениями).
+    По адресу любой редакции акта находит действующую (по списку редакций на странице),
+    проверяет пометку сайта «действующая редакция», сохраняет страницу как есть
+    в «Исходные страницы (HTML)» и печатает PDF с текстом акта."""
+    import json, re, html as htmlmod
+    folder = os.path.join(os.path.dirname(out), 'Исходные страницы (HTML)')
+    os.makedirs(folder, exist_ok=True)
+    src = os.path.join(folder, os.path.basename(out)[:-4] + '.html')
+    tried = set()
+    for attempt in range(3):
+        res, code, ctype = op_get(url, src)
+        if res != 'ok':
+            return res, code, ctype, url
+        page = open(src, encoding='utf-8', errors='replace').read()
+        i = page.find('revisionsJSON:')
+        revs = json.JSONDecoder().raw_decode(page[page.find('[', i):])[0] if i >= 0 else []
+        m = re.search(r'id="js-revisions-status"[^>]*data-status="([^"]*)"[^>]*>(.*?)</div>', page, re.S)
+        status = m.group(1) if m else ''
+        label = re.sub(r'<[^>]+>', '', m.group(2)).strip() if m else ''
+        if status == 'Actual':
+            break
+        tried.add(url)
+        nxt = [r for r in revs if r.get('status') == 0]
+        if not nxt:
+            os.remove(src)
+            return 'ошибка: действующая редакция не найдена (пометка сайта: %s)' % (status or 'нет'), code, ctype, url
+        url = 'https://normativ.kontur.ru/document?moduleId=%s&documentId=%s' % (nxt[0]['moduleId'], nxt[0]['documentId'])
+        if url in tried:
+            os.remove(src)
+            return 'ошибка: редакция не помечена как действующая', code, ctype, url
+        time.sleep(1.0)
+    else:
+        os.remove(src)
+        return 'ошибка: действующая редакция не найдена', code, ctype, url
+    st = re.search(r'<dt>Статус</dt><dd>(.*?)</dd>', page)
+    st = st.group(1) if st else '?'
+    title = re.search(r'<h1 class="doc_titlebar-title">(.*?)</h1>', page, re.S)
+    title2 = re.search(r'<div class="doc_titlebar-title-second">(.*?)</div>', page, re.S)
+    body = re.sub(r'<script.*?</script>', '', page, flags=re.S)
+    a = body.rfind('<div class="doc_text ')
+    b = body.find('<iframe id="js-doc-download-frame"')
+    if a < 0 or b < a:
+        return 'ошибка: текст акта на странице не найден', code, ctype, url
+    printable = ('<html><head><meta charset="utf-8"><style>body{font-family:serif;font-size:12pt;line-height:1.35}'
+                 'table{border-collapse:collapse}td,th{border:1px solid #888;padding:2px 4px;vertical-align:top}'
+                 '.src{font-family:sans-serif;font-size:9pt;color:#444;border-bottom:1px solid #888;padding-bottom:6px}</style></head><body>'
+                 '<div class="src">Источник: %s (справочная система «Контур.Норматив»). %s. Статус: %s. Сохранено %s.</div>'
+                 '<h2>%s</h2><p><b>%s</b></p>%s</body></html>') % (
+                     htmlmod.escape(url), label, st, datetime.datetime.now(datetime.timezone.utc).strftime('%d.%m.%Y'),
+                     title.group(1) if title else '', title2.group(1) if title2 else '', body[a:b])
+    tmp_html = os.path.abspath(out + '.print.html')
+    open(tmp_html, 'w', encoding='utf-8').write(printable)
+    try:
+        res, _, kind = op_pdf('file://' + tmp_html, out)
+    finally:
+        os.remove(tmp_html)
+    return res, code, '%s; %s; статус: %s; html sha256=%s' % (kind, label, st, sha256(src)), url
+
+
 def op_pub(url, out):
     """Официальное опубликование (publication.pravo.gov.ru): найти акт через поиск портала
     (адрес = запрос к /api/Documents, после # — дата акта ГГГГ-ММ-ДД) и скачать PDF."""
@@ -216,6 +278,8 @@ def main(tasks_path):
             os.makedirs(os.path.dirname(out) or '.', exist_ok=True)
             if op == 'kremlin':
                 res, code, ctype, url = op_kremlin(url, out)
+            elif op == 'kontur':
+                res, code, ctype, url = op_kontur(url, out)
             elif op == 'ipscard':
                 res, code, ctype, url = op_ipscard(url, out)
             elif op == 'ips':
