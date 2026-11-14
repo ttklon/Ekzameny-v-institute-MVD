@@ -439,6 +439,60 @@ def op_constitles(listfile, out):
     return ('ok' if n else 'ошибка: ни одного заголовка'), '200', 'text/tab-separated-values; заголовков: %d из %d' % (n, len(ids)), listfile
 
 
+def op_ipscards(listfile, out):
+    """«Законодательство России»: обновить карточки актов (список редакций) по списку «bpa nd»."""
+    outdir = os.path.dirname(out)
+    os.makedirs(outdir, exist_ok=True)
+    n = total = 0
+    for line in open(listfile, encoding='utf-8'):
+        if not line.strip():
+            continue
+        bpa, nd = line.split()
+        total += 1
+        res, code, ctype = op_get('http://ips.pravo.gov.ru/api/ips/legislation/document_card.json?bpa=%s&nd=%s' % (bpa, nd),
+                                  os.path.join(outdir, nd + '.json'))
+        n += res == 'ok'
+        time.sleep(0.6)
+    open(out, 'w').write('%d из %d\n' % (n, total))
+    return ('ok' if n == total else 'ошибка: карточек %d из %d' % (n, total)), '200', 'карточек: %d из %d' % (n, total), listfile
+
+
+def op_sudtitles(listfile, out):
+    """sudact.ru: по списку «ключ <TAB> реквизиты <TAB> варианты адреса через пробел» найти страницу акта
+    и записать её заголовок (в нём указана дата действующей редакции). Нужна для сверки редакций."""
+    import re, html
+    n = total = 0
+    with open(out, 'w', encoding='utf-8') as f:
+        for line in open(listfile, encoding='utf-8'):
+            line = line.rstrip('\n')
+            if not line.strip():
+                continue
+            key, expect, cands = line.split('\t')
+            total += 1
+            found = ('', '', '')
+            for slug in cands.split():
+                tmp = out + '.page'
+                r = subprocess.run(['curl', '-sS', '-L', '--connect-timeout', '15', '--max-time', '60', '-A', UA,
+                                    '-o', tmp, '-w', '%{http_code}', 'https://sudact.ru/law/%s/' % slug],
+                                   capture_output=True, text=True)
+                time.sleep(0.5)
+                if r.stdout.strip() != '200' or not os.path.exists(tmp):
+                    continue
+                page = open(tmp, encoding='utf-8', errors='replace').read()
+                os.remove(tmp)
+                m = re.search(r'<h1[^>]*>(.*?)</h1>', page, re.S)
+                h1 = ' '.join(html.unescape(re.sub(r'<[^>]+>', ' ', m.group(1))).split()) if m else ''
+                if expect.replace(' ', '') in h1.replace(' ', ''):
+                    text = html.unescape(re.sub(r'<[^>]+>', ' ', page))
+                    flag = 'утратил силу' if re.search(r'[Уу]тратил\w* силу или отмен|Документ утратил силу', text) else ''
+                    found = (slug, h1, flag)
+                    break
+            n += bool(found[0])
+            f.write('\t'.join((key, expect) + found) + '\n')
+            f.flush()
+    return ('ok' if n else 'ошибка: ничего не найдено'), '200', 'найдено: %d из %d' % (n, total), listfile
+
+
 def op_pub(url, out):
     """Официальное опубликование (publication.pravo.gov.ru): найти акт через поиск портала
     (адрес = запрос к /api/Documents, после # — дата акта ГГГГ-ММ-ДД) и скачать PDF."""
@@ -488,6 +542,10 @@ def main(tasks_path):
                 res, code, ctype, url = op_consfind(url, out)
             elif op == 'constitles':
                 res, code, ctype, url = op_constitles(url, out)
+            elif op == 'ipscards':
+                res, code, ctype, url = op_ipscards(url, out)
+            elif op == 'sudtitles':
+                res, code, ctype, url = op_sudtitles(url, out)
             elif op == 'ipsact':
                 res, code, ctype, url = op_ipsact(url, out)
             elif op == 'ipscard':
