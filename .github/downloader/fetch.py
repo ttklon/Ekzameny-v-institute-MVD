@@ -7,6 +7,9 @@
   pdf  — открыть страницу в браузере Chrome и сохранить её как PDF;
   kremlin — найти акт в Банке документов kremlin.ru и сохранить полный текст
          в действующей редакции (версия для печати);
+  ips  — сохранить текст акта в действующей редакции из системы «Законодательство России»
+         (ips.pravo.gov.ru): исходная страница и PDF с неё;
+  post — запрос методом POST (параметры после знака вопроса);
   pub  — найти акт на портале официального опубликования publication.pravo.gov.ru
          и скачать PDF официальной публикации.
 Каждая попытка записывается в журнал .github/downloader/log.tsv:
@@ -134,7 +137,8 @@ def op_kremlin(url, out):
 
 
 def kremlin_save(purl, out):
-    """Сохранить версию для печати. Если путь оканчивается на .pdf, рядом в папке
+    """Сохранить страницу с полным текстом акта (kremlin.ru — версия для печати;
+    ips.pravo.gov.ru — выгрузка текста в действующей редакции). Если путь оканчивается на .pdf, рядом в папке
     «Исходные страницы (HTML)» сохраняется страница в том виде, в каком её отдал сайт,
     а PDF печатается с неё (для чтения)."""
     if not out.lower().endswith('.pdf'):
@@ -189,6 +193,8 @@ def main(tasks_path):
             os.makedirs(os.path.dirname(out) or '.', exist_ok=True)
             if op == 'kremlin':
                 res, code, ctype, url = op_kremlin(url, out)
+            elif op == 'ips':
+                res, code, ctype, url = kremlin_save(url, out)
             elif op == 'pub':
                 res, code, ctype, url = op_pub(url, out)
             elif op == 'pdf':
