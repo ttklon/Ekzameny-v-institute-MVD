@@ -627,6 +627,25 @@ def op_crawl(url, out):
     return ('ok' if ok else 'ошибка: каталог недоступен'), '200', 'каталогов: %d; строк: %d; ошибок: %d' % (len(seen), len(rows), errors), url
 
 
+def op_crawllist(listfile, out):
+    """Обход нескольких каталогов: в файле-списке по одному адресу в строке (можно с #глубина,предел). Результат — одна таблица."""
+    rows, bad = [], 0
+    for line in open(listfile, encoding='utf-8'):
+        u = line.strip()
+        if not u:
+            continue
+        tmp = out + '.tmp'
+        res = op_crawl(u, tmp)
+        if res[0] != 'ok':
+            bad += 1
+        if os.path.exists(tmp):
+            rows.append(open(tmp, encoding='utf-8').read())
+            os.remove(tmp)
+    with open(out, 'w', encoding='utf-8') as f:
+        f.write(''.join(rows))
+    return ('ok' if rows else 'ошибка: ничего не получено'), '200', 'каталогов в списке с ошибкой: %d' % bad, listfile
+
+
 def op_pub(url, out):
     """Официальное опубликование (publication.pravo.gov.ru): найти акт через поиск портала
     (адрес = запрос к /api/Documents, после # — дата акта ГГГГ-ММ-ДД) и скачать PDF."""
@@ -691,6 +710,8 @@ def main(tasks_path):
                     res, code, ctype, url = op_docx2pdf(url, out)
                 elif op == 'yadisk':
                     res, code, ctype, url = op_yadisk(url, out)
+                elif op == 'crawllist':
+                    res, code, ctype, url = op_crawllist(url, out)
                 elif op == 'crawl':
                     res, code, ctype, url = op_crawl(url, out)
                 elif op == 'ipsact':
