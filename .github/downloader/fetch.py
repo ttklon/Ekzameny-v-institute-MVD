@@ -646,6 +646,109 @@ def op_crawllist(listfile, out):
     return ('ok' if rows else 'ошибка: ничего не получено'), '200', 'каталогов в списке с ошибкой: %d' % bad, listfile
 
 
+def _fitz():
+    try:
+        import fitz
+    except ImportError:
+        subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', '--user', '--break-system-packages', 'pymupdf'],
+                       capture_output=True)
+        import site, importlib
+        importlib.reload(site)
+        sys.path.append(site.getusersitepackages())
+        import fitz
+    return fitz
+
+
+def op_peeklist(listfile, out):
+    """Предварительный просмотр изданий без сохранения: для каждого адреса из списка — размер, число страниц,
+    пометка об ограничении доступа, текст первых страниц и оглавление. Нужен, чтобы отобрать издания по содержанию."""
+    import re, tempfile, zipfile, urllib.parse as _u
+    fitz = _fitz()
+    n = total = 0
+    clean = lambda t: ' '.join(t.split())
+    with open(out, 'w', encoding='utf-8') as f:
+        for line in open(listfile, encoding='utf-8'):
+            u = line.strip()
+            if not u:
+                continue
+            total += 1
+            tmp = tempfile.mktemp(suffix='.bin')
+            res, code, ctype = op_get(_u.quote(u, safe=':/%'), tmp)
+            if res != 'ok':
+                f.write('\t'.join((u, '0', '0', 'ОШИБКА ' + res[:80], '', '')) + '\n')
+                continue
+            size = os.path.getsize(tmp)
+            pages, flag, head, toc = 0, '', '', ''
+            try:
+                if u.lower().endswith('.zip'):
+                    head = '; '.join(z.filename.encode('cp437', 'replace').decode('cp866', 'replace') + ' (%d)' % z.file_size
+                                     for z in zipfile.ZipFile(tmp).infolist()[:40])
+                else:
+                    d = fitz.open(tmp)
+                    pages = len(d)
+                    first = [d[i].get_text() for i in range(min(pages, 8))]
+                    last = [d[i].get_text() for i in range(max(pages - 6, 8), pages)]
+                    head = clean(' '.join(first[:4]))[:1100]
+                    if len(clean(' '.join(first))) < 200:
+                        flag = 'нет текстового слоя'
+                    if re.search(r'служебного\s+пользования|[Дд][Сс][Пп]\b|[Сс]екретно', ' '.join(first[:3])):
+                        flag += ' ДСП?'
+                    for t in first + last:
+                        if re.search(r'ОГЛАВЛЕНИЕ|СОДЕРЖАНИЕ|Оглавление|Содержание', t):
+                            toc = clean(t)[:2200]
+                            break
+                    n += 1
+            except Exception as e:
+                flag = 'не открыт: %s' % type(e).__name__
+            os.remove(tmp)
+            f.write('\t'.join((u, str(size), str(pages), flag.strip(), head, toc)) + '\n')
+            f.flush()
+            time.sleep(0.3)
+    return ('ok' if n else 'ошибка'), '200', 'просмотрено: %d из %d' % (n, total), listfile
+
+
+def op_cybersearch(listfile, out):
+    """Поиск научных статей в открытой научной библиотеке cyberleninka.ru. В списке: метка <TAB> запрос.
+    В таблицу попадают статьи с 2023 года: метка, год, перечень ВАК, журнал, авторы, название, адрес, аннотация."""
+    import json, re, html
+    n = total = 0
+    strip = lambda t: ' '.join(html.unescape(re.sub(r'<[^>]+>', '', t or '')).split())
+    with open(out, 'w', encoding='utf-8') as f:
+        for line in open(listfile, encoding='utf-8'):
+            if not line.strip():
+                continue
+            tag, _, q = line.rstrip('\n').partition('\t')
+            total += 1
+            body = json.dumps({'mode': 'articles', 'q': q, 'size': 100, 'from': 0, 'year_from': 2023, 'year_to': 2026},
+                              ensure_ascii=False)
+            r = subprocess.run(['curl', '-sS', '--connect-timeout', '15', '--max-time', '60', '-A', UA,
+                                '-H', 'Content-Type: application/json', '--data', body.encode('utf-8'),
+                                'https://cyberleninka.ru/api/search'], capture_output=True)
+            time.sleep(1.2)
+            try:
+                arts = json.loads(r.stdout.decode('utf-8', 'replace')).get('articles', [])
+            except Exception:
+                f.write('\t'.join((tag, 'ОШИБКА', '', '', '', q, '', r.stdout[:80].decode('utf-8', 'replace'))) + '\n')
+                continue
+            n += 1
+            k = 0
+            for a in arts:
+                try:
+                    year = int(a.get('year') or 0)
+                except ValueError:
+                    year = 0
+                if year < 2023:
+                    continue
+                vak = 'ВАК' if any((c or {}).get('alias_name') == 'vak' for c in (a.get('catalogs') or [])) else ''
+                f.write('\t'.join((tag, str(year), vak, strip(a.get('journal')), '; '.join(a.get('authors') or []),
+                                   strip(a.get('name')), a.get('link') or '', strip(a.get('annotation'))[:400])) + '\n')
+                k += 1
+                if k >= 25:
+                    break
+            f.flush()
+    return ('ok' if n else 'ошибка'), '200', 'запросов выполнено: %d из %d' % (n, total), listfile
+
+
 def op_pub(url, out):
     """Официальное опубликование (publication.pravo.gov.ru): найти акт через поиск портала
     (адрес = запрос к /api/Documents, после # — дата акта ГГГГ-ММ-ДД) и скачать PDF."""
@@ -710,6 +813,10 @@ def main(tasks_path):
                     res, code, ctype, url = op_docx2pdf(url, out)
                 elif op == 'yadisk':
                     res, code, ctype, url = op_yadisk(url, out)
+                elif op == 'peeklist':
+                    res, code, ctype, url = op_peeklist(url, out)
+                elif op == 'cybersearch':
+                    res, code, ctype, url = op_cybersearch(url, out)
                 elif op == 'crawllist':
                     res, code, ctype, url = op_crawllist(url, out)
                 elif op == 'crawl':
