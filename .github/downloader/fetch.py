@@ -27,7 +27,7 @@ import csv, hashlib, os, subprocess, sys, time, datetime
 UA = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
       '(KHTML, like Gecko) Chrome/130.0 Safari/537.36')
 LOG = '.github/downloader/log.tsv'
-MAX_BYTES = 80 * 1024 * 1024
+MAX_BYTES = 98 * 1024 * 1024
 
 
 def sha256(path):
