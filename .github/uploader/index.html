@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Приём файлов — источники</title>
+<style>
+  :root { --ink:#1c2430; --mute:#5c6775; --line:#d9dee5; --bg:#f5f6f8; --card:#fff; --acc:#1f5fbf; --ok:#17794a; --warn:#9a6200; --err:#b3261e; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; color:var(--ink); background:var(--bg); }
+  main { max-width:1040px; margin:0 auto; padding:24px 20px 64px; }
+  h1 { font-size:22px; line-height:1.25; margin:0 0 6px; }
+  h2 { font-size:16px; margin:28px 0 8px; }
+  p { margin:0 0 10px; }
+  .lead { color:var(--mute); max-width:78ch; }
+  #drop { margin:18px 0 14px; padding:30px 20px; text-align:center; background:var(--card); border:2px dashed #aab4c2; border-radius:12px; transition:border-color .15s, background .15s; }
+  #drop.over { border-color:var(--acc); background:#eef4ff; }
+  #drop strong { display:block; font-size:17px; margin-bottom:4px; }
+  #drop span { color:var(--mute); }
+  .btns { margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  button { font:inherit; padding:9px 16px; border-radius:8px; border:1px solid var(--acc); background:var(--acc); color:#fff; cursor:pointer; }
+  button.sec { background:#fff; color:var(--acc); }
+  button.small { padding:3px 9px; font-size:13px; }
+  button:disabled { opacity:.5; cursor:default; }
+  button:focus-visible { outline:3px solid #9cc0ff; outline-offset:2px; }
+  #sum { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin:14px 0 10px; }
+  .tile { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:10px 12px; }
+  .tile b { display:block; font-size:22px; line-height:1.2; font-variant-numeric:tabular-nums; }
+  .tile small { color:var(--mute); }
+  #bar { height:10px; background:#e3e7ee; border-radius:6px; overflow:hidden; }
+  #bar i { display:block; height:100%; width:0; background:var(--acc); transition:width .2s; }
+  #barlbl { color:var(--mute); font-size:13px; margin:4px 0 0; font-variant-numeric:tabular-nums; }
+  #final { margin:14px 0 0; padding:12px 14px; border-radius:10px; display:none; }
+  #final.ok { display:block; background:#e6f4ec; border:1px solid #9fd0b5; color:#0f5132; }
+  #final.bad { display:block; background:#fdecea; border:1px solid #f1b0ab; color:#7a1a14; }
+  #final.run { display:block; background:#eef4ff; border:1px solid #b9d0f5; color:#173f7a; }
+  #git { color:var(--mute); font-size:13px; margin:8px 0 0; }
+  .wrap { overflow-x:auto; background:var(--card); border:1px solid var(--line); border-radius:10px; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  th,td { text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-weight:600; color:var(--mute); background:#fafbfc; position:sticky; top:0; }
+  tr:last-child td { border-bottom:0; }
+  td.n { word-break:break-word; min-width:240px; }
+  td.s { white-space:nowrap; font-variant-numeric:tabular-nums; color:var(--mute); }
+  td.p { width:120px; }
+  .mini { height:6px; background:#e3e7ee; border-radius:4px; overflow:hidden; margin-top:7px; }
+  .mini i { display:block; height:100%; width:0; background:var(--acc); }
+  .st-ok { color:var(--ok); } .st-warn { color:var(--warn); } .st-err { color:var(--err); } .st-mute { color:var(--mute); }
+  code { font:12px ui-monospace,Menlo,Consolas,monospace; color:var(--mute); }
+  .empty { padding:14px; color:var(--mute); }
+  .filter { display:flex; gap:8px; align-items:center; margin:0 0 8px; flex-wrap:wrap; }
+  .filter label { color:var(--mute); font-size:13px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Приём файлов — источники по административной деятельности полиции</h1>
+  <p class="lead">Перетащите сюда файлы или целые папки. Каждый файл передаётся частями по 512 КБ. Каждая часть и весь файл сверяются по SHA-256, поэтому файл считается принятым, только если он дошёл без единого искажённого байта.</p>
+  <p class="lead">Если связь оборвётся или страница закроется, выберите те же файлы снова: передача продолжится с места обрыва, а уже принятые файлы повторно не передаются.</p>
+
+  <div id="drop">
+    <strong>Перетащите файлы или папки сюда</strong>
+    <span>Подходят любые форматы: PDF, DOC, DOCX, RTF, XLS, архивы, изображения</span>
+    <div class="btns">
+      <button id="pick" type="button">Выбрать файлы</button>
+      <button id="pickdir" type="button" class="sec">Выбрать папку целиком</button>
+    </div>
+  </div>
+  <input type="file" id="fi" multiple hidden>
+  <input type="file" id="di" webkitdirectory multiple hidden>
+
+  <div id="sum">
+    <div class="tile"><b id="c-all">0</b><small>выбрано</small></div>
+    <div class="tile"><b id="c-new">0</b><small>принято новых</small></div>
+    <div class="tile"><b id="c-dup">0</b><small>повторы среди ваших файлов</small></div>
+    <div class="tile"><b id="c-have">0</b><small>уже есть в базе</small></div>
+    <div class="tile"><b id="c-err">0</b><small>с ошибкой</small></div>
+  </div>
+  <div id="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div>
+  <p id="barlbl">Файлы не выбраны</p>
+  <div id="final" role="status" aria-live="polite"></div>
+  <p id="git"></p>
+
+  <h2>Эта передача</h2>
+  <div class="filter">
+    <label><input type="checkbox" id="onlybad"> показывать только незавершённые и с ошибкой</label>
+    <button id="retry" type="button" class="sec small" hidden>Повторить файлы с ошибкой</button>
+  </div>
+  <div class="wrap"><table>
+    <thead><tr><th>Файл</th><th>Размер</th><th>Ход</th><th>Состояние</th></tr></thead>
+    <tbody id="tb"><tr><td colspan="4" class="empty">Пока ничего не выбрано.</td></tr></tbody>
+  </table></div>
+
+  <h2>Всё, что уже лежит на сервере <span id="srvcnt" class="st-mute"></span></h2>
+  <div class="wrap"><table>
+    <thead><tr><th>Файл</th><th>Размер</th><th>SHA-256</th><th>Результат</th></tr></thead>
+    <tbody id="srv"><tr><td colspan="4" class="empty">Пока пусто.</td></tr></tbody>
+  </table></div>
+</main>
+<script>
+'use strict';
+let CH = 512 * 1024;
+const FILES_AT_ONCE = 2, PARTS_AT_ONCE = 4, TRIES = 9;
+const items = [], seen = new Set();
+let active = 0, started = false;
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt = n => n < 1024 ? n + ' Б' : n < 1048576 ? (n / 1024).toFixed(0) + ' КБ' : n < 1073741824 ? (n / 1048576).toFixed(1).replace('.', ',') + ' МБ' : (n / 1073741824).toFixed(2).replace('.', ',') + ' ГБ';
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+/* SHA-256: встроенный в браузер; запасной вариант на случай, если встроенный недоступен */
+const K = new Uint32Array([0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2]);
+function sha256js(u8) {
+  const len = u8.length, total = ((len + 9 + 63) >> 6) << 6, m = new Uint8Array(total);
+  m.set(u8); m[len] = 0x80;
+  const dv = new DataView(m.buffer);
+  dv.setUint32(total - 8, Math.floor(len / 0x20000000)); dv.setUint32(total - 4, (len << 3) >>> 0);
+  const h = new Uint32Array([0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19]), w = new Uint32Array(64);
+  for (let o = 0; o < total; o += 64) {
+    for (let i = 0; i < 16; i++) w[i] = dv.getUint32(o + i * 4);
+    for (let i = 16; i < 64; i++) {
+      const a = w[i - 15], b = w[i - 2];
+      w[i] = (w[i - 16] + ((a >>> 7 | a << 25) ^ (a >>> 18 | a << 14) ^ (a >>> 3)) + w[i - 7] + ((b >>> 17 | b << 15) ^ (b >>> 19 | b << 13) ^ (b >>> 10))) >>> 0;
+    }
+    let a = h[0], b = h[1], c = h[2], d = h[3], e = h[4], f = h[5], g = h[6], k = h[7];
+    for (let i = 0; i < 64; i++) {
+      const t1 = (k + ((e >>> 6 | e << 26) ^ (e >>> 11 | e << 21) ^ (e >>> 25 | e << 7)) + ((e & f) ^ (~e & g)) + K[i] + w[i]) >>> 0;
+      const t2 = (((a >>> 2 | a << 30) ^ (a >>> 13 | a << 19) ^ (a >>> 22 | a << 10)) + ((a & b) ^ (a & c) ^ (b & c))) >>> 0;
+      k = g; g = f; f = e; e = (d + t1) >>> 0; d = c; c = b; b = a; a = (t1 + t2) >>> 0;
+    }
+    h[0] += a; h[1] += b; h[2] += c; h[3] += d; h[4] += e; h[5] += f; h[6] += g; h[7] += k;
+  }
+  return Array.from(h, x => x.toString(16).padStart(8, '0')).join('');
+}
+async function sha(buf) {
+  if (window.crypto && crypto.subtle) {
+    try { return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', buf)), x => x.toString(16).padStart(2, '0')).join(''); } catch (e) {}
+  }
+  return sha256js(new Uint8Array(buf));
+}
+
+/* Запрос с повторами: обрыв связи, тайм-аут и ошибки сервера повторяются с нарастающей паузой */
+async function call(url, opt, onRetry) {
+  let last = '';
+  for (let t = 0; t < TRIES; t++) {
+    const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 120000);
+    try {
+      const r = await fetch(url, Object.assign({signal: ctl.signal, cache: 'no-store'}, opt));
+      clearTimeout(timer);
+      let j = null;
+      try { j = await r.json(); } catch (e) {}
+      if (r.ok && j) return j;
+      if (r.status === 409 && j) return Object.assign({conflict: true}, j);
+      last = (j && j.error) || ('ответ сервера ' + r.status);
+      if (r.status >= 400 && r.status < 500 && r.status !== 408 && r.status !== 429) throw Object.assign(new Error(last), {fatal: true});
+    } catch (e) {
+      clearTimeout(timer);
+      if (e.fatal) throw e;
+      last = e.name === 'AbortError' ? 'сервер не ответил за 2 минуты' : 'нет связи с сервером';
+    }
+    if (onRetry) onRetry(t + 1, last);
+    await sleep(Math.min(30000, 800 * Math.pow(2, t)) + Math.random() * 400);
+  }
+  throw new Error(last + ' (попыток: ' + TRIES + ')');
+}
+const post = (url, obj, onRetry) => call(url, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(obj)}, onRetry);
+
+function add(file, rel) {
+  rel = (rel || file.name).replace(/^\/+/, '');
+  const key = rel + '|' + file.size + '|' + file.lastModified;
+  if (seen.has(key)) return;
+  seen.add(key);
+  const it = {file, rel, key, sent: 0, state: 'wait', text: 'в очереди', cls: 'st-mute', rec: null, id: null};
+  items.push(it);
+  const tb = $('tb');
+  if (items.length === 1) tb.innerHTML = '';
+  const tr = document.createElement('tr');
+  tr.innerHTML = '<td class="n"></td><td class="s"></td><td class="p"><div class="mini"><i></i></div></td><td class="t"></td>';
+  tr.children[0].textContent = rel;
+  tr.children[1].textContent = fmt(file.size);
+  it.tr = tr; tb.appendChild(tr);
+  paint(it);
+}
+function paint(it) {
+  const pct = it.state === 'done' ? 100 : it.file.size ? Math.min(100, it.sent / it.file.size * 100) : 0;
+  it.tr.querySelector('.mini i').style.width = pct + '%';
+  const td = it.tr.children[3];
+  td.className = 't ' + it.cls;
+  td.textContent = it.text;
+  if (it.state === 'done' && it.rec && it.rec.sha) {
+    const c = document.createElement('code');
+    c.textContent = ' ' + it.rec.sha.slice(0, 16) + '…';
+    c.title = 'SHA-256: ' + it.rec.sha;
+    td.appendChild(c);
+  }
+  it.tr.hidden = $('onlybad').checked && it.state === 'done';
+}
+function setState(it, state, text, cls) { it.state = state; it.text = text; it.cls = cls || 'st-mute'; paint(it); summary(); }
+
+function describe(rec) {
+  if (rec.status === 'new') return ['принят и проверен' + (rec.note ? ' — ' + rec.note : ''), 'st-ok'];
+  if (rec.status === 'big') return ['принят и проверен; больше 95 МБ — хранится только на сервере', 'st-warn'];
+  if (rec.status === 'dup') return [rec.note || 'повтор уже принятого файла', 'st-warn'];
+  if (rec.status === 'have') return [rec.note || 'такой файл уже есть в базе', 'st-warn'];
+  return [rec.status, 'st-mute'];
+}
+
+async function sendFile(it) {
+  const f = it.file;
+  setState(it, 'run', 'подготовка');
+  const note = (n, why) => { it.text = 'повтор ' + n + ': ' + why; it.cls = 'st-warn'; paint(it); };
+  const init = await post('api/init', {rel: it.rel, size: f.size, mtime: f.lastModified}, note);
+  it.id = init.id;
+  if (init.done) { it.rec = init.rec; it.sent = f.size; const d = describe(init.rec); return setState(it, 'done', (init.rec.status === 'new' || init.rec.status === 'big' ? 'уже был принят раньше; ' : '') + d[0], d[1]); }
+  CH = init.chunk;
+  const n = init.n, have = new Set(init.have), hashes = new Array(n);
+  let next = 0;
+  it.sent = 0;
+  const part = async i => {
+    let buf;
+    try { buf = await f.slice(i * CH, Math.min(f.size, (i + 1) * CH)).arrayBuffer(); }
+    catch (e) { throw new Error('файл не читается с диска (перемещён, изменён или открыт другой программой)'); }
+    return buf;
+  };
+  const put = async i => {
+    for (let k = 0; k < 6; k++) {
+      const buf = await part(i), h = await sha(buf);
+      hashes[i] = h;
+      const r = await call('api/chunk?id=' + it.id + '&i=' + i + '&sha=' + h, {method: 'POST', headers: {'Content-Type': 'application/octet-stream'}, body: buf}, note);
+      if (r.ok && r.sha === h) return buf.byteLength;
+      note(k + 1, r.error === 'length' ? 'часть ' + (i + 1) + ' дошла не целиком' : 'часть ' + (i + 1) + ' дошла с искажением');
+      await sleep(500 * (k + 1));
+    }
+    throw new Error('часть ' + (i + 1) + ' шесть раз подряд дошла с искажением');
+  };
+  const worker = async () => {
+    for (;;) {
+      const i = next++;
+      if (i >= n) return;
+      let len;
+      if (have.has(i)) { const buf = await part(i); hashes[i] = await sha(buf); len = buf.byteLength; }
+      else len = await put(i);
+      it.sent += len;
+      it.text = 'передаётся: ' + Math.floor(it.sent / Math.max(1, f.size) * 100) + ' %'; it.cls = 'st-mute';
+      paint(it); summary();
+    }
+  };
+  await Promise.all(Array.from({length: Math.min(PARTS_AT_ONCE, Math.max(1, n))}, worker));
+  for (let round = 0; round < 6; round++) {
+    it.text = 'проверка на сервере'; it.cls = 'st-mute'; paint(it);
+    const fin = await post('api/finish', {id: it.id, hashes}, note);
+    if (fin.ok) { it.rec = fin.rec; it.sent = f.size; const d = describe(fin.rec); return setState(it, 'done', d[0], d[1]); }
+    if (!fin.bad || !fin.bad.length) throw new Error(fin.error || 'сервер не подтвердил файл');
+    note(round + 1, 'не сошлись части: ' + fin.bad.length + ', передаю их заново');
+    for (const i of fin.bad) await put(i);
+  }
+  throw new Error('файл не прошёл проверку после шести попыток');
+}
+
+async function pump() {
+  while (active < FILES_AT_ONCE) {
+    const it = items.find(x => x.state === 'wait');
+    if (!it) break;
+    active++; started = true; it.state = 'run';
+    sendFile(it).catch(e => setState(it, 'err', 'ошибка: ' + (e.message || e), 'st-err')).finally(() => { active--; summary(); pump(); });
+  }
+  summary();
+  if (started && active === 0 && !items.some(x => x.state === 'wait')) finalCheck();
+}
+
+/* Итоговая сверка: сервер подтверждает каждый файл по списку */
+let checking = false;
+async function finalCheck() {
+  if (checking) return;
+  checking = true;
+  try {
+    const ids = items.filter(x => x.id).map(x => x.id);
+    const r = await post('api/verify', {ids});
+    for (const it of items) {
+      const rec = it.id && r.recs[it.id];
+      if (it.state === 'done' && !rec) setState(it, 'err', 'ошибка: сервер не подтвердил файл при итоговой сверке', 'st-err');
+      if (it.state === 'done' && rec && rec.size !== it.file.size) setState(it, 'err', 'ошибка: размер на сервере не совпал', 'st-err');
+    }
+  } catch (e) {}
+  checking = false;
+  summary(true);
+  refresh();
+}
+
+function summary(final) {
+  const c = {new: 0, dup: 0, have: 0, err: 0, done: 0};
+  let bytes = 0, sent = 0;
+  for (const it of items) {
+    bytes += it.file.size; sent += it.state === 'done' ? it.file.size : Math.min(it.sent, it.file.size);
+    if (it.state === 'err') c.err++;
+    if (it.state === 'done') { c.done++; const s = it.rec.status; if (s === 'new' || s === 'big') c.new++; else if (s === 'dup') c.dup++; else if (s === 'have') c.have++; }
+  }
+  $('c-all').textContent = items.length; $('c-new').textContent = c.new; $('c-dup').textContent = c.dup; $('c-have').textContent = c.have; $('c-err').textContent = c.err;
+  const pct = bytes ? sent / bytes * 100 : (items.length && c.done === items.length ? 100 : 0);
+  $('bar').firstElementChild.style.width = pct + '%'; $('bar').setAttribute('aria-valuenow', Math.floor(pct));
+  $('barlbl').textContent = items.length ? 'Обработано файлов: ' + (c.done + c.err) + ' из ' + items.length + ' · передано ' + fmt(sent) + ' из ' + fmt(bytes) : 'Файлы не выбраны';
+  $('retry').hidden = !c.err || active > 0;
+  const fin = $('final'), left = items.length - c.done - c.err;
+  if (!items.length) { fin.className = ''; return; }
+  if (left > 0) { fin.className = 'run'; fin.textContent = 'Идёт передача: осталось файлов — ' + left + '. Не закрывайте страницу.'; return; }
+  if (c.err) { fin.className = 'bad'; fin.textContent = 'Передача остановилась: файлов с ошибкой — ' + c.err + '. Нажмите «Повторить файлы с ошибкой» — уже переданные части заново не передаются.'; return; }
+  fin.className = 'ok';
+  fin.textContent = 'Все файлы (' + items.length + ') дошли и проверены: новых — ' + c.new + ', повторов среди ваших файлов — ' + c.dup + ', уже были в базе — ' + c.have + '. Можно добавить ещё файлы или написать в чате «готово».';
+}
+
+function takeList(list) { for (const f of list) add(f, f.webkitRelativePath || f.name); pump(); }
+$('pick').onclick = () => $('fi').click();
+$('pickdir').onclick = () => $('di').click();
+$('fi').onchange = e => { takeList(e.target.files); e.target.value = ''; };
+$('di').onchange = e => { takeList(e.target.files); e.target.value = ''; };
+$('onlybad').onchange = () => items.forEach(paint);
+$('retry').onclick = () => { for (const it of items) if (it.state === 'err') { it.sent = 0; setState(it, 'wait', 'в очереди'); } pump(); };
+
+/* Перетаскивание: файлы и папки любой вложенности */
+const drop = $('drop');
+['dragenter', 'dragover'].forEach(n => drop.addEventListener(n, e => { e.preventDefault(); drop.classList.add('over'); }));
+['dragleave', 'drop'].forEach(n => drop.addEventListener(n, e => { e.preventDefault(); drop.classList.remove('over'); }));
+window.addEventListener('dragover', e => e.preventDefault());
+window.addEventListener('drop', e => e.preventDefault());
+const readAll = reader => new Promise((res, rej) => { const out = []; const step = () => reader.readEntries(b => { if (!b.length) return res(out); out.push(...b); step(); }, rej); step(); });
+async function walk(entry, prefix) {
+  if (entry.isFile) { const f = await new Promise((res, rej) => entry.file(res, rej)); add(f, prefix + f.name); }
+  else if (entry.isDirectory) { for (const e of await readAll(entry.createReader())) await walk(e, prefix + entry.name + '/'); }
+}
+drop.addEventListener('drop', async e => {
+  const dt = e.dataTransfer, entries = [];
+  if (dt.items && dt.items.length && dt.items[0].webkitGetAsEntry) for (const i of dt.items) { const en = i.webkitGetAsEntry(); if (en) entries.push(en); }
+  if (entries.length) { for (const en of entries) { try { await walk(en, ''); } catch (err) {} } pump(); }
+  else takeList(dt.files);
+});
+window.addEventListener('beforeunload', e => { if (active > 0) { e.preventDefault(); e.returnValue = ''; } });
+
+/* Состояние сервера: что уже лежит и что сохранено в GitHub */
+async function refresh() {
+  try {
+    const r = await (await fetch('api/state?full=1', {cache: 'no-store'})).json();
+    const g = r.git, c = r.counts;
+    $('git').textContent = !g.enabled ? '' : g.err ? 'Сохранение в GitHub: ошибка, сервер повторит попытку. Файлы на сервере целы.' :
+      g.total ? 'Сохранено в GitHub: ' + g.pushed + ' из ' + g.total + (g.pending ? ' — остальные сохраняются' : '') + (c.big ? ' · файлов больше 95 МБ (только на сервере): ' + c.big : '') : '';
+    const rows = r.files.slice().reverse();
+    $('srvcnt').textContent = rows.length ? '— записей: ' + rows.length + ', сохранено файлов: ' + (c.new + c.big) + ' (' + fmt(r.bytes) + ')' : '';
+    $('srv').innerHTML = rows.length ? rows.map(x => { const d = describe(x); return '<tr><td class="n">' + esc(x.rel) + '</td><td class="s">' + fmt(x.size) + '</td><td><code title="' + x.sha + '">' + x.sha.slice(0, 16) + '…</code></td><td class="' + d[1] + '">' + esc(d[0]) + (x.status === 'new' ? (x.pushed ? ' · в GitHub' : ' · ждёт сохранения в GitHub') : '') + '</td></tr>'; }).join('') : '<tr><td colspan="4" class="empty">Пока пусто.</td></tr>';
+  } catch (e) {}
+}
+refresh(); setInterval(refresh, 6000);
+</script>
+</body>
+</html>
