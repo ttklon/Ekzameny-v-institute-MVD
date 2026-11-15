@@ -1,0 +1,67 @@
+{
+    "actualrdk": 0,
+    "baseid": "c000000000",
+    "type": "Постановление",
+    "attributes": null,
+    "billnumber": null,
+    "suppliment": null,
+    "publications": [
+        "\"Российская газета\" от 15.06.2001 г.",
+        "Собрание законодательства Российской Федерации от 04.06.2001 г., № 23, ст. 2408"
+    ],
+    "minustnum": null,
+    "nd": "1000000000102070779",
+    "hash": "3be0ca050dcdb99dafdc2988c1c3174f9c7a1988fee4e953bec5b482a17f91d5",
+    "state": "Действует без изменений",
+    "name": "По делу о проверке конституционности статьи 265 Уголовного кодекса Российской Федерации в связи с жалобой гражданина А.А.Шевякова",
+    "branches": [
+        "010140040025|Соответствие Конституции Российской Федерации федерального законодательства",
+        "170020030|Преступления против общественной безопасности общественного порядка"
+    ],
+    "stateid": 2,
+    "keywords": [
+        "КОДЕКС",
+        "КОНСТИТУЦИОННОСТЬ",
+        "ПРОВЕРКА",
+        "СТАТЬЯ",
+        "УГОЛОВНЫЙ"
+    ],
+    "adoption": "Постановление Конституционного Суда Российской Федерации от 25.04.2001 № 6-П",
+    "officers": null,
+    "comment": null,
+    "docname_history": null,
+    "redactions": [
+        {
+            "image": null,
+            "odate": null,
+            "redreason": null,
+            "orgid": null,
+            "rdstid": 2,
+            "date": "25.04.2001",
+            "refadoption": null,
+            "completed": true,
+            "sign": false,
+            "rgnid": null,
+            "refnd": null,
+            "redname": "на 25.04.2001, исходная, актуальная",
+            "cntcompleted": false,
+            "drversion": 1,
+            "state": "Действует без изменений",
+            "official": false,
+            "status": "актуальная",
+            "refhash": null,
+            "id": 0,
+            "size": 115981,
+            "dtid": null,
+            "docname": "По делу о проверке конституционности статьи 265 Уголовного кодекса Российской Федерации в связи с жалобой гражданина А.А.Шевякова",
+            "hascontent": false,
+            "actual": true,
+            "comment": null,
+            "onumber": null
+        }
+    ],
+    "description": null,
+    "docnpa": null,
+    "ofpubnumber": null,
+    "minustdate": null
+}

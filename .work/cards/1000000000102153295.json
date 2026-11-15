@@ -1,0 +1,67 @@
+{
+    "actualrdk": 0,
+    "baseid": "c000000000",
+    "type": "Постановление",
+    "attributes": null,
+    "billnumber": null,
+    "suppliment": null,
+    "publications": [
+        "\"Российская газета\" от 11.01.2012 г.",
+        "Собрание законодательства Российской Федерации от 09.01.2012 г., № 2, ст. 398"
+    ],
+    "minustnum": null,
+    "nd": "1000000000102153295",
+    "hash": "7088e0a57d0033fc233aa311d2518e493ed6cc88d86b9de0e557ad5c70de03dc",
+    "state": "Действует без изменений",
+    "name": "По делу о проверке конституционности положений статьи 90 Уголовно-процессуального кодекса Российской Федерации в связи с жалобой граждан В.Д.Власенко и Е.А.Власенко",
+    "branches": [
+        "010140040025|Соответствие Конституции Российской Федерации федерального законодательства",
+        "180060010|Общие положения"
+    ],
+    "stateid": 2,
+    "keywords": [
+        "КОДЕКС",
+        "КОНСТИТУЦИОННОСТЬ",
+        "ПРЕЮДИЦИЯ",
+        "ПРОВЕРКА",
+        "УГОЛОВНО-ПРОЦЕССУАЛЬНЫЙ"
+    ],
+    "adoption": "Постановление Конституционного Суда Российской Федерации от 21.12.2011 № 30-П",
+    "officers": null,
+    "comment": null,
+    "docname_history": null,
+    "redactions": [
+        {
+            "image": null,
+            "odate": null,
+            "redreason": null,
+            "orgid": null,
+            "rdstid": 2,
+            "date": "21.12.2011",
+            "refadoption": null,
+            "completed": true,
+            "sign": false,
+            "rgnid": null,
+            "refnd": null,
+            "redname": "на 21.12.2011, исходная, актуальная",
+            "cntcompleted": false,
+            "drversion": 1,
+            "state": "Действует без изменений",
+            "official": false,
+            "status": "актуальная",
+            "refhash": null,
+            "id": 0,
+            "size": 115399,
+            "dtid": null,
+            "docname": "По делу о проверке конституционности положений статьи 90 Уголовно-процессуального кодекса Российской Федерации в связи с жалобой граждан В.Д.Власенко и Е.А.Власенко",
+            "hascontent": false,
+            "actual": true,
+            "comment": null,
+            "onumber": null
+        }
+    ],
+    "description": null,
+    "docnpa": null,
+    "ofpubnumber": null,
+    "minustdate": null
+}
