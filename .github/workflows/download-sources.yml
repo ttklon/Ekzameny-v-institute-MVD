@@ -42,7 +42,7 @@ jobs:
       - name: Скачать
         run: |
           name="$(basename "${{ matrix.shard }}" .tsv)"
-          if [ "$name" = "tasks" ]; then log=".github/downloader/log.tsv"; else log=".github/downloader/logs/$name.tsv"; fi
+          if [ "$name" = "tasks" ]; then log=".github/downloader/log.tsv"; else log=".github/downloader/logs/$name-${{ github.run_number }}.tsv"; fi
           FETCH_LOG="$log" python3 .github/downloader/fetch.py "${{ matrix.shard }}"
       - name: Сохранить в ветку
         if: always()
