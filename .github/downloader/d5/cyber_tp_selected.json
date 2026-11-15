@@ -44,7 +44,8 @@
 "title": "Принцип единства и дифференциации в современном законодательстве об охране труда",
 "t": [
 "tp003",
-"tp057"
+"tp057",
+"tp059"
 ],
 "n": "t4e36f5"
 },
@@ -1337,17 +1338,17 @@
 "n": "t273a83"
 },
 {
-"slug": "/article/n/o-materialnoy-otvetstvennosti-sotrudnikov-ugolovno-ispolnitelnoy-sistemy",
-"year": "2026",
-"vak": true,
-"journal": "Российский научный вестник",
-"authors": "Панин Юрий Иванович; Бирмамитова Светлана Альбертовна",
-"title": "О МАТЕРИАЛЬНОЙ ОТВЕТСТВЕННОСТИ СОТРУДНИКОВ УГОЛОВНО-ИСПОЛНИТЕЛЬНОЙ СИСТЕМЫ",
+"slug": "/article/n/materialnaya-otvetstvennost-kak-instrument-vozdeystviya-na-rabotnika-za-nevypolnenie-obyazannosti-po-nerazglasheniyu-ohranyaemoy",
+"year": "2025",
+"vak": false,
+"journal": "Вопросы российской юстиции",
+"authors": "Граматчиков Владимир Андреевич",
+"title": "Материальная ответственность как инструмент воздействия на работника за невыполнение обязанности по неразглашению охраняемой законом тайны",
 "t": [
 "tp052",
 "tp053"
 ],
-"n": "t831615"
+"n": "t19d500"
 },
 {
 "slug": "/article/n/mery-zaschity-i-mery-otvetstvennosti-v-kontekste-problemy-ponyatiya-materialnoy-otvetstvennosti-rabotodatelya",
@@ -1479,18 +1480,6 @@
 "n": "t634184"
 },
 {
-"slug": "/article/n/probely-ugolovnogo-prava-v-chasti-privlecheniya-rabotodateley-k-ugolovnoy-otvetstvennosti-za-narusheniya-trebovaniy-ohrany-truda",
-"year": "2025",
-"vak": true,
-"journal": "Аграрное и земельное право",
-"authors": "Шаназарова Елена Витальевна; Полякова Алина Витальевна",
-"title": "ПРОБЕЛЫ УГОЛОВНОГО ПРАВА В ЧАСТИ ПРИВЛЕЧЕНИЯ РАБОТОДАТЕЛЕЙ К УГОЛОВНОЙ ОТВЕТСТВЕННОСТИ ЗА НАРУШЕНИЯ ТРЕБОВАНИЙ ОХРАНЫ ТРУДА",
-"t": [
-"tp059"
-],
-"n": "t8aa6c3"
-},
-{
 "slug": "/article/n/pravovoe-regulirovanie-trudovyh-otnosheniy-i-vopros-obespecheniya-bezopasnosti-rabotnika",
 "year": "2026",
 "vak": false,
@@ -1503,16 +1492,16 @@
 "n": "t04baee"
 },
 {
-"slug": "/article/n/obespechenie-bezopasnosti-pri-vypolnenii-rabot-i-okazanii-uslug-ugolovno-pravovymi-sredstvami",
-"year": "2024",
+"slug": "/article/n/integrirovannaya-sistema-menedzhmenta-v-oblasti-proizvodstvennoy-i-pozharnoy-bezopasnosti-bezopasnosti-dorozhnogo-dvizheniya-i",
+"year": "2023",
 "vak": true,
-"journal": "Аграрное и земельное право",
-"authors": "Шаназарова Елена Витальевна; Полякова Алина Витальевна",
-"title": "ОБЕСПЕЧЕНИЕ БЕЗОПАСНОСТИ ПРИ ВЫПОЛНЕНИИ РАБОТ И ОКАЗАНИИ УСЛУГ УГОЛОВНО-ПРАВОВЫМИ СРЕДСТВАМИ",
+"journal": "Инженерно-строительный вестник Прикаспия",
+"authors": "Авдеева Инна Владимировна; Чернышова Анна Геннадьевна; Насибулина Ботагоз Мурасовна; Капизова Альфия Манцуровна; Абуова Галина Бекмуратовна",
+"title": "ИНТЕГРИРОВАННАЯ СИСТЕМА МЕНЕДЖМЕНТА В ОБЛАСТИ ПРОИЗВОДСТВЕННОЙ И ПОЖАРНОЙ БЕЗОПАСНОСТИ, БЕЗОПАСНОСТИ ДОРОЖНОГО ДВИЖЕНИЯ И ОХРАНЫ ТРУДА НА ПРОМЫШЛЕННОМ ПРЕДПРИЯТИИ",
 "t": [
 "tp059"
 ],
-"n": "t1f2494"
+"n": "t215679"
 },
 {
 "slug": "/article/n/rassledovanie-neschastnyh-sluchaev-na-proizvodstve-regionalnye-osobennosti-travmatizma",
@@ -1655,7 +1644,8 @@
 "authors": "Осокин Александр Вадимович",
 "title": "Роль профсоюзов в урегулировании трудовых споров с участием работников и работодателей",
 "t": [
-"tp064"
+"tp064",
+"tp070"
 ],
 "n": "t96051f"
 },
@@ -1798,17 +1788,5 @@
 "tp070"
 ],
 "n": "te7f75d"
-},
-{
-"slug": "/article/n/osobennosti-regulirovaniya-trudovoy-zanyatosti-lits-osuzhdennyh-k-lisheniyu-svobody",
-"year": "2024",
-"vak": true,
-"journal": "Право и управление",
-"authors": "Коваленко Екатерина Витальевна; Тарновский Александр Андреевич",
-"title": "ОСОБЕННОСТИ РЕГУЛИРОВАНИЯ ТРУДОВОЙ ЗАНЯТОСТИ ЛИЦ, ОСУЖДЕННЫХ К ЛИШЕНИЮ СВОБОДЫ",
-"t": [
-"tp070"
-],
-"n": "t2485ec"
 }
 ]

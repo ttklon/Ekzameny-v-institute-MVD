@@ -1,17 +1,5 @@
 [
 {
-"slug": "/article/n/prokuror-v-sostyazatelnom-ugolovnom-protsesse-kombinatorika-protsessualnyh-funktsiy",
-"year": "2025",
-"vak": true,
-"journal": "Вестник Пермского университета. Юридические науки",
-"authors": "Килина И. В.",
-"title": "Прокурор в состязательном уголовном процессе: комбинаторика процессуальных функций",
-"t": [
-"up002"
-],
-"n": "ueda1dd"
-},
-{
 "slug": "/article/n/funktsii-ugolovnogo-prava-kak-kategorii-prava",
 "year": "2023",
 "vak": true,
@@ -22,6 +10,18 @@
 "up002"
 ],
 "n": "uf109e1"
+},
+{
+"slug": "/article/n/funktsiya-vyrazheniya-zakrepleniya-i-realizatsii-ugolovno-ispolnitelnoy-politiki-v-ugolovnoispolnitelnom-prave",
+"year": "2023",
+"vak": true,
+"journal": "Право и управление",
+"authors": "Лесников Г. Ю.; Самойлова А. А.",
+"title": "ФУНКЦИЯ ВЫРАЖЕНИЯ, ЗАКРЕПЛЕНИЯ И РЕАЛИЗАЦИИ УГОЛОВНО-ИСПОЛНИТЕЛЬНОЙ ПОЛИТИКИ В УГОЛОВНОИСПОЛНИТЕЛЬНОМ ПРАВЕ",
+"t": [
+"up002"
+],
+"n": "uc08dc0"
 },
 {
 "slug": "/article/n/prioritet-rossiyskogo-prava-nad-mezhdunarodnym-v-voprosah-zaschity-gosudarstvennoy-bezopasnosti-ugolovno-pravovye-aspekty",
@@ -305,19 +305,6 @@
 "n": "u1e53c5"
 },
 {
-"slug": "/article/n/otsenka-obschestvennoy-opasnosti-deyaniya-formalno-soderzhaschego-priznaki-prestupleniya-kak-predmet-dokazyvaniya-v-dosudebnom-i",
-"year": "2024",
-"vak": true,
-"journal": "Вестник Самарского юридического института",
-"authors": "Рогова Антонина Александровна",
-"title": "ОЦЕНКА ОБЩЕСТВЕННОЙ ОПАСНОСТИ ДЕЯНИЯ, ФОРМАЛЬНО СОДЕРЖАЩЕГО ПРИЗНАКИ ПРЕСТУПЛЕНИЯ, КАК ПРЕДМЕТ ДОКАЗЫВАНИЯ В ДОСУДЕБНОМ И СУДЕБНОМ УГОЛОВНОМ СУДОПРОИЗВОДСТВЕ",
-"t": [
-"up015",
-"up114"
-],
-"n": "ubcb3ec"
-},
-{
 "slug": "/article/n/sovremennye-problemy-preduprezhdeniya-i-presecheniya-obschestvenno-opasnyh-deyaniy-so-storony-lits-s-psihicheskimi-rasstroystvami",
 "year": "2023",
 "vak": true,
@@ -329,6 +316,19 @@
 "up114"
 ],
 "n": "u3c9d80"
+},
+{
+"slug": "/article/n/genezis-predstavleniy-ob-obschestvennoy-opasnosti-prestupleniy-v-otechestvennom-ugolovnom-prave",
+"year": "2024",
+"vak": true,
+"journal": "Образование и право",
+"authors": "Асташкин Владимир Валерьевич",
+"title": "ГЕНЕЗИС ПРЕДСТАВЛЕНИЙ ОБ ОБЩЕСТВЕННОЙ ОПАСНОСТИ ПРЕСТУПЛЕНИЙ В ОТЕЧЕСТВЕННОМ УГОЛОВНОМ ПРАВЕ",
+"t": [
+"up015",
+"up114"
+],
+"n": "u23dbfb"
 },
 {
 "slug": "/article/n/pravovaya-priroda-prestupnyh-posledstviy-pri-sovershenii-terroristicheskogo-akta-ugolovno-pravovoy-i-kriminologicheskiy-aspekt",
@@ -593,16 +593,16 @@
 "n": "ub590df"
 },
 {
-"slug": "/article/n/osobennosti-kvalifikatsii-prestupleniy-na-dosudebnoy-stadii-ugolovnogo-sudoproizvodstva",
-"year": "2025",
+"slug": "/article/n/problema-kvalifikatsii-prestupleniy-sovershennyh-v-sostoyanii-affekta",
+"year": "2026",
 "vak": false,
-"journal": "Lex criminalis scientiarum",
-"authors": "Луценко Павел Александрович; Колтаков Вадим Александрович",
-"title": "Особенности квалификации преступлений на досудебной стадии уголовного судопроизводства",
+"journal": "Современная наука",
+"authors": "Солотинская Анна Юрьевна; Минаев Владимир Валерьевич",
+"title": "ПРОБЛЕМА КВАЛИФИКАЦИИ ПРЕСТУПЛЕНИЙ, СОВЕРШЕННЫХ В СОСТОЯНИИ АФФЕКТА",
 "t": [
 "up027"
 ],
-"n": "u7f3932"
+"n": "ud2c75e"
 },
 {
 "slug": "/article/n/problemy-kriminalizatsii-neokonchennogo-prestupleniya-prervannogo-na-stadii-prigotovleniya",
@@ -1519,16 +1519,18 @@
 "n": "u5825cd"
 },
 {
-"slug": "/article/n/prisvoenie-i-rastrata-v-ugolovnom-sudoproizvodstve-dokazyvanie-umysla-i-predmeta-prestupleniya",
-"year": "2026",
+"slug": "/article/n/nekotorye-voprosy-ugolovnoy-otvetstvennosti-za-prisvoenie-i-rastratu-po-rossiyskomu-ugolovnomu-zakonodatelstvu",
+"year": "2025",
 "vak": true,
-"journal": "Судебная экспертиза и исследования",
-"authors": "Нодари Дарчоевич Эриашвили",
-"title": "Присвоение и растрата в уголовном судопроизводстве: доказывание умысла и предмета преступления",
+"journal": "Право и практика",
+"authors": "Селютина Ольга Геннадьевна; Гришин Андрей Владимирович",
+"title": "НЕКОТОРЫЕ ВОПРОСЫ УГОЛОВНОЙ ОТВЕТСТВЕННОСТИ ЗА ПРИСВОЕНИЕ И РАСТРАТУ ПО РОССИЙСКОМУ УГОЛОВНОМУ ЗАКОНОДАТЕЛЬСТВУ",
 "t": [
-"up067"
+"up067",
+"up007",
+"up109"
 ],
-"n": "u2aeaa4"
+"n": "ufcd804"
 },
 {
 "slug": "/article/n/otgranichenie-nasilstvennyh-form-hischeniya-ot-inyh-smezhnyh-sostavov",
@@ -1594,18 +1596,6 @@
 "n": "uafc4ba"
 },
 {
-"slug": "/article/n/problemy-ugolovno-protsessualnogo-i-operativno-rozysknogo-obespecheniya-raskrytiya-i-rassledovaniya-nepravomernogo-zavladeniya",
-"year": "2023",
-"vak": true,
-"journal": "Вестник Воронежского института МВД России",
-"authors": "Маслов Александр Вячеславович; Путилин Владимир Валериевич",
-"title": "ПРОБЛЕМЫ УГОЛОВНО-ПРОЦЕССУАЛЬНОГО И ОПЕРАТИВНО-РОЗЫСКНОГО ОБЕСПЕЧЕНИЯ РАСКРЫТИЯ И РАССЛЕДОВАНИЯ НЕПРАВОМЕРНОГО ЗАВЛАДЕНИЯ ТРАНСПОРТНЫМИ СРЕДСТВАМИ",
-"t": [
-"up071"
-],
-"n": "ub0fac6"
-},
-{
 "slug": "/article/n/tsel-nepravomernogo-zavladeniya-chuzhim-imuschestvom-pravovye-pozitsii-doktrinalnoe-tolkovanie",
 "year": "2024",
 "vak": true,
@@ -1616,6 +1606,18 @@
 "up071"
 ],
 "n": "u54d3a5"
+},
+{
+"slug": "/article/n/harakteristika-lichnosti-ugonschika-transportnogo-sredstva",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Воронежского института МВД России",
+"authors": "Пидусов Евгений Александрович",
+"title": "ХАРАКТЕРИСТИКА ЛИЧНОСТИ УГОНЩИКА ТРАНСПОРТНОГО СРЕДСТВА",
+"t": [
+"up071"
+],
+"n": "u60ffbc"
 },
 {
 "slug": "/article/n/aktualnye-problemy-otgranicheniya-nezakonnogo-predprinimatelstva-ot-smezhnyh-sostavov-prestupleniy",
@@ -2377,18 +2379,6 @@
 "n": "u4ef0c2"
 },
 {
-"slug": "/article/n/zavedomo-lozhnyy-donos-o-prestuplenii-ugolovno-pravovoy-i-ugolovno-protsessualnyy-aspekty",
-"year": "2024",
-"vak": false,
-"journal": "Криминологический журнал",
-"authors": "Вадим Викторович Миронов",
-"title": "Заведомо ложный донос о преступлении: уголовно-правовой и уголовно-процессуальный аспекты",
-"t": [
-"up105"
-],
-"n": "u6a5d3f"
-},
-{
 "slug": "/article/n/voprosy-kvalifikatsii-zavedomo-lozhnogo-donosa-o-prestuplenii",
 "year": "2024",
 "vak": false,
@@ -2399,6 +2389,18 @@
 "up105"
 ],
 "n": "u7f8452"
+},
+{
+"slug": "/article/n/obschee-polozhenie-zavedomo-lozhnogo-donosa-v-ugolovno-pravovoy-sisteme",
+"year": "2024",
+"vak": false,
+"journal": "Вестник науки",
+"authors": "Губанова А. А.",
+"title": "ОБЩЕЕ ПОЛОЖЕНИЕ ЗАВЕДОМО ЛОЖНОГО ДОНОСА В УГОЛОВНО-ПРАВОВОЙ СИСТЕМЕ",
+"t": [
+"up105"
+],
+"n": "u7a49a8"
 },
 {
 "slug": "/article/n/teoreticheskie-i-pravoprimenitelnye-aspekty-ugolovnoy-otvetstvennosti-za-posyagatelstvo-na-zhizn-sotrudnika-pravoohranitelnogo",

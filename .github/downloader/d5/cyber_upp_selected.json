@@ -1,17 +1,5 @@
 [
 {
-"slug": "/article/n/vidy-dokazatelstv-i-ih-istochniki-v-grazhdanskom-ugolovnom-arbitrazhnom-protsesse-rossii",
-"year": "2025",
-"vak": false,
-"journal": "Вестник науки",
-"authors": "Баликоев Д. Б.",
-"title": "ВИДЫ ДОКАЗАТЕЛЬСТВ И ИХ ИСТОЧНИКИ В ГРАЖДАНСКОМ, УГОЛОВНОМ, АРБИТРАЖНОМ ПРОЦЕССЕ РОССИИ",
-"t": [
-"upp002"
-],
-"n": "p69e3da"
-},
-{
 "slug": "/article/n/esche-raz-ob-istochnikah-ugolovno-protsessualnogo-prava-rossiyskoy-federatsii",
 "year": "2023",
 "vak": true,
@@ -22,6 +10,18 @@
 "upp002"
 ],
 "n": "p868a1a"
+},
+{
+"slug": "/article/n/k-voprosu-ob-istochnike-elektronnyh-dokazatelstv",
+"year": "2025",
+"vak": false,
+"journal": "Сибирские уголовно-процессуальные и криминалистические чтения",
+"authors": "Малык Анастасия Владимировна",
+"title": "К вопросу об источнике электронных доказательств",
+"t": [
+"upp002"
+],
+"n": "pb2c64a"
 },
 {
 "slug": "/article/n/printsipy-kak-nravstvennaya-osnova-ugolovno-protsessualnoy-deyatelnosti",
@@ -87,18 +87,6 @@
 "upp005"
 ],
 "n": "paab57d"
-},
-{
-"slug": "/article/n/rol-oon-v-obespechenii-ispolneniya-resheniy-mezhdunarodnogo-ugolovnogo-suda-1",
-"year": "2026",
-"vak": true,
-"journal": "Международное право",
-"authors": "Шамсутдинов Ильяс Рафикович",
-"title": "Роль ООН в обеспечении исполнения решений Международного уголовного суда",
-"t": [
-"upp005"
-],
-"n": "p4f9b18"
 },
 {
 "slug": "/article/n/polnomochiya-prokurora-v-dosudebnyh-stadiyah-rassledovaniya-ugolovnyh-del",

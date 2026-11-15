@@ -1,0 +1,12 @@
+get	https://cdep.ru/userimages/Statistika_2024/F3-svod-vse_sudy-2024.xls	.work/d5/stat/cdep_f3_2024a.xls
+get	https://cdep.ru/userimages/Statistika_2024/F3-svod_vse-sudy-2024.xls	.work/d5/stat/cdep_f3_2024b.xls
+get	https://cdep.ru/userimages/Statistika_2024/F3-svod-vse-sudy-2024.xls	.work/d5/stat/cdep_f3_2024c.xls
+get	https://cdep.ru/userimages/Statistika_2024/F3_svod_vse_sudy-2024.xls	.work/d5/stat/cdep_f3_2024d.xls
+get	https://cdep.ru/userimages/Statistika_2024/F3-svod_vse_sudy_2024.xls	.work/d5/stat/cdep_f3_2024e.xls
+get	https://cdep.ru/index.php?id=79&item=8808	.work/d5/stat/cdep_item_8808.html
+get	https://cdep.ru/index.php?id=79&item=8945	.work/d5/stat/cdep_item_8945.html
+get	https://cdep.ru/index.php?id=79&item=8944	.work/d5/stat/cdep_item_8944.html
+get	https://cdep.ru/index.php?id=79&item=8947	.work/d5/stat/cdep_item_8947.html
+ipsact	http://ips.pravo.gov.ru/api/ips/legislation/search.json?query=%D0%A3%D0%BA%D0%B0%D0%B7+%D0%9F%D1%80%D0%B5%D0%B7%D0%B8%D0%B4%D0%B5%D0%BD%D1%82%D0%B0+%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D0%B9%D1%81%D0%BA%D0%BE%D0%B9+%D0%A4%D0%B5%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8+%D0%BE%D1%82+25.11.2020+%E2%84%96+787&limit=10&page=1#Указ Президента Российской Федерации от 25.11.2020 № 787|wide	.work/d5/acts/u787.pdf
+consauto	Приказ Минтруда России от 16.04.2025 N 251н#от 16.04.2025 N 251н	.work/d5/cons/mt251n.pdf
+consauto	Указ Президента РФ от 25.11.2020 N 787 комиссии по вопросам помилования#N 787	.work/d5/cons/u787.pdf
