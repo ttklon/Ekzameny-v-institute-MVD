@@ -12,7 +12,7 @@ STOP = set('''понятие понятия виды вид признаки п�
 назначение тактика действий действия группы группа боевой способы способ определение'''.split())
 CTX = {'upp': 'уголовн процесс судопроизводств', 'up': 'уголовн преступлен', 'gpp': 'гражданск процесс процессуальн', 'tp': 'трудов труда', 'tsp': 'органов внутренних дел полиции специальн'}
 BAD = re.compile(r'казахстан|кыргыз|киргиз|узбекистан|беларус|таджикистан|армени|азербайджан|монголи|вьетнам|китая|китайск|кнр|зарубежн|иностранн(ых|ого) государств|'
-                 r'истори|дореволюц|советск|xix|xviii|xx век|рецензи|юбилей|памяти |обзор конференц|республики (корея|молдова)|украин|германи|франци|сша', re.I)
+                 r'истори|дореволюц|советск|xix|xviii|xx век|рецензи|юбилей|памяти |обзор конференц|республики (корея|молдова)|украин|германи|франци|сша|еаэс|государств-член|снг', re.I)
 def stem(w):
     w = w.lower().replace('ё', 'е')
     return w[:6] if len(w) > 7 else (w[:5] if len(w) > 5 else w)
@@ -66,8 +66,9 @@ def run(code, K):
             if t['id'] in c['t'] or len(ks) < 2: continue
             if sum(1 for k in ks if k in tl) >= max(2, (len(ks) * 2 + 2) // 3): c['t'].append(t['id'])
     sel = []
-    for i, (link, c) in enumerate(chosen.items()):
-        c['n'] = '%s%04d' % (code[0] if code not in ('up', 'tp', 'tsp') else {'up': 'u', 'tp': 't', 'tsp': 's'}[code], i + 1); sel.append(c)
+    import hashlib
+    for link, c in chosen.items():
+        c['n'] = {'upp': 'p', 'up': 'u', 'gpp': 'g', 'tp': 't', 'tsp': 's'}[code] + hashlib.sha1(link.encode('utf-8')).hexdigest()[:6]; sel.append(c)
     json.dump(sel, open(D5 + 'cyber_%s_selected.json' % code, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
     cov = collections.Counter(tid for c in sel for tid in c['t'])
     empty = [t['refs'][0] for t in tt if cov[t['id']] == 0]

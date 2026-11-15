@@ -50,7 +50,8 @@ def run(code, show=False):
         seen.add(k)
         out.append(dict(url=url, rel=rel, year=year, short=(m.group(2) if m else dname).strip(), size=sz))
     L = {'upp': 'pb', 'up': 'ub', 'gpp': 'gb', 'tp': 'tb', 'tsp': 'sb'}[code]
-    for i, o in enumerate(out): o['n'] = '%s%03d' % (L, i + 1)
+    import hashlib
+    for o in out: o['n'] = L + hashlib.sha1(o['url'].encode('utf-8')).hexdigest()[:6]  # номер не зависит от состава списка
     json.dump(out, open(D5 + 'lib_%s_list.json' % code, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
     print(code, 'отобрано:', len(out), 'МБ: %.0f' % (sum(o['size'] for o in out) / 1024 ** 2), dict(stat), 'по годам:', dict(sorted(collections.Counter(o['year'] for o in out).items())))
     if show:
