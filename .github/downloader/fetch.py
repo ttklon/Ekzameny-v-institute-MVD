@@ -743,10 +743,40 @@ def op_cybersearch(listfile, out):
                 f.write('\t'.join((tag, str(year), vak, strip(a.get('journal')), '; '.join(a.get('authors') or []),
                                    strip(a.get('name')), a.get('link') or '', strip(a.get('annotation'))[:400])) + '\n')
                 k += 1
-                if k >= 25:
+                if k >= 40:
                     break
             f.flush()
     return ('ok' if n else 'ошибка'), '200', 'запросов выполнено: %d из %d' % (n, total), listfile
+
+
+def op_ddglist(listfile, out):
+    """Поиск адресов страниц через html.duckduckgo.com. В списке: метка <TAB> запрос.
+    В таблицу пишутся метка, адрес, заголовок и фрагмент первых 12 результатов (сами страницы не скачиваются)."""
+    import re, html, urllib.parse as _u
+    n = total = 0
+    strip = lambda t: ' '.join(html.unescape(re.sub(r'<[^>]+>', '', t or '')).split())
+    with open(out, 'w', encoding='utf-8') as f:
+        for line in open(listfile, encoding='utf-8'):
+            if not line.strip():
+                continue
+            tag, _, q = line.rstrip('\n').partition('\t')
+            total += 1
+            r = subprocess.run(['curl', '-sS', '-L', '--connect-timeout', '15', '--max-time', '40', '-A', UA,
+                                '--data-urlencode', 'q=' + q, '--data', 'kl=ru-ru', 'https://html.duckduckgo.com/html/'],
+                               capture_output=True)
+            time.sleep(4.0)
+            page = r.stdout.decode('utf-8', 'replace')
+            hits = re.findall(r'class="result__a"[^>]*href="([^"]+)"[^>]*>(.*?)</a>(?:.*?class="result__snippet"[^>]*>(.*?)</a>)?', page, re.S)
+            if not hits:
+                f.write('\t'.join((tag, 'НЕТ', q, strip(page)[:150])) + '\n')
+                continue
+            n += 1
+            for href, title, snip in hits[:12]:
+                m = re.search(r'uddg=([^&]+)', href)
+                url = _u.unquote(m.group(1)) if m else html.unescape(href)
+                f.write('\t'.join((tag, url, strip(title), strip(snip)[:300])) + '\n')
+            f.flush()
+    return ('ok' if n else 'ошибка'), '200', 'запросов с результатами: %d из %d' % (n, total), listfile
 
 
 def op_pub(url, out):
@@ -815,6 +845,8 @@ def main(tasks_path):
                     res, code, ctype, url = op_yadisk(url, out)
                 elif op == 'peeklist':
                     res, code, ctype, url = op_peeklist(url, out)
+                elif op == 'ddglist':
+                    res, code, ctype, url = op_ddglist(url, out)
                 elif op == 'cybersearch':
                     res, code, ctype, url = op_cybersearch(url, out)
                 elif op == 'crawllist':
