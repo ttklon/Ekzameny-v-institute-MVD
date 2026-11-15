@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/favicon-128x128.png" sizes="128x128">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/consultant.webmanifest">
+    <meta name="theme-color" content="#ffffff">
+    <title>Поиск по сайту \ КонсультантПлюс</title>
+    <meta name="csrf-param" content="_csrf">
+<meta name="csrf-token" content="cta11OmGelC0-3kf42-BM8NQVHegX6hOW7GbEP57PuEEuNSYsNUOBeTITmWbC_UKlGgOQvAWmzsc0NJEmCNysg==">
+    <meta name="backend-number" content="e2">
+<meta name="app-version" content="2026.1.1.9b09de08">
+<meta name="description" content="КонсультантПлюс онлайн (бесплатные некоммерческие интернет-версии системы) содержат огромный массив документов по федеральному и региональному законодательству РФ. В онлайн версиях КонсультантПлюс реализован удобный поиск законов, кодексов, приказов, указов, постановлений, распоряжений, писем и других документов в последней редакции. Кроме документов онлайн версии содержат материалы судебной практики, справочную информацию (ставки, курсы, индикаторы), бланки и формы в формате MS EXCEL/WORD, ежедневные и еженедельные обзоры по законодательству РФ, консультации по бухучету и налогообложению и другие материалы.">
+<link href="https://www.consultant.ru/search/" rel="canonical">
+<link type="font/woff2" href="/static/client/dist/fonts/f2c2442761a05d538011f514f5be8c34.woff2" rel="preload" as="font" crossorigin>
+<!--[if lte IE9]>
+<link href="/static/client/dist/ie9-83d2d6e9fd245342f0c594317c4830fc.css" rel="stylesheet">
+<![endif]-->
+<link href="/static/client/dist/common-594d82a20712ca05f601cb9eaad6fc32.css" rel="stylesheet">
+<link href="/static/client/dist/search-90b53bf59c42f31858ddd7d60a33056b.css" rel="stylesheet">
+<!--[if lte IE9]>
+<script src="/static/client/dist/ie9-34db5c8e68677b88ba44200fafd1e512.js"></script>
+<![endif]-->
+<script>var frontAppState = {"consUser":{"hasCommercialSPS":false,"userType":null,"userId":null},"universalLink":"https:\/\/login.consultant.ru\/link\/"};</script>    
+
+
+
+</head>
+<body>
+
+
+
+
+
+
+
+<div id="ban__171"
+     class="banner-popup banner-popup_small banner-popup_top-for-mobile"
+     data-banner-zone="171"
+     data-banner-flash="0"
+></div>
+<div class="top-links page-fields ">
+    <div class="top-links__items width-container">
+        <a href="https://login.consultant.ru/" class="button button_login button_login-top top-links__item">Вход в систему</a>
+    </div>
+</div>
+<header class="header " id="header">
+    <div class="header__inner width-container page-fields">
+        <a class="logo logo_header header__logo" href="/"></a>        <div class="header__toggle"></div>
+            </div>
+
+            <nav role="navigation" class="main-nav page-fields font-caption ">
+    <div class="main-nav__inner width-container">
+        <ul class="main-nav__items">
+            <li class="main-nav__item"><a href="//www.consultant.ru/online/" class="main-nav__link">Некоммерческие интернет-версии</a></li>
+            <li class="main-nav__item"><a href="//www.consultant.ru/about/" class="main-nav__link">О компании и продуктах</a></li>
+            <li class="main-nav__item"><a href="//www.consultant.ru/about/purchase/" class="main-nav__link nav-menu-buy-system">Купить КонсультантПлюс</a></li>
+            <li class="main-nav__item"><a href="https://login.consultant.ru/demo-access/" class="main-nav__link nav-menu-demo-access">Пробный доступ</a></li>
+            <li class="main-nav__item"><a href="/legalnews/" class="main-nav__link" target="_blank">Новости</a></li>
+            <li class="main-nav__item"><a href="//www.consultant.ru/wanted/" class="main-nav__link">Вакансии</a></li>
+        </ul>
+
+        <div class="main-nav__login">
+            <a href="https://login.consultant.ru/" class="button button_login button_login-nav">Вход в систему</a>
+        </div>
+    </div>
+</nav>
+    </header>
+
+<div role="main" class="content">
+    
+<section class="search-page__main width-container page-fields" data-exec-timeout="120">
+    <form id='searchForm' action="/search/" class="search search-page__form" role="search">
+    <input type="search" class="search__input" name="q" placeholder="Поиск: Кодексы, законы и другие материалы" value="Обзор практики рассмотрения судами дел об административных правонарушениях публичные мероприятия статья 20.2 Верховный Суд" />
+    <span class="search__clear"></span>
+    <input type="submit" class="search__button font-bold" value="Найти" />
+</form>
+    <div id="searchResults" class="search-page__results-container">
+                    <div class="loader"></div>
+        </div>
+    <div class="separator bn-separator separator__hidden"></div>
+<div class="bn width-container search-page__bn">
+    <div id="ban__152"
+        class="bn__inner"
+        data-banner-zone="152"
+        data-banner-flash="0"
+    >
+    </div>
+</div>
+
+<div id="seoLinks" class="seo-links search-page__seo-links">
+    <ul class="seo-links__list">
+                        <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_5142/">Гражданский кодекс (ГК РФ)</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_51057/">Жилищный кодекс (ЖК РФ)</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_19671/">Налоговый кодекс (НК РФ)</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_34683/">Трудовой кодекс (ТК РФ)</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_10699/">Уголовный кодекс (УК РФ)</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_19702/">Бюджетный кодекс (БК РФ)</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_37800/">Арбитражный процессуальный кодекс</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_28399/">Конституция РФ</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_33773/">Земельный кодекс (ЗК РФ)</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_64299/">Лесной кодекс (ЛК РФ)</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_8982/">Семейный кодекс (СК РФ)</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_12940/">Уголовно-исполнительный кодекс</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_34481/">Уголовно-процессуальный кодекс</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="/law/ref/calendar/proizvodstvennye/2027/">Производственный календарь на 2027 год</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="/law/ref/mrot/2026/">МРОТ 2026</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_39331/">ФЗ «О банкротстве»</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_305/">О защите прав потребителей (ЗОЗПП)</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_71450/">Об исполнительном производстве</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_61801/">О персональных данных</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="http://www.consultant.ru/document/cons_doc_LAW_28165/a26c4b9a881ea8c0abbbfa594a552fc5b15ac93b/">О налогах на имущество физических лиц</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_1511/">О средствах массовой информации</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="/law/ref/calendar/proizvodstvennye/2026/">Производственный календарь на 2026 год</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_110165/">Федеральный закон &quot;О полиции&quot; N 3-ФЗ</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_12508/">Расходы организации ПБУ 10/99</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="/law/ref/mrot/">Минимальный размер оплаты труда (МРОТ)</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_520626/">Календарь бухгалтера на 2026 год</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="/legalnews/20431/">Частичная мобилизация: обзор новостей</a>
+                </li>
+                            <li class="seo-links__item">
+                    <a href="//www.consultant.ru/document/cons_doc_LAW_494318/">Постановление Правительства РФ N 1875</a>
+                </li>
+                        </ul>
+</div>
+    
+<div id="ban__153"
+     class="banner-popup banner-popup_large"
+     data-banner-zone="153"
+     data-banner-flash="0"
+></div>
+    
+<div id="ban__154"
+     class="banner-popup banner-popup_small"
+     data-banner-zone="154"
+     data-banner-flash="0"
+></div>
+</section>
+</div>
+
+<footer class="footer page-fields " id="footer">
+    <div class="width-container">
+        <div class="footer__inner">
+            <div class="footer__section footer__contacts">
+                <section class="contacts " id="contacts">
+    <div class="contacts__header footer__header font-caption">Контактная информация</div>
+    <address class="contacts__inner vcard">
+        <div class="contacts__address adr">
+            <div class="contacts__item">
+                <span class="postal-code">117292</span>, <span class="locality">Москва</span>,
+                <span class="street-address">ул.&nbsp;Кржижановского,&nbsp;6</span> (центральный&nbsp;офис)
+            </div>
+            <div class="contacts__item email">
+                <a href="mailto:contact@consultant.ru" class="contacts__mailto">contact@consultant.ru</a>
+            </div>
+        </div>
+        <div class="contacts__phones">
+            <div class="contacts__item tel">+7 (495) 956-82-83</div>
+            <div class="contacts__item tel">+7 (495) 787-92-92</div>
+            <div class="contacts__item email">
+                <a href="mailto:contact@consultant.ru" class="contacts__mailto">contact@consultant.ru</a>
+            </div>
+        </div>
+    </address>
+</section>
+            </div>
+            <div class="footer__section footer__social">
+                <section class="social-links " id="socialLinks">
+    <div class="social-links__header footer__header font-caption">Мы в социальных сетях</div>
+    <div class="social-links__items">
+        <a class="social-links__item social-links__item_vk" href="https://vk.com/consultantplus.comp">
+            <svg class="social-links__icon" viewBox="0 0 20 20">
+                <g fill-rule="evenodd">
+                    <path class="social-links__icon-white" d="M15.623 7.4736c.082-.272 0-.474-.39-.474h-1.29c-.328 0-.478.174-.56.365 0 0-.656 1.598-1.585 2.636-.301.301-.438.397-.602.397-.082 0-.2-.096-.2-.369v-2.555c0-.327-.095-.474-.368-.474H8.602c-.206 0-.329.153-.329.297 0 .311.464.382.512 1.256v1.9c0 .416-.075.492-.238.492-.438 0-1.501-1.606-2.132-3.444-.123-.356-.247-.501-.577-.501H4.549c-.368 0-.443.174-.443.365 0 .341.438 2.036 2.037 4.276 1.065 1.53 2.566 2.359 3.932 2.359.819 0 .921-.184.921-.502v-1.156c0-.368.078-.441.337-.441.191 0 .519.095 1.284.833.875.874 1.019 1.266 1.511 1.266h1.289c.368 0 .553-.184.446-.547-.116-.363-.533-.888-1.087-1.511-.3-.356-.752-.739-.888-.93-.192-.245-.137-.354 0-.573 0 0 1.571-2.213 1.735-2.965"/>
+                    <path d="M10 0C4.478 0 0 4.478 0 10s4.478 10 10 10 10-4.478 10-10S15.522 0 10 0m0 1c4.963 0 9 4.037 9 9s-4.037 9-9 9-9-4.037-9-9 4.037-9 9-9"/>
+                </g>
+            </svg>
+            <span class="social-links__text">ВКонтакте</span>
+        </a>
+        <a class="social-links__item social-links__item_zen" href="https://dzen.ru/consultantplus">
+            <svg class="social-links__icon" viewBox="0 0 20 20">
+                <g fill-rule="evenodd">
+                    <path d="M10 0c5.522 0 10 4.478 10 10s-4.478 10-10 10S0 15.522 0 10 4.478 0 10 0ZM1.00346319 10.1409977l.00038102.1239737C1.14447385 15.1058913 5.125625 19 10 19l-.13955545-.0032117c-.13036704-3.7415042-.34143614-5.5745777-1.78901598-7.0
