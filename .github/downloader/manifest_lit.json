@@ -14654,7 +14654,7 @@
 "dst": "Административная деятельность полиции/2. Источники/4. Научные материалы (с 2023 года)/Статьи/Астафьев. Привлечение подозреваемых и обвиняемых, содержащихся под…. Юридическая наука и правоохранительная практика, 2024.pdf",
 "type": "article",
 "url": "https://cyberleninka.ru/article/n/privlechenie-podozrevaemyh-i-obvinyaemyh-soderzhaschihsya-pod-strazhey-k-administrativnoy-otvetstvennosti-za-nepovinovenie-zakonnym",
-"garbled": true,
+"garbled": false,
 "general": false
 },
 {
@@ -20252,7 +20252,8 @@
 "type": "book",
 "url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/21. Вариативная дисциплина/УУП/Индивид_проф__работа_УУП.pdf",
 "garbled": true,
-"general": false
+"general": false,
+"note": "скан без текстового слоя: текст не копируется"
 },
 {
 "key": "b086",
@@ -21091,7 +21092,8 @@
 "type": "book",
 "url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/РАЗНОЕ/Нижегородская академия/Деятельность_ОВД_при_возникновении_чрезвычайных_обс.pdf",
 "garbled": true,
-"general": false
+"general": false,
+"note": "скан без текстового слоя: текст не копируется"
 },
 {
 "key": "b137",
@@ -23853,7 +23855,8 @@
 "type": "article",
 "url": "https://cyberleninka.ru/article/n/administrativnaya-otvetstvennost-za-pravonarusheniya-posyagayuschie-na-obschestvennyy-poryadok-i-obschestvennuyu-bezopasnost-3",
 "garbled": false,
-"general": false
+"general": false,
+"note": "файл начинается с окончания предыдущей статьи журнала"
 },
 {
 "key": "e031",
