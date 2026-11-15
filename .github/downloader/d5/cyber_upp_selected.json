@@ -49,6 +49,18 @@
 "n": "pfdaf35"
 },
 {
+"slug": "/article/n/printsipy-ugolovnogo-sudoproizvodstva-ih-ponyatie-suschnost-poryadok-formirovaniya-priznaki-i-znachenie",
+"year": "2023",
+"vak": true,
+"journal": "Пробелы в российском законодательстве. Юридический журнал",
+"authors": "Лозинский Олег Иванович; Перепечай Владислава Андреевна; Герасимчук Анастасия Викторовна",
+"title": "Принципы уголовного судопроизводства, их понятие, сущность, порядок формирования, признаки и значение",
+"t": [
+"upp003"
+],
+"n": "p6e5156"
+},
+{
 "slug": "/article/n/kriminalisticheskaya-harakteristika-inostrannogo-uchastnika-ugolovnogo-sudoproizvodstva-i-ee-ispolzovanie-v-rassledovanii",
 "year": "2024",
 "vak": true,
@@ -72,9 +84,38 @@
 "title": "СУЩНОСТЬ КАТЕГОРИИ «ОБЕСПЕЧЕНИЕ НАДЛЕЖАЩЕГО ИСПОЛНЕНИЯ ОБЯЗАННОСТЕЙ УЧАСТНИКАМИ УГОЛОВНОГО СУДОПРОИЗВОДСТВА» В ТЕОРИИ УГОЛОВНОГО ПРОЦЕССА",
 "t": [
 "upp004",
+"upp107",
 "upp098"
 ],
 "n": "p6c345d"
+},
+{
+"slug": "/article/n/gosudarstvennaya-politika-ugolovno-pravovoy-zaschity-uchastnikov-ugolovnogo-sudoproizvodstva-v-rf-problemy-i-puti-ih-razresheniya",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Удмуртского университета. Серия «Экономика и право»",
+"authors": "Гордей Жданова Яна Владимировна; Крапчатова Ирина Николаевна",
+"title": "ГОСУДАРСТВЕННАЯ ПОЛИТИКА УГОЛОВНО-ПРАВОВОЙ ЗАЩИТЫ УЧАСТНИКОВ УГОЛОВНОГО СУДОПРОИЗВОДСТВА В РФ: ПРОБЛЕМЫ И ПУТИ ИХ РАЗРЕШЕНИЯ",
+"t": [
+"upp004",
+"upp098"
+],
+"n": "pb17874"
+},
+{
+"slug": "/article/n/nesovershennoletniy-uchastnik-ugolovnogo-sudoproizvodstva-genezis-protsessualnogo-statusa-ponyatie-i-vidy",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Воронежского института МВД России",
+"authors": "Латыпов Вадим Сагитьянович; Моругина Надежда Анатольевна",
+"title": "НЕСОВЕРШЕННОЛЕТНИЙ УЧАСТНИК УГОЛОВНОГО СУДОПРОИЗВОДСТВА: ГЕНЕЗИС ПРОЦЕССУАЛЬНОГО СТАТУСА, ПОНЯТИЕ И ВИДЫ",
+"t": [
+"upp004",
+"upp098",
+"upp106",
+"upp041"
+],
+"n": "pa80be4"
 },
 {
 "slug": "/article/n/rol-i-polnomochiya-suda-v-ugolovnom-sudoproizvodstve",
@@ -114,6 +155,31 @@
 "upp006"
 ],
 "n": "pc75a90"
+},
+{
+"slug": "/article/n/o-polnomochiyah-prokurora-pri-proverke-veschestvennyh-dokazatelstv-po-ugolovnomu-delu-okonchennomu-proizvodstvu",
+"year": "2023",
+"vak": true,
+"journal": "Аграрное и земельное право",
+"authors": "Михайлова А. П.",
+"title": "О ПОЛНОМОЧИЯХ ПРОКУРОРА ПРИ ПРОВЕРКЕ ВЕЩЕСТВЕННЫХ ДОКАЗАТЕЛЬСТВ ПО УГОЛОВНОМУ ДЕЛУ ОКОНЧЕННОМУ ПРОИЗВОДСТВУ",
+"t": [
+"upp006",
+"upp015"
+],
+"n": "pa0e6a8"
+},
+{
+"slug": "/article/n/teoretiko-pravovye-voprosy-uchastiya-prokurora-v-ugolovnom-protsesse",
+"year": "2025",
+"vak": true,
+"journal": "Юридический вестник Дагестанского государственного университета",
+"authors": "Мирза Абдулаевич Мирзаев",
+"title": "Теоретико-правовые вопросы участия прокурора в уголовном процессе",
+"t": [
+"upp006"
+],
+"n": "p976e14"
 },
 {
 "slug": "/article/n/polnomochiya-sledovatelya-v-ugolovnom-sudoproizvodstve-i-ih-realizatsiya-v-protsesse-vzaimodeystviya-s-inymi-vlastnymi-subektami",
@@ -164,6 +230,43 @@
 "n": "p28e7f0"
 },
 {
+"slug": "/article/n/organ-doznaniya-kak-uchastnik-ugolovnogo-sudoproizvodstva",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Университета имени О. Е. Кутафина",
+"authors": "Ирина Анатольевна Даниленко",
+"title": "Орган дознания как участник уголовного судопроизводства",
+"t": [
+"upp008",
+"upp098"
+],
+"n": "p7d1376"
+},
+{
+"slug": "/article/n/anomalii-pravovogo-polozheniya-organov-doznaniya",
+"year": "2023",
+"vak": true,
+"journal": "Правовое государство: теория и практика",
+"authors": "Дикарев Илья Степанович",
+"title": "АНОМАЛИИ ПРАВОВОГО ПОЛОЖЕНИЯ ОРГАНОВ ДОЗНАНИЯ",
+"t": [
+"upp008"
+],
+"n": "p9a756b"
+},
+{
+"slug": "/article/n/o-nekotoryh-tendentsiyah-razvitiya-nadzora-prokurora-za-protsessualnoy-deyatelnostyu-organov-doznaniya",
+"year": "2024",
+"vak": true,
+"journal": "Право и политика",
+"authors": "Даниленко Ирина Анатольевна; Таболина Ксения Андреевна",
+"title": "О НЕКОТОРЫХ ТЕНДЕНЦИЯХ РАЗВИТИЯ НАДЗОРА ПРОКУРОРА ЗА ПРОЦЕССУАЛЬНОЙ ДЕЯТЕЛЬНОСТЬЮ ОРГАНОВ ДОЗНАНИЯ",
+"t": [
+"upp008"
+],
+"n": "p4211ce"
+},
+{
 "slug": "/article/n/zaschita-lichnyh-neimuschestvennyh-prav-chastnogo-interesa-umershego-poterpevshego-v-ugolovnom-sudoproizvodstve-publichno-pravovymi",
 "year": "2025",
 "vak": true,
@@ -212,6 +315,32 @@
 "n": "pda689e"
 },
 {
+"slug": "/article/n/doktrinalnye-i-pravoprimenitelnye-problemy-differentsiatsii-statusa-podozrevaemogo-i-obvinyaemogo-v-ugolovnom-sudoproizvodstve",
+"year": "2025",
+"vak": true,
+"journal": "Научный вестник Орловского юридического института МВД России имени В. В. Лукьянова",
+"authors": "Кузенков Сергей Владимирович; Белевский Роман Александрович; Каширский Дмитрий Юрьевич",
+"title": "Доктринальные и правоприменительные проблемы дифференциации статуса подозреваемого и обвиняемого в уголовном судопроизводстве",
+"t": [
+"upp010",
+"upp011"
+],
+"n": "pc4f546"
+},
+{
+"slug": "/article/n/k-voprosu-o-nekotoryh-osobennostyah-proverki-i-otsenki-pokazaniy-obvinyaemogo-i-podozrevaemogo-v-ugolovnom-sudoproizvodstve",
+"year": "2025",
+"vak": true,
+"journal": "Российский научный вестник",
+"authors": "Османов М. М.; Морозов Н. А.; Досакаев А. Б.",
+"title": "К ВОПРОСУ О НЕКОТОРЫХ ОСОБЕННОСТЯХ ПРОВЕРКИ И ОЦЕНКИ ПОКАЗАНИЙ ОБВИНЯЕМОГО И ПОДОЗРЕВАЕМОГО В УГОЛОВНОМ СУДОПРОИЗВОДСТВЕ",
+"t": [
+"upp010",
+"upp118"
+],
+"n": "p7c02d2"
+},
+{
 "slug": "/article/n/ponyatie-i-osobennosti-protsessualnogo-statusa-obvinyaemogo-v-ugolovnom-sudoproizvodstve",
 "year": "2024",
 "vak": true,
@@ -224,16 +353,41 @@
 "n": "p00fe1c"
 },
 {
-"slug": "/article/n/doktrinalnye-i-pravoprimenitelnye-problemy-differentsiatsii-statusa-podozrevaemogo-i-obvinyaemogo-v-ugolovnom-sudoproizvodstve",
+"slug": "/article/n/aktualnye-voprosy-obespecheniya-prav-nesovershennoletnih-podozrevaemyh-i-obvinyaemyh-v-dosudebnom-proizvodstve-rossii",
 "year": "2025",
 "vak": true,
-"journal": "Научный вестник Орловского юридического института МВД России имени В. В. Лукьянова",
-"authors": "Кузенков Сергей Владимирович; Белевский Роман Александрович; Каширский Дмитрий Юрьевич",
-"title": "Доктринальные и правоприменительные проблемы дифференциации статуса подозреваемого и обвиняемого в уголовном судопроизводстве",
+"journal": "Евразийская адвокатура",
+"authors": "Гарифуллин Руслан Ровшанбекович",
+"title": "АКТУАЛЬНЫЕ ВОПРОСЫ ОБЕСПЕЧЕНИЯ ПРАВ НЕСОВЕРШЕННОЛЕТНИХ ПОДОЗРЕВАЕМЫХ И ОБВИНЯЕМЫХ В ДОСУДЕБНОМ ПРОИЗВОДСТВЕ РОССИИ",
 "t": [
 "upp011"
 ],
-"n": "pc4f546"
+"n": "p26ae54"
+},
+{
+"slug": "/article/n/znachenie-obstoyatelstv-harakterizuyuschih-lichnost-obvinyaemogo-pri-osuschestvlenii-ugolovnogo-sudoproizvodstva",
+"year": "2025",
+"vak": true,
+"journal": "Научный вестник Орловского юридического института МВД России имени В. В. Лукьянова",
+"authors": "Азанова Анастасия Александровна",
+"title": "ЗНАЧЕНИЕ ОБСТОЯТЕЛЬСТВ, ХАРАКТЕРИЗУЮЩИХ ЛИЧНОСТЬ ОБВИНЯЕМОГО, ПРИ ОСУЩЕСТВЛЕНИИ УГОЛОВНОГО СУДОПРОИЗВОДСТВА",
+"t": [
+"upp011"
+],
+"n": "pa5acab"
+},
+{
+"slug": "/article/n/problemnye-aspekty-pravovogo-instituta-privlecheniya-litsa-v-kachestve-obvinyaemogo",
+"year": "2024",
+"vak": true,
+"journal": "Ленинградский юридический журнал",
+"authors": "Внукова Диана Рафиковна; Шепелёва Ольга Ринатовна",
+"title": "Проблемные аспекты правового института привлечения лица в качестве обвиняемого",
+"t": [
+"upp011",
+"upp037"
+],
+"n": "pa29765"
 },
 {
 "slug": "/article/n/obyazatelnoe-uchastie-zaschitnika-v-ugolovnom-protsesse-i-ego-naznachenie",
@@ -258,6 +412,22 @@
 "upp012"
 ],
 "n": "p4cb80e"
+},
+{
+"slug": "/article/n/uchastie-zaschitnika-v-ugolovnom-sudoproizvodstve-rossii-na-etape-predvaritelnogo-rassledovaniya",
+"year": "2024",
+"vak": true,
+"journal": "Закон и право",
+"authors": "Азим Султанович Адиев",
+"title": "Участие защитника в уголовном судопроизводстве России на этапе предварительного расследования",
+"t": [
+"upp012",
+"upp030",
+"upp031",
+"upp033",
+"upp044"
+],
+"n": "pa33cd1"
 },
 {
 "slug": "/article/n/rassmotrenie-i-razreshenie-otvoda-kak-dopolnitelnoe-proizvodstvo-v-ugolovnom-protsesse",
@@ -290,6 +460,19 @@
 "n": "p7b2697"
 },
 {
+"slug": "/article/n/ponyatie-suschnost-i-mesto-otvoda-samootvoda-sudi-v-ugolovnom-sudoproizodstve",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Удмуртского университета. Серия «Экономика и право»",
+"authors": "Низамова Алия Азатовна",
+"title": "ПОНЯТИЕ, СУЩНОСТЬ И МЕСТО ОТВОДА (САМООТВОДА) СУДЬИ В УГОЛОВНОМ СУДОПРОИЗОДСТВЕ",
+"t": [
+"upp013",
+"upp112"
+],
+"n": "p8f6119"
+},
+{
 "slug": "/article/n/svoystvo-dopustimosti-dokazatelstv-v-tserkovnom-sudebnom-protsesse-russkoy-pravoslavnoy-tserkvi",
 "year": "2023",
 "vak": true,
@@ -316,6 +499,31 @@
 "n": "p113966"
 },
 {
+"slug": "/article/n/o-nekotoryh-voprosah-otsenki-dostatochnosti-dokazatelstv-v-dosudebnom-proizvodstve-po-ugolovnym-delam",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Восточно-Сибирского института МВД России",
+"authors": "Юдина Элла Игоревна",
+"title": "О НЕКОТОРЫХ ВОПРОСАХ ОЦЕНКИ ДОСТАТОЧНОСТИ ДОКАЗАТЕЛЬСТВ В ДОСУДЕБНОМ ПРОИЗВОДСТВЕ ПО УГОЛОВНЫМ ДЕЛАМ",
+"t": [
+"upp014",
+"upp085"
+],
+"n": "p6d45ae"
+},
+{
+"slug": "/article/n/k-voprosu-o-dokazatelstvah-v-ugolovnom-protsesse-1",
+"year": "2023",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Павлова А. А.; Строева Ю. В.",
+"title": "К ВОПРОСУ О ДОКАЗАТЕЛЬСТВАХ В УГОЛОВНОМ ПРОЦЕССЕ",
+"t": [
+"upp014"
+],
+"n": "p4af967"
+},
+{
 "slug": "/article/n/hranenie-veschestvennyh-dokazatelstv-v-kontekste-osnov-protsessa-dokazyvaniya-v-dosudebnom-proizvodstve-po-ugolovnym-delam",
 "year": "2025",
 "vak": true,
@@ -336,9 +544,47 @@
 "authors": "Валюлин Руслан Рашитович",
 "title": "ПОСТАНОВЛЕНИЯ ПРАВИТЕЛЬСТВА РОССИЙСКОЙ ФЕДЕРАЦИИ О ХРАНЕНИИ ВЕЩЕСТВЕННЫХ ДОКАЗАТЕЛЬСТВ В УГОЛОВНОМ ПРОЦЕССЕ",
 "t": [
-"upp015"
+"upp015",
+"upp122"
 ],
 "n": "pb005c3"
+},
+{
+"slug": "/article/n/evolyutsionirovanie-poryadka-hraneniya-veschestvennyh-dokazatelstv",
+"year": "2025",
+"vak": true,
+"journal": "Legal Bulletin",
+"authors": "Федорова Полина Эдуардовна; Зашляпин Леонид Александрович",
+"title": "ЭВОЛЮЦИОНИРОВАНИЕ ПОРЯДКА ХРАНЕНИЯ ВЕЩЕСТВЕННЫХ ДОКАЗАТЕЛЬСТВ",
+"t": [
+"upp015",
+"upp122"
+],
+"n": "p0191bc"
+},
+{
+"slug": "/article/n/formy-hraneniya-veschestvennyh-dokazatelstv-pri-proizvodstve-po-ugolovnomu-delu",
+"year": "2025",
+"vak": true,
+"journal": "Судебная экспертиза и исследования",
+"authors": "Валерия Валерьевна Артемова; Владимир Юрьевич Павлов",
+"title": "Формы хранения вещественных доказательств при производстве по уголовному делу",
+"t": [
+"upp015"
+],
+"n": "pe030b1"
+},
+{
+"slug": "/article/n/nedokazatelstvennoe-znachenie-veschestvennyh-dokazatelstv-v-ugolovnom-protsesse",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Томского государственного университета. Право",
+"authors": "Алия Рашитовна Шарипова",
+"title": "Недоказательственное значение вещественных доказательств в уголовном процессе",
+"t": [
+"upp015"
+],
+"n": "pc30daa"
 },
 {
 "slug": "/article/n/k-voprosu-o-dokazyvanii-elementov-subektivnoy-storony-prestupleniy-ekstremistskoy-napravlennosti",
@@ -363,6 +609,43 @@
 "upp016"
 ],
 "n": "p8a2b62"
+},
+{
+"slug": "/article/n/bremya-dokazyvaniya-v-evolyutsioniruyuschem-ugolovno-protsessualnom-prave",
+"year": "2024",
+"vak": true,
+"journal": "Юридическая наука",
+"authors": "Пархоменко Арина Сергеевна; Зашляпин Леонид Александрович",
+"title": "Бремя доказывания в эволюционирующем уголовно-процессуальном праве",
+"t": [
+"upp016"
+],
+"n": "pa012a7"
+},
+{
+"slug": "/article/n/k-voprosu-o-protsesse-dokazyvaniya-v-ugolovnom-sudoproizvodstve-suschnostno-soderzhatelnaya-harakteristika",
+"year": "2025",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Иванов Пётр Иванович",
+"title": "К ВОПРОСУ О ПРОЦЕССЕ ДОКАЗЫВАНИЯ В УГОЛОВНОМ СУДОПРОИЗВОДСТВЕ (СУЩНОСТНО-СОДЕРЖАТЕЛЬНАЯ ХАРАКТЕРИСТИКА)",
+"t": [
+"upp016"
+],
+"n": "pa17cb5"
+},
+{
+"slug": "/article/n/dokazatelstva-i-dokazyvanie-v-ugolovnom-protsesse-problemy-ponimaniya-ih-soderzhaniya",
+"year": "2023",
+"vak": true,
+"journal": "Lex Russica",
+"authors": "Корнакова С. В.",
+"title": "ДОКАЗАТЕЛЬСТВА И ДОКАЗЫВАНИЕ В УГОЛОВНОМ ПРОЦЕССЕ: ПРОБЛЕМЫ ПОНИМАНИЯ ИХ СОДЕРЖАНИЯ",
+"t": [
+"upp016",
+"upp116"
+],
+"n": "p3901e7"
 },
 {
 "slug": "/article/n/fakticheskie-i-protsessualnye-obstoyatelstva-podlezhaschie-dokazyvaniyu-v-stadii-vozbuzhdeniya-ugolovnogo-dela-na-primere",
@@ -391,6 +674,32 @@
 "n": "p34ff7c"
 },
 {
+"slug": "/article/n/obstoyatelstva-podlezhaschie-dokazyvaniyu-pri-rassledovanii-vzyatochnichestva-v-sfere-gosudarstvennyh-i-munitsipalnyh-zakupok",
+"year": "2024",
+"vak": true,
+"journal": "Закон и право",
+"authors": "Юрий Григорьевич Торбин",
+"title": "Обстоятельства, подлежащие доказыванию при расследовании взяточничества в сфере государственных и муниципальных закупок",
+"t": [
+"upp017",
+"upp113"
+],
+"n": "pdfc6ac"
+},
+{
+"slug": "/article/n/sootnoshenie-dokazyvaniya-yuridicheski-znachimyh-obstoyatelstv-v-ramkah-grazhdanskogo-iska-po-delam-ob-ekologicheskih",
+"year": "2025",
+"vak": true,
+"journal": "Аграрное и земельное право",
+"authors": "Гарбуз Григорий Сергеевич",
+"title": "СООТНОШЕНИЕ ДОКАЗЫВАНИЯ ЮРИДИЧЕСКИ ЗНАЧИМЫХ ОБСТОЯТЕЛЬСТВ В РАМКАХ ГРАЖДАНСКОГО ИСКА ПО ДЕЛАМ ОБ ЭКОЛОГИЧЕСКИХ ПРЕСТУПЛЕНИЯХ С УСТАНОВЛЕНИЕМ УГОЛОВНО-ПРАВОВЫХ ЦЕЛЕЙ РАССЛЕДОВАНИЯ",
+"t": [
+"upp017",
+"upp113"
+],
+"n": "pbb2181"
+},
+{
 "slug": "/article/n/k-voprosu-ob-osnovaniyah-dlya-izbraniya-mer-protsessualnogo-prinuzhdeniya",
 "year": "2025",
 "vak": true,
@@ -398,7 +707,8 @@
 "authors": "Гущин Александр Николаевич",
 "title": "К ВОПРОСУ ОБ ОСНОВАНИЯХ ДЛЯ ИЗБРАНИЯ МЕР ПРОЦЕССУАЛЬНОГО ПРИНУЖДЕНИЯ",
 "t": [
-"upp018"
+"upp018",
+"upp125"
 ],
 "n": "p4c3213"
 },
@@ -413,6 +723,30 @@
 "upp018"
 ],
 "n": "p20e12c"
+},
+{
+"slug": "/article/n/zaderzhanie-litsa-po-podozreniyu-v-sovershenii-prestupleniya-v-sisteme-mer-gosudarstvennogo-prinuzhdeniya",
+"year": "2024",
+"vak": true,
+"journal": "Право и управление",
+"authors": "Сибагатов М. В.",
+"title": "ЗАДЕРЖАНИЕ ЛИЦА ПО ПОДОЗРЕНИЮ В СОВЕРШЕНИИ ПРЕСТУПЛЕНИЯ В СИСТЕМЕ МЕР ГОСУДАРСТВЕННОГО ПРИНУЖДЕНИЯ",
+"t": [
+"upp018"
+],
+"n": "p6a0e8a"
+},
+{
+"slug": "/article/n/ponyatie-lyuboe-litso-podvergnutoe-meram-protsessualnogo-prinuzhdeniya-kak-institutsionalnyy-element-mehanizma-vozmescheniya-vreda",
+"year": "2023",
+"vak": true,
+"journal": "Вестник экономической безопасности",
+"authors": "Мядзелец Ольга Александровна",
+"title": "ПОНЯТИЕ «ЛЮБОЕ ЛИЦО, ПОДВЕРГНУТОЕ МЕРАМ ПРОЦЕССУАЛЬНОГО ПРИНУЖДЕНИЯ» КАК ИНСТИТУЦИОНАЛЬНЫЙ ЭЛЕМЕНТ МЕХАНИЗМА ВОЗМЕЩЕНИЯ ВРЕДА В СООТВЕТСТВИИ С Ч. 3 СТ. 133 УПК РФ",
+"t": [
+"upp018"
+],
+"n": "pe3134a"
 },
 {
 "slug": "/article/n/k-voprosu-ob-ugolovno-protsessualnom-zaderzhanii",
@@ -439,6 +773,33 @@
 "n": "p8f7b1e"
 },
 {
+"slug": "/article/n/realizatsiya-printsipa-neprikosnovennosti-lichnosti-na-primere-zaderzhaniya-litsa-v-ugolovnom-protsesse-1",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Удмуртского университета. Серия «Экономика и право»",
+"authors": "Татьянина Лариса Геннадьевна; Шамсеева Алина Маратовна",
+"title": "РЕАЛИЗАЦИЯ ПРИНЦИПА НЕПРИКОСНОВЕННОСТИ ЛИЧНОСТИ НА ПРИМЕРЕ ЗАДЕРЖАНИЯ ЛИЦА В УГОЛОВНОМ ПРОЦЕССЕ",
+"t": [
+"upp019",
+"upp078"
+],
+"n": "p81f314"
+},
+{
+"slug": "/article/n/prakticheskie-problemy-prinuzhdeniya-kak-mery-obespecheniya-pri-proizvodstve-po-ugolovnym-delam",
+"year": "2024",
+"vak": false,
+"journal": "Российско-азиатский правовой журнал",
+"authors": "А. Ю. Сафронов",
+"title": "ПРАКТИЧЕСКИЕ ПРОБЛЕМЫ ПРИНУЖДЕНИЯ, КАК МЕРЫ ОБЕСПЕЧЕНИЯ ПРИ ПРОИЗВОДСТВЕ ПО УГОЛОВНЫМ ДЕЛАМ",
+"t": [
+"upp019",
+"upp022",
+"upp127"
+],
+"n": "p4518bb"
+},
+{
 "slug": "/article/n/taktika-professionalnoy-zaschity-pri-izbranii-mery-presecheniya",
 "year": "2026",
 "vak": false,
@@ -461,6 +822,30 @@
 "upp020"
 ],
 "n": "p93b1a3"
+},
+{
+"slug": "/article/n/obosnovannost-podozreniya-kak-uslovie-izbraniya-mer-presecheniya-v-rossiyskom-ugolovnom-protsesse",
+"year": "2024",
+"vak": true,
+"journal": "Проблемы экономики и юридической практики",
+"authors": "Попов А. П.; Питько Р. Ю.",
+"title": "ОБОСНОВАННОСТЬ ПОДОЗРЕНИЯ КАК УСЛОВИЕ ИЗБРАНИЯ МЕР ПРЕСЕЧЕНИЯ В РОССИЙСКОМ УГОЛОВНОМ ПРОЦЕССЕ",
+"t": [
+"upp020"
+],
+"n": "pf75dc2"
+},
+{
+"slug": "/article/n/k-voprosu-o-genezise-domashnego-aresta-kak-mery-presecheniya",
+"year": "2024",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Шевчук Ирина Викторовна",
+"title": "К ВОПРОСУ О ГЕНЕЗИСЕ ДОМАШНЕГО АРЕСТА КАК МЕРЫ ПРЕСЕЧЕНИЯ",
+"t": [
+"upp020"
+],
+"n": "pd3451b"
 },
 {
 "slug": "/article/n/zaklyuchenie-pod-strazhu-alternativnyy-vzglyad-na-vozmozhnosti-ugolovno-protsessualnogo-regulirovaniya-i-primeneniya",
@@ -487,6 +872,18 @@
 "n": "paa0689"
 },
 {
+"slug": "/article/n/zaklyuchenie-pod-strazhu-i-prismotr-za-nesovershennoletnim-nekotorye-voprosy-reglamentatsii-i-pravoprimeneniya",
+"year": "2025",
+"vak": true,
+"journal": "Территория новых возможностей. Вестник Владивостокского государственного университета",
+"authors": "Верещагина Алла Васильевна",
+"title": "Заключение под стражу и присмотр за несовершеннолетним: некоторые вопросы регламентации и правоприменения",
+"t": [
+"upp021"
+],
+"n": "p30d3f6"
+},
+{
 "slug": "/article/n/mery-ugolovno-protsessualnogo-prinuzhdeniya-v-sisteme-gosudarstvennogo-prinuzhdeniya",
 "year": "2026",
 "vak": true,
@@ -495,22 +892,49 @@
 "title": "МЕРЫ УГОЛОВНО-ПРОЦЕССУАЛЬНОГО ПРИНУЖДЕНИЯ В СИСТЕМЕ ГОСУДАРСТВЕННОГО ПРИНУЖДЕНИЯ",
 "t": [
 "upp022",
+"upp125",
 "upp127"
 ],
 "n": "p3c32ac"
 },
 {
-"slug": "/article/n/prakticheskie-problemy-prinuzhdeniya-kak-mery-obespecheniya-pri-proizvodstve-po-ugolovnym-delam",
-"year": "2024",
+"slug": "/article/n/o-nalozhenii-aresta-na-imuschestvo-kak-mere-ugolovno-protsessualnogo-prinuzhdeniya-v-rossiyskoy-federatsii",
+"year": "2025",
+"vak": true,
+"journal": "Судебная экспертиза и исследования",
+"authors": "Ольга Валентиновна Бибикова",
+"title": "О наложении ареста на имущество как мере уголовно-процессуального принуждения в Российской Федерации",
+"t": [
+"upp022"
+],
+"n": "p1d6d3a"
+},
+{
+"slug": "/article/n/mery-prinuzhdeniya-primenyaemye-k-svidetelyu",
+"year": "2025",
 "vak": false,
-"journal": "Российско-азиатский правовой журнал",
-"authors": "А. Ю. Сафронов",
-"title": "ПРАКТИЧЕСКИЕ ПРОБЛЕМЫ ПРИНУЖДЕНИЯ, КАК МЕРЫ ОБЕСПЕЧЕНИЯ ПРИ ПРОИЗВОДСТВЕ ПО УГОЛОВНЫМ ДЕЛАМ",
+"journal": "Вестник науки",
+"authors": "Петров Л. Л.",
+"title": "МЕРЫ ПРИНУЖДЕНИЯ, ПРИМЕНЯЕМЫЕ К СВИДЕТЕЛЮ",
+"t": [
+"upp022",
+"upp125",
+"upp127"
+],
+"n": "p3c0afe"
+},
+{
+"slug": "/article/n/verny-li-pravovaya-priroda-i-protsessualnyy-poryadok-vozmescheniya-vreda-prichinennogo-nezakonnymi-deystviyami-v-svyazi-s",
+"year": "2026",
+"vak": true,
+"journal": "Вестник Московского университета МВД России",
+"authors": "Тутынин Игорь Борисович",
+"title": "Верны ли правовая природа и процессуальный порядок возмещения вреда, причиненного незаконными действиями в связи с применением мер уголовно-процессуального принуждения?",
 "t": [
 "upp022",
 "upp127"
 ],
-"n": "p4518bb"
+"n": "pd5b4be"
 },
 {
 "slug": "/article/n/k-voprosu-o-momente-zayavleniya-zaschitnikom-hodataystv-ob-isklyuchenii-nedopustimyh-dokazatelstv",
@@ -537,6 +961,30 @@
 "upp023"
 ],
 "n": "pb848e0"
+},
+{
+"slug": "/article/n/mesto-hodataystv-v-ugolovnom-i-tsivilisticheskom-sudoproizvodstvah-sopostavlenie",
+"year": "2023",
+"vak": true,
+"journal": "Правовое государство: теория и практика",
+"authors": "Шарипова Алия Рашитовна",
+"title": "МЕСТО ХОДАТАЙСТВ В УГОЛОВНОМ И ЦИВИЛИСТИЧЕСКОМ СУДОПРОИЗВОДСТВАХ: СОПОСТАВЛЕНИЕ",
+"t": [
+"upp023"
+],
+"n": "pff534d"
+},
+{
+"slug": "/article/n/o-granitsah-prava-na-hodataystvo-i-zhalobu-na-etape-napravleniya-prokurorom-ugolovnogo-dela-v-sud",
+"year": "2024",
+"vak": true,
+"journal": "Аграрное и земельное право",
+"authors": "Волков Артем Александрович",
+"title": "О ГРАНИЦАХ ПРАВА НА ХОДАТАЙСТВО И ЖАЛОБУ НА ЭТАПЕ НАПРАВЛЕНИЯ ПРОКУРОРОМ УГОЛОВНОГО ДЕЛА В СУД",
+"t": [
+"upp023"
+],
+"n": "pc986fc"
 },
 {
 "slug": "/article/n/o-nekotoryh-voprosah-rassmotreniya-prokurorom-zhalob-v-poryadke-stati-124-upk-rf",
@@ -599,6 +1047,18 @@
 "n": "pd22706"
 },
 {
+"slug": "/article/n/problemnye-aspekty-realizatsii-instituta-reabilitatsii-v-ugolovnom-sudoproizvodstve",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Воронежского государственного университета. Серия: Право",
+"authors": "Е. В. Егорова",
+"title": "ПРОБЛЕМНЫЕ АСПЕКТЫ РЕАЛИЗАЦИИ ИНСТИТУТА РЕАБИЛИТАЦИИ В УГОЛОВНОМ СУДОПРОИЗВОДСТВЕ",
+"t": [
+"upp026"
+],
+"n": "p8b7cff"
+},
+{
 "slug": "/article/n/voprosy-stadii-vozbuzhdeniya-ugolovnogo-dela",
 "year": "2024",
 "vak": true,
@@ -623,6 +1083,45 @@
 "upp028"
 ],
 "n": "p0286ec"
+},
+{
+"slug": "/article/n/stadiya-vozbuzhdeniya-ugolovnogo-dela-vazhnyy-etap-ugolovnogo-sudoproizvodstva",
+"year": "2026",
+"vak": true,
+"journal": "Научный вестник Орловского юридического института МВД России имени В. В. Лукьянова",
+"authors": "Назарова Мария Денисовна",
+"title": "Стадия возбуждения уголовного дела – важный этап уголовного судопроизводства",
+"t": [
+"upp027",
+"upp028"
+],
+"n": "p258602"
+},
+{
+"slug": "/article/n/ispolzovanie-standartov-dokazyvaniya-v-stadii-vozbuzhdeniya-ugolovnogo-dela",
+"year": "2025",
+"vak": true,
+"journal": "Научный вестник Орловского юридического института МВД России имени В. В. Лукьянова",
+"authors": "Конин Владимир Владимирович; Кудрявцева Анна Васильевна; Петров Александр Васильевич",
+"title": "ИСПОЛЬЗОВАНИЕ СТАНДАРТОВ ДОКАЗЫВАНИЯ В СТАДИИ ВОЗБУЖДЕНИЯ УГОЛОВНОГО ДЕЛА",
+"t": [
+"upp027",
+"upp028"
+],
+"n": "paba9d8"
+},
+{
+"slug": "/article/n/dokazyvanie-v-stadii-vozbuzhdeniya-ugolovnogo-dela-1",
+"year": "2023",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Левченко Ольга Владимировна",
+"title": "ДОКАЗЫВАНИЕ В СТАДИИ ВОЗБУЖДЕНИЯ УГОЛОВНОГО ДЕЛА",
+"t": [
+"upp027",
+"upp028"
+],
+"n": "p3aa19e"
 },
 {
 "slug": "/article/n/ponyatie-i-ugolovno-protsessualnaya-harakteristika-povodov-i-osnovaniya-dlya-vozbuzhdeniya-ugolovnogo-dela",
@@ -651,6 +1150,19 @@
 "n": "p6f99f5"
 },
 {
+"slug": "/article/n/o-nekotoryh-aktualnyh-problemah-i-suschestvennyh-izyanah-zakonodatelnogo-regulirovaniya-stadii-vozbuzhdeniya-ugolovnogo-dela",
+"year": "2024",
+"vak": true,
+"journal": "Закон и власть",
+"authors": "Мартыненко Сергей Борисович",
+"title": "О некоторых актуальных проблемах и существенных изъянах законодательного регулирования стадии возбуждения уголовного дела",
+"t": [
+"upp028",
+"upp027"
+],
+"n": "p25e313"
+},
+{
 "slug": "/article/n/patologii-rossiyskogo-mehanizma-rassmotreniya-soobscheniy-o-prestupleniyah",
 "year": "2025",
 "vak": true,
@@ -673,6 +1185,21 @@
 "upp029"
 ],
 "n": "p06d069"
+},
+{
+"slug": "/article/n/programmnoe-obespechenie-dlya-upravleniya-priemom-rassmotreniem-i-razresheniem-soobscheniy-o-prestupleniyah-zayavleniy-o",
+"year": "2025",
+"vak": true,
+"journal": "Международный научный вестник",
+"authors": "Нгуев Ван Та",
+"title": "ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ ДЛЯ УПРАВЛЕНИЯ ПРИЕМОМ, РАССМОТРЕНИЕМ И РАЗРЕШЕНИЕМ СООБЩЕНИЙ О ПРЕСТУПЛЕНИЯХ, ЗАЯВЛЕНИЙ О ПРЕСТУПЛЕНИЯХ И ПРЕДЛОЖЕНИЙ О ВОЗБУЖДЕНИИ УГОЛОВНОГО ДЕЛА ЯВЛЯЕТСЯ ВАЖНЫМ ПРОРЫВОМ В ДЕЯТЕЛЬНОСТИ УГОЛОВНОГО РАССЛЕДОВАНИЯ",
+"t": [
+"upp029",
+"upp024",
+"upp027",
+"upp028"
+],
+"n": "p8b8061"
 },
 {
 "slug": "/article/n/vozmozhnosti-vnedreniya-sistemy-veb-konferentsii-v-ugolovnom-protsesse-na-stadii-predvaritelnogo-rassledovaniya",
@@ -705,6 +1232,39 @@
 "n": "p5bfe11"
 },
 {
+"slug": "/article/n/sudebnyy-kontrol-na-stadii-predvaritelnogo-rassledovaniya-kak-garantiya-prava-grazhdan-na-sudebnuyu-zaschitu-v-rossiyskom-ugolovnom",
+"year": "2023",
+"vak": true,
+"journal": "Гуманитарные, социально-экономические и общественные науки",
+"authors": "Шаназарова Елена Витальевна; Савельева Ольга Евгеньевна",
+"title": "СУДЕБНЫЙ КОНТРОЛЬ НА СТАДИИ ПРЕДВАРИТЕЛЬНОГО РАССЛЕДОВАНИЯ КАК ГАРАНТИЯ ПРАВА ГРАЖДАН НА СУДЕБНУЮ ЗАЩИТУ В РОССИЙСКОМ УГОЛОВНОМ ПРОЦЕССЕ",
+"t": [
+"upp030",
+"upp031",
+"upp033",
+"upp044",
+"upp051"
+],
+"n": "pd37fda"
+},
+{
+"slug": "/article/n/polnomochiya-prokurora-v-protsesse-primeneniya-mer-bezopasnosti-v-stadii-predvaritelnogo-rassledovaniya",
+"year": "2024",
+"vak": true,
+"journal": "Вестник экономики, права и социологии",
+"authors": "Маслова Татьяна Николаевна",
+"title": "Полномочия прокурора в процессе применения мер безопасности в стадии предварительного расследования",
+"t": [
+"upp030",
+"upp006",
+"upp007",
+"upp031",
+"upp033",
+"upp044"
+],
+"n": "p1790e1"
+},
+{
 "slug": "/article/n/nerazglashenie-dannyh-predvaritelnogo-rassledovaniya-pravovoe-zakreplenie-i-prakticheskaya-realizatsiya",
 "year": "2026",
 "vak": true,
@@ -735,6 +1295,52 @@
 "n": "pedeb7a"
 },
 {
+"slug": "/article/n/ponyatie-mesta-proizvodstva-predvaritelnogo-rassledovaniya-i-ego-pravovaya-priroda",
+"year": "2026",
+"vak": true,
+"journal": "Полицейская и следственная деятельность",
+"authors": "Аюпова Алия Динаровна",
+"title": "Понятие места производства предварительного расследования и его правовая природа",
+"t": [
+"upp031",
+"upp030",
+"upp033",
+"upp044"
+],
+"n": "pc8e57c"
+},
+{
+"slug": "/article/n/priostanovlenie-i-vozobnovlenie-predvaritelnogo-rassledovaniya-ponyatie-i-suschnost",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Сибирского юридического института МВД России",
+"authors": "Сергей Николаевич Синельников",
+"title": "ПРИОСТАНОВЛЕНИЕ И ВОЗОБНОВЛЕНИЕ ПРЕДВАРИТЕЛЬНОГО РАССЛЕДОВАНИЯ: ПОНЯТИЕ И СУЩНОСТЬ",
+"t": [
+"upp031",
+"upp035",
+"upp030",
+"upp033",
+"upp044"
+],
+"n": "pb435c3"
+},
+{
+"slug": "/article/n/ponyatie-i-ugolovno-protsessualnoe-znachenie-predvaritelnogo-rassledovaniya-i-ego-obschih-usloviy",
+"year": "2023",
+"vak": true,
+"journal": "Право и управление",
+"authors": "Кушхов Р. Х.; Бозиев М. В.",
+"title": "ПОНЯТИЕ И УГОЛОВНО-ПРОЦЕССУАЛЬНОЕ ЗНАЧЕНИЕ ПРЕДВАРИТЕЛЬНОГО РАССЛЕДОВАНИЯ И ЕГО ОБЩИХ УСЛОВИЙ",
+"t": [
+"upp031",
+"upp030",
+"upp033",
+"upp044"
+],
+"n": "p0c0af7"
+},
+{
 "slug": "/article/n/k-voprosu-ob-aktualnyh-problemah-predvaritelnogo-sledstviya-i-doznaniya-v-ugolovnom-sudoproizvodstve",
 "year": "2023",
 "vak": false,
@@ -759,6 +1365,21 @@
 "upp032"
 ],
 "n": "p60f1e8"
+},
+{
+"slug": "/article/n/funktsiya-prokurora-na-etape-okonchaniya-predvaritelnogo-sledstviya-s-sostavleniem-obvinitelnogo-zaklyucheniya-1",
+"year": "2025",
+"vak": false,
+"journal": "Вопросы права",
+"authors": "Щетинина Ю. В.",
+"title": "ФУНКЦИЯ ПРОКУРОРА НА ЭТАПЕ ОКОНЧАНИЯ ПРЕДВАРИТЕЛЬНОГО СЛЕДСТВИЯ С СОСТАВЛЕНИЕМ ОБВИНИТЕЛЬНОГО ЗАКЛЮЧЕНИЯ",
+"t": [
+"upp032",
+"upp046",
+"upp044",
+"upp045"
+],
+"n": "pfdbfcf"
 },
 {
 "slug": "/article/n/osobennosti-stanovleniya-i-naznacheniya-doznaniya-v-ugolovnom-protsesse-kak-formy-predvaritelnogo-rassledovaniya",
@@ -791,6 +1412,34 @@
 "n": "pc34dc4"
 },
 {
+"slug": "/article/n/nuzhno-li-doznanie-v-sokraschennoy-forme-kak-otdelnaya-forma-rassledovaniya",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Санкт-Петербургского университета МВД России",
+"authors": "Юлия Сергеевна Озерова; Марина Владимировна Кирикова",
+"title": "Нужно ли дознание в сокращенной форме как отдельная форма расследования?",
+"t": [
+"upp033"
+],
+"n": "p683571"
+},
+{
+"slug": "/article/n/vzaimodeystvie-uchrezhdeniy-i-organov-ugolovno-ispolnitelnoy-sistemy-s-organami-predvaritelnogo-rassledovaniya-problemy-i-puti",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Кузбасского института",
+"authors": "Александр Борисович Диваев",
+"title": "ВЗАИМОДЕЙСТВИЕ УЧРЕЖДЕНИЙ И ОРГАНОВ УГОЛОВНО-ИСПОЛНИТЕЛЬНОЙ СИСТЕМЫ С ОРГАНАМИ ПРЕДВАРИТЕЛЬНОГО РАССЛЕДОВАНИЯ: ПРОБЛЕМЫ И ПУТИ РЕШЕНИЯ",
+"t": [
+"upp033",
+"upp094",
+"upp030",
+"upp031",
+"upp044"
+],
+"n": "p6450b0"
+},
+{
 "slug": "/article/n/aktualnye-problemy-proizvodstva-doznaniya-v-sokraschennoy-forme-2",
 "year": "2024",
 "vak": true,
@@ -813,6 +1462,30 @@
 "upp034"
 ],
 "n": "p596f5a"
+},
+{
+"slug": "/article/n/doznanie-v-sokraschennoy-forme-tak-li-ploh-zakonodatel-ili-praktika-poshla-ne-tem-putem",
+"year": "2024",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Степанов Алексей Владимирович",
+"title": "ДОЗНАНИЕ В СОКРАЩЕННОЙ ФОРМЕ: ТАК ЛИ ПЛОХ ЗАКОНОДАТЕЛЬ ИЛИ ПРАКТИКА ПОШЛА НЕ ТЕМ ПУТЕМ?",
+"t": [
+"upp034"
+],
+"n": "p445c19"
+},
+{
+"slug": "/article/n/komu-nuzhna-sokraschennaya-forma-doznaniya",
+"year": "2024",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Азархин Алексей Владимирович; Степанов Алексей Владимирович",
+"title": "КОМУ НУЖНА СОКРАЩЕННАЯ ФОРМА ДОЗНАНИЯ?",
+"t": [
+"upp034"
+],
+"n": "pf8b952"
 },
 {
 "slug": "/article/n/osobennosti-priostanovleniya-i-vozobnovleniya-predvaritelnogo-sledstviya",
@@ -839,6 +1512,31 @@
 "n": "pc99ff7"
 },
 {
+"slug": "/article/n/k-voprosu-o-priostanovlenii-i-vozobnovlenii-predvaritelnogo-sledstviya",
+"year": "2024",
+"vak": true,
+"journal": "Право и управление",
+"authors": "Гутаев Алим Магомедович",
+"title": "К ВОПРОСУ О ПРИОСТАНОВЛЕНИИ И ВОЗОБНОВЛЕНИИ ПРЕДВАРИТЕЛЬНОГО СЛЕДСТВИЯ",
+"t": [
+"upp035"
+],
+"n": "pc33b11"
+},
+{
+"slug": "/article/n/nekotorye-teoreticheskie-i-protsessualnye-aspekty-priostanovleniya-predvaritelnogo-sledstviya-v-svyazi-s-neustanovleniem-litsa",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Воронежского института МВД России",
+"authors": "Гладченкова Светлана Викторовна",
+"title": "НЕКОТОРЫЕ ТЕОРЕТИЧЕСКИЕ И ПРОЦЕССУАЛЬНЫЕ АСПЕКТЫ ПРИОСТАНОВЛЕНИЯ ПРЕДВАРИТЕЛЬНОГО СЛЕДСТВИЯ В СВЯЗИ С НЕУСТАНОВЛЕНИЕМ ЛИЦА, ПОДЛЕЖАЩЕГО ПРИВЛЕЧЕНИЮ В КАЧЕСТВЕ ОБВИНЯЕМОГО",
+"t": [
+"upp035",
+"upp037"
+],
+"n": "pe54e84"
+},
+{
 "slug": "/article/n/osnovaniya-vydeleniya-ugolovnyh-del-v-sovremennom-rossiyskom-ugolovnom-protsesse",
 "year": "2026",
 "vak": true,
@@ -863,6 +1561,21 @@
 "n": "p74d811"
 },
 {
+"slug": "/article/n/nekotorye-osobennosti-proizvodstva-predvaritelnogo-sledstviya-po-ugolovnym-delam-o-prestupleniyah-sovershennyh-gruppami",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Удмуртского университета. Серия «Экономика и право»",
+"authors": "Татьянин Дмитрий Владимирович; Ишимов Павел Леонидович",
+"title": "НЕКОТОРЫЕ ОСОБЕННОСТИ ПРОИЗВОДСТВА ПРЕДВАРИТЕЛЬНОГО СЛЕДСТВИЯ ПО УГОЛОВНЫМ ДЕЛАМ О ПРЕСТУПЛЕНИЯХ, СОВЕРШЕННЫХ ГРУППАМИ НЕСОВЕРШЕННОЛЕТНИХ",
+"t": [
+"upp036",
+"upp032",
+"upp039",
+"upp063"
+],
+"n": "p31939a"
+},
+{
 "slug": "/article/n/genezis-instituta-privlecheniya-litsa-v-kachestve-obvinyaemogo",
 "year": "2024",
 "vak": true,
@@ -875,16 +1588,28 @@
 "n": "p3c830b"
 },
 {
-"slug": "/article/n/problemnye-aspekty-pravovogo-instituta-privlecheniya-litsa-v-kachestve-obvinyaemogo",
-"year": "2024",
+"slug": "/article/n/termin-obvinyaemyy-i-osnovaniya-dlya-privlecheniya-litsa-v-kachestve-obvinyaemogo",
+"year": "2025",
 "vak": true,
-"journal": "Ленинградский юридический журнал",
-"authors": "Внукова Диана Рафиковна; Шепелёва Ольга Ринатовна",
-"title": "Проблемные аспекты правового института привлечения лица в качестве обвиняемого",
+"journal": "Аграрное и земельное право",
+"authors": "Крепышев Александр Михайлович; Давыдов Николай Михайлович",
+"title": "ТЕРМИН «ОБВИНЯЕМЫЙ» И ОСНОВАНИЯ ДЛЯ ПРИВЛЕЧЕНИЯ ЛИЦА В КАЧЕСТВЕ ОБВИНЯЕМОГО",
 "t": [
 "upp037"
 ],
-"n": "pa29765"
+"n": "pa29384"
+},
+{
+"slug": "/article/n/dostatochnost-dokazatelstv-dlya-privlecheniya-v-kachestve-obvinyaemogo",
+"year": "2026",
+"vak": true,
+"journal": "Общество и инновации",
+"authors": "Мадинабону Лутфуллаева",
+"title": "Достаточность доказательств для привлечения в качестве обвиняемого",
+"t": [
+"upp037"
+],
+"n": "p003926"
 },
 {
 "slug": "/article/n/i-vnov-o-modernizatsii-ugolovnogo-protsessa-rossii-cherez-reglamentatsiyu-neglasnyh-sledstvennyh-deystviy-chast-2",
@@ -912,6 +1637,42 @@
 "n": "p62fe24"
 },
 {
+"slug": "/article/n/stanovlenie-i-razvitie-instituta-sledstvennyh-deystviy",
+"year": "2025",
+"vak": true,
+"journal": "Право и практика",
+"authors": "Епифанов Александр Егорович",
+"title": "СТАНОВЛЕНИЕ И РАЗВИТИЕ ИНСТИТУТА СЛЕДСТВЕННЫХ ДЕЙСТВИЙ",
+"t": [
+"upp038"
+],
+"n": "p583452"
+},
+{
+"slug": "/article/n/ugolovno-protsessualnye-aspekty-sledstvennogo-osmotra",
+"year": "2025",
+"vak": true,
+"journal": "Ленинградский юридический журнал",
+"authors": "Роганов Сергей Александрович; Роганова Татьяна Львовна",
+"title": "Уголовно-процессуальные аспекты следственного осмотра",
+"t": [
+"upp038"
+],
+"n": "p93e194"
+},
+{
+"slug": "/article/n/k-voprosu-o-ponyatii-i-suschnosti-sledstvennogo-osmotra",
+"year": "2024",
+"vak": true,
+"journal": "Гуманитарные, социально-экономические и общественные науки",
+"authors": "Лозовский Д. Н.",
+"title": "К ВОПРОСУ О ПОНЯТИИ И СУЩНОСТИ СЛЕДСТВЕННОГО ОСМОТРА",
+"t": [
+"upp038"
+],
+"n": "pc21d13"
+},
+{
 "slug": "/article/n/usloviya-pravomernosti-proizvodstva-osmotra-mesta-proisshestviya-v-zhilische",
 "year": "2024",
 "vak": true,
@@ -936,6 +1697,34 @@
 "n": "p461952"
 },
 {
+"slug": "/article/n/osnovnye-napravleniya-razvitiya-obschih-usloviy-predvaritelnogo-rassledovaniya-v-dosudebnom-proizvodstve-sravnitelno-pravovoe",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Московского университета МВД России",
+"authors": "Данг Вьет Хынг",
+"title": "Основные направления развития общих условий предварительного расследования в досудебном производстве: сравнительно-правовое исследование",
+"t": [
+"upp039",
+"upp030",
+"upp031",
+"upp033",
+"upp044"
+],
+"n": "p40a6db"
+},
+{
+"slug": "/article/n/sledstvennye-opyty-i-ispytaniya-v-sudebnom-proizvodstve-po-ugolovnomu-delu-voprosy-normativnogo-regulirovaniya-i-pravoprimenitelnoy",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Сибирского юридического института МВД России",
+"authors": "Сергей Борисович Россинский",
+"title": "«СЛЕДСТВЕННЫЕ» ОПЫТЫ И ИСПЫТАНИЯ В СУДЕБНОМ ПРОИЗВОДСТВЕ ПО УГОЛОВНОМУ ДЕЛУ: ВОПРОСЫ НОРМАТИВНОГО РЕГУЛИРОВАНИЯ И ПРАВОПРИМЕНИТЕЛЬНОЙ ПРАКТИКИ",
+"t": [
+"upp039"
+],
+"n": "p0d7dfa"
+},
+{
 "slug": "/article/n/protsessualnye-posledstviya-navodyaschih-voprosov-v-ugolovnom-sudoproizvodstve",
 "year": "2025",
 "vak": true,
@@ -957,11 +1746,37 @@
 "title": "Проблемы правового регулирования предварительного судебного контроля за производством следственных действий в отношении отдельных категорий лиц",
 "t": [
 "upp040",
+"upp065",
 "upp032",
-"upp039",
-"upp065"
+"upp039"
 ],
 "n": "pdbc486"
+},
+{
+"slug": "/article/n/kriterii-vybora-protsessualnogo-poryadka-ogranicheniya-konstitutsionnyh-prav-lichnosti-v-dosudebnom-proizvodstve",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Сибирского юридического института МВД России",
+"authors": "Екатерина Сергеевна Ткачёва",
+"title": "КРИТЕРИИ ВЫБОРА ПРОЦЕССУАЛЬНОГО ПОРЯДКА ОГРАНИЧЕНИЯ КОНСТИТУЦИОННЫХ ПРАВ ЛИЧНОСТИ В ДОСУДЕБНОМ ПРОИЗВОДСТВЕ",
+"t": [
+"upp040"
+],
+"n": "p185807"
+},
+{
+"slug": "/article/n/protsedura-sudebnogo-kontrolya-za-resheniyami-prokurora-prinimaemymi-v-poryadke-nadzora-na-stadii-predvaritelnogo-sledstviya",
+"year": "2023",
+"vak": true,
+"journal": "Юридическая наука",
+"authors": "Щеглов Максим Игоревич",
+"title": "ПРОЦЕДУРА СУДЕБНОГО КОНТРОЛЯ ЗА РЕШЕНИЯМИ ПРОКУРОРА, ПРИНИМАЕМЫМИ В ПОРЯДКЕ НАДЗОРА НА СТАДИИ ПРЕДВАРИТЕЛЬНОГО СЛЕДСТВИЯ",
+"t": [
+"upp040",
+"upp030",
+"upp051"
+],
+"n": "pdd0d48"
 },
 {
 "slug": "/article/n/dopros-nesovershennoletnego-podozrevaemogo-obvinyaemogo-problemy-i-puti-resheniya",
@@ -988,6 +1803,37 @@
 "n": "pb2a2d7"
 },
 {
+"slug": "/article/n/problemy-obespecheniya-prav-svideteley-kak-uchastnikov-ugolovnogo-sudoproizvodstva-pri-proizvodstve-otdelnyh-sledstvennyh-deystviy",
+"year": "2023",
+"vak": true,
+"journal": "Международный научно-исследовательский журнал",
+"authors": "Самойлов А. Ю.",
+"title": "ПРОБЛЕМЫ ОБЕСПЕЧЕНИЯ ПРАВ СВИДЕТЕЛЕЙ КАК УЧАСТНИКОВ УГОЛОВНОГО СУДОПРОИЗВОДСТВА ПРИ ПРОИЗВОДСТВЕ ОТДЕЛЬНЫХ СЛЕДСТВЕННЫХ ДЕЙСТВИЙ",
+"t": [
+"upp041",
+"upp108",
+"upp039",
+"upp098"
+],
+"n": "p733591"
+},
+{
+"slug": "/article/n/otdelnye-voprosy-vosstanovleniya-nedopustimyh-dokazatelstv-putem-doprosa-uchastnikov-proizvodstva-sledstvennyh-i-operativno",
+"year": "2023",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Тихонов Сергей Евгеньевич",
+"title": "ОТДЕЛЬНЫЕ ВОПРОСЫ «ВОССТАНОВЛЕНИЯ» НЕДОПУСТИМЫХ ДОКАЗАТЕЛЬСТВ ПУТЕМ ДОПРОСА УЧАСТНИКОВ ПРОИЗВОДСТВА СЛЕДСТВЕННЫХ И ОПЕРАТИВНО-РОЗЫСКНЫХ ДЕЙСТВИЙ: ПО МАТЕРИАЛАМ СУДЕБНОЙ ПРАКТИКИ",
+"t": [
+"upp041",
+"upp014",
+"upp039",
+"upp098",
+"upp114"
+],
+"n": "p82b644"
+},
+{
 "slug": "/article/n/probely-v-normah-ugolovno-protsessualnogo-zakonodatelstva-reguliruyuschih-poryadok-proizvodstva-obyska-i-vyemki",
 "year": "2024",
 "vak": true,
@@ -1010,6 +1856,18 @@
 "upp042"
 ],
 "n": "pcbae18"
+},
+{
+"slug": "/article/n/prinuditelnyy-harakter-obyska-i-vyemki-v-ugolovnom-protsesse-novoe-ili-horosho-zabytoe-staroe",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Волгоградской академии МВД России",
+"authors": "Эльдар Кяримович Кутуев",
+"title": "ПРИНУДИТЕЛЬНЫЙ ХАРАКТЕР ОБЫСКА И ВЫЕМКИ В УГОЛОВНОМ ПРОЦЕССЕ (НОВОЕ ИЛИ ХОРОШО ЗАБЫТОЕ СТАРОЕ)",
+"t": [
+"upp042"
+],
+"n": "pf3c567"
 },
 {
 "slug": "/article/n/sudebnye-ekspertizy-proizvodimye-pri-rassledovanii-prestupleniy-sovershaemyh-protiv-polovoy-neprikosnovennosti-maloletnih-i",
@@ -1035,6 +1893,44 @@
 "upp063"
 ],
 "n": "p7077c0"
+},
+{
+"slug": "/article/n/primenenie-spetsialnyh-znaniy-i-naznachenie-sudebnyh-ekspertiz-pri-rassledovanii-del-o-legalizatsii-otmyvanii-denezhnyh-sredstv",
+"year": "2025",
+"vak": true,
+"journal": "Baikal Research Journal",
+"authors": "Постников Максим Данилович",
+"title": "ПРИМЕНЕНИЕ СПЕЦИАЛЬНЫХ ЗНАНИЙ И НАЗНАЧЕНИЕ СУДЕБНЫХ ЭКСПЕРТИЗ ПРИ РАССЛЕДОВАНИИ ДЕЛ О ЛЕГАЛИЗАЦИИ (ОТМЫВАНИИ) ДЕНЕЖНЫХ СРЕДСТВ, ПОЛУЧЕННЫХ ПРЕСТУПНЫМ ПУТЕМ",
+"t": [
+"upp043",
+"upp109"
+],
+"n": "p8421b3"
+},
+{
+"slug": "/article/n/spetsifika-naznacheniya-nekotoryh-sudebnyh-ekspertiz-pri-raskrytii-i-rassledovanii-prestupleniy-v-sfere-ekonomicheskoy-deyatelnosti",
+"year": "2025",
+"vak": true,
+"journal": "Юристъ - Правоведъ",
+"authors": "Еремин Сергей Германович",
+"title": "СПЕЦИФИКА НАЗНАЧЕНИЯ НЕКОТОРЫХ СУДЕБНЫХ ЭКСПЕРТИЗ ПРИ РАСКРЫТИИ И РАССЛЕДОВАНИИ ПРЕСТУПЛЕНИЙ В СФЕРЕ ЭКОНОМИЧЕСКОЙ ДЕЯТЕЛЬНОСТИ",
+"t": [
+"upp043"
+],
+"n": "p74a2e2"
+},
+{
+"slug": "/article/n/osobennosti-proizvodstva-sudebnyh-ekspertiz-po-ugolovnym-delam-v-otnoshenii-nesovershennoletnih",
+"year": "2024",
+"vak": true,
+"journal": "Юристъ - Правоведъ",
+"authors": "Диденко Николай Сергеевич; Моругина Надежда Анатольевна",
+"title": "ОСОБЕННОСТИ ПРОИЗВОДСТВА СУДЕБНЫХ ЭКСПЕРТИЗ ПО УГОЛОВНЫМ ДЕЛАМ В ОТНОШЕНИИ НЕСОВЕРШЕННОЛЕТНИХ",
+"t": [
+"upp043",
+"upp063"
+],
+"n": "p610c05"
 },
 {
 "slug": "/article/n/granitsy-predvaritelnogo-rassledovaniya-nachalo-i-okonchanie",
@@ -1068,6 +1964,34 @@
 "n": "paf4c3a"
 },
 {
+"slug": "/article/n/k-voprosu-o-roli-prokurora-na-etape-zaversheniya-stadii-predvaritelnogo-rassledovaniya",
+"year": "2025",
+"vak": true,
+"journal": "Аграрное и земельное право",
+"authors": "Михайлова Анна Петровна",
+"title": "К ВОПРОСУ О РОЛИ ПРОКУРОРА НА ЭТАПЕ ЗАВЕРШЕНИЯ СТАДИИ ПРЕДВАРИТЕЛЬНОГО РАССЛЕДОВАНИЯ",
+"t": [
+"upp044",
+"upp030",
+"upp031",
+"upp033"
+],
+"n": "p70198e"
+},
+{
+"slug": "/article/n/pravovye-i-organizatsionnye-aspekty-osuschestvleniya-protsessualnogo-kontrolya-na-etape-okonchaniya-predvaritelnogo-sledstviya",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Санкт-Петербургского университета МВД России",
+"authors": "Алексей Александрович Фельк",
+"title": "Правовые и организационные аспекты осуществления процессуального контроля на этапе окончания предварительного следствия",
+"t": [
+"upp044",
+"upp045"
+],
+"n": "pd73f8f"
+},
+{
 "slug": "/article/n/obespechenie-prav-uchastnikov-ugolovnogo-sudoproizvodstva-pri-okonchanii-predvaritelnogo-sledstviya-s-obvinitelnym-zaklyucheniem",
 "year": "2023",
 "vak": true,
@@ -1084,17 +2008,17 @@
 "n": "p25d14e"
 },
 {
-"slug": "/article/n/pravovye-i-organizatsionnye-aspekty-osuschestvleniya-protsessualnogo-kontrolya-na-etape-okonchaniya-predvaritelnogo-sledstviya",
-"year": "2025",
+"slug": "/article/n/prichiny-prevrascheniya-obvinitelnogo-zaklyucheniya-v-avtoreferat-sledstvennogo-proizvodstva",
+"year": "2024",
 "vak": true,
-"journal": "Вестник Санкт-Петербургского университета МВД России",
-"authors": "Алексей Александрович Фельк",
-"title": "Правовые и организационные аспекты осуществления процессуального контроля на этапе окончания предварительного следствия",
+"journal": "Всероссийский криминологический журнал",
+"authors": "Россинский Сергей Борисович",
+"title": "ПРИЧИНЫ ПРЕВРАЩЕНИЯ ОБВИНИТЕЛЬНОГО ЗАКЛЮЧЕНИЯ В «АВТОРЕФЕРАТ» СЛЕДСТВЕННОГО ПРОИЗВОДСТВА",
 "t": [
 "upp045",
-"upp044"
+"upp039"
 ],
-"n": "pd73f8f"
+"n": "pf48c9c"
 },
 {
 "slug": "/article/n/obvinitelnoe-zaklyuchenie-obvinitelnyy-akt-i-obvinitelnoe-postanovlenie-ponyatie-otlichiya-zadachi",
@@ -1104,23 +2028,10 @@
 "authors": "Семенов Евгений Алексеевич; Моругина Надежда Анатольевна",
 "title": "ОБВИНИТЕЛЬНОЕ ЗАКЛЮЧЕНИЕ, ОБВИНИТЕЛЬНЫЙ АКТ И ОБВИНИТЕЛЬНОЕ ПОСТАНОВЛЕНИЕ: ПОНЯТИЕ, ОТЛИЧИЯ, ЗАДАЧИ",
 "t": [
+"upp045",
 "upp046"
 ],
 "n": "p8e25e6"
-},
-{
-"slug": "/article/n/funktsiya-prokurora-na-etape-okonchaniya-predvaritelnogo-sledstviya-s-sostavleniem-obvinitelnogo-zaklyucheniya-1",
-"year": "2025",
-"vak": false,
-"journal": "Вопросы права",
-"authors": "Щетинина Ю. В.",
-"title": "ФУНКЦИЯ ПРОКУРОРА НА ЭТАПЕ ОКОНЧАНИЯ ПРЕДВАРИТЕЛЬНОГО СЛЕДСТВИЯ С СОСТАВЛЕНИЕМ ОБВИНИТЕЛЬНОГО ЗАКЛЮЧЕНИЯ",
-"t": [
-"upp046",
-"upp044",
-"upp045"
-],
-"n": "pfdbfcf"
 },
 {
 "slug": "/article/n/spornye-voprosy-prekrascheniya-ugolovnogo-dela-v-svyazi-s-istecheniem-sroka-davnosti-ugolovnogo-presledovaniya",
@@ -1145,6 +2056,42 @@
 "upp047"
 ],
 "n": "pf2ffcd"
+},
+{
+"slug": "/article/n/aktualnye-voprosy-prekrascheniya-ugolovnogo-dela-i-ugolovnogo-presledovaniya-v-dosudebnom-proizvodstve",
+"year": "2025",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Пивень Алексей Васильевич; Ильницкая Любовь Игоревна; Шванкин Сергей Александрович",
+"title": "АКТУАЛЬНЫЕ ВОПРОСЫ ПРЕКРАЩЕНИЯ УГОЛОВНОГО ДЕЛА И УГОЛОВНОГО ПРЕСЛЕДОВАНИЯ В ДОСУДЕБНОМ ПРОИЗВОДСТВЕ",
+"t": [
+"upp047"
+],
+"n": "p89ef96"
+},
+{
+"slug": "/article/n/prekraschenie-ugolovnogo-presledovaniya-v-svyazi-s-istecheniem-srokov-davnosti-privlecheniya-k-ugolovnoy-otvetstvennosti-pri",
+"year": "2023",
+"vak": true,
+"journal": "Научный вестник Омской академии МВД России",
+"authors": "Козловский Петр Валерьевич; Земляницин Евгений Игоревич",
+"title": "ПРЕКРАЩЕНИЕ УГОЛОВНОГО ПРЕСЛЕДОВАНИЯ В СВЯЗИ С ИСТЕЧЕНИЕМ СРОКОВ ДАВНОСТИ ПРИВЛЕЧЕНИЯ К УГОЛОВНОЙ ОТВЕТСТВЕННОСТИ ПРИ РАССМОТРЕНИИ УГОЛОВНОГО ДЕЛА С УЧАСТИЕМ ПРИСЯЖНЫХ ЗАСЕДАТЕЛЕЙ",
+"t": [
+"upp047"
+],
+"n": "pcac612"
+},
+{
+"slug": "/article/n/printsipy-i-tseli-prekrascheniya-ugolovnogo-presledovaniya-i-ugolovnogo-dela-v-otnoshenii-lits-prinimayuschih-uchastie-v",
+"year": "2024",
+"vak": true,
+"journal": "Закон и право",
+"authors": "Владимир Владимирович Суров",
+"title": "Принципы и цели прекращения уголовного преследования и уголовного дела в отношении лиц, принимающих участие в Специальной военной операции",
+"t": [
+"upp047"
+],
+"n": "p8992b2"
 },
 {
 "slug": "/article/n/ugolovnoe-presledovanie-kak-funktsiya-prokurora-v-stadii-podgotovki-dela-k-sudebnomu-razbiratelstvu",
@@ -1176,6 +2123,21 @@
 "n": "p069944"
 },
 {
+"slug": "/article/n/diskretsionnye-polnomochiya-sudi-po-naznacheniyu-i-podgotovke-sudebnogo-zasedaniya-v-svete-obespecheniya-prav-i-zakonnyh-interesov",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Московского университета МВД России",
+"authors": "Рябинина Татьяна Кимовна",
+"title": "ДИСКРЕЦИОННЫЕ ПОЛНОМОЧИЯ СУДЬИ ПО НАЗНАЧЕНИЮ И ПОДГОТОВКЕ СУДЕБНОГО ЗАСЕДАНИЯ В СВЕТЕ ОБЕСПЕЧЕНИЯ ПРАВ И ЗАКОННЫХ ИНТЕРЕСОВ УЧАСТНИКОВ ПРЕДСТОЯЩЕГО СУДЕБНОГО РАЗБИРАТЕЛЬСТВА УГОЛОВНОГО ДЕЛА",
+"t": [
+"upp048",
+"upp051",
+"upp052",
+"upp098"
+],
+"n": "pa718e3"
+},
+{
 "slug": "/article/n/postanovlenie-plenuma-verhovnogo-suda-rf-o-primenenii-sudami-norm-ugolovno-protsessualnogo-kodeksa-rossiyskoy-federatsii",
 "year": "2024",
 "vak": true,
@@ -1200,6 +2162,42 @@
 "n": "p4119bc"
 },
 {
+"slug": "/article/n/razgranichenie-ponyatiy-podsudnost-ugolovnyh-del-i-kompetentsiya-suda-teoretiko-pravovoy-aspekt",
+"year": "2023",
+"vak": true,
+"journal": "Гуманитарные, социально-экономические и общественные науки",
+"authors": "Сорокина Полина Сергеевна; Шумов Пётр Владимирович",
+"title": "РАЗГРАНИЧЕНИЕ ПОНЯТИЙ \"ПОДСУДНОСТЬ УГОЛОВНЫХ ДЕЛ\" И \"КОМПЕТЕНЦИЯ СУДА\": ТЕОРЕТИКО-ПРАВОВОЙ АСПЕКТ",
+"t": [
+"upp049"
+],
+"n": "p22e45d"
+},
+{
+"slug": "/article/n/znachenie-podsudnosti-v-ugolovnom-i-tsivilisticheskom-protsesse",
+"year": "2024",
+"vak": true,
+"journal": "Юридическая наука и практика: Вестник Нижегородской академии МВД России",
+"authors": "Шарипова Алия Рашитовна",
+"title": "Значение подсудности в уголовном и цивилистическом процессе",
+"t": [
+"upp049"
+],
+"n": "pe093e8"
+},
+{
+"slug": "/article/n/problemy-opredeleniya-territorialnoy-podsudnosti-po-delam-o-kontrabande",
+"year": "2023",
+"vak": true,
+"journal": "Актуальные проблемы российского права",
+"authors": "Либензон Е. Л.",
+"title": "ПРОБЛЕМЫ ОПРЕДЕЛЕНИЯ ТЕРРИТОРИАЛЬНОЙ ПОДСУДНОСТИ ПО ДЕЛАМ О КОНТРАБАНДЕ",
+"t": [
+"upp049"
+],
+"n": "pa8dc80"
+},
+{
 "slug": "/article/n/k-voprosu-o-polnomochiyah-zaschitnika-na-predvaritelnom-slushanii",
 "year": "2025",
 "vak": true,
@@ -1222,6 +2220,44 @@
 "upp050"
 ],
 "n": "p6f1b6c"
+},
+{
+"slug": "/article/n/spetsifika-otsenki-dokazatelstv-v-hode-predvaritelnogo-slushaniya-po-ugolovnym-delam",
+"year": "2024",
+"vak": true,
+"journal": "Закон и право",
+"authors": "Ангелина Павловна Шеколенко",
+"title": "Специфика оценки доказательств в ходе предварительного слушания по уголовным делам",
+"t": [
+"upp050",
+"upp085"
+],
+"n": "p311ea5"
+},
+{
+"slug": "/article/n/problemy-otlozheniya-predvaritelnogo-slushaniya-po-ugolovnym-delam",
+"year": "2024",
+"vak": true,
+"journal": "КриминалистЪ",
+"authors": "Юлия Ивановна Тарасова; Владимир Анатольевич Шиплюк",
+"title": "ПРОБЛЕМЫ ОТЛОЖЕНИЯ ПРЕДВАРИТЕЛЬНОГО СЛУШАНИЯ ПО УГОЛОВНЫМ ДЕЛАМ",
+"t": [
+"upp050"
+],
+"n": "pde83b7"
+},
+{
+"slug": "/article/n/problemnye-voprosy-otsenki-dostovernosti-dokazatelstv-v-hode-predvaritelnogo-slushaniya-po-ugolovnym-delam",
+"year": "2024",
+"vak": true,
+"journal": "Государственная служба и кадры",
+"authors": "Ангелина Павловна Шеколенко",
+"title": "Проблемные вопросы оценки достоверности доказательств в ходе предварительного слушания по уголовным делам",
+"t": [
+"upp050",
+"upp085"
+],
+"n": "p7de027"
 },
 {
 "slug": "/article/n/osobennosti-ugolovno-protsessualnoy-formy-stadii-podgotovki-dela-k-sudebnomu-razbiratelstvu-s-uchastiem-nesovershennoletnih",
@@ -1251,6 +2287,46 @@
 "n": "p4f202d"
 },
 {
+"slug": "/article/n/o-prave-chastnyh-lits-na-initsiirovanie-sudebnogo-razbiratelstva-v-stadii-ispolneniya-prigovora",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Самарского юридического института",
+"authors": "Ивенский Андрей Иванович",
+"title": "О ПРАВЕ ЧАСТНЫХ ЛИЦ НА ИНИЦИИРОВАНИЕ СУДЕБНОГО РАЗБИРАТЕЛЬСТВА В СТАДИИ ИСПОЛНЕНИЯ ПРИГОВОРА",
+"t": [
+"upp051",
+"upp052",
+"upp059"
+],
+"n": "pfaf21d"
+},
+{
+"slug": "/article/n/osobennosti-podgotovki-k-sudebnomu-razbiratelstvu-ugolovnogo-dela-o-hischenii-imuschestva-voennoy-organizatsii-v-voennom-sude",
+"year": "2023",
+"vak": true,
+"journal": "Гуманитарные, социально-экономические и общественные науки",
+"authors": "Козина Оксана Александровна",
+"title": "ОСОБЕННОСТИ ПОДГОТОВКИ К СУДЕБНОМУ РАЗБИРАТЕЛЬСТВУ УГОЛОВНОГО ДЕЛА О ХИЩЕНИИ ИМУЩЕСТВА ВОЕННОЙ ОРГАНИЗАЦИИ В ВОЕННОМ СУДЕ ПЕРВОЙ ИНСТАНЦИИ",
+"t": [
+"upp051",
+"upp052"
+],
+"n": "p25a377"
+},
+{
+"slug": "/article/n/ispolzovanie-tsifrovyh-tehnologiy-v-hode-sudebnogo-razbiratelstva-po-ugolovnomu-delu-problemy-i-perspektivy",
+"year": "2025",
+"vak": true,
+"journal": "Научный вестник Орловского юридического института МВД России имени В. В. Лукьянова",
+"authors": "Рябинина Татьяна Кимовна; Чистилина Дарья Олеговна",
+"title": "Использование цифровых технологий в ходе судебного разбирательства по уголовному делу: проблемы и перспективы",
+"t": [
+"upp051",
+"upp052"
+],
+"n": "p035af9"
+},
+{
 "slug": "/article/n/perechen-obschih-usloviy-sudebnogo-razbiratelstva-v-ugolovnom-protsesse-spornye-aspekty",
 "year": "2025",
 "vak": true,
@@ -1277,6 +2353,33 @@
 "n": "p648cc4"
 },
 {
+"slug": "/article/n/problemnye-aspekty-klassifikatsii-obschih-usloviy-sudebnogo-razbiratelstva",
+"year": "2025",
+"vak": true,
+"journal": "Государственная служба и кадры",
+"authors": "Шарапутдин Муртузалиевич Османов",
+"title": "Проблемные аспекты классификации общих условий судебного разбирательства",
+"t": [
+"upp052",
+"upp051"
+],
+"n": "pb8c33d"
+},
+{
+"slug": "/article/n/razumnyy-srok-sudebnogo-razbiratelstva-po-ugolovnomu-delu",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Балтийского федерального университета им. И. Канта. Серия: Гуманитарные и общественные науки",
+"authors": "Наталья Викторовна Ткачева",
+"title": "РАЗУМНЫЙ СРОК СУДЕБНОГО РАЗБИРАТЕЛЬСТВА ПО УГОЛОВНОМУ ДЕЛУ",
+"t": [
+"upp052",
+"upp074",
+"upp051"
+],
+"n": "p679024"
+},
+{
 "slug": "/article/n/ponyatie-svoystva-i-vidy-sudebnogo-prigovora-v-ugolovnom-protsesse-rossii",
 "year": "2023",
 "vak": true,
@@ -1301,6 +2404,42 @@
 "n": "pcceb31"
 },
 {
+"slug": "/article/n/problemy-razgranicheniya-zakonnosti-obosnovannosti-i-motivirovannosti-prigovora-v-teorii-i-praktike-ugolovnogo-sudoproizvodstva",
+"year": "2024",
+"vak": true,
+"journal": "Юридическая наука и практика: Вестник Нижегородской академии МВД России",
+"authors": "Рогова Антонина Александровна; Рогов Александр Владимирович",
+"title": "Проблемы разграничения законности, обоснованности и мотивированности приговора в теории и практике уголовного судопроизводства",
+"t": [
+"upp053"
+],
+"n": "p6742e8"
+},
+{
+"slug": "/article/n/ispolnimost-kak-svoystvo-sudebnogo-resheniya-v-ugolovnom-protsesse",
+"year": "2025",
+"vak": true,
+"journal": "Правовое государство: теория и практика",
+"authors": "Дистанова Фирюза Эльвировна",
+"title": "ИСПОЛНИМОСТЬ КАК СВОЙСТВО СУДЕБНОГО РЕШЕНИЯ В УГОЛОВНОМ ПРОЦЕССЕ",
+"t": [
+"upp053"
+],
+"n": "p013801"
+},
+{
+"slug": "/article/n/vstuplenie-v-zakonnuyu-silu-prigovora-pravovye-posledstviya-i-rol-v-ugolovnom-protsesse",
+"year": "2024",
+"vak": true,
+"journal": "Государственная служба и кадры",
+"authors": "Саида Шамиловна Газиева",
+"title": "Вступление в законную силу приговора: правовые последствия и роль в уголовном процессе",
+"t": [
+"upp053"
+],
+"n": "pc86dde"
+},
+{
 "slug": "/article/n/osobyy-poryadok-prinyatiya-sudebnogo-resheniya-pri-zaklyuchenii-dosudebnogo-soglasheniya-o-sotrudnichestve",
 "year": "2024",
 "vak": false,
@@ -1323,6 +2462,31 @@
 "upp054"
 ],
 "n": "p3daf1c"
+},
+{
+"slug": "/article/n/o-neobhodimosti-instituta-dosudebnogo-soglasheniya-o-sotrudnichestve-v-rossiyskom-ugolovnom-protsesse",
+"year": "2024",
+"vak": true,
+"journal": "Lex Russica",
+"authors": "Плошкина Яна Михайловна",
+"title": "О необходимости института досудебного соглашения о сотрудничестве в российском уголовном процессе",
+"t": [
+"upp054"
+],
+"n": "p73c4c2"
+},
+{
+"slug": "/article/n/promezhutochnye-resheniya-o-primenenii-mer-prinuzhdeniya-pri-zaklyuchenii-dosudebnogo-soglasheniya-o-sotrudnichestve",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Омского университета. Серия «Право»",
+"authors": "Константинова Виктория Александровна",
+"title": "ПРОМЕЖУТОЧНЫЕ РЕШЕНИЯ О ПРИМЕНЕНИИ МЕР ПРИНУЖДЕНИЯ ПРИ ЗАКЛЮЧЕНИИ ДОСУДЕБНОГО СОГЛАШЕНИЯ О СОТРУДНИЧЕСТВЕ",
+"t": [
+"upp054",
+"upp127"
+],
+"n": "p985c54"
 },
 {
 "slug": "/article/n/problemy-osobogo-poryadka-prinyatiya-sudebnogo-resheniya-pri-soglasii-obvinyaemogo-s-predyavlennym-obvineniem",
@@ -1351,6 +2515,31 @@
 "n": "p3b46ab"
 },
 {
+"slug": "/article/n/k-voprosu-ob-osobom-poryadke-sudebnogo-rassmotreniya-ugolovnyh-del",
+"year": "2024",
+"vak": true,
+"journal": "Закон и право",
+"authors": "Ахмед Раджабович Раджабов",
+"title": "К вопросу об особом порядке судебного рассмотрения уголовных дел",
+"t": [
+"upp055"
+],
+"n": "p843df1"
+},
+{
+"slug": "/article/n/dogovorennosti-soglasheniya-na-dosudebnoy-stadii-v-germanskom-ugolovnom-protsesse",
+"year": "2023",
+"vak": true,
+"journal": "Lex Russica",
+"authors": "Майорова Л. В.; Плошкина Я. М.",
+"title": "ДОГОВОРЕННОСТИ, СОГЛАШЕНИЯ НА ДОСУДЕБНОЙ СТАДИИ В ГЕРМАНСКОМ УГОЛОВНОМ ПРОЦЕССЕ",
+"t": [
+"upp055",
+"upp051"
+],
+"n": "p46ffd3"
+},
+{
 "slug": "/article/n/preniya-storon-v-sudebnom-razbiratelstve-s-uchastiem-prisyazhnyh-zasedateley-ugolovno-protsessualnye-kriminalisticheskie",
 "year": "2026",
 "vak": true,
@@ -1375,6 +2564,18 @@
 "upp056"
 ],
 "n": "p2b7781"
+},
+{
+"slug": "/article/n/glasnost-v-ugolovnom-protsesse-v-usloviyah-chrezvychaynoy-situatsii-v-tom-chisle-s-uchastiem-prisyazhnyh-zasedateley-problemy",
+"year": "2023",
+"vak": true,
+"journal": "Проблемы экономики и юридической практики",
+"authors": "Костенюк Екатерина Александровна",
+"title": "ГЛАСНОСТЬ В УГОЛОВНОМ ПРОЦЕССЕ В УСЛОВИЯХ ЧРЕЗВЫЧАЙНОЙ СИТУАЦИИ, В ТОМ ЧИСЛЕ С УЧАСТИЕМ ПРИСЯЖНЫХ ЗАСЕДАТЕЛЕЙ: ПРОБЛЕМЫ ПРАВОВОГО РЕГУЛИРОВАНИЯ",
+"t": [
+"upp056"
+],
+"n": "pb6093b"
 },
 {
 "slug": "/article/n/problemnye-aspekty-proizvodstva-u-mirovogo-sudi-po-ugolovnym-delam",
@@ -1427,6 +2628,30 @@
 "n": "pfaef4d"
 },
 {
+"slug": "/article/n/apellyatsionnoe-proizvodstvo-v-ugolovnom-protsesse-v-zapadnyh-stranah-i-rossiyskoy-federatsii",
+"year": "2025",
+"vak": true,
+"journal": "Электронное приложение к Российскому юридическому журналу",
+"authors": "Селенцов Григорий Андреевич",
+"title": "АПЕЛЛЯЦИОННОЕ ПРОИЗВОДСТВО В УГОЛОВНОМ ПРОЦЕССЕ В ЗАПАДНЫХ СТРАНАХ И РОССИЙСКОЙ ФЕДЕРАЦИИ",
+"t": [
+"upp058"
+],
+"n": "p889c34"
+},
+{
+"slug": "/article/n/naznachenie-sudebnoy-ekspertizy-v-sude-apellyatsionnoy-instantsii-po-grazhdanskim-delam-v-usloviyah-sostyazatelnosti-protsessa",
+"year": "2025",
+"vak": true,
+"journal": "Философия права",
+"authors": "Симагин Антон Сергеевич",
+"title": "НАЗНАЧЕНИЕ СУДЕБНОЙ ЭКСПЕРТИЗЫ В СУДЕ АПЕЛЛЯЦИОННОЙ ИНСТАНЦИИ ПО ГРАЖДАНСКИМ ДЕЛАМ В УСЛОВИЯХ СОСТЯЗАТЕЛЬНОСТИ ПРОЦЕССА",
+"t": [
+"upp058"
+],
+"n": "p0f25cb"
+},
+{
 "slug": "/article/n/o-korrektsii-stereotipov-v-temporalnyh-i-eksekutsionnyh-harakteristikah-nachala-stadii-ispolneniya-prigovora",
 "year": "2025",
 "vak": true,
@@ -1451,6 +2676,42 @@
 "n": "paec885"
 },
 {
+"slug": "/article/n/o-spetsifike-statusa-suda-i-realizatsii-printsipov-ugolovnogo-protsessa-v-stadii-ispolneniya-prigovora",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Самарского юридического института",
+"authors": "Ивенский Андрей Иванович; Ивенская Юлия Игоревна; Ивенская Юлия Игоревна",
+"title": "О СПЕЦИФИКЕ СТАТУСА СУДА И РЕАЛИЗАЦИИ ПРИНЦИПОВ УГОЛОВНОГО ПРОЦЕССА В СТАДИИ ИСПОЛНЕНИЯ ПРИГОВОРА",
+"t": [
+"upp059"
+],
+"n": "pd8e7f9"
+},
+{
+"slug": "/article/n/institut-zameny-nakazaniya-v-kontekste-ugolovno-protsessualnoy-harakteristiki-ispolneniya-prigovora",
+"year": "2025",
+"vak": true,
+"journal": "Общество и право",
+"authors": "Зелюка Павел Александрович",
+"title": "Институт замены наказания в контексте уголовно-процессуальной характеристики исполнения приговора",
+"t": [
+"upp059"
+],
+"n": "pa4b232"
+},
+{
+"slug": "/article/n/pravo-na-kvalifitsirovannuyu-yuridicheskuyu-pomosch-v-stadii-ispolneniya-prigovora-kak-sostavnuyu-chast-prava-na-zaschitu-analiz",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Томского государственного университета",
+"authors": "Владимир Владимирович Конин; Анна Васильевна Кудрявцева; Александр Васильевич Петров",
+"title": "Право на квалифицированную юридическую помощь в стадии исполнения приговора как составную часть права на защиту: анализ явления, ошибки и рекомендации",
+"t": [
+"upp059"
+],
+"n": "peefad3"
+},
+{
 "slug": "/article/n/osnovnye-napravleniya-sovershenstvovaniya-dostupa-k-pravosudiyu-v-kassatsionnom-proizvodstve-s-ispolzovaniem-tsifrovyh-tehnologiy",
 "year": "2025",
 "vak": true,
@@ -1473,6 +2734,43 @@
 "upp060"
 ],
 "n": "pf63072"
+},
+{
+"slug": "/article/n/o-edinstve-mezhotraslevyh-institutov-reguliruyuschih-peresmotr-sudebnyh-aktov-v-apellyatsionnom-kassatsionnom-nadzornom-poryadke-v",
+"year": "2025",
+"vak": true,
+"journal": "Труды Института государства и права Российской академии наук",
+"authors": "Борисевич Галина Яковлевна",
+"title": "О ЕДИНСТВЕ МЕЖОТРАСЛЕВЫХ ИНСТИТУТОВ, РЕГУЛИРУЮЩИХ ПЕРЕСМОТР СУДЕБНЫХ АКТОВ В АПЕЛЛЯЦИОННОМ, КАССАЦИОННОМ, НАДЗОРНОМ ПОРЯДКЕ, В ПРОЦЕССУАЛЬНОМ ПРАВЕ РОССИЙСКОЙ ФЕДЕРАЦИИ",
+"t": [
+"upp060",
+"upp061"
+],
+"n": "p365736"
+},
+{
+"slug": "/article/n/k-voprosu-o-differentsiatsii-proverochnyh-proizvodstv-v-ugolovnom-protsesse-rossii",
+"year": "2026",
+"vak": true,
+"journal": "Труды Института государства и права Российской академии наук",
+"authors": "Нехороших М. Е.",
+"title": "К ВОПРОСУ О ДИФФЕРЕНЦИАЦИИ ПРОВЕРОЧНЫХ ПРОИЗВОДСТВ В УГОЛОВНОМ ПРОЦЕССЕ РОССИИ",
+"t": [
+"upp060"
+],
+"n": "pb8b3c9"
+},
+{
+"slug": "/article/n/prezumptsiya-pravosudnosti-prigovora-i-nekotorye-problemy-ee-oproverzheniya-v-sude-kassatsionnoy-instantsii",
+"year": "2026",
+"vak": true,
+"journal": "Правовая политика и правовая жизнь",
+"authors": "Блинова О. Г.",
+"title": "Презумпция правосудности приговора и некоторые проблемы ее опровержения в суде кассационной инстанции",
+"t": [
+"upp060"
+],
+"n": "p013b4a"
 },
 {
 "slug": "/article/n/sootnoshenie-kassatsionnogo-i-nadzornogo-proizvodstv-v-ugolovnom-protsesse-rossiyskoy-federatsii",
@@ -1500,6 +2798,18 @@
 "n": "pd7c3f5"
 },
 {
+"slug": "/article/n/problemy-dopustimosti-rezultatov-operativno-rozysknoy-deyatelnosti-v-kassatsionnoy-i-nadzornoy-instantsiyah",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Московского университета МВД России",
+"authors": "Исфандиер Ахмад Одиназода",
+"title": "Проблемы допустимости результатов оперативно-розыскной деятельности в кассационной и надзорной инстанциях",
+"t": [
+"upp061"
+],
+"n": "pc4f317"
+},
+{
 "slug": "/article/n/osnovnye-resheniya-prinimaemye-sudom-po-ugolovnym-delam-pri-vozobnovlenii-proizvodstva-vvidu-novyh-i-vnov-otkryvshihsya",
 "year": "2025",
 "vak": false,
@@ -1524,16 +2834,16 @@
 "n": "pd34acc"
 },
 {
-"slug": "/article/n/osobennosti-proizvodstva-sudebnyh-ekspertiz-po-ugolovnym-delam-v-otnoshenii-nesovershennoletnih",
-"year": "2024",
+"slug": "/article/n/o-suti-i-soderzhanii-priostanovleniya-proizvodstva-po-delu-v-ugolovnom-sudoproizvodstve-rossii",
+"year": "2023",
 "vak": true,
-"journal": "Юристъ - Правоведъ",
-"authors": "Диденко Николай Сергеевич; Моругина Надежда Анатольевна",
-"title": "ОСОБЕННОСТИ ПРОИЗВОДСТВА СУДЕБНЫХ ЭКСПЕРТИЗ ПО УГОЛОВНЫМ ДЕЛАМ В ОТНОШЕНИИ НЕСОВЕРШЕННОЛЕТНИХ",
+"journal": "Вестник Сибирского юридического института МВД России",
+"authors": "Данил Владимирович Ростов",
+"title": "О СУТИ И СОДЕРЖАНИИ ПРИОСТАНОВЛЕНИЯ ПРОИЗВОДСТВА ПО ДЕЛУ В УГОЛОВНОМ СУДОПРОИЗВОДСТВЕ РОССИИ",
 "t": [
-"upp063"
+"upp062"
 ],
-"n": "p610c05"
+"n": "p309274"
 },
 {
 "slug": "/article/n/dosudebnyy-poryadok-proizvodstva-po-ugolovnym-delam-v-otnoshenii-nesovershennoletnih-podozrevaemyh-obvinyaemyh-po-zakonodatelstvu",
@@ -1546,6 +2856,18 @@
 "upp063"
 ],
 "n": "p43690e"
+},
+{
+"slug": "/article/n/osobennosti-pravovogo-regulirovaniya-proizvodstva-po-ugolovnym-delam-v-otnoshenii-nesovershennoletnih-v-kitae",
+"year": "2024",
+"vak": true,
+"journal": "Образование и право",
+"authors": "Шестак Виктор Анатольевич; Харина Екатерина Максимовна",
+"title": "ОСОБЕННОСТИ ПРАВОВОГО РЕГУЛИРОВАНИЯ ПРОИЗВОДСТВА ПО УГОЛОВНЫМ ДЕЛАМ В ОТНОШЕНИИ НЕСОВЕРШЕННОЛЕТНИХ В КИТАЕ",
+"t": [
+"upp063"
+],
+"n": "p5a9465"
 },
 {
 "slug": "/article/n/o-dopustimosti-ispolzovaniya-v-ugolovnom-dele-pokazaniy-lits-v-otnoshenii-kotoryh-vedetsya-proizvodstvo-o-primenenii-prinuditelnyh",
@@ -1570,6 +2892,44 @@
 "upp064"
 ],
 "n": "p8c4c07"
+},
+{
+"slug": "/article/n/nekotorye-problemnye-voprosy-proizvodstva-po-delam-o-primenenii-prinuditelnyh-mer-meditsinskogo-haraktera",
+"year": "2023",
+"vak": true,
+"journal": "Государственная служба и кадры",
+"authors": "Дженнет Артуровна Хайбулаева",
+"title": "Некоторые проблемные вопросы производства по делам о применении принудительных мер медицинского характера",
+"t": [
+"upp064"
+],
+"n": "pebfb04"
+},
+{
+"slug": "/article/n/osobennosti-proizvodstva-sledstvennyh-deystviy-s-uchastiem-litsa-v-otnoshenii-kotorogo-vedetsya-proizvodstvo-o-primenenii",
+"year": "2023",
+"vak": true,
+"journal": "Вестник экономической безопасности",
+"authors": "Волынская Ольга Владимировна; Семенкова Евгения Викторовна",
+"title": "ОСОБЕННОСТИ ПРОИЗВОДСТВА СЛЕДСТВЕННЫХ ДЕЙСТВИЙ С УЧАСТИЕМ ЛИЦА, В ОТНОШЕНИИ КОТОРОГО ВЕДЕТСЯ ПРОИЗВОДСТВО О ПРИМЕНЕНИИ ПРИНУДИТЕЛЬНОЙ МЕРЫ МЕДИЦИНСКОГО ХАРАКТЕРА",
+"t": [
+"upp064",
+"upp039",
+"upp127"
+],
+"n": "p34751c"
+},
+{
+"slug": "/article/n/litso-v-otnoshenii-kotorogo-vedetsya-proizvodstvo-o-primenenii-prinuditelnyh-mer-meditsinskogo-haraktera-voprosy-teorii-i",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Казанского юридического института МВД России",
+"authors": "Латыпов Вадим Сагитьянович",
+"title": "ЛИЦО, В ОТНОШЕНИИ КОТОРОГО ВЕДЕТСЯ ПРОИЗВОДСТВО О ПРИМЕНЕНИИ ПРИНУДИТЕЛЬНЫХ МЕР МЕДИЦИНСКОГО ХАРАКТЕРА: ВОПРОСЫ ТЕОРИИ И НОРМАТИВНОГО РЕГУЛИРОВАНИЯ /",
+"t": [
+"upp064"
+],
+"n": "p95517c"
 },
 {
 "slug": "/article/n/osobennosti-proizvodstva-po-ugolovnym-delam-v-otnoshenii-otdelnyh-kategoriy-lits-3",
@@ -1598,6 +2958,34 @@
 "n": "p8102c3"
 },
 {
+"slug": "/article/n/osobennosti-vozbuzhdeniya-ugolovnogo-dela-v-otnoshenii-otdelnyh-kategoriy-lits-1",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Казанского юридического института МВД России",
+"authors": "Руфия Шафкатовна Богаткина",
+"title": "ОСОБЕННОСТИ ВОЗБУЖДЕНИЯ УГОЛОВНОГО ДЕЛА В ОТНОШЕНИИ ОТДЕЛЬНЫХ КАТЕГОРИЙ ЛИЦ",
+"t": [
+"upp065",
+"upp027",
+"upp028"
+],
+"n": "p8f684b"
+},
+{
+"slug": "/article/n/otdelnaya-kategoriya-lits-kak-osobyy-krug-uchastnikov-ugolovno-protsessualnyh-otnosheniy",
+"year": "2025",
+"vak": true,
+"journal": "Всероссийский криминологический журнал",
+"authors": "Корнакова Светлана Викторовна; Завгороднева Екатерина Валерьевна",
+"title": "Отдельная категория лиц как особый круг участников уголовно-процессуальных отношений",
+"t": [
+"upp065",
+"upp098",
+"upp107"
+],
+"n": "pf5a615"
+},
+{
 "slug": "/article/n/o-ponyatii-mezhdunarodnogo-sotrudnichestva-v-sfere-ugolovnogo-sudoproizvodstva",
 "year": "2025",
 "vak": true,
@@ -1620,6 +3008,30 @@
 "upp066"
 ],
 "n": "p3636d4"
+},
+{
+"slug": "/article/n/realizatsiya-prava-na-zaschitu-v-protsesse-mezhdunarodnogo-sotrudnichestva-v-sfere-ugolovnogo-sudoproizvodstva",
+"year": "2024",
+"vak": true,
+"journal": "Гуманитарные, социально-экономические и общественные науки",
+"authors": "Колмаков Н. Е.; Позняк А. В.",
+"title": "РЕАЛИЗАЦИЯ ПРАВА НА ЗАЩИТУ В ПРОЦЕССЕ МЕЖДУНАРОДНОГО СОТРУДНИЧЕСТВА В СФЕРЕ УГОЛОВНОГО СУДОПРОИЗВОДСТВА",
+"t": [
+"upp066"
+],
+"n": "pce4884"
+},
+{
+"slug": "/article/n/mezhdunarodnoe-sotrudnichestvo-v-sfere-ugolovnogo-sudoproizvodstva-opyt-malty",
+"year": "2023",
+"vak": true,
+"journal": "Электронное приложение к Российскому юридическому журналу",
+"authors": "Рыжкова Екатерина Александровна; Мельник Святослав Сергеевич",
+"title": "МЕЖДУНАРОДНОЕ СОТРУДНИЧЕСТВО В СФЕРЕ УГОЛОВНОГО СУДОПРОИЗВОДСТВА: ОПЫТ МАЛЬТЫ",
+"t": [
+"upp066"
+],
+"n": "p97db72"
 },
 {
 "slug": "/article/n/otechestvennaya-ugolovno-pravovaya-politika-v-sfere-borby-s-prestupnostyu-nesovershennoletnih",
@@ -1742,6 +3154,18 @@
 "n": "p37c3c5"
 },
 {
+"slug": "/article/n/institut-neglasnyh-sledstvennyh-deystviy-v-ugolovno-protsessualnom-zakone-rossii-i-stran-blizhnego-zarubezhya-sravnitelno-pravovoe",
+"year": "2024",
+"vak": true,
+"journal": "Правовое государство: теория и практика",
+"authors": "Халиков Аслям Наилевич",
+"title": "ИНСТИТУТ НЕГЛАСНЫХ СЛЕДСТВЕННЫХ ДЕЙСТВИЙ В УГОЛОВНО-ПРОЦЕССУАЛЬНОМ ЗАКОНЕ РОССИИ И СТРАН БЛИЖНЕГО ЗАРУБЕЖЬЯ (СРАВНИТЕЛЬНО-ПРАВОВОЕ ИССЛЕДОВАНИЕ)",
+"t": [
+"upp072"
+],
+"n": "p4cf60a"
+},
+{
 "slug": "/article/n/k-voprosu-o-printsipah-ugolovnogo-sudoproizvodstva-v-mashinochitaemom-prave",
 "year": "2026",
 "vak": true,
@@ -1766,6 +3190,42 @@
 "n": "p6712f4"
 },
 {
+"slug": "/article/n/k-probleme-realizatsii-printsipov-ugolovnogo-sudoproizvodstva-v-rossiyskoy-federatsii",
+"year": "2025",
+"vak": true,
+"journal": "Право и практика",
+"authors": "Федоренко Сергей Александрович; Скрипник Диана Александровна",
+"title": "К ПРОБЛЕМЕ РЕАЛИЗАЦИИ ПРИНЦИПОВ УГОЛОВНОГО СУДОПРОИЗВОДСТВА В РОССИЙСКОЙ ФЕДЕРАЦИИ",
+"t": [
+"upp073"
+],
+"n": "p88178d"
+},
+{
+"slug": "/article/n/printsipy-ugolovnogo-sudoproizvodstva-kak-protsessualnyy-filtr-dopustimosti-dokazatelstv",
+"year": "2026",
+"vak": true,
+"journal": "Гуманитарные, социально-экономические и общественные науки",
+"authors": "Петрова О. А.; Руденко А. В.",
+"title": "ПРИНЦИПЫ УГОЛОВНОГО СУДОПРОИЗВОДСТВА КАК ПРОЦЕССУАЛЬНЫЙ ФИЛЬТР ДОПУСТИМОСТИ ДОКАЗАТЕЛЬСТВ",
+"t": [
+"upp073"
+],
+"n": "p251605"
+},
+{
+"slug": "/article/n/spravedlivost-i-gumanizm-kak-printsipy-ugolovnogo-sudoproizvodstva-rossiyskoy-federatsii",
+"year": "2025",
+"vak": true,
+"journal": "Закон и право",
+"authors": "Аргишти Арсенович Манукян",
+"title": "Справедливость и гуманизм как принципы уголовного судопроизводства Российской Федерации",
+"t": [
+"upp073"
+],
+"n": "p017940"
+},
+{
 "slug": "/article/n/printsip-razumnogo-sroka-ugolovnogo-sudoproizvodstva-problemy-teorii-i-praktiki",
 "year": "2025",
 "vak": true,
@@ -1788,6 +3248,18 @@
 "upp074"
 ],
 "n": "pf07058"
+},
+{
+"slug": "/article/n/konvergentsiya-mezhdunarodnyh-standartov-razumnosti-sroka-soderzhaniya-pod-strazhey-v-natsionalnoe-zakonodatelstvo",
+"year": "2025",
+"vak": true,
+"journal": "Вестник экономики, права и социологии",
+"authors": "Гилязов Айдар Ильмирович",
+"title": "Конвергенция международных стандартов разумности срока содержания под стражей в национальное законодательство",
+"t": [
+"upp074"
+],
+"n": "p69b2f2"
 },
 {
 "slug": "/article/n/pokazaniya-poterpevshego-i-svidetelya-pri-proizvodstve-po-ugolovnomu-delu-v-kontekste-realizatsii-printsipa-zakonnosti",
@@ -1815,6 +3287,18 @@
 "n": "pb1e129"
 },
 {
+"slug": "/article/n/osnovnye-problemy-instituta-predyavleniya-obvineniya-v-rossiyskom-ugolovnom-sudoproizvodstve-voprosy-teorii-i-praktiki",
+"year": "2026",
+"vak": true,
+"journal": "Юридические исследования",
+"authors": "Поликарпова Ольга Сергеевна",
+"title": "Основные проблемы института предъявления обвинения в российском уголовном судопроизводстве: вопросы теории и практики",
+"t": [
+"upp075"
+],
+"n": "p1c99ae"
+},
+{
 "slug": "/article/n/sudoustroystvennye-i-sudoproizvodstvennye-garantii-nezavisimosti-sudebnoy-vlasti-i-sudey",
 "year": "2025",
 "vak": true,
@@ -1837,6 +3321,22 @@
 "upp076"
 ],
 "n": "p0509d2"
+},
+{
+"slug": "/article/n/vosprepyatstvovanie-osuschestvleniyu-pravosudiya-i-proizvodstvu-predvaritelnogo-rassledovaniya-statya-294-ugolovnogo-kodeksa",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Воронежского государственного университета. Серия: Право",
+"authors": "Мельников Е. А.",
+"title": "Воспрепятствование осуществлению правосудия и производству предварительного расследования (статья 294 Уголовного кодекса Российской Федерации): проблемные вопросы объекта и объективной стороны",
+"t": [
+"upp076",
+"upp030",
+"upp031",
+"upp033",
+"upp044"
+],
+"n": "p47c8e4"
 },
 {
 "slug": "/article/n/otdelnye-problemy-realizatsii-printsipa-uvazheniya-chesti-i-dostoinstva-lichnosti-v-ugolovnom-sudoproizvodstve-rossiyskoy",
@@ -1863,16 +3363,41 @@
 "n": "p852cf4"
 },
 {
-"slug": "/article/n/realizatsiya-printsipa-neprikosnovennosti-lichnosti-na-primere-zaderzhaniya-litsa-v-ugolovnom-protsesse-1",
+"slug": "/article/n/printsipy-zakonnosti-uvazheniya-chesti-dostoinstva-i-neprikosnovennosti-lichnosti-ohrany-prav-i-svobod-cheloveka-i-grazhdanina-v-2",
+"year": "2025",
+"vak": false,
+"journal": "Гуманитарный научный журнал",
+"authors": "Петухова О. С.",
+"title": "Принципы законности, уважения чести, достоинства и неприкосновенности личности, охраны прав и свобод человека и гражданина в уголовном судопроизводстве",
+"t": [
+"upp077",
+"upp079"
+],
+"n": "p5805b9"
+},
+{
+"slug": "/article/n/problemy-zaschity-chesti-i-dostoinstva-lichnosti-v-ugolovnom-sudoproizvodstve",
+"year": "2024",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Мирзоев Залим Таубиевич; Настуева Алима Мухарбиевна",
+"title": "ПРОБЛЕМЫ ЗАЩИТЫ ЧЕСТИ И ДОСТОИНСТВА ЛИЧНОСТИ В УГОЛОВНОМ СУДОПРОИЗВОДСТВЕ",
+"t": [
+"upp077"
+],
+"n": "pa7ccf6"
+},
+{
+"slug": "/article/n/k-voprosu-o-mezhdunarodno-pravovyh-i-natsionalnyh-standartah-uvazheniya-chesti-i-dostoinstva-lichnosti-eyo-zakonnyh-interesov-v",
 "year": "2024",
 "vak": true,
 "journal": "Вестник Удмуртского университета. Серия «Экономика и право»",
-"authors": "Татьянина Лариса Геннадьевна; Шамсеева Алина Маратовна",
-"title": "РЕАЛИЗАЦИЯ ПРИНЦИПА НЕПРИКОСНОВЕННОСТИ ЛИЧНОСТИ НА ПРИМЕРЕ ЗАДЕРЖАНИЯ ЛИЦА В УГОЛОВНОМ ПРОЦЕССЕ",
+"authors": "Хусиянов Дамир Анвярович",
+"title": "К ВОПРОСУ О МЕЖДУНАРОДНО-ПРАВОВЫХ И НАЦИОНАЛЬНЫХ СТАНДАРТАХ УВАЖЕНИЯ ЧЕСТИ И ДОСТОИНСТВА ЛИЧНОСТИ, ЕЁ ЗАКОННЫХ ИНТЕРЕСОВ В УГОЛОВНОМ СУДОПРОИЗВОДСТВЕ РОССИИ",
 "t": [
-"upp078"
+"upp077"
 ],
-"n": "p81f314"
+"n": "p276d13"
 },
 {
 "slug": "/article/n/obespechenie-neprikosnovennosti-lichnosti-v-ugolovnom-presledovanii",
@@ -1885,6 +3410,18 @@
 "upp078"
 ],
 "n": "p077890"
+},
+{
+"slug": "/article/n/printsip-neprikosnovennosti-lichnosti-v-rossiyskom-ugolovnom-sudoproizvodstve",
+"year": "2023",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Эляшов Алдар Баатрович; Ширепов Семен Витальевич; Булуктаева Киштя Юрьевна",
+"title": "ПРИНЦИП НЕПРИКОСНОВЕННОСТИ ЛИЧНОСТИ В РОССИЙСКОМ УГОЛОВНОМ СУДОПРОИЗВОДСТВЕ",
+"t": [
+"upp078"
+],
+"n": "pb49a14"
 },
 {
 "slug": "/article/n/printsipy-zakonnosti-uvazheniya-chesti-dostoinstva-i-neprikosnovennosti-lichnosti-ohrany-prav-i-svobod-cheloveka-i-grazhdanina-v",
@@ -1900,17 +3437,30 @@
 "n": "pf64a30"
 },
 {
-"slug": "/article/n/printsipy-zakonnosti-uvazheniya-chesti-dostoinstva-i-neprikosnovennosti-lichnosti-ohrany-prav-i-svobod-cheloveka-i-grazhdanina-v-2",
-"year": "2025",
-"vak": false,
-"journal": "Гуманитарный научный журнал",
-"authors": "Петухова О. С.",
-"title": "Принципы законности, уважения чести, достоинства и неприкосновенности личности, охраны прав и свобод человека и гражданина в уголовном судопроизводстве",
+"slug": "/article/n/zaschita-i-ohrana-prav-i-svobod-uchastnikov-ugolovnogo-sudoproizvodstva-v-kontekste-protsessualnogo-statusa-subekta-ugolovnogo",
+"year": "2024",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Зеленина Ольга Александровна",
+"title": "ЗАЩИТА И ОХРАНА ПРАВ И СВОБОД УЧАСТНИКОВ УГОЛОВНОГО СУДОПРОИЗВОДСТВА В КОНТЕКСТЕ ПРОЦЕССУАЛЬНОГО СТАТУСА СУБЪЕКТА УГОЛОВНОГО СУДОПРОИЗВОДСТВА",
 "t": [
 "upp079",
-"upp077"
+"upp098"
 ],
-"n": "p5805b9"
+"n": "p722c23"
+},
+{
+"slug": "/article/n/realizatsiya-prava-na-informatsiyu-uchastnikami-ugolovnogo-sudoproizvodstva",
+"year": "2025",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Иванов Евгений Евгеньевич",
+"title": "РЕАЛИЗАЦИЯ ПРАВА НА ИНФОРМАЦИЮ УЧАСТНИКАМИ УГОЛОВНОГО СУДОПРОИЗВОДСТВА",
+"t": [
+"upp079",
+"upp098"
+],
+"n": "p959a8a"
 },
 {
 "slug": "/article/n/problemy-obespecheniya-neprikosnovennosti-zhilischa-v-ugolovnom-sudoproizvodstve-rossii",
@@ -1961,6 +3511,30 @@
 "n": "pa20467"
 },
 {
+"slug": "/article/n/k-voprosu-o-pravovom-regulirovanii-provedeniya-operativno-rozysknogo-meropriyatiya-kontrol-pochtovyh-otpravleniy-telegrafnyh-i-inyh",
+"year": "2023",
+"vak": true,
+"journal": "Право и управление",
+"authors": "Фурлет Ярослав Павлович",
+"title": "К ВОПРОСУ О ПРАВОВОМ РЕГУЛИРОВАНИИ ПРОВЕДЕНИЯ ОПЕРАТИВНО-РОЗЫСКНОГО МЕРОПРИЯТИЯ «КОНТРОЛЬ ПОЧТОВЫХ ОТПРАВЛЕНИЙ, ТЕЛЕГРАФНЫХ И ИНЫХ СООБЩЕНИЙ»",
+"t": [
+"upp081"
+],
+"n": "p9a5667"
+},
+{
+"slug": "/article/n/osobennosti-zaschity-prava-na-taynu-perepiski",
+"year": "2024",
+"vak": true,
+"journal": "Закон и право",
+"authors": "Виктор Федорович Воробьев; Адил Алхаз Гезалов",
+"title": "Особенности защиты права на тайну переписки",
+"t": [
+"upp081"
+],
+"n": "pc4398b"
+},
+{
 "slug": "/article/n/obespechenie-printsipa-prezumptsii-nevinovnosti-v-sovremennom-mezhdunarodnom-ugolovnom-protsesse",
 "year": "2026",
 "vak": true,
@@ -1983,6 +3557,30 @@
 "upp082"
 ],
 "n": "p174adb"
+},
+{
+"slug": "/article/n/prezumptsiya-nevinovnosti-kak-osnovopolagayuschiy-konstitutsionno-pravovoy-printsip-ugolovnogo-protsessa",
+"year": "2026",
+"vak": true,
+"journal": "Уголовная юстиция",
+"authors": "Римма Олеговна Гуммер",
+"title": "ПРЕЗУМПЦИЯ НЕВИНОВНОСТИ КАК ОСНОВОПОЛАГАЮЩИЙ КОНСТИТУЦИОННО-ПРАВОВОЙ ПРИНЦИП УГОЛОВНОГО ПРОЦЕССА",
+"t": [
+"upp082"
+],
+"n": "p31687e"
+},
+{
+"slug": "/article/n/osnovnye-etapy-stanovleniya-i-realizatsiya-printsipa-prezumptsii-nevinovnosti-v-dosudebnom-rossiyskom-ugolovnom-sudoproizvodstve",
+"year": "2023",
+"vak": true,
+"journal": "Право и практика",
+"authors": "Мальцагов Иса Даудович; Дадаев Хамзат Мамуевич; Идилов Шарани Кожахметович",
+"title": "ОСНОВНЫЕ ЭТАПЫ СТАНОВЛЕНИЯ И РЕАЛИЗАЦИЯ ПРИНЦИПА ПРЕЗУМПЦИИ НЕВИНОВНОСТИ В ДОСУДЕБНОМ РОССИЙСКОМ УГОЛОВНОМ СУДОПРОИЗВОДСТВЕ",
+"t": [
+"upp082"
+],
+"n": "pf3348c"
 },
 {
 "slug": "/article/n/problemy-realizatsii-printsipa-sostyazatelnosti-storon",
@@ -2034,6 +3632,32 @@
 "n": "pd0da7e"
 },
 {
+"slug": "/article/n/obespechenie-podozrevaemomu-i-obvinyaemomu-prava-na-zaschitu",
+"year": "2023",
+"vak": true,
+"journal": "Аграрное и земельное право",
+"authors": "Цандыкова М. Ю.",
+"title": "ОБЕСПЕЧЕНИЕ ПОДОЗРЕВАЕМОМУ И ОБВИНЯЕМОМУ ПРАВА НА ЗАЩИТУ",
+"t": [
+"upp084"
+],
+"n": "p744e46"
+},
+{
+"slug": "/article/n/obespechenie-konstitutsionnyh-prav-podozrevaemogo-obvinyaemogo-i-zakonnost-ih-ogranicheniya-v-dosudebnyh-stadiyah-ugolovnogo",
+"year": "2025",
+"vak": true,
+"journal": "Аграрное и земельное право",
+"authors": "Шаназарова Елена Витальевна",
+"title": "ОБЕСПЕЧЕНИЕ КОНСТИТУЦИОННЫХ ПРАВ ПОДОЗРЕВАЕМОГО, ОБВИНЯЕМОГО И ЗАКОННОСТЬ ИХ ОГРАНИЧЕНИЯ В ДОСУДЕБНЫХ СТАДИЯХ УГОЛОВНОГО ПРОЦЕССА",
+"t": [
+"upp084",
+"upp118",
+"upp051"
+],
+"n": "p1a596c"
+},
+{
 "slug": "/article/n/nekotorye-aspekty-deystviya-printsipa-svobody-otsenki-dokazatelstv-v-ugolovnom-protsesse",
 "year": "2026",
 "vak": true,
@@ -2056,6 +3680,44 @@
 "upp085"
 ],
 "n": "p1dd45c"
+},
+{
+"slug": "/article/n/rol-i-mesto-printsipa-svobody-otsenki-dokazatelstv-v-usloviyah-vnedreniya-tehnologii-iskusstvennogo-intellekta",
+"year": "2025",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Попова Ирина Павловна; Попова Ирина Павловна",
+"title": "РОЛЬ И МЕСТО ПРИНЦИПА СВОБОДЫ ОЦЕНКИ ДОКАЗАТЕЛЬСТВ В УСЛОВИЯХ ВНЕДРЕНИЯ ТЕХНОЛОГИИ ИСКУССТВЕННОГО ИНТЕЛЛЕКТА",
+"t": [
+"upp085"
+],
+"n": "p78a7d9"
+},
+{
+"slug": "/article/n/problema-formalnoy-otsenki-dokazatelstv-v-svete-deystviya-instituta-nedopustimyh-dokazatelstv-kollizii-mezhdu-pravom-i-praktikoy",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Российского университета кооперации",
+"authors": "Кузнецов Максим Сергеевич",
+"title": "ПРОБЛЕМА ФОРМАЛЬНОЙ ОЦЕНКИ ДОКАЗАТЕЛЬСТВ В СВЕТЕ ДЕЙСТВИЯ ИНСТИТУТА НЕДОПУСТИМЫХ ДОКАЗАТЕЛЬСТВ: КОЛЛИЗИИ МЕЖДУ ПРАВОМ И ПРАКТИКОЙ",
+"t": [
+"upp085",
+"upp014",
+"upp114"
+],
+"n": "pe56004"
+},
+{
+"slug": "/article/n/yuridicheskaya-sila-dokazatelstv-i-problemy-formalizatsii-dokazyvaniya-v-ugolovnom-protsesse",
+"year": "2026",
+"vak": true,
+"journal": "Труды Института государства и права Российской академии наук",
+"authors": "Володина Л. М.",
+"title": "ЮРИДИЧЕСКАЯ СИЛА ДОКАЗАТЕЛЬСТВ И ПРОБЛЕМЫ ФОРМАЛИЗАЦИИ ДОКАЗЫВАНИЯ В УГОЛОВНОМ ПРОЦЕССЕ",
+"t": [
+"upp085"
+],
+"n": "p32b954"
 },
 {
 "slug": "/article/n/zloupotreblenie-pravom-pri-realizatsii-printsipa-yazyka-v-ugolovnom-sudoproizvodstve",
@@ -2083,6 +3745,30 @@
 "n": "p53281c"
 },
 {
+"slug": "/article/n/printsip-yazyka-ugolovnogo-sudoproizvodstva-ponyatie-i-mehanizm-realizatsii",
+"year": "2023",
+"vak": true,
+"journal": "Пробелы в российском законодательстве. Юридический журнал",
+"authors": "Буханов Александр Игоревич",
+"title": "Принцип языка уголовного судопроизводства: понятие и механизм реализации",
+"t": [
+"upp086"
+],
+"n": "pb557a5"
+},
+{
+"slug": "/article/n/nekotorye-voprosy-voznikayuschie-pri-realizatsii-printsipa-yazyka-ugolovnogo-sudoproizvodstva",
+"year": "2023",
+"vak": true,
+"journal": "КриминалистЪ",
+"authors": "Елена Владимировна Елагина; Татьяна Геннадьевна Николаева",
+"title": "НЕКОТОРЫЕ ВОПРОСЫ, ВОЗНИКАЮЩИЕ ПРИ РЕАЛИЗАЦИИ ПРИНЦИПА ЯЗЫКА УГОЛОВНОГО СУДОПРОИЗВОДСТВА",
+"t": [
+"upp086"
+],
+"n": "pb3d362"
+},
+{
 "slug": "/article/n/k-voprosu-o-sovershenstvovanii-srokov-i-poryadka-obzhalovaniya-ryada-deystviy-i-resheniy-v-ugolovnom-sudoproizvodstve",
 "year": "2023",
 "vak": true,
@@ -2107,6 +3793,31 @@
 "n": "pfb81f7"
 },
 {
+"slug": "/article/n/nekotorye-aspekty-opredeleniya-predmeta-ugolovno-protsessualnogo-obzhalovaniya-v-dosudebnom-proizvodstve",
+"year": "2025",
+"vak": true,
+"journal": "Теория и практика общественного развития",
+"authors": "Лопотенко Вероника Симоновна",
+"title": "Некоторые аспекты определения предмета уголовно-процессуального обжалования в досудебном производстве",
+"t": [
+"upp087",
+"upp129"
+],
+"n": "pba2e04"
+},
+{
+"slug": "/article/n/formy-ugolovno-protsessualnogo-obzhalovaniya",
+"year": "2023",
+"vak": true,
+"journal": "Право и политика",
+"authors": "Рудакова Светлана Викторовна",
+"title": "ФОРМЫ УГОЛОВНО-ПРОЦЕССУАЛЬНОГО ОБЖАЛОВАНИЯ",
+"t": [
+"upp087"
+],
+"n": "p2a1069"
+},
+{
 "slug": "/article/n/ponyatie-i-znachenie-ugolovnogo-presledovaniya-kak-ugolovno-protsessualnoy-funktsii",
 "year": "2025",
 "vak": true,
@@ -2129,6 +3840,42 @@
 "upp088"
 ],
 "n": "pb3baf4"
+},
+{
+"slug": "/article/n/evolyutsiya-ugolovno-protsessualnyh-funktsiy-prokurora-v-rossiyskom-zakonodatelstve",
+"year": "2025",
+"vak": true,
+"journal": "Право и практика",
+"authors": "Лаврова Оксана Николаевна; Седых Татьяна Викторовна",
+"title": "ЭВОЛЮЦИЯ УГОЛОВНО-ПРОЦЕССУАЛЬНЫХ ФУНКЦИЙ ПРОКУРОРА В РОССИЙСКОМ ЗАКОНОДАТЕЛЬСТВЕ",
+"t": [
+"upp088"
+],
+"n": "pa3742c"
+},
+{
+"slug": "/article/n/ugolovno-protsessualnye-funktsii-status-notariusa-v-ugolovnom-sudoproizvodstve-i-obespechenie-ego-prav",
+"year": "2026",
+"vak": true,
+"journal": "Право и политика",
+"authors": "Лагодина Елена Ивановна",
+"title": "Уголовно-процессуальные функции, статус нотариуса в уголовном судопроизводстве и обеспечение его прав",
+"t": [
+"upp088"
+],
+"n": "p1ebaa6"
+},
+{
+"slug": "/article/n/k-voprosu-o-protsessualnoy-funktsii-sledovatelya",
+"year": "2026",
+"vak": true,
+"journal": "Судебная экспертиза и исследования",
+"authors": "Шаров Денис Васильевич",
+"title": "К вопросу о процессуальной функции следователя",
+"t": [
+"upp088"
+],
+"n": "pa1a452"
 },
 {
 "slug": "/article/n/ob-ugolovnom-presledovanii-s-tochki-zreniya-zakona-teorii-i-praktiki",
@@ -2160,6 +3907,32 @@
 "n": "p10f27c"
 },
 {
+"slug": "/article/n/voprosy-sovershenstvovaniya-ugolovno-protsessualnogo-statusa-uchastnikov-ugolovnogo-sudoproizvodstva-i-ih-klassifikatsii",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Воронежского института МВД России",
+"authors": "Трухачев Вадим Викторович; Ахмедов Ульви Низами Оглы; Кретинин Анатолий Витальевич",
+"title": "ВОПРОСЫ СОВЕРШЕНСТВОВАНИЯ УГОЛОВНО-ПРОЦЕССУАЛЬНОГО СТАТУСА УЧАСТНИКОВ УГОЛОВНОГО СУДОПРОИЗВОДСТВА И ИХ КЛАССИФИКАЦИИ",
+"t": [
+"upp090",
+"upp098"
+],
+"n": "p8c0095"
+},
+{
+"slug": "/article/n/soglasie-uchastnikov-ugolovnogo-sudoproizvodstva-kak-pravovoe-sredstvo-preduprezhdeniya-ugolovno-protsessualnyh-konfliktov",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Воронежского государственного университета. Серия: Право",
+"authors": "В. В. Трухачев; У. Н. Ахмедов",
+"title": "СОГЛАСИЕ УЧАСТНИКОВ УГОЛОВНОГО СУДОПРОИЗВОДСТВА КАК ПРАВОВОЕ СРЕДСТВО ПРЕДУПРЕЖДЕНИЯ УГОЛОВНО-ПРОЦЕССУАЛЬНЫХ КОНФЛИКТОВ",
+"t": [
+"upp090",
+"upp098"
+],
+"n": "p21564d"
+},
+{
 "slug": "/article/n/institut-podsudnosti-kak-element-protsessualnogo-mehanizma-obespecheniya-dostupnosti-pravosudiya",
 "year": "2026",
 "vak": true,
@@ -2185,6 +3958,22 @@
 "n": "pa9285b"
 },
 {
+"slug": "/article/n/balans-protsessualnyh-funktsiy-i-formy-predvaritelnogo-rassledovaniya",
+"year": "2024",
+"vak": true,
+"journal": "Правовое государство: теория и практика",
+"authors": "Смирнов Александр Витальевич",
+"title": "БАЛАНС ПРОЦЕССУАЛЬНЫХ ФУНКЦИЙ И ФОРМЫ ПРЕДВАРИТЕЛЬНОГО РАССЛЕДОВАНИЯ",
+"t": [
+"upp091",
+"upp030",
+"upp031",
+"upp033",
+"upp044"
+],
+"n": "pd2c776"
+},
+{
 "slug": "/article/n/konflikty-mezhdu-uchastnikami-ugolovnogo-sudoproizvodstva-so-storony-obvineniya-i-sposoby-ih-preodoleniya",
 "year": "2026",
 "vak": true,
@@ -2206,6 +3995,7 @@
 "title": "К вопросу о неравенстве процессуальных прав и процессуальных возможностей участников уголовного судопроизводства со стороны обвинения",
 "t": [
 "upp092",
+"upp097",
 "upp098"
 ],
 "n": "p0b6bb1"
@@ -2238,6 +4028,20 @@
 "n": "pfbe1fb"
 },
 {
+"slug": "/article/n/optimizatsiya-polnomochiy-prokurora-v-sisteme-obespecheniya-bezopasnosti-uchastnikov-ugolovnogo-sudoproizvodstva",
+"year": "2026",
+"vak": true,
+"journal": "Вопросы безопасности",
+"authors": "Облиенко Оксана Леонидовна; Шишов Виктор Викторович; Венидиктов Михаил Игоревич",
+"title": "Оптимизация полномочий прокурора в системе обеспечения безопасности участников уголовного судопроизводства",
+"t": [
+"upp093",
+"upp006",
+"upp098"
+],
+"n": "p8449f2"
+},
+{
 "slug": "/article/n/povyshenie-effektivnosti-prokurorskogo-nadzora-za-deyatelnostyu-organov-predvaritelnogo-sledstviya-na-primere-sledovateley",
 "year": "2023",
 "vak": false,
@@ -2263,6 +4067,19 @@
 "upp094"
 ],
 "n": "p1c793a"
+},
+{
+"slug": "/article/n/organy-vnutrennih-del-kak-uchastnik-ugolovnogo-protsessa",
+"year": "2024",
+"vak": true,
+"journal": "Аграрное и земельное право",
+"authors": "Кильдигушев Ильгиз Ирмакович",
+"title": "ОРГАНЫ ВНУТРЕННИХ ДЕЛ КАК УЧАСТНИК УГОЛОВНОГО ПРОЦЕССА",
+"t": [
+"upp094",
+"upp098"
+],
+"n": "p2dd6c2"
 },
 {
 "slug": "/article/n/k-voprosu-o-protsessualnyh-polnomochiyah-prokurora-i-rukovoditelya-sledstvennogo-organa-v-dosudebnom-proizvodstve",
@@ -2299,6 +4116,30 @@
 "n": "pd38b29"
 },
 {
+"slug": "/article/n/o-sovremennom-protsessualnom-statuse-rukovoditelya-sledstvennogo-organa",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Воронежского института МВД России",
+"authors": "Садиокова Ульяна Валерьевна",
+"title": "О СОВРЕМЕННОМ ПРОЦЕССУАЛЬНОМ СТАТУСЕ РУКОВОДИТЕЛЯ СЛЕДСТВЕННОГО ОРГАНА",
+"t": [
+"upp095"
+],
+"n": "pc9d965"
+},
+{
+"slug": "/article/n/protsessualnyy-i-vedomstvennyy-kontrol-za-zakonnostyu-prinyatiya-protsessualnyh-resheniy-vlekuschih-reabilitatsiyu-podozrevaemogo",
+"year": "2024",
+"vak": true,
+"journal": "Труды Академии управления МВД России",
+"authors": "Красильников Алексей Владимирович; Салеева Юлия Евгеньевна",
+"title": "Процессуальный и ведомственный контроль за законностью принятия процессуальных решений, влекущих реабилитацию подозреваемого (обвиняемого), подсудимого: теория и практика организации в органах предварительного следствия в системе МВД России",
+"t": [
+"upp095"
+],
+"n": "pa342c7"
+},
+{
 "slug": "/article/n/sootnoshenie-ugolovno-protsessualnyh-polnomochiy-nachalnika-organa-doznaniya-i-nachalnika-podrazdeleniya-doznaniya",
 "year": "2024",
 "vak": true,
@@ -2325,6 +4166,37 @@
 "n": "pf89716"
 },
 {
+"slug": "/article/n/k-voprosu-o-problemah-realizatsii-protsessualnyh-polnomochiy-nachalnika-organa-doznaniya-v-organah-vnutrennih-del",
+"year": "2024",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Горчакова Екатерина Витальевна",
+"title": "К ВОПРОСУ О ПРОБЛЕМАХ РЕАЛИЗАЦИИ ПРОЦЕССУАЛЬНЫХ ПОЛНОМОЧИЙ НАЧАЛЬНИКА ОРГАНА ДОЗНАНИЯ В ОРГАНАХ ВНУТРЕННИХ ДЕЛ",
+"t": [
+"upp096",
+"upp008"
+],
+"n": "p05aba7"
+},
+{
+"slug": "/article/n/aktualnye-voprosy-realizatsii-polnomochiy-doznavatelya-organa-doznaniya-v-hode-predvaritelnogo-rassledovaniya",
+"year": "2023",
+"vak": true,
+"journal": "Аграрное и земельное право",
+"authors": "Корнелюк Оксана Владимировна; Самигуллин Рафис Минниханович",
+"title": "АКТУАЛЬНЫЕ ВОПРОСЫ РЕАЛИЗАЦИИ ПОЛНОМОЧИЙ ДОЗНАВАТЕЛЯ, ОРГАНА ДОЗНАНИЯ В ХОДЕ ПРЕДВАРИТЕЛЬНОГО РАССЛЕДОВАНИЯ",
+"t": [
+"upp096",
+"upp007",
+"upp008",
+"upp030",
+"upp031",
+"upp033",
+"upp044"
+],
+"n": "p75fa90"
+},
+{
 "slug": "/article/n/kriterii-dlya-razgranicheniya-statusov-poterpevshego-i-grazhdanskogo-isttsa-kak-uchastnikov-ugolovnogo-sudoproizvodstva",
 "year": "2026",
 "vak": false,
@@ -2333,6 +4205,7 @@
 "title": "Критерии для разграничения статусов потерпевшего и гражданского истца как участников уголовного судопроизводства",
 "t": [
 "upp097",
+"upp099",
 "upp100",
 "upp098"
 ],
@@ -2352,6 +4225,30 @@
 "n": "p75f9d1"
 },
 {
+"slug": "/article/n/vozrastnaya-nedostatochnost-nesovershennoletnih-poterpevshih-v-kontekste-realizatsii-imi-svoego-protsessualnogo-statusa",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Саратовской государственной юридической академии",
+"authors": "Чеботарева Татьяна Владимировна",
+"title": "Возрастная недостаточность несовершеннолетних потерпевших в контексте реализации ими своего процессуального статуса",
+"t": [
+"upp097"
+],
+"n": "p3ce457"
+},
+{
+"slug": "/article/n/nekotorye-problemy-poterpevshego-kak-grazhdanskogo-isttsa",
+"year": "2023",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Левченко О. В.",
+"title": "НЕКОТОРЫЕ ПРОБЛЕМЫ ПОТЕРПЕВШЕГО КАК ГРАЖДАНСКОГО ИСТЦА",
+"t": [
+"upp097"
+],
+"n": "p239efb"
+},
+{
 "slug": "/article/n/zaschita-i-realizatsiya-prav-uchastnikov-ugolovnogo-sudoproizvodstva-po-delam-chastnogo-obvineniya",
 "year": "2026",
 "vak": true,
@@ -2364,16 +4261,29 @@
 "n": "p0d8761"
 },
 {
-"slug": "/article/n/voprosy-sovershenstvovaniya-ugolovno-protsessualnogo-statusa-uchastnikov-ugolovnogo-sudoproizvodstva-i-ih-klassifikatsii",
+"slug": "/article/n/pravo-poterpevshego-i-chastnogo-obvinitelya-na-primirenie-s-litsom-v-otnoshenii-kotorogo-osuschestvlyaetsya-ugolovnoe-presledovanie",
 "year": "2024",
 "vak": true,
-"journal": "Вестник Воронежского института МВД России",
-"authors": "Трухачев Вадим Викторович; Ахмедов Ульви Низами Оглы; Кретинин Анатолий Витальевич",
-"title": "ВОПРОСЫ СОВЕРШЕНСТВОВАНИЯ УГОЛОВНО-ПРОЦЕССУАЛЬНОГО СТАТУСА УЧАСТНИКОВ УГОЛОВНОГО СУДОПРОИЗВОДСТВА И ИХ КЛАССИФИКАЦИИ",
+"journal": "Виктимология",
+"authors": "Минулин Р. М.",
+"title": "Право потерпевшего и частного обвинителя на примирение с лицом, в отношении которого осуществляется уголовное преследование",
+"t": [
+"upp098",
+"upp009"
+],
+"n": "p09da46"
+},
+{
+"slug": "/article/n/retrospektivnyy-analiz-transformatsii-statusov-uchastnikov-ugolovnogo-sudoproizvodstva",
+"year": "2026",
+"vak": true,
+"journal": "Научный вестник Орловского юридического института МВД России имени В. В. Лукьянова",
+"authors": "Потапова Елена Сергеевна",
+"title": "Ретроспективный анализ трансформации статусов участников уголовного судопроизводства",
 "t": [
 "upp098"
 ],
-"n": "p8c0095"
+"n": "p7ce867"
 },
 {
 "slug": "/article/n/aktualnye-problemy-grazhdanskogo-iska-v-ugolovnom-sudoproizvodstve-rossiyskoy-federatsii",
@@ -2398,6 +4308,31 @@
 "upp099"
 ],
 "n": "pb35f28"
+},
+{
+"slug": "/article/n/osobennosti-soderzhaniya-instituta-predstavitelstva-inostrannyh-grazhdan-v-ugolovnom-sudoproizvodstve-rossiyskoy-federatsii",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Сибирского юридического института МВД России",
+"authors": "Александр Николаевич Тепленко",
+"title": "ОСОБЕННОСТИ СОДЕРЖАНИЯ ИНСТИТУТА ПРЕДСТАВИТЕЛЬСТВА ИНОСТРАННЫХ ГРАЖДАН В УГОЛОВНОМ СУДОПРОИЗВОДСТВЕ РОССИЙСКОЙ ФЕДЕРАЦИИ",
+"t": [
+"upp100"
+],
+"n": "pfa2824"
+},
+{
+"slug": "/article/n/predstavitelstvo-inostrannogo-grazhdanina-v-ugolovnomsudoproizvodstve-rossii",
+"year": "2025",
+"vak": false,
+"journal": "Социальное управление",
+"authors": "Майоров А. В.",
+"title": "Представительство иностранного гражданина в уголовномьсудопроизводстве России",
+"t": [
+"upp100",
+"upp106"
+],
+"n": "p607ed6"
 },
 {
 "slug": "/article/n/napravleniya-sovershenstvovaniya-sredstv-obespecheniya-nadlezhaschego-ispolneniya-obyazannostey-uchastnikov-ugolovnogo",
@@ -2427,6 +4362,32 @@
 "n": "pe00d88"
 },
 {
+"slug": "/article/n/o-predraspolozhennosti-stati-217-ugolovno-protsessualnogo-kodeksa-rossiyskoy-federatsii-k-zloupotrebleniyam-so-storony-zaschity",
+"year": "2025",
+"vak": true,
+"journal": "Юристъ - Правоведъ",
+"authors": "Россинский Сергей Борисович",
+"title": "О ПРЕДРАСПОЛОЖЕННОСТИ СТАТЬИ 217 УГОЛОВНО-ПРОЦЕССУАЛЬНОГО КОДЕКСА РОССИЙСКОЙ ФЕДЕРАЦИИ К ЗЛОУПОТРЕБЛЕНИЯМ СО СТОРОНЫ ЗАЩИТЫ",
+"t": [
+"upp101"
+],
+"n": "p43dfb4"
+},
+{
+"slug": "/article/n/k-voprosu-neravenstva-pri-realizatsii-zaschitnikom-ugolovno-protsessualnogo-printsipa-sostyazatelnosti-storon",
+"year": "2025",
+"vak": true,
+"journal": "Аграрное и земельное право",
+"authors": "Цветкова Елена Владимировна",
+"title": "К ВОПРОСУ НЕРАВЕНСТВА ПРИ РЕАЛИЗАЦИИ ЗАЩИТНИКОМ УГОЛОВНО-ПРОЦЕССУАЛЬНОГО ПРИНЦИПА СОСТЯЗАТЕЛЬНОСТИ СТОРОН",
+"t": [
+"upp101",
+"upp105",
+"upp083"
+],
+"n": "p92ec99"
+},
+{
 "slug": "/article/n/takticheskie-aspekty-preodoleniya-kontrsuggestii-podozrevaemyh-obvinyaemyh-v-hode-proizvodstva-predvaritelnogo-rassledovaniya",
 "year": "2025",
 "vak": true,
@@ -2452,9 +4413,53 @@
 "title": "О ПРОЦЕССУАЛЬНОМ СТАТУСЕ УЧАСТНИКОВ ПРОВЕРКИ СООБЩЕНИЯ О ПРЕСТУПЛЕНИИ",
 "t": [
 "upp102",
+"upp108",
 "upp098"
 ],
 "n": "p81e51b"
+},
+{
+"slug": "/article/n/osobennosti-pravovogo-statusa-uchastnikov-ugolovnogo-protsessa-osuschestvlyayuschih-predvaritelnoe-rassledovanie",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Удмуртского университета. Серия «Экономика и право»",
+"authors": "Зарипов Фанис Фаварисович",
+"title": "ОСОБЕННОСТИ ПРАВОВОГО СТАТУСА УЧАСТНИКОВ УГОЛОВНОГО ПРОЦЕССА, ОСУЩЕСТВЛЯЮЩИХ ПРЕДВАРИТЕЛЬНОЕ РАССЛЕДОВАНИЕ",
+"t": [
+"upp102",
+"upp103",
+"upp030",
+"upp031",
+"upp033",
+"upp044",
+"upp098"
+],
+"n": "pcb9a0b"
+},
+{
+"slug": "/article/n/tendentsii-sovershenstvovaniya-protsessualnogo-statusa-podozrevaemogo-v-rossiyskom-ugolovnom-sudoproizvodstve-i-nekotorye",
+"year": "2024",
+"vak": true,
+"journal": "Юридический вестник Дагестанского государственного университета",
+"authors": "Поликарпова Ольга Сергеевна",
+"title": "Тенденции совершенствования процессуального статуса подозреваемого в российском уголовном судопроизводстве и некоторые препятствия к его реализации",
+"t": [
+"upp102"
+],
+"n": "p781734"
+},
+{
+"slug": "/article/n/o-prave-i-sredstvah-otdelnyh-uchastnikov-ugolovnogo-protsessa-sobirat-dokazatelstva",
+"year": "2023",
+"vak": true,
+"journal": "Юристъ - Правоведъ",
+"authors": "Черников С. В.",
+"title": "О ПРАВЕ И СРЕДСТВАХ ОТДЕЛЬНЫХ УЧАСТНИКОВ УГОЛОВНОГО ПРОЦЕССА СОБИРАТЬ ДОКАЗАТЕЛЬСТВА",
+"t": [
+"upp102",
+"upp098"
+],
+"n": "p65bfa1"
 },
 {
 "slug": "/article/n/disproportsii-v-protsessualnyh-pravah-poterpevshih-i-obvinyaemyh-puti-ih-ustraneniya",
@@ -2493,17 +4498,42 @@
 "n": "pa230ff"
 },
 {
-"slug": "/article/n/k-voprosu-neravenstva-pri-realizatsii-zaschitnikom-ugolovno-protsessualnogo-printsipa-sostyazatelnosti-storon",
-"year": "2025",
+"slug": "/article/n/o-protsessualnyh-garantiyah-dlya-uyazvimyh-lits-podozrevaemyh-obvinyaemyh-v-sovershenii-prestupleniya-mezhdunarodno-evropeyskiy",
+"year": "2024",
 "vak": true,
-"journal": "Аграрное и земельное право",
-"authors": "Цветкова Елена Владимировна",
-"title": "К ВОПРОСУ НЕРАВЕНСТВА ПРИ РЕАЛИЗАЦИИ ЗАЩИТНИКОМ УГОЛОВНО-ПРОЦЕССУАЛЬНОГО ПРИНЦИПА СОСТЯЗАТЕЛЬНОСТИ СТОРОН",
+"journal": "Пробелы в российском законодательстве. Юридический журнал",
+"authors": "Курбатова С. М.",
+"title": "О ПРОЦЕССУАЛЬНЫХ ГАРАНТИЯХ ДЛЯ УЯЗВИМЫХ ЛИЦ, ПОДОЗРЕВАЕМЫХ, ОБВИНЯЕМЫХ В СОВЕРШЕНИИ ПРЕСТУПЛЕНИЯ: МЕЖДУНАРОДНО-ЕВРОПЕЙСКИЙ АСПЕКТ",
 "t": [
-"upp105",
-"upp083"
+"upp104"
 ],
-"n": "p92ec99"
+"n": "p09a17d"
+},
+{
+"slug": "/article/n/osobennosti-protsessualnogo-polozheniya-advokata-nesovershennoletnego-uchastnika-ugolovnogo-sudoproizvodstva",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Восточно-Сибирского института МВД России",
+"authors": "Трексель Вера Анатольевна",
+"title": "ОСОБЕННОСТИ ПРОЦЕССУАЛЬНОГО ПОЛОЖЕНИЯ АДВОКАТА НЕСОВЕРШЕННОЛЕТНЕГО УЧАСТНИКА УГОЛОВНОГО СУДОПРОИЗВОДСТВА",
+"t": [
+"upp104",
+"upp041",
+"upp098"
+],
+"n": "p423240"
+},
+{
+"slug": "/article/n/protsessualnye-i-inye-sredstva-obespecheniya-bezopasnosti-podozrevaemogo-obvinyaemogo-i-litsa-v-otnoshenii-kotorogo-ugolovnoe-delo",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Волгоградской академии МВД России",
+"authors": "Екатерина Андреевна Олейник",
+"title": "ПРОЦЕССУАЛЬНЫЕ И ИНЫЕ СРЕДСТВА ОБЕСПЕЧЕНИЯ БЕЗОПАСНОСТИ ПОДОЗРЕВАЕМОГО, ОБВИНЯЕМОГО И ЛИЦА, В ОТНОШЕНИИ КОТОРОГО УГОЛОВНОЕ ДЕЛО ВЫДЕЛЕНО В ОТДЕЛЬНОЕ ПРОИЗВОДСТВО В СВЯЗИ С ЗАКЛЮЧЕНИЕМ С НИМ ДОСУДЕБНОГО СОГЛАШЕНИЯ О СОТРУДНИЧЕСТВЕ",
+"t": [
+"upp104"
+],
+"n": "p1c373e"
 },
 {
 "slug": "/article/n/uchastie-zaschitnika-v-period-deystviya-ustava-ugolovnogo-sudoproizvodstva-1864-goda",
@@ -2518,6 +4548,45 @@
 "n": "p19a2ac"
 },
 {
+"slug": "/article/n/priroda-pravootnosheniy-podsudimogo-i-zaschitnika-na-etape-proizvodstva-v-sude-pervoy-instantsii",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Сибирского юридического института МВД России",
+"authors": "Наталья Викторовна Ткачева",
+"title": "ПРИРОДА ПРАВООТНОШЕНИЙ ПОДСУДИМОГО И ЗАЩИТНИКА НА ЭТАПЕ ПРОИЗВОДСТВА В СУДЕ ПЕРВОЙ ИНСТАНЦИИ",
+"t": [
+"upp105",
+"upp058",
+"upp061"
+],
+"n": "p24a369"
+},
+{
+"slug": "/article/n/o-pravovyh-sredstvah-okazaniya-zaschitnikom-kvalifitsirovannoy-yuridicheskoy-pomoschi-pri-primenenii-mer-protsessualnogo-1",
+"year": "2024",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Жукова Полина Станиславовна; Пивень Алексей Васильевич; Чирьев Илья Сергеевич",
+"title": "О ПРАВОВЫХ СРЕДСТВАХ ОКАЗАНИЯ ЗАЩИТНИКОМ КВАЛИФИЦИРОВАННОЙ ЮРИДИЧЕСКОЙ ПОМОЩИ ПРИ ПРИМЕНЕНИИ МЕР ПРОЦЕССУАЛЬНОГО ПРИНУЖДЕНИЯ",
+"t": [
+"upp105",
+"upp127"
+],
+"n": "pa89f2f"
+},
+{
+"slug": "/article/n/zaschitnik-kak-subekt-falsifikatsii-dokazatelstv-po-ugolovnomu-delu",
+"year": "2025",
+"vak": true,
+"journal": "Ex jure",
+"authors": "Кирова Т. А.; Струков А. В.",
+"title": "Защитник как субъект фальсификации доказательств по уголовному делу",
+"t": [
+"upp105"
+],
+"n": "pa99be3"
+},
+{
 "slug": "/article/n/figura-chistogo-grazhdanskogo-otvetchika-v-rossiyskom-ugolovnom-protsesse",
 "year": "2023",
 "vak": true,
@@ -2530,16 +4599,16 @@
 "n": "p1f7469"
 },
 {
-"slug": "/article/n/predstavitelstvo-inostrannogo-grazhdanina-v-ugolovnomsudoproizvodstve-rossii",
-"year": "2025",
-"vak": false,
-"journal": "Социальное управление",
-"authors": "Майоров А. В.",
-"title": "Представительство иностранного гражданина в уголовномьсудопроизводстве России",
+"slug": "/article/n/grazhdanskiy-isk-v-ugolovnom-dele-otdelnye-ugolovno-protsessualnye-aspekty",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Сургутского государственного университета",
+"authors": "Усольцев Ю. М.",
+"title": "ГРАЖДАНСКИЙ ИСК В УГОЛОВНОМ ДЕЛЕ: ОТДЕЛЬНЫЕ УГОЛОВНО-ПРОЦЕССУАЛЬНЫЕ АСПЕКТЫ",
 "t": [
 "upp106"
 ],
-"n": "p607ed6"
+"n": "p36a703"
 },
 {
 "slug": "/article/n/osobennosti-soderzhaniya-operativno-rozysknoy-harakteristiki-primeneniya-mer-bezopasnosti-v-otnoshenii-uchastnikov-ugolovnogo",
@@ -2568,18 +4637,29 @@
 "n": "p9228c8"
 },
 {
-"slug": "/article/n/problemy-obespecheniya-prav-svideteley-kak-uchastnikov-ugolovnogo-sudoproizvodstva-pri-proizvodstve-otdelnyh-sledstvennyh-deystviy",
+"slug": "/article/n/kriminologicheskie-aspekty-instituta-zaschity-svideteley",
 "year": "2023",
 "vak": true,
-"journal": "Международный научно-исследовательский журнал",
-"authors": "Самойлов А. Ю.",
-"title": "ПРОБЛЕМЫ ОБЕСПЕЧЕНИЯ ПРАВ СВИДЕТЕЛЕЙ КАК УЧАСТНИКОВ УГОЛОВНОГО СУДОПРОИЗВОДСТВА ПРИ ПРОИЗВОДСТВЕ ОТДЕЛЬНЫХ СЛЕДСТВЕННЫХ ДЕЙСТВИЙ",
+"journal": "Вестник Волжского университета им. В. Н. Татищева",
+"authors": "Надараиа Заза Георгиевич; Асташкевич Тимофей Евгеньевич",
+"title": "КРИМИНОЛОГИЧЕСКИЕ АСПЕКТЫ ИНСТИТУТА ЗАЩИТЫ СВИДЕТЕЛЕЙ",
+"t": [
+"upp108"
+],
+"n": "p886e80"
+},
+{
+"slug": "/article/n/otdelnye-problemy-obespecheniya-bezopasnosti-uchastnikov-ugolovnogo-sudoproizvodstva",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Восточно-Сибирского института МВД России",
+"authors": "Назырова Наталья Александровна",
+"title": "ОТДЕЛЬНЫЕ ПРОБЛЕМЫ ОБЕСПЕЧЕНИЯ БЕЗОПАСНОСТИ УЧАСТНИКОВ УГОЛОВНОГО СУДОПРОИЗВОДСТВА",
 "t": [
 "upp108",
-"upp039",
 "upp098"
 ],
-"n": "p733591"
+"n": "p9e633d"
 },
 {
 "slug": "/article/n/osobennosti-protsessualnogo-statusa-eksperta-i-spetsialista-v-ugolovnom-sudoproizvodstve",
@@ -2604,6 +4684,32 @@
 "upp109"
 ],
 "n": "pbaa9d0"
+},
+{
+"slug": "/article/n/problemy-ponyatiynogo-apparata-i-pravovogo-regulirovaniya-formy-zaklyucheniya-spetsialista-v-ugolovnom-sudoproizvodstve",
+"year": "2023",
+"vak": true,
+"journal": "Baikal Research Journal",
+"authors": "Лукошкина Светлана Валерьевна",
+"title": "ПРОБЛЕМЫ ПОНЯТИЙНОГО АППАРАТА И ПРАВОВОГО РЕГУЛИРОВАНИЯ ФОРМЫ ЗАКЛЮЧЕНИЯ СПЕЦИАЛИСТА В УГОЛОВНОМ СУДОПРОИЗВОДСТВЕ",
+"t": [
+"upp109",
+"upp121"
+],
+"n": "p3c6508"
+},
+{
+"slug": "/article/n/problemy-realizatsii-printsipa-sostyazatelnosti-storon-pri-naznachenii-sudebno-meditsinskoy-ekspertizy-po-ugolovnym-delam",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Самарского юридического института",
+"authors": "Свидерский Олег Алексеевич; Владимиров Сергей Владиславович",
+"title": "ПРОБЛЕМЫ РЕАЛИЗАЦИИ ПРИНЦИПА СОСТЯЗАТЕЛЬНОСТИ СТОРОН ПРИ НАЗНАЧЕНИИ СУДЕБНО-МЕДИЦИНСКОЙ ЭКСПЕРТИЗЫ ПО УГОЛОВНЫМ ДЕЛАМ",
+"t": [
+"upp109",
+"upp083"
+],
+"n": "pd14c14"
 },
 {
 "slug": "/article/n/o-problemah-predostavleniya-perevodchika-otdelnym-uchastnikam-proverki-soobscheniya-o-prestuplenii",
@@ -2632,6 +4738,42 @@
 "n": "pdf8c79"
 },
 {
+"slug": "/article/n/teoretiko-pravovye-aspekty-uchastiya-perevodchika-v-ugolovnom-sudoproizvodstve",
+"year": "2026",
+"vak": true,
+"journal": "Научный вестник Орловского юридического института МВД России имени В. В. Лукьянова",
+"authors": "Морозова Наталия Владимировна; Абрамова Любовь Леонидовна",
+"title": "Теоретико-правовые аспекты участия переводчика в уголовном судопроизводстве",
+"t": [
+"upp110"
+],
+"n": "p381ca0"
+},
+{
+"slug": "/article/n/edinyy-reestr-sudebnyh-perevodchikov-kak-organizatsionno-pravovaya-forma-obespecheniya-ih-uchastiya-v-ugolovnom-sudoproizvodstve",
+"year": "2024",
+"vak": true,
+"journal": "Проблемы экономики и юридической практики",
+"authors": "Торбин Ю. Г.",
+"title": "ЕДИНЫЙ РЕЕСТР СУДЕБНЫХ ПЕРЕВОДЧИКОВ КАК ОРГАНИЗАЦИОННО-ПРАВОВАЯ ФОРМА ОБЕСПЕЧЕНИЯ ИХ УЧАСТИЯ В УГОЛОВНОМ СУДОПРОИЗВОДСТВЕ",
+"t": [
+"upp110"
+],
+"n": "p19ec40"
+},
+{
+"slug": "/article/n/vliyanie-otsutstviya-dolzhnogo-protsessualnogo-regulirovaniya-uchastiya-perevodchika-na-prinyatie-itogovogo-resheniya-po-ugolovnomu",
+"year": "2026",
+"vak": true,
+"journal": "Вестник Волгоградской академии МВД России",
+"authors": "Людмила Владимировна Попова; Елена Вильгельмовна Вологина; Сергей Борисович Цветков",
+"title": "ВЛИЯНИЕ ОТСУТСТВИЯ ДОЛЖНОГО ПРОЦЕССУАЛЬНОГО РЕГУЛИРОВАНИЯ УЧАСТИЯ ПЕРЕВОДЧИКА НА ПРИНЯТИЕ ИТОГОВОГО РЕШЕНИЯ ПО УГОЛОВНОМУ ДЕЛУ",
+"t": [
+"upp110"
+],
+"n": "pb45d1f"
+},
+{
 "slug": "/article/n/genezis-sovremennoe-sostoyanie-i-perspektivy-sovershenstvovaniya-instituta-ponyatyh-v-otechestvennom-ugolovnom-sudoproizvodstve",
 "year": "2024",
 "vak": true,
@@ -2657,17 +4799,28 @@
 "n": "p402d86"
 },
 {
-"slug": "/article/n/obstoyatelstva-podlezhaschie-dokazyvaniyu-pri-rassledovanii-vzyatochnichestva-v-sfere-gosudarstvennyh-i-munitsipalnyh-zakupok",
+"slug": "/article/n/problemy-primeneniya-instituta-otvodov-v-otechestvennom-ugolovnom-protsesse",
 "year": "2024",
 "vak": true,
-"journal": "Закон и право",
-"authors": "Юрий Григорьевич Торбин",
-"title": "Обстоятельства, подлежащие доказыванию при расследовании взяточничества в сфере государственных и муниципальных закупок",
+"journal": "Право и государство: теория и практика",
+"authors": "Наметкин Денис Валерьевич; Федулов Андрей Владимирович",
+"title": "ПРОБЛЕМЫ ПРИМЕНЕНИЯ ИНСТИТУТА ОТВОДОВ В ОТЕЧЕСТВЕННОМ УГОЛОВНОМ ПРОЦЕССЕ",
 "t": [
-"upp113",
-"upp017"
+"upp112"
 ],
-"n": "pdfc6ac"
+"n": "p797b2f"
+},
+{
+"slug": "/article/n/ponyatie-psihicheskih-rasstroystv-ne-isklyuchayuschih-vmenyaemost-v-ugolovnom-sudoproizvodstve",
+"year": "2024",
+"vak": true,
+"journal": "Право и управление",
+"authors": "Гордеев Дмитрий Станиславович; Стешич Елена Сергеевна",
+"title": "ПОНЯТИЕ ПСИХИЧЕСКИХ РАССТРОЙСТВ, НЕ ИСКЛЮЧАЮЩИХ ВМЕНЯЕМОСТЬ, В УГОЛОВНОМ СУДОПРОИЗВОДСТВЕ",
+"t": [
+"upp112"
+],
+"n": "pab4e32"
 },
 {
 "slug": "/article/n/teoretiko-prakticheskiy-podhod-k-opredeleniyu-predmeta-i-predelov-dokazyvaniya-po-ugolovnomu-delu",
@@ -2682,6 +4835,30 @@
 "n": "p097cea"
 },
 {
+"slug": "/article/n/opredelenie-predmeta-i-predelov-dokazyvaniya-dlya-ustanovleniya-tseley-ugolovnogo-presledovaniya",
+"year": "2024",
+"vak": true,
+"journal": "Право и управление",
+"authors": "Кумышева Марина Кадировна; Сеногноев Андрей Владиславович",
+"title": "ОПРЕДЕЛЕНИЕ ПРЕДМЕТА И ПРЕДЕЛОВ ДОКАЗЫВАНИЯ ДЛЯ УСТАНОВЛЕНИЯ ЦЕЛЕЙ УГОЛОВНОГО ПРЕСЛЕДОВАНИЯ",
+"t": [
+"upp113"
+],
+"n": "pc4de24"
+},
+{
+"slug": "/article/n/sootnoshenie-predmeta-i-predelov-dokazyvaniya-v-ugolovnom-protsesse-rossii",
+"year": "2024",
+"vak": true,
+"journal": "Закон и право",
+"authors": "Магомедали Магомедович Магомедов",
+"title": "Соотношение предмета и пределов доказывания в уголовном процессе России",
+"t": [
+"upp113"
+],
+"n": "p57ce40"
+},
+{
 "slug": "/article/n/ponyatie-svoystva-i-klassifikatsiya-dokazatelstv-v-ugolovnom-protsesse-1",
 "year": "2026",
 "vak": false,
@@ -2690,6 +4867,7 @@
 "title": "Понятие, свойства и классификация доказательств в уголовном процессе",
 "t": [
 "upp114",
+"upp115",
 "upp014"
 ],
 "n": "p78169f"
@@ -2703,6 +4881,7 @@
 "title": "ПОНЯТИЕ, СВОЙСТВА И КЛАССИФИКАЦИЯ ДОКАЗАТЕЛЬСТВ В УГОЛОВНОМ ПРОЦЕССЕ",
 "t": [
 "upp114",
+"upp115",
 "upp014"
 ],
 "n": "p026ea9"
@@ -2732,6 +4911,20 @@
 "n": "pda6c91"
 },
 {
+"slug": "/article/n/doktrinalnye-podhody-k-klassifikatsii-narusheniy-ugolovno-protsessualnogo-zakona-vlekuschih-nedopustimost-dokazatelstv",
+"year": "2026",
+"vak": true,
+"journal": "Вестник экономики, права и социологии",
+"authors": "Папикян Андраник Паруйрович",
+"title": "Доктринальные подходы к классификации нарушений уголовно-процессуального закона, влекущих недопустимость доказательств",
+"t": [
+"upp115",
+"upp014",
+"upp114"
+],
+"n": "p0807e1"
+},
+{
 "slug": "/article/n/sredstva-dokazyvaniya-podozreniya-v-ugolovnom-protsesse",
 "year": "2025",
 "vak": true,
@@ -2754,6 +4947,30 @@
 "upp116"
 ],
 "n": "p9e1c1b"
+},
+{
+"slug": "/article/n/evolyutsiya-dokazatelstv-i-dokazyvaniya-v-otechestvennom-ugolovnom-protsesse",
+"year": "2023",
+"vak": true,
+"journal": "Пробелы в российском законодательстве. Юридический журнал",
+"authors": "Зайцев Никита Иванович",
+"title": "Эволюция доказательств и доказывания в отечественном уголовном процессе",
+"t": [
+"upp116"
+],
+"n": "p4635f7"
+},
+{
+"slug": "/article/n/protsessualnye-sredstva-dokazyvaniya-do-nachala-ugolovnogo-presledovaniya",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Сибирского юридического института МВД России",
+"authors": "Юрий Анатольевич Огарь",
+"title": "ПРОЦЕССУАЛЬНЫЕ СРЕДСТВА ДОКАЗЫВАНИЯ ДО НАЧАЛА УГОЛОВНОГО ПРЕСЛЕДОВАНИЯ",
+"t": [
+"upp116"
+],
+"n": "pd6bd51"
 },
 {
 "slug": "/article/n/naliz-prav-zaschitnika-kak-subekta-dokazyvaniya-v-kontekste-ugolovno-protsessualnogo-zakonodatelstva",
@@ -2779,6 +4996,18 @@
 "upp016"
 ],
 "n": "pdbb155"
+},
+{
+"slug": "/article/n/dokazyvanie-po-ugolovnym-delam-kak-paradigma-protsessualnoy-deyatelnosti-ego-subektov",
+"year": "2024",
+"vak": true,
+"journal": "Аграрное и земельное право",
+"authors": "Антипов Андрей Юрьевич; Орлов Николай Леонидович",
+"title": "ДОКАЗЫВАНИЕ ПО УГОЛОВНЫМ ДЕЛАМ, КАК ПАРАДИГМА ПРОЦЕССУАЛЬНОЙ ДЕЯТЕЛЬНОСТИ ЕГО СУБЪЕКТОВ",
+"t": [
+"upp117"
+],
+"n": "p760e39"
 },
 {
 "slug": "/article/n/k-voprosu-o-nekotoryh-zapretah-na-ispolzovanie-nedopustimyh-dokazatelstv-v-hode-otsenki-pokazaniy-obvinyaemogo-i-podozrevaemogo",
@@ -2856,6 +5085,31 @@
 "n": "p60c5a1"
 },
 {
+"slug": "/article/n/dopustimost-pokazaniy-nesovershennoletnego-svidetelya-v-ugolovnom-sudoproizvodstve",
+"year": "2024",
+"vak": true,
+"journal": "Юридическая наука",
+"authors": "Варламова Алина Андреевна; Зашляпин Леонид Александрович",
+"title": "Допустимость показаний несовершеннолетнего свидетеля в уголовном судопроизводстве",
+"t": [
+"upp120",
+"upp041"
+],
+"n": "p18cfe9"
+},
+{
+"slug": "/article/n/dopustimyy-predmet-pokazaniy-sledovatelya-doznavatelya-v-ugolovnom-protsesse",
+"year": "2025",
+"vak": true,
+"journal": "Известия Тульского государственного университета. Экономические и юридические науки",
+"authors": "Киселева Александра Алексеевна",
+"title": "ДОПУСТИМЫЙ ПРЕДМЕТ ПОКАЗАНИЙ СЛЕДОВАТЕЛЯ (ДОЗНАВАТЕЛЯ) В УГОЛОВНОМ ПРОЦЕССЕ",
+"t": [
+"upp120"
+],
+"n": "p71212e"
+},
+{
 "slug": "/article/n/realizatsiya-kompetentsiy-spetsialistom-pri-formirovanii-zaklyucheniya-i-dache-pokazaniy-v-ugolovnom-protsesse",
 "year": "2026",
 "vak": true,
@@ -2894,6 +5148,18 @@
 "upp085"
 ],
 "n": "p05c7e3"
+},
+{
+"slug": "/article/n/elektronnye-dokazatelstva-v-otsutstvie-elektronnogo-ugolovnogo-dela-anahronizm-ugolovnogo-sudoproizvodstva",
+"year": "2026",
+"vak": true,
+"journal": "Всероссийский криминологический журнал",
+"authors": "Вилкова Татьяна Юрьевна; Самсонов Павел Александрович",
+"title": "Электронные доказательства в отсутствие электронного уголовного дела: анахронизм уголовного судопроизводства",
+"t": [
+"upp122"
+],
+"n": "p325a58"
 },
 {
 "slug": "/article/n/pravosudie-vslepuyu-eho-sudebnogo-razbiratelstva-formirovanie-protokola-audiozapis-i-vyzovy-dlya-legitimnosti",
@@ -2946,6 +5212,18 @@
 "n": "p56df68"
 },
 {
+"slug": "/article/n/k-voprosu-o-protsessualnoy-forme-i-dokazatelstvennom-znachenii-inyh-dokumentov-v-tom-chisle-poluchennyh-s-ispolzovaniem-spetsialnyh",
+"year": "2024",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Воронин Вадим Вениаминович; Царева Юлия Викторовна",
+"title": "К ВОПРОСУ О ПРОЦЕССУАЛЬНОЙ ФОРМЕ И ДОКАЗАТЕЛЬСТВЕННОМ ЗНАЧЕНИИ ИНЫХ ДОКУМЕНТОВ, В ТОМ ЧИСЛЕ ПОЛУЧЕННЫХ С ИСПОЛЬЗОВАНИЕМ СПЕЦИАЛЬНЫХ ЗНАНИЙ",
+"t": [
+"upp124"
+],
+"n": "pcdd624"
+},
+{
 "slug": "/article/n/razvitie-pravovogo-regulirovaniya-inyh-mer-protsessualnogo-prinuzhdeniya-v-kontekste-zaschity-konstitutsionnyh-prav-lichnosti",
 "year": "2026",
 "vak": true,
@@ -2956,20 +5234,6 @@
 "upp125"
 ],
 "n": "pda8c12"
-},
-{
-"slug": "/article/n/mery-prinuzhdeniya-primenyaemye-k-svidetelyu",
-"year": "2025",
-"vak": false,
-"journal": "Вестник науки",
-"authors": "Петров Л. Л.",
-"title": "МЕРЫ ПРИНУЖДЕНИЯ, ПРИМЕНЯЕМЫЕ К СВИДЕТЕЛЮ",
-"t": [
-"upp125",
-"upp127",
-"upp022"
-],
-"n": "p3c0afe"
 },
 {
 "slug": "/article/n/ispolzovanie-uchrezhdeniy-ispolnyayuschih-ugolovnye-nakazaniya-dlya-soderzhaniya-pod-strazhey-podozrevaemyh-i-obvinyaemyh-v",
@@ -2996,16 +5260,40 @@
 "n": "p5118d0"
 },
 {
-"slug": "/article/n/verny-li-pravovaya-priroda-i-protsessualnyy-poryadok-vozmescheniya-vreda-prichinennogo-nezakonnymi-deystviyami-v-svyazi-s",
+"slug": "/article/n/nekotorye-garantii-prav-podozrevaemogo-i-problemy-ih-obespecheniya-pri-zaderzhanii-litsa-po-podozreniyu-v-sovershenii-prestupleniya",
+"year": "2025",
+"vak": true,
+"journal": "Научный вестник Орловского юридического института МВД России имени В. В. Лукьянова",
+"authors": "Золочевская Любовь Сергеевна",
+"title": "НЕКОТОРЫЕ ГАРАНТИИ ПРАВ ПОДОЗРЕВАЕМОГО И ПРОБЛЕМЫ ИХ ОБЕСПЕЧЕНИЯ ПРИ ЗАДЕРЖАНИИ ЛИЦА ПО ПОДОЗРЕНИЮ В СОВЕРШЕНИИ ПРЕСТУПЛЕНИЯ",
+"t": [
+"upp126"
+],
+"n": "p6f9538"
+},
+{
+"slug": "/article/n/problematika-fakticheskogo-zaderzhaniya-podozrevaemogo-istoki-sostoyanie-perspektivy",
 "year": "2026",
 "vak": true,
-"journal": "Вестник Московского университета МВД России",
-"authors": "Тутынин Игорь Борисович",
-"title": "Верны ли правовая природа и процессуальный порядок возмещения вреда, причиненного незаконными действиями в связи с применением мер уголовно-процессуального принуждения?",
+"journal": "Научный вестник Омской академии МВД России",
+"authors": "Виктор Сергеевич Шадрин",
+"title": "Проблематика фактического задержания подозреваемого: истоки, состояние, перспективы",
 "t": [
-"upp127"
+"upp126"
 ],
-"n": "pd5b4be"
+"n": "p7e8aa5"
+},
+{
+"slug": "/article/n/o-nekotoryh-problemah-ischisleniya-sroka-zaderzhaniya-litsa-po-podozreniyu-v-sovershenii-prestupleniya",
+"year": "2023",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Барабаш Александр Сергеевич; Ретюнских Ирина Алексеевна",
+"title": "О НЕКОТОРЫХ ПРОБЛЕМАХ ИСЧИСЛЕНИЯ СРОКА ЗАДЕРЖАНИЯ ЛИЦА ПО ПОДОЗРЕНИЮ В СОВЕРШЕНИИ ПРЕСТУПЛЕНИЯ",
+"t": [
+"upp126"
+],
+"n": "p0bb495"
 },
 {
 "slug": "/article/n/rol-konstitutsionnogo-suda-rossiyskoy-federatsii-v-obespechenii-prav-lichnosti-pri-rassmotrenii-sudom-zhalob-na-deystviya",
@@ -3034,6 +5322,20 @@
 "n": "p338bf0"
 },
 {
+"slug": "/article/n/pravo-uchastnikov-ugolovnogo-sudoproizvodstva-na-obzhalovanie-v-dosudebnyh-stadiyah",
+"year": "2024",
+"vak": true,
+"journal": "Пробелы в российском законодательстве. Юридический журнал",
+"authors": "Францифоров Ю. В.",
+"title": "ПРАВО УЧАСТНИКОВ УГОЛОВНОГО СУДОПРОИЗВОДСТВА НА ОБЖАЛОВАНИЕ В ДОСУДЕБНЫХ СТАДИЯХ",
+"t": [
+"upp129",
+"upp051",
+"upp098"
+],
+"n": "p68457d"
+},
+{
 "slug": "/article/n/oplata-truda-perevodchika-v-hode-ugolovnogo-sudoproizvodstva-nekotorye-voprosy-trebuyut-razyasneniy",
 "year": "2024",
 "vak": true,
@@ -3058,6 +5360,42 @@
 "n": "pc11653"
 },
 {
+"slug": "/article/n/obespechenie-vzyskaniya-protsessualnyh-izderzhek-v-ugolovnom-sudoproizvodstve",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Волгоградской академии МВД России",
+"authors": "Ольга Викторовна Химичева; Игорь Борисович Тутынин",
+"title": "ОБЕСПЕЧЕНИЕ ВЗЫСКАНИЯ ПРОЦЕССУАЛЬНЫХ ИЗДЕРЖЕК В УГОЛОВНОМ СУДОПРОИЗВОДСТВЕ",
+"t": [
+"upp131"
+],
+"n": "pe302d9"
+},
+{
+"slug": "/article/n/integrirovannoe-znachenie-printsipa-spravedlivosti-vzyskaniya-ugolovno-protsessualnyh-izderzhek",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Саратовской государственной юридической академии",
+"authors": "Соловьева Наталья Алексеевна; Дехерт Андрей Андреевич",
+"title": "Интегрированное значение принципа справедливости взыскания уголовно-процессуальных издержек",
+"t": [
+"upp131"
+],
+"n": "pddb430"
+},
+{
+"slug": "/article/n/sudebnye-izderzhki-i-poryadok-ih-vzyskaniya-po-ugolovnym-delam-v-svete-rukovodyaschih-razyasneniy-plenuma-verhovnogo-suda-rsfsr",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Академии права и управления",
+"authors": "Бажанов Станислав Васильевич; Малахов Андрей Аркадьевич",
+"title": "СУДЕБНЫЕ ИЗДЕРЖКИ И ПОРЯДОК ИХ ВЗЫСКАНИЯ ПО УГОЛОВНЫМ ДЕЛАМ В СВЕТЕ РУКОВОДЯЩИХ РАЗЪЯСНЕНИЙ ПЛЕНУМА ВЕРХОВНОГО СУДА РСФСР (СССР) ВТОРОЙ ПОЛОВИНЫ ХХ ВЕКА",
+"t": [
+"upp131"
+],
+"n": "p6cf8ab"
+},
+{
 "slug": "/article/n/vozmeschenie-moralnogo-vreda-reabilitirovannym-litsam",
 "year": "2025",
 "vak": false,
@@ -3080,5 +5418,225 @@
 "upp132"
 ],
 "n": "p7353c8"
+},
+{
+"slug": "/article/n/pravo-na-reabilitatsiyu-v-kontekste-prava-na-ispolnenie-sudebnogo-resheniya",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Санкт-Петербургского университета. Право",
+"authors": "Алексеева Татьяна Михайловна",
+"title": "Право на реабилитацию в контексте права на исполнение судебного решения",
+"t": [
+"upp132"
+],
+"n": "pac6b8d"
+},
+{
+"slug": "/article/n/tsel-ugolovnogo-protsessa-kak-instrument-tipologii",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Омского университета. Серия «Право»",
+"authors": "Таричко Ирина Юрьевна",
+"title": "ЦЕЛЬ УГОЛОВНОГО ПРОЦЕССА КАК ИНСТРУМЕНТ ТИПОЛОГИИ",
+"t": [
+"upp001"
+],
+"manual": true,
+"n": "pe466d1"
+},
+{
+"slug": "/article/n/ugolovnyy-protsess-ponyatie-i-naznachenie",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Южно-Уральского государственного университета. Серия: Право",
+"authors": "Кубрикова Мария Евгеньевна",
+"title": "УГОЛОВНЫЙ ПРОЦЕСС: ПОНЯТИЕ И НАЗНАЧЕНИЕ",
+"t": [
+"upp001"
+],
+"manual": true,
+"n": "pe01bfe"
+},
+{
+"slug": "/article/n/zakonodatelnoe-zakreplenie-zadach-ugolovnogo-sudoproizvodstva-kak-sposob-obespecheniya-effektivnosti-ugolovno-protsessualnoy",
+"year": "2025",
+"vak": true,
+"journal": "Право и управление",
+"authors": "Григорьева Мария Леонидовна",
+"title": "ЗАКОНОДАТЕЛЬНОЕ ЗАКРЕПЛЕНИЕ ЗАДАЧ УГОЛОВНОГО СУДОПРОИЗВОДСТВА КАК СПОСОБ ОБЕСПЕЧЕНИЯ ЭФФЕКТИВНОСТИ УГОЛОВНО-ПРОЦЕССУАЛЬНОЙ ДЕЯТЕЛЬНОСТИ",
+"t": [
+"upp001"
+],
+"manual": true,
+"n": "p098148"
+},
+{
+"slug": "/article/n/nekotorye-problemy-obzhalovaniya-sudebnyh-resheniy-vynosimyh-na-dosudebnyh-stadiyah-ugolovnogo-protsessa",
+"year": "2026",
+"vak": true,
+"journal": "Вестник Сургутского государственного университета",
+"authors": "Зимасова А. А.",
+"title": "Некоторые проблемы обжалования судебных решений, выносимых на досудебных стадиях уголовного процесса",
+"t": [
+"upp069"
+],
+"manual": true,
+"n": "pe8d8fd"
+},
+{
+"slug": "/article/n/protivodeystvie-rassledovaniyu-na-dosudebnoy-stadii-ugolovnogo-protsessa-o-ponyatii-i-ego-zakonomernostyah",
+"year": "2026",
+"vak": true,
+"journal": "Вестник Волгоградской академии МВД России",
+"authors": "Евгений Иванович Замылин",
+"title": "ПРОТИВОДЕЙСТВИЕ РАССЛЕДОВАНИЮ НА ДОСУДЕБНОЙ СТАДИИ УГОЛОВНОГО ПРОЦЕССА: О ПОНЯТИИ И ЕГО ЗАКОНОМЕРНОСТЯХ",
+"t": [
+"upp069"
+],
+"manual": true,
+"n": "pe84887"
+},
+{
+"slug": "/article/n/ispolzovanie-dokazatelstv-kak-sredstv-ugolovno-pravovoy-argumentatsii-na-dosudebnyh-stadiyah-ugolovnogo-protsessa",
+"year": "2025",
+"vak": true,
+"journal": "Юридическая наука",
+"authors": "Морозов Александр Юрьевич; Иванов Сергей Анатольевич; Лаута Олег Николаевич; Юсифова Зарина Валихановна",
+"title": "Использование доказательств как средств уголовно-правовой аргументации на досудебных стадиях уголовного процесса",
+"t": [
+"upp069"
+],
+"manual": true,
+"n": "pea07c1"
+},
+{
+"slug": "/article/n/o-edinstve-pozitsii-prokuratury-v-sudebnyh-stadiyah-ugolovnogo-protsessa",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Южно-Уральского государственного университета. Серия: Право",
+"authors": "Петров Александр Васильевич",
+"title": "О ЕДИНСТВЕ ПОЗИЦИИ ПРОКУРАТУРЫ В СУДЕБНЫХ СТАДИЯХ УГОЛОВНОГО ПРОЦЕССА",
+"t": [
+"upp069"
+],
+"manual": true,
+"n": "p5e7d74"
+},
+{
+"slug": "/article/n/o-predelah-prava-obzhalovaniya-v-dosudebnyh-stadiyah-ugolovnogo-protsessa",
+"year": "2025",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Горшкова Ксения Николаевна",
+"title": "О ПРЕДЕЛАХ ПРАВА ОБЖАЛОВАНИЯ В ДОСУДЕБНЫХ СТАДИЯХ УГОЛОВНОГО ПРОЦЕССА",
+"t": [
+"upp069"
+],
+"manual": true,
+"n": "p45cdd7"
+},
+{
+"slug": "/article/n/aktualnye-aspekty-instituta-hodataystv-v-sovremennom-ugolovno-protsessualnom-prave",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Сургутского государственного университета",
+"authors": "Власова Е. А.; Моисеева Т. В.; Дементьева Т. Ю.",
+"title": "Актуальные аспекты института ходатайств в современном уголовно-процессуальном праве",
+"t": [
+"upp128"
+],
+"manual": true,
+"n": "pd20f5d"
+},
+{
+"slug": "/article/n/voprosy-sovershenstvovaniya-pravovoy-reglamentatsii-instituta-hodataystv-v-ugolovnom-sudoproizvodstve-rossii",
+"year": "2023",
+"vak": true,
+"journal": "Актуальные проблемы государства и права",
+"authors": "Перетятько Наталья Михайловна; Федюнин Антοн Евгеньевич",
+"title": "ВОПРОСЫ СОВЕРШЕНСТВОВАНИЯ ПРАВОВОЙ РЕГЛАМЕНТАЦИИ ИНСТИТУТА ХОДАТАЙСТВ В УГОЛОВНОМ СУДОПРОИЗВОДСТВЕ РОССИИ",
+"t": [
+"upp128"
+],
+"manual": true,
+"n": "pce22ee"
+},
+{
+"slug": "/article/n/problemy-pravovogo-regulirovaniya-podsudnosti-hodataystv-o-proizvodstve-sledstvennyh-i-inyh-protsessualnyh-deystviy-podavaemyh-v",
+"year": "2024",
+"vak": false,
+"journal": "Социальные нормы и практики",
+"authors": "Шигуров Александр Викторович",
+"title": "ПРОБЛЕМЫ ПРАВОВОГО РЕГУЛИРОВАНИЯ ПОДСУДНОСТИ ХОДАТАЙСТВ О ПРОИЗВОДСТВЕ СЛЕДСТВЕННЫХ И ИНЫХ ПРОЦЕССУАЛЬНЫХ ДЕЙСТВИЙ, ПОДАВАЕМЫХ В СООТВЕТСТВИИ СО СТ. 165 УПК РФ",
+"t": [
+"upp128"
+],
+"manual": true,
+"n": "p04361d"
+},
+{
+"slug": "/article/n/aktualnye-problemy-pravovoy-reglamentatsii-ugolovno-protsessualnyh-srokov",
+"year": "2024",
+"vak": true,
+"journal": "Юридическая наука и практика: Вестник Нижегородской академии МВД России",
+"authors": "Черкасова Анастасия Максимовна",
+"title": "Актуальные проблемы правовой регламентации уголовно-процессуальных сроков",
+"t": [
+"upp130"
+],
+"manual": true,
+"n": "pfabe5d"
+},
+{
+"slug": "/article/n/ponyatie-ugolovno-protsessualnogo-sroka",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Сибирского юридического института МВД России",
+"authors": "Анастасия Максимовна Черкасова",
+"title": "ПОНЯТИЕ УГОЛОВНО-ПРОЦЕССУАЛЬНОГО СРОКА",
+"t": [
+"upp130"
+],
+"manual": true,
+"n": "pa0cef9"
+},
+{
+"slug": "/article/n/rol-ugolovno-protsessualnyh-srokov-v-obespechenii-prav-i-svobod-uchastnikov-ugolovnogo-protsessa",
+"year": "2025",
+"vak": false,
+"journal": "Актуальные вопросы борьбы с преступлениями",
+"authors": "Жусупов Болотбек Асанович; Абдылдаева Айнура Аттокуровна",
+"title": "Роль уголовно процессуальных сроков в обеспечении прав и свобод участников уголовного процесса",
+"t": [
+"upp130"
+],
+"manual": true,
+"n": "pb55d37"
+},
+{
+"slug": "/article/n/sroki-v-ugolovnom-protsesse-kak-pravovaya-kategoriya",
+"year": "2025",
+"vak": false,
+"journal": "Актуальные вопросы борьбы с преступлениями",
+"authors": "Абдылдаева Айнура Аттокуровна",
+"title": "Сроки в уголовном процессе как правовая категория",
+"t": [
+"upp130"
+],
+"manual": true,
+"n": "pbfdcae"
+},
+{
+"slug": "/article/n/o-nekotoryh-voprosah-obespecheniya-zakonnosti-dokazyvaniya-i-soblyudeniya-razumnyh-srokov-ugolovnogo-sudoproizvodstva-po-ugolovnym",
+"year": "2024",
+"vak": false,
+"journal": "Искусство правоведения. The art of law",
+"authors": "Страхова Светлана Вячеславовна",
+"title": "О НЕКОТОРЫХ ВОПРОСАХ ОБЕСПЕЧЕНИЯ ЗАКОННОСТИ ДОКАЗЫВАНИЯ И СОБЛЮДЕНИЯ РАЗУМНЫХ СРОКОВ УГОЛОВНОГО СУДОПРОИЗВОДСТВА ПО УГОЛОВНЫМ ДЕЛАМ О МОШЕННИЧЕСТВЕ, СОВЕРШАЕМОМ С ИСПОЛЬЗОВАНИЕМ СРЕДСТВ МОБИЛЬНОЙ СВЯЗИ",
+"t": [
+"upp130"
+],
+"manual": true,
+"n": "p74f16e"
 }
 ]

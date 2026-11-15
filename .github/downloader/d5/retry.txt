@@ -1,0 +1,5 @@
+.work/d5/cons2/minsk.pdf
+.work/d5/cons2/extr.pdf
+.work/d5/cons2/mlat.pdf
+.work/d5/cons2/pact.pdf
+.work/d5/cons2/ilo29.pdf

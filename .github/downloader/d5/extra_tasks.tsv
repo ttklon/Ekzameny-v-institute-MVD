@@ -1,0 +1,11 @@
+cons	https://www.consultant.ru/document/cons_doc_LAW_530677/#22.01.1993	.work/d5/cons2/minsk.pdf
+cons	https://www.consultant.ru/document/cons_doc_LAW_121346/#13.12.1957	.work/d5/cons2/extr.pdf
+cons	https://www.consultant.ru/document/cons_doc_LAW_121347/#20.04.1959	.work/d5/cons2/mlat.pdf
+cons	https://www.consultant.ru/document/cons_doc_LAW_5531/#16.12.1966	.work/d5/cons2/pact.pdf
+cons	https://www.consultant.ru/document/cons_doc_LAW_120759/#Конвенция N 29	.work/d5/cons2/ilo29.pdf
+consqlist	.github/downloader/d5/cons_q8.txt	.github/downloader/d5/cons_q8.tsv
+crawllist	.github/downloader/d5/lib_crawl2.txt	.github/downloader/d5/lib_roots.tsv
+cybersearch	.github/downloader/d5/cyber_q_x3.txt#40	.github/downloader/d5/cyber_x3.tsv
+get	https://vsrf.ru/documents/own/?category=resolutions_plenum_supreme_court_russian&year=2026	.work/d5/vsrf/pl2026.html
+get	https://vsrf.ru/documents/own/?category=resolutions_plenum_supreme_court_russian&year=2025	.work/d5/vsrf/pl2025.html
+get	https://vsrf.ru/documents/own/?category=resolutions_plenum_supreme_court_russian&year=2024	.work/d5/vsrf/pl2024.html

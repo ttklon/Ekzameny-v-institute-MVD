@@ -142,9 +142,22 @@
 "authors": "Гребенщиков Анатолий Владимирович; Завгородний Александр Васильевич",
 "title": "ОСНОВАНИЯ ВОЗНИКНОВЕНИЯ ИНДИВИДУАЛЬНОГО СЛУЖЕБНОГО ПРАВООТНОШЕНИЯ",
 "t": [
+"tp006",
 "tp007"
 ],
 "n": "ta3d880"
+},
+{
+"slug": "/article/n/trudovoe-pravootnoshenie-v-kontekste-prekarizatsii-truda-i-zanyatosti-v-rossii",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Пермского университета. Юридические науки",
+"authors": "C. В. Шуралева",
+"title": "ТРУДОВОЕ ПРАВООТНОШЕНИЕ В КОНТЕКСТЕ ПРЕКАРИЗАЦИИ ТРУДА И ЗАНЯТОСТИ В РОССИИ",
+"t": [
+"tp006"
+],
+"n": "tcbba48"
 },
 {
 "slug": "/article/n/sotsialnoe-partnyorstvo-kak-faktor-obespecheniya-dostoynogo-truda-regionalnye-aspekty",
@@ -154,7 +167,8 @@
 "authors": "Колмакова Ирина Дмитриевна; Колмакова Екатерина Микаеловна",
 "title": "Социальное партнёрство как фактор обеспечения достойного труда: региональные аспекты",
 "t": [
-"tp008"
+"tp008",
+"tp009"
 ],
 "n": "tb59328"
 },
@@ -166,7 +180,8 @@
 "authors": "А. Я. Петров",
 "title": "СОЦИАЛЬНОЕ ПАРТНЕРСТВО В СФЕРЕ ТРУДА: СОВРЕМЕННАЯ ПРАВОВАЯ КОНЦЕПЦИЯ",
 "t": [
-"tp008"
+"tp008",
+"tp009"
 ],
 "n": "t57e28a"
 },
@@ -183,6 +198,43 @@
 "tp012"
 ],
 "n": "t857f21"
+},
+{
+"slug": "/article/n/sotsialnoe-partnerstvo-v-sfere-truda-v-rossii-kak-protsess-sotsialno-ekonomicheskogo-vzaimodeystviya-rabotodateley-i-rabotnikov",
+"year": "2023",
+"vak": true,
+"journal": "Аграрное и земельное право",
+"authors": "Ивлиев Павел Валентинович; Кондрашов Сергей Вячеславович",
+"title": "СОЦИАЛЬНОЕ ПАРТНЕРСТВО В СФЕРЕ ТРУДА В РОССИИ КАК ПРОЦЕСС СОЦИАЛЬНО-ЭКОНОМИЧЕСКОГО ВЗАИМОДЕЙСТВИЯ РАБОТОДАТЕЛЕЙ И РАБОТНИКОВ",
+"t": [
+"tp008"
+],
+"n": "t4b2bad"
+},
+{
+"slug": "/article/n/fenomen-sotsialnogo-partnerstva-kak-instrumenta-zaschity-trudovyh-prav-rabotnikov-v-rossii",
+"year": "2023",
+"vak": true,
+"journal": "Экономика труда",
+"authors": "Агарычева Анна Витальевна; Старокожева Виктория Павловна",
+"title": "Феномен социального партнерства как инструмента защиты трудовых прав работников в России",
+"t": [
+"tp008"
+],
+"n": "t821a7a"
+},
+{
+"slug": "/article/n/sotsialnoe-partnerstvo-kak-klyuchevoe-napravlenie-regulirovaniya-trudovyh-otnosheniy-v-sovremennyh-usloviyah-funktsionirovaniya",
+"year": "2025",
+"vak": false,
+"journal": "Экономика и бизнес: теория и практика",
+"authors": "С. Н. Макаренко; Л. С. Авгайтис",
+"title": "СОЦИАЛЬНОЕ ПАРТНЕРСТВО КАК КЛЮЧЕВОЕ НАПРАВЛЕНИЕ РЕГУЛИРОВАНИЯ ТРУДОВЫХ ОТНОШЕНИЙ В СОВРЕМЕННЫХ УСЛОВИЯХ ФУНКЦИОНИРОВАНИЯ ЭКОНОМИКИ",
+"t": [
+"tp008",
+"tp012"
+],
+"n": "t564ff5"
 },
 {
 "slug": "/article/n/pravovye-i-organizatsionnye-aspekty-sotsialnogo-partnerstva-v-sfere-truda-na-federalno-okruzhnom-urovne",
@@ -206,9 +258,24 @@
 "title": "Институт социального партнерства в области трудовых отношений государств – членов Евразийского экономического союза: сравнительно-правовой аспект",
 "t": [
 "tp009",
+"tp062",
 "tp008"
 ],
 "n": "t0b124d"
+},
+{
+"slug": "/article/n/ohranitelnyy-mehanizm-sotsialnogo-partnerstva-kak-institut-zaschity-interesov-gosudarstva-v-sfere-grazhdanskoy-yurisdiktsii",
+"year": "2024",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Чуча Сергей Юрьевич",
+"title": "ОХРАНИТЕЛЬНЫЙ МЕХАНИЗМ СОЦИАЛЬНОГО ПАРТНЕРСТВА КАК ИНСТИТУТ ЗАЩИТЫ ИНТЕРЕСОВ ГОСУДАРСТВА В СФЕРЕ ГРАЖДАНСКОЙ ЮРИСДИКЦИИ",
+"t": [
+"tp009",
+"tp008",
+"tp057"
+],
+"n": "t7f23f7"
 },
 {
 "slug": "/article/n/kollektivnye-trudovye-prava-gig-zanyatyh-primenimost-opyta-avstralii-novoy-zelandii-i-nekotoryh-stran-azii-v-rossii",
@@ -242,7 +309,8 @@
 "authors": "Пархоменко А. Г.; Дружинин Г. В.",
 "title": "ОРГАНИЗОВАННАЯ ОБЩНОСТЬ РАБОТНИКОВ КАК КОЛЛЕКТИВНЫЙ СУБЪЕКТ ТРУДОВЫХ ПРАВООТНОШЕНИЙ",
 "t": [
-"tp010"
+"tp010",
+"tp063"
 ],
 "n": "t3f4d7e"
 },
@@ -285,17 +353,32 @@
 "n": "t461c70"
 },
 {
-"slug": "/article/n/sotsialnoe-partnerstvo-kak-klyuchevoe-napravlenie-regulirovaniya-trudovyh-otnosheniy-v-sovremennyh-usloviyah-funktsionirovaniya",
+"slug": "/article/n/k-voprosu-o-kollektivnom-dogovore-kak-pozitivnoy-forme-vzaimodeystviya-mezhdu-gosudarstvom-nayomnym-trudom-i-kapitalom-v-period",
 "year": "2025",
-"vak": false,
-"journal": "Экономика и бизнес: теория и практика",
-"authors": "С. Н. Макаренко; Л. С. Авгайтис",
-"title": "СОЦИАЛЬНОЕ ПАРТНЕРСТВО КАК КЛЮЧЕВОЕ НАПРАВЛЕНИЕ РЕГУЛИРОВАНИЯ ТРУДОВЫХ ОТНОШЕНИЙ В СОВРЕМЕННЫХ УСЛОВИЯХ ФУНКЦИОНИРОВАНИЯ ЭКОНОМИКИ",
+"vak": true,
+"journal": "Московский юридический журнал",
+"authors": "Кудрин Антон Сергеевич",
+"title": "К вопросу о коллективном договоре как позитивной форме взаимодействия между государством, наёмным трудом и капиталом в период формирования трудового права в России",
 "t": [
-"tp012",
-"tp008"
+"tp011"
 ],
-"n": "t564ff5"
+"n": "t15a262"
+},
+{
+"slug": "/article/n/k-voprosu-o-pravovom-regulirovanii-kollektivnyh-trudovyh-sporov-za-i-protiv",
+"year": "2024",
+"vak": true,
+"journal": "Аграрное и земельное право",
+"authors": "Курбанов Дени Абасович",
+"title": "К ВОПРОСУ О ПРАВОВОМ РЕГУЛИРОВАНИИ КОЛЛЕКТИВНЫХ ТРУДОВЫХ СПОРОВ: ЗА И ПРОТИВ",
+"t": [
+"tp011",
+"tp064",
+"tp068",
+"tp069",
+"tp070"
+],
+"n": "t8abbea"
 },
 {
 "slug": "/article/n/rol-aktov-sotsialnogo-partnerstva-v-regulirovanii-vremeni-otdyha-rabotnikov-frg",
@@ -310,6 +393,42 @@
 "tp034"
 ],
 "n": "t5fdf08"
+},
+{
+"slug": "/article/n/k-voprosu-ob-osobennostyah-regulirovaniya-trudovyh-pravootnosheniy-oslozhnennyh-inostrannym-elementom",
+"year": "2023",
+"vak": true,
+"journal": "Ученые записки Крымского федерального университета имени В. И. Вернадского. Юридические науки",
+"authors": "Трифонова К. В.",
+"title": "К ВОПРОСУ ОБ ОСОБЕННОСТЯХ РЕГУЛИРОВАНИЯ ТРУДОВЫХ ПРАВООТНОШЕНИЙ, ОСЛОЖНЕННЫХ ИНОСТРАННЫМ ЭЛЕМЕНТОМ",
+"t": [
+"tp012"
+],
+"n": "tc8138b"
+},
+{
+"slug": "/article/n/primenenie-grazhdansko-pravovyh-norm-k-trudovym-otnosheniyam-kak-sposob-preodoleniya-probelov-v-trudovom-zakonodatelstve",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Воронежского государственного университета. Серия: Право",
+"authors": "Н. А. Романовская (князева)",
+"title": "ПРИМЕНЕНИЕ ГРАЖДАНСКО-ПРАВОВЫХ НОРМ К ТРУДОВЫМ ОТНОШЕНИЯМ КАК СПОСОБ ПРЕОДОЛЕНИЯ ПРОБЕЛОВ В ТРУДОВОМ ЗАКОНОДАТЕЛЬСТВЕ",
+"t": [
+"tp012"
+],
+"n": "td2f917"
+},
+{
+"slug": "/article/n/dopolnitelnoe-soglashenie-kak-sredstvo-preodoleniya-poroka-voli-i-soderzhaniya-trudovogo-dogovora",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Омского университета. Серия «Право»",
+"authors": "Усов К. Ю.",
+"title": "ДОПОЛНИТЕЛЬНОЕ СОГЛАШЕНИЕ КАК СРЕДСТВО ПРЕОДОЛЕНИЯ ПОРОКА ВОЛИ И СОДЕРЖАНИЯ ТРУДОВОГО ДОГОВОРА",
+"t": [
+"tp012"
+],
+"n": "t19bdbf"
 },
 {
 "slug": "/article/n/protivodeystvie-nelegalnoy-zanyatosti-v-rossiyskoy-federatsii-vliyanie-na-sostoyanie-rynka-truda",
@@ -346,6 +465,30 @@
 "tp013"
 ],
 "n": "t1d3d87"
+},
+{
+"slug": "/article/n/platformennaya-zanyatost-suschnost-osobennosti-regulirovanie",
+"year": "2025",
+"vak": true,
+"journal": "Экономика труда",
+"authors": "Романюк Елена Витальевна; Трусевич Елена Владимировна; Огнев Дмитрий Владимирович; Лисутин Олег Александрович",
+"title": "Платформенная занятость: сущность, особенности, регулирование",
+"t": [
+"tp013"
+],
+"n": "t203874"
+},
+{
+"slug": "/article/n/rynok-truda-i-problemy-obespecheniya-zanyatosti-v-sovremennoy-rossii",
+"year": "2024",
+"vak": true,
+"journal": "Аграрное и земельное право",
+"authors": "Соколова Татьяна Владимировна",
+"title": "РЫНОК ТРУДА И ПРОБЛЕМЫ ОБЕСПЕЧЕНИЯ ЗАНЯТОСТИ В СОВРЕМЕННОЙ РОССИИ",
+"t": [
+"tp013"
+],
+"n": "t06e459"
 },
 {
 "slug": "/article/n/bezrabotitsa-i-ee-tipy-problemy-bezrabotitsy-v-rossii",
@@ -447,6 +590,42 @@
 "n": "t4bd2d9"
 },
 {
+"slug": "/article/n/rabochee-mesto-i-mesto-raboty-kak-pravovye-kategorii-sootnoshenie-i-vzaimosvyaz",
+"year": "2025",
+"vak": true,
+"journal": "Юрислингвистика",
+"authors": "И. В. Рехтина; Ю. Е. Василенко",
+"title": "«Рабочее место» и «место работы» как правовые категории: соотношение и взаимосвязь",
+"t": [
+"tp016"
+],
+"n": "t3c76c5"
+},
+{
+"slug": "/article/n/problemnye-voprosy-dogovornyh-otnosheniy-mezhdu-meditsinskim-rabotnikom-i-meditsinskoy-organizatsiey-na-chto-neobhodimo-obratit",
+"year": "2023",
+"vak": true,
+"journal": "Менеджер здравоохранения",
+"authors": "Пивень Д. В.; Кицул И. С.; Иванов И. В.",
+"title": "ПРОБЛЕМНЫЕ ВОПРОСЫ ДОГОВОРНЫХ ОТНОШЕНИЙ МЕЖДУ МЕДИЦИНСКИМ РАБОТНИКОМ И МЕДИЦИНСКОЙ ОРГАНИЗАЦИЕЙ: НА ЧТО НЕОБХОДИМО ОБРАТИТЬ ВНИМАНИЕ РУКОВОДИТЕЛЮ МЕДИЦИНСКОЙ ОРГАНИЗАЦИИ И МЕДИЦИНСКОМУ РАБОТНИКУ",
+"t": [
+"tp016"
+],
+"n": "tb6a58b"
+},
+{
+"slug": "/article/n/videoblog-pedagogicheskogo-rabotnika-pravovye-aspekty",
+"year": "2024",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Иванов Артем Алексеевич",
+"title": "ВИДЕОБЛОГ ПЕДАГОГИЧЕСКОГО РАБОТНИКА: ПРАВОВЫЕ АСПЕКТЫ",
+"t": [
+"tp016"
+],
+"n": "t0edccc"
+},
+{
 "slug": "/article/n/znachenie-i-obschaya-harakteristika-trudovogo-dogovora-ponyatie-storony-soderzhanie-poryadok-zaklyucheniya",
 "year": "2024",
 "vak": false,
@@ -490,6 +669,31 @@
 "n": "td47f0b"
 },
 {
+"slug": "/article/n/mehanizm-osuschestvleniya-subektivnogo-prava-rabotodatelya-na-zaklyuchenie-trudovogo-dogovora-i-formirovanie-ego-soderzhaniya",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Томского государственного университета. Право",
+"authors": "Елена Михайловна Офман",
+"title": "Механизм осуществления субъективного права работодателя на заключение трудового договора и формирование его содержания",
+"t": [
+"tp017",
+"tp018"
+],
+"n": "tc6fc61"
+},
+{
+"slug": "/article/n/privedenie-soderzhaniya-trudovogo-dogovora-v-sootvetstvie-s-fakticheskimi-obstoyatelstvami",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Омского университета. Серия «Право»",
+"authors": "Белозерова Кристина Александровна",
+"title": "ПРИВЕДЕНИЕ СОДЕРЖАНИЯ ТРУДОВОГО ДОГОВОРА В СООТВЕТСТВИЕ С ФАКТИЧЕСКИМИ ОБСТОЯТЕЛЬСТВАМИ",
+"t": [
+"tp017"
+],
+"n": "ta6b685"
+},
+{
 "slug": "/article/n/teoreticheskie-i-prakticheskie-problemy-prekrascheniya-srochnogo-trudovogo-dogovora",
 "year": "2025",
 "vak": false,
@@ -527,6 +731,19 @@
 "tp018"
 ],
 "n": "t7b2386"
+},
+{
+"slug": "/article/n/dinamika-trudovogo-dogovora-pri-osuschestvlenii-sportivnogo-transfera",
+"year": "2023",
+"vak": true,
+"journal": "Актуальные проблемы российского права",
+"authors": "Бетехтина Варвара Александровна",
+"title": "Динамика трудового договора при осуществлении спортивного трансфера",
+"t": [
+"tp019",
+"tp023"
+],
+"n": "te1fe97"
 },
 {
 "slug": "/article/n/institut-ispytaniya-rabotnika-pri-prieme-na-rabotu",
@@ -626,16 +843,28 @@
 "n": "t96ba05"
 },
 {
-"slug": "/article/n/dinamika-trudovogo-dogovora-pri-osuschestvlenii-sportivnogo-transfera",
-"year": "2023",
+"slug": "/article/n/chastnopravovye-aspekty-pravovoy-modeli-sootnosheniya-trudovogo-dogovora-i-kontrakta-o-prohozhdenii-sluzhby-v-organah-vnutrennih",
+"year": "2025",
 "vak": true,
-"journal": "Актуальные проблемы российского права",
-"authors": "Бетехтина Варвара Александровна",
-"title": "Динамика трудового договора при осуществлении спортивного трансфера",
+"journal": "Вестник Московского университета МВД России",
+"authors": "Сергей Александрович Шаронов",
+"title": "Частноправовые аспекты правовой модели соотношения трудового договора и контракта о прохождении службы в органах внутренних дел",
 "t": [
 "tp023"
 ],
-"n": "te1fe97"
+"n": "t15c7d7"
+},
+{
+"slug": "/article/n/nedeystvitelnost-trudovogo-dogovora-analiz-s-pozitsii-mehanizma-osuschestvleniya-subektivnyh-prav-i-ispolneniya-obyazannostey",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Санкт-Петербургского университета. Право",
+"authors": "Офман Елена Михайловна",
+"title": "Недействительность трудового договора: анализ с позиции механизма осуществления субъективных прав и исполнения обязанностей работником и работодателем",
+"t": [
+"tp023"
+],
+"n": "t7c3828"
 },
 {
 "slug": "/article/n/osobennosti-rastorzheniya-trudovogo-dogovora-po-initsiative-rabotodatelya-v-sluchae-neodnokratnogo-neispolneniya-rabotnikom-bez",
@@ -672,11 +901,51 @@
 "authors": "Наталья Вячеславовна Удальцова",
 "title": "Особенности расторжения трудового договора по инициативе работодателя: судебная практика и тенденции последних лет",
 "t": [
+"tp024",
 "tp026",
-"tp047",
-"tp024"
+"tp047"
 ],
 "n": "tf3feb0"
+},
+{
+"slug": "/article/n/stabilnost-trudovyh-pravootnosheniy-pri-rastorzhenii-trudovogo-dogovora-po-initsiative-rabotodatelya",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Университета имени О. Е. Кутафина",
+"authors": "Арина Олеговна Михальская",
+"title": "Стабильность трудовых правоотношений при расторжении трудового договора по инициативе работодателя",
+"t": [
+"tp024",
+"tp026"
+],
+"n": "t45cbaf"
+},
+{
+"slug": "/article/n/otsenka-nalichiya-uvazhitelnyh-prichin-pri-rastorzhenii-trudovogo-dogovora-po-initsiative-rabotnika",
+"year": "2024",
+"vak": true,
+"journal": "Аграрное и земельное право",
+"authors": "Адриановская Татьяна Леонидовна",
+"title": "ОЦЕНКА НАЛИЧИЯ УВАЖИТЕЛЬНЫХ ПРИЧИН ПРИ РАСТОРЖЕНИИ ТРУДОВОГО ДОГОВОРА ПО ИНИЦИАТИВЕ РАБОТНИКА",
+"t": [
+"tp026",
+"tp024"
+],
+"n": "tdfc903"
+},
+{
+"slug": "/article/n/garantii-rabotnikam-s-semeynymi-obyazannostyami-pri-rastorzhenii-trudovogo-dogovora",
+"year": "2026",
+"vak": true,
+"journal": "Вестник Удмуртского университета. Серия «Экономика и право»",
+"authors": "Шайхутдинова Надежда Павловна",
+"title": "Гарантии работникам с семейными обязанностями при расторжении трудового договора",
+"t": [
+"tp026",
+"tp024",
+"tp047"
+],
+"n": "t1ba22f"
 },
 {
 "slug": "/article/n/pravovye-voprosy-trudoustroystva-i-zaklyucheniya-trudovogo-dogovora",
@@ -728,6 +997,42 @@
 "n": "t46c611"
 },
 {
+"slug": "/article/n/pravovye-aspekty-regulirovaniya-trudovyh-otnosheniy-v-usloviyah-ispolzovaniya-iskusstvennogo-intellekta-pri-podbore-i",
+"year": "2024",
+"vak": true,
+"journal": "Экономика труда",
+"authors": "Мусимович Марина Викторовна",
+"title": "Правовые аспекты регулирования трудовых отношений в условиях использования искусственного интеллекта при подборе и высвобождении персонала",
+"t": [
+"tp029"
+],
+"n": "t33e3e2"
+},
+{
+"slug": "/article/n/aktualnye-problemy-pravovogo-regulirovaniya-zanyatosti-truda-i-sotsialnoy-zaschity-mezhdistsiplinarnyy-podhod-obzor-mezhdunarodnoy",
+"year": "2026",
+"vak": true,
+"journal": "Труды Института государства и права Российской академии наук",
+"authors": "Чуча С. Ю.",
+"title": "АКТУАЛЬНЫЕ ПРОБЛЕМЫ ПРАВОВОГО РЕГУЛИРОВАНИЯ ЗАНЯТОСТИ, ТРУДА И СОЦИАЛЬНОЙ ЗАЩИТЫ: МЕЖДИСЦИПЛИНАРНЫЙ ПОДХОД (ОБЗОР МЕЖДУНАРОДНОЙ НАУЧНО-ПРАКТИЧЕСКОЙ КОНФЕРЕНЦИИ V ИВАНОВСКИЕ ЧТЕНИЯ)",
+"t": [
+"tp029"
+],
+"n": "tf360c2"
+},
+{
+"slug": "/article/n/aktualnye-problemy-obrabotki-personalnyh-dannyh-v-trudovyh-pravootnosheniyah",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Омского университета. Серия «Право»",
+"authors": "Тишкович К. С.",
+"title": "АКТУАЛЬНЫЕ ПРОБЛЕМЫ ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ В ТРУДОВЫХ ПРАВООТНОШЕНИЯХ",
+"t": [
+"tp029"
+],
+"n": "tedd856"
+},
+{
 "slug": "/article/n/problemnye-aspekty-regulirovaniya-rabochego-vremeni",
 "year": "2023",
 "vak": true,
@@ -737,7 +1042,8 @@
 "t": [
 "tp030",
 "tp031",
-"tp032"
+"tp032",
+"tp034"
 ],
 "n": "tf5a0b7"
 },
@@ -766,6 +1072,18 @@
 "n": "tcf6da2"
 },
 {
+"slug": "/article/n/metodicheskiy-podhod-k-provedeniyu-ekspress-audita-normirovaniya-truda-na-mashinostroitelnom-predpriyatii",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Южно-Уральского государственного университета. Серия: Экономика и менеджмент",
+"authors": "Захаров Святослав Игоревич; Коркина Татьяна Александровна; Евсеева Анна Николаевна",
+"title": "МЕТОДИЧЕСКИЙ ПОДХОД К ПРОВЕДЕНИЮ ЭКСПРЕСС-АУДИТА НОРМИРОВАНИЯ ТРУДА НА МАШИНОСТРОИТЕЛЬНОМ ПРЕДПРИЯТИИ",
+"t": [
+"tp030"
+],
+"n": "t67fef9"
+},
+{
 "slug": "/article/n/k-voprosu-o-natsionalnom-standarte-rabochego-vremeni",
 "year": "2024",
 "vak": true,
@@ -774,6 +1092,7 @@
 "title": "К вопросу о национальном стандарте рабочего времени",
 "t": [
 "tp031",
+"tp034",
 "tp030",
 "tp032"
 ],
@@ -792,6 +1111,18 @@
 "tp032"
 ],
 "n": "t6600f4"
+},
+{
+"slug": "/article/n/k-voprosu-o-garmonizatsii-sovremennogo-trudovogo-prava-kak-otrasli-prava",
+"year": "2024",
+"vak": true,
+"journal": "Образование и право",
+"authors": "Андриановская Ирина Ивановна",
+"title": "К ВОПРОСУ О ГАРМОНИЗАЦИИ СОВРЕМЕННОГО ТРУДОВОГО ПРАВА КАК ОТРАСЛИ ПРАВА",
+"t": [
+"tp031"
+],
+"n": "td9187f"
 },
 {
 "slug": "/article/n/teoriya-i-praktika-ustanovleniya-gibkogo-rabochego-vremeni-dlya-uyazvimoy-kategorii-rabotnikov",
@@ -820,6 +1151,36 @@
 "tp031"
 ],
 "n": "t60d83d"
+},
+{
+"slug": "/article/n/realizatsiya-konventsiy-mezhdunarodnoy-organizatsii-truda-v-stranah-briks-kak-odin-iz-faktorov-unifikatsii-ih-trudovogo",
+"year": "2026",
+"vak": true,
+"journal": "Вестник Университета имени О. Е. Кутафина",
+"authors": "Екатерина Сергеевна Батусова",
+"title": "Реализация конвенций Международной организации труда в странах БРИКС как один из факторов унификации их трудового законодательства о рабочем времени и времени отдыха",
+"t": [
+"tp032",
+"tp034",
+"tp030",
+"tp031"
+],
+"n": "tb495b8"
+},
+{
+"slug": "/article/n/problemy-realizatsii-norm-o-rabochem-vremeni-i-vremeni-otdyha-v-sfere-avtomobilnogo-transporta-pravovoy-aspekt",
+"year": "2026",
+"vak": true,
+"journal": "Российские исследования. Право и политика",
+"authors": "Берман Нина Демидовна; Кукушкина Елизавета Витальевна",
+"title": "Проблемы реализации норм о рабочем времени и времени отдыха в сфере автомобильного транспорта: правовой аспект",
+"t": [
+"tp032",
+"tp034",
+"tp030",
+"tp031"
+],
+"n": "t50fc92"
 },
 {
 "slug": "/article/n/izmeneniya-v-raschetah-s-rabotnikami-po-oplate-truda-novye-pravila-rascheta-sverhurochnyh",
@@ -858,34 +1219,40 @@
 "n": "t10a333"
 },
 {
-"slug": "/article/n/realizatsiya-konventsiy-mezhdunarodnoy-organizatsii-truda-v-stranah-briks-kak-odin-iz-faktorov-unifikatsii-ih-trudovogo",
-"year": "2026",
+"slug": "/article/n/problema-sverhurochnoy-zanyatosti-v-kitae-prinuzhdenie-k-pererabotkam-i-ih-totalnoe-rasprostranenie",
+"year": "2024",
 "vak": true,
-"journal": "Вестник Университета имени О. Е. Кутафина",
-"authors": "Екатерина Сергеевна Батусова",
-"title": "Реализация конвенций Международной организации труда в странах БРИКС как один из факторов унификации их трудового законодательства о рабочем времени и времени отдыха",
+"journal": "Теория и практика общественного развития",
+"authors": "Сан Сумей",
+"title": "Проблема сверхурочной занятости в Китае: принуждение к переработкам и их тотальное распространение",
 "t": [
-"tp034",
-"tp030",
-"tp031",
-"tp032"
+"tp033"
 ],
-"n": "tb495b8"
+"n": "t5426ef"
 },
 {
-"slug": "/article/n/problemy-realizatsii-norm-o-rabochem-vremeni-i-vremeni-otdyha-v-sfere-avtomobilnogo-transporta-pravovoy-aspekt",
-"year": "2026",
+"slug": "/article/n/neformalnye-trudovye-otnosheniya-kak-sotsialnoe-prostranstvo-postoyannoy-sverhurochnoy-zanyatosti",
+"year": "2025",
 "vak": true,
-"journal": "Российские исследования. Право и политика",
-"authors": "Берман Нина Демидовна; Кукушкина Елизавета Витальевна",
-"title": "Проблемы реализации норм о рабочем времени и времени отдыха в сфере автомобильного транспорта: правовой аспект",
+"journal": "Теория и практика общественного развития",
+"authors": "Карпушкин Владимир Васильевич",
+"title": "Неформальные трудовые отношения как социальное пространство постоянной сверхурочной занятости",
 "t": [
-"tp034",
-"tp030",
-"tp031",
-"tp032"
+"tp033"
 ],
-"n": "t50fc92"
+"n": "t2b9b81"
+},
+{
+"slug": "/article/n/problema-sverhurochnoy-zanyatosti-v-kitae-sostoyanie-i-perspektivy",
+"year": "2025",
+"vak": true,
+"journal": "Теория и практика общественного развития",
+"authors": "Малинина Татьяна Борисовна; Тарандо Елена Евгеньевна; Воронов Виктор Васильевич; Давыдов Сергей Анатольевич",
+"title": "Проблема сверхурочной занятости в Китае: состояние и перспективы",
+"t": [
+"tp033"
+],
+"n": "t9786f8"
 },
 {
 "slug": "/article/n/k-voprosu-o-ponyatii-vremeni-otdyha-v-trudovom-prave",
@@ -986,6 +1353,32 @@
 "n": "t463664"
 },
 {
+"slug": "/article/n/sravnitelnyy-obzor-klyuchevyh-kontseptsiy-rynochnoy-organizatsii-zarabotnoy-platy",
+"year": "2025",
+"vak": true,
+"journal": "Экономика, предпринимательство и право",
+"authors": "Зенков Сергей Геннадиевич",
+"title": "Сравнительный обзор ключевых концепций рыночной организации заработной платы",
+"t": [
+"tp039",
+"tp040"
+],
+"n": "taae34a"
+},
+{
+"slug": "/article/n/oplata-truda-suschnost-i-ponyatie",
+"year": "2024",
+"vak": true,
+"journal": "Гуманитарные, социально-экономические и общественные науки",
+"authors": "Бачаев А. А.",
+"title": "ОПЛАТА ТРУДА: СУЩНОСТЬ И ПОНЯТИЕ",
+"t": [
+"tp039",
+"tp043"
+],
+"n": "t1e6552"
+},
+{
 "slug": "/article/n/publichno-pravovoe-regulirovanie-mehanizma-indeksatsii-zarabotnoy-platy-problemy-i-vozmozhnye-napravleniya-sovershenstvovaniya1",
 "year": "2024",
 "vak": true,
@@ -1011,6 +1404,19 @@
 "n": "t647745"
 },
 {
+"slug": "/article/n/pravovye-riski-rabotnika-pri-vklyuchenii-premii-kak-pooschritelnoy-stimuliruyuschey-vyplaty-v-fakticheskuyu-zarabotnuyu-platu-i",
+"year": "2024",
+"vak": true,
+"journal": "Legal Bulletin",
+"authors": "Стрельников Станислав Валентинович",
+"title": "ПРАВОВЫЕ РИСКИ РАБОТНИКА ПРИ ВКЛЮЧЕНИИ ПРЕМИИ КАК ПООЩРИТЕЛЬНОЙ (СТИМУЛИРУЮЩЕЙ) ВЫПЛАТЫ В ФАКТИЧЕСКУЮ ЗАРАБОТНУЮ ПЛАТУ И ПЕРСПЕКТИВЫ ВЗЫСКАНИЯ В СУДЕБНОМ ПОРЯДКЕ",
+"t": [
+"tp040",
+"tp045"
+],
+"n": "tb22f4d"
+},
+{
 "slug": "/article/n/minimalnaya-zarabotnaya-plata-kak-kollektivno-dogovornaya-garantiya-trudovyh-prav-rabotnikov",
 "year": "2023",
 "vak": true,
@@ -1018,10 +1424,26 @@
 "authors": "Абалдуев Владимир Александрович",
 "title": "Минимальная заработная плата как коллективно-договорная гарантия трудовых прав работников",
 "t": [
+"tp040",
 "tp041",
+"tp043",
+"tp045",
 "tp011"
 ],
 "n": "t5d5784"
+},
+{
+"slug": "/article/n/garantii-polucheniya-zarabotnoy-platy-pri-nesostoyatelnosti-rabotodatelya",
+"year": "2026",
+"vak": false,
+"journal": "Ежегодник трудового права",
+"authors": "Юрикова Алиса Михайловна",
+"title": "Гарантии получения заработной платы при несостоятельности работодателя",
+"t": [
+"tp040",
+"tp046"
+],
+"n": "t12a06a"
 },
 {
 "slug": "/article/n/minimalnyy-razmer-oplaty-truda-v-stranah-otnosyaschihsya-k-sodruzhestvu-nezavisimyh-gosudarstv-opyt-ustanovleniya-mehanizma-po",
@@ -1085,6 +1507,30 @@
 "tp042"
 ],
 "n": "t1cfb2a"
+},
+{
+"slug": "/article/n/sovremennye-podhody-v-oplate-truda-rabotnikov-krupnyh-i-srednih-kompaniy",
+"year": "2024",
+"vak": true,
+"journal": "Экономика труда",
+"authors": "Яркова Татьяна Михайловна",
+"title": "Современные подходы в оплате труда работников крупных и средних компаний",
+"t": [
+"tp042"
+],
+"n": "t52863b"
+},
+{
+"slug": "/article/n/oplata-truda-rabotnikov-na-predpriyatii-napravleniya-sovershenstvovaniya",
+"year": "2023",
+"vak": true,
+"journal": "Право и управление",
+"authors": "Стахеева Л. М.; Кот Е. М.; Фетисова А. В.; Батракова С. И.; Батыршина Э. Р.",
+"title": "ОПЛАТА ТРУДА РАБОТНИКОВ НА ПРЕДПРИЯТИИ: НАПРАВЛЕНИЯ СОВЕРШЕНСТВОВАНИЯ",
+"t": [
+"tp042"
+],
+"n": "t2f4f95"
 },
 {
 "slug": "/article/n/stimuliruyuschie-vyplaty-v-sisteme-oplaty-truda-rabotnikov-problemy-pravoprimeneniya",
@@ -1151,6 +1597,18 @@
 "n": "tbc1ac0"
 },
 {
+"slug": "/article/n/effektivnaya-pravotvorcheskaya-politika-v-sfere-oplaty-truda-i-sotsialnogo-obespecheniya-kak-garantiya-realizatsii-natsionalnyh",
+"year": "2024",
+"vak": true,
+"journal": "Правовая политика и правовая жизнь",
+"authors": "Типикина Е. В.; Изварина Ю. Ю.",
+"title": "Эффективная правотворческая политика в сфере оплаты труда и социального обеспечения как гарантия реализации национальных интересов Российской Федерации",
+"t": [
+"tp045"
+],
+"n": "t738fd9"
+},
+{
 "slug": "/article/n/kompensatsiya-za-zaderzhku-vyplaty-zarabotnoy-platy-i-drugih-vyplat-prichitayuschihsya-rabotniku-v-kontekste-nalogovyh-sporov",
 "year": "2026",
 "vak": true,
@@ -1159,23 +1617,11 @@
 "title": "Компенсация за задержку выплаты заработной платы и других выплат, причитающихся работнику, в контексте налоговых споров",
 "t": [
 "tp046",
+"tp056",
 "tp040",
 "tp045"
 ],
 "n": "t45bc61"
-},
-{
-"slug": "/article/n/garantii-polucheniya-zarabotnoy-platy-pri-nesostoyatelnosti-rabotodatelya",
-"year": "2026",
-"vak": false,
-"journal": "Ежегодник трудового права",
-"authors": "Юрикова Алиса Михайловна",
-"title": "Гарантии получения заработной платы при несостоятельности работодателя",
-"t": [
-"tp046",
-"tp040"
-],
-"n": "t12a06a"
 },
 {
 "slug": "/article/n/pravovaya-priroda-sluzhebnogo-porucheniya-pri-komandirovanii-rabotnika-1",
@@ -1188,6 +1634,18 @@
 "tp046"
 ],
 "n": "tc139c4"
+},
+{
+"slug": "/article/n/teoreticheskie-aspekty-primeneniya-rayonnyh-koeffitsientov-k-zarabotnoy-plate-rabotnikov-v-rossiyskoy-federatsii",
+"year": "2023",
+"vak": true,
+"journal": "Проблемы экономики и юридической практики",
+"authors": "Дозорцев Олег Евгеньевичa; Омельченко Ирина Борисовна",
+"title": "Теоретические аспекты применения районных коэффициентов к заработной плате работников в Российской Федерации",
+"t": [
+"tp046"
+],
+"n": "tcfeb8f"
 },
 {
 "slug": "/article/n/normativnoe-zakreplenie-kriteriev-razumnosti-i-neobhodimosti-pri-rastorzhenii-trudovogo-dogovora-so-sportsmenom",
@@ -1310,6 +1768,44 @@
 "n": "t8e28fe"
 },
 {
+"slug": "/article/n/pozitivnaya-yuridicheskaya-otvetstvennost-v-trudovom-prave",
+"year": "2023",
+"vak": true,
+"journal": "Пробелы в российском законодательстве. Юридический журнал",
+"authors": "Савин Виктор Тихонович",
+"title": "Позитивная юридическая ответственность в трудовом праве",
+"t": [
+"tp050",
+"tp053"
+],
+"n": "tda0186"
+},
+{
+"slug": "/article/n/spetsialnaya-distsiplinarnaya-otvetstvennost-rabotnikov-sfery-obespecheniya-bezopasnoy-zhiznedeyatelnosti-naseleniya",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Омского университета. Серия «Право»",
+"authors": "Пятков Кирилл Викторович",
+"title": "СПЕЦИАЛЬНАЯ ДИСЦИПЛИНАРНАЯ ОТВЕТСТВЕННОСТЬ РАБОТНИКОВ СФЕРЫ ОБЕСПЕЧЕНИЯ БЕЗОПАСНОЙ ЖИЗНЕДЕЯТЕЛЬНОСТИ НАСЕЛЕНИЯ",
+"t": [
+"tp050",
+"tp053"
+],
+"n": "t44b7bf"
+},
+{
+"slug": "/article/n/otvetstvennost-chlenov-samoreguliruemyh-organizatsiy-v-sfere-stroitelstva-teoreticheskiy-i-prakticheskiy-aspekty",
+"year": "2023",
+"vak": true,
+"journal": "Вестник экономики, права и социологии",
+"authors": "Солдатова Татьяна Викторовна",
+"title": "Ответственность членов саморегулируемых организаций в сфере строительства: теоретический и практический аспекты",
+"t": [
+"tp050"
+],
+"n": "t9ddd3c"
+},
+{
 "slug": "/article/n/k-voprosu-o-predelah-materialnoy-otvetstvennosti-rabotnika-za-prichinennyy-uscherb",
 "year": "2023",
 "vak": false,
@@ -1351,6 +1847,35 @@
 "n": "t19d500"
 },
 {
+"slug": "/article/n/problemy-materialnoy-otvetstvennosti-rukovoditelya-organizatsii-svyazannye-s-vtorzheniem-v-ee-sferu-norm-grazhdanskogo",
+"year": "2023",
+"vak": true,
+"journal": "Пробелы в российском законодательстве. Юридический журнал",
+"authors": "Савин Виктор Тихонович",
+"title": "ПРОБЛЕМЫ МАТЕРИАЛЬНОЙ ОТВЕТСТВЕННОСТИ РУКОВОДИТЕЛЯ ОРГАНИЗАЦИИ, СВЯЗАННЫЕ С «ВТОРЖЕНИЕМ» В ЕЕ СФЕРУ НОРМ ГРАЖДАНСКОГО ЗАКОНОДАТЕЛЬСТВА",
+"t": [
+"tp052",
+"tp054",
+"tp053"
+],
+"n": "t075aa2"
+},
+{
+"slug": "/article/n/materialnaya-i-deliktnaya-otvetstvennost-problemy-sootnosheniya-norm-grazhdanskogo-i-trudovogo-zakonodatelstva",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Университета имени О. Е. Кутафина",
+"authors": "Татьяна Владимировна Летута",
+"title": "Материальная и деликтная ответственность: проблемы соотношения норм гражданского и трудового законодательства",
+"t": [
+"tp052",
+"tp053",
+"tp054",
+"tp056"
+],
+"n": "t398617"
+},
+{
 "slug": "/article/n/mery-zaschity-i-mery-otvetstvennosti-v-kontekste-problemy-ponyatiya-materialnoy-otvetstvennosti-rabotodatelya",
 "year": "2024",
 "vak": true,
@@ -1365,18 +1890,6 @@
 "n": "tcce7ee"
 },
 {
-"slug": "/article/n/materialnaya-i-deliktnaya-otvetstvennost-problemy-sootnosheniya-norm-grazhdanskogo-i-trudovogo-zakonodatelstva",
-"year": "2024",
-"vak": true,
-"journal": "Вестник Университета имени О. Е. Кутафина",
-"authors": "Татьяна Владимировна Летута",
-"title": "Материальная и деликтная ответственность: проблемы соотношения норм гражданского и трудового законодательства",
-"t": [
-"tp053"
-],
-"n": "t398617"
-},
-{
 "slug": "/article/n/harakteristika-dogovora-o-polnoy-individualnoy-materialnoy-otvetstvennosti-v-kontekste-kontseptsii-sdelok-v-trudovom-prave-po",
 "year": "2023",
 "vak": true,
@@ -1388,6 +1901,18 @@
 "tp054"
 ],
 "n": "te30e99"
+},
+{
+"slug": "/article/n/realizatsiya-konstitutsionnyh-printsipov-spravedlivosti-i-sorazmernosti-pri-uvolnenii-rabotnika-za-poyavlenie-na-rabote-v",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Южно-Уральского государственного университета. Серия: Право",
+"authors": "Сагандыков М. С.",
+"title": "РЕАЛИЗАЦИЯ КОНСТИТУЦИОННЫХ ПРИНЦИПОВ СПРАВЕДЛИВОСТИ И СОРАЗМЕРНОСТИ ПРИ УВОЛЬНЕНИИ РАБОТНИКА ЗА ПОЯВЛЕНИЕ НА РАБОТЕ В СОСТОЯНИИ ОПЬЯНЕНИЯ",
+"t": [
+"tp053"
+],
+"n": "tb6a8a7"
 },
 {
 "slug": "/article/n/evolyutsiya-norm-o-materialnoy-otvetstvennosti-storon-trudovogo-dogovora",
@@ -1404,6 +1929,18 @@
 "tp053"
 ],
 "n": "te3ab05"
+},
+{
+"slug": "/article/n/k-voprosu-o-konstruktsiyah-proizvodnyh-ot-trudovogo-dogovora",
+"year": "2024",
+"vak": true,
+"journal": "Теория и практика общественного развития",
+"authors": "Усов Кирилл Юрьевич",
+"title": "К вопросу о конструкциях, производных от трудового договора",
+"t": [
+"tp054"
+],
+"n": "t43e4e9"
 },
 {
 "slug": "/article/n/eschyo-raz-k-voprosu-o-kompensatsii-moralnogo-vreda-prichinyonnogo-rabotniku",
@@ -1431,6 +1968,20 @@
 "n": "ta44b79"
 },
 {
+"slug": "/article/n/k-voprosu-o-vozmeschenii-vreda-storonami-trudovogo-dogovora",
+"year": "2025",
+"vak": true,
+"journal": "Труды Института государства и права Российской академии наук",
+"authors": "Васильева Юлия Валерьевна",
+"title": "К ВОПРОСУ О ВОЗМЕЩЕНИИ ВРЕДА СТОРОНАМИ ТРУДОВОГО ДОГОВОРА",
+"t": [
+"tp056",
+"tp011",
+"tp017"
+],
+"n": "ta04517"
+},
+{
 "slug": "/article/n/ohrana-truda-kak-institut-trudovogo-prava",
 "year": "2024",
 "vak": true,
@@ -1453,6 +2004,30 @@
 "tp057"
 ],
 "n": "tdbc082"
+},
+{
+"slug": "/article/n/definitsiya-kategorii-ohrana-truda-obzor-i-kriticheskiy-analiz-ponyatiya",
+"year": "2024",
+"vak": true,
+"journal": "Экономика труда",
+"authors": "Самарская Надежда Александровна",
+"title": "Дефиниция категории «охрана труда»: обзор и критический анализ понятия",
+"t": [
+"tp057"
+],
+"n": "te8c92a"
+},
+{
+"slug": "/article/n/mesto-i-rol-ohrany-truda-v-strukture-sotsialno-trudovyh-otnosheniy",
+"year": "2024",
+"vak": true,
+"journal": "Экономика труда",
+"authors": "Самарская Надежда Александровна",
+"title": "Место и роль охраны труда в структуре социально-трудовых отношений",
+"t": [
+"tp057"
+],
+"n": "t193206"
 },
 {
 "slug": "/article/n/otvetstvennost-rabotodatelya-za-narushenie-prav-nesovershennoletnih-rabotnikov",
@@ -1480,6 +2055,42 @@
 "n": "t634184"
 },
 {
+"slug": "/article/n/pravovoe-regulirovanie-usloviy-truda-naemnyh-rabotnikov",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Воронежского государственного университета. Серия: Право",
+"authors": "С. В. Передерин",
+"title": "ПРАВОВОЕ РЕГУЛИРОВАНИЕ УСЛОВИЙ ТРУДА НАЕМНЫХ РАБОТНИКОВ",
+"t": [
+"tp058"
+],
+"n": "t77c725"
+},
+{
+"slug": "/article/n/zaschita-trudovyh-prav-rabotnikov-na-soremennom-etape-sotsialnogo-gosudarstva",
+"year": "2025",
+"vak": true,
+"journal": "Право и практика",
+"authors": "Вышеславова Татьяна Федоровна; Зиновьева Татьяна Николаевна",
+"title": "ЗАЩИТА ТРУДОВЫХ ПРАВ РАБОТНИКОВ НА СОРЕМЕННОМ ЭТАПЕ СОЦИАЛЬНОГО ГОСУДАРСТВА",
+"t": [
+"tp058"
+],
+"n": "te93a3c"
+},
+{
+"slug": "/article/n/reglamentatsiya-trebovaniy-ohrany-truda-rabotnikov-gostinichno-restorannoy-sfery",
+"year": "2023",
+"vak": true,
+"journal": "Экономика труда",
+"authors": "Самарская Надежда Александровна; Ильин Сергей Михайлович; Истомин Сергей Викторович",
+"title": "Регламентация требований охраны труда работников гостинично-ресторанной сферы",
+"t": [
+"tp058"
+],
+"n": "t651aff"
+},
+{
 "slug": "/article/n/pravovoe-regulirovanie-trudovyh-otnosheniy-i-vopros-obespecheniya-bezopasnosti-rabotnika",
 "year": "2026",
 "vak": false,
@@ -1502,6 +2113,30 @@
 "tp059"
 ],
 "n": "t215679"
+},
+{
+"slug": "/article/n/sostoyanie-zaschischennosti-kak-osnova-bezopasnosti-rabotnikov-v-trudovyh-otnosheniyah",
+"year": "2023",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Сергеенко Юлия Сергеевна",
+"title": "СОСТОЯНИЕ ЗАЩИЩЕННОСТИ КАК ОСНОВА БЕЗОПАСНОСТИ РАБОТНИКОВ В ТРУДОВЫХ ОТНОШЕНИЯХ",
+"t": [
+"tp059"
+],
+"n": "t338b33"
+},
+{
+"slug": "/article/n/regulirovanie-ohrany-truda-za-rubezhom-podhody-modeli-praktika",
+"year": "2024",
+"vak": true,
+"journal": "Социально-трудовые исследования",
+"authors": "Е. А. Кузнецова; А. И. Макеев; П. А. Носорев",
+"title": "РЕГУЛИРОВАНИЕ ОХРАНЫ ТРУДА ЗА РУБЕЖОМ: ПОДХОДЫ, МОДЕЛИ, ПРАКТИКА",
+"t": [
+"tp059"
+],
+"n": "t02506d"
 },
 {
 "slug": "/article/n/rassledovanie-neschastnyh-sluchaev-na-proizvodstve-regionalnye-osobennosti-travmatizma",
@@ -1576,6 +2211,30 @@
 "n": "t281170"
 },
 {
+"slug": "/article/n/k-voprosu-o-vzaimodeystvii-prokuratury-s-organami-gosudarstvennogo-kontrolya-v-ramkah-zaschity-trudovyh-prav-i-svobod-grazhdan",
+"year": "2023",
+"vak": true,
+"journal": "Юридическая наука",
+"authors": "Потапова Лариса Валерьевна",
+"title": "К вопросу о взаимодействии прокуратуры с органами государственного контроля в рамках защиты трудовых прав и свобод граждан",
+"t": [
+"tp061"
+],
+"n": "ta66a12"
+},
+{
+"slug": "/article/n/osnovaniya-i-printsipy-sovershenstvovaniya-kontrolnoy-nadzornoy-deyatelnosti-v-sfere-truda-s-uchetom-risk-orientirovannogo-podhoda",
+"year": "2024",
+"vak": true,
+"journal": "Экономика труда",
+"authors": "Мажкенов Серик Абзалович",
+"title": "Основания и принципы совершенствования контрольной (надзорной) деятельности в сфере труда с учетом риск-ориентированного подхода",
+"t": [
+"tp061"
+],
+"n": "t655645"
+},
+{
 "slug": "/article/n/zaschita-trudovyh-prav-i-interesov-rabotnikov-v-rossiyskoy-federatsii",
 "year": "2024",
 "vak": true,
@@ -1583,7 +2242,8 @@
 "authors": "Тимонина Ирина Владимировна",
 "title": "ЗАЩИТА ТРУДОВЫХ ПРАВ И ИНТЕРЕСОВ РАБОТНИКОВ В РОССИЙСКОЙ ФЕДЕРАЦИИ",
 "t": [
-"tp062"
+"tp062",
+"tp063"
 ],
 "n": "tf38e9b"
 },
@@ -1613,6 +2273,30 @@
 "n": "t0c161b"
 },
 {
+"slug": "/article/n/profsoyuzy-organizatsii-profsoyuzov-i-profsoyuznye-organizatsii-spetsifika-i-problemy-pravovogo-statusa",
+"year": "2026",
+"vak": true,
+"journal": "Северо-Кавказский юридический вестник",
+"authors": "Мария Александровна Драчук",
+"title": "Профсоюзы, организации профсоюзов и профсоюзные организации: специфика и проблемы правового статуса",
+"t": [
+"tp062"
+],
+"n": "t5b129d"
+},
+{
+"slug": "/article/n/rol-profsoyuzov-v-sozdanii-ustoychivogo-obschestvennogo-polozheniya-v-sotsialnoy-sfere",
+"year": "2023",
+"vak": true,
+"journal": "Альманах «Крым»",
+"authors": "Жаркова С. Л.; Кузьменков А. А.",
+"title": "Роль профсоюзов в создании устойчивого общественного положения в социальной сфере",
+"t": [
+"tp062"
+],
+"n": "t851b27"
+},
+{
 "slug": "/article/n/pravovoy-mehanizm-samozaschity-rabotnikami-trudovyh-prav-problemy-pravoprimeneniya",
 "year": "2023",
 "vak": true,
@@ -1635,6 +2319,18 @@
 "tp063"
 ],
 "n": "t253ae1"
+},
+{
+"slug": "/article/n/obraschenie-k-sredstvam-massovoy-informatsii-kak-forma-samozaschity-rabotnikami-trudovyh-prav",
+"year": "2023",
+"vak": true,
+"journal": "Российское право: образование, практика, наука",
+"authors": "Игорь Сергеевич Золотов",
+"title": "ОБРАЩЕНИЕ К СРЕДСТВАМ МАССОВОЙ ИНФОРМАЦИИ КАК ФОРМА САМОЗАЩИТЫ РАБОТНИКАМИ ТРУДОВЫХ ПРАВ",
+"t": [
+"tp063"
+],
+"n": "te7b336"
 },
 {
 "slug": "/article/n/rol-profsoyuzov-v-uregulirovanii-trudovyh-sporov-s-uchastiem-rabotnikov-i-rabotodateley",
@@ -1664,18 +2360,16 @@
 "n": "t97062d"
 },
 {
-"slug": "/article/n/k-voprosu-o-pravovom-regulirovanii-kollektivnyh-trudovyh-sporov-za-i-protiv",
-"year": "2024",
+"slug": "/article/n/o-nekotoryh-voprosah-rassmotreniya-sudami-trudovyh-sporov-s-uchastiem-samozanyatyh",
+"year": "2023",
 "vak": true,
-"journal": "Аграрное и земельное право",
-"authors": "Курбанов Дени Абасович",
-"title": "К ВОПРОСУ О ПРАВОВОМ РЕГУЛИРОВАНИИ КОЛЛЕКТИВНЫХ ТРУДОВЫХ СПОРОВ: ЗА И ПРОТИВ",
+"journal": "Образование и право",
+"authors": "Казакова Марина Владимировна",
+"title": "О НЕКОТОРЫХ ВОПРОСАХ РАССМОТРЕНИЯ СУДАМИ ТРУДОВЫХ СПОРОВ С УЧАСТИЕМ САМОЗАНЯТЫХ",
 "t": [
-"tp064",
-"tp068",
-"tp069"
+"tp064"
 ],
-"n": "t8abbea"
+"n": "t4d8106"
 },
 {
 "slug": "/article/n/rassmotrenie-individualnyh-trudovyh-sporov-v-sude-na-osnove-analiza-sudebnyh-resheniy",
@@ -1741,6 +2435,31 @@
 "n": "t2a6929"
 },
 {
+"slug": "/article/n/alternativnye-sposoby-razresheniya-individualnyh-trudovyh-sporov-opyt-i-perspektivy-razvitiya",
+"year": "2023",
+"vak": true,
+"journal": "Сибирский юридический вестник",
+"authors": "Тишкович Ксения Сергеевна",
+"title": "АЛЬТЕРНАТИВНЫЕ СПОСОБЫ РАЗРЕШЕНИЯ ИНДИВИДУАЛЬНЫХ ТРУДОВЫХ СПОРОВ: ОПЫТ И ПЕРСПЕКТИВЫ РАЗВИТИЯ",
+"t": [
+"tp067"
+],
+"n": "t8f20f5"
+},
+{
+"slug": "/article/n/nekotorye-voprosy-poryadka-rassmotreniya-individualnyh-trudovyh-sporov-komissiey-po-trudovym-sporam",
+"year": "2025",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Драчук Мария Александровна; Обухова Галина Николаевна",
+"title": "НЕКОТОРЫЕ ВОПРОСЫ ПОРЯДКА РАССМОТРЕНИЯ ИНДИВИДУАЛЬНЫХ ТРУДОВЫХ СПОРОВ КОМИССИЕЙ ПО ТРУДОВЫМ СПОРАМ",
+"t": [
+"tp067",
+"tp066"
+],
+"n": "t930252"
+},
+{
 "slug": "/article/n/otnosheniya-voznikayuschie-pri-realizatsii-prava-na-trud",
 "year": "2023",
 "vak": true,
@@ -1788,5 +2507,44 @@
 "tp070"
 ],
 "n": "te7f75d"
+},
+{
+"slug": "/article/n/naemnyy-trud-tsifrovoy-trud-i-tsifrovye-trudovye-prava-v-mire-upravlyaemom-iskusstvennym-intellektom",
+"year": "2026",
+"vak": true,
+"journal": "Право. Журнал Высшей школы экономики",
+"authors": "Кирилл Леонидович Томашевский; Ирина Анатольевна Филипова",
+"title": "Наемный труд, цифровой труд и цифровые трудовые права в мире, управляемом искусственным интеллектом",
+"t": [
+"tp002"
+],
+"manual": true,
+"n": "t02cabb"
+},
+{
+"slug": "/article/n/uvolnenie-rabotnika-kak-vid-distsiplinarnogo-vzyskaniya",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Московского университета МВД России",
+"authors": "Сергей Александрович Шаронов",
+"title": "Увольнение работника как вид дисциплинарного взыскания",
+"t": [
+"tp025"
+],
+"manual": true,
+"n": "t2a07c7"
+},
+{
+"slug": "/article/n/esche-raz-o-korruptsionnom-distsiplinarnom-pravonarushenii-i-voprosah-uvolneniya-po-utrate-doveriya-gossluzhaschego",
+"year": "2023",
+"vak": true,
+"journal": "Административное и муниципальное право",
+"authors": "Куракин Алексей Валентинович",
+"title": "Еще раз о коррупционном дисциплинарном правонарушении и вопросах увольнения по утрате доверия госслужащего",
+"t": [
+"tp025"
+],
+"manual": true,
+"n": "tf0e87c"
 }
 ]

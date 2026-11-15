@@ -1,1 +1,5 @@
-ipsact	http://ips.pravo.gov.ru/api/ips/legislation/search.json?query=%D0%A3%D0%BA%D0%B0%D0%B7+%D0%9F%D1%80%D0%B5%D0%B7%D0%B8%D0%B4%D0%B5%D0%BD%D1%82%D0%B0+%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D0%B9%D1%81%D0%BA%D0%BE%D0%B9+%D0%A4%D0%B5%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8+%D0%BE%D1%82+14.12.2020+%E2%84%96+787&limit=10&page=1#Указ Президента Российской Федерации от 14.12.2020 № 787	.work/d5/acts/u787.pdf
+cons	https://www.consultant.ru/document/cons_doc_LAW_530677/#22.01.1993	.work/d5/cons2/minsk.pdf
+cons	https://www.consultant.ru/document/cons_doc_LAW_121346/#13.12.1957	.work/d5/cons2/extr.pdf
+cons	https://www.consultant.ru/document/cons_doc_LAW_121347/#20.04.1959	.work/d5/cons2/mlat.pdf
+cons	https://www.consultant.ru/document/cons_doc_LAW_5531/#16.12.1966	.work/d5/cons2/pact.pdf
+cons	https://www.consultant.ru/document/cons_doc_LAW_120759/#Конвенция N 29	.work/d5/cons2/ilo29.pdf

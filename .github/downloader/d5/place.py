@@ -37,10 +37,15 @@ def card(url):
     p = '.work/cards/%s.json' % (m.group(1) if m else '')
     if not m or not os.path.exists(p): return None
     return json.load(open(p, encoding='utf-8'))
-SUPER = {'mz194n': 'в базу не включён: по предмету заменён приказом Минздрава России от 08.04.2025 № 172н (в базе); утрата силы по официальному источнику не проверялась',
-         'mt85': 'в базу не включён: по предмету заменён приказом Минтруда России от 16.04.2025 № 251н (в базе); утрата силы по официальному источнику не проверялась'}
+SUPER = {'mz194n': 'в базу не включён: на странице документа consultant.ru стоит отметка «Документ утратил силу или отменен»; по предмету действует приказ Минздрава России от 08.04.2025 № 172н (в базе)',
+         'mt85': 'в базу не включён: на странице документа consultant.ru стоит отметка «Документ утратил силу или отменен»; по предмету действует приказ Минтруда России от 16.04.2025 № 251н (в базе)'}
+LOST = 'Документ утратил силу или отменен'   # отметка на странице документа consultant.ru (в названии её может не быть)
+GONE = {}
+def lost(path):
+    return os.path.exists(path) and LOST in re.sub(r'<[^>]+>', ' ', open(path, encoding='utf-8', errors='replace').read()[:200000])
 def put(grp, key, folder, name, codes, topic, kind):
     if key in SUPER: DROP.append(dict(key=key, name=name, why=SUPER[key], codes=codes)); return
+    if key in GONE: DROP.append(dict(GONE[key], codes=codes)); return
     src = '.work/d5/%s/%s.pdf' % (grp, key); hsrc = '.work/d5/%s/%s%s.html' % (grp, H, key)
     if grp == 'cons' and not os.path.exists(src): src = src.replace('/cons/', '/cons2/'); hsrc = hsrc.replace('/cons/', '/cons2/')
     row = LOG.get(src)
@@ -63,6 +68,7 @@ def put(grp, key, folder, name, codes, topic, kind):
         edition = 'редакция от %s' % m.group(1) if m else 'изменений в названии документа на сайте не указано'
         state = 'утратил силу' if re.search(r'утратил', title, re.I) else ''
         if state: DROP.append(dict(key=key, name=name, why='по названию документа на consultant.ru — утратил силу', codes=codes)); return
+        if lost(hsrc): DROP.append(dict(key=key, name=name, why='на странице документа consultant.ru стоит отметка «Документ утратил силу или отменен»; в базу не включён', codes=codes)); return
     name = fit(name)
     for code in codes:
         d = S(code) + FOLD[folder]
@@ -72,6 +78,12 @@ def put(grp, key, folder, name, codes, topic, kind):
         if os.path.exists(hsrc) and not os.path.exists(d + H + name + '.html'): shutil.copyfile(hsrc, d + H + name + '.html')
         MAN[(code, key)] = dict(code=code, key=key, grp=grp, folder=FOLD[folder], name=name + '.pdf', site=site, url=row[2], edition=edition, state=state,
                                 checked=row[0][8:10] + '.' + row[0][5:7] + '.' + row[0][:4], sha=sha(dst), topic=topic, html=os.path.exists(hsrc))
+for (code, key), m in list(MAN.items()):
+    if m.get('site') == 'consultant.ru' and lost(S(code) + m['folder'] + H + m['name'][:-4] + '.html'):
+        for f in (S(code) + m['folder'] + m['name'], S(code) + m['folder'] + H + m['name'][:-4] + '.html'):
+            if os.path.exists(f): os.remove(f)
+        GONE[key] = dict(key=key, name=m['name'][:-4], why='на странице документа consultant.ru стоит отметка «Документ утратил силу или отменен»; из базы убран', codes=[code])
+        del MAN[(code, key)]; print('  убран (утратил силу):', code, m['name'][:90])
 for key, req, folder, name, codes in acts.IPS: put('acts', key, folder, name, codes.split(), req, 'ips')
 for d, n, topic, codes in acts.KS: put('ks', '%s_%s' % (n, d[-4:]), 'ks', 'Постановление КС РФ от %s № %s (%s)' % (d, n, topic), codes.split(), topic, 'ips')
 for d, n, topic, codes in acts.PL: put('pl', '%s_%s' % (d[-4:] + d[3:5] + d[:2], n), 'pl', 'Постановление Пленума ВС РФ от %s № %s (%s)' % (d, n, topic), codes.split(), topic, 'cons')

@@ -259,6 +259,17 @@ def op_consfind(url, out):
     return 'ok', code, 'найдено: %d' % len(rows), url
 
 
+def _cons_search(url, tmp):
+    """Страница поиска consultant.ru. Сайт при частых запросах отдаёт ответ очень медленно, и загрузка обрывается по времени;
+    первые результаты при этом уже получены. Поэтому берётся и неполная страница."""
+    r = subprocess.run(['curl', '-sS', '-L', '--connect-timeout', '15', '--max-time', '240', '-A', UA,
+                        '-H', 'Accept-Language: ru-RU,ru;q=0.9', '-o', tmp, '-w', '%{http_code}', url], capture_output=True, text=True)
+    s = open(tmp, encoding='utf-8', errors='replace').read() if os.path.exists(tmp) else ''
+    if os.path.exists(tmp):
+        os.remove(tmp)
+    return s, ('ok' if r.returncode == 0 and r.stdout.startswith('2') else 'неполный ответ (curl %d, HTTP %s)' % (r.returncode, r.stdout))
+
+
 def op_consauto(url, out):
     """consultant.ru: найти документ поиском и сразу сохранить его текст. Адрес: <запрос>#<реквизиты для сверки>.
     Берётся первый найденный документ, в названии которого есть реквизиты; дальше — как операция cons.
@@ -270,10 +281,7 @@ def op_consauto(url, out):
     items, s, res = [], '', ''
     for pause in (12.0, 40.0, 75.0):
         time.sleep(pause)
-        res, code, ctype = op_get(surl, tmp)
-        s = open(tmp, encoding='utf-8', errors='replace').read() if res == 'ok' else ''
-        if os.path.exists(tmp):
-            os.remove(tmp)
+        s, res = _cons_search(surl, tmp)
         items = re.findall(r'<li class="search-results__item[^>]*>(.*?)</li>', s, re.S)
         if items or 'ничего не найдено' in s:
             break
@@ -473,10 +481,7 @@ def op_consqlist(listfile, out):
             items, s, res = [], '', ''
             for pause in (14.0, 45.0, 75.0):
                 time.sleep(pause)
-                res, code, ctype = op_get(url, tmp)
-                s = open(tmp, encoding='utf-8', errors='replace').read() if res == 'ok' else ''
-                if os.path.exists(tmp):
-                    os.remove(tmp)
+                s, res = _cons_search(url, tmp)
                 items = re.findall(rx, s, re.S)
                 if items or 'ничего не найдено' in s:
                     break
@@ -485,7 +490,7 @@ def op_consqlist(listfile, out):
                 f.write('\t'.join([key, '0', '', note, '']) + '\n')
             if items or 'ничего не найдено' in s:
                 done += 1
-            for n, it in enumerate(items[:5], 1):
+            for n, it in enumerate(items[:8], 1):
                 href = re.search(r'href="([^"]+)"', it)
                 text = ' '.join(_h.unescape(re.sub(r'<[^>]+>', ' ', re.sub(r'<span class="search-results__number">.*?</span>', '', it, flags=re.S))).split())
                 lost = 'утратил' if 'утратил силу' in text else ''

@@ -36,6 +36,18 @@
 "n": "g38dd52"
 },
 {
+"slug": "/article/n/yuridicheskie-garantii-prav-i-svobod-grazhdan-sistema-i-znachenie-dlya-administrativno-protsessualnogo-regulirovaniya",
+"year": "2023",
+"vak": true,
+"journal": "Гуманитарные, социально-экономические и общественные науки",
+"authors": "Беженцев А. А.; Игошин Н. А.",
+"title": "ЮРИДИЧЕСКИЕ ГАРАНТИИ ПРАВ И СВОБОД ГРАЖДАН: СИСТЕМА И ЗНАЧЕНИЕ ДЛЯ АДМИНИСТРАТИВНО-ПРОЦЕССУАЛЬНОГО РЕГУЛИРОВАНИЯ",
+"t": [
+"gpp001"
+],
+"n": "g7defbe"
+},
+{
 "slug": "/article/n/predmet-dokazyvaniya-v-grazhdanskom-protsesse",
 "year": "2025",
 "vak": false,
@@ -43,7 +55,8 @@
 "authors": "Баскончин Данил Сергеевич; Гуськов Денис Викторович; Сеидова Саният Шахрутдиновна",
 "title": "ПРЕДМЕТ ДОКАЗЫВАНИЯ В ГРАЖДАНСКОМ ПРОЦЕССЕ",
 "t": [
-"gpp002"
+"gpp002",
+"gpp028"
 ],
 "n": "g74229f"
 },
@@ -122,6 +135,46 @@
 "n": "g325a40"
 },
 {
+"slug": "/article/n/nekotorye-aspekty-realizatsii-rasporyaditelnyh-protsessualnyh-prav-uchastnikami-prikaznogo-proizvodstva",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Саратовской государственной юридической академии",
+"authors": "Белоусов Сергей Сергеевич",
+"title": "Некоторые аспекты реализации распорядительных процессуальных прав участниками приказного производства",
+"t": [
+"gpp005",
+"gpp046"
+],
+"n": "gdc4e24"
+},
+{
+"slug": "/article/n/problema-prinadlezhnosti-ispolnitelnogo-proizvodstva-i-ego-otnosheniya-k-administrativnomu-protsessu",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Сургутского государственного университета",
+"authors": "Нагиев Р. С.",
+"title": "Проблема принадлежности исполнительного производства и его отношения к административному процессу",
+"t": [
+"gpp005",
+"gpp052"
+],
+"n": "g1df305"
+},
+{
+"slug": "/article/n/k-voprosu-o-vidah-proizvodstv-v-grazhdanskom-protsesse-nekotorye-voprosy-teorii-i-praktiki",
+"year": "2023",
+"vak": true,
+"journal": "Юридический вестник Дагестанского государственного университета",
+"authors": "Магомедова Карина Камильевна; Эфендиева Динара Камильевна",
+"title": "К вопросу о видах производств в гражданском процессе: некоторые вопросы теории и практики",
+"t": [
+"gpp005",
+"gpp045",
+"gpp052"
+],
+"n": "gfb4e56"
+},
+{
 "slug": "/article/n/o-prave-chastnyh-lits-na-initsiirovanie-sudebnogo-razbiratelstva-v-stadii-ispolneniya-prigovora",
 "year": "2024",
 "vak": true,
@@ -163,6 +216,20 @@
 "n": "g2f7ae1"
 },
 {
+"slug": "/article/n/podgotovka-dela-k-sudebnomu-razbiratelstvu-1",
+"year": "2025",
+"vak": false,
+"journal": "Human Progress",
+"authors": "Эльмурзаев Асолтан Валерьевич; Рассаева Тамила Сулимановна; Феклистова Яна Александровна",
+"title": "ПОДГОТОВКА ДЕЛА К СУДЕБНОМУ РАЗБИРАТЕЛЬСТВУ",
+"t": [
+"gpp006",
+"gpp039",
+"gpp040"
+],
+"n": "g9bf329"
+},
+{
 "slug": "/article/n/primenenie-pravil-alternativnoy-podsudnosti-po-pensionnym-sporam",
 "year": "2024",
 "vak": true,
@@ -199,6 +266,30 @@
 "n": "g6b9407"
 },
 {
+"slug": "/article/n/pravovaya-priroda-isklyuchitelnoy-podsudnosti-sudebnyh-sporov-o-pravah-na-nedvizhimoe-imuschestvo",
+"year": "2026",
+"vak": true,
+"journal": "Вестник экономической безопасности",
+"authors": "Староверова Ольга Валентиновна",
+"title": "Правовая природа исключительной подсудности судебных споров о правах на недвижимое имущество",
+"t": [
+"gpp007"
+],
+"n": "g408562"
+},
+{
+"slug": "/article/n/pravovaya-priroda-soglasheniy-o-mezhdunarodnoy-podsudnosti-1",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Московского университета. Серия 11. Право",
+"authors": "Юлия Васильевна Федченко",
+"title": "Правовая природа соглашений о международной подсудности",
+"t": [
+"gpp007"
+],
+"n": "gc32692"
+},
+{
 "slug": "/article/n/grazhdanskoe-protsessualnoe-otnoshenie-voznikayuschie-v-svyazi-s-trans-granichnoy-nesostoyatelnostyu-voprosy-teorii",
 "year": "2025",
 "vak": true,
@@ -219,8 +310,8 @@
 "title": "НЕКОТОРЫЕ ОСОБЕННОСТИ ГРАЖДАНСКИХ ПРОЦЕССУАЛЬНЫХ ПРАВООТНОШЕНИЙ, ВОЗНИКАЮЩИХ ПРИ РАССМОТРЕНИИ СУДАМИ ПЕРВОЙ ИНСТАНЦИИ ВОПРОСОВ, СВЯЗАННЫХ С ОБЕСПЕЧЕНИЕМ ИСКА: ОПЫТ РОССИЙСКОЙ ФЕДЕРАЦИИ И КОРОЛЕВСТВА БЕЛЬГИИ",
 "t": [
 "gpp008",
-"gpp026",
-"gpp027"
+"gpp027",
+"gpp026"
 ],
 "n": "gf0b98e"
 },
@@ -311,6 +402,30 @@
 "n": "gd56ba8"
 },
 {
+"slug": "/article/n/protsessualnaya-spetsifika-deystviy-sudov-a-takzhe-lits-uchastvuyuschih-v-dele-pri-rassmotrenii-grazhdanskih-i-korporativnyh-sporov",
+"year": "2024",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Бобров Павел Сергеевич",
+"title": "ПРОЦЕССУАЛЬНАЯ СПЕЦИФИКА ДЕЙСТВИЙ СУДОВ, А ТАКЖЕ ЛИЦ, УЧАСТВУЮЩИХ В ДЕЛЕ ПРИ РАССМОТРЕНИИ ГРАЖДАНСКИХ И КОРПОРАТИВНЫХ СПОРОВ АРБИТРАЖНЫМИ СУДАМИ",
+"t": [
+"gpp011"
+],
+"n": "g061785"
+},
+{
+"slug": "/article/n/k-voprosu-o-haraktere-i-tselyah-printsipa-nadlezhaschego-izvescheniya-lits-uchastvuyuschih-v-dele-i-klassifikatsii-nadlezhaschih",
+"year": "2023",
+"vak": true,
+"journal": "Ученые записки Крымского федерального университета имени В. И. Вернадского. Юридические науки",
+"authors": "Иванченко С. В.",
+"title": "К ВОПРОСУ О ХАРАКТЕРЕ И ЦЕЛЯХ ПРИНЦИПА НАДЛЕЖАЩЕГО ИЗВЕЩЕНИЯ ЛИЦ, УЧАСТВУЮЩИХ В ДЕЛЕ И КЛАССИФИКАЦИИ НАДЛЕЖАЩИХ ИЗВЕЩЕНИЙ",
+"t": [
+"gpp011"
+],
+"n": "g0c56c1"
+},
+{
 "slug": "/article/n/sootnoshenie-sostyazatelnosti-i-ravnopraviya-storon-v-grazhdanskom-protsesse",
 "year": "2024",
 "vak": true,
@@ -391,7 +506,8 @@
 "authors": "Литвинова Татьяна Анатольевна",
 "title": "Участие прокурора в рассмотрении гражданских дел судами проверочных инстанций",
 "t": [
-"gpp015"
+"gpp015",
+"gpp048"
 ],
 "n": "g2517a2"
 },
@@ -421,6 +537,18 @@
 "n": "gd982ef"
 },
 {
+"slug": "/article/n/aktualnye-voprosy-uchastiya-v-dele-prokurora-v-poryadke-ch-3-st-45-gpk-rf",
+"year": "2024",
+"vak": true,
+"journal": "КриминалистЪ",
+"authors": "Нина Александровна Васильчикова",
+"title": "АКТУАЛЬНЫЕ ВОПРОСЫ УЧАСТИЯ В ДЕЛЕ ПРОКУРОРА В ПОРЯДКЕ ч. 3 ст. 45 ГПК РФ",
+"t": [
+"gpp015"
+],
+"n": "gc1c3d6"
+},
+{
 "slug": "/article/n/integratsiya-kriminalisticheskih-kategoriy-v-praktiku-uchastiya-prokurora-v-grazhdanskom-sudoproizvodstve",
 "year": "2023",
 "vak": true,
@@ -445,6 +573,42 @@
 "gpp001"
 ],
 "n": "ge01b64"
+},
+{
+"slug": "/article/n/otdelnye-aspekty-realizatsii-prokurorom-zakonoohranitelnoy-funktsii-v-grazhdanskom-sudoproizvodstve-dialektika-publichnogo-i",
+"year": "2026",
+"vak": true,
+"journal": "Вестник Саратовской государственной юридической академии",
+"authors": "Попов Василий Валерьевич; Тришина Елена Геннадьевна",
+"title": "Отдельные аспекты реализации прокурором законоохранительной функции в гражданском судопроизводстве: диалектика публичного и частного интереса",
+"t": [
+"gpp016"
+],
+"n": "g4ff978"
+},
+{
+"slug": "/article/n/prokurorskaya-proverka-kak-vedomstvennyy-instrument-pravozaschitnoy-deyatelnosti",
+"year": "2024",
+"vak": true,
+"journal": "Пробелы в российском законодательстве. Юридический журнал",
+"authors": "Мананников Д. Ю.",
+"title": "ПРОКУРОРСКАЯ ПРОВЕРКА КАК ВЕДОМСТВЕННЫЙ ИНСТРУМЕНТ ПРАВОЗАЩИТНОЙ ДЕЯТЕЛЬНОСТИ",
+"t": [
+"gpp016"
+],
+"n": "g84f47d"
+},
+{
+"slug": "/article/n/kollizii-protsessualnogo-statusa-prokurora-v-grazhdanskom-sudoproizvodstve",
+"year": "2025",
+"vak": true,
+"journal": "Образование. Наука. Научные кадры",
+"authors": "Наталья Александровна Акулова",
+"title": "Коллизии процессуального статуса прокурора в гражданском судопроизводстве",
+"t": [
+"gpp016"
+],
+"n": "gee6fef"
 },
 {
 "slug": "/article/n/zaschita-imuschestvennyh-interesov-religioznyh-organizatsiy-v-rossii",
@@ -481,6 +645,30 @@
 "gpp017"
 ],
 "n": "g2f4406"
+},
+{
+"slug": "/article/n/instituty-obschestvennogo-kontrolya-kak-ploschadki-grazhdanskogo-uchastiya-pravovoe-regulirovanie-i-informatsionnaya-otkrytost-keys",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Пермского национального исследовательского политехнического университета. Социально-экономические науки",
+"authors": "Певная Мария Владимировна; Вишневский Юрий Рудольфович; Початкова Екатерина Ивановна; Гурченок Наталья Николаевна",
+"title": "Институты общественного контроля как площадки гражданского участия: правовое регулирование и информационная открытость (кейс Свердловской области)",
+"t": [
+"gpp017"
+],
+"n": "ge6f641"
+},
+{
+"slug": "/article/n/formirovanie-partnerskoy-modeli-grazhdanskogo-obschestva-sovremennoy-rossii-cherez-prizmu-konstitutsionnoy-normy-o-neobhodimosti",
+"year": "2024",
+"vak": true,
+"journal": "Государственное и муниципальное управление. Ученые записки",
+"authors": "Дмитрий Александрович Леньков",
+"title": "Формирование партнерской модели гражданского общества современной России через призму конституционной нормы о необходимости государственной поддержки институтов гражданского общества",
+"t": [
+"gpp017"
+],
+"n": "g39eba8"
 },
 {
 "slug": "/article/n/yuridicheskaya-suschnost-vidov-predstavitelstva-v-sude",
@@ -570,6 +758,44 @@
 "n": "g06f762"
 },
 {
+"slug": "/article/n/nedostatki-yazyka-grazhdanskogo-protsessualnogo-zakona-na-primere-norm-reguliruyuschih-osoboe-proizvodstvo",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Воронежского государственного университета. Серия: Право",
+"authors": "А. С. Маренков",
+"title": "НЕДОСТАТКИ ЯЗЫКА ГРАЖДАНСКОГО ПРОЦЕССУАЛЬНОГО ЗАКОНА (НА ПРИМЕРЕ НОРМ, РЕГУЛИРУЮЩИХ ОСОБОЕ ПРОИЗВОДСТВО)",
+"t": [
+"gpp021"
+],
+"n": "g2061fb"
+},
+{
+"slug": "/article/n/dela-svyazannye-s-surrogatnym-materinstvom-protsessualnyy-analiz-klassicheskih-vidov-grazhdanskogo-sudoproizvodstva",
+"year": "2023",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Мокшин Сергей Игоревич",
+"title": "ДЕЛА, СВЯЗАННЫЕ С СУРРОГАТНЫМ МАТЕРИНСТВОМ: ПРОЦЕССУАЛЬНЫЙ АНАЛИЗ КЛАССИЧЕСКИХ ВИДОВ ГРАЖДАНСКОГО СУДОПРОИЗВОДСТВА",
+"t": [
+"gpp021",
+"gpp045",
+"gpp052"
+],
+"n": "g078aa6"
+},
+{
+"slug": "/article/n/avtomatizatsiya-yuridicheskih-deystviy-i-primenenie-tehnologiy-iskusstvennogo-intellekta-pri-prinyatii-iskovogo-zayavleniya",
+"year": "2024",
+"vak": true,
+"journal": "Аграрное и земельное право",
+"authors": "Баринов Андрей Викторович; Новичкова Юлия Геннадьевна; Хорошева Наталья Александровна",
+"title": "АВТОМАТИЗАЦИЯ ЮРИДИЧЕСКИХ ДЕЙСТВИЙ И ПРИМЕНЕНИЕ ТЕХНОЛОГИЙ ИСКУССТВЕННОГО ИНТЕЛЛЕКТА ПРИ ПРИНЯТИИ ИСКОВОГО ЗАЯВЛЕНИЯ",
+"t": [
+"gpp021"
+],
+"n": "g0f5c13"
+},
+{
 "slug": "/article/n/k-voprosu-o-vzaimosvyazi-kontseptsii-predmeta-dokazyvaniya-v-grazhdanskom-protsesse-i-teorii-iska",
 "year": "2024",
 "vak": true,
@@ -577,7 +803,8 @@
 "authors": "Нахова Елена Александровна",
 "title": "К вопросу о взаимосвязи концепции предмета доказывания в гражданском процессе и теории иска",
 "t": [
-"gpp022"
+"gpp022",
+"gpp030"
 ],
 "n": "gef911f"
 },
@@ -647,6 +874,31 @@
 "n": "g96e29c"
 },
 {
+"slug": "/article/n/perepiska-storon-kak-kategoriya-materialnogo-i-protsessualnogo-prava",
+"year": "2025",
+"vak": true,
+"journal": "Юридическая наука и практика: Вестник Нижегородской академии МВД России",
+"authors": "Ягодина Светлана Владимировна",
+"title": "Переписка сторон как категория материального и процессуального права",
+"t": [
+"gpp024"
+],
+"n": "ge5f977"
+},
+{
+"slug": "/article/n/osobennosti-razresheniya-vstrechnogo-iska-po-ustavu-grazhdanskogo-sudoproizvodstva",
+"year": "2023",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Гуляева Татьяна Борисовна; Гнетова Людмила Валентиновна; Гасанова Вусаля Шахин Кызы",
+"title": "ОСОБЕННОСТИ РАЗРЕШЕНИЯ ВСТРЕЧНОГО ИСКА ПО УСТАВУ ГРАЖДАНСКОГО СУДОПРОИЗВОДСТВА",
+"t": [
+"gpp024",
+"gpp037"
+],
+"n": "g28f541"
+},
+{
 "slug": "/article/n/zayavlenie-ob-antiiskovom-zaprete-kak-novoe-sredstvo-zaschity-v-natsionalnom-pravoporyadke",
 "year": "2025",
 "vak": true,
@@ -704,9 +956,34 @@
 "authors": "Сагитова Евгения Валерьевна",
 "title": "Обеспечительные меры и особенности их принятия в гражданском судопроизводстве",
 "t": [
+"gpp026",
 "gpp027"
 ],
 "n": "g87a055"
+},
+{
+"slug": "/article/n/nekotorye-aspekty-primeneniya-sudom-obespechitelnyh-mer-po-semeynym-delam-zatragivayuschim-interesy-detey",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Саратовской государственной юридической академии",
+"authors": "Бахарева Ольга Александровна; Вершинина Галина Ильинична",
+"title": "Некоторые аспекты применения судом обеспечительных мер по семейным делам, затрагивающим интересы детей",
+"t": [
+"gpp026"
+],
+"n": "g22793f"
+},
+{
+"slug": "/article/n/obyazatelstva-po-sohraneniyu-spornogo-imuschestva-kak-obespechitelnaya-mera-v-grazhdanskom-protsesse",
+"year": "2023",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Тюленев Андрей Сергеевич",
+"title": "ОБЯЗАТЕЛЬСТВА ПО СОХРАНЕНИЮ СПОРНОГО ИМУЩЕСТВА КАК ОБЕСПЕЧИТЕЛЬНАЯ МЕРА В ГРАЖДАНСКОМ ПРОЦЕССЕ",
+"t": [
+"gpp026"
+],
+"n": "g28665c"
 },
 {
 "slug": "/article/n/konstitutsionno-sudebnoe-dokazyvanie-i-dokazatelstva-v-rossiyskoy-federatsii",
@@ -717,6 +994,7 @@
 "title": "КОНСТИТУЦИОННО-СУДЕБНОЕ ДОКАЗЫВАНИЕ И ДОКАЗАТЕЛЬСТВА В РОССИЙСКОЙ ФЕДЕРАЦИИ",
 "t": [
 "gpp028",
+"gpp029",
 "gpp032"
 ],
 "n": "g70db8a"
@@ -745,6 +1023,30 @@
 "gpp028"
 ],
 "n": "g728519"
+},
+{
+"slug": "/article/n/k-voprosu-o-tseli-sudebnogo-dokazyvaniya-v-grazhdanskom-protsesse",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Саратовской государственной юридической академии",
+"authors": "Чекмарев Эдуард Владимирович; Чекмарева Анастасия Валериевна",
+"title": "К вопросу о цели судебного доказывания в гражданском процессе",
+"t": [
+"gpp028"
+],
+"n": "gf1f47b"
+},
+{
+"slug": "/article/n/rol-preyuditsii-v-voprosah-dokazyvaniya-v-grazhdanskom-protsessualnom-prave-rossiyskoy-federatsii",
+"year": "2023",
+"vak": true,
+"journal": "Известия высших учебных заведений. Поволжский регион. Общественные науки",
+"authors": "Сальникова Анастасия Владимировна",
+"title": "РОЛЬ ПРЕЮДИЦИИ В ВОПРОСАХ ДОКАЗЫВАНИЯ В ГРАЖДАНСКОМ ПРОЦЕССУАЛЬНОМ ПРАВЕ РОССИЙСКОЙ ФЕДЕРАЦИИ",
+"t": [
+"gpp028"
+],
+"n": "g898e9b"
 },
 {
 "slug": "/article/n/preodolenie-probelov-v-protsesse-dokazyvaniya-zloupotrebleniya-isklyuchitelnymi-pravami-problemy-subektivnoy-storony-i",
@@ -786,6 +1088,32 @@
 "n": "gf429f6"
 },
 {
+"slug": "/article/n/materialnye-obstoyatelstva-kak-osnova-predmeta-dokazyvaniya-v-grazhdanskom-sudoproizvodstve",
+"year": "2026",
+"vak": true,
+"journal": "Российский научный вестник",
+"authors": "Беляков Данила Сергеевич",
+"title": "МАТЕРИАЛЬНЫЕ ОБСТОЯТЕЛЬСТВА КАК ОСНОВА ПРЕДМЕТА ДОКАЗЫВАНИЯ В ГРАЖДАНСКОМ СУДОПРОИЗВОДСТВЕ",
+"t": [
+"gpp029",
+"gpp030"
+],
+"n": "g7cece2"
+},
+{
+"slug": "/article/n/voprosy-sudebnogo-dokazyvaniya-po-grazhdanskim-delam-o-zaschite-chesti-i-dostoinstva-grazhdan-a-takzhe-delovoy-reputatsii-grazhdan",
+"year": "2023",
+"vak": true,
+"journal": "Теория и практика общественного развития",
+"authors": "Юлия Александровна Попова",
+"title": "Вопросы судебного доказывания по гражданским делам о защите чести и достоинства граждан, а также деловой репутации граждан и юридических лиц",
+"t": [
+"gpp029",
+"gpp028"
+],
+"n": "ge86d56"
+},
+{
 "slug": "/article/n/osobennosti-opredeleniya-predmeta-dokazyvaniya-v-delah-o-priznanii-i-privedenii-v-ispolnenie-inostrannyh-resheniy",
 "year": "2026",
 "vak": true,
@@ -798,18 +1126,6 @@
 "n": "g9c30b5"
 },
 {
-"slug": "/article/n/materialnye-obstoyatelstva-kak-osnova-predmeta-dokazyvaniya-v-grazhdanskom-sudoproizvodstve",
-"year": "2026",
-"vak": true,
-"journal": "Российский научный вестник",
-"authors": "Беляков Данила Сергеевич",
-"title": "МАТЕРИАЛЬНЫЕ ОБСТОЯТЕЛЬСТВА КАК ОСНОВА ПРЕДМЕТА ДОКАЗЫВАНИЯ В ГРАЖДАНСКОМ СУДОПРОИЗВОДСТВЕ",
-"t": [
-"gpp030"
-],
-"n": "g7cece2"
-},
-{
 "slug": "/article/n/opredelenie-predmeta-dokazyvaniya-sobiranie-i-predstavlenie-dokazatelstv",
 "year": "2026",
 "vak": false,
@@ -820,6 +1136,30 @@
 "gpp030"
 ],
 "n": "g37abaa"
+},
+{
+"slug": "/article/n/k-voprosu-o-kontseptsii-lokalnogo-predmeta-dokazyvaniya-v-grazhdanskom-protsesse",
+"year": "2024",
+"vak": true,
+"journal": "Ленинградский юридический журнал",
+"authors": "Нахова Елена Александровна",
+"title": "К вопросу о концепции локального предмета доказывания в гражданском процессе",
+"t": [
+"gpp030"
+],
+"n": "g9d2248"
+},
+{
+"slug": "/article/n/kontseptualnye-aspekty-ucheniya-o-predmete-dokazyvaniya-v-grazhdanskom-protsesse",
+"year": "2023",
+"vak": true,
+"journal": "Ленинградский юридический журнал",
+"authors": "Нахова Е. А.",
+"title": "КОНЦЕПТУАЛЬНЫЕ АСПЕКТЫ УЧЕНИЯ О ПРЕДМЕТЕ ДОКАЗЫВАНИЯ В ГРАЖДАНСКОМ ПРОЦЕССЕ",
+"t": [
+"gpp030"
+],
+"n": "g535621"
 },
 {
 "slug": "/article/n/problemy-raspredeleniya-obyazannosti-dokazyvaniya-v-ramkah-individualnyh-trudovyh-sporov-i-garantii-realizatsii-prava-na-zaschitu",
@@ -844,6 +1184,42 @@
 "gpp031"
 ],
 "n": "gf71bcf"
+},
+{
+"slug": "/article/n/raspredelenie-bremeni-dokazyvaniya-v-grazhdanskom-protsesse-v-usloviyah-otritsaniya-iska-otvetchikom",
+"year": "2026",
+"vak": true,
+"journal": "Юридическая наука",
+"authors": "Корнилова Наталья Викторовна; Орлова Ирина Витальевна",
+"title": "Распределение бремени доказывания в гражданском процессе в условиях отрицания иска ответчиком",
+"t": [
+"gpp031"
+],
+"n": "gfeb0e8"
+},
+{
+"slug": "/article/n/bremya-dokazyvaniya-pri-razbiratelstve-grazhdanskih-del",
+"year": "2023",
+"vak": true,
+"journal": "Журнал прикладных исследований",
+"authors": "Абубакарова Мадина Магомедовна; Османов Осман Абдулмуслимович; Бетербиева Заира Руслановна",
+"title": "БРЕМЯ ДОКАЗЫВАНИЯ ПРИ РАЗБИРАТЕЛЬСТВЕ ГРАЖДАНСКИХ ДЕЛ",
+"t": [
+"gpp031"
+],
+"n": "g0b0d6b"
+},
+{
+"slug": "/article/n/bremya-dokazyvaniya-v-grazhdanskom-protsesse-1",
+"year": "2023",
+"vak": true,
+"journal": "Государственная служба и кадры",
+"authors": "Умар Хасбулаевич Хасбулаев",
+"title": "Бремя доказывания в гражданском процессе",
+"t": [
+"gpp031"
+],
+"n": "g1e92fb"
 },
 {
 "slug": "/article/n/ponyatie-i-suschnost-sudebnyh-dokazatelstv",
@@ -916,7 +1292,8 @@
 "authors": "Трепалин С. С.",
 "title": "Проблемы допустимости доказательств по гражданским и административным делам",
 "t": [
-"gpp034"
+"gpp034",
+"gpp035"
 ],
 "n": "gef9880"
 },
@@ -932,6 +1309,31 @@
 "gpp032"
 ],
 "n": "g0121a0"
+},
+{
+"slug": "/article/n/ispolzovanie-skrinshotov-pri-dokazyvanii-v-grazhdanskom-protsesse-v-rossiyskoy-federatsii",
+"year": "2023",
+"vak": true,
+"journal": "Юридическая наука",
+"authors": "Гуляева Влада Алексеевна; Силаева Софья Сергеевна",
+"title": "ИСПОЛЬЗОВАНИЕ СКРИНШОТОВ ПРИ ДОКАЗЫВАНИИ В ГРАЖДАНСКОМ ПРОЦЕССЕ В РОССИЙСКОЙ ФЕДЕРАЦИИ",
+"t": [
+"gpp034"
+],
+"n": "g7df6bd"
+},
+{
+"slug": "/article/n/otsenka-dopustimosti-audioi-videozapisey-kak-dokazatelstv-v-grazhdanskom-protsesse",
+"year": "2024",
+"vak": false,
+"journal": "Семнадцатая годичная научная конференция. Социально-гуманитарные науки. Часть II",
+"authors": "В. Ф. Борисова",
+"title": "ОЦЕНКА ДОПУСТИМОСТИ АУДИОИ ВИДЕОЗАПИСЕЙ КАК ДОКАЗАТЕЛЬСТВ В ГРАЖДАНСКОМ ПРОЦЕССЕ",
+"t": [
+"gpp034",
+"gpp035"
+],
+"n": "ge0cac2"
 },
 {
 "slug": "/article/n/elektronnye-dokazatelstva-v-grazhdanskom-protsesse-kriterii-dopustimosti-i-otsenka-dostovernosti",
@@ -958,16 +1360,18 @@
 "n": "g8ded0f"
 },
 {
-"slug": "/article/n/otsenka-dopustimosti-audioi-videozapisey-kak-dokazatelstv-v-grazhdanskom-protsesse",
+"slug": "/article/n/problemy-otsenki-elektronnyh-dokazatelstv-v-hode-sudebnogo-dokazyvaniya-v-tsivilisticheskom-protsesse",
 "year": "2024",
-"vak": false,
-"journal": "Семнадцатая годичная научная конференция. Социально-гуманитарные науки. Часть II",
-"authors": "В. Ф. Борисова",
-"title": "ОЦЕНКА ДОПУСТИМОСТИ АУДИОИ ВИДЕОЗАПИСЕЙ КАК ДОКАЗАТЕЛЬСТВ В ГРАЖДАНСКОМ ПРОЦЕССЕ",
+"vak": true,
+"journal": "Вестник Нижегородского университета им. Н. И. Лобачевского",
+"authors": "Карева Татьяна Юрьевна; Юртаев Станислав Николаевич",
+"title": "ПРОБЛЕМЫ ОЦЕНКИ ЭЛЕКТРОННЫХ ДОКАЗАТЕЛЬСТВ В ХОДЕ СУДЕБНОГО ДОКАЗЫВАНИЯ В ЦИВИЛИСТИЧЕСКОМ ПРОЦЕССЕ",
 "t": [
-"gpp035"
+"gpp035",
+"gpp028",
+"gpp032"
 ],
-"n": "ge0cac2"
+"n": "g20a880"
 },
 {
 "slug": "/article/n/vozbuzhdenie-grazhdanskogo-dela-i-podgotovka-k-sudebnomu-razbiratelstvu-osobennosti-stadiy",
@@ -979,8 +1383,8 @@
 "t": [
 "gpp036",
 "gpp039",
-"gpp006",
-"gpp040"
+"gpp040",
+"gpp006"
 ],
 "n": "g8f1b3d"
 },
@@ -995,18 +1399,6 @@
 "gpp036"
 ],
 "n": "gbddca5"
-},
-{
-"slug": "/article/n/osobennosti-razresheniya-vstrechnogo-iska-po-ustavu-grazhdanskogo-sudoproizvodstva",
-"year": "2023",
-"vak": true,
-"journal": "Право и государство: теория и практика",
-"authors": "Гуляева Татьяна Борисовна; Гнетова Людмила Валентиновна; Гасанова Вусаля Шахин Кызы",
-"title": "ОСОБЕННОСТИ РАЗРЕШЕНИЯ ВСТРЕЧНОГО ИСКА ПО УСТАВУ ГРАЖДАНСКОГО СУДОПРОИЗВОДСТВА",
-"t": [
-"gpp037"
-],
-"n": "g28f541"
 },
 {
 "slug": "/article/n/pravovaya-priroda-kosvennogo-iska-i-protsessualnoe-polozhenie-storon-pri-predyavlenii-iska",
@@ -1072,6 +1464,18 @@
 "n": "gc4828d"
 },
 {
+"slug": "/article/n/posledstviya-manipulirovaniya-podsudnostyu-v-sude-pervoy-instantsii-1",
+"year": "2023",
+"vak": true,
+"journal": "Электронное приложение к Российскому юридическому журналу",
+"authors": "Бахилин Илья Вячеславович",
+"title": "ПОСЛЕДСТВИЯ МАНИПУЛИРОВАНИЯ ПОДСУДНОСТЬЮ В СУДЕ ПЕРВОЙ ИНСТАНЦИИ",
+"t": [
+"gpp038"
+],
+"n": "gd06312"
+},
+{
 "slug": "/article/n/transformatsiya-podgotovki-dela-k-sudebnomu-razbiratelstvu",
 "year": "2025",
 "vak": true,
@@ -1085,17 +1489,18 @@
 "n": "g9e407d"
 },
 {
-"slug": "/article/n/podgotovka-dela-k-sudebnomu-razbiratelstvu-1",
+"slug": "/article/n/optimizatsiya-stadii-podgotovki-del-k-sudebnomu-razbiratelstvu-v-tsivilisticheskom-protsesse-s-pomoschyu-iskusstvennogo-intellekta",
 "year": "2025",
-"vak": false,
-"journal": "Human Progress",
-"authors": "Эльмурзаев Асолтан Валерьевич; Рассаева Тамила Сулимановна; Феклистова Яна Александровна",
-"title": "ПОДГОТОВКА ДЕЛА К СУДЕБНОМУ РАЗБИРАТЕЛЬСТВУ",
+"vak": true,
+"journal": "Вестник Университета имени О. Е. Кутафина",
+"authors": "Елена Сергеевна Смагина; Елена Юрьевна Фролова",
+"title": "Оптимизация стадии подготовки дел к судебному разбирательству в цивилистическом процессе с помощью искусственного интеллекта",
 "t": [
 "gpp039",
+"gpp006",
 "gpp040"
 ],
-"n": "g9bf329"
+"n": "g51d45a"
 },
 {
 "slug": "/article/n/protsessualnye-garantii-prava-na-provedenie-razbiratelstva-v-zakrytom-sudebnom-zasedanii",
@@ -1158,6 +1563,30 @@
 "gpp020"
 ],
 "n": "g94fd3b"
+},
+{
+"slug": "/article/n/ispolnenie-inostrannogo-sudebnogo-resheniya-v-ramkah-ispolneniya-sudebnogo-porucheniya",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Университета имени О. Е. Кутафина",
+"authors": "Наталия Николаевна Карандашева",
+"title": "Исполнение иностранного судебного решения в рамках исполнения судебного поручения",
+"t": [
+"gpp041"
+],
+"n": "ga0553f"
+},
+{
+"slug": "/article/n/neuplata-sredstv-na-soderzhanie-detey-ili-netrudosposobnyh-roditeley-problemnye-voprosy-i-analiz-sudebnoy-praktiki",
+"year": "2026",
+"vak": true,
+"journal": "Вестник Казанского юридического института МВД России",
+"authors": "Светлана Олеговна Кормильцева",
+"title": "НЕУПЛАТА СРЕДСТВ НА СОДЕРЖАНИЕ ДЕТЕЙ ИЛИ НЕТРУДОСПОСОБНЫХ РОДИТЕЛЕЙ: ПРОБЛЕМНЫЕ ВОПРОСЫ И АНАЛИЗ СУДЕБНОЙ ПРАКТИКИ",
+"t": [
+"gpp041"
+],
+"n": "g3ca5ae"
 },
 {
 "slug": "/article/n/protsessualnyy-poryadok-deystviy-sledovatelya-pri-priostanovlenii-i-vozobnovlenii-predvaritelnogo-sledstviya",
@@ -1259,6 +1688,18 @@
 "n": "gc6206f"
 },
 {
+"slug": "/article/n/protokol-v-tsivilisticheskom-protsesse-nekotorye-aspekty-sudebnoy-kommunikatsii-i-printsipa-neposredstvennosti",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Университета имени О. Е. Кутафина",
+"authors": "Алексей Дмитриевич Эрзин",
+"title": "Протокол в цивилистическом процессе: некоторые аспекты судебной коммуникации и принципа непосредственности",
+"t": [
+"gpp044"
+],
+"n": "gd2448f"
+},
+{
 "slug": "/article/n/problema-diskretsii-suda-mezhdu-zaochnym-proizvodstvom-i-ordinarnym-proizvodstvom",
 "year": "2026",
 "vak": false,
@@ -1278,7 +1719,8 @@
 "authors": "Наталья Александровна Акулова",
 "title": "Актуальные вопросы применения упрощенного производства при рассмотрении гражданских дел",
 "t": [
-"gpp045"
+"gpp045",
+"gpp046"
 ],
 "n": "gfc7ca7"
 },
@@ -1295,18 +1737,6 @@
 "n": "ga3fbab"
 },
 {
-"slug": "/article/n/nekotorye-aspekty-realizatsii-rasporyaditelnyh-protsessualnyh-prav-uchastnikami-prikaznogo-proizvodstva",
-"year": "2024",
-"vak": true,
-"journal": "Вестник Саратовской государственной юридической академии",
-"authors": "Белоусов Сергей Сергеевич",
-"title": "Некоторые аспекты реализации распорядительных процессуальных прав участниками приказного производства",
-"t": [
-"gpp046"
-],
-"n": "gdc4e24"
-},
-{
 "slug": "/article/n/usloviya-otneseniya-iskovyh-zayavleniy-k-delam-uproschennogo-proizvodstva-ne-ogranichennym-tsenoy-iska",
 "year": "2023",
 "vak": true,
@@ -1317,6 +1747,18 @@
 "gpp046"
 ],
 "n": "g718513"
+},
+{
+"slug": "/article/n/osobennosti-rassmotreniya-grazhdanskih-del-v-poryadke-uproschennogo-proizvodstva-1",
+"year": "2025",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Сычева Дарья Алексеевна; Казанкова Татьяна Николаевна",
+"title": "ОСОБЕННОСТИ РАССМОТРЕНИЯ ГРАЖДАНСКИХ ДЕЛ В ПОРЯДКЕ УПРОЩЕННОГО ПРОИЗВОДСТВА",
+"t": [
+"gpp046"
+],
+"n": "gab9230"
 },
 {
 "slug": "/article/n/ponyatie-polnoy-i-nepolnoy-apellyatsii-posledstviya-ee-primeneniya-v-arbitrazhnom-sudoproizvodstve",
@@ -1354,6 +1796,31 @@
 "gpp050"
 ],
 "n": "g69d195"
+},
+{
+"slug": "/article/n/kak-obespechit-svidetelskiy-immunitet-prisyazhnyh-zasedateley-pri-proizvodstve-v-sude-apellyatsionnoy-instantsii",
+"year": "2023",
+"vak": true,
+"journal": "Вестник Томского государственного университета. Право",
+"authors": "Смирнова Ирина Георгиевна; Небратенко Геннадий Геннадиевич; Казарина Марина Игоревна",
+"title": "КАК ОБЕСПЕЧИТЬ СВИДЕТЕЛЬСКИЙ ИММУНИТЕТ ПРИСЯЖНЫХ ЗАСЕДАТЕЛЕЙ ПРИ ПРОИЗВОДСТВЕ В СУДЕ АПЕЛЛЯЦИОННОЙ ИНСТАНЦИИ?",
+"t": [
+"gpp047",
+"gpp050"
+],
+"n": "gfaef4d"
+},
+{
+"slug": "/article/n/opredeleniya-i-resheniya-proverochnyh-instantsiy-v-grazhdanskom-i-arbitrazhnom-sudoproizvodstve",
+"year": "2023",
+"vak": true,
+"journal": "Вестник юридического факультета Южного федерального университета",
+"authors": "Свердлова Виктория Рафаиловна",
+"title": "ОПРЕДЕЛЕНИЯ И РЕШЕНИЯ ПРОВЕРОЧНЫХ ИНСТАНЦИЙ В ГРАЖДАНСКОМ И АРБИТРАЖНОМ СУДОПРОИЗВОДСТВЕ",
+"t": [
+"gpp047"
+],
+"n": "g244b54"
 },
 {
 "slug": "/article/n/o-edinstve-mezhotraslevyh-institutov-reguliruyuschih-peresmotr-sudebnyh-aktov-v-apellyatsionnom-kassatsionnom-nadzornom-poryadke-v",
@@ -1394,6 +1861,31 @@
 "n": "gf94ff1"
 },
 {
+"slug": "/article/n/printsip-pravovoy-opredelennosti-i-novaya-kassatsiya-v-grazhdanskom-protsesse",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Поволжского института управления",
+"authors": "Анна Петровна Яковлева; Никита Вадимович Чижов",
+"title": "ПРИНЦИП ПРАВОВОЙ ОПРЕДЕЛЕННОСТИ И НОВАЯ КАССАЦИЯ В ГРАЖДАНСКОМ ПРОЦЕССЕ",
+"t": [
+"gpp048"
+],
+"n": "g9c6745"
+},
+{
+"slug": "/article/n/problemy-kassatsionnogo-proizvodstva-po-grazhdanskim-delam",
+"year": "2025",
+"vak": true,
+"journal": "Закон и право",
+"authors": "Герекмес Темирхановна Атаева",
+"title": "Проблемы кассационного производства по гражданским делам",
+"t": [
+"gpp048",
+"gpp050"
+],
+"n": "g119017"
+},
+{
 "slug": "/article/n/obektivnye-i-subektivnye-predely-ukazaniy-suda-vyshestoyaschey-instantsii-v-grazhdanskom-i-arbitrazhnom-sudoproizvodstve",
 "year": "2024",
 "vak": true,
@@ -1430,6 +1922,18 @@
 "n": "g3b588f"
 },
 {
+"slug": "/article/n/ponyatie-bezuslovnyh-osnovaniy-dlya-otmeny-sudebnyh-aktov-v-apellyatsionnom-i-kassatsionnom-poryadke",
+"year": "2025",
+"vak": true,
+"journal": "Электронное приложение к Российскому юридическому журналу",
+"authors": "Серостанов Виктор Евгеньевич",
+"title": "ПОНЯТИЕ БЕЗУСЛОВНЫХ ОСНОВАНИЙ ДЛЯ ОТМЕНЫ СУДЕБНЫХ АКТОВ В АПЕЛЛЯЦИОННОМ И КАССАЦИОННОМ ПОРЯДКЕ",
+"t": [
+"gpp049"
+],
+"n": "gb999a8"
+},
+{
 "slug": "/article/n/printsip-obyazatelnosti-sudebnyh-postanovleniy-v-grazhdanskom-sudoproizvodstve",
 "year": "2023",
 "vak": true,
@@ -1452,6 +1956,30 @@
 "gpp050"
 ],
 "n": "g96f36c"
+},
+{
+"slug": "/article/n/instantsionnaya-podsudnost-del-v-tsivilisticheskom-protsesse-na-primere-del-o-zaschite-intellektualnyh-prav",
+"year": "2025",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Хамов Сергей Сергеевич",
+"title": "ИНСТАНЦИОННАЯ ПОДСУДНОСТЬ ДЕЛ В ЦИВИЛИСТИЧЕСКОМ ПРОЦЕССЕ (НА ПРИМЕРЕ ДЕЛ О ЗАЩИТЕ ИНТЕЛЛЕКТУАЛЬНЫХ ПРАВ)",
+"t": [
+"gpp050"
+],
+"n": "g644b93"
+},
+{
+"slug": "/article/n/verhovnyy-sud-rsfsr-kak-sud-pervoy-instantsii",
+"year": "2023",
+"vak": true,
+"journal": "Lex Russica",
+"authors": "Винниченко О. Ю.; Гаврилова А. В.",
+"title": "ВЕРХОВНЫЙ СУД РСФСР КАК СУД ПЕРВОЙ ИНСТАНЦИИ",
+"t": [
+"gpp050"
+],
+"n": "g4cd212"
 },
 {
 "slug": "/article/n/peresmotr-sudebnyh-postanovleniy-po-vnov-otkryvshimsya-ili-novym-obstoyatelstvam-osnovaniya-dlya-peresmotra-subekty-i-obekty-etogo",
@@ -1490,39 +2018,80 @@
 "n": "gdd31b0"
 },
 {
-"slug": "/article/n/problema-prinadlezhnosti-ispolnitelnogo-proizvodstva-i-ego-otnosheniya-k-administrativnomu-protsessu",
+"slug": "/article/n/izmenenie-fakticheskih-obstoyatelstv-v-kontekste-vyneseniya-sudebnyh-aktov-po-grazhdanskim-delam",
+"year": "2023",
+"vak": true,
+"journal": "Правоприменение",
+"authors": "Рыжков Константин Сергеевич",
+"title": "ИЗМЕНЕНИЕ ФАКТИЧЕСКИХ ОБСТОЯТЕЛЬСТВ В КОНТЕКСТЕ ВЫНЕСЕНИЯ СУДЕБНЫХ АКТОВ ПО ГРАЖДАНСКИМ ДЕЛАМ",
+"t": [
+"gpp051"
+],
+"n": "gaf1448"
+},
+{
+"slug": "/article/n/printsip-dobrosovestnosti-kak-torzhestvo-sily-prava-v-grazhdanskom-protsesse",
+"year": "2026",
+"vak": true,
+"journal": "Legal Bulletin",
+"authors": "Титова Елизавета Сергеевна",
+"title": "ПРИНЦИП ДОБРОСОВЕСТНОСТИ КАК ТОРЖЕСТВО СИЛЫ ПРАВА В ГРАЖДАНСКОМ ПРОЦЕССЕ",
+"t": [
+"gpp003"
+],
+"manual": true,
+"n": "g3e7c98"
+},
+{
+"slug": "/article/n/realizatsiya-printsipa-dostupnosti-pravosudiya-v-grazhdanskom-protsesse-teoretiko-pravovye-osnovy-i-prakticheskie-problemy",
 "year": "2025",
 "vak": true,
-"journal": "Вестник Сургутского государственного университета",
-"authors": "Нагиев Р. С.",
-"title": "Проблема принадлежности исполнительного производства и его отношения к административному процессу",
+"journal": "Аграрное и земельное право",
+"authors": "Руднева Юлия Викторовна; Билецкая Екатерина Андреевна; Зверева Виолетта Владимировна; Моисеева Анна Васильевна",
+"title": "РЕАЛИЗАЦИЯ ПРИНЦИПА ДОСТУПНОСТИ ПРАВОСУДИЯ В ГРАЖДАНСКОМ ПРОЦЕССЕ: ТЕОРЕТИКО-ПРАВОВЫЕ ОСНОВЫ И ПРАКТИЧЕСКИЕ ПРОБЛЕМЫ",
 "t": [
-"gpp052"
+"gpp003"
 ],
-"n": "g1df305"
+"manual": true,
+"n": "gde6279"
 },
 {
-"slug": "/article/n/k-voprosu-o-vidah-proizvodstv-v-grazhdanskom-protsesse-nekotorye-voprosy-teorii-i-praktiki",
-"year": "2023",
+"slug": "/article/n/konstitutsionnyy-printsip-glasnosti-sudoproizvodstva-i-zakrytye-sudebnye-zasedaniya-v-grazhdanskom-protsesse-problemy-sootnosheniya",
+"year": "2024",
 "vak": true,
-"journal": "Юридический вестник Дагестанского государственного университета",
-"authors": "Магомедова Карина Камильевна; Эфендиева Динара Камильевна",
-"title": "К вопросу о видах производств в гражданском процессе: некоторые вопросы теории и практики",
+"journal": "Образование и право",
+"authors": "Якушев Павел Алексеевич",
+"title": "КОНСТИТУЦИОННЫЙ ПРИНЦИП ГЛАСНОСТИ СУДОПРОИЗВОДСТВА И ЗАКРЫТЫЕ СУДЕБНЫЕ ЗАСЕДАНИЯ В ГРАЖДАНСКОМ ПРОЦЕССЕ: ПРОБЛЕМЫ СООТНОШЕНИЯ",
 "t": [
-"gpp052"
+"gpp003"
 ],
-"n": "gfb4e56"
+"manual": true,
+"n": "g7dcf2b"
 },
 {
-"slug": "/article/n/dela-svyazannye-s-surrogatnym-materinstvom-protsessualnyy-analiz-klassicheskih-vidov-grazhdanskogo-sudoproizvodstva",
+"slug": "/article/n/k-voprosu-o-printsipe-dobrosovestnosti-v-materialnom-i-protsessualnom-prave",
 "year": "2023",
 "vak": true,
-"journal": "Право и государство: теория и практика",
-"authors": "Мокшин Сергей Игоревич",
-"title": "ДЕЛА, СВЯЗАННЫЕ С СУРРОГАТНЫМ МАТЕРИНСТВОМ: ПРОЦЕССУАЛЬНЫЙ АНАЛИЗ КЛАССИЧЕСКИХ ВИДОВ ГРАЖДАНСКОГО СУДОПРОИЗВОДСТВА",
+"journal": "Общество и право",
+"authors": "Абросимов Антон Вячеславович",
+"title": "К вопросу о принципе добросовестности в материальном и процессуальном праве",
 "t": [
-"gpp052"
+"gpp003"
 ],
-"n": "g078aa6"
+"manual": true,
+"n": "g25a67b"
+},
+{
+"slug": "/article/n/osobennosti-primeneniya-printsipov-grazhdanskogo-protsessualnogo-prava-na-sovremennom-etape",
+"year": "2025",
+"vak": false,
+"journal": "Вестник науки",
+"authors": "Павлов О. М.",
+"title": "ОСОБЕННОСТИ ПРИМЕНЕНИЯ ПРИНЦИПОВ ГРАЖДАНСКОГО ПРОЦЕССУАЛЬНОГО ПРАВА НА СОВРЕМЕННОМ ЭТАПЕ",
+"t": [
+"gpp003"
+],
+"manual": true,
+"n": "gdda724"
 }
 ]
