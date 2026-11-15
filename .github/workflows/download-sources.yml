@@ -1,30 +1,59 @@
 # Загрузка источников в репозиторий.
-# Запускается при изменении списка заданий .github/downloader/tasks.tsv.
-# Скачанные файлы и журнал загрузки сохраняются коммитом в ту же ветку.
+# Запускается при изменении списка заданий .github/downloader/tasks.tsv или списков в .github/downloader/shards/.
+# Каждый список из shards/ выполняется отдельным заданием (параллельно), у каждого свой журнал в .github/downloader/logs/.
+# Скачанные файлы и журналы сохраняются коммитом в ту же ветку.
 name: download-sources
 on:
   push:
     branches: ['arena/**']
-    paths: ['.github/downloader/tasks.tsv']
+    paths: ['.github/downloader/tasks.tsv', '.github/downloader/shards/**']
 permissions:
   contents: write
 concurrency:
   group: download-sources
   cancel-in-progress: false
 jobs:
-  download:
+  plan:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    outputs:
+      shards: ${{ steps.list.outputs.shards }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github
+      - id: list
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import glob, json, os
+          files = sorted(f for f in glob.glob('.github/downloader/shards/*.tsv') if os.path.getsize(f) > 0)
+          print('shards=' + json.dumps(files or ['.github/downloader/tasks.tsv'], ensure_ascii=False))
+          PY
+  download:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 170
+    strategy:
+      fail-fast: false
+      max-parallel: 12
+      matrix:
+        shard: ${{ fromJson(needs.plan.outputs.shards) }}
     steps:
       - uses: actions/checkout@v4
       - name: Скачать
-        run: python3 .github/downloader/fetch.py .github/downloader/tasks.tsv
+        run: |
+          name="$(basename "${{ matrix.shard }}" .tsv)"
+          if [ "$name" = "tasks" ]; then log=".github/downloader/log.tsv"; else log=".github/downloader/logs/$name.tsv"; fi
+          FETCH_LOG="$log" python3 .github/downloader/fetch.py "${{ matrix.shard }}"
       - name: Сохранить в ветку
         if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          find . -path ./.git -prune -o -type f -size +99M -print -delete
           git add -A
-          git commit -q -m "Загрузка источников (автоматически)" || exit 0
-          git pull -q --rebase origin "${GITHUB_REF_NAME}"
-          git push -q origin "HEAD:${GITHUB_REF_NAME}"
+          git commit -q -m "Загрузка источников (автоматически): $(basename "${{ matrix.shard }}" .tsv)" || exit 0
+          for i in 1 2 3 4 5 6 7 8 9 10; do
+            git pull -q --rebase origin "${GITHUB_REF_NAME}" && git push -q origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((RANDOM % 40 + 10))
+          done
+          exit 1

@@ -12,6 +12,7 @@
   kontur — действующая редакция акта из справочной системы «Контур.Норматив»
          (для приказов МВД и постановлений Пленума ВС РФ, которых нет в «Законодательстве России»);
   consfind — поиск по сайту consultant.ru: краткий список найденного (название с пометкой редакции, ссылка);
+  consauto — найти документ на consultant.ru поиском (запрос#реквизиты) и сохранить его текст;
   ipsact — то же, что ips, но акт сначала находится поиском по реквизитам (указываются после #);
   ipswide — то же, что ips, но PDF печатается в альбомной ориентации (для актов с широкими таблицами);
   sudact, cons — тексты актов с внесёнными изменениями из sudact.ru (версия для печати)
@@ -26,7 +27,7 @@ import csv, hashlib, os, subprocess, sys, time, datetime
 
 UA = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
       '(KHTML, like Gecko) Chrome/130.0 Safari/537.36')
-LOG = '.github/downloader/log.tsv'
+LOG = os.environ.get('FETCH_LOG') or '.github/downloader/log.tsv'
 MAX_BYTES = 98 * 1024 * 1024
 
 
@@ -256,6 +257,43 @@ def op_consfind(url, out):
     with open(out, 'w', encoding='utf-8') as f:
         f.write('\n'.join(rows) + '\n')
     return 'ok', code, 'найдено: %d' % len(rows), url
+
+
+def op_consauto(url, out):
+    """consultant.ru: найти документ поиском и сразу сохранить его текст. Адрес: <запрос>#<реквизиты для сверки>.
+    Берётся первый найденный документ, в названии которого есть реквизиты; дальше — как операция cons.
+    Сайт ограничивает частые запросы — запрос повторяется после паузы."""
+    import re, html as _h, urllib.parse
+    q, _, expect = url.partition('#')
+    surl = 'https://www.consultant.ru/search/?q=' + urllib.parse.quote_plus(q)
+    tmp = out + '.page'
+    items, s, res = [], '', ''
+    for pause in (12.0, 40.0, 75.0):
+        time.sleep(pause)
+        res, code, ctype = op_get(surl, tmp)
+        s = open(tmp, encoding='utf-8', errors='replace').read() if res == 'ok' else ''
+        if os.path.exists(tmp):
+            os.remove(tmp)
+        items = re.findall(r'<li class="search-results__item[^>]*>(.*?)</li>', s, re.S)
+        if items or 'ничего не найдено' in s:
+            break
+    seen = []
+    for it in items[:8]:
+        href = re.search(r'href="([^"]+)"', it)
+        text = ' '.join(_h.unescape(re.sub(r'<[^>]+>', ' ', it)).split())
+        seen.append(text[:70])
+        if href and re.sub(r'\s+', '', expect) in re.sub(r'\s+', '', text) and 'cons_doc_LAW_' in href.group(1):
+            link = _h.unescape(href.group(1)).split('?')[0].split('#')[0]
+            if link.startswith('//'):
+                link = 'https:' + link
+            elif link.startswith('/'):
+                link = 'https://www.consultant.ru' + link
+            m = re.search(r'(https://www\.consultant\.ru/document/cons_doc_LAW_\d+/)', link)
+            if not m:
+                continue
+            time.sleep(1.5)
+            return op_cons(m.group(1) + '#' + expect, out)
+    return 'ошибка: в поиске нет документа с реквизитами (найдено %d: %s)' % (len(items), ' | '.join(seen[:3])), '200', 'text/html', surl
 
 
 def op_kontur(url, out):
@@ -750,6 +788,8 @@ def op_cybersearch(listfile, out):
     В таблицу попадают статьи с 2023 года: метка, год, перечень ВАК, журнал, авторы, название, адрес, аннотация."""
     import json, re, html
     n = total = 0
+    listfile, _, lim = listfile.partition('#')  # после # — предел строк на один запрос (по умолчанию 40)
+    lim = int(lim) if lim else 40
     strip = lambda t: ' '.join(html.unescape(re.sub(r'<[^>]+>', '', t or '')).split())
     with open(out, 'w', encoding='utf-8') as f:
         for line in open(listfile, encoding='utf-8'):
@@ -781,7 +821,7 @@ def op_cybersearch(listfile, out):
                 f.write('\t'.join((tag, str(year), vak, strip(a.get('journal')), '; '.join(a.get('authors') or []),
                                    strip(a.get('name')), a.get('link') or '', strip(a.get('annotation'))[:400])) + '\n')
                 k += 1
-                if k >= 40:
+                if k >= lim:
                     break
             f.flush()
     return ('ok' if n else 'ошибка'), '200', 'запросов выполнено: %d из %d' % (n, total), listfile
@@ -852,6 +892,7 @@ def op_pub(url, out):
 
 
 def main(tasks_path):
+    os.makedirs(os.path.dirname(LOG) or '.', exist_ok=True)
     new_log = not os.path.exists(LOG)
     with open(tasks_path, encoding='utf-8') as f, open(LOG, 'a', encoding='utf-8', newline='') as lf:
         log = csv.writer(lf, delimiter='\t', lineterminator='\n')
@@ -876,6 +917,8 @@ def main(tasks_path):
                     res, code, ctype, url = op_sudact(url, out)
                 elif op == 'cons':
                     res, code, ctype, url = op_cons(url, out)
+                elif op == 'consauto':
+                    res, code, ctype, url = op_consauto(url, out)
                 elif op == 'consfind':
                     res, code, ctype, url = op_consfind(url, out)
                 elif op == 'constitles':
