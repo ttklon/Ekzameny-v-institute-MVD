@@ -419,6 +419,52 @@ def op_cons(url, out):
     return _reference_copy(url, 'consultant.ru, некоммерческая интернет-версия КонсультантПлюс', title, body, out, src, code, expect)
 
 
+def op_consqlist(listfile, out):
+    """consultant.ru: поиск по списку «ключ <TAB> запрос». Для каждого запроса в файл пишутся до пяти первых
+    найденных документов: ключ, номер в выдаче, отметка об утрате силы, название (с пометкой редакции), ссылка.
+    Нужна для сверки действия и редакции ведомственных актов."""
+    import re, html as _h, urllib.parse, shutil, tempfile
+    rows_in = [l.rstrip('\n').split('\t') for l in open(listfile, encoding='utf-8') if l.strip()]
+    exe = shutil.which('google-chrome') or shutil.which('chromium-browser') or shutil.which('chromium')
+    done = 0
+    with open(out, 'w', encoding='utf-8') as f:
+        for key, q in rows_in:
+            time.sleep(9.0)
+            url = 'https://www.consultant.ru/search/?q=' + urllib.parse.quote_plus(q)
+            tmp = out + '.html'
+            res, code, ctype = op_get(url, tmp)
+            s = open(tmp, encoding='utf-8', errors='replace').read() if res == 'ok' else ''
+            how = 'curl'
+            items = re.findall(r'<li class="search-results__item[^"]*"(.*?)</li>', s, re.S)
+            if not items and 'ничего не найдено' not in s and exe:
+                prof = tempfile.mkdtemp(prefix='chr')
+                try:
+                    r = subprocess.run([exe, '--headless=new', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage',
+                                        '--user-data-dir=' + prof, '--lang=ru-RU', '--virtual-time-budget=15000',
+                                        '--dump-dom', url], capture_output=True, text=True, timeout=120)
+                    s = r.stdout
+                    how = 'chrome'
+                except Exception as e:
+                    how = 'chrome: ' + str(e)[:80]
+                shutil.rmtree(prof, ignore_errors=True)
+                items = re.findall(r'<li class="search-results__item[^"]*"(.*?)</li>', s, re.S)
+            if os.path.exists(tmp):
+                os.remove(tmp)
+            if not items:
+                note = 'ничего не найдено' if 'ничего не найдено' in s else 'ответ не разобран (%s, %s, %d знаков)' % (res, how, len(s))
+                f.write('\t'.join([key, '0', '', note, '']) + '\n')
+            else:
+                done += 1
+            for n, it in enumerate(items[:5], 1):
+                href = re.search(r'href="([^"]+)"', it)
+                text = ' '.join(_h.unescape(re.sub(r'<[^>]+>', ' ', re.sub(r'<span class="search-results__number">.*?</span>', '', it, flags=re.S))).split())
+                lost = 'утратил' if 'утратил силу' in text else ''
+                text = text.replace('Документ утратил силу или отменён', '').strip()
+                f.write('\t'.join([key, str(n), lost, text[:330], href.group(1) if href else '']) + '\n')
+            f.flush()
+    return ('ok' if done else 'ошибка: ни одного ответа'), '200', 'text/tab-separated-values; запросов с ответом: %d из %d' % (done, len(rows_in)), listfile
+
+
 def op_constitles(listfile, out):
     """consultant.ru: для каждого номера документа из файла-списка открыть страницу документа и записать
     её заголовок (в нём сайт указывает дату действующей редакции). Нужна для сверки редакций."""
@@ -842,6 +888,8 @@ def main(tasks_path):
                     res, code, ctype, url = op_consfind(url, out)
                 elif op == 'constitles':
                     res, code, ctype, url = op_constitles(url, out)
+                elif op == 'consqlist':
+                    res, code, ctype, url = op_consqlist(url, out)
                 elif op == 'ipscards':
                     res, code, ctype, url = op_ipscards(url, out)
                 elif op == 'sudtitles':
