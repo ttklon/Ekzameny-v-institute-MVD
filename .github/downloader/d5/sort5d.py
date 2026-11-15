@@ -31,8 +31,11 @@ def fit(build, title, cap=130):
     room = len(clean(title))
     while True:
         name = build(cut(title, room))
-        if (len(name) <= cap and len(name.encode('utf-8')) <= 225) or room <= 24: return name
+        if (len(name) <= cap and len(name.encode('utf-8')) <= 225) or room <= 24: break
         room -= 4
+    while len(name.encode('utf-8')) > 225:   # крайний случай: слишком длинные авторы или журнал
+        base, ext = os.path.splitext(name); name = base[:-2].rstrip(' .,') + ext
+    return name
 def author(a):
     a = ' '.join(a.replace('.', '. ').split()); t = a.split()
     ini = [x for x in t if re.fullmatch(r'[А-ЯЁA-Z]\.', x)]
@@ -42,7 +45,7 @@ def author(a):
         if PATR.search(t[1]): return t[2]
         return t[0]
     if len(t) == 2: return t[0]
-    return a
+    return t[0] if t else a
 def sentence(t):
     t = ' '.join(t.split()); letters = [c for c in t if c.isalpha()]
     if letters and sum(c.isupper() for c in letters) / len(letters) > 0.6:
@@ -64,13 +67,13 @@ def pdf_ok(p):
 SCI = ('монограф', 'сборник', 'материал', 'научн', 'труды', 'аналитич', 'диссерт', 'автореф')
 A_E = 'Административная деятельность полиции/2. Источники/5. Эмпирические материалы (с 2023 года)/'; K_E = 'Криминалистика/2. Источники/5. Эмпирические материалы (с 2023 года)/'
 SD = 'Судебный департамент при ВС РФ. '
-CDEP = {'f3_': 'Форма № 2. Отчет о рассмотрении гражданских, административных дел по первой инстанции за %s год', 'f6_': 'Форма № 6. Отчет о рассмотрении уголовных дел в апелляционном порядке за %s год',
-        'f7_': 'Форма № 7. Отчет о рассмотрении гражданских, административных дел в апелляционном порядке за %s год', 'f8_': 'Форма № 8. Отчет о рассмотрении уголовных дел в кассационном порядке за %s год',
-        'f9_': 'Форма № 9. Отчет о рассмотрении гражданских, административных дел в кассационном порядке за %s год', 'f8n_': 'Форма № 8-н. Отчет о рассмотрении Верховным Судом РФ уголовных дел в порядке надзора за %s год',
-        'f9n_': 'Форма № 9-н. Отчет о рассмотрении Верховным Судом РФ гражданских, административных дел в порядке надзора за %s год',
-        'k3_': 'Форма № 10-а. Отчет о числе осужденных по всем составам преступлений УК РФ за %s год', 'k4_': 'Форма № 10.1. Отчет о числе привлеченных к уголовной ответственности и видах уголовного наказания за %s год',
-        'k52_': 'Форма № 11.2. Отчет о характеристике преступления, его рецидива и повторности за %s год', 'k1_': 'Форма № 12. Отчет об осужденных, совершивших преступления в несовершеннолетнем возрасте, за %s год',
-        'k6_': 'Форма № 10.2. Отчет об особенностях рассмотрения уголовных дел, применения реальных видов наказания и оснований прекращения уголовных дел за %s год'}
+CDEP = {'f3_': 'Форма № 2. Гражданские и административные дела, первая инстанция, %s год', 'f6_': 'Форма № 6. Уголовные дела, апелляция, %s год',
+        'f7_': 'Форма № 7. Гражданские и административные дела, апелляция, %s год', 'f8_': 'Форма № 8. Уголовные дела, кассация, %s год',
+        'f9_': 'Форма № 9. Гражданские и административные дела, кассация, %s год', 'f8n_': 'Форма № 8-н. Уголовные дела, надзор (Верховный Суд РФ), %s год',
+        'f9n_': 'Форма № 9-н. Гражданские и административные дела, надзор (Верховный Суд РФ), %s год',
+        'k3_': 'Судимость. Число осужденных по всем составам преступлений УК РФ, %s год', 'k4_': 'Судимость. Привлеченные к уголовной ответственности и виды наказания, %s год',
+        'k52_': 'Судимость. Характеристика преступления, его рецидива и повторности, %s год', 'k1_': 'Судимость. Несовершеннолетние осужденные, %s год',
+        'k6_': 'Судимость. Особенности рассмотрения уголовных дел и основания их прекращения, %s год'}
 EMP = {'upp': dict(copy=['ГИАЦ', 'Комплексный анализ', 'Обзор судебной статистики', 'Форма № 1.'], cdep=['f6_', 'f8_', 'f8n_']),
        'up': dict(copy=['ГИАЦ', 'Комплексный анализ', 'Обзор судебной статистики'], cdep=['k3_', 'k4_', 'k52_', 'k1_', 'k6_']),
        'gpp': dict(copy=['Обзор судебной статистики'], cdep=['f3_', 'f7_', 'f9_', 'f9n_']),
@@ -86,14 +89,16 @@ def run(code):
         base, ext = os.path.splitext(name); n = name; k = 2
         while n.lower() in used: n = '%s (%d)%s' % (base, k, ext); k += 1
         used.add(n.lower()); return n
+    def save(): json.dump(sorted(man.values(), key=lambda m: (m['cat'], m['dst'])), open(MP, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
+    import atexit; atexit.register(save)
     tt = topics(code); ref = {t['id']: t['refs'] for t in tt}
-    stat = dict(книг=0, статей=0, эмпир=0, брак=0)
+    stat = {'книг': 0, 'статей': 0, 'эмпир': 0, 'брак': 0, 'не по теме': 0}
     # --- издания библиотеки
     BP = D5 + 'books_%s.json' % code
     for b in (json.load(open(BP, encoding='utf-8')) if os.path.exists(BP) else []):
         src = '.work/d5/%s/lib/%s.pdf' % (code, b['n'])
         if b['n'] in man or not os.path.exists(src): continue
-        if b.get('bad') or not pdf_ok(src): stat['брак'] += 1; os.remove(src); continue
+        if b.get('bad') or b.get('off') or not pdf_ok(src): stat['брак' if not b.get('off') else 'не по теме'] += 1; os.remove(src); continue
         title = re.sub(r'^[А-ЯЁ]\s?\d{1,3}\s+', '', sentence(b['title'])); kind = (b.get('kind') or '').strip(); year = b.get('year') or 0
         kindc = kind[:1].upper() + kind[1:] if kind else ''
         tail = '. '.join(x for x in [kindc, ', '.join(x for x in [b.get('pub') or '', str(year) if year else ''] if x)] if x)
@@ -120,7 +125,8 @@ def run(code):
         al = [author(a) for a in re.split(r'[,;]\s*', c['authors']) if a.strip()]
         au = ', '.join(al[:2]) + (' и др.' if len(al) > 2 else '')
         title = sentence(c['title']); j = clean(c['journal'])
-        if len(j) > 70: j = cut(j, 60)
+        if len(j) > 70: j = cut(j, 60).rstrip('…')
+        if len(au) > 60: au = al[0] + ' и др.'
         name = uniq(fit(lambda t: '%s. %s. %s, %s.pdf' % (clean(au), t, j, c['year']), title, cap=150).replace('…..', '….'))
         os.makedirs(S + D4A, exist_ok=True); shutil.move(src, S + D4A + name)
         man[c['n']] = dict(key=c['n'], cat='art', authors=au, title=title, kind='статья', pub=c['journal'], year=int(c['year']), pages=n, size=os.path.getsize(S + D4A + name), q=c['t'], general=bool(c.get('general')), wide=bool(c.get('wide')),
@@ -137,12 +143,13 @@ def run(code):
                                       note='из базы «%s»' % src.split('/')[0]); stat['эмпир'] += 1
     for pre in EMP[code]['cdep']:
         for src in sorted(glob.glob('.work/d5/stat/cdep_%s*.xls' % pre)):
-            year = re.search(r'(\d{4})\.xls$', src).group(1); name = SD + CDEP[pre] % year + '.xls'
+            year = re.search(r'(\d{4})[a-e]?\.xls$', src).group(1); name = SD + CDEP[pre] % year + '.xls'
+            assert len(name.encode('utf-8')) <= 225, name
             if 'emp:' + name in man: continue
             if open(src, 'rb').read(4) != b'\xd0\xcf\x11\xe0': continue
             shutil.copyfile(src, S + D5E + name)
             man['emp:' + name] = dict(key='emp:' + name, cat='emp', title=name, dst=D5E + name, size=os.path.getsize(src), url='cdep.ru', pages=0, q=[], general=True, year=int(year), note=''); stat['эмпир'] += 1
-    json.dump(sorted(man.values(), key=lambda m: (m['cat'], m['dst'])), open(MP, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
+    save()
     import collections
     print(code, stat, 'в базе:', dict(collections.Counter(m['cat'] for m in man.values())), 'макс. имя, байт:', max([len(os.path.basename(m['dst']).encode()) for m in man.values()] or [0]))
 if __name__ == '__main__':
