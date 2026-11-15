@@ -1,0 +1,2 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-15 16:06:38	cybersearch	.github/downloader/d5/cyber_q_gpp.txt	.github/downloader/d5/cyber_gpp.tsv	ok	200	1381316	запросов выполнено: 52 из 52	ecc1d0e5a57ed12c2e4d3872be468a86b79840d69e9ee60db01809fb058103ed
