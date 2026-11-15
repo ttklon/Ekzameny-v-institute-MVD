@@ -422,45 +422,37 @@ def op_cons(url, out):
 def op_consqlist(listfile, out):
     """consultant.ru: поиск по списку «ключ <TAB> запрос». Для каждого запроса в файл пишутся до пяти первых
     найденных документов: ключ, номер в выдаче, отметка об утрате силы, название (с пометкой редакции), ссылка.
+    Сайт ограничивает частые запросы (отдаёт страницу без результатов) — тогда запрос повторяется после паузы.
     Нужна для сверки действия и редакции ведомственных актов."""
-    import re, html as _h, urllib.parse, shutil, tempfile
+    import re, html as _h, urllib.parse
     rows_in = [l.rstrip('\n').split('\t') for l in open(listfile, encoding='utf-8') if l.strip()]
-    exe = shutil.which('google-chrome') or shutil.which('chromium-browser') or shutil.which('chromium')
+    rx = r'<li class="search-results__item[^>]*>(.*?)</li>'
     done = 0
     with open(out, 'w', encoding='utf-8') as f:
         for key, q in rows_in:
-            time.sleep(9.0)
             url = 'https://www.consultant.ru/search/?q=' + urllib.parse.quote_plus(q)
-            tmp = out + '.html'
-            res, code, ctype = op_get(url, tmp)
-            s = open(tmp, encoding='utf-8', errors='replace').read() if res == 'ok' else ''
-            how = 'curl'
-            items = re.findall(r'<li class="search-results__item[^"]*"(.*?)</li>', s, re.S)
-            if not items and 'ничего не найдено' not in s and exe:
-                prof = tempfile.mkdtemp(prefix='chr')
-                try:
-                    r = subprocess.run([exe, '--headless=new', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage',
-                                        '--user-data-dir=' + prof, '--lang=ru-RU', '--virtual-time-budget=15000',
-                                        '--dump-dom', url], capture_output=True, text=True, timeout=120)
-                    s = r.stdout
-                    how = 'chrome'
-                except Exception as e:
-                    how = 'chrome: ' + str(e)[:80]
-                shutil.rmtree(prof, ignore_errors=True)
-                items = re.findall(r'<li class="search-results__item[^"]*"(.*?)</li>', s, re.S)
-            if os.path.exists(tmp):
-                os.remove(tmp)
+            tmp = out + '.page'
+            items, s, res = [], '', ''
+            for pause in (14.0, 45.0, 75.0):
+                time.sleep(pause)
+                res, code, ctype = op_get(url, tmp)
+                s = open(tmp, encoding='utf-8', errors='replace').read() if res == 'ok' else ''
+                if os.path.exists(tmp):
+                    os.remove(tmp)
+                items = re.findall(rx, s, re.S)
+                if items or 'ничего не найдено' in s:
+                    break
             if not items:
-                note = 'ничего не найдено' if 'ничего не найдено' in s else 'ответ не разобран (%s, %s, %d знаков)' % (res, how, len(s))
+                note = 'ничего не найдено' if 'ничего не найдено' in s else 'ответ не разобран (%s, %d знаков)' % (res, len(s))
                 f.write('\t'.join([key, '0', '', note, '']) + '\n')
-            else:
+            if items or 'ничего не найдено' in s:
                 done += 1
             for n, it in enumerate(items[:5], 1):
                 href = re.search(r'href="([^"]+)"', it)
                 text = ' '.join(_h.unescape(re.sub(r'<[^>]+>', ' ', re.sub(r'<span class="search-results__number">.*?</span>', '', it, flags=re.S))).split())
                 lost = 'утратил' if 'утратил силу' in text else ''
                 text = text.replace('Документ утратил силу или отменён', '').strip()
-                f.write('\t'.join([key, str(n), lost, text[:330], href.group(1) if href else '']) + '\n')
+                f.write('\t'.join([key, str(n), lost, text[:330], _h.unescape(href.group(1)) if href else '']) + '\n')
             f.flush()
     return ('ok' if done else 'ошибка: ни одного ответа'), '200', 'text/tab-separated-values; запросов с ответом: %d из %d' % (done, len(rows_in)), listfile
 
