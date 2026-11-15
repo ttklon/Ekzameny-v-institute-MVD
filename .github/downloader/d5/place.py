@@ -39,6 +39,7 @@ def card(url):
     return json.load(open(p, encoding='utf-8'))
 def put(grp, key, folder, name, codes, topic, kind):
     src = '.work/d5/%s/%s.pdf' % (grp, key); hsrc = '.work/d5/%s/%s%s.html' % (grp, H, key)
+    if grp == 'cons' and not os.path.exists(src): src = src.replace('/cons/', '/cons2/'); hsrc = hsrc.replace('/cons/', '/cons2/')
     row = LOG.get(src)
     if not os.path.exists(src):
         if not any((c, key) in MAN for c in codes): DROP.append(dict(key=key, name=name, why='не получен', codes=codes))

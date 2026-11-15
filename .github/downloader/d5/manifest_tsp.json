@@ -1,5 +1,29 @@
 [
 {
+"key": "se99cd1",
+"cat": "art",
+"authors": "Абазов",
+"title": "Законодательное регулирование обеспечения охраны общественного порядка и общественной безопасности при проведении массовых мероприятий",
+"kind": "статья",
+"pub": "Вестник Краснодарского университета МВД России",
+"year": 2025,
+"pages": 6,
+"size": 156668,
+"q": [
+"tsp018",
+"tsp052",
+"tsp053",
+"tsp054",
+"tsp055",
+"tsp056"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Абазов. Законодательное регулирование обеспечения охраны…. Вестник Краснодарского университета МВД России, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/zakonodatelnoe-regulirovanie-obespecheniya-ohrany-obschestvennogo-poryadka-i-obschestvennoy-bezopasnosti-pri-provedenii-massovyh",
+"vak": true
+},
+{
 "key": "sac8d21",
 "cat": "art",
 "authors": "Абдуллаев, Потапов",
@@ -64,6 +88,60 @@
 "vak": true
 },
 {
+"key": "s7a0c91",
+"cat": "art",
+"authors": "Афов",
+"title": "Приемы задержания в служебной деятельности сотрудников полиции",
+"kind": "статья",
+"pub": "Журнал прикладных исследований",
+"year": 2023,
+"pages": 4,
+"size": 472965,
+"q": [
+"tsp002",
+"tsp006",
+"tsp008",
+"tsp010",
+"tsp012",
+"tsp024",
+"tsp026",
+"tsp027",
+"tsp028",
+"tsp030",
+"tsp033",
+"tsp038",
+"tsp040",
+"tsp050",
+"tsp051",
+"tsp057",
+"tsp058",
+"tsp059",
+"tsp060"
+],
+"general": false,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Афов. Приемы задержания в служебной деятельности сотрудников полиции. Журнал прикладных исследований, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/priemy-zaderzhaniya-v-sluzhebnoy-deyatelnosti-sotrudnikov-politsii-1",
+"vak": true
+},
+{
+"key": "s59424a",
+"cat": "art",
+"authors": "Бакулин, Машекуашева",
+"title": "Совершенствование педагогической методики по тактической подготовке сотрудников органов внутренних дел (полиции)",
+"kind": "статья",
+"pub": "Право и управление",
+"year": 2024,
+"pages": 4,
+"size": 167726,
+"q": [],
+"general": true,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Бакулин, Машекуашева. Совершенствование педагогической методики по тактической подготовке…. Право и управление, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/sovershenstvovanie-pedagogicheskoy-metodiki-po-takticheskoy-podgotovke-sotrudnikov-organov-vnutrennih-del-politsii",
+"vak": true
+},
+{
 "key": "sfb200b",
 "cat": "art",
 "authors": "Бакулин",
@@ -80,6 +158,60 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Бакулин. Формирование теоретических знаний по топографии для использования геоинформационной системы…. KANT, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/formirovanie-teoreticheskih-znaniy-po-topografii-dlya-ispolzovaniya-geoinformatsionnoy-sistemy-operator-u-sotrudnikov-politsii",
+"vak": true
+},
+{
+"key": "s3638cd",
+"cat": "art",
+"authors": "Бантюков, Жерлицына и др.",
+"title": "К вопросу объединения дисциплин по огневой и тактико-специальной подготовки для обучения сотрудников полиции к действиям в особых условиях",
+"kind": "статья",
+"pub": "Human Progress",
+"year": 2025,
+"pages": 8,
+"size": 226155,
+"q": [],
+"general": true,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Бантюков, Жерлицына и др. К вопросу объединения дисциплин по огневой и тактико-специальной подготовки…. Human Progress, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-obedineniya-distsiplin-po-ognevoy-i-taktiko-spetsialnoy-podgotovki-dlya-obucheniya-sotrudnikov-politsii-k-deystviyam-v",
+"vak": false
+},
+{
+"key": "s5196d0",
+"cat": "art",
+"authors": "Беженцев",
+"title": "Законность при административном задержании и личном досмотре: особенности реализации",
+"kind": "статья",
+"pub": "Вестник Всероссийского института повышения квалификации сотрудников Министерства внутренних дел Российской Федерации",
+"year": 2025,
+"pages": 10,
+"size": 572569,
+"q": [
+"tsp002",
+"tsp006",
+"tsp008",
+"tsp010",
+"tsp012",
+"tsp024",
+"tsp026",
+"tsp027",
+"tsp028",
+"tsp030",
+"tsp033",
+"tsp038",
+"tsp040",
+"tsp050",
+"tsp051",
+"tsp057",
+"tsp058",
+"tsp059",
+"tsp060"
+],
+"general": false,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Беженцев. Законность при административном задержании…. Вестник Всероссийского института повышения квалификации, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/zakonnost-pri-administrativnom-zaderzhanii-i-lichnom-dosmotre-osobennosti-realizatsii",
 "vak": true
 },
 {
@@ -121,6 +253,78 @@
 "vak": true
 },
 {
+"key": "sd3f942",
+"cat": "art",
+"authors": "Бельский",
+"title": "Подготовка полицейских к действиям в условиях химического заражения местности",
+"kind": "статья",
+"pub": "Научный компонент",
+"year": 2024,
+"pages": 10,
+"size": 486678,
+"q": [
+"tsp079",
+"tsp080",
+"tsp081",
+"tsp082",
+"tsp083",
+"tsp084",
+"tsp085",
+"tsp086",
+"tsp087",
+"tsp088",
+"tsp089",
+"tsp090",
+"tsp091",
+"tsp092",
+"tsp093"
+],
+"general": false,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Бельский. Подготовка полицейских к действиям в условиях химического заражения местности. Научный компонент, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/podgotovka-politseyskih-k-deystviyam-v-usloviyah-himicheskogo-zarazheniya-mestnosti",
+"vak": false
+},
+{
+"key": "s0594f8",
+"cat": "art",
+"authors": "Беремесенко, Азизов",
+"title": "Некоторые вопросы деятельности внештатных формирований органов внутренних дел в особых условиях",
+"kind": "статья",
+"pub": "Академическая мысль",
+"year": 2024,
+"pages": 6,
+"size": 149073,
+"q": [
+"tsp002",
+"tsp003",
+"tsp005",
+"tsp007",
+"tsp009",
+"tsp011",
+"tsp013",
+"tsp019",
+"tsp024",
+"tsp029",
+"tsp031",
+"tsp034",
+"tsp035",
+"tsp036",
+"tsp037",
+"tsp039",
+"tsp040",
+"tsp041",
+"tsp043",
+"tsp047",
+"tsp051"
+],
+"general": false,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Беремесенко, Азизов. Некоторые вопросы деятельности внештатных формирований органов…. Академическая мысль, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/nekotorye-voprosy-deyatelnosti-vneshtatnyh-formirovaniy-organov-vnutrennih-del-v-osobyh-usloviyah",
+"vak": false
+},
+{
 "key": "s1d6715",
 "cat": "art",
 "authors": "Богомазов, Пилипенко",
@@ -159,6 +363,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Бордачев. Особенности проведения массовых мероприятий…. Международный журнал гуманитарных и естественных наук, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/osobennosti-provedeniya-massovyh-meropriyatiy-na-territorii-rossiyskoy-federatsii",
+"vak": false
+},
+{
+"key": "s22fa25",
+"cat": "art",
+"authors": "Бордачев",
+"title": "Применение топографии сотрудниками полиции в поисково-спасательных операциях",
+"kind": "статья",
+"pub": "Международный журнал гуманитарных и естественных наук",
+"year": 2024,
+"pages": 3,
+"size": 494986,
+"q": [
+"tsp061"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Бордачев. Применение топографии сотрудниками полиции…. Международный журнал гуманитарных и естественных наук, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/primenenie-topografii-sotrudnikami-politsii-v-poiskovo-spasatelnyh-operatsiyah",
 "vak": false
 },
 {
@@ -203,6 +426,55 @@
 "vak": false
 },
 {
+"key": "s140321",
+"cat": "art",
+"authors": "Бордачев",
+"title": "Тактические особенности при задержании вооружённого преступника сотрудниками полиции МВД России",
+"kind": "статья",
+"pub": "Международный журнал гуманитарных и естественных наук",
+"year": 2024,
+"pages": 3,
+"size": 561940,
+"q": [
+"tsp002",
+"tsp006",
+"tsp008",
+"tsp010",
+"tsp026",
+"tsp030",
+"tsp038",
+"tsp040",
+"tsp051",
+"tsp057",
+"tsp058",
+"tsp059"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Бордачев. Тактические особенности при задержании…. Международный журнал гуманитарных и естественных наук, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/takticheskie-osobennosti-pri-zaderzhanii-vooruzhyonnogo-prestupnika-sotrudnikami-politsii-mvd-rossii",
+"vak": false
+},
+{
+"key": "sfdbabe",
+"cat": "art",
+"authors": "Бордачев",
+"title": "Топографическая подготовка сотрудников полиции в современных условиях",
+"kind": "статья",
+"pub": "E-Scio",
+"year": 2023,
+"pages": 7,
+"size": 599818,
+"q": [
+"tsp061"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Бордачев. Топографическая подготовка сотрудников полиции в современных условиях. E-Scio, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/topograficheskaya-podgotovka-sotrudnikov-politsii-v-sovremennyh-usloviyah",
+"vak": false
+},
+{
 "key": "sc10856",
 "cat": "art",
 "authors": "Бордачёв",
@@ -219,6 +491,23 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Бордачёв. Совершенствование топографической подготовки курсантов и слушателей…. Научный компонент, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/sovershenstvovanie-topograficheskoy-podgotovki-kursantov-i-slushateley-obrazovatelnyh-uchrezhdeniy-mvd-rossii",
+"vak": false
+},
+{
+"key": "s3f3eb2",
+"cat": "art",
+"authors": "Бортников, Сыпченко и др.",
+"title": "Актуальные аспекты совершенствования физической и тактико-специальной подготовки сотрудников ОВД при выполнении оперативно-служебных задач",
+"kind": "статья",
+"pub": "Human Progress",
+"year": 2026,
+"pages": 7,
+"size": 214683,
+"q": [],
+"general": true,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Бортников, Сыпченко и др. Актуальные аспекты совершенствования физической и тактико-специальной…. Human Progress, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/aktualnye-aspekty-sovershenstvovaniya-fizicheskoy-i-taktiko-spetsialnoy-podgotovki-sotrudnikov-ovd-pri-vypolnenii-operativno",
 "vak": false
 },
 {
@@ -241,6 +530,127 @@
 "vak": true
 },
 {
+"key": "s953524",
+"cat": "art",
+"authors": "Бурзанов",
+"title": "Действия нарядов патрульно-постовой службы полиции при наводнении",
+"kind": "статья",
+"pub": "Аграрное и земельное право",
+"year": 2025,
+"pages": 3,
+"size": 995948,
+"q": [
+"tsp104"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Бурзанов. Действия нарядов патрульно-постовой службы полиции при наводнении. Аграрное и земельное право, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/deystviya-naryadov-patrulno-postovoy-sluzhby-politsii-pri-navodnenii",
+"vak": true
+},
+{
+"key": "sc238ea",
+"cat": "art",
+"authors": "Бурзанов",
+"title": "Обеспечение безопасности личного состава органов внутренних дел при ликвидации последствий чрезвычайных ситуаций",
+"kind": "статья",
+"pub": "Аграрное и земельное право",
+"year": 2024,
+"pages": 2,
+"size": 298981,
+"q": [
+"tsp079",
+"tsp080",
+"tsp084"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Бурзанов. Обеспечение безопасности личного состава органов внутренних дел…. Аграрное и земельное право, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/obespechenie-bezopasnosti-lichnogo-sostava-organov-vnutrennih-del-pri-likvidatsii-posledstviy-chrezvychaynyh-situatsiy",
+"vak": true
+},
+{
+"key": "s39d2ac",
+"cat": "art",
+"authors": "Бутурлакин, Крючков и др.",
+"title": "Тактика действий сотрудников патрульно-постовой службы в условиях массовых беспорядков: вопросы взаимодействия и координации",
+"kind": "статья",
+"pub": "Human Progress",
+"year": 2026,
+"pages": 7,
+"size": 191500,
+"q": [
+"tsp004",
+"tsp014",
+"tsp016",
+"tsp017",
+"tsp021",
+"tsp022",
+"tsp041"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Бутурлакин, Крючков и др. Тактика действий сотрудников патрульно-постовой службы в условиях массовых…. Human Progress, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/taktika-deystviy-sotrudnikov-patrulno-postovoy-sluzhby-v-usloviyah-massovyh-besporyadkov-voprosy-vzaimodeystviya-i-koordinatsii",
+"vak": false
+},
+{
+"key": "sf75969",
+"cat": "art",
+"authors": "Бычков",
+"title": "Формирование состояния уверенности у сотрудника полиции при силовом задержании правонарушителя",
+"kind": "статья",
+"pub": "Психология и педагогика служебной деятельности",
+"year": 2025,
+"pages": 5,
+"size": 280066,
+"q": [
+"tsp002",
+"tsp006",
+"tsp008",
+"tsp010",
+"tsp012",
+"tsp024",
+"tsp026",
+"tsp027",
+"tsp028",
+"tsp030",
+"tsp033",
+"tsp038",
+"tsp040",
+"tsp050",
+"tsp051",
+"tsp057",
+"tsp058",
+"tsp059",
+"tsp060"
+],
+"general": false,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Бычков. Формирование состояния уверенности у сотрудника полиции…. Психология и педагогика служебной деятельности, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/formirovanie-sostoyaniya-uverennosti-u-sotrudnika-politsii-pri-silovom-zaderzhanii-pravonarushitelya",
+"vak": false
+},
+{
+"key": "sabebbc",
+"cat": "art",
+"authors": "Ваньков",
+"title": "Вопросы организации деятельности полиции в особых условиях",
+"kind": "статья",
+"pub": "Аграрное и земельное право",
+"year": 2023,
+"pages": 3,
+"size": 286711,
+"q": [
+"tsp036"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Ваньков. Вопросы организации деятельности полиции в особых условиях. Аграрное и земельное право, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/voprosy-organizatsii-deyatelnosti-politsii-v-osobyh-usloviyah",
+"vak": true
+},
+{
 "key": "s364e0d",
 "cat": "art",
 "authors": "Варламов, Абидов",
@@ -258,6 +668,23 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Варламов, Абидов. Тактика обеспечения порядка на массовых и спортивных…. Журнал прикладных исследований, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/taktika-obespecheniya-poryadka-na-massovyh-i-sportivnyh-meropriyatiyah-sotrudnikami-organov-vnutrennih-del",
+"vak": true
+},
+{
+"key": "s822e87",
+"cat": "art",
+"authors": "Витютнев, Редько и др.",
+"title": "Хоррор-квесты как перспективная методика тактико-специальной подготовки курсантов ОВД",
+"kind": "статья",
+"pub": "Проблемы современного педагогического образования",
+"year": 2026,
+"pages": 3,
+"size": 230780,
+"q": [],
+"general": true,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Витютнев, Редько и др. Хоррор-квесты как перспективная…. Проблемы современного педагогического образования, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/horror-kvesty-kak-perspektivnaya-metodika-taktiko-spetsialnoy-podgotovki-kursantov-ovd-1",
 "vak": true
 },
 {
@@ -299,6 +726,50 @@
 "vak": true
 },
 {
+"key": "s5806ca",
+"cat": "art",
+"authors": "Гамидов",
+"title": "Актуальные аспекты обучения курсантов тактике применения силы в ситуациях ограниченного пространства и массовых беспорядков",
+"kind": "статья",
+"pub": "Альманах Пермского военного института войск национальной гвардии",
+"year": 2026,
+"pages": 8,
+"size": 826002,
+"q": [
+"tsp004",
+"tsp014",
+"tsp016",
+"tsp017",
+"tsp021",
+"tsp022",
+"tsp041"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Гамидов. Актуальные аспекты обучения курсантов…. Альманах Пермского военного института войск национальной гвардии, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/aktualnye-aspekty-obucheniya-kursantov-taktike-primeneniya-sily-v-situatsiyah-ogranichennogo-prostranstva-i-massovyh-besporyadkov",
+"vak": false
+},
+{
+"key": "s38d42a",
+"cat": "art",
+"authors": "Гарманова",
+"title": "Обучение сотрудников патрульно-постовой службы полиции преодолению речевых провокаций со стороны граждан",
+"kind": "статья",
+"pub": "Вестник Санкт-Петербургского университета МВД России",
+"year": 2023,
+"pages": 12,
+"size": 6540226,
+"q": [
+"tsp104"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Гарманова. Обучение сотрудников патрульно-постовой службы…. Вестник Санкт-Петербургского университета МВД России, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/obuchenie-sotrudnikov-patrulno-postovoy-sluzhby-politsii-preodoleniyu-rechevyh-provokatsiy-so-storony-grazhdan",
+"vak": true
+},
+{
 "key": "s8e767e",
 "cat": "art",
 "authors": "Головко, Сахно и др.",
@@ -337,6 +808,59 @@
 "vak": true
 },
 {
+"key": "sc54a29",
+"cat": "art",
+"authors": "Грищенко, Герасимова",
+"title": "Современные тенденции в развитии управления правоохранительными органами Российской Федерации при выполнении задач по розыску и задержанию вооруженных преступников",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2024,
+"pages": 4,
+"size": 313229,
+"q": [
+"tsp002",
+"tsp006",
+"tsp008",
+"tsp010",
+"tsp026",
+"tsp027",
+"tsp030",
+"tsp038",
+"tsp040",
+"tsp050",
+"tsp051",
+"tsp057",
+"tsp058",
+"tsp059"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Грищенко, Герасимова. Современные тенденции в развитии управления…. Право и государство — теория и практика, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/sovremennye-tendentsii-v-razvitii-upravleniya-pravoohranitelnymi-organami-rossiyskoy-federatsii-pri-vypolnenii-zadach-po-rozysku-i",
+"vak": true
+},
+{
+"key": "sd3f472",
+"cat": "art",
+"authors": "Грищенко, Синодов и др.",
+"title": "Правовое обеспечение и организационные аспекты в области ликвидации чрезвычайных ситуаций/ стихийных бедствий Республики Никарагуа",
+"kind": "статья",
+"pub": "Труды Академии управления МВД России",
+"year": 2025,
+"pages": 8,
+"size": 385993,
+"q": [
+"tsp079",
+"tsp080",
+"tsp084"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Грищенко, Синодов и др. Правовое обеспечение и организационные аспекты…. Труды Академии управления МВД России, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/pravovoe-obespechenie-i-organizatsionnye-aspekty-v-oblasti-likvidatsii-chrezvychaynyh-situatsiy-stihiynyh-bedstviy-respubliki",
+"vak": true
+},
+{
 "key": "s126874",
 "cat": "art",
 "authors": "Грищенко, Синодов",
@@ -357,6 +881,129 @@
 "vak": true
 },
 {
+"key": "sd9eb0b",
+"cat": "art",
+"authors": "Грищенко",
+"title": "Администрирование времени на организацию выполнения задач в особых условиях руководителем территориального органа МВД России",
+"kind": "статья",
+"pub": "Академическая мысль",
+"year": 2023,
+"pages": 4,
+"size": 134511,
+"q": [
+"tsp003",
+"tsp007",
+"tsp036"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Грищенко. Администрирование времени на организацию выполнения задач в особых условиях…. Академическая мысль, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/administrirovanie-vremeni-na-organizatsiyu-vypolneniya-zadach-v-osobyh-usloviyah-rukovoditelem-territorialnogo-organa-mvd-rossii",
+"vak": false
+},
+{
+"key": "s194acb",
+"cat": "art",
+"authors": "Грищенко",
+"title": "К вопросу о подготовке сотрудников органов внутренних дел к выполнению задач в особых условиях",
+"kind": "статья",
+"pub": "Педагогика и психология: академический журнал",
+"year": 2026,
+"pages": 5,
+"size": 732770,
+"q": [
+"tsp003",
+"tsp036"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Грищенко. К вопросу о подготовке сотрудников органов внутренних…. Педагогика и психология — академический журнал, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-o-podgotovke-sotrudnikov-organov-vnutrennih-del-k-vypolneniyu-zadach-v-osobyh-usloviyah",
+"vak": false
+},
+{
+"key": "s37e115",
+"cat": "art",
+"authors": "Грищенко",
+"title": "О методике обучения сотрудников органов внутренних дел организации действий в особых условиях",
+"kind": "статья",
+"pub": "Педагогика и психология: академический журнал",
+"year": 2024,
+"pages": 6,
+"size": 278203,
+"q": [
+"tsp036"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Грищенко. О методике обучения сотрудников органов внутренних дел…. Педагогика и психология — академический журнал, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/o-metodike-obucheniya-sotrudnikov-organov-vnutrennih-del-organizatsii-deystviy-v-osobyh-usloviyah",
+"vak": false
+},
+{
+"key": "sd0d2aa",
+"cat": "art",
+"authors": "Давыдова, Шумилина",
+"title": "Применение методов личного сыска сотрудниками патрульно-постовой службы полиции с целью выявления и пресечения преступлений: опрос и наблюдение в деятельности сотрудников ппсп",
+"kind": "статья",
+"pub": "Юристъ - Правоведъ",
+"year": 2024,
+"pages": 7,
+"size": 295066,
+"q": [
+"tsp104"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Давыдова, Шумилина. Применение методов личного сыска сотрудниками патрульно-постовой службы…. Юристъ - Правоведъ, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/primenenie-metodov-lichnogo-syska-sotrudnikami-patrulno-postovoy-sluzhby-politsii-s-tselyu-vyyavleniya-i-presecheniya-prestupleniy",
+"vak": true
+},
+{
+"key": "se512f1",
+"cat": "art",
+"authors": "Джафарова",
+"title": "Меры информационного характера по предупреждению массовых беспорядков при проведении массовых мероприятий",
+"kind": "статья",
+"pub": "Вестник Краснодарского университета МВД России",
+"year": 2025,
+"pages": 5,
+"size": 150104,
+"q": [
+"tsp004",
+"tsp014",
+"tsp016",
+"tsp017",
+"tsp021",
+"tsp022",
+"tsp041"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Джафарова. Меры информационного характера по предупреждению…. Вестник Краснодарского университета МВД России, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/mery-informatsionnogo-haraktera-po-preduprezhdeniyu-massovyh-besporyadkov-pri-provedenii-massovyh-meropriyatiy",
+"vak": true
+},
+{
+"key": "sf07f05",
+"cat": "art",
+"authors": "Дзьоник, Тавтилова и др.",
+"title": "Cовершенствование психологического сопровождения служебной деятельности сотрудников патрульно-постовой службы полиции в период адаптации",
+"kind": "статья",
+"pub": "Прикладная юридическая психология",
+"year": 2023,
+"pages": 12,
+"size": 126772,
+"q": [
+"tsp104"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Дзьоник, Тавтилова и др. Cовершенствование психологического сопровождения…. Прикладная юридическая психология, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/covershenstvovanie-psihologicheskogo-soprovozhdeniya-sluzhebnoy-deyatelnosti-sotrudnikov-patrulno-postovoy-sluzhby-politsii-v",
+"vak": true
+},
+{
 "key": "s394548",
 "cat": "art",
 "authors": "Дронова",
@@ -373,6 +1020,23 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Дронова. Системный подход к использованию беспилотных воздушных судов…. Вестник Волгоградской академии МВД России, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/sistemnyy-podhod-k-ispolzovaniyu-bespilotnyh-vozdushnyh-sudov-v-kachestve-tehniko-kriminalisticheskogo-sredstva",
+"vak": true
+},
+{
+"key": "s19c686",
+"cat": "art",
+"authors": "Елистратов",
+"title": "Особенности тактико-специальной подготовки для сотрудников органов внутренних дел в современных условиях",
+"kind": "статья",
+"pub": "Известия высших учебных заведений. Поволжский регион. Общественные науки",
+"year": 2024,
+"pages": 10,
+"size": 441420,
+"q": [],
+"general": true,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Елистратов. Особенности тактико-специальной подготовки…. Известия высших учебных заведений. Поволжский регион., 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/osobennosti-taktiko-spetsialnoy-podgotovki-dlya-sotrudnikov-organov-vnutrennih-del-v-sovremennyh-usloviyah",
 "vak": true
 },
 {
@@ -415,6 +1079,107 @@
 "vak": true
 },
 {
+"key": "s203b52",
+"cat": "art",
+"authors": "Жерлицына, Ерашков и др.",
+"title": "Совершенствование профессионального обучения сотрудников полиции в контексте физической и тактико-специальной подготовки",
+"kind": "статья",
+"pub": "Human Progress",
+"year": 2025,
+"pages": 7,
+"size": 242858,
+"q": [],
+"general": true,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Жерлицына, Ерашков и др. Совершенствование профессионального обучения сотрудников полиции в контексте…. Human Progress, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/sovershenstvovanie-professionalnogo-obucheniya-sotrudnikov-politsii-v-kontekste-fizicheskoy-i-taktiko-spetsialnoy-podgotovki",
+"vak": false
+},
+{
+"key": "sdf7d4c",
+"cat": "art",
+"authors": "Жерлицына, Кияшкин и др.",
+"title": "К вопросу деятельности органов внутренних дел в особых условиях",
+"kind": "статья",
+"pub": "Human Progress",
+"year": 2025,
+"pages": 10,
+"size": 256687,
+"q": [
+"tsp002",
+"tsp003",
+"tsp005",
+"tsp007",
+"tsp009",
+"tsp011",
+"tsp013",
+"tsp019",
+"tsp024",
+"tsp029",
+"tsp031",
+"tsp034",
+"tsp035",
+"tsp036",
+"tsp037",
+"tsp039",
+"tsp040",
+"tsp041",
+"tsp043",
+"tsp047",
+"tsp051"
+],
+"general": false,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Жерлицына, Кияшкин и др. К вопросу деятельности органов внутренних дел в особых условиях. Human Progress, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-deyatelnosti-organov-vnutrennih-del-v-osobyh-usloviyah",
+"vak": false
+},
+{
+"key": "sd0f36c",
+"cat": "art",
+"authors": "Жерлицына, Пархоменко и др.",
+"title": "Участие сотрудников органов внутренних дел в обеспечении своевременного оповещения населения при возникновении чрезвычайных ситуаций",
+"kind": "статья",
+"pub": "Human Progress",
+"year": 2025,
+"pages": 9,
+"size": 255718,
+"q": [
+"tsp079",
+"tsp080",
+"tsp084"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Жерлицына, Пархоменко и др. Участие сотрудников органов внутренних дел в обеспечении своевременного…. Human Progress, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/uchastie-sotrudnikov-organov-vnutrennih-del-v-obespechenii-svoevremennogo-opovescheniya-naseleniya-pri-vozniknovenii-chrezvychaynyh",
+"vak": false
+},
+{
+"key": "s375d4a",
+"cat": "art",
+"authors": "Злобин, Кривицкий",
+"title": "Взаимодействие правоохранительных органов с населением в обеспечении общественного порядка при массовых мероприятиях",
+"kind": "статья",
+"pub": "Право и управление",
+"year": 2026,
+"pages": 5,
+"size": 190756,
+"q": [
+"tsp018",
+"tsp052",
+"tsp053",
+"tsp054",
+"tsp055",
+"tsp056"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Злобин, Кривицкий. Взаимодействие правоохранительных органов с населением в обеспечении…. Право и управление, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/vzaimodeystvie-pravoohranitelnyh-organov-s-naseleniem-v-obespechenii-obschestvennogo-poryadka-pri-massovyh-meropriyatiyah",
+"vak": true
+},
+{
 "key": "s8be44d",
 "cat": "art",
 "authors": "Иванов",
@@ -431,6 +1196,31 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Иванов. Концептуальные основы оперативно-розыскных операций органов…. Вестник Волгоградской академии МВД России, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/kontseptualnye-osnovy-operativno-rozysknyh-operatsiy-organov-vnutrennih-del-kak-predmet-nauchnogo-issledovaniya",
+"vak": true
+},
+{
+"key": "s3d4a15",
+"cat": "art",
+"authors": "Ишмухаметов, Янмурзин",
+"title": "Условия развития массовых беспорядков",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2023,
+"pages": 2,
+"size": 291513,
+"q": [
+"tsp004",
+"tsp014",
+"tsp016",
+"tsp017",
+"tsp021",
+"tsp022",
+"tsp041"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Ишмухаметов, Янмурзин. Условия развития массовых беспорядков. Право и государство — теория и практика, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/usloviya-razvitiya-massovyh-besporyadkov",
 "vak": true
 },
 {
@@ -470,6 +1260,49 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Канокова, Калинин. Особенности задержания сотрудниками полиции лиц, совершивших преступления…. Право и управление, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/osobennosti-zaderzhaniya-sotrudnikami-politsii-lits-sovershivshih-prestupleniya-v-obschestvennyh-mestah",
+"vak": true
+},
+{
+"key": "s9d1d0e",
+"cat": "art",
+"authors": "Караваев, Таранин и др.",
+"title": "Взаимодействие полиции и населения при обеспечении безопасности и порядка на массовых мероприятиях",
+"kind": "статья",
+"pub": "Право и управление",
+"year": 2026,
+"pages": 5,
+"size": 361017,
+"q": [
+"tsp018",
+"tsp052",
+"tsp053",
+"tsp054",
+"tsp055",
+"tsp056"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Караваев, Таранин и др. Взаимодействие полиции и населения при обеспечении безопасности…. Право и управление, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/vzaimodeystvie-politsii-i-naseleniya-pri-obespechenii-bezopasnosti-i-poryadka-na-massovyh-meropriyatiyah",
+"vak": true
+},
+{
+"key": "sd01d90",
+"cat": "art",
+"authors": "Кашибадзе, Кадралеева",
+"title": "Особенности методики подготовки курсантов по военной топографии в ведомственных вузах уголовно-исполнительной системы",
+"kind": "статья",
+"pub": "Вестник Самарского юридического института",
+"year": 2023,
+"pages": 5,
+"size": 640816,
+"q": [
+"tsp061"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Кашибадзе, Кадралеева. Особенности методики подготовки курсантов…. Вестник Самарского юридического института, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/osobennosti-metodiki-podgotovki-kursantov-po-voennoy-topografii-v-vedomstvennyh-vuzah-ugolovno-ispolnitelnoy-sistemy",
 "vak": true
 },
 {
@@ -607,6 +1440,26 @@
 "vak": true
 },
 {
+"key": "s8437f5",
+"cat": "art",
+"authors": "Княжев, Грищенко и др.",
+"title": "Алгоритм работы руководителя территориального органа МВД России в особых условиях",
+"kind": "статья",
+"pub": "Труды Академии управления МВД России",
+"year": 2023,
+"pages": 10,
+"size": 109053,
+"q": [
+"tsp007",
+"tsp036"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Княжев, Грищенко и др. Алгоритм работы руководителя территориального органа…. Труды Академии управления МВД России, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/algoritm-raboty-rukovoditelya-territorialnogo-organa-mvd-rossii-v-osobyh-usloviyah",
+"vak": true
+},
+{
 "key": "sbc8946",
 "cat": "art",
 "authors": "Княжев, Грищенко и др.",
@@ -625,6 +1478,142 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Княжев, Грищенко и др. О современных подходах к подготовке управленческих…. Труды Академии управления МВД России, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/o-sovremennyh-podhodah-k-podgotovke-upravlencheskih-kadrov-organov-vnutrennih-del-dlya-resheniya-zadach-spetsialnoyvoennoy",
+"vak": true
+},
+{
+"key": "seb0ae6",
+"cat": "art",
+"authors": "Княжев, Искалиев",
+"title": "Правовая основа обеспечения деятельности органов внутренних дел в особых условиях и направления ее совершенствования",
+"kind": "статья",
+"pub": "Труды Академии управления МВД России",
+"year": 2026,
+"pages": 9,
+"size": 221431,
+"q": [
+"tsp002",
+"tsp003",
+"tsp005",
+"tsp007",
+"tsp009",
+"tsp011",
+"tsp013",
+"tsp019",
+"tsp024",
+"tsp029",
+"tsp031",
+"tsp034",
+"tsp035",
+"tsp036",
+"tsp037",
+"tsp039",
+"tsp040",
+"tsp041",
+"tsp043",
+"tsp047",
+"tsp051"
+],
+"general": false,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Княжев, Искалиев. Правовая основа обеспечения деятельности органов…. Труды Академии управления МВД России, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/pravovaya-osnova-obespecheniya-deyatelnosti-organov-vnutrennih-del-v-osobyh-usloviyah-i-napravleniya-ee-sovershenstvovaniya",
+"vak": true
+},
+{
+"key": "s58be4b",
+"cat": "art",
+"authors": "Ковалев",
+"title": "К вопросу обеспечения личной безопасности сотрудников полиции при доставлении граждан",
+"kind": "статья",
+"pub": "Аграрное и земельное право",
+"year": 2025,
+"pages": 3,
+"size": 1011352,
+"q": [
+"tsp002",
+"tsp006",
+"tsp008",
+"tsp010",
+"tsp012",
+"tsp024",
+"tsp026",
+"tsp027",
+"tsp028",
+"tsp030",
+"tsp033",
+"tsp038",
+"tsp040",
+"tsp050",
+"tsp051",
+"tsp057",
+"tsp058",
+"tsp059",
+"tsp060"
+],
+"general": false,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Ковалев. К вопросу обеспечения личной безопасности сотрудников полиции…. Аграрное и земельное право, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-obespecheniya-lichnoy-bezopasnosti-sotrudnikov-politsii-pri-dostavlenii-grazhdan",
+"vak": true
+},
+{
+"key": "sf12896",
+"cat": "art",
+"authors": "Ковалев",
+"title": "Особенности подготовки сотрудников полиции к действиям при проведении публичных мероприятий",
+"kind": "статья",
+"pub": "Международный журнал гуманитарных и естественных наук",
+"year": 2024,
+"pages": 3,
+"size": 599658,
+"q": [
+"tsp018",
+"tsp052",
+"tsp053",
+"tsp054",
+"tsp055",
+"tsp056"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Ковалев. Особенности подготовки сотрудников полиции…. Международный журнал гуманитарных и естественных наук, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/osobennosti-podgotovki-sotrudnikov-politsii-k-deystviyam-pri-provedenii-publichnyh-meropriyatiy",
+"vak": false
+},
+{
+"key": "s46fdd1",
+"cat": "art",
+"authors": "Ковтун, Козлов и др.",
+"title": "Применение наглядности как ведущего метода формирования профессиональных компетенций в ходе тактико-специальной подготовки сотрудников МВД России",
+"kind": "статья",
+"pub": "Проблемы современного педагогического образования",
+"year": 2026,
+"pages": 4,
+"size": 219368,
+"q": [],
+"general": true,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Ковтун, Козлов и др. Применение наглядности как ведущего…. Проблемы современного педагогического образования, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/primenenie-naglyadnosti-kak-veduschego-metoda-formirovaniya-professionalnyh-kompetentsiy-v-hode-taktiko-spetsialnoy-podgotovki",
+"vak": true
+},
+{
+"key": "s0c434a",
+"cat": "art",
+"authors": "Кодзоков",
+"title": "Организационно-правовые особенности деятельности патрульно-постовой службы полиции",
+"kind": "статья",
+"pub": "Пробелы в российском законодательстве. Юридический журнал",
+"year": 2023,
+"pages": 6,
+"size": 243406,
+"q": [
+"tsp104"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Кодзоков. Организационно-правовые особенности деятельности…. Пробелы в российском законодательстве. Юридический журн.pdf",
+"url": "https://cyberleninka.ru/article/n/organizatsionno-pravovye-osobennosti-deyatelnosti-patrulno-postovoy-sluzhby-politsii",
 "vak": true
 },
 {
@@ -668,6 +1657,80 @@
 "vak": true
 },
 {
+"key": "sd38b0d",
+"cat": "art",
+"authors": "Койнов",
+"title": "К вопросу тактического распределения нарядов полиции в системе реагирования на совершенные правонарушения с применением дискретного метода",
+"kind": "статья",
+"pub": "Полицейская деятельность",
+"year": 2023,
+"pages": 13,
+"size": 172079,
+"q": [
+"tsp056"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Койнов. К вопросу тактического распределения нарядов полиции в системе реагирования…. Полицейская деятельность, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-takticheskogo-raspredeleniya-naryadov-politsii-v-sisteme-reagirovaniya-na-sovershennye-pravonarusheniya-s-primeneniem",
+"vak": true
+},
+{
+"key": "s0a6340",
+"cat": "art",
+"authors": "Копылов, Семенов и др.",
+"title": "Совершенствование методики и содержания тактико-специальной подготовки сотрудников ОВД России к ведению (отражению) ближнего стрелкового боя",
+"kind": "статья",
+"pub": "Вестник экономической безопасности",
+"year": 2023,
+"pages": 6,
+"size": 262030,
+"q": [],
+"general": true,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Копылов, Семенов и др. Совершенствование методики и содержания…. Вестник экономической безопасности, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/sovershenstvovanie-metodiki-i-soderzhaniya-taktiko-spetsialnoy-podgotovki-sotrudnikov-ovd-rossii-k-vedeniyu-otrazheniyu-blizhnego",
+"vak": true
+},
+{
+"key": "sa1b7b8",
+"cat": "art",
+"authors": "Корабельникова",
+"title": "Правовой режим чрезвычайных обстоятельств как важное условие деятельности полиции по обеспечению безопасности в городе",
+"kind": "статья",
+"pub": "Научный вестник Омской академии МВД России",
+"year": 2025,
+"pages": 4,
+"size": 167599,
+"q": [
+"tsp003"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Корабельникова. Правовой режим чрезвычайных обстоятельств как важное…. Научный вестник Омской академии МВД России, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/pravovoy-rezhim-chrezvychaynyh-obstoyatelstv-kak-vazhnoe-uslovie-deyatelnosti-politsii-po-obespecheniyu-bezopasnosti-v-gorode",
+"vak": true
+},
+{
+"key": "se96c90",
+"cat": "art",
+"authors": "Коренюгин, Линевич и др.",
+"title": "Совершенствование системы профессиональной подготовки сотрудников полиции к выполнению задач в особых условиях",
+"kind": "статья",
+"pub": "Human Progress",
+"year": 2025,
+"pages": 6,
+"size": 171562,
+"q": [
+"tsp003"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Коренюгин, Линевич и др. Совершенствование системы профессиональной подготовки сотрудников полиции…. Human Progress, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/sovershenstvovanie-sistemy-professionalnoy-podgotovki-sotrudnikov-politsii-k-vypolneniyu-zadach-v-osobyh-usloviyah",
+"vak": false
+},
+{
 "key": "s9abd12",
 "cat": "art",
 "authors": "Корчагин",
@@ -684,6 +1747,56 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Корчагин. Криминалистическое обеспечение процесса доказывания на этапе…. Право и государство — теория и практика, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/kriminalisticheskoe-obespechenie-protsessa-dokazyvaniya-na-etape-proverki-soobscheniya-o-prestuplenii",
+"vak": true
+},
+{
+"key": "sf4a92e",
+"cat": "art",
+"authors": "Кочесоков, Никулин",
+"title": "Обучение сотрудников органов внутренних дел мерам личной безопасности при задержании вооруженных и особо опасных преступников",
+"kind": "статья",
+"pub": "Журнал прикладных исследований",
+"year": 2023,
+"pages": 5,
+"size": 481440,
+"q": [
+"tsp002",
+"tsp006",
+"tsp008",
+"tsp010",
+"tsp026",
+"tsp030",
+"tsp038",
+"tsp040",
+"tsp051",
+"tsp057",
+"tsp058",
+"tsp059"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Кочесоков, Никулин. Обучение сотрудников органов внутренних дел мерам личной…. Журнал прикладных исследований, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/obuchenie-sotrudnikov-organov-vnutrennih-del-meram-lichnoy-bezopasnosti-pri-zaderzhanii-vooruzhennyh-i-osobo-opasnyh-prestupnikov",
+"vak": true
+},
+{
+"key": "sdd4933",
+"cat": "art",
+"authors": "Крамаренко, Ухов",
+"title": "Организация управления органами внутренних дел Российской Федерации в особых условиях как элемент системы обеспечения национальной безопасности",
+"kind": "статья",
+"pub": "Вестник Ростовского государственного экономического университета (РИНХ)",
+"year": 2023,
+"pages": 8,
+"size": 927472,
+"q": [
+"tsp031",
+"tsp036"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Крамаренко, Ухов. Организация управления органами…. Вестник Ростовского государственного экономического, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/organizatsiya-upravleniya-organami-vnutrennih-del-rossiyskoy-federatsii-v-osobyh-usloviyah-kak-element-sistemy-obespecheniya",
 "vak": true
 },
 {
@@ -707,6 +1820,43 @@
 "vak": true
 },
 {
+"key": "s3efb80",
+"cat": "art",
+"authors": "Кулагин",
+"title": "Личная безопасность сотрудников МВД",
+"kind": "статья",
+"pub": "Автономия личности",
+"year": 2025,
+"pages": 5,
+"size": 367098,
+"q": [
+"tsp002",
+"tsp006",
+"tsp008",
+"tsp010",
+"tsp012",
+"tsp024",
+"tsp026",
+"tsp027",
+"tsp028",
+"tsp030",
+"tsp033",
+"tsp038",
+"tsp040",
+"tsp050",
+"tsp051",
+"tsp057",
+"tsp058",
+"tsp059",
+"tsp060"
+],
+"general": false,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Кулагин. Личная безопасность сотрудников МВД. Автономия личности, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/lichnaya-bezopasnost-sotrudnikov-mvd",
+"vak": false
+},
+{
 "key": "sf7d402",
 "cat": "art",
 "authors": "Куликова, Макейкина и др.",
@@ -724,6 +1874,49 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Куликова, Макейкина и др. Лечебно-эвакуационное обеспечение и санитарно-противоэпидемические…. Огарёв-Online, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/lechebno-evakuatsionnoe-obespechenie-i-sanitarno-protivoepidemicheskie-meropriyatiya-v-gody-pervoy-mirovoy-voyny",
 "vak": false
+},
+{
+"key": "s1b9a41",
+"cat": "art",
+"authors": "Курлович, Шестак",
+"title": "Модели оперативного реагирования на чрезвычайные обстоятельства в сфере охраны правопорядка и обеспечения общественной безопасности",
+"kind": "статья",
+"pub": "Вестник Казанского юридического института МВД России",
+"year": 2024,
+"pages": 9,
+"size": 637911,
+"q": [
+"tsp003"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Курлович, Шестак. Модели оперативного реагирования…. Вестник Казанского юридического института МВД России, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/modeli-operativnogo-reagirovaniya-na-chrezvychaynye-obstoyatelstva-v-sfere-ohrany-pravoporyadka-i-obespecheniya-obschestvennoy",
+"vak": true
+},
+{
+"key": "se415aa",
+"cat": "art",
+"authors": "Кучинаев",
+"title": "Организация деятельности органов внутренних дел по обеспечению общественного порядка и безопасности при проведении массовых мероприятий",
+"kind": "статья",
+"pub": "Право и управление",
+"year": 2024,
+"pages": 3,
+"size": 167047,
+"q": [
+"tsp018",
+"tsp052",
+"tsp053",
+"tsp054",
+"tsp055",
+"tsp056"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Кучинаев. Организация деятельности органов внутренних дел по обеспечению общественного…. Право и управление, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/organizatsiya-deyatelnosti-organov-vnutrennih-del-po-obespecheniyu-obschestvennogo-poryadka-i-bezopasnosti-pri-provedenii-massovyh",
+"vak": true
 },
 {
 "key": "sa4de59",
@@ -745,6 +1938,51 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Ладыгина, Манаков и др. Тактика действий сотрудников органов внутренних дел при проведении…. Вестник науки, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/taktika-deystviy-sotrudnikov-organov-vnutrennih-del-pri-provedenii-spetsialnyh-operatsiy",
+"vak": false
+},
+{
+"key": "s5654aa",
+"cat": "art",
+"authors": "Лоза",
+"title": "Правоприменительная практика и юрисдикционная деятельность органов внутренних дел Российской Федерации в отношении несовершеннолетних участников публичных и иных массовых мероприятий",
+"kind": "статья",
+"pub": "Академическая мысль",
+"year": 2023,
+"pages": 4,
+"size": 149860,
+"q": [
+"tsp018",
+"tsp052",
+"tsp053",
+"tsp054",
+"tsp055",
+"tsp056"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Лоза. Правоприменительная практика и юрисдикционная деятельность органов внутренних дел…. Академическая мысль, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/pravoprimenitelnaya-praktika-i-yurisdiktsionnaya-deyatelnost-organov-vnutrennih-del-rossiyskoy-federatsii-v-otnoshenii",
+"vak": false
+},
+{
+"key": "s4ce381",
+"cat": "art",
+"authors": "Маевская, Шматко и др.",
+"title": "Роль и место органов внутренних дел в единой государственной системе предупреждения и ликвидации чрезвычайных ситуаций",
+"kind": "статья",
+"pub": "Вестник науки",
+"year": 2025,
+"pages": 6,
+"size": 264332,
+"q": [
+"tsp079",
+"tsp080",
+"tsp084"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Маевская, Шматко и др. Роль и место органов внутренних дел в единой государственной системе…. Вестник науки, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/rol-i-mesto-organov-vnutrennih-del-v-edinoy-gosudarstvennoy-sisteme-preduprezhdeniya-i-likvidatsii-chrezvychaynyh-situatsiy",
 "vak": false
 },
 {
@@ -788,6 +2026,67 @@
 "vak": true
 },
 {
+"key": "s58bd4d",
+"cat": "art",
+"authors": "Манукян",
+"title": "Проблемы охраны общественного порядка и обеспечения безопасности граждан при проведении спортивных массовых мероприятий",
+"kind": "статья",
+"pub": "Пробелы в российском законодательстве. Юридический журнал",
+"year": 2024,
+"pages": 6,
+"size": 225965,
+"q": [
+"tsp018",
+"tsp052",
+"tsp053",
+"tsp054",
+"tsp055",
+"tsp056"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Манукян. Проблемы охраны общественного порядка…. Пробелы в российском законодательстве. Юридический журнал, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/problemy-ohrany-obschestvennogo-poryadka-i-obespecheniya-bezopasnosti-grazhdan-pri-provedenii-sportivnyh-massovyh-meropriyatiy",
+"vak": true
+},
+{
+"key": "sd60551",
+"cat": "art",
+"authors": "Махов, Баркалов",
+"title": "Личная безопасность сотрудников органов внутренних дел и их подготовка к действиям в экстремальных ситуациях",
+"kind": "статья",
+"pub": "Автономия личности",
+"year": 2025,
+"pages": 12,
+"size": 546444,
+"q": [
+"tsp002",
+"tsp006",
+"tsp008",
+"tsp010",
+"tsp012",
+"tsp024",
+"tsp026",
+"tsp027",
+"tsp028",
+"tsp030",
+"tsp033",
+"tsp038",
+"tsp040",
+"tsp050",
+"tsp051",
+"tsp057",
+"tsp058",
+"tsp059",
+"tsp060"
+],
+"general": false,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Махов, Баркалов. Личная безопасность сотрудников органов внутренних дел и их подготовка…. Автономия личности, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/lichnaya-bezopasnost-sotrudnikov-organov-vnutrennih-del-i-ih-podgotovka-k-deystviyam-v-ekstremalnyh-situatsiyah",
+"vak": false
+},
+{
 "key": "s3c1aeb",
 "cat": "art",
 "authors": "Медведева, Волков",
@@ -827,6 +2126,25 @@
 "vak": true
 },
 {
+"key": "sf24309",
+"cat": "art",
+"authors": "Мерказова, Турчин и др.",
+"title": "Правовые коллизии при применении КоАП РФ в деятельности патрульно-постовой службы полиции",
+"kind": "статья",
+"pub": "Право и управление",
+"year": 2026,
+"pages": 6,
+"size": 357521,
+"q": [
+"tsp104"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Мерказова, Турчин и др. Правовые коллизии при применении КоАП РФ в деятельности…. Право и управление, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/pravovye-kollizii-pri-primenenii-koap-rf-v-deyatelnosti-patrulno-postovoy-sluzhby-politsii",
+"vak": true
+},
+{
 "key": "s00b0bb",
 "cat": "art",
 "authors": "Миронов",
@@ -843,6 +2161,64 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Миронов. Об организации взаимодействия дежурных частей органов внутренних дел…. Научный портал МВД России, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/ob-organizatsii-vzaimodeystviya-dezhurnyh-chastey-organov-vnutrennih-del-i-subektov-uchastvuyuschih-v-raskrytii-prestupleniy",
+"vak": true
+},
+{
+"key": "sbb04f4",
+"cat": "art",
+"authors": "Морозов, Ковалёв",
+"title": "Формирование готовности сотрудников полиции к деятельности в условиях возникновения несанкционированных публичных мероприятий",
+"kind": "статья",
+"pub": "Мир науки, культуры, образования",
+"year": 2023,
+"pages": 3,
+"size": 329464,
+"q": [
+"tsp018"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Морозов, Ковалёв. Формирование готовности сотрудников полиции к деятельности…. Мир науки, культуры, образования, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/formirovanie-gotovnosti-sotrudnikov-politsii-k-deyatelnosti-v-usloviyah-vozniknoveniya-nesanktsionirovannyh-publichnyh-meropriyatiy",
+"vak": true
+},
+{
+"key": "s3e80ff",
+"cat": "art",
+"authors": "Олейник, Крутин",
+"title": "Актуальные вопросы топографического и картографического обеспечения органов внутренних дел России в особых условиях",
+"kind": "статья",
+"pub": "Образование. Наука. Научные кадры",
+"year": 2025,
+"pages": 5,
+"size": 200465,
+"q": [
+"tsp002",
+"tsp003",
+"tsp005",
+"tsp007",
+"tsp009",
+"tsp011",
+"tsp013",
+"tsp019",
+"tsp024",
+"tsp029",
+"tsp031",
+"tsp034",
+"tsp035",
+"tsp036",
+"tsp037",
+"tsp039",
+"tsp040",
+"tsp041",
+"tsp043",
+"tsp047",
+"tsp051"
+],
+"general": false,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Олейник, Крутин. Актуальные вопросы топографического и картографического…. Образование. Наука. Научные кадры, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/aktualnye-voprosy-topograficheskogo-i-kartograficheskogo-obespecheniya-organov-vnutrennih-del-rossii-v-osobyh-usloviyah",
 "vak": true
 },
 {
@@ -863,6 +2239,84 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Османов, Аккузин и др. Роль патрульно-постовой службы полиции в охране общественного…. Российский научный вестник, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/rol-patrulno-postovoy-sluzhby-politsii-v-ohrane-obschestvennogo-poryadka-i-bezopasnosti-v-voennye-i-poslevoennye-gody-i-ee-pravovyh",
 "vak": true
+},
+{
+"key": "s67ba93",
+"cat": "art",
+"authors": "Першин, Нестерович и др.",
+"title": "Роль современных технологий в тактико-специальной подготовке сотрудников ОВД",
+"kind": "статья",
+"pub": "Вестник науки",
+"year": 2025,
+"pages": 8,
+"size": 266967,
+"q": [],
+"general": true,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Першин, Нестерович и др. Роль современных технологий в тактико-специальной подготовке сотрудников ОВД. Вестник науки, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/rol-sovremennyh-tehnologiy-v-taktiko-spetsialnoy-podgotovke-sotrudnikov-ovd",
+"vak": false
+},
+{
+"key": "scb684d",
+"cat": "art",
+"authors": "Петров, Соколова",
+"title": "Структурно-динамическая модель моральной травмы сотрудников патрульно-постовой службы полиции",
+"kind": "статья",
+"pub": "Педагогика и психология: академический журнал",
+"year": 2026,
+"pages": 7,
+"size": 390725,
+"q": [
+"tsp104"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Петров, Соколова. Структурно-динамическая модель моральной травмы…. Педагогика и психология — академический журнал, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/strukturno-dinamicheskaya-model-moralnoy-travmy-sotrudnikov-patrulno-postovoy-sluzhby-politsii",
+"vak": false
+},
+{
+"key": "s794cfe",
+"cat": "art",
+"authors": "Пролетенкова",
+"title": "Министерство внутренних дел Российской Федерации в Единой государственной системе предупреждения и ликвидации чрезвычайных ситуаций",
+"kind": "статья",
+"pub": "Научный портал МВД России",
+"year": 2025,
+"pages": 10,
+"size": 118432,
+"q": [
+"tsp079",
+"tsp080",
+"tsp084"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Пролетенкова. Министерство внутренних дел Российской Федерации в Единой…. Научный портал МВД России, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/ministerstvo-vnutrennih-del-rossiyskoy-federatsii-v-edinoy-gosudarstvennoy-sisteme-preduprezhdeniya-i-likvidatsii-chrezvychaynyh",
+"vak": true
+},
+{
+"key": "s52bffa",
+"cat": "art",
+"authors": "Пролетенкова",
+"title": "Российская система противодействия чрезвычайным ситуациям: проблемы и механизмы совершенствования",
+"kind": "статья",
+"pub": "Вестник Белгородского юридического института МВД России",
+"year": 2025,
+"pages": 9,
+"size": 679060,
+"q": [
+"tsp079",
+"tsp080",
+"tsp084"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Пролетенкова. Российская система противодействия…. Вестник Белгородского юридического института МВД России, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/rossiyskaya-sistema-protivodeystviya-chrezvychaynym-situatsiyam-problemy-i-mehanizmy-sovershenstvovaniya",
+"vak": false
 },
 {
 "key": "sd2f61f",
@@ -904,6 +2358,40 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Пухно, Бородина и др. Особенности тактико-специальной подготовки…. Проблемы современного педагогического образования.pdf",
 "url": "https://cyberleninka.ru/article/n/osobennosti-taktiko-spetsialnoy-podgotovki-obuchayuschihsya-obrazovatelnyh-organizatsiy-mvd-rossii-s-ispolzovaniem-opyta",
+"vak": true
+},
+{
+"key": "s471218",
+"cat": "art",
+"authors": "Пухно, Пугачев и др.",
+"title": "Использование практико-ориентированного подхода при преподавании дисциплин «Тактико-специальная подготовка» в образовательных организациях МВД России",
+"kind": "статья",
+"pub": "Проблемы современного педагогического образования",
+"year": 2026,
+"pages": 4,
+"size": 226485,
+"q": [],
+"general": true,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Пухно, Пугачев и др. Использование практико-ориентированного подхода…. Проблемы современного педагогического образов.pdf",
+"url": "https://cyberleninka.ru/article/n/ispolzovanie-praktiko-orientirovannogo-podhoda-pri-prepodavanii-distsiplin-taktiko-spetsialnaya-podgotovka-v-obrazovatelnyh",
+"vak": true
+},
+{
+"key": "s06aef2",
+"cat": "art",
+"authors": "Самигуллин, Стрижанов и др.",
+"title": "Современные технологии в тактико-специальной подготовке обучающихся вузов МВД России: симуляторы и виртуальная реальность",
+"kind": "статья",
+"pub": "Проблемы современного педагогического образования",
+"year": 2026,
+"pages": 3,
+"size": 212049,
+"q": [],
+"general": true,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Самигуллин, Стрижанов и др. Современные технологии в…. Проблемы современного педагогического образования, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/sovremennye-tehnologii-v-taktiko-spetsialnoy-podgotovke-obuchayuschihsya-vuzov-mvd-rossii-simulyatory-i-virtualnaya-realnost",
 "vak": true
 },
 {
@@ -1003,6 +2491,43 @@
 "vak": true
 },
 {
+"key": "s81c648",
+"cat": "art",
+"authors": "Струганов, Гаврилов и др.",
+"title": "Тактика применения физической силы и боевых приемов борьбы в процессе служебной деятельности как основа личной безопасности сотрудника ОВД",
+"kind": "статья",
+"pub": "Автономия личности",
+"year": 2024,
+"pages": 7,
+"size": 401679,
+"q": [
+"tsp002",
+"tsp006",
+"tsp008",
+"tsp010",
+"tsp012",
+"tsp024",
+"tsp026",
+"tsp027",
+"tsp028",
+"tsp030",
+"tsp033",
+"tsp038",
+"tsp040",
+"tsp050",
+"tsp051",
+"tsp057",
+"tsp058",
+"tsp059",
+"tsp060"
+],
+"general": false,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Струганов, Гаврилов и др. Тактика применения физической силы и боевых приемов борьбы в процессе…. Автономия личности, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/taktika-primeneniya-fizicheskoy-sily-i-boevyh-priemov-borby-v-protsesse-sluzhebnoy-deyatelnosti-kak-osnova-lichnoy-bezopasnosti",
+"vak": false
+},
+{
 "key": "s995193",
 "cat": "art",
 "authors": "Стручков",
@@ -1020,6 +2545,277 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Стручков. Участие сотрудников гибдд в обеспечении общественной…. Вестник Московского университета МВД России, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/uchastie-sotrudnikov-gibdd-v-obespechenii-obschestvennoy-bezopasnosti-pri-provedenii-massovyh-meropriyatiy",
+"vak": true
+},
+{
+"key": "s49ddb2",
+"cat": "art",
+"authors": "Сурков, Дондуп и др.",
+"title": "Визуальные технологии в формировании профессиональных компетенций студентов медвуза. Анатомический музей кафедры топографической анатомии и оперативной хирургии рниму им. Н.и. Пирогова",
+"kind": "статья",
+"pub": "Методология и технология непрерывного профессионального образования",
+"year": 2023,
+"pages": 9,
+"size": 320804,
+"q": [
+"tsp061"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Сурков, Дондуп и др. Визуальные технологии в…. Методология и технология непрерывного профессионального образования, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/vizualnye-tehnologii-v-formirovanii-professionalnyh-kompetentsiy-studentov-medvuza-anatomicheskiy-muzey-kafedry-topograficheskoy",
+"vak": false
+},
+{
+"key": "sd182b1",
+"cat": "art",
+"authors": "Тарасенко, Кириченко",
+"title": "Отдельные аспекты обеспечения личной безопасности сотрудников органов внутренних дел при действиях в особых условиях",
+"kind": "статья",
+"pub": "Научный компонент",
+"year": 2024,
+"pages": 11,
+"size": 1235191,
+"q": [
+"tsp002",
+"tsp003",
+"tsp005",
+"tsp007",
+"tsp009",
+"tsp011",
+"tsp013",
+"tsp019",
+"tsp024",
+"tsp029",
+"tsp031",
+"tsp034",
+"tsp035",
+"tsp036",
+"tsp037",
+"tsp039",
+"tsp040",
+"tsp041",
+"tsp043",
+"tsp047",
+"tsp051"
+],
+"general": false,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Тарасенко, Кириченко. Отдельные аспекты обеспечения личной безопасности сотрудников органов…. Научный компонент, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/otdelnye-aspekty-obespecheniya-lichnoy-bezopasnosti-sotrudnikov-organov-vnutrennih-del-pri-deystviyah-v-osobyh-usloviyah",
+"vak": false
+},
+{
+"key": "se21eb5",
+"cat": "art",
+"authors": "Тарасов",
+"title": "Действия сотрудников патрульно-постовой службы полиции на месте происшествия",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2025,
+"pages": 3,
+"size": 776519,
+"q": [
+"tsp104"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Тарасов. Действия сотрудников патрульно-постовой службы полиции на месте…. Право и государство — теория и практика, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/deystviya-sotrudnikov-patrulno-postovoy-sluzhby-politsii-na-meste-proisshestviya",
+"vak": true
+},
+{
+"key": "s0a819f",
+"cat": "art",
+"authors": "Ташева",
+"title": "Взаимодействие правоохранительных органов с населением в вопросах обеспечения общественного порядка и общественной безопасности при проведении массовых и иных публичных мероприятий",
+"kind": "статья",
+"pub": "Право и управление",
+"year": 2024,
+"pages": 3,
+"size": 135625,
+"q": [
+"tsp018",
+"tsp052",
+"tsp053",
+"tsp054",
+"tsp055",
+"tsp056"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Ташева. Взаимодействие правоохранительных органов с населением в вопросах обеспечения…. Право и управление, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/vzaimodeystvie-pravoohranitelnyh-organov-s-naseleniem-v-voprosah-obespecheniya-obschestvennogo-poryadka-i-obschestvennoy",
+"vak": true
+},
+{
+"key": "sf8d538",
+"cat": "art",
+"authors": "Ташева",
+"title": "Формирование положительного образа сотрудников подразделений, обеспечивающих охрану общественного порядка при проведении публичных и массовых мероприятий",
+"kind": "статья",
+"pub": "Журнал прикладных исследований",
+"year": 2024,
+"pages": 4,
+"size": 263885,
+"q": [
+"tsp018",
+"tsp052",
+"tsp053",
+"tsp054",
+"tsp055",
+"tsp056"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Ташева. Формирование положительного образа сотрудников подразделений…. Журнал прикладных исследований, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/formirovanie-polozhitelnogo-obraza-sotrudnikov-podrazdeleniy-obespechivayuschih-ohranu-obschestvennogo-poryadka-pri-provedenii",
+"vak": true
+},
+{
+"key": "s8623f8",
+"cat": "art",
+"authors": "Темиркаяева, Ушакина и др.",
+"title": "Правовые основы деятельности органов внутренних дел при проведении массовых мероприятий: административные меры и правоприменение",
+"kind": "статья",
+"pub": "Право и управление",
+"year": 2026,
+"pages": 6,
+"size": 365895,
+"q": [
+"tsp018",
+"tsp052",
+"tsp053",
+"tsp054",
+"tsp055",
+"tsp056"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Темиркаяева, Ушакина и др. Правовые основы деятельности органов внутренних дел при проведении…. Право и управление, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/pravovye-osnovy-deyatelnosti-organov-vnutrennih-del-pri-provedenii-massovyh-meropriyatiy-administrativnye-mery-i-pravoprimenenie",
+"vak": true
+},
+{
+"key": "sdb325b",
+"cat": "art",
+"authors": "Терентьев, Ковтун и др.",
+"title": "Инновационные технологии на занятиях по тактико-специальной подготовке в учебных учреждениях МВД России",
+"kind": "статья",
+"pub": "Проблемы современного педагогического образования",
+"year": 2026,
+"pages": 4,
+"size": 219284,
+"q": [],
+"general": true,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Терентьев, Ковтун и др. Инновационные технологии на занятиях…. Проблемы современного педагогического образования, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/innovatsionnye-tehnologii-na-zanyatiyah-po-taktiko-spetsialnoy-podgotovke-v-uchebnyh-uchrezhdeniyah-mvd-rossii",
+"vak": true
+},
+{
+"key": "sd17996",
+"cat": "art",
+"authors": "Ткаченко, Шумский и др.",
+"title": "Организация деятельности полиции при проведении публичных мероприятий",
+"kind": "статья",
+"pub": "Право и управление",
+"year": 2024,
+"pages": 6,
+"size": 279185,
+"q": [
+"tsp018",
+"tsp052",
+"tsp053",
+"tsp054",
+"tsp055",
+"tsp056"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Ткаченко, Шумский и др. Организация деятельности полиции при проведении публичных мероприятий. Право и управление, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/organizatsiya-deyatelnosti-politsii-pri-provedenii-publichnyh-meropriyatiy",
+"vak": true
+},
+{
+"key": "s48f067",
+"cat": "art",
+"authors": "Тхагалегов",
+"title": "Показатели эффективности проведения приемов задержания курсантами ведомственных вузов МВД на практических занятиях: анализ существующего положения и необходимость изменений",
+"kind": "статья",
+"pub": "Human Progress",
+"year": 2025,
+"pages": 6,
+"size": 172063,
+"q": [
+"tsp002",
+"tsp026",
+"tsp040",
+"tsp051"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Тхагалегов. Показатели эффективности проведения приемов задержания курсантами ведомственных вузов МВД…. Human Progress, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/pokazateli-effektivnosti-provedeniya-priemov-zaderzhaniya-kursantami-vedomstvennyh-vuzov-mvd-na-prakticheskih-zanyatiyah-analiz",
+"vak": false
+},
+{
+"key": "s67374e",
+"cat": "art",
+"authors": "Хажироков",
+"title": "Обучение сотрудников органов внутренних дел приемам силового задержания правонарушителя",
+"kind": "статья",
+"pub": "Журнал прикладных исследований",
+"year": 2023,
+"pages": 4,
+"size": 414996,
+"q": [
+"tsp002",
+"tsp006",
+"tsp008",
+"tsp010",
+"tsp012",
+"tsp024",
+"tsp026",
+"tsp027",
+"tsp028",
+"tsp030",
+"tsp033",
+"tsp038",
+"tsp040",
+"tsp050",
+"tsp051",
+"tsp057",
+"tsp058",
+"tsp059",
+"tsp060"
+],
+"general": false,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Хажироков. Обучение сотрудников органов внутренних дел приемам силового…. Журнал прикладных исследований, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/obuchenie-sotrudnikov-organov-vnutrennih-del-priemam-silovogo-zaderzhaniya-pravonarushitelya",
+"vak": true
+},
+{
+"key": "sd66eb6",
+"cat": "art",
+"authors": "Хажироков",
+"title": "Тактические особенности применения сотрудниками полиции силовых способов задержания правонарушителей",
+"kind": "статья",
+"pub": "Право и управление",
+"year": 2023,
+"pages": 5,
+"size": 305960,
+"q": [
+"tsp006",
+"tsp030",
+"tsp040",
+"tsp051"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Хажироков. Тактические особенности применения сотрудниками полиции силовых способов…. Право и управление, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/takticheskie-osobennosti-primeneniya-sotrudnikami-politsii-silovyh-sposobov-zaderzhaniya-pravonarushiteley",
 "vak": true
 },
 {
@@ -1065,6 +2861,83 @@
 "vak": false
 },
 {
+"key": "s8ef89b",
+"cat": "art",
+"authors": "Черепанов, Фролов",
+"title": "Правовые основания применения огнестрельного оружия лицами, участвующими в обеспечении общественного порядка при пресечении теракта и вооруженного нападения (сравнительный анализ)",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2024,
+"pages": 4,
+"size": 310068,
+"q": [
+"tsp032"
+],
+"general": false,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Черепанов, Фролов. Правовые основания применения огнестрельного оружия…. Право и государство — теория и практика, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/pravovye-osnovaniya-primeneniya-ognestrelnogo-oruzhiya-litsami-uchastvuyuschimi-v-obespechenii-obschestvennogo-poryadka-pri",
+"vak": true
+},
+{
+"key": "s04d743",
+"cat": "art",
+"authors": "Черкашин, Бузов и др.",
+"title": "Актуальные вопросы совершенствования тактико-специальной подготовки сотрудников ОВД",
+"kind": "статья",
+"pub": "Вестник науки",
+"year": 2025,
+"pages": 6,
+"size": 259028,
+"q": [],
+"general": true,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Черкашин, Бузов и др. Актуальные вопросы совершенствования тактико-специальной подготовки…. Вестник науки, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/aktualnye-voprosy-sovershenstvovaniya-taktiko-spetsialnoy-podgotovki-sotrudnikov-ovd",
+"vak": false
+},
+{
+"key": "s428fe8",
+"cat": "art",
+"authors": "Чуканова, Волошина",
+"title": "Организационно-практические аспекты поддержания общественного порядка и безопасности граждан органами внутренних дел Российской Федерации при проведении публичных мероприятий",
+"kind": "статья",
+"pub": "Право и управление",
+"year": 2026,
+"pages": 3,
+"size": 201640,
+"q": [
+"tsp018",
+"tsp052",
+"tsp053",
+"tsp054",
+"tsp055",
+"tsp056"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Чуканова, Волошина. Организационно-практические аспекты поддержания общественного порядка…. Право и управление, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/organizatsionno-prakticheskie-aspekty-podderzhaniya-obschestvennogo-poryadka-i-bezopasnosti-grazhdan-organami-vnutrennih-del",
+"vak": true
+},
+{
+"key": "sf28b4d",
+"cat": "art",
+"authors": "Шайхутдинов",
+"title": "Тактико-специальная подготовка: ключевые аспекты в обучении будущих сотрудников ОВД",
+"kind": "статья",
+"pub": "Наука-2020",
+"year": 2025,
+"pages": 5,
+"size": 187419,
+"q": [],
+"general": true,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Шайхутдинов. Тактико-специальная подготовка — ключевые аспекты в обучении будущих сотрудников ОВД. Наука-2020, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/taktiko-spetsialnaya-podgotovka-klyuchevye-aspekty-v-obuchenii-buduschih-sotrudnikov-ovd",
+"vak": false
+},
+{
 "key": "sb8084c",
 "cat": "art",
 "authors": "Шакиров",
@@ -1084,6 +2957,39 @@
 "vak": true
 },
 {
+"key": "s98ecac",
+"cat": "art",
+"authors": "Шеншин, Назарова",
+"title": "К вопросу о правовом регулировании организации и ведения гражданской обороны в войсках национальной гвардии Российской Федерации",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2023,
+"pages": 4,
+"size": 387670,
+"q": [
+"tsp079",
+"tsp080",
+"tsp081",
+"tsp082",
+"tsp083",
+"tsp084",
+"tsp085",
+"tsp086",
+"tsp087",
+"tsp088",
+"tsp089",
+"tsp090",
+"tsp091",
+"tsp092",
+"tsp093"
+],
+"general": false,
+"wide": true,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Шеншин, Назарова. К вопросу о правовом регулировании организации и ведения…. Право и государство — теория и практика, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-o-pravovom-regulirovanii-organizatsii-i-vedeniya-grazhdanskoy-oborony-v-voyskah-natsionalnoy-gvardii-rossiyskoy",
+"vak": true
+},
+{
 "key": "s493d70",
 "cat": "art",
 "authors": "Шихалкина",
@@ -1100,6 +3006,55 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Шихалкина. Языковые особенности англоязычных переговоров…. Филологические науки. Вопросы теории и практики, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/yazykovye-osobennosti-angloyazychnyh-peregovorov-v-usloviyah-zahvata-zalozhnikov-na-materiale-filma-the-negotiator-peregovorschik",
+"vak": true
+},
+{
+"key": "sd5b758",
+"cat": "art",
+"authors": "Шихалов",
+"title": "Принципы применения полицией мер административного пресечения при обеспечении безопасности граждан в период массовых беспорядков",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2025,
+"pages": 4,
+"size": 860704,
+"q": [
+"tsp004",
+"tsp014",
+"tsp016",
+"tsp017",
+"tsp021",
+"tsp022",
+"tsp041"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Шихалов. Принципы применения полицией мер административного пресечения…. Право и государство — теория и практика, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/printsipy-primeneniya-politsiey-mer-administrativnogo-presecheniya-pri-obespechenii-bezopasnosti-grazhdan-v-period-massovyh",
+"vak": true
+},
+{
+"key": "sd8fa7c",
+"cat": "art",
+"authors": "Шихалов",
+"title": "Роль мер административного пресечения, применяемых полицией, в обеспечении общественного порядка в период проведения публичных мероприятий",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2024,
+"pages": 4,
+"size": 343695,
+"q": [
+"tsp018",
+"tsp052",
+"tsp053",
+"tsp054",
+"tsp055",
+"tsp056"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Шихалов. Роль мер административного пресечения, применяемых полицией…. Право и государство — теория и практика, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/rol-mer-administrativnogo-presecheniya-primenyaemyh-politsiey-v-obespechenii-obschestvennogo-poryadka-v-period-provedeniya",
 "vak": true
 },
 {
@@ -1123,6 +3078,75 @@
 "vak": true
 },
 {
+"key": "sb98c7b",
+"cat": "art",
+"authors": "Шмигирилова, Комнатная",
+"title": "Понятие, особенности и роль военной топографии в ходе выполнения сотрудниками органов внутренних дел России служебных, боевых и оперативных задач",
+"kind": "статья",
+"pub": "Вестник науки",
+"year": 2025,
+"pages": 9,
+"size": 276286,
+"q": [
+"tsp061",
+"tsp068"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Шмигирилова, Комнатная. Понятие, особенности и роль военной топографии в ходе выполнения…. Вестник науки, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/ponyatie-osobennosti-i-rol-voennoy-topografii-v-hode-vypolneniya-sotrudnikami-organov-vnutrennih-del-rossii-sluzhebnyh-boevyh-i",
+"vak": false
+},
+{
+"key": "s178132",
+"cat": "art",
+"authors": "Шхагапсоев",
+"title": "О некоторых особенностях преподавания дисциплины «Военная топография» слушателям, обучающимся по основной программе профессионального обучения (профессиональной подготовки) сотрудников подразделений специального назначения территориальных органов Росгвардии по должности служащего «Полицейский»",
+"kind": "статья",
+"pub": "Пробелы в российском законодательстве. Юридический журнал",
+"year": 2023,
+"pages": 5,
+"size": 231752,
+"q": [
+"tsp061"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Шхагапсоев. О некоторых особенностях преподавания…. Пробелы в российском законодательстве. Юридический журнал, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/o-nekotoryh-osobennostyah-prepodavaniya-distsipliny-voennaya-topografiya-slushatelyam-obuchayuschimsya-po-osnovnoy-programme",
+"vak": true
+},
+{
+"key": "s5756b9",
+"cat": "art",
+"authors": "Юсифов, Цонева и др.",
+"title": "Тактика деятельности органов внутренних дел по задержанию вооруженных преступников",
+"kind": "статья",
+"pub": "Вестник науки",
+"year": 2025,
+"pages": 6,
+"size": 258422,
+"q": [
+"tsp002",
+"tsp006",
+"tsp008",
+"tsp010",
+"tsp026",
+"tsp030",
+"tsp038",
+"tsp040",
+"tsp051",
+"tsp057",
+"tsp058",
+"tsp059"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Юсифов, Цонева и др. Тактика деятельности органов внутренних дел по задержанию вооруженных…. Вестник науки, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/taktika-deyatelnosti-organov-vnutrennih-del-po-zaderzhaniyu-vooruzhennyh-prestupnikov",
+"vak": false
+},
+{
 "key": "sb159c4a",
 "cat": "book",
 "authors": "",
@@ -1132,14 +3156,87 @@
 "year": 2023,
 "pages": 377,
 "size": 5279205,
-"q": [],
+"q": [
+"tsp001",
+"tsp004",
+"tsp018",
+"tsp041",
+"tsp043",
+"tsp079"
+],
 "general": false,
 "dst": "3. Учебная литература/Акт.вопр ТСП. 2023.pdf",
 "url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Акт.вопр ТСП/117.pdf",
 "how": "каталог",
 "old": false,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Акт.вопр ТСП/117.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Акт.вопр ТСП/117.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sb0a3338",
+"cat": "book",
+"authors": "Алексеев и др",
+"title": "Технико-тактическая подготовка нарядов сопровождения по применению физической силы и специальных средств",
+"kind": "учебно-методическое пособие",
+"pub": "БелЮИ МВД",
+"year": 2019,
+"pages": 64,
+"size": 2132669,
+"q": [
+"tsp054",
+"tsp056"
+],
+"general": false,
+"dst": "3. Учебная литература/Алексеев и др. Технико-тактическая подготовка нарядов сопровождения…. Учебно-методическое пособие. БелЮИ МВД, 2019.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2019 Технико-тактическая подготовка/2019 Технико-тактическая подготовка.pdf",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2019 Технико-тактическая подготовка/2019 Технико-тактическая подготовка.pdf",
+"tocdone": true,
+"q0": [
+"tsp054",
+"tsp056"
+],
+"toc": true
+},
+{
+"key": "sb8e0579",
+"cat": "book",
+"authors": "Башмаков и др",
+"title": "Способы и средства защиты сотрудников органов внутренних дел от поражающих факторов радиационного, химического и биологического заражения в мирное и военное время. [Текст]",
+"kind": "методические рекомендации",
+"pub": "УЮИ МВД",
+"year": 2018,
+"pages": 47,
+"size": 1079193,
+"q": [
+"tsp082",
+"tsp083",
+"tsp084",
+"tsp085",
+"tsp087",
+"tsp081"
+],
+"general": false,
+"dst": "3. Учебная литература/Башмаков и др. Способы и средства защиты сотрудников органов внутренних дел…. Методические рекомендации. УЮИ МВД, 2018.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2018 Способы и средства защиты сотрудников ОВД при ЧС/2018 Способы и средства защиты сотрудников ОВД при ЧС.PDF",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2018 Способы и средства защиты сотрудников ОВД при ЧС/2018 Способы и средства защиты сотрудников ОВД при ЧС.PDF",
+"tocdone": true,
+"q0": [
+"tsp082",
+"tsp083",
+"tsp084",
+"tsp085",
+"tsp087"
+],
+"toc": true
 },
 {
 "key": "sbeb6a28",
@@ -1158,7 +3255,10 @@
 "tsp048",
 "tsp049",
 "tsp061",
-"tsp078"
+"tsp078",
+"tsp044",
+"tsp073",
+"tsp077"
 ],
 "general": false,
 "dst": "3. Учебная литература/Бордачев и др. Топографическая подготовка сотрудников органов внутренних дел. Учебное пособие. СибЮИ МВД, 2021.pdf",
@@ -1166,7 +3266,38 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/17. Тактико-специальная подготовка/Учебное пособие_Топографическая подготовка.pdf"
+"lib": "БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/17. Тактико-специальная подготовка/Учебное пособие_Топографическая подготовка.pdf",
+"tocdone": true,
+"q0": [
+"tsp007",
+"tsp009",
+"tsp036",
+"tsp048",
+"tsp049",
+"tsp061",
+"tsp078"
+],
+"toc": true
+},
+{
+"key": "sb1b2613",
+"cat": "book",
+"authors": "",
+"title": "Буклет учения 2026",
+"kind": "",
+"pub": "",
+"year": 2026,
+"pages": 18,
+"size": 40799105,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Буклет учения 2026. 2026.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2026 ТСП/Буклет_учения_2026.pdf",
+"how": "каталог",
+"old": false,
+"garbled": true,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2026 ТСП/Буклет_учения_2026.pdf",
+"tocdone": true
 },
 {
 "key": "sb402015",
@@ -1185,7 +3316,97 @@
 "how": "запись",
 "old": false,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2024 Адм-прав обесп/Адм-прав обеспеч.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2024 Адм-прав обесп/Адм-прав обеспеч.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sb42bb11",
+"cat": "book",
+"authors": "",
+"title": "Вопросы совершенствования тактико-специальной подготовки сотрудников правоохранительных органов",
+"kind": "",
+"pub": "БелЮИ МВД",
+"year": 2022,
+"pages": 186,
+"size": 1321466,
+"q": [
+"tsp052",
+"tsp054",
+"tsp055",
+"tsp056",
+"tsp048",
+"tsp061",
+"tsp079"
+],
+"general": false,
+"dst": "3. Учебная литература/Вопросы совершенствования тактико-специальной подготовки сотрудников правоохранительных органов. БелЮИ МВД, 2022.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Вопр.соверш тпг/Вопросы совершенствования тпг.pdf",
+"how": "титульный лист",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Вопр.соверш тпг/Вопросы совершенствования тпг.pdf",
+"tocdone": true,
+"q0": [
+"tsp052",
+"tsp054",
+"tsp055",
+"tsp056"
+],
+"toc": true
+},
+{
+"key": "sb516131",
+"cat": "book",
+"authors": "Воронков и др",
+"title": "Тактико-специальная подготовка",
+"kind": "учебное пособие",
+"pub": "МосУ МВД",
+"year": 2021,
+"pages": 255,
+"size": 9626558,
+"q": [
+"tsp052",
+"tsp054",
+"tsp078",
+"tsp004",
+"tsp008",
+"tsp010",
+"tsp011",
+"tsp018",
+"tsp030",
+"tsp033",
+"tsp035",
+"tsp043",
+"tsp044",
+"tsp048",
+"tsp049",
+"tsp051",
+"tsp053",
+"tsp055",
+"tsp056",
+"tsp061",
+"tsp070",
+"tsp079",
+"tsp080",
+"tsp098",
+"tsp103"
+],
+"general": true,
+"dst": "3. Учебная литература/Воронков и др. Тактико-специальная подготовка. Учебное пособие. МосУ МВД, 2021.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 Основы тактико-специальной подготовки/ТСП учебник Воронков 2021.pdf",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 Основы тактико-специальной подготовки/ТСП учебник Воронков 2021.pdf",
+"tocdone": true,
+"q0": [
+"tsp052",
+"tsp054",
+"tsp078"
+],
+"toc": true
 },
 {
 "key": "sb209d94",
@@ -1198,7 +3419,8 @@
 "pages": 60,
 "size": 973684,
 "q": [
-"tsp104"
+"tsp104",
+"tsp079"
 ],
 "general": false,
 "dst": "3. Учебная литература/Воскобоев и др. Особенности тактики действий сотрудников полиции при несении…. Методические рекомендации. РЮИ МВД, 2025.pdf",
@@ -1206,7 +3428,34 @@
 "how": "запись",
 "old": false,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025 Особ.тактики/ТСП.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025 Особ.тактики/ТСП.pdf",
+"tocdone": true,
+"q0": [
+"tsp104"
+],
+"toc": true
+},
+{
+"key": "sb32aa95",
+"cat": "book",
+"authors": "",
+"title": "Гаврилов Шварц Задержание",
+"kind": "",
+"pub": "",
+"year": 2015,
+"pages": 4,
+"size": 198933,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Гаврилов Шварц Задержание. 2015 (2).pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронная библиотека КЮИ/Тактико-специальная подготовка/2015 Гаврилов Шварц Задержание/обл..pdf",
+"how": "каталог",
+"old": true,
+"garbled": false,
+"lib": "Электронная библиотека КЮИ/Тактико-специальная подготовка/2015 Гаврилов Шварц Задержание/обл..pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
 },
 {
 "key": "sbc8c53f",
@@ -1231,7 +3480,8 @@
 "how": "каталог",
 "old": true,
 "garbled": false,
-"lib": "Электронная библиотека КЮИ/Тактико-специальная подготовка/2015 Гаврилов Шварц Задержание/Л_м6.2.2.pdf"
+"lib": "Электронная библиотека КЮИ/Тактико-специальная подготовка/2015 Гаврилов Шварц Задержание/Л_м6.2.2.pdf",
+"tocdone": true
 },
 {
 "key": "sbaef82e",
@@ -1250,7 +3500,10 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронная библиотека КЮИ/Личная безопасность/2017 Гаврилов Безопасное поведение/2017 Гаврилов Безопасное поведение.pdf"
+"lib": "Электронная библиотека КЮИ/Личная безопасность/2017 Гаврилов Безопасное поведение/2017 Гаврилов Безопасное поведение.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
 },
 {
 "key": "sb2f3341",
@@ -1269,7 +3522,19 @@
 "tsp036",
 "tsp051",
 "tsp054",
-"tsp098"
+"tsp098",
+"tsp003",
+"tsp005",
+"tsp018",
+"tsp022",
+"tsp035",
+"tsp043",
+"tsp053",
+"tsp055",
+"tsp056",
+"tsp079",
+"tsp080",
+"tsp085"
 ],
 "general": false,
 "dst": "3. Учебная литература/Гаврилов. Личная безопасность сотрудников органов внутренних дел в различных…. Учебно-практическое пособие. УЮИ МВД, 2018.pdf",
@@ -1277,7 +3542,18 @@
 "how": "титульный лист",
 "old": true,
 "garbled": false,
-"lib": "Электронная библиотека КЮИ/Личная безопасность/2018 Личная безопасность/2018 Личная безопасность.pdf"
+"lib": "Электронная библиотека КЮИ/Личная безопасность/2018 Личная безопасность/2018 Личная безопасность.pdf",
+"tocdone": true,
+"q0": [
+"tsp007",
+"tsp021",
+"tsp034",
+"tsp036",
+"tsp051",
+"tsp054",
+"tsp098"
+],
+"toc": true
 },
 {
 "key": "sbeb7c10",
@@ -1305,7 +3581,8 @@
 "tsp051",
 "tsp054",
 "tsp055",
-"tsp056"
+"tsp056",
+"tsp011"
 ],
 "general": true,
 "dst": "3. Учебная литература/Головинский. Тактико-специальная подготовка для сотрудников органов…. Курс лекций. Ставропольский филиал КрУ МВД, 2021.pdf",
@@ -1313,7 +3590,73 @@
 "how": "титульный лист",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 ТСП для сотрудников/2021_431.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 ТСП для сотрудников/2021_431.pdf",
+"tocdone": true,
+"q0": [
+"tsp002",
+"tsp003",
+"tsp007",
+"tsp019",
+"tsp024",
+"tsp029",
+"tsp031",
+"tsp034",
+"tsp036",
+"tsp040",
+"tsp043",
+"tsp047",
+"tsp051",
+"tsp054",
+"tsp055",
+"tsp056"
+],
+"toc": true
+},
+{
+"key": "sbfc853f",
+"cat": "book",
+"authors": "Гонтарь и др",
+"title": "Методика топографической подготовки сотрудников территориальных органов МВД России",
+"kind": "учебное пособие",
+"pub": "КрУ МВД",
+"year": 2018,
+"pages": 208,
+"size": 12697780,
+"q": [
+"tsp048",
+"tsp049",
+"tsp061",
+"tsp069",
+"tsp078",
+"tsp020",
+"tsp023",
+"tsp025",
+"tsp042",
+"tsp044",
+"tsp068",
+"tsp070",
+"tsp071",
+"tsp073",
+"tsp074",
+"tsp075",
+"tsp077"
+],
+"general": false,
+"dst": "3. Учебная литература/Гонтарь и др. Методика топографической подготовки сотрудников территориальных органов…. Учебное пособие. КрУ МВД, 2018.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2018 Топография/2018 Топография.pdf",
+"how": "титульный лист",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2018 Топография/2018 Топография.pdf",
+"tocdone": true,
+"q0": [
+"tsp048",
+"tsp049",
+"tsp061",
+"tsp069",
+"tsp078"
+],
+"toc": true
 },
 {
 "key": "sb9e0363",
@@ -1332,7 +3675,34 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2023 Личн.безоп/Личн.безоп.сотр.полиции.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2023 Личн.безоп/Личн.безоп.сотр.полиции.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sbc018dc",
+"cat": "book",
+"authors": "Гросс и др",
+"title": "Специальная тактика полиции",
+"kind": "учебник",
+"pub": "МосУ МВД",
+"year": 2020,
+"pages": 602,
+"size": 12178130,
+"q": [
+"tsp033"
+],
+"general": false,
+"dst": "3. Учебная литература/Гросс и др. Специальная тактика полиции. Учебник. МосУ МВД, 2020 (2).pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2020 Специальная тактика/Специальная тактика полиции. Учебник.pdf",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2020 Специальная тактика/Специальная тактика полиции. Учебник.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
 },
 {
 "key": "sb2dee4f",
@@ -1344,14 +3714,44 @@
 "year": 2020,
 "pages": 602,
 "size": 17905074,
-"q": [],
+"q": [
+"tsp033"
+],
 "general": false,
 "dst": "3. Учебная литература/Гросс и др. Специальная тактика полиции. Учебник. МосУ МВД, 2020.pdf",
 "url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/17. Тактико-специальная подготовка/Учебник_Специальная тактика.pdf",
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/17. Тактико-специальная подготовка/Учебник_Специальная тактика.pdf"
+"lib": "БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/17. Тактико-специальная подготовка/Учебник_Специальная тактика.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sb93e863",
+"cat": "book",
+"authors": "Губенков и др",
+"title": "Личная безопасность сотрудников органов внутренних дел",
+"kind": "учебно-практическое пособие",
+"pub": "ОрЮИ МВД",
+"year": 2022,
+"pages": 115,
+"size": 5589951,
+"q": [
+"tsp079",
+"tsp080"
+],
+"general": false,
+"dst": "3. Учебная литература/Губенков и др. Личная безопасность сотрудников органов внутренних дел. Учебно-практическое пособие. ОрЮИ МВД, 2022.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Личная безопасность/2022 Лич.безопасн.сотрудников ОВД/УПП_Личная безопасность сотрудников ОВД.pdf",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2022 Лич.безопасн.сотрудников ОВД/УПП_Личная безопасность сотрудников ОВД.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
 },
 {
 "key": "sbcce7d7",
@@ -1373,7 +3773,43 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 Проблемные вопросы оценки практических навыков/МР_Проблемные вопросы оценки практических навыков.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 Проблемные вопросы оценки практических навыков/МР_Проблемные вопросы оценки практических навыков.pdf",
+"tocdone": true,
+"q0": [
+"tsp037",
+"tsp052"
+],
+"toc": true
+},
+{
+"key": "sbc6b52d",
+"cat": "book",
+"authors": "Гусейнов, Зайцев",
+"title": "Разработка маршрутов передвижения защищаемого лица при реализации меры безопасности «личная охрана",
+"kind": "учебно-практическое пособие",
+"pub": "УЮИ МВД",
+"year": 2020,
+"pages": 32,
+"size": 416707,
+"q": [
+"tsp078",
+"tsp090",
+"tsp091"
+],
+"general": false,
+"dst": "3. Учебная литература/Гусейнов, Зайцев. Разработка маршрутов передвижения защищаемого лица…. Учебно-практическое пособие. УЮИ МВД, 2020.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Личная безопасность/2020 Личная охрана/Разработка маршрутов передвижения защищаемого лица.pdf",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2020 Личная охрана/Разработка маршрутов передвижения защищаемого лица.pdf",
+"tocdone": true,
+"q0": [
+"tsp078",
+"tsp090",
+"tsp091"
+],
+"toc": true
 },
 {
 "key": "sb0d5955",
@@ -1388,7 +3824,10 @@
 "q": [
 "tsp054",
 "tsp055",
-"tsp056"
+"tsp056",
+"tsp018",
+"tsp053",
+"tsp057"
 ],
 "general": false,
 "dst": "3. Учебная литература/Давыдов. Особенности обеспечения личной безопасности сотрудников полиции при несении…. Учебное пособие. ОрЮИ МВД, 2018.pdf",
@@ -1396,7 +3835,14 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2018 Личная безопасность при ООП/2018 Личная безопасность при ООП.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2018 Личная безопасность при ООП/2018 Личная безопасность при ООП.pdf",
+"tocdone": true,
+"q0": [
+"tsp054",
+"tsp055",
+"tsp056"
+],
+"toc": true
 },
 {
 "key": "sb43f3d3",
@@ -1408,14 +3854,48 @@
 "year": 2025,
 "pages": 48,
 "size": 27604720,
-"q": [],
+"q": [
+"tsp085",
+"tsp086"
+],
 "general": false,
 "dst": "3. Учебная литература/Деят.ОВД в усл. 2025.pdf",
 "url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025  Деят.ОВД в усл/Деят.ОВД в услов.pdf",
 "how": "каталог",
 "old": false,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025  Деят.ОВД в усл/Деят.ОВД в услов.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025  Деят.ОВД в усл/Деят.ОВД в услов.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sb06635c",
+"cat": "book",
+"authors": "",
+"title": "Деятельность органов внутренних дел в чрезвычайных ситуациях мирного и военного времени",
+"kind": "учебное пособие",
+"pub": "ОмА МВД",
+"year": 2022,
+"pages": 88,
+"size": 1811757,
+"q": [
+"tsp079",
+"tsp080"
+],
+"general": false,
+"dst": "3. Учебная литература/Деятельность органов внутренних дел в чрезвычайных ситуациях мирного и военного времени. Учебное пособие. ОмА МВД, 2022.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Деят.ОВД в ЧС/359.pdf",
+"how": "титульный лист",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Деят.ОВД в ЧС/359.pdf",
+"tocdone": true,
+"q0": [
+"tsp079",
+"tsp080"
+],
+"toc": true
 },
 {
 "key": "sb88d8eb",
@@ -1431,7 +3911,10 @@
 "tsp048",
 "tsp049",
 "tsp061",
-"tsp078"
+"tsp078",
+"tsp020",
+"tsp042",
+"tsp075"
 ],
 "general": false,
 "dst": "3. Учебная литература/Дидоренко. Топографическая подготовка. Задачник. УрЮИ МВД, 2020.pdf",
@@ -1439,7 +3922,15 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/17. Тактико-специальная подготовка/Топографическая подготовка.pdf"
+"lib": "БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/17. Тактико-специальная подготовка/Топографическая подготовка.pdf",
+"tocdone": true,
+"q0": [
+"tsp048",
+"tsp049",
+"tsp061",
+"tsp078"
+],
+"toc": true
 },
 {
 "key": "sbfd94e8",
@@ -1460,7 +3951,12 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2023 Личн безопасн/Личн.безоп.сотруд.ГИБДД.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2023 Личн безопасн/Личн.безоп.сотруд.ГИБДД.pdf",
+"tocdone": true,
+"q0": [
+"tsp057"
+],
+"toc": true
 },
 {
 "key": "sb914f37",
@@ -1479,7 +3975,42 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2018 Тактика задержания правонарушителей/2018 Тактика задержания правонарушителей.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2018 Тактика задержания правонарушителей/2018 Тактика задержания правонарушителей.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sb4f4540",
+"cat": "book",
+"authors": "Еськов",
+"title": "Методы обнаружения предметов и людей при осуществлении антитеррористических операций",
+"kind": "учебное пособие",
+"pub": "КрУ МВД",
+"year": 2018,
+"pages": 50,
+"size": 1019465,
+"q": [
+"tsp019",
+"tsp029",
+"tsp031",
+"tsp043"
+],
+"general": false,
+"dst": "3. Учебная литература/Еськов. Методы обнаружения предметов и людей при осуществлении антитеррористических…. Учебное пособие. КрУ МВД, 2018.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2018 Обнаруж. людей при антитер. операции/2018 Обнаруж. людей при антитер. операции.pdf",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2018 Обнаруж. людей при антитер. операции/2018 Обнаруж. людей при антитер. операции.pdf",
+"tocdone": true,
+"q0": [
+"tsp019",
+"tsp029",
+"tsp031",
+"tsp043"
+],
+"toc": true
 },
 {
 "key": "sb229ddb",
@@ -1502,7 +4033,36 @@
 "how": "запись",
 "old": false,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2024 Личн.безопасн/Личн.безоп.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2024 Личн.безопасн/Личн.безоп.pdf",
+"tocdone": true,
+"q0": [
+"tsp007",
+"tsp056",
+"tsp104"
+],
+"toc": true
+},
+{
+"key": "sbd995f4",
+"cat": "book",
+"authors": "",
+"title": "Зарубежный опыт по противодействию терроризму",
+"kind": "",
+"pub": "",
+"year": 2020,
+"pages": 21,
+"size": 498525,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Зарубежный опыт по противодействию терроризму. 2020.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронная библиотека КЮИ/Тактико-специальная подготовка/2020 ЗАРУБЕЖНЫЙ ОПЫТ ПО ПРОТИВОДЕЙСТВИЮ ТЕРРОРИЗМУ/НИР Тагиров 2020 (1).pdf",
+"how": "каталог",
+"old": true,
+"garbled": false,
+"lib": "Электронная библиотека КЮИ/Тактико-специальная подготовка/2020 ЗАРУБЕЖНЫЙ ОПЫТ ПО ПРОТИВОДЕЙСТВИЮ ТЕРРОРИЗМУ/НИР Тагиров 2020 (1).pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
 },
 {
 "key": "sb712358",
@@ -1518,7 +4078,8 @@
 "tsp009",
 "tsp052",
 "tsp054",
-"tsp078"
+"tsp078",
+"tsp004"
 ],
 "general": true,
 "dst": "3. Учебная литература/Зиннурова. Тактико-специальная подготовка. Курс лекций. КЮИ МВД, 2020.pdf",
@@ -1526,7 +4087,47 @@
 "how": "титульный лист",
 "old": true,
 "garbled": false,
-"lib": "БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/17. Тактико-специальная подготовка/Курс лекций_Тактико-специальная подготовка.pdf"
+"lib": "БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/17. Тактико-специальная подготовка/Курс лекций_Тактико-специальная подготовка.pdf",
+"tocdone": true,
+"q0": [
+"tsp009",
+"tsp052",
+"tsp054",
+"tsp078"
+],
+"toc": true
+},
+{
+"key": "sb0875f4",
+"cat": "book",
+"authors": "Кириченко и др",
+"title": "Личная безопасность сотрудников полиции при решении задач по обеспечению правопорядка на объектах транспорта",
+"kind": "учебное пособие",
+"pub": "Изд-во ЗАО «Университетская книга»",
+"year": 2023,
+"pages": 78,
+"size": 7167462,
+"q": [
+"tsp003",
+"tsp051",
+"tsp056",
+"tsp068"
+],
+"general": false,
+"dst": "3. Учебная литература/Кириченко и др. Личная безопасность сотрудников полиции…. Учебное пособие. Изд-во ЗАО «Университетская книга», 2023.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Личная безопасность/2023 Личн.безопасность/2023 ЛБ ОВД на транспорте.pdf",
+"how": "запись",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2023 Личн.безопасность/2023 ЛБ ОВД на транспорте.pdf",
+"tocdone": true,
+"q0": [
+"tsp003",
+"tsp051",
+"tsp056",
+"tsp068"
+],
+"toc": true
 },
 {
 "key": "sb1d44fe",
@@ -1541,7 +4142,10 @@
 "q": [
 "tsp003",
 "tsp052",
-"tsp083"
+"tsp083",
+"tsp005",
+"tsp035",
+"tsp043"
 ],
 "general": false,
 "dst": "3. Учебная литература/Кириченко, Тарасенко. Тактические действия сотрудников органов внутренних дел…. Учебное пособие. БелЮИ МВД, 2021.pdf",
@@ -1549,7 +4153,40 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Тактические действия/Такт. действия сотрудников овд.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Тактические действия/Такт. действия сотрудников овд.pdf",
+"tocdone": true,
+"q0": [
+"tsp003",
+"tsp052",
+"tsp083"
+],
+"toc": true
+},
+{
+"key": "sbe94b16",
+"cat": "book",
+"authors": "Коник и др",
+"title": "Особенности тактической подготовки сотрудников, входящих в состав сводных отрядов полиции",
+"kind": "методические рекомендации",
+"pub": "БелЮИ МВД",
+"year": 2025,
+"pages": 55,
+"size": 3330873,
+"q": [
+"tsp052"
+],
+"general": false,
+"dst": "3. Учебная литература/Коник и др. Особенности тактической подготовки сотрудников, входящих…. Методические рекомендации. БелЮИ МВД, 2025.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025 Особ.такт.подготовки/Особ.такт.подг.сотрудников.pdf",
+"how": "запись",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025 Особ.такт.подготовки/Особ.такт.подг.сотрудников.pdf",
+"tocdone": true,
+"q0": [
+"tsp052"
+],
+"toc": true
 },
 {
 "key": "sb5da818",
@@ -1573,7 +4210,15 @@
 "how": "запись",
 "old": false,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Правила оказ.перв.помощи/Прав.оказ.перв.помощи.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Правила оказ.перв.помощи/Прав.оказ.перв.помощи.pdf",
+"tocdone": true,
+"q0": [
+"tsp003",
+"tsp011",
+"tsp029",
+"tsp036"
+],
+"toc": true
 },
 {
 "key": "sb00688c",
@@ -1594,7 +4239,34 @@
 "how": "титульный лист",
 "old": true,
 "garbled": false,
-"lib": "БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/17. Тактико-специальная подготовка/Учебное пособие_ЛИЧНАЯ БЕЗОПАСНОСТЬ СОТРУДНИКОВ.pdf"
+"lib": "БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/17. Тактико-специальная подготовка/Учебное пособие_ЛИЧНАЯ БЕЗОПАСНОСТЬ СОТРУДНИКОВ.pdf",
+"tocdone": true,
+"q0": [
+"tsp054"
+],
+"toc": true
+},
+{
+"key": "sb444d0b",
+"cat": "book",
+"authors": "",
+"title": "Дейст.сотруд. 2023",
+"kind": "учебно-методическое пособие",
+"pub": "КЮИ МВД",
+"year": 2023,
+"pages": 67,
+"size": 5567152,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Дейст.сотруд. 2023.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2024 Дейст.сотруд/Действ.сотруд.pdf",
+"how": "каталог",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2024 Дейст.сотруд/Действ.сотруд.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
 },
 {
 "key": "sb1ba237",
@@ -1606,14 +4278,200 @@
 "year": 2018,
 "pages": 248,
 "size": 36448727,
-"q": [],
+"q": [
+"tsp063"
+],
 "general": false,
 "dst": "3. Учебная литература/Кубышко. Профессиональная подготовка полицейских. Учебник. ДГСК МВД, 2018.pdf",
 "url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Проф. подготовка полицейских/2018 Проф. подготовка полицейских. Ч.3/2018 Проф. подготовка полицейских. Ч.3.pdf",
 "how": "титульный лист",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Проф. подготовка полицейских/2018 Проф. подготовка полицейских. Ч.3/2018 Проф. подготовка полицейских. Ч.3.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Проф. подготовка полицейских/2018 Проф. подготовка полицейских. Ч.3/2018 Проф. подготовка полицейских. Ч.3.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sb10d46d",
+"cat": "book",
+"authors": "",
+"title": "Курс лекций ТСП 1.11.2016-1",
+"kind": "",
+"pub": "",
+"year": 2016,
+"pages": 292,
+"size": 7631321,
+"q": [
+"tsp020",
+"tsp037",
+"tsp042",
+"tsp044",
+"tsp045",
+"tsp048",
+"tsp049",
+"tsp061",
+"tsp065",
+"tsp068",
+"tsp069",
+"tsp070",
+"tsp071",
+"tsp074",
+"tsp075",
+"tsp076",
+"tsp077",
+"tsp079",
+"tsp080",
+"tsp081",
+"tsp082",
+"tsp084",
+"tsp085",
+"tsp086",
+"tsp092"
+],
+"general": false,
+"dst": "3. Учебная литература/Курс лекций ТСП 1.11.2016-1. 2016.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронная библиотека КЮИ/Тактико-специальная подготовка/2016 ТСП/Курс лекций ТСП 1.11.2016-1.pdf",
+"how": "каталог",
+"old": true,
+"garbled": false,
+"lib": "Электронная библиотека КЮИ/Тактико-специальная подготовка/2016 ТСП/Курс лекций ТСП 1.11.2016-1.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sb765551",
+"cat": "book",
+"authors": "Кущёв",
+"title": "Тактико-специальная подготовка(альбом схем)",
+"kind": "учебное пособие",
+"pub": "Ставропольский филиал КрУ МВД",
+"year": 2023,
+"pages": 26,
+"size": 919643,
+"q": [
+"tsp009"
+],
+"general": true,
+"dst": "3. Учебная литература/Кущёв. Тактико-специальная подготовка(альбом схем). Учебное пособие. Ставропольский филиал КрУ МВД, 2023.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2024 Такт-спец.подгот/Кущёв.pdf",
+"how": "запись",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2024 Такт-спец.подгот/Кущёв.pdf",
+"tocdone": true
+},
+{
+"key": "sb253b4f",
+"cat": "book",
+"authors": "",
+"title": "Личная безопасность",
+"kind": "",
+"pub": "",
+"year": 2017,
+"pages": 83,
+"size": 3407206,
+"q": [
+"tsp051",
+"tsp054",
+"tsp003",
+"tsp005",
+"tsp018",
+"tsp022",
+"tsp033",
+"tsp035",
+"tsp043",
+"tsp053",
+"tsp055",
+"tsp056",
+"tsp079",
+"tsp080",
+"tsp085"
+],
+"general": false,
+"dst": "3. Учебная литература/Личная безопасность. 2017.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронная библиотека КЮИ/Личная безопасность/2017 Личная безопасность/2017 Личная безопасность.pdf",
+"how": "каталог",
+"old": true,
+"garbled": false,
+"lib": "Электронная библиотека КЮИ/Личная безопасность/2017 Личная безопасность/2017 Личная безопасность.pdf",
+"tocdone": true,
+"q0": [
+"tsp051",
+"tsp054"
+],
+"toc": true
+},
+{
+"key": "sbc28f5e",
+"cat": "book",
+"authors": "",
+"title": "Личной безопасность сотрудников ОВД",
+"kind": "",
+"pub": "",
+"year": 2018,
+"pages": 24,
+"size": 931705,
+"q": [
+"tsp054"
+],
+"general": false,
+"dst": "3. Учебная литература/Личной безопасность сотрудников ОВД. 2018.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Личная безопасность/2018 Личной безопасность сотрудников ОВД/2018 Личной безопасностЬ сотрудников ОВД.pdf",
+"how": "каталог",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2018 Личной безопасность сотрудников ОВД/2018 Личной безопасностЬ сотрудников ОВД.pdf",
+"tocdone": true,
+"q0": [
+"tsp054"
+],
+"toc": true
+},
+{
+"key": "sb2d5da0",
+"cat": "book",
+"authors": "Лупырь, Осипов",
+"title": "Тактико-техническая подготовка курсантов вузов МВД России к применению табельного оружия с использованием технического и имитационного оборудования",
+"kind": "учебно-методическое пособие",
+"pub": "ОмА МВД",
+"year": 2017,
+"pages": 133,
+"size": 3744480,
+"q": [
+"tsp050"
+],
+"general": false,
+"dst": "3. Учебная литература/Лупырь, Осипов. Тактико-техническая подготовка курсантов вузов МВД России…. Учебно-методическое пособие. ОмА МВД, 2017.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2018 Тактико-техническая подготовка/2018 Тактико-техническая подготовка.pdf",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2018 Тактико-техническая подготовка/2018 Тактико-техническая подготовка.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sb984188",
+"cat": "book",
+"authors": "",
+"title": "Министерство внутренних дел Российской Федерации",
+"kind": "",
+"pub": "",
+"year": 2013,
+"pages": 2,
+"size": 171264,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Министерство внутренних дел Российской Федерации. 2013.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронная библиотека КЮИ/Тактико-специальная подготовка/2013 Панасик Защита при авариях на ХОО/МИНИСТЕРСТВО ВНУТРЕННИХ ДЕЛ РОССИЙСКОЙ ФЕДЕРАЦИИ.pdf",
+"how": "каталог",
+"old": true,
+"garbled": false,
+"lib": "Электронная библиотека КЮИ/Тактико-специальная подготовка/2013 Панасик Защита при авариях на ХОО/МИНИСТЕРСТВО ВНУТРЕННИХ ДЕЛ РОССИЙСКОЙ ФЕДЕРАЦИИ.pdf",
+"tocdone": true
 },
 {
 "key": "sbce031f",
@@ -1632,7 +4490,87 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2018 Обеспечение безопасности сотрудников/2018 Обеспечение безопасности сотрудников.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2018 Обеспечение безопасности сотрудников/2018 Обеспечение безопасности сотрудников.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sb7f40cf",
+"cat": "book",
+"authors": "Моисеенко и др",
+"title": "Организация и проведение соревнований по стрельбе из боевого ручного стрелкового оружия в подразделениях МВД России",
+"kind": "учебно-методическое пособие",
+"pub": "БЮИ МВД",
+"year": 2021,
+"pages": 72,
+"size": 1433198,
+"q": [
+"tsp007",
+"tsp019",
+"tsp034",
+"tsp052",
+"tsp053",
+"tsp054",
+"tsp056"
+],
+"general": false,
+"dst": "3. Учебная литература/Моисеенко и др. Организация и проведение соревнований по стрельбе…. Учебно-методическое пособие. БЮИ МВД, 2021.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 соревнований по стрельбе из боевого ручного стрелкового оружия/Организация и проведение БСО.pdf",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 соревнований по стрельбе из боевого ручного стрелкового оружия/Организация и проведение БСО.pdf",
+"tocdone": true,
+"q0": [
+"tsp007",
+"tsp019",
+"tsp034",
+"tsp052",
+"tsp053",
+"tsp054",
+"tsp056"
+],
+"toc": true
+},
+{
+"key": "sb9deae4",
+"cat": "book",
+"authors": "Несмелов и др",
+"title": "Методика применения индивидуальных средств защиты органов дыхания и кожи сотрудниками правоохранительных органов в различных условиях",
+"kind": "учебное пособие",
+"pub": "МосУ МВД",
+"year": 2021,
+"pages": 108,
+"size": 1428100,
+"q": [
+"tsp036",
+"tsp054",
+"tsp056",
+"tsp084",
+"tsp085",
+"tsp087",
+"tsp098",
+"tsp086"
+],
+"general": false,
+"dst": "3. Учебная литература/Несмелов и др. Методика применения индивидуальных средств защиты органов дыхания и кожи…. Учебное пособие. МосУ МВД, 2021 (2).pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 Метод. прим.инд. ср-в защиты/Несмелов П.В. Методика применения индивидуальных средств.pdf",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 Метод. прим.инд. ср-в защиты/Несмелов П.В. Методика применения индивидуальных средств.pdf",
+"tocdone": true,
+"q0": [
+"tsp036",
+"tsp054",
+"tsp056",
+"tsp084",
+"tsp085",
+"tsp087",
+"tsp098"
+],
+"toc": true
 },
 {
 "key": "sb3c5142",
@@ -1651,7 +4589,8 @@
 "tsp084",
 "tsp085",
 "tsp087",
-"tsp098"
+"tsp098",
+"tsp086"
 ],
 "general": false,
 "dst": "3. Учебная литература/Несмелов и др. Методика применения индивидуальных средств защиты органов дыхания и кожи…. Учебное пособие. МосУ МВД, 2021.pdf",
@@ -1659,7 +4598,18 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/17. Тактико-специальная подготовка/Индивидуальные средства защиты.pdf"
+"lib": "БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/17. Тактико-специальная подготовка/Индивидуальные средства защиты.pdf",
+"tocdone": true,
+"q0": [
+"tsp036",
+"tsp054",
+"tsp056",
+"tsp084",
+"tsp085",
+"tsp087",
+"tsp098"
+],
+"toc": true
 },
 {
 "key": "sba240ea",
@@ -1673,7 +4623,8 @@
 "size": 8489893,
 "q": [
 "tsp052",
-"tsp054"
+"tsp054",
+"tsp018"
 ],
 "general": false,
 "dst": "3. Учебная литература/Никулин, Зиннурова. Основы тактико-специальной подготовки и личной безопасности сотрудников…. Курс лекций. ОрЮИ МВД, 2022.pdf",
@@ -1681,7 +4632,13 @@
 "how": "титульный лист",
 "old": true,
 "garbled": false,
-"lib": "Электронная библиотека КЮИ/Тактико-специальная подготовка/2022 Основы такт.-спец. подготовки/ОЛБ и ТСП Росгвардии.pdf"
+"lib": "Электронная библиотека КЮИ/Тактико-специальная подготовка/2022 Основы такт.-спец. подготовки/ОЛБ и ТСП Росгвардии.pdf",
+"tocdone": true,
+"q0": [
+"tsp052",
+"tsp054"
+],
+"toc": true
 },
 {
 "key": "sb8cf2cf",
@@ -1700,7 +4657,8 @@
 "how": "каталог",
 "old": true,
 "garbled": true,
-"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2021 Обеспечение личной безопасности/Омская_академия_МВД_России.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2021 Обеспечение личной безопасности/Омская_академия_МВД_России.pdf",
+"tocdone": true
 },
 {
 "key": "sbfe026f",
@@ -1729,7 +4687,45 @@
 "how": "титульный лист",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2018 Личная безопасность/2018 Личная безопасность.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2018 Личная безопасность/2018 Личная безопасность.pdf",
+"tocdone": true,
+"q0": [
+"tsp006",
+"tsp007",
+"tsp008",
+"tsp010",
+"tsp030",
+"tsp036",
+"tsp038",
+"tsp040",
+"tsp051"
+],
+"toc": true
+},
+{
+"key": "sbf621b4",
+"cat": "book",
+"authors": "Панасенко и др",
+"title": "Обучение сотрудников органов внутренних дел тактике действий в условиях недостаточного освещения",
+"kind": "учебно-практическое пособие",
+"pub": "МосУ МВД",
+"year": 2019,
+"pages": 54,
+"size": 1004467,
+"q": [
+"tsp033",
+"tsp072"
+],
+"general": false,
+"dst": "3. Учебная литература/Панасенко и др. Обучение сотрудников органов внутренних дел тактике…. Учебно-практическое пособие. МосУ МВД, 2019.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2019 Обучение сотрудников ОВД/2019 Обучение сотрудников ОВД.pdf",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2019 Обучение сотрудников ОВД/2019 Обучение сотрудников ОВД.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
 },
 {
 "key": "sba9aeff",
@@ -1751,7 +4747,13 @@
 "how": "каталог",
 "old": true,
 "garbled": false,
-"lib": "Электронная библиотека КЮИ/Тактико-специальная подготовка/2013 Панасик Защита при авариях на ХОО/Защита при авариях на ХОО 1.pdf"
+"lib": "Электронная библиотека КЮИ/Тактико-специальная подготовка/2013 Панасик Защита при авариях на ХОО/Защита при авариях на ХОО 1.pdf",
+"tocdone": true,
+"q0": [
+"tsp084",
+"tsp087"
+],
+"toc": true
 },
 {
 "key": "sbc9f14a",
@@ -1763,14 +4765,44 @@
 "year": 2017,
 "pages": 113,
 "size": 2058049,
-"q": [],
+"q": [
+"tsp027",
+"tsp030",
+"tsp050",
+"tsp051"
+],
 "general": false,
 "dst": "3. Учебная литература/Панасик ТСП 2 часть. 2017.pdf",
 "url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронная библиотека КЮИ/Тактико-специальная подготовка/2017 Панасик ТСП 2 часть/2017 Панасик ТСП 2 часть.pdf",
 "how": "каталог",
 "old": true,
 "garbled": false,
-"lib": "Электронная библиотека КЮИ/Тактико-специальная подготовка/2017 Панасик ТСП 2 часть/2017 Панасик ТСП 2 часть.pdf"
+"lib": "Электронная библиотека КЮИ/Тактико-специальная подготовка/2017 Панасик ТСП 2 часть/2017 Панасик ТСП 2 часть.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sb363fbb",
+"cat": "book",
+"authors": "Панасик",
+"title": "Обеспечение действий сил и средств ОВД при чрезвычайных обстоятельствах",
+"kind": "лекция",
+"pub": "",
+"year": 2013,
+"pages": 1,
+"size": 42242,
+"q": [
+"tsp079"
+],
+"general": false,
+"dst": "3. Учебная литература/Панасик. Обеспечение действий сил и средств ОВД при чрезвычайных обстоятельствах. Лекция. 2013.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронная библиотека КЮИ/Тактико-специальная подготовка/2013 Панасик ОВД при ЧС/Титул Л Панасик.pdf",
+"how": "титульный лист",
+"old": true,
+"garbled": true,
+"lib": "Электронная библиотека КЮИ/Тактико-специальная подготовка/2013 Панасик ОВД при ЧС/Титул Л Панасик.pdf",
+"tocdone": true
 },
 {
 "key": "sb8f5c91",
@@ -1785,7 +4817,9 @@
 "q": [
 "tsp003",
 "tsp011",
-"tsp079"
+"tsp079",
+"tsp043",
+"tsp047"
 ],
 "general": false,
 "dst": "3. Учебная литература/Панасик. Обеспечение действий сил и средств ОВД при чрезвычайных обстоятельствах. Лекция. КЮИ МВД, 2013.pdf",
@@ -1793,7 +4827,88 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронная библиотека КЮИ/Тактико-специальная подготовка/2013 Панасик ОВД при ЧС/Лекция Панасик Тема 24 - обесп при ЧО.pdf"
+"lib": "Электронная библиотека КЮИ/Тактико-специальная подготовка/2013 Панасик ОВД при ЧС/Лекция Панасик Тема 24 - обесп при ЧО.pdf",
+"tocdone": true,
+"q0": [
+"tsp003",
+"tsp011",
+"tsp079"
+],
+"toc": true
+},
+{
+"key": "sbe6dd4d",
+"cat": "book",
+"authors": "Панасик",
+"title": "Организация и проведение специальной операции по розыску и задержанию вооруженных и особо опасных преступников (вооруженных дезертиров)",
+"kind": "лекция",
+"pub": "КЮИ МВД",
+"year": 2014,
+"pages": 2,
+"size": 144578,
+"q": [
+"tsp002",
+"tsp006",
+"tsp008",
+"tsp010",
+"tsp019",
+"tsp026",
+"tsp027",
+"tsp029",
+"tsp030",
+"tsp031",
+"tsp034",
+"tsp035",
+"tsp038",
+"tsp039",
+"tsp040",
+"tsp043",
+"tsp050",
+"tsp051"
+],
+"general": false,
+"dst": "3. Учебная литература/Панасик. Организация и проведение специальной операции по розыску и задержанию вооруженных и особо…. Лекция. КЮИ МВД, 2014.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронная библиотека КЮИ/Тактико-специальная подготовка/2014 Панасик дезертиры/обл.лекция дезертиры.pdf",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронная библиотека КЮИ/Тактико-специальная подготовка/2014 Панасик дезертиры/обл.лекция дезертиры.pdf",
+"tocdone": true
+},
+{
+"key": "sbf5f989",
+"cat": "book",
+"authors": "Пивоваров",
+"title": "Актуальные проблемы обучения применению физической силы, специальных средств и огнестрельного оружия сотрудни­ ками органов правопорядка : мат-лы всерос. науч.-практ. конф. (16 декабря 2022 г.)",
+"kind": "",
+"pub": "ОмА МВД",
+"year": 2023,
+"pages": 109,
+"size": 1082105,
+"q": [
+"tsp007",
+"tsp011",
+"tsp036",
+"tsp040",
+"tsp055",
+"tsp104"
+],
+"general": false,
+"dst": "3. Учебная литература/Пивоваров. Актуальные проблемы обучения применению физической силы, специальных средств и огнестрельного…. ОмА МВД, 2023.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Акт.пр.обуч.применению/411.pdf",
+"how": "запись",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Акт.пр.обуч.применению/411.pdf",
+"tocdone": true,
+"q0": [
+"tsp007",
+"tsp011",
+"tsp036",
+"tsp040",
+"tsp055"
+],
+"toc": true
 },
 {
 "key": "sb6de9a1",
@@ -1812,7 +4927,40 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2018 Безопасность сотрудников ОВД/2018 Безопасность сотрудников ОВД.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2018 Безопасность сотрудников ОВД/2018 Безопасность сотрудников ОВД.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sb85397e",
+"cat": "book",
+"authors": "Пономарев, Якоб",
+"title": "Обеспечение безопасности сотрудников органов внутренних дел при несении службы с оружием",
+"kind": "учебно-практическое пособие",
+"pub": "КрУ МВД",
+"year": 2018,
+"pages": 114,
+"size": 5468584,
+"q": [
+"tsp007",
+"tsp054",
+"tsp104"
+],
+"general": false,
+"dst": "3. Учебная литература/Пономарев, Якоб. Обеспечение безопасности сотрудников органов внутренних дел…. Учебно-практическое пособие. КрУ МВД, 2018.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Личная безопасность/2018 Безопасность сотрудников/2018 Безопасность сотрудников.pdf",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2018 Безопасность сотрудников/2018 Безопасность сотрудников.pdf",
+"tocdone": true,
+"q0": [
+"tsp007",
+"tsp054",
+"tsp104"
+],
+"toc": true
 },
 {
 "key": "sb1be532",
@@ -1836,7 +4984,15 @@
 "how": "запись",
 "old": false,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2026 Методика/Метод.рекомендации.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2026 Методика/Метод.рекомендации.pdf",
+"tocdone": true,
+"q0": [
+"tsp008",
+"tsp010",
+"tsp038",
+"tsp083"
+],
+"toc": true
 },
 {
 "key": "sbc09f22",
@@ -1856,7 +5012,16 @@
 "tsp049",
 "tsp055",
 "tsp061",
-"tsp078"
+"tsp078",
+"tsp020",
+"tsp025",
+"tsp042",
+"tsp044",
+"tsp045",
+"tsp070",
+"tsp073",
+"tsp075",
+"tsp077"
 ],
 "general": false,
 "dst": "3. Учебная литература/Поспеев и др. Топографическая подготовка сотрудников правоохранительных…. Учебно-практическое пособие. УрЮИ МВД, 2018.pdf",
@@ -1864,7 +5029,77 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2018 Топографическая подготовка/2018 Топографическая подготовка.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2018 Топографическая подготовка/2018 Топографическая подготовка.pdf",
+"tocdone": true,
+"q0": [
+"tsp007",
+"tsp009",
+"tsp036",
+"tsp048",
+"tsp049",
+"tsp055",
+"tsp061",
+"tsp078"
+],
+"toc": true
+},
+{
+"key": "sba919d4",
+"cat": "book",
+"authors": "",
+"title": "Профессиональное обучение (профессиональная подготовка) сотрудников органов внутренних дел по должности служащего «полицейский». Правовая подготовка",
+"kind": "учебное пособие",
+"pub": "ВСИ МВД",
+"year": 2018,
+"pages": 170,
+"size": 2270665,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Профессиональное обучение (профессиональная подготовка) сотрудников органов внутренних…. Учебное пособие. ВСИ МВД, 2018.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Проф. подготовка полицейских/2018 Профессиональное обучение/2018 Профессиональное обучение.pdf",
+"how": "титульный лист",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Проф. подготовка полицейских/2018 Профессиональное обучение/2018 Профессиональное обучение.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sbb57714",
+"cat": "book",
+"authors": "Романов и др",
+"title": "Методика выработки навыков действий и формирования психоэмоциональной устойчивости у сотрудников органов внутренних дел с применением тактико-специальной полосы препятствий с элементами психологических факторов экстремальных ситуаций",
+"kind": "учебно-методическое пособие",
+"pub": "УЮИ МВД",
+"year": 2025,
+"pages": 32,
+"size": 1862951,
+"q": [
+"tsp007",
+"tsp036",
+"tsp052",
+"tsp079",
+"tsp090",
+"tsp091"
+],
+"general": false,
+"dst": "3. Учебная литература/Романов и др. Методика выработки навыков действий и формирования…. Учебно-методическое пособие. УЮИ МВД, 2025.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025 Методика выработки/Методика.pdf",
+"how": "запись",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025 Методика выработки/Методика.pdf",
+"tocdone": true,
+"q0": [
+"tsp007",
+"tsp036",
+"tsp052",
+"tsp079",
+"tsp090",
+"tsp091"
+],
+"toc": true
 },
 {
 "key": "sbc2def6",
@@ -1879,7 +5114,20 @@
 "q": [
 "tsp009",
 "tsp090",
-"tsp091"
+"tsp091",
+"tsp025",
+"tsp037",
+"tsp044",
+"tsp048",
+"tsp049",
+"tsp061",
+"tsp073",
+"tsp077",
+"tsp079",
+"tsp080",
+"tsp081",
+"tsp084",
+"tsp085"
 ],
 "general": false,
 "dst": "3. Учебная литература/Романов и др. Совершенствование самостоятельной работы обучающихся по дисциплине…. Практикум. УЮИ МВД, 2025.pdf",
@@ -1887,29 +5135,14 @@
 "how": "запись",
 "old": false,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025 Соверш.самост/Соверш.самост.раб.pdf"
-},
-{
-"key": "sbd21da6",
-"cat": "book",
-"authors": "Сабанов и др",
-"title": "Основы тактико-специальной подготовки для сотрудников органов внутренних дел",
-"kind": "учебное пособие",
-"pub": "УЮИ МВД",
-"year": 2021,
-"pages": 48,
-"size": 2800247,
-"q": [
-"tsp007",
-"tsp036"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025 Соверш.самост/Соверш.самост.раб.pdf",
+"tocdone": true,
+"q0": [
+"tsp009",
+"tsp090",
+"tsp091"
 ],
-"general": false,
-"dst": "3. Учебная литература/Сабанов и др. Основы тактико-специальной подготовки для сотрудников органов внутренних дел. Учебное пособие. УЮИ МВД, 2021 (2).pdf",
-"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/17. Тактико-специальная подготовка/Учекбное пособие_Основы тактико-специальной подготовки.pdf",
-"how": "запись",
-"old": true,
-"garbled": false,
-"lib": "БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/17. Тактико-специальная подготовка/Учекбное пособие_Основы тактико-специальной подготовки.pdf"
+"toc": true
 },
 {
 "key": "sbb1a50f",
@@ -1931,7 +5164,64 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 Основы тактико-специальной подготовки/Основы тактико-специальной подготовки.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 Основы тактико-специальной подготовки/Основы тактико-специальной подготовки.pdf",
+"tocdone": true,
+"q0": [
+"tsp007",
+"tsp036"
+],
+"toc": true
+},
+{
+"key": "sb962ea7",
+"cat": "book",
+"authors": "Солдатов и др",
+"title": "Тактические особенности деятельности патрульно-постовой службы полиции в различных ситуациях",
+"kind": "учебное пособие",
+"pub": "КрУ МВД",
+"year": 2025,
+"pages": 104,
+"size": 945448,
+"q": [
+"tsp079",
+"tsp104",
+"tsp053"
+],
+"general": false,
+"dst": "3. Учебная литература/Солдатов и др. Тактические особенности деятельности патрульно-постовой службы полиции…. Учебное пособие. КрУ МВД, 2025.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025 Тактич особ деят/Тактич особ деят.pdf",
+"how": "титульный лист",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025 Тактич особ деят/Тактич особ деят.pdf",
+"tocdone": true,
+"q0": [
+"tsp079",
+"tsp104"
+],
+"toc": true
+},
+{
+"key": "sbea8a99",
+"cat": "book",
+"authors": "",
+"title": "Специально-подготовительные упражнения боевых приемов борьбы",
+"kind": "учебно-методическое пособие",
+"pub": "СПбУ МВД",
+"year": 2023,
+"pages": 88,
+"size": 2004531,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Специально-подготовительные упражнения боевых приемов борьбы. Учебно-методическое пособие. СПбУ МВД, 2023.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2024 Спец-подгот.упражн/436683.pdf",
+"how": "запись",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2024 Спец-подгот.упражн/436683.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
 },
 {
 "key": "sb588e2a",
@@ -1946,7 +5236,8 @@
 "q": [
 "tsp004",
 "tsp011",
-"tsp040"
+"tsp040",
+"tsp085"
 ],
 "general": false,
 "dst": "3. Учебная литература/Спецсредства. 2021.pdf",
@@ -1954,7 +5245,14 @@
 "how": "каталог",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 СПЕЦСРЕДСТВА/1909 -2.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 СПЕЦСРЕДСТВА/1909 -2.pdf",
+"tocdone": true,
+"q0": [
+"tsp004",
+"tsp011",
+"tsp040"
+],
+"toc": true
 },
 {
 "key": "sb0dbb86",
@@ -1973,7 +5271,10 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/17. Тактико-специальная подготовка/Использование имитационных средств.pdf"
+"lib": "БИБЛИОТЕКА ПОЛИЦЕЙСКОГО/17. Тактико-специальная подготовка/Использование имитационных средств.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
 },
 {
 "key": "sb720f74",
@@ -1992,7 +5293,37 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2020 Использование имитационных средств/Старцев А.М. Использование имитационных средств в специальной....pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2020 Использование имитационных средств/Старцев А.М. Использование имитационных средств в специальной....pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sb625508",
+"cat": "book",
+"authors": "Старцев",
+"title": "Теория и практика формирования профессиональных компетенций у обучающихся образовательных организаций МВД России при изучении дисциплин специальной подготовки",
+"kind": "учебное наглядное пособие",
+"pub": "МосУ МВД",
+"year": 2022,
+"pages": 451,
+"size": 12233991,
+"q": [
+"tsp033",
+"tsp079",
+"tsp080",
+"tsp086"
+],
+"general": false,
+"dst": "3. Учебная литература/Старцев. Теория и практика формирования профессиональных компетенций…. Учебное наглядное пособие. МосУ МВД, 2022.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Теор. и прак формир/Теор и практ формир.pdf",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Теор. и прак формир/Теор и практ формир.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
 },
 {
 "key": "sb7159ce",
@@ -2017,7 +5348,16 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2018 Применение специальных средств/2018 Применение специальных средств.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2018 Применение специальных средств/2018 Применение специальных средств.pdf",
+"tocdone": true,
+"q0": [
+"tsp004",
+"tsp054",
+"tsp055",
+"tsp056",
+"tsp083"
+],
+"toc": true
 },
 {
 "key": "sb5dba44",
@@ -2029,14 +5369,28 @@
 "year": 2019,
 "pages": 40,
 "size": 1341872,
-"q": [],
+"q": [
+"tsp035",
+"tsp043",
+"tsp044",
+"tsp048",
+"tsp049",
+"tsp050",
+"tsp061",
+"tsp071",
+"tsp073",
+"tsp077"
+],
 "general": false,
 "dst": "3. Учебная литература/ТСП. Практикум. 2019.pdf",
 "url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2019 ТСП. Практикум/2019 ТСП. Практикум.pdf",
 "how": "каталог",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2019 ТСП. Практикум/2019 ТСП. Практикум.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2019 ТСП. Практикум/2019 ТСП. Практикум.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
 },
 {
 "key": "sb73eb71",
@@ -2055,7 +5409,36 @@
 "how": "каталог",
 "old": false,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Такт-спец подгот/Такт-спец подгот.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Такт-спец подгот/Такт-спец подгот.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sb3c18d4",
+"cat": "book",
+"authors": "",
+"title": "Тактические действия ОВД",
+"kind": "",
+"pub": "",
+"year": 2022,
+"pages": 68,
+"size": 7540270,
+"q": [
+"tsp083"
+],
+"general": false,
+"dst": "3. Учебная литература/Тактические действия ОВД. 2022.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Тактические действия ОВД/Тактические действия ОВД.pdf",
+"how": "каталог",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Тактические действия ОВД/Тактические действия ОВД.pdf",
+"tocdone": true,
+"q0": [
+"tsp083"
+],
+"toc": true
 },
 {
 "key": "sb33b03e",
@@ -2070,7 +5453,9 @@
 "q": [
 "tsp007",
 "tsp036",
-"tsp052"
+"tsp052",
+"tsp004",
+"tsp041"
 ],
 "general": false,
 "dst": "3. Учебная литература/Тарасенко и др. Тактико-техническая подготовка сотрудников органов внутренних дел…. Учебное пособие. БелЮИ МВД, 2025.pdf",
@@ -2078,7 +5463,14 @@
 "how": "запись",
 "old": false,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025 Такт-спец.подгот/Тактико-тех.подгот.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025 Такт-спец.подгот/Тактико-тех.подгот.pdf",
+"tocdone": true,
+"q0": [
+"tsp007",
+"tsp036",
+"tsp052"
+],
+"toc": true
 },
 {
 "key": "sba82444",
@@ -2090,14 +5482,42 @@
 "year": 2023,
 "pages": 76,
 "size": 6725891,
-"q": [],
+"q": [
+"tsp008",
+"tsp051"
+],
 "general": false,
 "dst": "3. Учебная литература/Тарчоков и др. Обеспечение личной безопасности сотрудников подразделений…. Методические рекомендации. КрУ МВД, 2023.pdf",
 "url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Личная безопасность/2023 Обесп.личн.безоп.сотруд/Обесп.лич.безоп.сотруд.pdf",
 "how": "запись",
 "old": false,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2023 Обесп.личн.безоп.сотруд/Обесп.лич.безоп.сотруд.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2023 Обесп.личн.безоп.сотруд/Обесп.лич.безоп.сотруд.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sbf6a464",
+"cat": "book",
+"authors": "",
+"title": "Технико-тактические приемы",
+"kind": "",
+"pub": "",
+"year": 2021,
+"pages": 33,
+"size": 1872693,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Технико-тактические приемы. 2021.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 Технико-тактические приемы/2579.pdf",
+"how": "каталог",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 Технико-тактические приемы/2579.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
 },
 {
 "key": "sb00c41f",
@@ -2109,14 +5529,30 @@
 "year": 2022,
 "pages": 150,
 "size": 4976886,
-"q": [],
+"q": [
+"tsp004",
+"tsp044",
+"tsp048",
+"tsp049",
+"tsp061",
+"tsp073",
+"tsp077",
+"tsp079",
+"tsp080",
+"tsp081",
+"tsp084",
+"tsp085"
+],
 "general": true,
 "dst": "3. Учебная литература/Токарчук, Хенцинский. Тактико-специальная подготовка. Учебно-практическое пособие. КрУ МВД, 2022.pdf",
 "url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Так.-спец.подготовка/Токарчук ТСП.pdf",
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Так.-спец.подготовка/Токарчук ТСП.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Так.-спец.подготовка/Токарчук ТСП.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
 },
 {
 "key": "sbc563c6",
@@ -2131,7 +5567,9 @@
 "q": [
 "tsp025",
 "tsp052",
-"tsp079"
+"tsp079",
+"tsp008",
+"tsp051"
 ],
 "general": false,
 "dst": "3. Учебная литература/Токбаев. Тактические особенности действий сотрудников органов внутренних дел…. Учебное пособие. КрУ МВД, 2022.pdf",
@@ -2139,7 +5577,52 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Такт.особенности действий/Такт.особ.действий.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Такт.особенности действий/Такт.особ.действий.pdf",
+"tocdone": true,
+"q0": [
+"tsp025",
+"tsp052",
+"tsp079"
+],
+"toc": true
+},
+{
+"key": "sb2d1de9",
+"cat": "book",
+"authors": "Труфанов, Тамбовцев",
+"title": "Личная безопасность сотрудников органов внутренних дел",
+"kind": "учебное пособие",
+"pub": "ВСИ МВД",
+"year": 2023,
+"pages": 144,
+"size": 1191532,
+"q": [
+"tsp006",
+"tsp036",
+"tsp051",
+"tsp054",
+"tsp018",
+"tsp030",
+"tsp033",
+"tsp043",
+"tsp053",
+"tsp086"
+],
+"general": false,
+"dst": "3. Учебная литература/Труфанов, Тамбовцев. Личная безопасность сотрудников органов внутренних дел. Учебное пособие. ВСИ МВД, 2023.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Личная безопасность/2024 Личн.без.сотруд/Личн.безоп.сотр.pdf",
+"how": "запись",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2024 Личн.без.сотруд/Личн.безоп.сотр.pdf",
+"tocdone": true,
+"q0": [
+"tsp006",
+"tsp036",
+"tsp051",
+"tsp054"
+],
+"toc": true
 },
 {
 "key": "sbd31151",
@@ -2151,14 +5634,20 @@
 "year": 2020,
 "pages": 96,
 "size": 4257010,
-"q": [],
+"q": [
+"tsp033",
+"tsp086"
+],
 "general": false,
 "dst": "3. Учебная литература/Тсп. 2020.pdf",
 "url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2020 ТСП/434222.pdf",
 "how": "каталог",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2020 ТСП/434222.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2020 ТСП/434222.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
 },
 {
 "key": "sb6c381b",
@@ -2182,7 +5671,15 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2019 Отработка тактических приемов защиты/2019 Отработка тактических приемов защиты.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2019 Отработка тактических приемов защиты/2019 Отработка тактических приемов защиты.pdf",
+"tocdone": true,
+"q0": [
+"tsp023",
+"tsp085",
+"tsp090",
+"tsp091"
+],
+"toc": true
 },
 {
 "key": "sb832a24",
@@ -2195,7 +5692,8 @@
 "pages": 48,
 "size": 841329,
 "q": [
-"tsp068"
+"tsp068",
+"tsp025"
 ],
 "general": false,
 "dst": "3. Учебная литература/Хорольский, Болобан. Особенности тактики действий сотрудников органов…. Учебно-методическое пособие. РЮИ МВД, 2024.pdf",
@@ -2203,7 +5701,50 @@
 "how": "запись",
 "old": false,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2024 Особ.тактики/Особ.тактики.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2024 Особ.тактики/Особ.тактики.pdf",
+"tocdone": true,
+"q0": [
+"tsp068"
+],
+"toc": true
+},
+{
+"key": "sbe2d5ed",
+"cat": "book",
+"authors": "Шанько и др",
+"title": "Топографическая подготовка в деятельности органов внутренних дел",
+"kind": "учебно-методическое пособие",
+"pub": "РЮИ МВД",
+"year": 2021,
+"pages": 48,
+"size": 10734352,
+"q": [
+"tsp007",
+"tsp048",
+"tsp049",
+"tsp054",
+"tsp061",
+"tsp069",
+"tsp078"
+],
+"general": false,
+"dst": "3. Учебная литература/Шанько и др. Топографическая подготовка в деятельности органов внутренних дел. Учебно-методическое пособие. РЮИ МВД, 2021.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Топография/Шанько 2.pdf",
+"how": "титульный лист",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Топография/Шанько 2.pdf",
+"tocdone": true,
+"q0": [
+"tsp007",
+"tsp048",
+"tsp049",
+"tsp054",
+"tsp061",
+"tsp069",
+"tsp078"
+],
+"toc": true
 },
 {
 "key": "sbc8c7a6",
@@ -2222,7 +5763,35 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Проф. подготовка полицейских/2021 Профподготовка Ч. 1/Профподготовка Ч. 1.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Проф. подготовка полицейских/2021 Профподготовка Ч. 1/Профподготовка Ч. 1.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sb00d48b",
+"cat": "book",
+"authors": "ред. Вечерников, Данилов и др",
+"title": "Профессиональная подготовка рядового и младшего начальствующего состава полиции. Часть 2. Дисциплины профессионального цикла",
+"kind": "учебное пособие",
+"pub": "КрУ МВД",
+"year": 2020,
+"pages": 480,
+"size": 29997543,
+"q": [
+"tsp004",
+"tsp085"
+],
+"general": false,
+"dst": "3. Учебная литература/ред. Вечерников, Данилов и др. Профессиональная подготовка рядового и младшего…. Учебное пособие. КрУ МВД, 2020.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Проф. подготовка полицейских/2021 Профподготовка Ч. 2/Профподготовка Ч. 2.pdf",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Проф. подготовка полицейских/2021 Профподготовка Ч. 2/Профподготовка Ч. 2.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
 },
 {
 "key": "sb827622",
@@ -2243,7 +5812,12 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Проф. подготовка полицейских/2021 Профподготовка Ч. 3/Профподготовка Ч. 3.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Проф. подготовка полицейских/2021 Профподготовка Ч. 3/Профподготовка Ч. 3.pdf",
+"tocdone": true,
+"q0": [
+"tsp009"
+],
+"toc": true
 },
 {
 "key": "sb07812f",
@@ -2257,7 +5831,12 @@
 "size": 2347956,
 "q": [
 "tsp003",
-"tsp068"
+"tsp068",
+"tsp004",
+"tsp044",
+"tsp049",
+"tsp073",
+"tsp077"
 ],
 "general": false,
 "dst": "3. Учебная литература/ред. Калиниченко, Зиборов. Действия сотрудников полиции, привлекаемых для выполнения…. Учебное пособие. МосУ МВД, 2023.pdf",
@@ -2265,7 +5844,13 @@
 "how": "запись",
 "old": false,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Дейст сотруд/Действ сотруд.полиции.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Дейст сотруд/Действ сотруд.полиции.pdf",
+"tocdone": true,
+"q0": [
+"tsp003",
+"tsp068"
+],
+"toc": true
 },
 {
 "key": "sb59f7c2",
@@ -2280,7 +5865,18 @@
 "q": [
 "tsp022",
 "tsp079",
-"tsp080"
+"tsp080",
+"tsp027",
+"tsp029",
+"tsp030",
+"tsp031",
+"tsp035",
+"tsp041",
+"tsp043",
+"tsp050",
+"tsp051",
+"tsp098",
+"tsp103"
 ],
 "general": false,
 "dst": "3. Учебная литература/сост. Ворожцов, Иванов и др. Деятельность органов внутренних дел…. Учебно-методическое пособие. ВСИ МВД, 2019.pdf",
@@ -2288,7 +5884,14 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2019 ОВД при возникновении ЧС/2019 ОВД при возникновении ЧС.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2019 ОВД при возникновении ЧС/2019 ОВД при возникновении ЧС.pdf",
+"tocdone": true,
+"q0": [
+"tsp022",
+"tsp079",
+"tsp080"
+],
+"toc": true
 },
 {
 "key": "sbacd14c",
@@ -2301,7 +5904,8 @@
 "pages": 99,
 "size": 3670947,
 "q": [
-"tsp004"
+"tsp004",
+"tsp085"
 ],
 "general": false,
 "dst": "3. Учебная литература/сост. Зиннуров, Хисамудтинов и др. Специальные средства органов внутренних дел. Учебное пособие. КЮИ МВД, 2016.pdf",
@@ -2309,7 +5913,78 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронная библиотека КЮИ/Тактико-специальная подготовка/2016 Спецсредства в ОВД/2016 Специальные средства ОВД -2.pdf"
+"lib": "Электронная библиотека КЮИ/Тактико-специальная подготовка/2016 Спецсредства в ОВД/2016 Специальные средства ОВД -2.pdf",
+"tocdone": true,
+"q0": [
+"tsp004"
+],
+"toc": true
+},
+{
+"key": "sb8cc2c6",
+"cat": "book",
+"authors": "сост. Косяченко, Зинченко и др",
+"title": "Деятельность органов внутренних дел Российской Федерации в условиях специальных правовых режимов. Часть 1",
+"kind": "учебное пособие",
+"pub": "ВА МВД",
+"year": 2025,
+"pages": 152,
+"size": 2239363,
+"q": [
+"tsp007",
+"tsp036",
+"tsp098",
+"tsp004",
+"tsp005",
+"tsp035",
+"tsp043",
+"tsp045",
+"tsp046",
+"tsp048",
+"tsp061",
+"tsp067",
+"tsp072",
+"tsp076",
+"tsp081",
+"tsp084",
+"tsp085"
+],
+"general": false,
+"dst": "3. Учебная литература/сост. Косяченко, Зинченко и др. Деятельность органов внутренних дел Российской Федерации…. Учебное пособие. ВА МВД, 2025.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025 Деятельность ОВД/ЭР-11128.pdf",
+"how": "запись",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025 Деятельность ОВД/ЭР-11128.pdf",
+"tocdone": true,
+"q0": [
+"tsp007",
+"tsp036",
+"tsp098"
+],
+"toc": true
+},
+{
+"key": "sbb144c9",
+"cat": "book",
+"authors": "сост. Кулинская",
+"title": "Профессиональная подготовка полицейских в России, Великобритании и США",
+"kind": "учебное пособие",
+"pub": "КрУ МВД",
+"year": 2020,
+"pages": 86,
+"size": 3602766,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/сост. Кулинская. Профессиональная подготовка полицейских в России, Великобритании и США. Учебное пособие. КрУ МВД, 2020.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Проф. подготовка полицейских/2020 Профессиональная подготовка полицейских/2020 Профессиональная подготовка полицейских.pdf",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Проф. подготовка полицейских/2020 Профессиональная подготовка полицейских/2020 Профессиональная подготовка полицейских.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
 },
 {
 "key": "sbcbdd1d",
@@ -2331,7 +6006,13 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Практикум по ТСП/Практикум.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Практикум по ТСП/Практикум.pdf",
+"tocdone": true,
+"q0": [
+"tsp036",
+"tsp052"
+],
+"toc": true
 },
 {
 "key": "sbfff134",
@@ -2354,7 +6035,36 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2018 Ликвидации последствий ЧС/2018 Ликвидации последствий ЧС.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2018 Ликвидации последствий ЧС/2018 Ликвидации последствий ЧС.pdf",
+"tocdone": true,
+"q0": [
+"tsp007",
+"tsp079",
+"tsp080"
+],
+"toc": true
+},
+{
+"key": "sb33e0c2",
+"cat": "book",
+"authors": "сост. Усманов, Гаджиев",
+"title": "Правомерность применения физической силы и спецсредств в деятельности сотрудников полиции",
+"kind": "методические рекомендации",
+"pub": "КЮИ МВД",
+"year": 2022,
+"pages": 47,
+"size": 472167,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/сост. Усманов, Гаджиев. Правомерность применения физической силы и спецсредств…. Методические рекомендации. КЮИ МВД, 2022.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Правом.прим.физ.силы/Усманов 09.09.222.pdf",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Правом.прим.физ.силы/Усманов 09.09.222.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
 },
 {
 "key": "emp:ГИАЦ МВД России. Состояние преступности в России за январь–декабрь 2024 года.pdf",
@@ -2422,6 +6132,35 @@
 "note": "из базы «Административная деятельность полиции»"
 },
 {
+"key": "sbc34d65",
+"cat": "sci",
+"authors": "Воскобоев",
+"title": "Актуальные вопросы совершенствования тактикоспециальной и огневой подготовки сотрудников органов внутренних дел [Электронное издание]",
+"kind": "сборник научных трудов всероссийской научно-практической конференции (19 июля 2024 г.)",
+"pub": "РЮИ МВД",
+"year": 2025,
+"pages": 96,
+"size": 628021,
+"q": [
+"tsp052",
+"tsp054",
+"tsp081"
+],
+"general": false,
+"dst": "4. Научные материалы (с 2023 года)/Воскобоев. Актуальные вопросы совершенствования…. Сборник научных трудов всероссийской научно-практической конференц.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025 Акт.вопр. совершенствования/14 ВОСКОБОЕВ.pdf",
+"how": "запись",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025 Акт.вопр. совершенствования/14 ВОСКОБОЕВ.pdf",
+"tocdone": true,
+"q0": [
+"tsp052",
+"tsp054"
+],
+"toc": true
+},
+{
 "key": "sb826955",
 "cat": "sci",
 "authors": "Дудко и др",
@@ -2433,7 +6172,11 @@
 "size": 2296471,
 "q": [
 "tsp036",
-"tsp054"
+"tsp054",
+"tsp004",
+"tsp022",
+"tsp043",
+"tsp085"
 ],
 "general": false,
 "dst": "4. Научные материалы (с 2023 года)/Дудко и др. Актуальные вопросы совершенствования…. Материалы всерос. науч.-практ. конф. (27 апреля 2023 г.). КрУ МВД, 2023.pdf",
@@ -2441,7 +6184,13 @@
 "how": "запись",
 "old": false,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2024 Акт.вопр.совершен/Акт вопр спецподгот.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2024 Акт.вопр.совершен/Акт вопр спецподгот.pdf",
+"tocdone": true,
+"q0": [
+"tsp036",
+"tsp054"
+],
+"toc": true
 },
 {
 "key": "sb3e9487",
@@ -2455,7 +6204,19 @@
 "size": 4249423,
 "q": [
 "tsp007",
-"tsp054"
+"tsp054",
+"tsp004",
+"tsp014",
+"tsp016",
+"tsp027",
+"tsp030",
+"tsp050",
+"tsp051",
+"tsp061",
+"tsp079",
+"tsp080",
+"tsp081",
+"tsp085"
 ],
 "general": false,
 "dst": "4. Научные материалы (с 2023 года)/Издания до 2023 года (сверить с действующими актами)/Витютнев и др. Актуальные вопросы совершенствования…. Материалы всерос. науч.-практ. конф. (28 апр. 2022 г.). КрУ МВД, 2022.pdf",
@@ -2463,7 +6224,44 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Акт.вопр.сов.спец.подготовки/Актуальные вопросы.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Акт.вопр.сов.спец.подготовки/Актуальные вопросы.pdf",
+"tocdone": true,
+"q0": [
+"tsp007",
+"tsp054"
+],
+"toc": true
+},
+{
+"key": "sbb89038",
+"cat": "sci",
+"authors": "Медников и др",
+"title": "Актуальные вопросы совершенствования специальной подготовки курсантов и слушателей образовательных организаций системы МВД России [Электронный ресурс]",
+"kind": "материалы viii всерос. науч.-практ. конф. (22 апр. 2021 г.)",
+"pub": "КрУ МВД",
+"year": 2021,
+"pages": 231,
+"size": 1156963,
+"q": [
+"tsp054",
+"tsp018",
+"tsp053",
+"tsp055",
+"tsp056",
+"tsp079"
+],
+"general": false,
+"dst": "4. Научные материалы (с 2023 года)/Издания до 2023 года (сверить с действующими актами)/Медников и др. Актуальные вопросы совершенствования…. Материалы viii всерос. науч.-практ. конф. (22 апр. 2021 г.). КрУ МВД, 2021.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 Спецподготовка/Акт вопр спецподгот план 22.pdf",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 Спецподготовка/Акт вопр спецподгот план 22.pdf",
+"tocdone": true,
+"q0": [
+"tsp054"
+],
+"toc": true
 },
 {
 "key": "sb660c94",
@@ -2484,7 +6282,34 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Подготовка сотруд полиции к примен спец.средств и огн.оружия/Подготовка сотрудников полиции к применению.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2022 Подготовка сотруд полиции к примен спец.средств и огн.оружия/Подготовка сотрудников полиции к применению.pdf",
+"tocdone": true,
+"q0": [
+"tsp011"
+],
+"toc": true
+},
+{
+"key": "sbdd86e7",
+"cat": "sci",
+"authors": "Сабанов и др",
+"title": "Обеспечение личной безопасности сотрудника органов внутренних дел при обнаружении взрывоопасных предметов [Текст]",
+"kind": "научно-практическое пособие",
+"pub": "УЮИ МВД",
+"year": 2018,
+"pages": 35,
+"size": 1082735,
+"q": [],
+"general": false,
+"dst": "4. Научные материалы (с 2023 года)/Издания до 2023 года (сверить с действующими актами)/Сабанов и др. Обеспечение личной безопасности сотрудника органов внутренних…. Научно-практическое пособие. УЮИ МВД, 2018.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Личная безопасность/2018 Личная безопасность при обнаруж. взрывооп. предметов/2018~1.PDF",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2018 Личная безопасность при обнаруж. взрывооп. предметов/2018~1.PDF",
+"tocdone": true,
+"q0": [],
+"toc": true
 },
 {
 "key": "sb9543d5",
@@ -2500,7 +6325,13 @@
 "tsp054",
 "tsp055",
 "tsp056",
-"tsp078"
+"tsp078",
+"tsp003",
+"tsp004",
+"tsp018",
+"tsp022",
+"tsp043",
+"tsp053"
 ],
 "general": false,
 "dst": "4. Научные материалы (с 2023 года)/Издания до 2023 года (сверить с действующими актами)/ред. Смык, Засыпкин и др. Вопросы совершенствования тактико-специальной…. Сборник научных статей. МосУ МВД, 2021.pdf",
@@ -2508,7 +6339,89 @@
 "how": "запись",
 "old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 Вопр.совершен. так.спец.подг/Вопросы совершенствования.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 Вопр.совершен. так.спец.подг/Вопросы совершенствования.pdf",
+"tocdone": true,
+"q0": [
+"tsp054",
+"tsp055",
+"tsp056",
+"tsp078"
+],
+"toc": true
+},
+{
+"key": "sbbc4910",
+"cat": "sci",
+"authors": "сост. Ушаков",
+"title": "Актуальные проблемы теории и практики специальной подготовки в органах внутренних дел: Всероссийская научно-практическая конференция, 6 октября 2021 г",
+"kind": "сборник научных статей",
+"pub": "МосУ МВД",
+"year": 2021,
+"pages": 338,
+"size": 2643176,
+"q": [
+"tsp036",
+"tsp054",
+"tsp018",
+"tsp037",
+"tsp053",
+"tsp055",
+"tsp056",
+"tsp072",
+"tsp104"
+],
+"general": false,
+"dst": "4. Научные материалы (с 2023 года)/Издания до 2023 года (сверить с действующими актами)/сост. Ушаков. Актуальные проблемы теории и практики специальной подготовки…. Сборник научных статей. МосУ МВД, 2021.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 Акт.проб.теории и практики спец. подготовки/Акт.проб. теории и практики спец.pdf",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2021 Акт.проб.теории и практики спец. подготовки/Акт.проб. теории и практики спец.pdf",
+"tocdone": true,
+"q0": [
+"tsp036",
+"tsp054"
+],
+"toc": true
+},
+{
+"key": "sb533caa",
+"cat": "sci",
+"authors": "сост. Ушаков",
+"title": "Актуальные проблемы теории и практики специальной подготовки сотрудников органов внутренних дел: Всероссийская научнопрактическая конференция, 29 ноября 2022 г",
+"kind": "сборник научных трудов",
+"pub": "МосУ МВД",
+"year": 2022,
+"pages": 282,
+"size": 2574030,
+"q": [
+"tsp036",
+"tsp054",
+"tsp003",
+"tsp004",
+"tsp005",
+"tsp041",
+"tsp043",
+"tsp055",
+"tsp056",
+"tsp079",
+"tsp085",
+"tsp098",
+"tsp103"
+],
+"general": false,
+"dst": "4. Научные материалы (с 2023 года)/Издания до 2023 года (сверить с действующими актами)/сост. Ушаков. Актуальные проблемы теории и практики специальной подготовки…. Сборник научных трудов. МосУ МВД, 2022.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Акт.проб.ТСП/Акт_проб_теории_и_практики_спец_подг_2022.pdf",
+"how": "запись",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Акт.проб.ТСП/Акт_проб_теории_и_практики_спец_подг_2022.pdf",
+"tocdone": true,
+"q0": [
+"tsp036",
+"tsp054"
+],
+"toc": true
 },
 {
 "key": "sb3ec9bb",
@@ -2520,14 +6433,155 @@
 "year": 2025,
 "pages": 237,
 "size": 1780106,
-"q": [],
+"q": [
+"tsp092"
+],
 "general": false,
 "dst": "4. Научные материалы (с 2023 года)/Камнев и др. Вопросы совершенствования физической…. Материалы всероссийской научно-практической конференции, волгогр.pdf",
 "url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025 Вопр.соверш.физ/Вопросы сов. физ.pdf",
 "how": "запись",
 "old": false,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025 Вопр.соверш.физ/Вопросы сов. физ.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2025 Вопр.соверш.физ/Вопросы сов. физ.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sb48d906",
+"cat": "sci",
+"authors": "Камнев и др",
+"title": "Вопросы совершенствования физической, тактико-специальной и огневой подготовки сотрудников полиции к оперативнослужебной деятельности",
+"kind": "материалы всероссийской научно-практической конференции",
+"pub": "ВА МВД",
+"year": 2023,
+"pages": 314,
+"size": 3436689,
+"q": [],
+"general": false,
+"dst": "4. Научные материалы (с 2023 года)/Камнев и др. Вопросы совершенствования физической…. Материалы всероссийской научно-практической конференции. ВА МВД, 20.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Вопр.совершенствования/Вопросы совершен. физ. подг.pdf",
+"how": "запись",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Вопр.совершенствования/Вопросы совершен. физ. подг.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sbfb3252",
+"cat": "sci",
+"authors": "Медников и др",
+"title": "Актуальные вопросы совершенствования специальной подготовки курсантов и слушателей образовательных организаций системы МВД России [Электронный ресурс]",
+"kind": "материалы всерос. науч.-практ. конф., 28 марта 2024 г",
+"pub": "КрУ МВД",
+"year": 2024,
+"pages": 106,
+"size": 1148311,
+"q": [
+"tsp043"
+],
+"general": false,
+"dst": "4. Научные материалы (с 2023 года)/Медников и др. Актуальные вопросы совершенствования…. Материалы всерос. науч.-практ. конф., 28 марта 2024 г. КрУ МВД, 2024.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2024 Ак.вопр.сов/Актуальные вопросы спецподг.pdf",
+"how": "запись",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2024 Ак.вопр.сов/Актуальные вопросы спецподг.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "sbc163b5",
+"cat": "sci",
+"authors": "Мерзликин и др",
+"title": "Подготовка сотрудников полиции к применению специальных средств, физической силы и огнестрельного оружия: от теории к практике",
+"kind": "материалы всероссийской научно-практической конференции, волгоград, 22 апреля 2023 г",
+"pub": "ВА МВД",
+"year": 2023,
+"pages": 123,
+"size": 1714642,
+"q": [
+"tsp009",
+"tsp011",
+"tsp054",
+"tsp056"
+],
+"general": false,
+"dst": "4. Научные материалы (с 2023 года)/Мерзликин и др. Подготовка сотрудников полиции…. Материалы всероссийской научно-практической конференции, волгоград, 22.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2024 Подгот.сотр/Подготовка сотр.pdf",
+"how": "запись",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2024 Подгот.сотр/Подготовка сотр.pdf",
+"tocdone": true,
+"q0": [
+"tsp009",
+"tsp011",
+"tsp054",
+"tsp056"
+],
+"toc": true
+},
+{
+"key": "sb8fa423",
+"cat": "sci",
+"authors": "Тарасенко, Кириченко",
+"title": "Личная безопасность сотрудников органов внутренних дел",
+"kind": "монография",
+"pub": "БелЮИ МВД",
+"year": 2024,
+"pages": 182,
+"size": 18445475,
+"q": [
+"tsp007",
+"tsp036"
+],
+"general": false,
+"dst": "4. Научные материалы (с 2023 года)/Тарасенко, Кириченко. Личная безопасность сотрудников органов внутренних дел. Монография. БелЮИ МВД, 2024.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Личная безопасность/2024 Личн.безопасность/Личная безопасность сотрудников ОВД.pdf",
+"how": "запись",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Личная безопасность/2024 Личн.безопасность/Личная безопасность сотрудников ОВД.pdf",
+"tocdone": true,
+"q0": [
+"tsp007",
+"tsp036"
+],
+"toc": true
+},
+{
+"key": "sbbc1e92",
+"cat": "sci",
+"authors": "Тарасов и др",
+"title": "Профессиональная подготовка сотрудников органов внутренних дел Российской Федерации к действиям, связанным с силовым задержанием правонарушителей",
+"kind": "монография",
+"pub": "БелЮИ МВД",
+"year": 2023,
+"pages": 76,
+"size": 3092817,
+"q": [
+"tsp009",
+"tsp051",
+"tsp057"
+],
+"general": false,
+"dst": "4. Научные материалы (с 2023 года)/Тарасов и др. Профессиональная подготовка сотрудников органов внутренних дел Российской…. Монография. БелЮИ МВД, 2023.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Проф.подгот.сотр/Проф.подгот.сотр.pdf",
+"how": "запись",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Проф.подгот.сотр/Проф.подгот.сотр.pdf",
+"tocdone": true,
+"q0": [
+"tsp009",
+"tsp051",
+"tsp057"
+],
+"toc": true
 },
 {
 "key": "sb3a87e0",
@@ -2549,7 +6603,13 @@
 "how": "запись",
 "old": false,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2024 Спец.подг/Спец.подг.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2024 Спец.подг/Спец.подг.pdf",
+"tocdone": true,
+"q0": [
+"tsp009",
+"tsp032"
+],
+"toc": true
 },
 {
 "key": "sb6303b3",
@@ -2562,7 +6622,10 @@
 "pages": 186,
 "size": 2093500,
 "q": [
-"tsp036"
+"tsp036",
+"tsp043",
+"tsp044",
+"tsp085"
 ],
 "general": false,
 "dst": "4. Научные материалы (с 2023 года)/сост. Смык. Актуальные проблемы теории и практики специальной подготовки…. Сборник научных трудов. МосУ МВД, 2023.pdf",
@@ -2570,6 +6633,11 @@
 "how": "запись",
 "old": false,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Акт.пр.теории и практики спец.подготовки/Ак_проб_теории_и_практики_спец_под-ки.pdf"
+"lib": "Электронные издания ВУЗов МВД России/Тактико-специальная подготовка/2023 Акт.пр.теории и практики спец.подготовки/Ак_проб_теории_и_практики_спец_под-ки.pdf",
+"tocdone": true,
+"q0": [
+"tsp036"
+],
+"toc": true
 }
 ]

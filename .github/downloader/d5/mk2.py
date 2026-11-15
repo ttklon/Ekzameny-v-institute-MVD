@@ -40,4 +40,4 @@ for code in DISC:
 if os.path.exists(D5 + 'extra_tasks.tsv'):
     rows = [tuple(l.rstrip('\n').split('\t')) for l in open(D5 + 'extra_tasks.tsv', encoding='utf-8') if l.strip() and not l.startswith('#')]
     rows = [r for r in rows if r[2] not in QUEUED and not os.path.exists(r[2])]
-    if rows: write('extra', rows)
+    for i in range(0, len(rows), 5): write('extra_%d' % (i // 5 + 1), rows[i:i + 5])

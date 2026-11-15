@@ -1,13 +1,25 @@
-get	https://cdep.ru/userimages/Statistika_2024/F3-svod-vse_sudy-2024.xls	.work/d5/stat/cdep_f3_2024a.xls
-get	https://cdep.ru/userimages/Statistika_2024/F3-svod_vse-sudy-2024.xls	.work/d5/stat/cdep_f3_2024b.xls
-get	https://cdep.ru/userimages/Statistika_2024/F3-svod-vse-sudy-2024.xls	.work/d5/stat/cdep_f3_2024c.xls
-get	https://cdep.ru/userimages/Statistika_2024/F3_svod_vse_sudy-2024.xls	.work/d5/stat/cdep_f3_2024d.xls
-get	https://cdep.ru/userimages/Statistika_2024/F3-svod_vse_sudy_2024.xls	.work/d5/stat/cdep_f3_2024e.xls
-get	https://cdep.ru/index.php?id=79&item=8808	.work/d5/stat/cdep_item_8808.html
-get	https://cdep.ru/index.php?id=79&item=8945	.work/d5/stat/cdep_item_8945.html
-get	https://cdep.ru/index.php?id=79&item=8944	.work/d5/stat/cdep_item_8944.html
-get	https://cdep.ru/index.php?id=79&item=8947	.work/d5/stat/cdep_item_8947.html
-ipsact	http://ips.pravo.gov.ru/api/ips/legislation/search.json?query=%D0%9F%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5+%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%B0+%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D0%B9%D1%81%D0%BA%D0%BE%D0%B9+%D0%A4%D0%B5%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8+%D0%BE%D1%82+16.04.2025+%E2%84%96+501&limit=10&page=1#Постановление Правительства Российской Федерации от 16.04.2025 № 501	.work/d5/acts/p501.pdf
-ipsact	http://ips.pravo.gov.ru/api/ips/legislation/search.json?query=%D0%A3%D0%BA%D0%B0%D0%B7+%D0%9F%D1%80%D0%B5%D0%B7%D0%B8%D0%B4%D0%B5%D0%BD%D1%82%D0%B0+%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D0%B9%D1%81%D0%BA%D0%BE%D0%B9+%D0%A4%D0%B5%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8+%D0%BE%D1%82+25.11.2020+%E2%84%96+787&limit=10&page=1#Указ Президента Российской Федерации от 25.11.2020 № 787|wide	.work/d5/acts/u787.pdf
-consauto	Приказ Минтруда России от 16.04.2025 N 251н#от 16.04.2025 N 251н	.work/d5/cons/mt251n.pdf
-consauto	Указ Президента РФ от 25.11.2020 N 787 комиссии по вопросам помилования#N 787	.work/d5/cons/u787.pdf
+consauto	Приказ МВД России от 29.08.2014 N 736#от 29.08.2014 N 736	.work/d5/cons2/mvd736.pdf
+consauto	Приказ Генпрокуратуры России N 39 МВД России N 1070 от 29.12.2005 О едином учете преступлений#от 29.12.2005	.work/d5/cons2/gp39.pdf
+consauto	Приказ Генпрокуратуры России от 17.09.2021 N 544#от 17.09.2021 N 544	.work/d5/cons2/gp544.pdf
+consauto	Приказ Генпрокуратуры России от 19.01.2022 N 11#от 19.01.2022 N 11	.work/d5/cons2/gp11.pdf
+consauto	Приказ Генпрокуратуры России от 11.01.2021 N 2 Об обеспечении участия прокуроров в гражданском и административном судопроизводстве#от 11.01.2021 N 2	.work/d5/cons2/gp2.pdf
+consauto	Приказ Минздравсоцразвития России от 24.04.2008 N 194н#от 24.04.2008 N 194н	.work/d5/cons2/mz194n.pdf
+consauto	Приказ Минтруда России от 20.04.2022 N 223н#от 20.04.2022 N 223н	.work/d5/cons2/mt223n.pdf
+consauto	Приказ Минтруда России от 19.05.2021 N 320н#от 19.05.2021 N 320н	.work/d5/cons2/mt320n.pdf
+consauto	Постановление Минтруда России от 31.12.2002 N 85#от 31.12.2002 N 85	.work/d5/cons2/mt85.pdf
+consauto	Конвенция о правовой помощи и правовых отношениях по гражданским, семейным и уголовным делам Кишинев 07.10.2002#07.10.2002	.work/d5/cons2/kish.pdf
+consauto	Конвенция о правовой помощи и правовых отношениях по гражданским, семейным и уголовным делам Минск 22.01.1993#22.01.1993	.work/d5/cons2/minsk.pdf
+consauto	Европейская конвенция о выдаче 13.12.1957#13.12.1957	.work/d5/cons2/extr.pdf
+consauto	Европейская конвенция о взаимной правовой помощи по уголовным делам 20.04.1959#20.04.1959	.work/d5/cons2/mlat.pdf
+consauto	Международный пакт о гражданских и политических правах 16.12.1966#16.12.1966	.work/d5/cons2/pact.pdf
+consauto	Конвенция N 29 Международной организации труда Относительно принудительного или обязательного труда#Конвенция N 29	.work/d5/cons2/ilo29.pdf
+consauto	Конвенция N 87 Международной организации труда Относительно свободы ассоциаций и защиты права на организацию#Конвенция N 87	.work/d5/cons2/ilo87.pdf
+consauto	Конвенция N 98 Международной организации труда Относительно применения принципов права на организацию и заключение коллективных договоров#Конвенция N 98	.work/d5/cons2/ilo98.pdf
+consauto	Конвенция N 95 Международной организации труда Относительно защиты заработной платы#Конвенция N 95	.work/d5/cons2/ilo95.pdf
+consauto	Конвенция N 132 Международной организации труда Об оплачиваемых отпусках#Конвенция N 132	.work/d5/cons2/ilo132.pdf
+consauto	Декларация Международной организации труда Об основополагающих принципах и правах в сфере труда 18.06.1998#18.06.1998	.work/d5/cons2/ilo1998.pdf
+consauto	Обзор практики рассмотрения судами дел по спорам, связанным с прекращением трудового договора по инициативе работодателя 09.12.2020#09.12.2020	.work/d5/cons2/obz_uvol.pdf
+consauto	Обзор практики рассмотрения судами дел по спорам, связанным с заключением трудового договора 27.04.2022#27.04.2022	.work/d5/cons2/obz_zakl.pdf
+consauto	Обзор практики рассмотрения судами дел о материальной ответственности работника 05.12.2018#05.12.2018	.work/d5/cons2/obz_mat.pdf
+consauto	Обзор практики применения судами положений главы 8 Уголовного кодекса об обстоятельствах, исключающих преступность деяния 22.05.2019#22.05.2019	.work/d5/cons2/obz_oborona.pdf
+consauto	Обзор практики рассмотрения судами ходатайств об избрании меры пресечения в виде заключения под стражу 18.01.2017#18.01.2017	.work/d5/cons2/obz_mp.pdf
