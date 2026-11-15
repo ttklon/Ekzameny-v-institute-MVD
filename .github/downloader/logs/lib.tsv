@@ -1,0 +1,2 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-15 16:17:03	crawllist	.github/downloader/d5/lib_crawl.txt	.github/downloader/d5/lib_files.tsv	ok	200	586931	каталогов в списке с ошибкой: 0	acefe892fad51322ac1fa25431787b3c9350e88e22a7a984a994f497a9a007e5
