@@ -768,6 +768,19 @@ def op_ddglist(listfile, out):
             page = r.stdout.decode('utf-8', 'replace')
             hits = re.findall(r'class="result__a"[^>]*href="([^"]+)"[^>]*>(.*?)</a>(?:.*?class="result__snippet"[^>]*>(.*?)</a>)?', page, re.S)
             if not hits:
+                # запасные поисковые системы: Bing, затем Mojeek
+                for engine, tpl, rx in (
+                        ('bing', 'https://www.bing.com/search?setlang=ru&cc=ru&q=', r'<li class="b_algo".*?<a[^>]*href="(https?://[^"]+)"[^>]*>(.*?)</a>(?:.*?<p[^>]*>(.*?)</p>)?'),
+                        ('mojeek', 'https://www.mojeek.com/search?q=', r'<a[^>]*class="title"[^>]*href="(https?://[^"]+)"[^>]*>(.*?)</a>(?:.*?<p class="s">(.*?)</p>)?')):
+                    r = subprocess.run(['curl', '-sS', '-L', '--compressed', '--connect-timeout', '15', '--max-time', '40', '-A', UA,
+                                        '-H', 'Accept-Language: ru-RU,ru;q=0.9', tpl + _u.quote(q)], capture_output=True)
+                    time.sleep(3.0)
+                    page = r.stdout.decode('utf-8', 'replace')
+                    hits = [(h, t, sn) for h, t, sn in re.findall(rx, page, re.S)]
+                    if hits:
+                        tag = tag + '/' + engine
+                        break
+            if not hits:
                 f.write('\t'.join((tag, 'НЕТ', q, strip(page)[:150])) + '\n')
                 continue
             n += 1
