@@ -7,3 +7,4 @@ get	https://cdep.ru/index.php?id=79&item=9893	.work/d5/stat/cdep_item_9893.html
 get	https://cdep.ru/index.php?id=79&item=8946	.work/d5/stat/cdep_item_8946.html
 get	https://cdep.ru/index.php?id=79	.work/d5/stat/cdep_79.html
 get	https://cdep.ru/index.php?id=80	.work/d5/stat/cdep_80.html
+# повторный запуск 15.11.2026
