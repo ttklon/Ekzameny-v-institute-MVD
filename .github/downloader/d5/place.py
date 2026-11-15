@@ -30,14 +30,17 @@ for f in sorted(glob.glob('.github/downloader/logs/*.tsv')):
     for r in csv.reader(open(f, encoding='utf-8'), delimiter='\t'):
         if len(r) >= 9 and r[4] == 'ok': LOG[r[3]] = r
 MP = D5 + 'acts_manifest.json'
-MAN = {(m['code'], m['key']): m for m in (json.load(open(MP, encoding='utf-8')) if os.path.exists(MP) else [])}
+MAN = {(m['code'], m['key']): m for m in (json.load(open(MP, encoding='utf-8')) if os.path.exists(MP) else []) if '№ 736 (действующая редакция)' not in m['name']}
 DROP = []
 def card(url):
     m = re.search(r'nd=(\d+)', url)
     p = '.work/cards/%s.json' % (m.group(1) if m else '')
     if not m or not os.path.exists(p): return None
     return json.load(open(p, encoding='utf-8'))
+SUPER = {'mz194n': 'в базу не включён: по предмету заменён приказом Минздрава России от 08.04.2025 № 172н (в базе); утрата силы по официальному источнику не проверялась',
+         'mt85': 'в базу не включён: по предмету заменён приказом Минтруда России от 16.04.2025 № 251н (в базе); утрата силы по официальному источнику не проверялась'}
 def put(grp, key, folder, name, codes, topic, kind):
+    if key in SUPER: DROP.append(dict(key=key, name=name, why=SUPER[key], codes=codes)); return
     src = '.work/d5/%s/%s.pdf' % (grp, key); hsrc = '.work/d5/%s/%s%s.html' % (grp, H, key)
     if grp == 'cons' and not os.path.exists(src): src = src.replace('/cons/', '/cons2/'); hsrc = hsrc.replace('/cons/', '/cons2/')
     row = LOG.get(src)
@@ -59,6 +62,7 @@ def put(grp, key, folder, name, codes, topic, kind):
         m = re.search(r'\((?:ред|с изм)\. (?:и доп\. )?от (\d\d\.\d\d\.\d{4})', title)
         edition = 'редакция от %s' % m.group(1) if m else 'изменений в названии документа на сайте не указано'
         state = 'утратил силу' if re.search(r'утратил', title, re.I) else ''
+        if state: DROP.append(dict(key=key, name=name, why='по названию документа на consultant.ru — утратил силу', codes=codes)); return
     name = fit(name)
     for code in codes:
         d = S(code) + FOLD[folder]
@@ -75,7 +79,7 @@ for key, q, exp, folder, name, codes in acts.CONS: put('cons', key, folder, name
 # --- копии из собранных баз (акты там скачаны и сверены 14–15.11.2026)
 A = 'Административная деятельность полиции/2. Источники/1. Нормативные правовые акты/'; K = 'Криминалистика/2. Источники/1. Нормативные правовые акты/'
 COPY = [(c, K + '1. Конституция РФ/Конституция РФ*.pdf', 1, 'Криминалистика', 'официальный текст с изменениями, опубликован 06.10.2022 (publication.pravo.gov.ru); скан без текстового слоя') for c in DISC]
-COPY += [('upp', A + '7. Приказы МВД России/*29.08.2014 № 736 (действующая редакция).pdf', 5, 'АДП', ''), ('upp', K + '5. Ведомственные акты/Приказ МВД России № 776 и др. от 27.09.2013*.pdf', 5, 'Криминалистика', 'действует, изменений нет (consultant.ru, 15.11.2026)'),
+COPY += [('upp', K + '5. Ведомственные акты/Приказ МВД России № 776 и др. от 27.09.2013*.pdf', 5, 'Криминалистика', 'действует, изменений нет (consultant.ru, 15.11.2026)'),
          ('tsp', A + '7. Приказы МВД России/*28.06.2021 № 495 Наставление ППСП*.pdf', 5, 'АДП', 'действует с изм. от 14.08.2024; текст изменений в открытых источниках не найден'),
          ('tsp', A + '7. Приказы МВД России/*25.11.2019 № 879 Наставление*.pdf', 5, 'АДП', 'действие по открытым источникам не подтверждено'),
          ('tsp', A + '7. Приказы МВД России/*01.04.2021 № 191 *.pdf', 5, 'АДП', 'действие по открытым источникам не подтверждено'),
@@ -93,7 +97,11 @@ for code, pat, folder, base, note in COPY:
         MAN[(code, 'copy:' + name)] = dict(code=code, key='copy:' + name, grp='copy', folder=FOLD[folder], name=name, site='из базы «%s»' % base, url='', edition=note, state='', checked='15.11.2026',
                                            sha=sha(d + name), topic='', html=os.path.exists(h), base=base)
 json.dump(sorted(MAN.values(), key=lambda m: (m['code'], m['folder'], m['name'])), open(MP, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
-if DROP: json.dump(DROP, open(D5 + 'acts_dropped.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
+DP = D5 + 'acts_dropped.json'   # исходные файлы после раскладки удаляются; причина, записанная раньше, сохраняется
+OLD = {d['key']: d for d in (json.load(open(DP, encoding='utf-8')) if os.path.exists(DP) else [])}
+for d in DROP:
+    if d['why'] == 'не получен' and d['key'] in OLD: d['why'] = OLD[d['key']]['why']
+if DROP: json.dump(DROP, open(DP, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
 import collections
 print('записей:', len(MAN), dict(collections.Counter(m['code'] for m in MAN.values())))
 for d in DROP: print('  не взят:', d['key'], '|', d['why'], '|', d['name'][:70])

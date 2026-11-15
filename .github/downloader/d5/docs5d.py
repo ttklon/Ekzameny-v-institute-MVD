@@ -5,6 +5,7 @@ import os, re, sys, json, glob, hashlib, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import ROOT, DISC, D5, topics, read_list
 from sel_art import keys
+from actq import act_regex
 import fitz
 os.chdir(ROOT)
 fitz.TOOLS.mupdf_display_errors(False)
@@ -68,7 +69,11 @@ def run(code):
         m['all'] = m['key'] in MAIN[code]
         subj = m['topic'] if m['court'] else re.sub(r'^.*?№ \S+ ', '', m['name'][:-4])
         subj = re.sub(r'^Постановление (КС|Пленума ВС) РФ от \S+ № \S+ \((.*)\)$', r'\2', subj)
-        m['q'] = [] if m['all'] else match(code, subj, tt, tk)
+        if m['all']: m['q'] = []
+        elif m['court']: m['q'] = match(code, subj, tt, tk)
+        else:
+            rx = act_regex(code, m['key'], m['name'])
+            m['q'] = [t['id'] for t in tt if rx and re.search(rx, t['text'].lower().replace('ё', 'е'))]
         m['subj'] = subj
     man = [m for m in json.load(open(D5 + 'manifest_%s.json' % code, encoding='utf-8')) if os.path.exists(S + m['dst'])]
     books = [m for m in man if m['cat'] == 'book']; sci = [m for m in man if m['cat'] == 'sci']; arts = [m for m in man if m['cat'] == 'art']; emp = [m for m in man if m['cat'] == 'emp']
@@ -83,7 +88,7 @@ def run(code):
     R += ['**Литература и материалы:** учебные издания — %d (из них до 2023 года — %d); научные издания (монографии, сборники) — %d; статьи 2023–2026 годов — %d (из них в журналах с отметкой ВАК — %d); эмпирические материалы — %d.' % (
         len(books), old3, len(sci), len(arts), sum(1 for m in arts if m.get('vak')), len(emp)), '']
     R += ['Файлы скачивает загрузчик на GitHub Actions (`.github/downloader/`); каждая загрузка записана в журналы `.github/downloader/logs/` (время, адрес, размер, SHA-256). Сведения об актах — в `.github/downloader/d5/acts_manifest.json`, об изданиях и статьях — в `.github/downloader/d5/manifest_%s.json`. Контрольные суммы всех файлов — в «Контрольные суммы SHA-256.txt».' % code, '']
-    R += ['**Как назначены вопросы.** Автоматически, по совпадению ключевых слов: у актов — предмета акта и формулировки вопроса, у изданий — названия и текста первых страниц (аннотация, оглавление), у статей — названия и аннотации. Полные тексты не читались, поэтому привязка приблизительная: возможны и лишние, и пропущенные вопросы. «все» — источник по всему курсу; «общий» — к конкретному вопросу не привязан.', '']
+    R += ['**Как назначены вопросы.** У нормативных актов — по предмету регулирования: для каждого акта задан признак (ключевые слова), и акт отнесён к вопросам, в формулировке которых этот признак есть (таблица признаков — `.github/downloader/d5/actq.py`). У остального — автоматически, по совпадению ключевых слов: у судебной практики — предмета акта и формулировки вопроса, у изданий — названия, аннотации и строк оглавления, у статей — названия и аннотации. Полные тексты не читались, поэтому привязка приблизительная: возможны и лишние, и пропущенные вопросы. «все» — источник по всему курсу; «общий» — к конкретному вопросу не привязан.', '']
     R += ['## А. Что в базе', '', '### А.1. Нормативные правовые акты', '', '| Файл | Папка | Откуда | Редакция | Стр. | Вопросы |', '|---|---|---|---|---|---|']
     for m in sorted(na, key=lambda m: (m['folder'], m['name'])):
         R.append('| %s | %s | %s | %s | %s | %s |' % (esc(m['name']), m['folder'].split('/')[1], m['site'], esc(m['edition'] or '—'), m['pages'] or '—', qs(m['q'], m['all'])))
@@ -131,7 +136,9 @@ def run(code):
     R += ['### Б.1. Акты', '']
     extra = NOTES.get(code, [])
     if drop or extra:
-        for d in drop: R.append('- %s — %s.' % (d['name'], 'текст не получен' if d['why'] == 'не получен' else 'по карточке ips.pravo.gov.ru: «%s»; в базу не включён' % d['why']) + (' ' + REPL[d['key']] if d['key'] in REPL else ''))
+        for d in drop:
+            why = 'текст не получен' if d['why'] == 'не получен' else ('по карточке ips.pravo.gov.ru: «%s»; в базу не включён' % d['why'] if re.match(r'[Уу]тратил|[Нн]е действует|[Оо]тмен', d['why']) else d['why'])
+            R.append('- %s — %s.' % (d['name'], why) + (' ' + REPL[d['key']] if d['key'] in REPL else ''))
         R += ['- ' + x for x in extra]
     else: R.append('Все запланированные акты получены.')
     R += ['', '### Б.2. Вопросы без материалов', '']
