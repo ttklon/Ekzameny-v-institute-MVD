@@ -1,1 +1,2 @@
-pub	http://publication.pravo.gov.ru/api/Documents?SignatoryAuthorityId=ff850c93-e869-42ec-9547-a63dad38c204&Number=610&NumberSearchType=0&PageSize=100&Index=1#2021-08-16	.work/dl6/mvd_610_pub.pdf
+get	https://przakon.ru/prikaz-381-mvd-rf-ot-28-03-2015.html	.work/dl6/przakon_381.html
+pdf	https://przakon.ru/prikaz-381-mvd-rf-ot-28-03-2015.html	.work/dl6/mvd_381_przakon.pdf
