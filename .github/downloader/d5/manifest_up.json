@@ -144,7 +144,8 @@
 "pages": 10,
 "size": 735729,
 "q": [
-"up008"
+"up008",
+"up110"
 ],
 "general": false,
 "wide": false,
@@ -249,6 +250,25 @@
 "vak": true
 },
 {
+"key": "u2a0d31",
+"cat": "art",
+"authors": "Амирян, Зеленская",
+"title": "Проблема отграничения преступлений, связанных с похищением человека, от других смежных составов",
+"kind": "статья",
+"pub": "Epomen.Global",
+"year": 2025,
+"pages": 5,
+"size": 614656,
+"q": [
+"up059"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Амирян, Зеленская. Проблема отграничения преступлений, связанных с похищением человека, от других смежных…. Epomen.Global, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/problema-otgranicheniya-prestupleniy-svyazannyh-s-pohischeniem-cheloveka-ot-drugih-smezhnyh-sostavov",
+"vak": false
+},
+{
 "key": "ud1454a",
 "cat": "art",
 "authors": "Анимоков",
@@ -289,6 +309,44 @@
 "vak": true
 },
 {
+"key": "u1d3226",
+"cat": "art",
+"authors": "Анощенкова",
+"title": "Обстоятельство, смягчающее наказание, предусмотренное пунктом «а» части 1 статьи 61 Уголовного кодекса Российской Федерации",
+"kind": "статья",
+"pub": "Вестник Сибирского юридического института МВД России",
+"year": 2025,
+"pages": 7,
+"size": 657762,
+"q": [
+"up042"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Анощенкова. Обстоятельство, смягчающее наказание…. Вестник Сибирского юридического института МВД России, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/obstoyatelstvo-smyagchayuschee-nakazanie-predusmotrennoe-punktom-a-chasti-1-stati-61-ugolovnogo-kodeksa-rossiyskoy-federatsii",
+"vak": true
+},
+{
+"key": "u827a39",
+"cat": "art",
+"authors": "Антонов",
+"title": "Освобождение от уголовной ответственности при похищении человека в связи с оценкой общественной опасности деяния и лица, его совершившего",
+"kind": "статья",
+"pub": "Вестник Кузбасского института",
+"year": 2024,
+"pages": 7,
+"size": 576687,
+"q": [
+"up059"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Антонов. Освобождение от уголовной ответственности при похищении человека в связи…. Вестник Кузбасского института, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/osvobozhdenie-ot-ugolovnoy-otvetstvennosti-pri-pohischenii-cheloveka-v-svyazi-s-otsenkoy-obschestvennoy-opasnosti-deyaniya-i-litsa",
+"vak": true
+},
+{
 "key": "u2a3830",
 "cat": "art",
 "authors": "Антонова",
@@ -306,6 +364,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Антонова. Принцип поглощения и сложения при назначении наказаний…. Право и государство — теория и практика, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/printsip-pogloscheniya-i-slozheniya-pri-naznachenii-nakazaniy-po-sovokupnosti-prestupleniy-problemy-primeneniya",
+"vak": true
+},
+{
+"key": "u2308e4",
+"cat": "art",
+"authors": "Артыков",
+"title": "Понятийная вариативность конституционно-правовых институтов помилования и амнистии",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2025,
+"pages": 3,
+"size": 1004397,
+"q": [
+"up051"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Артыков. Понятийная вариативность конституционно-правовых институтов…. Право и государство — теория и практика, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/ponyatiynaya-variativnost-konstitutsionno-pravovyh-institutov-pomilovaniya-i-amnistii",
 "vak": true
 },
 {
@@ -597,6 +674,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Безверхов, Голенко. О соотношении Общей и Особенной частей Уголовного…. Вестник Университета имени О. Е. Кутафина, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/o-sootnoshenii-obschey-i-osobennoy-chastey-ugolovnogo-kodeksa-rossiyskoy-federatsii",
+"vak": true
+},
+{
+"key": "ud42eae",
+"cat": "art",
+"authors": "Бекман, Пилюгина",
+"title": "Критерии наличия общественной опасности",
+"kind": "статья",
+"pub": "Международный научно-исследовательский журнал",
+"year": 2025,
+"pages": 4,
+"size": 81459,
+"q": [
+"up110"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Бекман, Пилюгина. Критерии наличия общественной опасности. Международный научно-исследовательский журнал, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/kriterii-nalichiya-obschestvennoy-opasnosti",
 "vak": true
 },
 {
@@ -1046,6 +1142,44 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Валеева, Лифанова. К вопросу о правовой природе лишения…. Международный журнал гуманитарных и естественных наук, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/k-voprosu-o-pravovoy-prirode-lisheniya-svobody-na-opredelennyy-srok",
 "vak": false
+},
+{
+"key": "ucc2fc5",
+"cat": "art",
+"authors": "Варданян",
+"title": "Назначение наказания с учетом смягчающих обстоятельств",
+"kind": "статья",
+"pub": "Гуманитарные, социально-экономические и общественные науки",
+"year": 2025,
+"pages": 5,
+"size": 127138,
+"q": [
+"up042"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Варданян. Назначение наказания с учетом смягчающих…. Гуманитарные, социально-экономические и общественные науки, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/naznachenie-nakazaniya-s-uchetom-smyagchayuschih-obstoyatelstv",
+"vak": true
+},
+{
+"key": "u99ce95",
+"cat": "art",
+"authors": "Варданян",
+"title": "Практика применения смягчающих обстоятельств в российском уголовном праве",
+"kind": "статья",
+"pub": "Гуманитарные, социально-экономические и общественные науки",
+"year": 2026,
+"pages": 5,
+"size": 126598,
+"q": [
+"up042"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Варданян. Практика применения смягчающих…. Гуманитарные, социально-экономические и общественные науки, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/praktika-primeneniya-smyagchayuschih-obstoyatelstv-v-rossiyskom-ugolovnom-prave",
+"vak": true
 },
 {
 "key": "u27d26c",
@@ -1546,6 +1680,25 @@
 "vak": true
 },
 {
+"key": "uc0b4fd",
+"cat": "art",
+"authors": "Готчина, Семенова",
+"title": "Жестокое обращение с животными с применением садистских методов",
+"kind": "статья",
+"pub": "Вестник Санкт-Петербургского университета МВД России",
+"year": 2024,
+"pages": 9,
+"size": 29402420,
+"q": [
+"up087"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Готчина, Семенова. Жестокое обращение с животными…. Вестник Санкт-Петербургского университета МВД России, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/zhestokoe-obraschenie-s-zhivotnymi-s-primeneniem-sadistskih-metodov",
+"vak": true
+},
+{
 "key": "uf54b58",
 "cat": "art",
 "authors": "Грабчев",
@@ -1624,6 +1777,25 @@
 "vak": true
 },
 {
+"key": "uefb202",
+"cat": "art",
+"authors": "Гришин, Селютина",
+"title": "Некоторые вопросы уголовной ответственности за вымогательство",
+"kind": "статья",
+"pub": "Научный вестник Орловского юридического института МВД России имени В. В. Лукьянова",
+"year": 2026,
+"pages": 8,
+"size": 229229,
+"q": [
+"up070"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Гришин, Селютина. Некоторые вопросы уголовной…. Научный вестник Орловского юридического института МВД, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/nekotorye-voprosy-ugolovnoy-otvetstvennosti-za-vymogatelstvo",
+"vak": true
+},
+{
 "key": "u68bc2c",
 "cat": "art",
 "authors": "Гришко",
@@ -1659,6 +1831,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Губанова. Общее положение заведомо ложного доноса в уголовно-правовой системе. Вестник науки, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/obschee-polozhenie-zavedomo-lozhnogo-donosa-v-ugolovno-pravovoy-sisteme",
+"vak": false
+},
+{
+"key": "ua47a93",
+"cat": "art",
+"authors": "Губенкова",
+"title": "Объект похищения человека",
+"kind": "статья",
+"pub": "Символ науки",
+"year": 2023,
+"pages": 3,
+"size": 203879,
+"q": [
+"up059"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Губенкова. Объект похищения человека. Символ науки, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/obekt-pohischeniya-cheloveka",
 "vak": false
 },
 {
@@ -1933,6 +2124,25 @@
 "vak": true
 },
 {
+"key": "u5eff2a",
+"cat": "art",
+"authors": "Дондокова",
+"title": "Отграничение истязания от побоев",
+"kind": "статья",
+"pub": "Science Time",
+"year": 2025,
+"pages": 4,
+"size": 271704,
+"q": [
+"up058"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Дондокова. Отграничение истязания от побоев. Science Time, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/otgranichenie-istyazaniya-ot-poboev",
+"vak": false
+},
+{
 "key": "u24ad97",
 "cat": "art",
 "authors": "Дунин",
@@ -2027,6 +2237,25 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Ермаков, Макаренко. Расследование уголовных дел о преступлениях…. Вестник Московского университета МВД России, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/rassledovanie-ugolovnyh-del-o-prestupleniyah-svyazannyh-s-izgotovleniem-hraneniem-perevozkoy-ili-sbytom-poddelnyh-deneg-ili-tsennyh",
 "vak": true
+},
+{
+"key": "u917bc2",
+"cat": "art",
+"authors": "Ефимова",
+"title": "Проблемы квалификации истязания (ст. 117 Уголовного кодекса Российской Федерации)",
+"kind": "статья",
+"pub": "Ученые записки Казанского юридического института МВД России",
+"year": 2025,
+"pages": 8,
+"size": 462665,
+"q": [
+"up058"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Ефимова. Проблемы квалификации истязания (ст. 117…. Ученые записки Казанского юридического института МВД России, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/problemy-kvalifikatsii-istyazaniya-st-117-ugolovnogo-kodeksa-rossiyskoy-federatsii",
+"vak": false
 },
 {
 "key": "ucbf054",
@@ -2463,7 +2692,8 @@
 "pages": 8,
 "size": 532174,
 "q": [
-"up008"
+"up008",
+"up110"
 ],
 "general": false,
 "wide": false,
@@ -2889,6 +3119,7 @@
 "size": 302508,
 "q": [
 "up049",
+"up110",
 "up114"
 ],
 "general": false,
@@ -3041,6 +3272,25 @@
 "vak": true
 },
 {
+"key": "uc784f3",
+"cat": "art",
+"authors": "Ковалева, Кашкина",
+"title": "Статья 264 УК РФ в правоприменительной практике: от общих ситуаций к частным обстоятельствам (на примере судебной практики)",
+"kind": "статья",
+"pub": "Вестник Всероссийского института повышения квалификации сотрудников Министерства внутренних дел Российской Федерации",
+"year": 2026,
+"pages": 7,
+"size": 447588,
+"q": [
+"up089"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Ковалева, Кашкина. Статья 264 УК РФ в правоприменительной…. Вестник Всероссийского института повышения квалификации, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/statya-264-uk-rf-v-pravoprimenitelnoy-praktike-ot-obschih-situatsiy-k-chastnym-obstoyatelstvam-na-primere-sudebnoy-praktiki",
+"vak": true
+},
+{
 "key": "u859230",
 "cat": "art",
 "authors": "Коваленко",
@@ -3119,6 +3369,25 @@
 "vak": false
 },
 {
+"key": "u22cfa9",
+"cat": "art",
+"authors": "Кононова",
+"title": "Квалификация преступлений: теоретические основы, правоприменительная практика и пути совершенствования законодательной регламентации",
+"kind": "статья",
+"pub": "Вестник науки",
+"year": 2026,
+"pages": 8,
+"size": 376216,
+"q": [
+"up118"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Кононова. Квалификация преступлений — теоретические основы, правоприменительная практика и пути…. Вестник науки, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/kvalifikatsiya-prestupleniy-teoreticheskie-osnovy-pravoprimenitelnaya-praktika-i-puti-sovershenstvovaniya-zakonodatelnoy",
+"vak": false
+},
+{
 "key": "ubd7001",
 "cat": "art",
 "authors": "Конорезов",
@@ -3157,6 +3426,25 @@
 "vak": true
 },
 {
+"key": "ue99292",
+"cat": "art",
+"authors": "Копшева, Пономаренко",
+"title": "Гендерный аспект реализации принципов гуманизма и равенства граждан перед законом в российском уголовном праве: теоретические проблемы",
+"kind": "статья",
+"pub": "Вестник Саратовской государственной юридической академии",
+"year": 2026,
+"pages": 6,
+"size": 320640,
+"q": [
+"up002"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Копшева, Пономаренко. Гендерный аспект реализации…. Вестник Саратовской государственной юридической академии, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/gendernyy-aspekt-realizatsii-printsipov-gumanizma-i-ravenstva-grazhdan-pered-zakonom-v-rossiyskom-ugolovnom-prave-teoreticheskie",
+"vak": true
+},
+{
 "key": "u039120",
 "cat": "art",
 "authors": "Кораблёва",
@@ -3187,6 +3475,7 @@
 "size": 676661,
 "q": [
 "up015",
+"up110",
 "up114"
 ],
 "general": false,
@@ -3254,6 +3543,25 @@
 "vak": true
 },
 {
+"key": "u8cfd80",
+"cat": "art",
+"authors": "Кочесокова",
+"title": "Конкуренция уголовно-правовых норм при квалификации насильственных преступлений: проблемы теории и судебной практики",
+"kind": "статья",
+"pub": "Право и управление",
+"year": 2026,
+"pages": 5,
+"size": 357200,
+"q": [
+"up118"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Кочесокова. Конкуренция уголовно-правовых норм при квалификации насильственных преступлений…. Право и управление, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/konkurentsiya-ugolovno-pravovyh-norm-pri-kvalifikatsii-nasilstvennyh-prestupleniy-problemy-teorii-i-sudebnoy-praktiki",
+"vak": true
+},
+{
 "key": "uc3131a",
 "cat": "art",
 "authors": "Кравцов",
@@ -3308,6 +3616,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Красовская, Конина. О признаках служебного подлога. Северо-Кавказский юридический вестник, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/o-priznakah-sluzhebnogo-podloga",
+"vak": true
+},
+{
+"key": "u796f0e",
+"cat": "art",
+"authors": "Круцких",
+"title": "Исследование судом сведений о помиловании лиц, ранее принимавших участие в специальной военной операции, как обстоятельства, подлежащего доказыванию",
+"kind": "статья",
+"pub": "КриминалистЪ",
+"year": 2026,
+"pages": 8,
+"size": 250670,
+"q": [
+"up051"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Круцких. Исследование судом сведений о помиловании лиц, ранее принимавших участие в специальной…. КриминалистЪ, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/issledovanie-sudom-svedeniy-o-pomilovanii-lits-ranee-prinimavshih-uchastie-v-spetsialnoy-voennoy-operatsii-kak-obstoyatelstva",
 "vak": true
 },
 {
@@ -3430,6 +3757,25 @@
 "vak": false
 },
 {
+"key": "u3351f9",
+"cat": "art",
+"authors": "Куксин, Рыжакова",
+"title": "Проблемы правового регулирования жестокого обращения с животными",
+"kind": "статья",
+"pub": "Право и практика",
+"year": 2024,
+"pages": 4,
+"size": 360943,
+"q": [
+"up087"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Куксин, Рыжакова. Проблемы правового регулирования жестокого обращения с животными. Право и практика, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/problemy-pravovogo-regulirovaniya-zhestokogo-obrascheniya-s-zhivotnymi",
+"vak": true
+},
+{
 "key": "u179eff",
 "cat": "art",
 "authors": "Кулахсзян",
@@ -3510,6 +3856,25 @@
 "vak": true
 },
 {
+"key": "ucc0e31",
+"cat": "art",
+"authors": "Курилова, Архипцев",
+"title": "Насильственные действия сексуального характера в отношении несовершеннолетних: проблемы квалификации и совершенствования законодательства",
+"kind": "статья",
+"pub": "Научный вестник Орловского юридического института МВД России имени В. В. Лукьянова",
+"year": 2024,
+"pages": 9,
+"size": 263575,
+"q": [
+"up063"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Курилова, Архипцев. Насильственные действия сексуального…. Научный вестник Орловского юридического института МВД, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/nasilstvennye-deystviya-seksualnogo-haraktera-v-otnoshenii-nesovershennoletnih-problemy-kvalifikatsii-i-sovershenstvovaniya",
+"vak": true
+},
+{
 "key": "u53ff97",
 "cat": "art",
 "authors": "Курилова, Кутергин",
@@ -3539,12 +3904,32 @@
 "pages": 6,
 "size": 1254147,
 "q": [
-"up065"
+"up065",
+"up066"
 ],
 "general": false,
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Курилова, Максименко. К вопросу о квалификации…. Юридическая наука и практика — Вестник Нижегородской, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/k-voprosu-o-kvalifikatsii-i-otgranichenii-smezhnyh-sostavov-hischeniy-krazhi-i-moshennichestva",
+"vak": true
+},
+{
+"key": "uf244fc",
+"cat": "art",
+"authors": "Кусаинова",
+"title": "Критерии малозначительного деяния в российском уголовном праве",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2025,
+"pages": 3,
+"size": 1031841,
+"q": [
+"up110"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Кусаинова. Критерии малозначительного деяния в российском уголовном праве. Право и государство — теория и практика, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/kriterii-maloznachitelnogo-deyaniya-v-rossiyskom-ugolovnom-prave",
 "vak": true
 },
 {
@@ -3603,6 +3988,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Кушхов, Бозиев и др. Актуальные проблемы уголовной ответственности за привилегированные виды…. Право и управление, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/aktualnye-problemy-ugolovnoy-otvetstvennosti-za-privilegirovannye-vidy-ubiystv-i-puti-ih-resheniya",
+"vak": true
+},
+{
+"key": "u49eb99",
+"cat": "art",
+"authors": "Кушхов",
+"title": "Актуальные проблемы уголовно-правовой характеристики вымогательства",
+"kind": "статья",
+"pub": "Право и управление",
+"year": 2024,
+"pages": 7,
+"size": 331306,
+"q": [
+"up070"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Кушхов. Актуальные проблемы уголовно-правовой характеристики вымогательства. Право и управление, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/aktualnye-problemy-ugolovno-pravovoy-harakteristiki-vymogatelstva",
 "vak": true
 },
 {
@@ -3843,6 +4247,25 @@
 "vak": true
 },
 {
+"key": "u6a76e5",
+"cat": "art",
+"authors": "Лобанова, Малимонова",
+"title": "Обеспечение справедливости наказания при рецидиве преступлений и наличии смягчающих обстоятельств",
+"kind": "статья",
+"pub": "Legal Concept",
+"year": 2025,
+"pages": 7,
+"size": 367878,
+"q": [
+"up042"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Лобанова, Малимонова. Обеспечение справедливости наказания при рецидиве преступлений и наличии…. Legal Concept, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/obespechenie-spravedlivosti-nakazaniya-pri-retsidive-prestupleniy-i-nalichii-smyagchayuschih-obstoyatelstv",
+"vak": true
+},
+{
 "key": "u20afbe",
 "cat": "art",
 "authors": "Лобанова, Малимонова",
@@ -3891,6 +4314,7 @@
 "pages": 6,
 "size": 253212,
 "q": [
+"up059",
 "up060",
 "up077"
 ],
@@ -3938,6 +4362,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Лубенцева, Яковлева и др. К вопросу о квалификации легализации (отмывания)…. Полицейская и следственная деятельность, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/k-voprosu-o-kvalifikatsii-legalizatsii-otmyvaniya-denezhnyh-sredstv-ili-inogo-imuschestva-priobretennyh-prestupnym-putem",
+"vak": true
+},
+{
+"key": "u9a19d6",
+"cat": "art",
+"authors": "Магомедов, Алиев",
+"title": "Особенности уголовно-правовой квалификации «телефонного мошенничества» в современных условиях",
+"kind": "статья",
+"pub": "Образование и право",
+"year": 2026,
+"pages": 6,
+"size": 291605,
+"q": [
+"up066"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Магомедов, Алиев. Особенности уголовно-правовой квалификации телефонного мошенничества…. Образование и право, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/osobennosti-ugolovno-pravovoy-kvalifikatsii-telefonnogo-moshennichestva-v-sovremennyh-usloviyah",
 "vak": true
 },
 {
@@ -4389,6 +4832,25 @@
 "vak": false
 },
 {
+"key": "ud86d98",
+"cat": "art",
+"authors": "Некрасов, Напханенко и др.",
+"title": "Отграничение вымогательства от смежных составов преступлений",
+"kind": "статья",
+"pub": "Юридическая наука и правоохранительная практика",
+"year": 2024,
+"pages": 8,
+"size": 104719,
+"q": [
+"up070"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Некрасов, Напханенко и др. Отграничение вымогательства от…. Юридическая наука и правоохранительная практика, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/otgranichenie-vymogatelstva-ot-smezhnyh-sostavov-prestupleniy",
+"vak": true
+},
+{
 "key": "ucacd12",
 "cat": "art",
 "authors": "Немчинова",
@@ -4504,6 +4966,25 @@
 "vak": false
 },
 {
+"key": "udf1f75",
+"cat": "art",
+"authors": "Николаева, Дробот",
+"title": "Особенности квалификации незаконного лишения свободы",
+"kind": "статья",
+"pub": "Вестник магистратуры",
+"year": 2024,
+"pages": 3,
+"size": 741780,
+"q": [
+"up060"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Николаева, Дробот. Особенности квалификации незаконного лишения свободы. Вестник магистратуры, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/osobennosti-kvalifikatsii-nezakonnogo-lisheniya-svobody",
+"vak": false
+},
+{
 "key": "u1d54a4",
 "cat": "art",
 "authors": "Николаева, Рябчиков",
@@ -4521,6 +5002,44 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Николаева, Рябчиков. Уголовная ответственность за побои — проблемы правового…. Аграрное и земельное право, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/ugolovnaya-otvetstvennost-za-poboi-problemy-pravovogo-regulirovaniya",
+"vak": true
+},
+{
+"key": "u6dbac2",
+"cat": "art",
+"authors": "Никушин",
+"title": "Преступления против безопасности дорожного движения, совершаемые в состоянии опьянения: проблемы теории и правоприменения",
+"kind": "статья",
+"pub": "Российский научный вестник",
+"year": 2026,
+"pages": 7,
+"size": 105730,
+"q": [
+"up089"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Никушин. Преступления против безопасности дорожного движения, совершаемые в состоянии…. Российский научный вестник, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/prestupleniya-protiv-bezopasnosti-dorozhnogo-dvizheniya-sovershaemye-v-sostoyanii-opyaneniya-problemy-teorii-i-pravoprimeneniya",
+"vak": true
+},
+{
+"key": "uc1ba82",
+"cat": "art",
+"authors": "Нифталиева",
+"title": "Принципы уголовного права сквозь призму философских концепций справедливости",
+"kind": "статья",
+"pub": "Вестник Волгоградской академии МВД России",
+"year": 2026,
+"pages": 7,
+"size": 356756,
+"q": [
+"up002"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Нифталиева. Принципы уголовного права сквозь призму философских…. Вестник Волгоградской академии МВД России, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/printsipy-ugolovnogo-prava-skvoz-prizmu-filosofskih-kontseptsiy-spravedlivosti",
 "vak": true
 },
 {
@@ -4561,6 +5080,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Новикова. Влияние рецидива преступлений на назначение наказания. Вестник науки, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/vliyanie-retsidiva-prestupleniy-na-naznachenie-nakazaniya",
+"vak": false
+},
+{
+"key": "u1b188b",
+"cat": "art",
+"authors": "Новикова",
+"title": "Спорные вопросы квалификации истязания",
+"kind": "статья",
+"pub": "Вестник магистратуры",
+"year": 2026,
+"pages": 3,
+"size": 334363,
+"q": [
+"up058"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Новикова. Спорные вопросы квалификации истязания. Вестник магистратуры, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/spornye-voprosy-kvalifikatsii-istyazaniya",
 "vak": false
 },
 {
@@ -4761,6 +5299,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Павлик. Уголовно-правовые и криминологические меры противодействия нарушению…. Ленинградский юридический журнал, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/ugolovno-pravovye-i-kriminologicheskie-mery-protivodeystviya-narusheniyu-pravil-dorozhnogo-dvizheniya-i-ekspluatatsii-transportnyh",
+"vak": true
+},
+{
+"key": "u3a17df",
+"cat": "art",
+"authors": "Павлов",
+"title": "Правовые последствия судимости: парадоксы конституционного толкования",
+"kind": "статья",
+"pub": "Сибирский юридический вестник",
+"year": 2025,
+"pages": 8,
+"size": 189801,
+"q": [
+"up051"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Павлов. Правовые последствия судимости — парадоксы конституционного толкования. Сибирский юридический вестник, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/pravovye-posledstviya-sudimosti-paradoksy-konstitutsionnogo-tolkovaniya",
 "vak": true
 },
 {
@@ -5115,6 +5672,25 @@
 "vak": false
 },
 {
+"key": "u4f58a1",
+"cat": "art",
+"authors": "Попова",
+"title": "Особенности назначения наказания за насильственные действия сексуального характера: проблемы судебной практики и пути решения",
+"kind": "статья",
+"pub": "Символ науки",
+"year": 2026,
+"pages": 4,
+"size": 141814,
+"q": [
+"up063"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Попова. Особенности назначения наказания за насильственные действия сексуального характера…. Символ науки, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/osobennosti-naznacheniya-nakazaniya-za-nasilstvennye-deystviya-seksualnogo-haraktera-problemy-sudebnoy-praktiki-i-puti-resheniya",
+"vak": false
+},
+{
 "key": "uc011cc",
 "cat": "art",
 "authors": "Попова",
@@ -5133,6 +5709,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Попова. Становление и развитие института уголовной…. Вестник Всероссийского института повышения квалификации, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/stanovlenie-i-razvitie-instituta-ugolovnoy-otvetstvennosti-za-nezakonnyy-oborot-narkoticheskih-sredstv-i-psihotropnyh-veschestv",
+"vak": true
+},
+{
+"key": "u498e23",
+"cat": "art",
+"authors": "Прихожая, Горовой",
+"title": "Правоприменительные проблемы уголовной ответственности за отдельные виды мошенничества",
+"kind": "статья",
+"pub": "Аграрное и земельное право",
+"year": 2025,
+"pages": 3,
+"size": 1001390,
+"q": [
+"up066"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Прихожая, Горовой. Правоприменительные проблемы уголовной ответственности…. Аграрное и земельное право, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/pravoprimenitelnye-problemy-ugolovnoy-otvetstvennosti-za-otdelnye-vidy-moshennichestva",
 "vak": true
 },
 {
@@ -5171,6 +5766,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Прохоров, Полтавец. Специальные правила в…. Труды Института государства и права Российской академии наук, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/spetsialnye-pravila-v-doktrinalno-prikladnom-kontsepte-instituta-naznacheniya-nakazaniya",
+"vak": true
+},
+{
+"key": "uc35325",
+"cat": "art",
+"authors": "Прудникова, Коваленко и др.",
+"title": "Особенности определения «группы лиц по предварительному сговору» как юридического критерия признания грабежа или разбоя квалифицированным составом",
+"kind": "статья",
+"pub": "Юристъ - Правоведъ",
+"year": 2025,
+"pages": 6,
+"size": 930613,
+"q": [
+"up068"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Прудникова, Коваленко и др. Особенности определения группы лиц по предварительному сговору…. Юристъ - Правоведъ, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/osobennosti-opredeleniya-gruppy-lits-po-predvaritelnomu-sgovoru-kak-yuridicheskogo-kriteriya-priznaniya-grabezha-ili-razboya",
 "vak": true
 },
 {
@@ -5293,6 +5907,25 @@
 "vak": true
 },
 {
+"key": "u78ff38",
+"cat": "art",
+"authors": "Рахимов",
+"title": "К вопросу о системе принципов уголовного права",
+"kind": "статья",
+"pub": "Юридическая наука и практика: Вестник Нижегородской академии МВД России",
+"year": 2025,
+"pages": 7,
+"size": 1273696,
+"q": [
+"up002"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Рахимов. К вопросу о системе принципов уголовного права. Юридическая наука и практика — Вестник Нижегородской, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-o-sisteme-printsipov-ugolovnogo-prava-1",
+"vak": true
+},
+{
 "key": "uad7158",
 "cat": "art",
 "authors": "Решетников",
@@ -5328,6 +5961,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Рогова. Особенности квалификации хулиганства по совокупности с другими…. Право и государство — теория и практика, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/osobennosti-kvalifikatsii-huliganstva-po-sovokupnosti-s-drugimi-prestupleniyami",
+"vak": true
+},
+{
+"key": "uc1dec6",
+"cat": "art",
+"authors": "Рожнов",
+"title": "Есть ли будущее у положений Уголовного кодекса России об изменении категории преступления?",
+"kind": "статья",
+"pub": "Вестник Волгоградской академии МВД России",
+"year": 2026,
+"pages": 12,
+"size": 242051,
+"q": [
+"up110"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Рожнов. Есть ли будущее у положений Уголовного кодекса России…. Вестник Волгоградской академии МВД России, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/est-li-buduschee-u-polozheniy-ugolovnogo-kodeksa-rossii-ob-izmenenii-kategorii-prestupleniya",
 "vak": true
 },
 {
@@ -5653,6 +6305,44 @@
 "vak": true
 },
 {
+"key": "u388099",
+"cat": "art",
+"authors": "Сафонов",
+"title": "Отраслевая принадлежность квалификации преступлений",
+"kind": "статья",
+"pub": "Известия Тульского государственного университета. Экономические и юридические науки",
+"year": 2023,
+"pages": 9,
+"size": 237362,
+"q": [
+"up118"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Сафонов. Отраслевая принадлежность квалификации преступлений. Известия Тульского государственного университета., 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/otraslevaya-prinadlezhnost-kvalifikatsii-prestupleniy",
+"vak": true
+},
+{
+"key": "udb7477",
+"cat": "art",
+"authors": "Сахнова",
+"title": "Криминологическая характеристика побоев и истязаний и их предупреждение",
+"kind": "статья",
+"pub": "Вестник науки и образования",
+"year": 2025,
+"pages": 4,
+"size": 264407,
+"q": [
+"up058"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Сахнова. Криминологическая характеристика побоев и истязаний и их предупреждение. Вестник науки и образования, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/kriminologicheskaya-harakteristika-poboev-i-istyazaniy-i-ih-preduprezhdenie",
+"vak": false
+},
+{
 "key": "u25ef11",
 "cat": "art",
 "authors": "Сачков",
@@ -5884,6 +6574,25 @@
 "vak": true
 },
 {
+"key": "ud4ac15",
+"cat": "art",
+"authors": "Симоненко, Мартынова",
+"title": "Особенности уголовно-правовой квалификации похищения человека",
+"kind": "статья",
+"pub": "Вестник науки",
+"year": 2023,
+"pages": 5,
+"size": 254831,
+"q": [
+"up059"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Симоненко, Мартынова. Особенности уголовно-правовой квалификации похищения человека. Вестник науки, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/osobennosti-ugolovno-pravovoy-kvalifikatsii-pohischeniya-cheloveka-1",
+"vak": false
+},
+{
 "key": "ubdf43a",
 "cat": "art",
 "authors": "Синёв",
@@ -5900,6 +6609,44 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Синёв. Социальные свойства истязаний их общественные связи и негативные последствия. Образование и право, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/sotsialnye-svoystva-istyazaniy-ih-obschestvennye-svyazi-i-negativnye-posledstviya",
+"vak": true
+},
+{
+"key": "u848f0b",
+"cat": "art",
+"authors": "Ситникова",
+"title": "Альтернативные составы мошенничества: проблемы и решения",
+"kind": "статья",
+"pub": "Юридический вестник Самарского университета",
+"year": 2025,
+"pages": 6,
+"size": 364512,
+"q": [
+"up066"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Ситникова. Альтернативные составы мошенничества — проблемы и решения. Юридический вестник Самарского университета, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/alternativnye-sostavy-moshennichestva-problemy-i-resheniya",
+"vak": true
+},
+{
+"key": "u55f6e2",
+"cat": "art",
+"authors": "Ситникова",
+"title": "Мошенничество в свете законодательной текстологии",
+"kind": "статья",
+"pub": "Юридическая наука и практика: Вестник Нижегородской академии МВД России",
+"year": 2025,
+"pages": 7,
+"size": 1226875,
+"q": [
+"up066"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Ситникова. Мошенничество в свете законодательной текстологии. Юридическая наука и практика — Вестник Нижегородской, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/moshennichestvo-v-svete-zakonodatelnoy-tekstologii",
 "vak": true
 },
 {
@@ -5983,6 +6730,25 @@
 "vak": true
 },
 {
+"key": "u26e63c",
+"cat": "art",
+"authors": "Случевская",
+"title": "Компенсационная и восстановительная функции уголовного права",
+"kind": "статья",
+"pub": "Вестник Санкт-Петербургского университета МВД России",
+"year": 2024,
+"pages": 15,
+"size": 629381,
+"q": [
+"up002"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Случевская. Компенсационная и восстановительная функции…. Вестник Санкт-Петербургского университета МВД России, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/kompensatsionnaya-i-vosstanovitelnaya-funktsii-ugolovnogo-prava",
+"vak": true
+},
+{
 "key": "u43c67c",
 "cat": "art",
 "authors": "Сметанин",
@@ -6019,6 +6785,44 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Сметанин. Разглашение государственной тайны…. Международный журнал гуманитарных и естественных наук, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/razglashenie-gosudarstvennoy-tayny-subektivnye-priznaki",
 "vak": false
+},
+{
+"key": "u43dbd8",
+"cat": "art",
+"authors": "Соболь",
+"title": "Значение объективной стороны в структуре состава транспортного преступления",
+"kind": "статья",
+"pub": "Закон и право",
+"year": 2026,
+"pages": 5,
+"size": 219958,
+"q": [
+"up089"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Соболь. Значение объективной стороны в структуре состава транспортного преступления. Закон и право, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/znachenie-obektivnoy-storony-v-strukture-sostava-transportnogo-prestupleniya",
+"vak": true
+},
+{
+"key": "udd291c",
+"cat": "art",
+"authors": "Соболь",
+"title": "Значение субъективной стороны в структуре составов транспортных преступлений",
+"kind": "статья",
+"pub": "Закон и право",
+"year": 2026,
+"pages": 6,
+"size": 271950,
+"q": [
+"up089"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Соболь. Значение субъективной стороны в структуре составов транспортных преступлений. Закон и право, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/znachenie-subektivnoy-storony-v-strukture-sostavov-transportnyh-prestupleniy",
+"vak": true
 },
 {
 "key": "u38a2c7",
@@ -6218,6 +7022,25 @@
 "vak": false
 },
 {
+"key": "u6330e5",
+"cat": "art",
+"authors": "Суспицына",
+"title": "Меры противодействия жестокому обращению с животными: вопросы межотраслевого подхода",
+"kind": "статья",
+"pub": "Вестник Университета имени О. Е. Кутафина",
+"year": 2024,
+"pages": 8,
+"size": 390611,
+"q": [
+"up087"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Суспицына. Меры противодействия жестокому обращению с животными…. Вестник Университета имени О. Е. Кутафина, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/mery-protivodeystviya-zhestokomu-obrascheniyu-s-zhivotnymi-voprosy-mezhotraslevogo-podhoda",
+"vak": true
+},
+{
 "key": "u3d29ed",
 "cat": "art",
 "authors": "Сысоева, Сысоев",
@@ -6276,6 +7099,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Таранов. Причинение вреда при задержании лица, совершившего преступление…. Аграрное и земельное право, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/prichinenie-vreda-pri-zaderzhanii-litsa-sovershivshego-prestuplenie-osobennosti-sudebnogo-i-doktrinalnogo-tolkovaniya-ugolovnogo",
+"vak": true
+},
+{
+"key": "u108ed6",
+"cat": "art",
+"authors": "Таркинский, Магомедов",
+"title": "Проблемы разграничения грабежа и разбоя от смежных составов преступлений",
+"kind": "статья",
+"pub": "Право и управление",
+"year": 2025,
+"pages": 4,
+"size": 309087,
+"q": [
+"up068"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Таркинский, Магомедов. Проблемы разграничения грабежа и разбоя от смежных составов преступлений. Право и управление, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/problemy-razgranicheniya-grabezha-i-razboya-ot-smezhnyh-sostavov-prestupleniy",
 "vak": true
 },
 {
@@ -6347,7 +7189,8 @@
 "pages": 6,
 "size": 472236,
 "q": [
-"up008"
+"up008",
+"up110"
 ],
 "general": false,
 "wide": false,
@@ -6392,6 +7235,25 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Тибилова, Кокоева. Проблемы практики применения условного…. Международный журнал гуманитарных и естественных наук, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/problemy-praktiki-primeneniya-uslovnogo-osuzhdeniya",
 "vak": false
+},
+{
+"key": "ua5506b",
+"cat": "art",
+"authors": "Тищенко, Вилкова",
+"title": "Снятие судимости: перспективы законодательного совершенствования",
+"kind": "статья",
+"pub": "Право и управление",
+"year": 2026,
+"pages": 6,
+"size": 358913,
+"q": [
+"up051"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Тищенко, Вилкова. Снятие судимости — перспективы законодательного совершенствования. Право и управление, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/snyatie-sudimosti-perspektivy-zakonodatelnogo-sovershenstvovaniya",
+"vak": true
 },
 {
 "key": "uec426e",
@@ -6470,6 +7332,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Трайнин. К учению о соучастии. Труды Института государства и права Российской академии наук, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/k-ucheniyu-o-souchastii",
+"vak": true
+},
+{
+"key": "u0a8b95",
+"cat": "art",
+"authors": "Тугутова",
+"title": "Теоретические подходы к исследованию механизма разрешения конку ренции правовых норм при квалификации преступлений",
+"kind": "статья",
+"pub": "Вестник Университета прокуратуры Российской Федерации",
+"year": 2025,
+"pages": 5,
+"size": 164009,
+"q": [
+"up118"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Тугутова. Теоретические подходы к исследованию механизма…. Вестник Университета прокуратуры Российской Федерации, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/teoreticheskie-podhody-k-issledovaniyu-mehanizma-razresheniya-konku-rentsii-pravovyh-norm-pri-kvalifikatsii-prestupleniy",
 "vak": true
 },
 {
@@ -6628,6 +7509,25 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Уфимцев. Уголовно-правовая характеристика объективных признаков незаконной…. Судебная экспертиза и исследования, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/ugolovno-pravovaya-harakteristika-obektivnyh-priznakov-nezakonnoy-ohoty-sovershaemoy-s-primeneniem-transportnogo-sredstva",
 "vak": true
+},
+{
+"key": "ufed7e2",
+"cat": "art",
+"authors": "Файзуллина, Фархутдинова",
+"title": "Особенности расследования похищения человека и незаконного лишения свободы",
+"kind": "статья",
+"pub": "Международный журнал гуманитарных и естественных наук",
+"year": 2026,
+"pages": 5,
+"size": 614461,
+"q": [
+"up060"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Файзуллина, Фархутдинова. Особенности расследования похищения…. Международный журнал гуманитарных и естественных на.pdf",
+"url": "https://cyberleninka.ru/article/n/osobennosti-rassledovaniya-pohischeniya-cheloveka-i-nezakonnogo-lisheniya-svobody",
+"vak": false
 },
 {
 "key": "u059051",
@@ -6877,7 +7777,8 @@
 "pages": 10,
 "size": 336925,
 "q": [
-"up008"
+"up008",
+"up110"
 ],
 "general": false,
 "wide": false,
@@ -7023,6 +7924,25 @@
 "vak": true
 },
 {
+"key": "u1b902b",
+"cat": "art",
+"authors": "Хомутова, Давтян",
+"title": "Шантаж как способ вымогательства",
+"kind": "статья",
+"pub": "Legal Bulletin",
+"year": 2025,
+"pages": 13,
+"size": 332124,
+"q": [
+"up070"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Хомутова, Давтян. Шантаж как способ вымогательства. Legal Bulletin, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/shantazh-kak-sposob-vymogatelstva",
+"vak": true
+},
+{
 "key": "uc9d174",
 "cat": "art",
 "authors": "Храмов",
@@ -7079,6 +7999,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Чапурко, Картавченко и др. Банда как разновидность организованной группы…. Актуальные проблемы государства и права, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/banda-kak-raznovidnost-organizovannoy-gruppy-i-ee-otlichie-ot-vooruzhennoy-gruppy-vinovnoy-v-sovershenii-razboynogo-napadeniya",
+"vak": true
+},
+{
+"key": "u30e342",
+"cat": "art",
+"authors": "Чемез, Севастьянов",
+"title": "К вопросу об отграничении кражи от грабежа",
+"kind": "статья",
+"pub": "Право и управление",
+"year": 2024,
+"pages": 4,
+"size": 276547,
+"q": [
+"up068"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Чемез, Севастьянов. К вопросу об отграничении кражи от грабежа. Право и управление, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-ob-otgranichenii-krazhi-ot-grabezha",
 "vak": true
 },
 {
@@ -7204,6 +8143,25 @@
 "vak": true
 },
 {
+"key": "u5faede",
+"cat": "art",
+"authors": "Шаназарова, Воронцова",
+"title": "К вопросу о назначении наказания за жестокое обращение с животными",
+"kind": "статья",
+"pub": "Аграрное и земельное право",
+"year": 2024,
+"pages": 3,
+"size": 335778,
+"q": [
+"up087"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Шаназарова, Воронцова. К вопросу о назначении наказания за жестокое обращение…. Аграрное и земельное право, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-o-naznachenii-nakazaniya-za-zhestokoe-obraschenie-s-zhivotnymi",
+"vak": true
+},
+{
 "key": "ufdea4c",
 "cat": "art",
 "authors": "Шаназарова",
@@ -7260,6 +8218,25 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Шарнин. Отграничение насильственных форм хищения от иных смежных составов. Академическая наука, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/otgranichenie-nasilstvennyh-form-hischeniya-ot-inyh-smezhnyh-sostavov",
 "vak": false
+},
+{
+"key": "uc91f73",
+"cat": "art",
+"authors": "Шарнин",
+"title": "Понятие общественной опасности в теории уголовного права",
+"kind": "статья",
+"pub": "Право и управление",
+"year": 2026,
+"pages": 7,
+"size": 366574,
+"q": [
+"up110"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Шарнин. Понятие общественной опасности в теории уголовного права. Право и управление, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/ponyatie-obschestvennoy-opasnosti-v-teorii-ugolovnogo-prava",
+"vak": true
 },
 {
 "key": "uc61181",
@@ -7534,6 +8511,7 @@
 "size": 187730,
 "q": [
 "up014",
+"up089",
 "up113"
 ],
 "general": false,
@@ -7675,6 +8653,44 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Якушин. Эмоции как признак субъективной стороны преступления…. Вестник Волжского университета им. В. Н. Татищева, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/emotsii-kak-priznak-subektivnoy-storony-prestupleniya-i-ih-znachenie-v-ugolovnom-prave",
 "vak": true
+},
+{
+"key": "ud99e95",
+"cat": "art",
+"authors": "Ярошенко",
+"title": "Защита прав несовершеннолетних от сексуального насилия: реализация положений статьи 132 Уголовного кодекса Российской Федерации в судебной практике",
+"kind": "статья",
+"pub": "Евразийская адвокатура",
+"year": 2024,
+"pages": 6,
+"size": 255344,
+"q": [
+"up063"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Ярошенко. Защита прав несовершеннолетних от сексуального насилия — реализация положений…. Евразийская адвокатура, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/zaschita-prav-nesovershennoletnih-ot-seksualnogo-nasiliya-realizatsiya-polozheniy-stati-132-ugolovnogo-kodeksa-rossiyskoy",
+"vak": true
+},
+{
+"key": "u4050ab",
+"cat": "art",
+"authors": "Яшков",
+"title": "Насильственные действия сексуального характера, совершенные в отношении несовершеннолетних, соединенные с угрозами применения насилия (ст. 132 УК РФ): сложности квалификации (по материалам судебной практики)",
+"kind": "статья",
+"pub": "Epomen.Global",
+"year": 2025,
+"pages": 5,
+"size": 277168,
+"q": [
+"up063"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Яшков. Насильственные действия сексуального характера, совершенные в отношении несовершеннолетних…. Epomen.Global, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/nasilstvennye-deystviya-seksualnogo-haraktera-sovershennye-v-otnoshenii-nesovershennoletnih-soedinennye-s-ugrozami-primeneniya",
+"vak": false
 },
 {
 "key": "ub209cc8",
