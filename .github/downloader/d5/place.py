@@ -91,10 +91,19 @@ for key, q, exp, folder, name, codes in acts.CONS: put('cons', key, folder, name
 # --- документы, взятые не с consultant.ru: там они открыты только по расписанию (рабочие дни 20:00–24:00 мск, выходные)
 ALT = {'pact': dict(src='.work/d5/alt/pact.pdf', html='.work/d5/alt/pact.html', site='un.org (официальный сайт ООН)',
                     url='https://www.un.org/ru/documents/decl_conv/conventions/pactpol.shtml',
-                    edition='текст на русском языке с сайта ООН (United Nations Treaty Series, vol. 999, p. 225–240); страница сайта сохранена как есть')}
+                    edition='текст на русском языке с сайта ООН (United Nations Treaty Series, vol. 999, p. 225–240); страница сайта сохранена как есть'),
+       'extr': dict(src='.work/d5/alt/extr.pdf', html='.work/d5/alt/Исходные страницы (HTML)/extr.html', site='normativ.kontur.ru (справочная система «Контур.Норматив»)',
+                    url='https://normativ.kontur.ru/document?moduleId=1&documentId=303278',
+                    edition='редакция от 20.09.2012 (с дополнительными протоколами), по отметке сайта действует с 01.09.2017; статус на сайте — «Действует»; не официальный источник'),
+       'mlat': dict(src='.work/d5/alt/mlat.pdf', html='.work/d5/alt/Исходные страницы (HTML)/mlat.html', site='normativ.kontur.ru (справочная система «Контур.Норматив»)',
+                    url='https://normativ.kontur.ru/document?moduleId=1&documentId=36823',
+                    edition='текст Конвенции от 20.04.1959 без дополнительных протоколов, по отметке сайта действует для России с 09.03.2000; статус на сайте — «Действует»; не официальный источник')}
 for key, q, exp, folder, name, codes in acts.CONS:
     a = ALT.get(key)
-    if not a or not os.path.exists(a['src']): continue
+    if not a: continue
+    if not os.path.exists(a['src']):   # исходный файл уже удалён: документ размещён прежним запуском
+        if all((code, key) in MAN for code in codes.split()): DROP[:] = [x for x in DROP if x['key'] != key]
+        continue
     name = fit(name)
     for code in codes.split():
         d = S(code) + FOLD[folder]; os.makedirs(d + H, exist_ok=True)
@@ -133,7 +142,7 @@ SCHED = ('текст не получен: страница документа н
          'Вероятная причина — расписание сайта: такая же страница Международного пакта о гражданских и политических правах, сохранённая в тот же час, содержит объявление, '
          'что документ открыт в рабочие дни с 20:00 до 24:00 по московскому времени, а в выходные и праздничные дни в любое время. Сама страница этого документа на такое объявление не проверялась; '
          'поиск другого открытого источника (поиск в интернете 16.11.2026) пригодных адресов не дал')
-WHY = {'extr': SCHED, 'mlat': SCHED,
+WHY = {
        '20080624_11': 'на странице документа consultant.ru стоит отметка «Документ утратил силу или отменен»; из базы убран. Признан утратившим силу постановлением Пленума ВС РФ '
                       'от 21.05.2026 № 15 «О подготовке гражданских дел к судебному разбирательству» — оно в базе'}
 for d in DROP:
