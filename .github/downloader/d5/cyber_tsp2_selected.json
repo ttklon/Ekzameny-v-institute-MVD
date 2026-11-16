@@ -1682,5 +1682,418 @@
 "wide": false,
 "general": false,
 "n": "scb684d"
+},
+{
+"slug": "/article/n/osobennosti-podgotovki-vneshtatnyh-snayperskih-grupp-v-obrazovatelnoy-organizatsii-mvd-rossii",
+"year": "2023",
+"vak": true,
+"journal": "Полицейская деятельность",
+"authors": "Удилов Тимофей Васильевич; Винокуров Виталий Николаевич",
+"title": "ОСОБЕННОСТИ ПОДГОТОВКИ ВНЕШТАТНЫХ СНАЙПЕРСКИХ ГРУПП В ОБРАЗОВАТЕЛЬНОЙ ОРГАНИЗАЦИИ МВД РОССИИ",
+"group": "spec",
+"t": [
+"tsp036"
+],
+"wide": false,
+"general": false,
+"n": "se282af"
+},
+{
+"slug": "/article/n/ob-aktualnosti-sovershenstvovaniya-deyatelnosti-podrazdeleniy-rosgvardii-v-osobyh-usloviyah",
+"year": "2023",
+"vak": false,
+"journal": "Академическая мысль",
+"authors": "Петунин Игорь Игоревич; Синодов Иван Анатольевич",
+"title": "Об актуальности совершенствования деятельности подразделений Росгвардии в особых условиях",
+"group": "spec",
+"t": [
+"tsp002",
+"tsp003",
+"tsp005",
+"tsp007",
+"tsp009",
+"tsp011",
+"tsp013",
+"tsp019",
+"tsp024",
+"tsp029",
+"tsp031",
+"tsp034",
+"tsp035",
+"tsp036",
+"tsp037",
+"tsp039",
+"tsp040",
+"tsp041",
+"tsp043",
+"tsp047",
+"tsp051"
+],
+"wide": true,
+"general": false,
+"n": "s0f906e"
+},
+{
+"slug": "/article/n/razvitie-sistemy-svyazi-territorialnyh-organov-mvd-rossii-pri-chrezvychaynyh-obstoyatelstvah",
+"year": "2023",
+"vak": false,
+"journal": "Академическая мысль",
+"authors": "Грищенко Леонид Леонидович; Головин Роман Геннадьевич",
+"title": "РАЗВИТИЕ СИСТЕМЫ СВЯЗИ ТЕРРИТОРИАЛЬНЫХ ОРГАНОВ МВД РОССИИ ПРИ ЧРЕЗВЫЧАЙНЫХ ОБСТОЯТЕЛЬСТВАХ",
+"group": "spec",
+"t": [
+"tsp003",
+"tsp007",
+"tsp036"
+],
+"wide": false,
+"general": false,
+"n": "sd9640a"
+},
+{
+"slug": "/article/n/informatsionnye-tehnologii-v-ohrane-obschestvennogo-poryadka-i-obespechenii-obschestvennoy-bezopasnosti-pri-provedenii-publichnyh-i",
+"year": "2024",
+"vak": false,
+"journal": "Академическая мысль",
+"authors": "Шайдаев Мирзабек Шайдаевич",
+"title": "Информационные технологии в охране общественного порядка и обеспечении общественной безопасности при проведении публичных и иных массовых мероприятий",
+"group": "mm",
+"t": [
+"tsp018",
+"tsp052",
+"tsp053",
+"tsp054",
+"tsp055",
+"tsp056"
+],
+"wide": false,
+"general": false,
+"n": "s1a64ce"
+},
+{
+"slug": "/article/n/k-voprosu-o-formirovanii-lichnoy-bezopasnosti-sotrudnika-politsii-v-situatsiyah-zaschitno-atakuyuschih-deystviy",
+"year": "2023",
+"vak": false,
+"journal": "Автономия личности",
+"authors": "Еремин Роман Владимирович",
+"title": "К ВОПРОСУ О ФОРМИРОВАНИИ ЛИЧНОЙ БЕЗОПАСНОСТИ СОТРУДНИКА ПОЛИЦИИ В СИТУАЦИЯХ ЗАЩИТНО-АТАКУЮЩИХ ДЕЙСТВИЙ",
+"group": "poisk",
+"t": [
+"tsp002",
+"tsp006",
+"tsp008",
+"tsp010",
+"tsp012",
+"tsp024",
+"tsp026",
+"tsp027",
+"tsp028",
+"tsp030",
+"tsp033",
+"tsp038",
+"tsp040",
+"tsp050",
+"tsp051",
+"tsp057",
+"tsp058",
+"tsp059",
+"tsp060"
+],
+"wide": true,
+"general": false,
+"n": "sea61dd"
+},
+{
+"slug": "/article/n/k-voprosu-o-povyshenii-urovnya-lichnoy-bezopasnosti-sotrudnika-politsii-pri-ognevom-kontakte",
+"year": "2023",
+"vak": false,
+"journal": "Проблемы правоохранительной деятельности",
+"authors": "Ю. Н. Кириченко; А. А. Тарасенко",
+"title": "К ВОПРОСУ О ПОВЫШЕНИИ УРОВНЯ ЛИЧНОЙ БЕЗОПАСНОСТИ СОТРУДНИКА ПОЛИЦИИ ПРИ ОГНЕВОМ КОНТАКТЕ",
+"group": "poisk",
+"t": [
+"tsp002",
+"tsp006",
+"tsp008",
+"tsp010",
+"tsp012",
+"tsp024",
+"tsp026",
+"tsp027",
+"tsp028",
+"tsp030",
+"tsp033",
+"tsp038",
+"tsp040",
+"tsp050",
+"tsp051",
+"tsp057",
+"tsp058",
+"tsp059",
+"tsp060"
+],
+"wide": true,
+"general": false,
+"n": "s287d24"
+},
+{
+"slug": "/article/n/osobennosti-obespechenie-lichnoy-bezopasnosti-sotrudnika-politsii-pri-fizicheskom-kontakte-s-prestupnikom",
+"year": "2023",
+"vak": false,
+"journal": "E-Scio",
+"authors": "Бордачев А. Ю.",
+"title": "ОСОБЕННОСТИ ОБЕСПЕЧЕНИЕ ЛИЧНОЙ БЕЗОПАСНОСТИ СОТРУДНИКА ПОЛИЦИИ ПРИ ФИЗИЧЕСКОМ КОНТАКТЕ С ПРЕСТУПНИКОМ",
+"group": "poisk",
+"t": [
+"tsp006",
+"tsp030",
+"tsp051"
+],
+"wide": false,
+"general": false,
+"n": "sd9cbd0"
+},
+{
+"slug": "/article/n/modelirovanie-situatsiy-povyshennogo-riska-metodicheskie-podhody-k-provedeniyu-taktiko-spetsialnoy-podgotovki-po-zaderzhaniyu",
+"year": "2026",
+"vak": false,
+"journal": "Human Progress",
+"authors": "Силантьев Александр Вячеславович; Ситалиев Бийжан Жамбрыбаевич; Шатохин Александр Сергеевич",
+"title": "Моделирование ситуаций повышенного риска: методические подходы к проведению тактико-специальной подготовки по задержанию вооруженных преступников",
+"group": "poisk",
+"t": [
+"tsp002",
+"tsp006",
+"tsp008",
+"tsp010",
+"tsp026",
+"tsp030",
+"tsp038",
+"tsp040",
+"tsp051",
+"tsp057",
+"tsp058",
+"tsp059"
+],
+"wide": false,
+"general": false,
+"n": "s0a8721"
+},
+{
+"slug": "/article/n/osobennosti-zaderzhaniya-osobo-opasnogo-prestupnika",
+"year": "2024",
+"vak": false,
+"journal": "Международный журнал гуманитарных и естественных наук",
+"authors": "А. Ю. Бордачев",
+"title": "ОСОБЕННОСТИ ЗАДЕРЖАНИЯ ОСОБО ОПАСНОГО ПРЕСТУПНИКА",
+"group": "poisk",
+"t": [
+"tsp002",
+"tsp006",
+"tsp026",
+"tsp030",
+"tsp040",
+"tsp051",
+"tsp057"
+],
+"wide": false,
+"general": false,
+"n": "s6d6f11"
+},
+{
+"slug": "/article/n/sovremennye-podhody-k-kontrolyu-i-otsenki-znaniy-umeniy-i-navykov-po-voennoy-topografii-kursantov-obrazovatelnyh-organizatsiy-fsin",
+"year": "2024",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Гофман Александр Анатольевич",
+"title": "СОВРЕМЕННЫЕ ПОДХОДЫ К КОНТРОЛЮ И ОЦЕНКИ ЗНАНИЙ, УМЕНИЙ И НАВЫКОВ ПО ВОЕННОЙ ТОПОГРАФИИ КУРСАНТОВ ОБРАЗОВАТЕЛЬНЫХ ОРГАНИЗАЦИЙ ФСИН РОССИИ",
+"group": "topo",
+"t": [
+"tsp061"
+],
+"wide": false,
+"general": false,
+"n": "sc52e9c"
+},
+{
+"slug": "/article/n/prakticheskie-navyki-orientirovaniya-na-mestnosti-kak-osnova-analiza-i-otsenki-takticheskih-svoystv-mestnosti-v-protsesse-voenno",
+"year": "2023",
+"vak": true,
+"journal": "Ученые записки университета им. П. Ф. Лесгафта",
+"authors": "Рыженкова Н. В.; Бескостова А. А.; Данченков Д. В.; Солодухин А. В.",
+"title": "ПРАКТИЧЕСКИЕ НАВЫКИ ОРИЕНТИРОВАНИЯ НА МЕСТНОСТИ КАК ОСНОВА АНАЛИЗА И ОЦЕНКИ ТАКТИЧЕСКИХ СВОЙСТВ МЕСТНОСТИ В ПРОЦЕССЕ ВОЕННО-ТОПОГРАФИЧЕСКОЙ ПОДГОТОВКИ ВОЕННОСЛУЖАЩИХ И СОТРУДНИКОВ СИЛОВЫХ ВЕДОМСТВ",
+"group": "topo",
+"t": [
+"tsp025",
+"tsp044",
+"tsp049",
+"tsp061",
+"tsp068",
+"tsp073"
+],
+"wide": false,
+"general": false,
+"n": "s22aae6"
+},
+{
+"slug": "/article/n/osnovnye-navyki-navigatsii-v-sisteme-podgotovki-spetsialistov-ohrany-pravoporyadka-sotrudnikov-organov-vnutrennih-del",
+"year": "2026",
+"vak": false,
+"journal": "Символ науки",
+"authors": "Калинина Ю. В.",
+"title": "ОСНОВНЫЕ НАВЫКИ НАВИГАЦИИ В СИСТЕМЕ ПОДГОТОВКИ СПЕЦИАЛИСТОВ ОХРАНЫ ПРАВОПОРЯДКА СОТРУДНИКОВ ОРГАНОВ ВНУТРЕННИХ ДЕЛ",
+"group": "topo",
+"t": [
+"tsp020",
+"tsp023",
+"tsp025",
+"tsp042",
+"tsp044",
+"tsp045",
+"tsp046",
+"tsp048",
+"tsp049",
+"tsp061",
+"tsp062",
+"tsp063",
+"tsp065",
+"tsp066",
+"tsp067",
+"tsp068",
+"tsp070",
+"tsp071",
+"tsp072",
+"tsp073",
+"tsp074",
+"tsp075",
+"tsp076",
+"tsp077",
+"tsp078"
+],
+"wide": true,
+"general": false,
+"n": "sb8dc4a"
+},
+{
+"slug": "/article/n/osobennosti-metodiki-provedeniya-zanyatiy-po-voennoy-topografii-v-voennyh-uchilischah-minoborony-rossii",
+"year": "2026",
+"vak": false,
+"journal": "Фактор безопасности",
+"authors": "Приходченко Роман Сергеевич; Пономарев Евгений Павлович",
+"title": "ОСОБЕННОСТИ МЕТОДИКИ ПРОВЕДЕНИЯ ЗАНЯТИЙ ПО ВОЕННОЙ ТОПОГРАФИИ В ВОЕННЫХ УЧИЛИЩАХ МИНОБОРОНЫ РОССИИ",
+"group": "topo",
+"t": [
+"tsp061"
+],
+"wide": false,
+"general": false,
+"n": "s691501"
+},
+{
+"slug": "/article/n/sovershenstvovanie-metoda-problemnogo-obucheniya-pri-provedenii-zanyatiy-po-voennoy-topografii",
+"year": "2026",
+"vak": false,
+"journal": "Фактор безопасности",
+"authors": "Приходченко Роман Сергеевич; Пономарев Евгений Павлович",
+"title": "СОВЕРШЕНСТВОВАНИЕ МЕТОДА ПРОБЛЕМНОГО ОБУЧЕНИЯ ПРИ ПРОВЕДЕНИИ ЗАНЯТИЙ ПО ВОЕННОЙ ТОПОГРАФИИ",
+"group": "topo",
+"t": [
+"tsp061"
+],
+"wide": false,
+"general": false,
+"n": "sc46fc3"
+},
+{
+"slug": "/article/n/soderzhanie-masshtab-i-naznachenie-topograficheskih-planov-i-kart",
+"year": "2025",
+"vak": false,
+"journal": "CETERIS PARIBUS",
+"authors": "Овезов А.; Тойбиби К.; Агамырадов Д.; Алымов Н.",
+"title": "СОДЕРЖАНИЕ, МАСШТАБ И НАЗНАЧЕНИЕ ТОПОГРАФИЧЕСКИХ ПЛАНОВ И КАРТ",
+"group": "topo",
+"t": [
+"tsp048",
+"tsp061"
+],
+"wide": false,
+"general": false,
+"n": "s2db663"
+},
+{
+"slug": "/article/n/innovatsionnye-metody-obucheniya-voennoy-topografii",
+"year": "2024",
+"vak": false,
+"journal": "Вестник военного образования",
+"authors": "Лазунин Андрей Анатольевич; Кравчук Денис Олегович",
+"title": "ИННОВАЦИОННЫЕ МЕТОДЫ ОБУЧЕНИЯ ВОЕННОЙ ТОПОГРАФИИ",
+"group": "topo",
+"t": [
+"tsp061"
+],
+"wide": false,
+"general": false,
+"n": "sc5aa72"
+},
+{
+"slug": "/article/n/osobennosti-testirovaniya-v-praktikume-po-voennoy-topografii",
+"year": "2024",
+"vak": false,
+"journal": "Международный журнал гуманитарных и естественных наук",
+"authors": "В. В. Панасенко; А. И. Викулин",
+"title": "ОСОБЕННОСТИ ТЕСТИРОВАНИЯ В ПРАКТИКУМЕ ПО ВОЕННОЙ ТОПОГРАФИИ",
+"group": "topo",
+"t": [
+"tsp061"
+],
+"wide": false,
+"general": false,
+"n": "s04c932"
+},
+{
+"slug": "/article/n/sposoby-izucheniya-mestnosti-pri-vypolnenii-operativno-sluzhebnyh-zadach",
+"year": "2023",
+"vak": false,
+"journal": "StudNet",
+"authors": "Матвиенко Игорь Викторович; Борисова Ксения Сергеевна",
+"title": "СПОСОБЫ ИЗУЧЕНИЯ МЕСТНОСТИ ПРИ ВЫПОЛНЕНИИ ОПЕРАТИВНО-СЛУЖЕБНЫХ ЗАДАЧ",
+"group": "topo",
+"t": [
+"tsp068"
+],
+"wide": false,
+"general": false,
+"n": "s96a76b"
+},
+{
+"slug": "/article/n/problemnye-voprosy-v-deyatelnosti-komendantskih-podrazdeleniy-politsii-ministerstva-vnutrennih-del-rossiyskoy-federatsii",
+"year": "2023",
+"vak": true,
+"journal": "Право и государство: теория и практика",
+"authors": "Родичкин Сергей Владимирович",
+"title": "ПРОБЛЕМНЫЕ ВОПРОСЫ В ДЕЯТЕЛЬНОСТИ КОМЕНДАНТСКИХ ПОДРАЗДЕЛЕНИЙ ПОЛИЦИИ МИНИСТЕРСТВА ВНУТРЕННИХ ДЕЛ РОССИЙСКОЙ ФЕДЕРАЦИИ",
+"group": "ovd",
+"t": [
+"tsp032"
+],
+"wide": true,
+"general": false,
+"n": "sdbafb3"
+},
+{
+"slug": "/article/n/osobennosti-provedeniya-uchebnyh-zanyatiy-po-osvobozhdeniyu-lits-zahvachennyh-i-uderzhivaemyh-v-kachestve-zalozhnikov-v",
+"year": "2024",
+"vak": true,
+"journal": "Вестник Самарского юридического института",
+"authors": "Кашибадзе Александр Георгиевич; Терешкина Анна Ивановна",
+"title": "ОСОБЕННОСТИ ПРОВЕДЕНИЯ УЧЕБНЫХ ЗАНЯТИЙ ПО ОСВОБОЖДЕНИЮ ЛИЦ, ЗАХВАЧЕННЫХ И УДЕРЖИВАЕМЫХ В КАЧЕСТВЕ ЗАЛОЖНИКОВ, В ОБРАЗОВАТЕЛЬНЫХ ОРГАНИЗАЦИЯХ ФСИН РОССИИ",
+"group": "zal",
+"t": [
+"tsp013",
+"tsp015"
+],
+"wide": false,
+"general": false,
+"n": "s674bd5"
 }
 ]

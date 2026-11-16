@@ -671,7 +671,8 @@
 "authors": "Хилюта Вадим Владимирович",
 "title": "Понимание сущности преступления в уголовном праве",
 "t": [
-"up016"
+"up016",
+"up008"
 ],
 "n": "ub33f9c"
 },
@@ -4812,6 +4813,19 @@
 "n": "u4e7469"
 },
 {
+"slug": "/article/n/sistema-ugolovnogo-prava-rossii-doktrinalnaya-model-kubanskoy-nauchnoy-shkoly",
+"year": "2026",
+"vak": true,
+"journal": "Труды Института государства и права Российской академии наук",
+"authors": "Коняхин В. П.; Асланян Р. Г.",
+"title": "СИСТЕМА УГОЛОВНОГО ПРАВА РОССИИ: ДОКТРИНАЛЬНАЯ МОДЕЛЬ КУБАНСКОЙ НАУЧНОЙ ШКОЛЫ",
+"t": [
+"up001"
+],
+"manual": true,
+"n": "ucbeca1"
+},
+{
 "slug": "/article/n/nekotorye-aspekty-opredeleniya-ugolovno-pravovyh-priznakov-ponyatiya-prestupleniya-v-otechestvennom-ugolovnom-prave",
 "year": "2026",
 "vak": true,
@@ -4825,30 +4839,56 @@
 "n": "ufeb261"
 },
 {
-"slug": "/article/n/ponyatie-i-priznaki-prestupleniya-po-deystvuyuschemu-ugolovnomu-zakonodatelstvu-rossii",
-"year": "2023",
+"slug": "/article/n/formirovanie-doktrinalnogo-podhoda-k-obschestvennoy-opasnosti-kak-priznaku-prestupleniy-i-administrativnyh-pravonarusheniy",
+"year": "2024",
 "vak": true,
-"journal": "Алтайский юридический вестник",
-"authors": "Наталья Николаевна Бугера; Мария Александровна Малетина",
-"title": "ПОНЯТИЕ И ПРИЗНАКИ ПРЕСТУПЛЕНИЯ ПО ДЕЙСТВУЮЩЕМУ УГОЛОВНОМУ ЗАКОНОДАТЕЛЬСТВУ РОССИИ",
+"journal": "Правоприменение",
+"authors": "Александров Алексей Николаевич; Дизер Олег Александрович; Недоступенко Татьяна Александровна",
+"title": "ФОРМИРОВАНИЕ ДОКТРИНАЛЬНОГО ПОДХОДА К ОБЩЕСТВЕННОЙ ОПАСНОСТИ КАК ПРИЗНАКУ ПРЕСТУПЛЕНИЙ И АДМИНИСТРАТИВНЫХ ПРАВОНАРУШЕНИЙ",
 "t": [
 "up008"
 ],
 "manual": true,
-"n": "u26024b"
+"n": "u14f3f2"
 },
 {
-"slug": "/article/n/ponyatie-prestupleniya-i-ego-priznaki-v-ugolovnom-prave",
+"slug": "/article/n/kategoriya-maloznachitelnost-deyaniya-v-ugolovnom-prave-rossii",
 "year": "2024",
-"vak": false,
-"journal": "Инновационная наука",
-"authors": "Атаева Г. К.",
-"title": "ПОНЯТИЕ ПРЕСТУПЛЕНИЯ И ЕГО ПРИЗНАКИ В УГОЛОВНОМ ПРАВЕ",
+"vak": true,
+"journal": "Вестник Самарского юридического института",
+"authors": "Терещенко Анжелика Ивановна",
+"title": "КАТЕГОРИЯ «МАЛОЗНАЧИТЕЛЬНОСТЬ ДЕЯНИЯ» В УГОЛОВНОМ ПРАВЕ РОССИИ",
 "t": [
 "up008"
 ],
 "manual": true,
-"n": "u7e51bd"
+"n": "ua4ffc0"
+},
+{
+"slug": "/article/n/ontologicheskie-aspekty-ponimaniya-obschestvennoy-opasnosti-kak-priznaka-prestupleniya",
+"year": "2024",
+"vak": true,
+"journal": "Lex Russica",
+"authors": "Хилюта Вадим Владимирович",
+"title": "Онтологические аспекты понимания общественной опасности как признака преступления",
+"t": [
+"up008"
+],
+"manual": true,
+"n": "u847570"
+},
+{
+"slug": "/article/n/k-voprosu-o-kvalifikatsii-i-otgranichenii-smezhnyh-sostavov-hischeniy-krazhi-i-moshennichestva",
+"year": "2025",
+"vak": true,
+"journal": "Юридическая наука и практика: Вестник Нижегородской академии МВД России",
+"authors": "Курилова Елена Николаевна; Максименко Александр Владимирович",
+"title": "К вопросу о квалификации и отграничении смежных составов хищений (кражи и мошенничества)",
+"t": [
+"up065"
+],
+"manual": true,
+"n": "u74d623"
 },
 {
 "slug": "/article/n/krazha-v-otnoshenii-elektronnyh-denezhnyh-sredstv-problemy-kvalifikatsii",
@@ -4877,6 +4917,19 @@
 "n": "ufe9536"
 },
 {
+"slug": "/article/n/nekotorye-voprosy-kvalifikatsii-krazhi-s-bankovskogo-scheta-pri-otsutstvii-priznakov-moshennichestva",
+"year": "2024",
+"vak": true,
+"journal": "Закон и право",
+"authors": "Олег Геннадьевич Демидов",
+"title": "Некоторые вопросы квалификации кражи с банковского счета при отсутствии признаков мошенничества",
+"t": [
+"up065"
+],
+"manual": true,
+"n": "u6616cb"
+},
+{
 "slug": "/article/n/nekotorye-voprosy-kvalifikatsii-krazhi-sovershennoy-s-nezakonnym-proniknoveniem-v-pomeschenie-libo-inoe-hranilische-a-takzhe-v",
 "year": "2024",
 "vak": true,
@@ -4888,31 +4941,5 @@
 ],
 "manual": true,
 "n": "u401dec"
-},
-{
-"slug": "/article/n/predvaritelnyy-sgovor-gruppy-lits-pri-sovershenii-krazhi-grabezha-i-razboya",
-"year": "2024",
-"vak": true,
-"journal": "Научный вестник Омской академии МВД России",
-"authors": "Александра Ивановна Ситникова; Геннадий Васильевич Назаренко",
-"title": "Предварительный сговор группы лиц при совершении кражи, грабежа и разбоя",
-"t": [
-"up065"
-],
-"manual": true,
-"n": "u837b0b"
-},
-{
-"slug": "/article/n/kuryozy-tolkovaniya-ugolovno-pravovyh-norm-predusmatrivayuschih-otvetstvennost-za-krazhu",
-"year": "2023",
-"vak": true,
-"journal": "Вестник Югорского государственного университета",
-"authors": "Назаренко Геннадий Васильевич",
-"title": "КУРЬЁЗЫ ТОЛКОВАНИЯ УГОЛОВНО-ПРАВОВЫХ НОРМ, ПРЕДУСМАТРИВАЮЩИХ ОТВЕТСТВЕННОСТЬ ЗА КРАЖУ",
-"t": [
-"up065"
-],
-"manual": true,
-"n": "u5066df"
 }
 ]

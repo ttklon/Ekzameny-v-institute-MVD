@@ -457,7 +457,8 @@
 "authors": "З. А. Юзбашева; Г. М. Девлетмурзаев; К. З. Хакачиев",
 "title": "Проблемы эффективности оказания юридической помощи в контексте принципа состязательности сторон в гражданском процессе",
 "t": [
-"gpp012"
+"gpp012",
+"gpp003"
 ],
 "n": "gd20f9e"
 },
@@ -1242,7 +1243,8 @@
 "title": "Технологические инновации в судебном доказывании и принципы гражданского процессуального права",
 "t": [
 "gpp032",
-"gpp028"
+"gpp028",
+"gpp003"
 ],
 "n": "g094b44"
 },
@@ -2043,55 +2045,81 @@
 "n": "g3e7c98"
 },
 {
-"slug": "/article/n/realizatsiya-printsipa-dostupnosti-pravosudiya-v-grazhdanskom-protsesse-teoretiko-pravovye-osnovy-i-prakticheskie-problemy",
+"slug": "/article/n/vliyanie-tsifrovizatsii-na-realizatsiyu-printsipa-sostyazatelnosti-v-grazhdanskom-protsesse-na-primere-dokazyvaniya",
+"year": "2026",
+"vak": true,
+"journal": "Вестник Кемеровского государственного университета. Серия: Гуманитарные и общественные науки",
+"authors": "Пестова Ксения Алексеевна",
+"title": "Влияние цифровизации на реализацию принципа состязательности в гражданском процессе (на примере доказывания)",
+"t": [
+"gpp003"
+],
+"manual": true,
+"n": "g533bb0"
+},
+{
+"slug": "/article/n/nekotorye-aspekty-realizatsii-printsipov-grazhdanskogo-protsessa-v-usloviyah-vnedreniya-informatsionnyh-tehnologiy",
 "year": "2025",
 "vak": true,
-"journal": "Аграрное и земельное право",
-"authors": "Руднева Юлия Викторовна; Билецкая Екатерина Андреевна; Зверева Виолетта Владимировна; Моисеева Анна Васильевна",
-"title": "РЕАЛИЗАЦИЯ ПРИНЦИПА ДОСТУПНОСТИ ПРАВОСУДИЯ В ГРАЖДАНСКОМ ПРОЦЕССЕ: ТЕОРЕТИКО-ПРАВОВЫЕ ОСНОВЫ И ПРАКТИЧЕСКИЕ ПРОБЛЕМЫ",
+"journal": "Юридический вестник Дагестанского государственного университета",
+"authors": "Карина Камильевна Магомедова",
+"title": "НЕКОТОРЫЕ АСПЕКТЫ РЕАЛИЗАЦИИ ПРИНЦИПОВ ГРАЖДАНСКОГО ПРОЦЕССА В УСЛОВИЯХ ВНЕДРЕНИЯ ИНФОРМАЦИОННЫХ ТЕХНОЛОГИЙ",
 "t": [
 "gpp003"
 ],
 "manual": true,
-"n": "gde6279"
+"n": "g52adee"
 },
 {
-"slug": "/article/n/konstitutsionnyy-printsip-glasnosti-sudoproizvodstva-i-zakrytye-sudebnye-zasedaniya-v-grazhdanskom-protsesse-problemy-sootnosheniya",
-"year": "2024",
-"vak": true,
-"journal": "Образование и право",
-"authors": "Якушев Павел Алексеевич",
-"title": "КОНСТИТУЦИОННЫЙ ПРИНЦИП ГЛАСНОСТИ СУДОПРОИЗВОДСТВА И ЗАКРЫТЫЕ СУДЕБНЫЕ ЗАСЕДАНИЯ В ГРАЖДАНСКОМ ПРОЦЕССЕ: ПРОБЛЕМЫ СООТНОШЕНИЯ",
-"t": [
-"gpp003"
-],
-"manual": true,
-"n": "g7dcf2b"
-},
-{
-"slug": "/article/n/k-voprosu-o-printsipe-dobrosovestnosti-v-materialnom-i-protsessualnom-prave",
+"slug": "/article/n/problemy-sootnosheniya-printsipa-dispozitivnosti-i-obyazatelnogo-souchastiya-v-grazhdanskom-sudoproizvodstve",
 "year": "2023",
 "vak": true,
-"journal": "Общество и право",
-"authors": "Абросимов Антон Вячеславович",
-"title": "К вопросу о принципе добросовестности в материальном и процессуальном праве",
+"journal": "Право и государство: теория и практика",
+"authors": "Яковенко Елена Владимировна",
+"title": "ПРОБЛЕМЫ СООТНОШЕНИЯ ПРИНЦИПА ДИСПОЗИТИВНОСТИ И ОБЯЗАТЕЛЬНОГО СОУЧАСТИЯ В ГРАЖДАНСКОМ СУДОПРОИЗВОДСТВЕ",
 "t": [
-"gpp003"
+"gpp013"
 ],
 "manual": true,
-"n": "g25a67b"
+"n": "g4afda4"
 },
 {
-"slug": "/article/n/osobennosti-primeneniya-printsipov-grazhdanskogo-protsessualnogo-prava-na-sovremennom-etape",
-"year": "2025",
-"vak": false,
-"journal": "Вестник науки",
-"authors": "Павлов О. М.",
-"title": "ОСОБЕННОСТИ ПРИМЕНЕНИЯ ПРИНЦИПОВ ГРАЖДАНСКОГО ПРОЦЕССУАЛЬНОГО ПРАВА НА СОВРЕМЕННОМ ЭТАПЕ",
+"slug": "/article/n/protsessualnoe-pravopreemstvo-po-trebovaniyu-ob-indeksatsii-prisuzhdennyh-denezhnyh-summ-v-grazhdanskom-protsesse",
+"year": "2023",
+"vak": true,
+"journal": "Юридическая наука",
+"authors": "Гурьев Олег Павлович",
+"title": "Процессуальное правопреемство по требованию об индексации присужденных денежных сумм в гражданском процессе",
 "t": [
-"gpp003"
+"gpp013"
 ],
 "manual": true,
-"n": "gdda724"
+"n": "gf7ebe6"
+},
+{
+"slug": "/article/n/protsessualnoe-pravopreemstvo-pri-peremene-lits-v-obyazatelstve-problemy-teorii-i-praktiki-cherez-8-let-posle-postanovleniya-ks-rf",
+"year": "2026",
+"vak": false,
+"journal": "Вестник науки",
+"authors": "Митьковская В. А.",
+"title": "Процессуальное правопреемство при перемене лиц в обязательстве: проблемы теории и практики через 8 лет после постановления КС РФ по делу Болчинских",
+"t": [
+"gpp013"
+],
+"manual": true,
+"n": "g91986c"
+},
+{
+"slug": "/article/n/neskolko-problem-protsessualnogo-souchastiya-v-grazhdanskom-protsesse",
+"year": "2024",
+"vak": false,
+"journal": "Интерактивная наука",
+"authors": "Смирнов А. С.",
+"title": "Несколько проблем процессуального соучастия в гражданском процессе",
+"t": [
+"gpp013"
+],
+"manual": true,
+"n": "gae9106"
 }
 ]

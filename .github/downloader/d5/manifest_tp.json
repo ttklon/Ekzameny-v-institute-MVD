@@ -10,7 +10,10 @@
 "pages": 11,
 "size": 239189,
 "q": [
+"tp040",
 "tp041",
+"tp043",
+"tp045",
 "tp011"
 ],
 "general": false,
@@ -59,6 +62,25 @@
 "vak": true
 },
 {
+"key": "t821a7a",
+"cat": "art",
+"authors": "Агарычева, Старокожева",
+"title": "Феномен социального партнерства как инструмента защиты трудовых прав работников в России",
+"kind": "статья",
+"pub": "Экономика труда",
+"year": 2023,
+"pages": 20,
+"size": 234382,
+"q": [
+"tp008"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Агарычева, Старокожева. Феномен социального партнерства как инструмента защиты трудовых прав…. Экономика труда, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/fenomen-sotsialnogo-partnerstva-kak-instrumenta-zaschity-trudovyh-prav-rabotnikov-v-rossii",
+"vak": true
+},
+{
 "key": "te30e99",
 "cat": "art",
 "authors": "Агашев, Агашева",
@@ -98,6 +120,45 @@
 "vak": true
 },
 {
+"key": "tdfc903",
+"cat": "art",
+"authors": "Адриановская",
+"title": "Оценка наличия уважительных причин при расторжении трудового договора по инициативе работника",
+"kind": "статья",
+"pub": "Аграрное и земельное право",
+"year": 2024,
+"pages": 4,
+"size": 330978,
+"q": [
+"tp026",
+"tp024"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Адриановская. Оценка наличия уважительных причин при расторжении трудового договора…. Аграрное и земельное право, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/otsenka-nalichiya-uvazhitelnyh-prichin-pri-rastorzhenii-trudovogo-dogovora-po-initsiative-rabotnika",
+"vak": true
+},
+{
+"key": "td9187f",
+"cat": "art",
+"authors": "Андриановская",
+"title": "К вопросу о гармонизации современного трудового права как отрасли права",
+"kind": "статья",
+"pub": "Образование и право",
+"year": 2024,
+"pages": 6,
+"size": 365175,
+"q": [
+"tp031"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Андриановская. К вопросу о гармонизации современного трудового права как отрасли права. Образование и право, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-o-garmonizatsii-sovremennogo-trudovogo-prava-kak-otrasli-prava",
+"vak": true
+},
+{
 "key": "tb53d7b",
 "cat": "art",
 "authors": "Андриановская",
@@ -109,6 +170,7 @@
 "size": 657039,
 "q": [
 "tp031",
+"tp034",
 "tp030",
 "tp032"
 ],
@@ -150,7 +212,8 @@
 "pages": 16,
 "size": 341167,
 "q": [
-"tp037"
+"tp037",
+"tp038"
 ],
 "general": false,
 "wide": false,
@@ -169,10 +232,10 @@
 "pages": 10,
 "size": 426819,
 "q": [
+"tp032",
 "tp034",
 "tp030",
-"tp031",
-"tp032"
+"tp031"
 ],
 "general": false,
 "wide": false,
@@ -197,6 +260,26 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Бачаев. О некоторых мерах повышения эффективности…. Наука. Образование. Современность - Science. Education. The present, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/o-nekotoryh-merah-povysheniya-effektivnosti-deyatelnosti-federalnoy-inspektsii-truda-po-soblyudeniyu-trudovogo-zakonodatelstva",
+"vak": true
+},
+{
+"key": "t1e6552",
+"cat": "art",
+"authors": "Бачаев",
+"title": "Оплата труда: сущность и понятие",
+"kind": "статья",
+"pub": "Гуманитарные, социально-экономические и общественные науки",
+"year": 2024,
+"pages": 5,
+"size": 134732,
+"q": [
+"tp039",
+"tp043"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Бачаев. Оплата труда — сущность и понятие. Гуманитарные, социально-экономические и общественные науки, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/oplata-truda-suschnost-i-ponyatie",
 "vak": true
 },
 {
@@ -276,6 +359,25 @@
 "vak": true
 },
 {
+"key": "ta6b685",
+"cat": "art",
+"authors": "Белозерова",
+"title": "Приведение содержания трудового договора в соответствие с фактическими обстоятельствами",
+"kind": "статья",
+"pub": "Вестник Омского университета. Серия «Право»",
+"year": 2024,
+"pages": 10,
+"size": 469645,
+"q": [
+"tp017"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Белозерова. Приведение содержания трудового договора в соответствие…. Вестник Омского университета. Серия Право, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/privedenie-soderzhaniya-trudovogo-dogovora-v-sootvetstvie-s-fakticheskimi-obstoyatelstvami",
+"vak": true
+},
+{
 "key": "t50fc92",
 "cat": "art",
 "authors": "Берман, Кукушкина",
@@ -286,10 +388,10 @@
 "pages": 29,
 "size": 510006,
 "q": [
+"tp032",
 "tp034",
 "tp030",
-"tp031",
-"tp032"
+"tp031"
 ],
 "general": false,
 "wide": false,
@@ -308,6 +410,7 @@
 "pages": 9,
 "size": 322429,
 "q": [
+"tp019",
 "tp023"
 ],
 "general": false,
@@ -348,7 +451,8 @@
 "q": [
 "tp024",
 "tp026",
-"tp051"
+"tp051",
+"tp025"
 ],
 "general": false,
 "wide": false,
@@ -408,7 +512,8 @@
 "tp017",
 "tp024",
 "tp026",
-"tp027"
+"tp027",
+"tp025"
 ],
 "general": false,
 "wide": false,
@@ -457,6 +562,27 @@
 "vak": false
 },
 {
+"key": "ta04517",
+"cat": "art",
+"authors": "Васильева",
+"title": "К вопросу о возмещении вреда сторонами трудового договора",
+"kind": "статья",
+"pub": "Труды Института государства и права Российской академии наук",
+"year": 2025,
+"pages": 18,
+"size": 130829,
+"q": [
+"tp056",
+"tp011",
+"tp017"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Васильева. К вопросу о возмещении вреда сторонами…. Труды Института государства и права Российской академии наук, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-o-vozmeschenii-vreda-storonami-trudovogo-dogovora",
+"vak": true
+},
+{
 "key": "t273a83",
 "cat": "art",
 "authors": "Владимиров, Морозова",
@@ -494,6 +620,25 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Выходилова, Демидов. Институт испытания работника при приеме на работу. Уральский журнал правовых исследований, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/institut-ispytaniya-rabotnika-pri-prieme-na-rabotu",
 "vak": false
+},
+{
+"key": "te93a3c",
+"cat": "art",
+"authors": "Вышеславова, Зиновьева",
+"title": "Защита трудовых прав работников на соременном этапе социального государства",
+"kind": "статья",
+"pub": "Право и практика",
+"year": 2025,
+"pages": 6,
+"size": 459143,
+"q": [
+"tp058"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Вышеславова, Зиновьева. Защита трудовых прав работников на соременном этапе социального…. Право и практика, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/zaschita-trudovyh-prav-rabotnikov-na-soremennom-etape-sotsialnogo-gosudarstva",
+"vak": true
 },
 {
 "key": "t2c43e9",
@@ -564,6 +709,7 @@
 "pages": 14,
 "size": 679527,
 "q": [
+"tp006",
 "tp007"
 ],
 "general": false,
@@ -689,6 +835,25 @@
 "vak": true
 },
 {
+"key": "tcfeb8f",
+"cat": "art",
+"authors": "Дозорцев, Омельченко",
+"title": "Теоретические аспекты применения районных коэффициентов к заработной плате работников в Российской Федерации",
+"kind": "статья",
+"pub": "Проблемы экономики и юридической практики",
+"year": 2023,
+"pages": 6,
+"size": 291360,
+"q": [
+"tp046"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Дозорцев, Омельченко. Теоретические аспекты применения районных…. Проблемы экономики и юридической практики, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/teoreticheskie-aspekty-primeneniya-rayonnyh-koeffitsientov-k-zarabotnoy-plate-rabotnikov-v-rossiyskoy-federatsii",
+"vak": true
+},
+{
 "key": "t17c1a4",
 "cat": "art",
 "authors": "Драчук, Обухова",
@@ -705,6 +870,26 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Драчук, Обухова. Ещё раз к вопросу о компенсации морального вреда…. Вестник Омского университета. Серия Право, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/eschyo-raz-k-voprosu-o-kompensatsii-moralnogo-vreda-prichinyonnogo-rabotniku",
+"vak": true
+},
+{
+"key": "t930252",
+"cat": "art",
+"authors": "Драчук, Обухова",
+"title": "Некоторые вопросы порядка рассмотрения индивидуальных трудовых споров комиссией по трудовым спорам",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2025,
+"pages": 4,
+"size": 1091915,
+"q": [
+"tp067",
+"tp066"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Драчук, Обухова. Некоторые вопросы порядка рассмотрения индивидуальных…. Право и государство — теория и практика, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/nekotorye-voprosy-poryadka-rassmotreniya-individualnyh-trudovyh-sporov-komissiey-po-trudovym-sporam",
 "vak": true
 },
 {
@@ -727,6 +912,25 @@
 "vak": true
 },
 {
+"key": "t5b129d",
+"cat": "art",
+"authors": "Драчук",
+"title": "Профсоюзы, организации профсоюзов и профсоюзные организации: специфика и проблемы правового статуса",
+"kind": "статья",
+"pub": "Северо-Кавказский юридический вестник",
+"year": 2026,
+"pages": 13,
+"size": 1180141,
+"q": [
+"tp062"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Драчук. Профсоюзы, организации профсоюзов и профсоюзные организации…. Северо-Кавказский юридический вестник, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/profsoyuzy-organizatsii-profsoyuzov-i-profsoyuznye-organizatsii-spetsifika-i-problemy-pravovogo-statusa",
+"vak": true
+},
+{
 "key": "t0b124d",
 "cat": "art",
 "authors": "Дриневская",
@@ -738,6 +942,7 @@
 "size": 401684,
 "q": [
 "tp009",
+"tp062",
 "tp008"
 ],
 "general": false,
@@ -805,6 +1010,25 @@
 "vak": false
 },
 {
+"key": "t851b27",
+"cat": "art",
+"authors": "Жаркова, Кузьменков",
+"title": "Роль профсоюзов в создании устойчивого общественного положения в социальной сфере",
+"kind": "статья",
+"pub": "Альманах «Крым»",
+"year": 2023,
+"pages": 15,
+"size": 217474,
+"q": [
+"tp062"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Жаркова, Кузьменков. Роль профсоюзов в создании устойчивого общественного положения в социальной…. Альманах Крым, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/rol-profsoyuzov-v-sozdanii-ustoychivogo-obschestvennogo-polozheniya-v-sotsialnoy-sfere",
+"vak": true
+},
+{
 "key": "t1d3d87",
 "cat": "art",
 "authors": "Закалюжная",
@@ -843,6 +1067,25 @@
 "vak": true
 },
 {
+"key": "t67fef9",
+"cat": "art",
+"authors": "Захаров, Коркина и др.",
+"title": "Методический подход к проведению экспресс-аудита нормирования труда на машиностроительном предприятии",
+"kind": "статья",
+"pub": "Вестник Южно-Уральского государственного университета. Серия: Экономика и менеджмент",
+"year": 2025,
+"pages": 10,
+"size": 600118,
+"q": [
+"tp030"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Захаров, Коркина и др. Методический подход к проведению…. Вестник Южно-Уральского государственного университета., 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/metodicheskiy-podhod-k-provedeniyu-ekspress-audita-normirovaniya-truda-na-mashinostroitelnom-predpriyatii",
+"vak": true
+},
+{
 "key": "t7f21ed",
 "cat": "art",
 "authors": "Захарова",
@@ -860,6 +1103,83 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Захарова. Правовое регулирование испытательного срока в РФ — правовые гарантии…. Вопросы российской юстиции, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/pravovoe-regulirovanie-ispytatelnogo-sroka-v-rf-pravovye-garantii-ogranicheniya-i-perspektivy-rasshireniya-dlya-uyazvimyh-kategoriy",
 "vak": false
+},
+{
+"key": "taae34a",
+"cat": "art",
+"authors": "Зенков",
+"title": "Сравнительный обзор ключевых концепций рыночной организации заработной платы",
+"kind": "статья",
+"pub": "Экономика, предпринимательство и право",
+"year": 2025,
+"pages": 16,
+"size": 507145,
+"q": [
+"tp039",
+"tp040"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Зенков. Сравнительный обзор ключевых концепций рыночной организации…. Экономика, предпринимательство и право, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/sravnitelnyy-obzor-klyuchevyh-kontseptsiy-rynochnoy-organizatsii-zarabotnoy-platy",
+"vak": true
+},
+{
+"key": "te7b336",
+"cat": "art",
+"authors": "Золотов",
+"title": "Обращение к средствам массовой информации как форма самозащиты работниками трудовых прав",
+"kind": "статья",
+"pub": "Российское право: образование, практика, наука",
+"year": 2023,
+"pages": 6,
+"size": 208364,
+"q": [
+"tp063"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Золотов. Обращение к средствам массовой информации как форма…. Российское право — образование, практика, наука, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/obraschenie-k-sredstvam-massovoy-informatsii-kak-forma-samozaschity-rabotnikami-trudovyh-prav",
+"vak": true
+},
+{
+"key": "t0edccc",
+"cat": "art",
+"authors": "Иванов",
+"title": "Видеоблог педагогического работника: правовые аспекты",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2024,
+"pages": 5,
+"size": 307078,
+"q": [
+"tp016"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Иванов. Видеоблог педагогического работника — правовые аспекты. Право и государство — теория и практика, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/videoblog-pedagogicheskogo-rabotnika-pravovye-aspekty",
+"vak": true
+},
+{
+"key": "t4b2bad",
+"cat": "art",
+"authors": "Ивлиев, Кондрашов",
+"title": "Социальное партнерство в сфере труда в России как процесс социально-экономического взаимодействия работодателей и работников",
+"kind": "статья",
+"pub": "Аграрное и земельное право",
+"year": 2023,
+"pages": 3,
+"size": 303486,
+"q": [
+"tp008"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Ивлиев, Кондрашов. Социальное партнерство в сфере труда в России как процесс…. Аграрное и земельное право, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/sotsialnoe-partnerstvo-v-sfere-truda-v-rossii-kak-protsess-sotsialno-ekonomicheskogo-vzaimodeystviya-rabotodateley-i-rabotnikov",
+"vak": true
 },
 {
 "key": "t090691",
@@ -937,6 +1257,25 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Кадигроб. Трудовой договор — понятие, содержание и виды. Вестник науки, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/trudovoy-dogovor-ponyatie-soderzhanie-i-vidy",
 "vak": false
+},
+{
+"key": "t4d8106",
+"cat": "art",
+"authors": "Казакова",
+"title": "О некоторых вопросах рассмотрения судами трудовых споров с участием самозанятых",
+"kind": "статья",
+"pub": "Образование и право",
+"year": 2023,
+"pages": 6,
+"size": 410456,
+"q": [
+"tp064"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Казакова. О некоторых вопросах рассмотрения судами трудовых споров с участием самозанятых. Образование и право, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/o-nekotoryh-voprosah-rassmotreniya-sudami-trudovyh-sporov-s-uchastiem-samozanyatyh",
+"vak": true
 },
 {
 "key": "ta8e213",
@@ -1036,6 +1375,25 @@
 "vak": false
 },
 {
+"key": "t2b9b81",
+"cat": "art",
+"authors": "Карпушкин",
+"title": "Неформальные трудовые отношения как социальное пространство постоянной сверхурочной занятости",
+"kind": "статья",
+"pub": "Теория и практика общественного развития",
+"year": 2025,
+"pages": 8,
+"size": 285764,
+"q": [
+"tp033"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Карпушкин. Неформальные трудовые отношения как социальное пространство…. Теория и практика общественного развития, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/neformalnye-trudovye-otnosheniya-kak-sotsialnoe-prostranstvo-postoyannoy-sverhurochnoy-zanyatosti",
+"vak": true
+},
+{
 "key": "t0afc80",
 "cat": "art",
 "authors": "Карпушкин",
@@ -1065,7 +1423,8 @@
 "pages": 12,
 "size": 694380,
 "q": [
-"tp008"
+"tp008",
+"tp009"
 ],
 "general": false,
 "wide": false,
@@ -1154,6 +1513,25 @@
 "vak": false
 },
 {
+"key": "t15a262",
+"cat": "art",
+"authors": "Кудрин",
+"title": "К вопросу о коллективном договоре как позитивной форме взаимодействия между государством, наёмным трудом и капиталом в период формирования трудового права в России",
+"kind": "статья",
+"pub": "Московский юридический журнал",
+"year": 2025,
+"pages": 8,
+"size": 186668,
+"q": [
+"tp011"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Кудрин. К вопросу о коллективном договоре как позитивной форме взаимодействия…. Московский юридический журнал, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-o-kollektivnom-dogovore-kak-pozitivnoy-forme-vzaimodeystviya-mezhdu-gosudarstvom-nayomnym-trudom-i-kapitalom-v-period",
+"vak": true
+},
+{
 "key": "t0ddafb",
 "cat": "art",
 "authors": "Кузнецов",
@@ -1170,6 +1548,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Кузнецов. Правовое регулирование работ повышенной опасности. Государственная служба и кадры, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/pravovoe-regulirovanie-rabot-povyshennoy-opasnosti",
+"vak": true
+},
+{
+"key": "t02506d",
+"cat": "art",
+"authors": "Кузнецова, Макеев и др.",
+"title": "Регулирование охраны труда за рубежом: подходы, модели, практика",
+"kind": "статья",
+"pub": "Социально-трудовые исследования",
+"year": 2024,
+"pages": 13,
+"size": 1116634,
+"q": [
+"tp059"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Кузнецова, Макеев и др. Регулирование охраны труда за рубежом — подходы, модели…. Социально-трудовые исследования, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/regulirovanie-ohrany-truda-za-rubezhom-podhody-modeli-praktika",
 "vak": true
 },
 {
@@ -1221,9 +1618,11 @@
 "pages": 3,
 "size": 318720,
 "q": [
+"tp011",
 "tp064",
 "tp068",
-"tp069"
+"tp069",
+"tp070"
 ],
 "general": false,
 "wide": false,
@@ -1281,7 +1680,10 @@
 "pages": 9,
 "size": 448794,
 "q": [
-"tp053"
+"tp052",
+"tp053",
+"tp054",
+"tp056"
 ],
 "general": false,
 "wide": false,
@@ -1341,6 +1743,7 @@
 "size": 323951,
 "q": [
 "tp046",
+"tp056",
 "tp040",
 "tp045"
 ],
@@ -1371,6 +1774,25 @@
 "vak": true
 },
 {
+"key": "t655645",
+"cat": "art",
+"authors": "Мажкенов",
+"title": "Основания и принципы совершенствования контрольной (надзорной) деятельности в сфере труда с учетом риск-ориентированного подхода",
+"kind": "статья",
+"pub": "Экономика труда",
+"year": 2024,
+"pages": 20,
+"size": 361720,
+"q": [
+"tp061"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Мажкенов. Основания и принципы совершенствования контрольной (надзорной) деятельности в сфере…. Экономика труда, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/osnovaniya-i-printsipy-sovershenstvovaniya-kontrolnoy-nadzornoy-deyatelnosti-v-sfere-truda-s-uchetom-risk-orientirovannogo-podhoda",
+"vak": true
+},
+{
 "key": "t564ff5",
 "cat": "art",
 "authors": "Макаренко, Авгайтис",
@@ -1381,8 +1803,8 @@
 "pages": 6,
 "size": 604066,
 "q": [
-"tp012",
-"tp008"
+"tp008",
+"tp012"
 ],
 "general": false,
 "wide": false,
@@ -1407,6 +1829,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Макеев. Совершенствование критериев отнесения объектов федерального государственного контроля…. Экономика труда, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/sovershenstvovanie-kriteriev-otneseniya-obektov-federalnogo-gosudarstvennogo-kontrolya-nadzora-za-soblyudeniem-trudovogo-1",
+"vak": true
+},
+{
+"key": "t9786f8",
+"cat": "art",
+"authors": "Малинина, Тарандо и др.",
+"title": "Проблема сверхурочной занятости в Китае: состояние и перспективы",
+"kind": "статья",
+"pub": "Теория и практика общественного развития",
+"year": 2025,
+"pages": 8,
+"size": 329625,
+"q": [
+"tp033"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Малинина, Тарандо и др. Проблема сверхурочной занятости в Китае…. Теория и практика общественного развития, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/problema-sverhurochnoy-zanyatosti-v-kitae-sostoyanie-i-perspektivy",
 "vak": true
 },
 {
@@ -1486,6 +1927,27 @@
 "vak": true
 },
 {
+"key": "t45cbaf",
+"cat": "art",
+"authors": "Михальская",
+"title": "Стабильность трудовых правоотношений при расторжении трудового договора по инициативе работодателя",
+"kind": "статья",
+"pub": "Вестник Университета имени О. Е. Кутафина",
+"year": 2024,
+"pages": 9,
+"size": 418149,
+"q": [
+"tp024",
+"tp026",
+"tp025"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Михальская. Стабильность трудовых правоотношений при расторжении…. Вестник Университета имени О. Е. Кутафина, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/stabilnost-trudovyh-pravootnosheniy-pri-rastorzhenii-trudovogo-dogovora-po-initsiative-rabotodatelya",
+"vak": true
+},
+{
 "key": "tc21094",
 "cat": "art",
 "authors": "Михалёв",
@@ -1541,6 +2003,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Морозов, Боенко. Проблемы разграничения срочного и бессрочного трудового договора. Образование и право, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/problemy-razgranicheniya-srochnogo-i-bessrochnogo-trudovogo-dogovora",
+"vak": true
+},
+{
+"key": "t33e3e2",
+"cat": "art",
+"authors": "Мусимович",
+"title": "Правовые аспекты регулирования трудовых отношений в условиях использования искусственного интеллекта при подборе и высвобождении персонала",
+"kind": "статья",
+"pub": "Экономика труда",
+"year": 2024,
+"pages": 14,
+"size": 213108,
+"q": [
+"tp029"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Мусимович. Правовые аспекты регулирования трудовых отношений в условиях использования…. Экономика труда, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/pravovye-aspekty-regulirovaniya-trudovyh-otnosheniy-v-usloviyah-ispolzovaniya-iskusstvennogo-intellekta-pri-podbore-i",
 "vak": true
 },
 {
@@ -1667,6 +2148,45 @@
 "vak": true
 },
 {
+"key": "tc6fc61",
+"cat": "art",
+"authors": "Офман",
+"title": "Механизм осуществления субъективного права работодателя на заключение трудового договора и формирование его содержания",
+"kind": "статья",
+"pub": "Вестник Томского государственного университета. Право",
+"year": 2023,
+"pages": 18,
+"size": 416454,
+"q": [
+"tp017",
+"tp018"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Офман. Механизм осуществления субъективного права…. Вестник Томского государственного университета. Право, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/mehanizm-osuschestvleniya-subektivnogo-prava-rabotodatelya-na-zaklyuchenie-trudovogo-dogovora-i-formirovanie-ego-soderzhaniya",
+"vak": true
+},
+{
+"key": "t7c3828",
+"cat": "art",
+"authors": "Офман",
+"title": "Недействительность трудового договора: анализ с позиции механизма осуществления субъективных прав и исполнения обязанностей работником и работодателем",
+"kind": "статья",
+"pub": "Вестник Санкт-Петербургского университета. Право",
+"year": 2023,
+"pages": 18,
+"size": 662884,
+"q": [
+"tp023"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Офман. Недействительность трудового договора — анализ с позиции…. Вестник Санкт-Петербургского университета. Право, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/nedeystvitelnost-trudovogo-dogovora-analiz-s-pozitsii-mehanizma-osuschestvleniya-subektivnyh-prav-i-ispolneniya-obyazannostey",
+"vak": true
+},
+{
 "key": "t3f4d7e",
 "cat": "art",
 "authors": "Пархоменко, Дружинин",
@@ -1677,7 +2197,8 @@
 "pages": 5,
 "size": 140225,
 "q": [
-"tp010"
+"tp010",
+"tp063"
 ],
 "general": false,
 "wide": false,
@@ -1723,6 +2244,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Передерин. Правовое регулирование предоставления…. Вестник Воронежского государственного университета. Серия — Право.pdf",
 "url": "https://cyberleninka.ru/article/n/pravovoe-regulirovanie-predostavleniya-ezhegodnyh-oplachivaemyh-otpuskov-v-rossiyskoy-federatsii-sostoyanie-tendentsii-i",
+"vak": true
+},
+{
+"key": "t77c725",
+"cat": "art",
+"authors": "Передерин",
+"title": "Правовое регулирование условий труда наемных работников",
+"kind": "статья",
+"pub": "Вестник Воронежского государственного университета. Серия: Право",
+"year": 2023,
+"pages": 8,
+"size": 275874,
+"q": [
+"tp058"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Передерин. Правовое регулирование условий…. Вестник Воронежского государственного университета. Серия — Право, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/pravovoe-regulirovanie-usloviy-truda-naemnyh-rabotnikov",
 "vak": true
 },
 {
@@ -1776,7 +2316,8 @@
 "pages": 8,
 "size": 291450,
 "q": [
-"tp008"
+"tp008",
+"tp009"
 ],
 "general": false,
 "wide": false,
@@ -1802,6 +2343,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Печенникова, Козырская. Актуальные аспекты регулирования оплаты труда. Baikal Research Journal, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/aktualnye-aspekty-regulirovaniya-oplaty-truda",
+"vak": true
+},
+{
+"key": "tb6a58b",
+"cat": "art",
+"authors": "Пивень, Кицул и др.",
+"title": "Проблемные вопросы договорных отношений между медицинским работником и медицинской организацией: на что необходимо обратить внимание руководителю медицинской организации и медицинскому работнику",
+"kind": "статья",
+"pub": "Менеджер здравоохранения",
+"year": 2023,
+"pages": 8,
+"size": 456924,
+"q": [
+"tp016"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Пивень, Кицул и др. Проблемные вопросы договорных отношений между медицинским…. Менеджер здравоохранения, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/problemnye-voprosy-dogovornyh-otnosheniy-mezhdu-meditsinskim-rabotnikom-i-meditsinskoy-organizatsiey-na-chto-neobhodimo-obratit",
 "vak": true
 },
 {
@@ -1861,6 +2421,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Половян, Синицына и др. Региональные аспекты оплаты труда в Российской Федерации…. Экономика и управление, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/regionalnye-aspekty-oplaty-truda-v-rossiyskoy-federatsii-differentsiatsiya-indeksatsiya-i-vyzovy-dlya-byudzhetnogo-sektora",
+"vak": true
+},
+{
+"key": "ta66a12",
+"cat": "art",
+"authors": "Потапова",
+"title": "К вопросу о взаимодействии прокуратуры с органами государственного контроля в рамках защиты трудовых прав и свобод граждан",
+"kind": "статья",
+"pub": "Юридическая наука",
+"year": 2023,
+"pages": 3,
+"size": 553629,
+"q": [
+"tp061"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Потапова. К вопросу о взаимодействии прокуратуры с органами государственного контроля в рамках…. Юридическая наука, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-o-vzaimodeystvii-prokuratury-s-organami-gosudarstvennogo-kontrolya-v-ramkah-zaschity-trudovyh-prav-i-svobod-grazhdan",
 "vak": true
 },
 {
@@ -1960,6 +2539,26 @@
 "vak": false
 },
 {
+"key": "t44b7bf",
+"cat": "art",
+"authors": "Пятков",
+"title": "Специальная дисциплинарная ответственность работников сферы обеспечения безопасной жизнедеятельности населения",
+"kind": "статья",
+"pub": "Вестник Омского университета. Серия «Право»",
+"year": 2023,
+"pages": 7,
+"size": 407369,
+"q": [
+"tp050",
+"tp053"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Пятков. Специальная дисциплинарная ответственность работников сферы…. Вестник Омского университета. Серия Право, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/spetsialnaya-distsiplinarnaya-otvetstvennost-rabotnikov-sfery-obespecheniya-bezopasnoy-zhiznedeyatelnosti-naseleniya",
+"vak": true
+},
+{
 "key": "td338e6",
 "cat": "art",
 "authors": "Раджабова",
@@ -1978,6 +2577,25 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Раджабова. Современные аспекты контроля расчетов по оплате труда в организациях…. Journal of Monetary Economics and Management, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/sovremennye-aspekty-kontrolya-raschetov-po-oplate-truda-v-organizatsiyah-byudzhetnoy-sfery",
 "vak": false
+},
+{
+"key": "t3c76c5",
+"cat": "art",
+"authors": "Рехтина, Василенко",
+"title": "«Рабочее место» и «место работы» как правовые категории: соотношение и взаимосвязь",
+"kind": "статья",
+"pub": "Юрислингвистика",
+"year": 2025,
+"pages": 4,
+"size": 627537,
+"q": [
+"tp016"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Рехтина, Василенко. Рабочее место и место работы как правовые категории — соотношение…. Юрислингвистика, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/rabochee-mesto-i-mesto-raboty-kak-pravovye-kategorii-sootnoshenie-i-vzaimosvyaz",
+"vak": true
 },
 {
 "key": "t26f8e4",
@@ -2019,6 +2637,25 @@
 "vak": true
 },
 {
+"key": "td2f917",
+"cat": "art",
+"authors": "Романовская (князева)",
+"title": "Применение гражданско-правовых норм к трудовым отношениям как способ преодоления пробелов в трудовом законодательстве",
+"kind": "статья",
+"pub": "Вестник Воронежского государственного университета. Серия: Право",
+"year": 2024,
+"pages": 9,
+"size": 288927,
+"q": [
+"tp012"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Романовская (князева). Применение гражданско-правовых норм…. Вестник Воронежского государственного университета. Сер.pdf",
+"url": "https://cyberleninka.ru/article/n/primenenie-grazhdansko-pravovyh-norm-k-trudovym-otnosheniyam-kak-sposob-preodoleniya-probelov-v-trudovom-zakonodatelstve",
+"vak": true
+},
+{
 "key": "t611e7d",
 "cat": "art",
 "authors": "Романовская",
@@ -2037,6 +2674,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Романовская. Самозащита права на выплату заработной платы. Право и государство — теория и практика, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/samozaschita-prava-na-vyplatu-zarabotnoy-platy",
+"vak": true
+},
+{
+"key": "t203874",
+"cat": "art",
+"authors": "Романюк, Трусевич и др.",
+"title": "Платформенная занятость: сущность, особенности, регулирование",
+"kind": "статья",
+"pub": "Экономика труда",
+"year": 2025,
+"pages": 18,
+"size": 357661,
+"q": [
+"tp013"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Романюк, Трусевич и др. Платформенная занятость — сущность, особенности, регулирование. Экономика труда, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/platformennaya-zanyatost-suschnost-osobennosti-regulirovanie",
 "vak": true
 },
 {
@@ -2080,6 +2736,47 @@
 "vak": true
 },
 {
+"key": "tda0186",
+"cat": "art",
+"authors": "Савин",
+"title": "Позитивная юридическая ответственность в трудовом праве",
+"kind": "статья",
+"pub": "Пробелы в российском законодательстве. Юридический журнал",
+"year": 2023,
+"pages": 8,
+"size": 284782,
+"q": [
+"tp050",
+"tp053"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Савин. Позитивная юридическая ответственность…. Пробелы в российском законодательстве. Юридический журнал, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/pozitivnaya-yuridicheskaya-otvetstvennost-v-trudovom-prave",
+"vak": true
+},
+{
+"key": "t075aa2",
+"cat": "art",
+"authors": "Савин",
+"title": "Проблемы материальной ответственности руководителя организации, связанные с «вторжением» в ее сферу норм гражданского законодательства",
+"kind": "статья",
+"pub": "Пробелы в российском законодательстве. Юридический журнал",
+"year": 2023,
+"pages": 7,
+"size": 200927,
+"q": [
+"tp052",
+"tp054",
+"tp053"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Савин. Проблемы материальной ответственности…. Пробелы в российском законодательстве. Юридический журнал, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/problemy-materialnoy-otvetstvennosti-rukovoditelya-organizatsii-svyazannye-s-vtorzheniem-v-ee-sferu-norm-grazhdanskogo",
+"vak": true
+},
+{
 "key": "te3ab05",
 "cat": "art",
 "authors": "Савин",
@@ -2103,6 +2800,25 @@
 "vak": true
 },
 {
+"key": "tb6a8a7",
+"cat": "art",
+"authors": "Сагандыков",
+"title": "Реализация конституционных принципов справедливости и соразмерности при увольнении работника за появление на работе в состоянии опьянения",
+"kind": "статья",
+"pub": "Вестник Южно-Уральского государственного университета. Серия: Право",
+"year": 2023,
+"pages": 8,
+"size": 417125,
+"q": [
+"tp053"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Сагандыков. Реализация конституционных принципов…. Вестник Южно-Уральского государственного университета. Серия — П.pdf",
+"url": "https://cyberleninka.ru/article/n/realizatsiya-konstitutsionnyh-printsipov-spravedlivosti-i-sorazmernosti-pri-uvolnenii-rabotnika-za-poyavlenie-na-rabote-v",
+"vak": true
+},
+{
 "key": "tf4878a",
 "cat": "art",
 "authors": "Сакаева",
@@ -2119,6 +2835,82 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Сакаева. О некоторых аспектах правового регулирования труда дистанционных работников…. Экономика труда, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/o-nekotoryh-aspektah-pravovogo-regulirovaniya-truda-distantsionnyh-rabotnikov-v-rossiyskoy-federatsii",
+"vak": true
+},
+{
+"key": "t651aff",
+"cat": "art",
+"authors": "Самарская, Ильин и др.",
+"title": "Регламентация требований охраны труда работников гостинично-ресторанной сферы",
+"kind": "статья",
+"pub": "Экономика труда",
+"year": 2023,
+"pages": 14,
+"size": 208174,
+"q": [
+"tp058"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Самарская, Ильин и др. Регламентация требований охраны труда работников гостинично-ресторанной…. Экономика труда, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/reglamentatsiya-trebovaniy-ohrany-truda-rabotnikov-gostinichno-restorannoy-sfery",
+"vak": true
+},
+{
+"key": "te8c92a",
+"cat": "art",
+"authors": "Самарская",
+"title": "Дефиниция категории «охрана труда»: обзор и критический анализ понятия",
+"kind": "статья",
+"pub": "Экономика труда",
+"year": 2024,
+"pages": 20,
+"size": 253813,
+"q": [
+"tp057"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Самарская. Дефиниция категории охрана труда — обзор и критический анализ понятия. Экономика труда, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/definitsiya-kategorii-ohrana-truda-obzor-i-kriticheskiy-analiz-ponyatiya",
+"vak": true
+},
+{
+"key": "t193206",
+"cat": "art",
+"authors": "Самарская",
+"title": "Место и роль охраны труда в структуре социально-трудовых отношений",
+"kind": "статья",
+"pub": "Экономика труда",
+"year": 2024,
+"pages": 16,
+"size": 226012,
+"q": [
+"tp057"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Самарская. Место и роль охраны труда в структуре социально-трудовых отношений. Экономика труда, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/mesto-i-rol-ohrany-truda-v-strukture-sotsialno-trudovyh-otnosheniy",
+"vak": true
+},
+{
+"key": "t5426ef",
+"cat": "art",
+"authors": "Сан",
+"title": "Проблема сверхурочной занятости в Китае: принуждение к переработкам и их тотальное распространение",
+"kind": "статья",
+"pub": "Теория и практика общественного развития",
+"year": 2024,
+"pages": 6,
+"size": 635671,
+"q": [
+"tp033"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Сан. Проблема сверхурочной занятости в Китае — принуждение…. Теория и практика общественного развития, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/problema-sverhurochnoy-zanyatosti-v-kitae-prinuzhdenie-k-pererabotkam-i-ih-totalnoe-rasprostranenie",
 "vak": true
 },
 {
@@ -2139,6 +2931,25 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Селютин, Дерявко. Предмет и метод трудового права в Российской Федерации. Вестник магистратуры, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/predmet-i-metod-trudovogo-prava-v-rossiyskoy-federatsii",
 "vak": false
+},
+{
+"key": "t338b33",
+"cat": "art",
+"authors": "Сергеенко",
+"title": "Состояние защищенности как основа безопасности работников в трудовых отношениях",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2023,
+"pages": 3,
+"size": 306760,
+"q": [
+"tp059"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Сергеенко. Состояние защищенности как основа безопасности работников…. Право и государство — теория и практика, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/sostoyanie-zaschischennosti-kak-osnova-bezopasnosti-rabotnikov-v-trudovyh-otnosheniyah",
+"vak": true
 },
 {
 "key": "tcf6da2",
@@ -2219,6 +3030,44 @@
 "vak": false
 },
 {
+"key": "t06e459",
+"cat": "art",
+"authors": "Соколова",
+"title": "Рынок труда и проблемы обеспечения занятости в современной России",
+"kind": "статья",
+"pub": "Аграрное и земельное право",
+"year": 2024,
+"pages": 4,
+"size": 393732,
+"q": [
+"tp013"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Соколова. Рынок труда и проблемы обеспечения занятости в современной России. Аграрное и земельное право, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/rynok-truda-i-problemy-obespecheniya-zanyatosti-v-sovremennoy-rossii",
+"vak": true
+},
+{
+"key": "t9ddd3c",
+"cat": "art",
+"authors": "Солдатова",
+"title": "Ответственность членов саморегулируемых организаций в сфере строительства: теоретический и практический аспекты",
+"kind": "статья",
+"pub": "Вестник экономики, права и социологии",
+"year": 2023,
+"pages": 6,
+"size": 1139572,
+"q": [
+"tp050"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Солдатова. Ответственность членов саморегулируемых организаций в сфере…. Вестник экономики, права и социологии, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/otvetstvennost-chlenov-samoreguliruemyh-organizatsiy-v-sfere-stroitelstva-teoreticheskiy-i-prakticheskiy-aspekty",
+"vak": true
+},
+{
 "key": "tbc1ac0",
 "cat": "art",
 "authors": "Стародубов, Кадыров и др.",
@@ -2236,6 +3085,45 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Стародубов, Кадыров и др. Ключевые изменения в структуре заработной платы и порядке…. Менеджер здравоохранения, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/klyuchevye-izmeneniya-v-strukture-zarabotnoy-platy-i-poryadke-osuschestvleniya-spetsialnyh-sotsialnyh-vyplat",
+"vak": true
+},
+{
+"key": "t2f4f95",
+"cat": "art",
+"authors": "Стахеева, Кот и др.",
+"title": "Оплата труда работников на предприятии: направления совершенствования",
+"kind": "статья",
+"pub": "Право и управление",
+"year": 2023,
+"pages": 6,
+"size": 742246,
+"q": [
+"tp042"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Стахеева, Кот и др. Оплата труда работников на предприятии — направления совершенствования. Право и управление, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/oplata-truda-rabotnikov-na-predpriyatii-napravleniya-sovershenstvovaniya",
+"vak": true
+},
+{
+"key": "tb22f4d",
+"cat": "art",
+"authors": "Стрельников",
+"title": "Правовые риски работника при включении премии как поощрительной (стимулирующей) выплаты в фактическую заработную плату и перспективы взыскания в судебном порядке",
+"kind": "статья",
+"pub": "Legal Bulletin",
+"year": 2024,
+"pages": 14,
+"size": 327370,
+"q": [
+"tp040",
+"tp045"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Стрельников. Правовые риски работника при включении премии как поощрительной (стимулирующей) выплаты…. Legal Bulletin, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/pravovye-riski-rabotnika-pri-vklyuchenii-premii-kak-pooschritelnoy-stimuliruyuschey-vyplaty-v-fakticheskuyu-zarabotnuyu-platu-i",
 "vak": true
 },
 {
@@ -2306,12 +3194,32 @@
 "pages": 3,
 "size": 299115,
 "q": [
-"tp062"
+"tp062",
+"tp063"
 ],
 "general": false,
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Тимонина. Защита трудовых прав и интересов работников в Российской…. Право и государство — теория и практика, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/zaschita-trudovyh-prav-i-interesov-rabotnikov-v-rossiyskoy-federatsii",
+"vak": true
+},
+{
+"key": "t738fd9",
+"cat": "art",
+"authors": "Типикина, Изварина",
+"title": "Эффективная правотворческая политика в сфере оплаты труда и социального обеспечения как гарантия реализации национальных интересов Российской Федерации",
+"kind": "статья",
+"pub": "Правовая политика и правовая жизнь",
+"year": 2024,
+"pages": 10,
+"size": 343354,
+"q": [
+"tp045"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Типикина, Изварина. Эффективная правотворческая политика в сфере оплаты труда…. Правовая политика и правовая жизнь, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/effektivnaya-pravotvorcheskaya-politika-v-sfere-oplaty-truda-i-sotsialnogo-obespecheniya-kak-garantiya-realizatsii-natsionalnyh",
 "vak": true
 },
 {
@@ -2331,6 +3239,44 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Тишкович. in favorem laboratoris — специально-отраслевое правило толкования и пределы его применения…. Философия права, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/in-favorem-laboratoris-spetsialno-otraslevoe-pravilo-tolkovaniya-i-predely-ego-primeneniya-dlya-tolkovaniya-chastno-pravovyh",
+"vak": true
+},
+{
+"key": "tedd856",
+"cat": "art",
+"authors": "Тишкович",
+"title": "Актуальные проблемы обработки персональных данных в трудовых правоотношениях",
+"kind": "статья",
+"pub": "Вестник Омского университета. Серия «Право»",
+"year": 2023,
+"pages": 9,
+"size": 461819,
+"q": [
+"tp029"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Тишкович. Актуальные проблемы обработки персональных данных в трудовых…. Вестник Омского университета. Серия Право, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/aktualnye-problemy-obrabotki-personalnyh-dannyh-v-trudovyh-pravootnosheniyah",
+"vak": true
+},
+{
+"key": "t8f20f5",
+"cat": "art",
+"authors": "Тишкович",
+"title": "Альтернативные способы разрешения индивидуальных трудовых споров: опыт и перспективы развития",
+"kind": "статья",
+"pub": "Сибирский юридический вестник",
+"year": 2023,
+"pages": 5,
+"size": 142469,
+"q": [
+"tp067"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Тишкович. Альтернативные способы разрешения индивидуальных трудовых споров — опыт…. Сибирский юридический вестник, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/alternativnye-sposoby-razresheniya-individualnyh-trudovyh-sporov-opyt-i-perspektivy-razvitiya",
 "vak": true
 },
 {
@@ -2372,6 +3318,25 @@
 "vak": false
 },
 {
+"key": "t02cabb",
+"cat": "art",
+"authors": "Томашевский, Филипова",
+"title": "Наемный труд, цифровой труд и цифровые трудовые права в мире, управляемом искусственным интеллектом",
+"kind": "статья",
+"pub": "Право. Журнал Высшей школы экономики",
+"year": 2026,
+"pages": 24,
+"size": 1215700,
+"q": [
+"tp002"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Томашевский, Филипова. Наемный труд, цифровой труд и цифровые трудовые права…. Право. Журнал Высшей школы экономики, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/naemnyy-trud-tsifrovoy-trud-i-tsifrovye-trudovye-prava-v-mire-upravlyaemom-iskusstvennym-intellektom",
+"vak": true
+},
+{
 "key": "t87640f",
 "cat": "art",
 "authors": "Томашевский, Хасенов",
@@ -2410,6 +3375,25 @@
 "vak": true
 },
 {
+"key": "tc8138b",
+"cat": "art",
+"authors": "Трифонова",
+"title": "К вопросу об особенностях регулирования трудовых правоотношений, осложненных иностранным элементом",
+"kind": "статья",
+"pub": "Ученые записки Крымского федерального университета имени В. И. Вернадского. Юридические науки",
+"year": 2023,
+"pages": 8,
+"size": 542861,
+"q": [
+"tp012"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Трифонова. К вопросу об особенностях регулирования…. Ученые записки Крымского федерального университета имени В., 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-ob-osobennostyah-regulirovaniya-trudovyh-pravootnosheniy-oslozhnennyh-inostrannym-elementom",
+"vak": true
+},
+{
 "key": "tf3feb0",
 "cat": "art",
 "authors": "Удальцова",
@@ -2420,14 +3404,53 @@
 "pages": 4,
 "size": 217248,
 "q": [
+"tp024",
 "tp026",
 "tp047",
-"tp024"
+"tp025"
 ],
 "general": false,
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Удальцова. Особенности расторжения трудового договора по инициативе работодателя — судебная…. Закон и право, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/osobennosti-rastorzheniya-trudovogo-dogovora-po-initsiative-rabotodatelya-sudebnaya-praktika-i-tendentsii-poslednih-let",
+"vak": true
+},
+{
+"key": "t19bdbf",
+"cat": "art",
+"authors": "Усов",
+"title": "Дополнительное соглашение как средство преодоления порока воли и содержания трудового договора",
+"kind": "статья",
+"pub": "Вестник Омского университета. Серия «Право»",
+"year": 2023,
+"pages": 10,
+"size": 469124,
+"q": [
+"tp012"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Усов. Дополнительное соглашение как средство преодоления порока воли…. Вестник Омского университета. Серия Право, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/dopolnitelnoe-soglashenie-kak-sredstvo-preodoleniya-poroka-voli-i-soderzhaniya-trudovogo-dogovora",
+"vak": true
+},
+{
+"key": "t43e4e9",
+"cat": "art",
+"authors": "Усов",
+"title": "К вопросу о конструкциях, производных от трудового договора",
+"kind": "статья",
+"pub": "Теория и практика общественного развития",
+"year": 2024,
+"pages": 6,
+"size": 614400,
+"q": [
+"tp054"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Усов. К вопросу о конструкциях, производных от трудового договора. Теория и практика общественного развития, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-o-konstruktsiyah-proizvodnyh-ot-trudovogo-dogovora",
 "vak": true
 },
 {
@@ -2685,6 +3708,67 @@
 "vak": true
 },
 {
+"key": "tf360c2",
+"cat": "art",
+"authors": "Чуча",
+"title": "Актуальные проблемы правового регулирования занятости, труда и социальной защиты: междисциплинарный подход (обзор международной научно-практической конференции v ивановские чтения)",
+"kind": "статья",
+"pub": "Труды Института государства и права Российской академии наук",
+"year": 2026,
+"pages": 27,
+"size": 156914,
+"q": [
+"tp029"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Чуча. Актуальные проблемы правового регулирования…. Труды Института государства и права Российской академии наук, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/aktualnye-problemy-pravovogo-regulirovaniya-zanyatosti-truda-i-sotsialnoy-zaschity-mezhdistsiplinarnyy-podhod-obzor-mezhdunarodnoy",
+"vak": true
+},
+{
+"key": "t7f23f7",
+"cat": "art",
+"authors": "Чуча",
+"title": "Охранительный механизм социального партнерства как институт защиты интересов государства в сфере гражданской юрисдикции",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2024,
+"pages": 3,
+"size": 309788,
+"q": [
+"tp009",
+"tp008",
+"tp057"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Чуча. Охранительный механизм социального партнерства как институт защиты…. Право и государство — теория и практика, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/ohranitelnyy-mehanizm-sotsialnogo-partnerstva-kak-institut-zaschity-interesov-gosudarstva-v-sfere-grazhdanskoy-yurisdiktsii",
+"vak": true
+},
+{
+"key": "t1ba22f",
+"cat": "art",
+"authors": "Шайхутдинова",
+"title": "Гарантии работникам с семейными обязанностями при расторжении трудового договора",
+"kind": "статья",
+"pub": "Вестник Удмуртского университета. Серия «Экономика и право»",
+"year": 2026,
+"pages": 7,
+"size": 261089,
+"q": [
+"tp026",
+"tp024",
+"tp047"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Шайхутдинова. Гарантии работникам с семейными…. Вестник Удмуртского университета. Серия Экономика и право, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/garantii-rabotnikam-s-semeynymi-obyazannostyami-pri-rastorzhenii-trudovogo-dogovora",
+"vak": true
+},
+{
 "key": "t37499d",
 "cat": "art",
 "authors": "Шакиров",
@@ -2701,6 +3785,44 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Шакиров. Трудовая функция работника, создающего результат интеллектуальной деятельности — общее…. Право и практика, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/trudovaya-funktsiya-rabotnika-sozdayuschego-rezultat-intellektualnoy-deyatelnosti-obschee-i-osobennoe",
+"vak": true
+},
+{
+"key": "t2a07c7",
+"cat": "art",
+"authors": "Шаронов",
+"title": "Увольнение работника как вид дисциплинарного взыскания",
+"kind": "статья",
+"pub": "Вестник Московского университета МВД России",
+"year": 2024,
+"pages": 8,
+"size": 240469,
+"q": [
+"tp025"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Шаронов. Увольнение работника как вид дисциплинарного взыскания. Вестник Московского университета МВД России, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/uvolnenie-rabotnika-kak-vid-distsiplinarnogo-vzyskaniya",
+"vak": true
+},
+{
+"key": "t15c7d7",
+"cat": "art",
+"authors": "Шаронов",
+"title": "Частноправовые аспекты правовой модели соотношения трудового договора и контракта о прохождении службы в органах внутренних дел",
+"kind": "статья",
+"pub": "Вестник Московского университета МВД России",
+"year": 2025,
+"pages": 9,
+"size": 393612,
+"q": [
+"tp023"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Шаронов. Частноправовые аспекты правовой модели соотношения…. Вестник Московского университета МВД России, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/chastnopravovye-aspekty-pravovoy-modeli-sootnosheniya-trudovogo-dogovora-i-kontrakta-o-prohozhdenii-sluzhby-v-organah-vnutrennih",
 "vak": true
 },
 {
@@ -2743,6 +3865,25 @@
 "vak": true
 },
 {
+"key": "tcbba48",
+"cat": "art",
+"authors": "Шуралева",
+"title": "Трудовое правоотношение в контексте прекаризации труда и занятости в России",
+"kind": "статья",
+"pub": "Вестник Пермского университета. Юридические науки",
+"year": 2024,
+"pages": 19,
+"size": 960197,
+"q": [
+"tp006"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Шуралева. Трудовое правоотношение в контексте прекаризации…. Вестник Пермского университета. Юридические науки, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/trudovoe-pravootnoshenie-v-kontekste-prekarizatsii-truda-i-zanyatosti-v-rossii",
+"vak": true
+},
+{
 "key": "t12a06a",
 "cat": "art",
 "authors": "Юрикова",
@@ -2753,14 +3894,33 @@
 "pages": 12,
 "size": 169382,
 "q": [
-"tp046",
-"tp040"
+"tp040",
+"tp046"
 ],
 "general": false,
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Юрикова. Гарантии получения заработной платы при несостоятельности работодателя. Ежегодник трудового права, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/garantii-polucheniya-zarabotnoy-platy-pri-nesostoyatelnosti-rabotodatelya",
 "vak": false
+},
+{
+"key": "t52863b",
+"cat": "art",
+"authors": "Яркова",
+"title": "Современные подходы в оплате труда работников крупных и средних компаний",
+"kind": "статья",
+"pub": "Экономика труда",
+"year": 2024,
+"pages": 12,
+"size": 448137,
+"q": [
+"tp042"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Яркова. Современные подходы в оплате труда работников крупных и средних компаний. Экономика труда, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/sovremennye-podhody-v-oplate-truda-rabotnikov-krupnyh-i-srednih-kompaniy",
+"vak": true
 },
 {
 "key": "tb9cf8ae",
@@ -3178,32 +4338,6 @@
 "toc": true
 },
 {
-"key": "emp:Судебный департамент при ВС РФ. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2023 году.pdf",
-"cat": "emp",
-"title": "Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2023 году.pdf",
-"dst": "5. Эмпирические материалы (с 2023 года)/Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2023 году.pdf",
-"size": 3809317,
-"url": "",
-"pages": 117,
-"q": [],
-"general": true,
-"year": 0,
-"note": "из базы «Административная деятельность полиции»"
-},
-{
-"key": "emp:Судебный департамент при ВС РФ. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2024 году.pdf",
-"cat": "emp",
-"title": "Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2024 году.pdf",
-"dst": "5. Эмпирические материалы (с 2023 года)/Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2024 году.pdf",
-"size": 3075323,
-"url": "",
-"pages": 116,
-"q": [],
-"general": true,
-"year": 0,
-"note": "из базы «Административная деятельность полиции»"
-},
-{
 "key": "emp:Судебный департамент при ВС РФ. Форма № 2. Гражданские и административные дела, первая инстанция, 2023 год.xls",
 "cat": "emp",
 "title": "Судебный департамент при ВС РФ. Форма № 2. Гражданские и административные дела, первая инстанция, 2023 год.xls",
@@ -3241,5 +4375,31 @@
 "general": true,
 "year": 2025,
 "note": ""
+},
+{
+"key": "emp:Судебный департамент при ВС РФ. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2023 году.pdf",
+"cat": "emp",
+"title": "Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2023 году.pdf",
+"dst": "5. Эмпирические материалы (с 2023 года)/Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2023 году.pdf",
+"size": 3809317,
+"url": "",
+"pages": 117,
+"q": [],
+"general": true,
+"year": 0,
+"note": "из базы «Административная деятельность полиции»"
+},
+{
+"key": "emp:Судебный департамент при ВС РФ. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2024 году.pdf",
+"cat": "emp",
+"title": "Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2024 году.pdf",
+"dst": "5. Эмпирические материалы (с 2023 года)/Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2024 году.pdf",
+"size": 3075323,
+"url": "",
+"pages": 116,
+"q": [],
+"general": true,
+"year": 0,
+"note": "из базы «Административная деятельность полиции»"
 }
 ]

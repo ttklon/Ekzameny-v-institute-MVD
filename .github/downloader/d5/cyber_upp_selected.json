@@ -958,7 +958,8 @@
 "authors": "Черкасова Анастасия Максимовна",
 "title": "Актуальные проблемы правовой регламентации сроков рассмотрения и разрешения ходатайств в уголовном процессе",
 "t": [
-"upp023"
+"upp023",
+"upp128"
 ],
 "n": "pb848e0"
 },
@@ -970,7 +971,8 @@
 "authors": "Шарипова Алия Рашитовна",
 "title": "МЕСТО ХОДАТАЙСТВ В УГОЛОВНОМ И ЦИВИЛИСТИЧЕСКОМ СУДОПРОИЗВОДСТВАХ: СОПОСТАВЛЕНИЕ",
 "t": [
-"upp023"
+"upp023",
+"upp128"
 ],
 "n": "pff534d"
 },
@@ -1018,7 +1020,8 @@
 "authors": "Хаметова Алиса Расимовна",
 "title": "О ПОРЯДКЕ ИСЧИСЛЕНИЯ СРОКА СУТКАМИ В УГОЛОВНОМ ПРОЦЕССЕ",
 "t": [
-"upp025"
+"upp025",
+"upp130"
 ],
 "n": "pb4228f"
 },
@@ -3245,7 +3248,8 @@
 "authors": "Аксенов Илья Чудеевич; Каруева Алтана Юрьевна; Лиджиев Давид Мергенович; Церенова Басана Басанговна; Бамбышев Эрдем Васильевич; и др.",
 "title": "МЕСТО И РОЛЬ ПРАВОВОГО ИНСТИТУТА «РАЗУМНЫЙ СРОК УГОЛОВНОГО СУДОПРОИЗВОДСТВА» В СИСТЕМЕ УГОЛОВНОПРОЦЕССУАЛЬНЫХ ПРИНЦИПОВ: СОДЕРЖАНИЕ И КРИТЕРИИ ОЦЕНКИ",
 "t": [
-"upp074"
+"upp074",
+"upp130"
 ],
 "n": "pf07058"
 },
@@ -3257,7 +3261,8 @@
 "authors": "Гилязов Айдар Ильмирович",
 "title": "Конвергенция международных стандартов разумности срока содержания под стражей в национальное законодательство",
 "t": [
-"upp074"
+"upp074",
+"upp130"
 ],
 "n": "p69b2f2"
 },
@@ -5432,6 +5437,19 @@
 "n": "pac6b8d"
 },
 {
+"slug": "/article/n/doverie-kak-vazhneyshiy-element-dostizheniya-sotsialnogo-naznacheniya-ugolovnogo-sudoproizvodstva",
+"year": "2025",
+"vak": true,
+"journal": "Правовая политика и правовая жизнь",
+"authors": "Спесивов Н. В.",
+"title": "Доверие как важнейший элемент достижения социального назначения уголовного судопроизводства",
+"t": [
+"upp001"
+],
+"manual": true,
+"n": "p49bab6"
+},
+{
 "slug": "/article/n/tsel-ugolovnogo-protsessa-kak-instrument-tipologii",
 "year": "2025",
 "vak": true,
@@ -5456,19 +5474,6 @@
 ],
 "manual": true,
 "n": "pe01bfe"
-},
-{
-"slug": "/article/n/zakonodatelnoe-zakreplenie-zadach-ugolovnogo-sudoproizvodstva-kak-sposob-obespecheniya-effektivnosti-ugolovno-protsessualnoy",
-"year": "2025",
-"vak": true,
-"journal": "Право и управление",
-"authors": "Григорьева Мария Леонидовна",
-"title": "ЗАКОНОДАТЕЛЬНОЕ ЗАКРЕПЛЕНИЕ ЗАДАЧ УГОЛОВНОГО СУДОПРОИЗВОДСТВА КАК СПОСОБ ОБЕСПЕЧЕНИЯ ЭФФЕКТИВНОСТИ УГОЛОВНО-ПРОЦЕССУАЛЬНОЙ ДЕЯТЕЛЬНОСТИ",
-"t": [
-"upp001"
-],
-"manual": true,
-"n": "p098148"
 },
 {
 "slug": "/article/n/nekotorye-problemy-obzhalovaniya-sudebnyh-resheniy-vynosimyh-na-dosudebnyh-stadiyah-ugolovnogo-protsessa",
@@ -5497,6 +5502,32 @@
 "n": "pe84887"
 },
 {
+"slug": "/article/n/sistema-stadiy-rossiyskogo-ugolovnogo-sudoproizvodstva-nezyblemost-protsessualnoy-arhitektoniki",
+"year": "2026",
+"vak": true,
+"journal": "Вестник Волгоградской академии МВД России",
+"authors": "Сергей Валерьевич Гурдин",
+"title": "СИСТЕМА СТАДИЙ РОССИЙСКОГО УГОЛОВНОГО СУДОПРОИЗВОДСТВА: НЕЗЫБЛЕМОСТЬ ПРОЦЕССУАЛЬНОЙ АРХИТЕКТОНИКИ",
+"t": [
+"upp069"
+],
+"manual": true,
+"n": "p3619b0"
+},
+{
+"slug": "/article/n/deystviya-i-resheniya-prokurora-po-delu-postupivshemu-s-obvinitelnym-zaklyucheniem-v-sisteme-stadiy-i-proizvodstv-ugolovnogo",
+"year": "2025",
+"vak": true,
+"journal": "Юридическая наука и практика: Вестник Нижегородской академии МВД России",
+"authors": "Дружинкин Николай Сергеевич",
+"title": "Действия и решения прокурора по делу, поступившему с обвинительным заключением, в системе стадий и производств уголовного процесса Российской Федерации",
+"t": [
+"upp069"
+],
+"manual": true,
+"n": "p27b07a"
+},
+{
 "slug": "/article/n/ispolzovanie-dokazatelstv-kak-sredstv-ugolovno-pravovoy-argumentatsii-na-dosudebnyh-stadiyah-ugolovnogo-protsessa",
 "year": "2025",
 "vak": true,
@@ -5508,32 +5539,6 @@
 ],
 "manual": true,
 "n": "pea07c1"
-},
-{
-"slug": "/article/n/o-edinstve-pozitsii-prokuratury-v-sudebnyh-stadiyah-ugolovnogo-protsessa",
-"year": "2025",
-"vak": true,
-"journal": "Вестник Южно-Уральского государственного университета. Серия: Право",
-"authors": "Петров Александр Васильевич",
-"title": "О ЕДИНСТВЕ ПОЗИЦИИ ПРОКУРАТУРЫ В СУДЕБНЫХ СТАДИЯХ УГОЛОВНОГО ПРОЦЕССА",
-"t": [
-"upp069"
-],
-"manual": true,
-"n": "p5e7d74"
-},
-{
-"slug": "/article/n/o-predelah-prava-obzhalovaniya-v-dosudebnyh-stadiyah-ugolovnogo-protsessa",
-"year": "2025",
-"vak": true,
-"journal": "Право и государство: теория и практика",
-"authors": "Горшкова Ксения Николаевна",
-"title": "О ПРЕДЕЛАХ ПРАВА ОБЖАЛОВАНИЯ В ДОСУДЕБНЫХ СТАДИЯХ УГОЛОВНОГО ПРОЦЕССА",
-"t": [
-"upp069"
-],
-"manual": true,
-"n": "p45cdd7"
 },
 {
 "slug": "/article/n/aktualnye-aspekty-instituta-hodataystv-v-sovremennom-ugolovno-protsessualnom-prave",
@@ -5549,6 +5554,32 @@
 "n": "pd20f5d"
 },
 {
+"slug": "/article/n/hodataystvo-eksperta-v-mehanizme-obespecheniya-ego-bezopasnosti-protsessualnyy-aspekt",
+"year": "2023",
+"vak": true,
+"journal": "Правовое государство: теория и практика",
+"authors": "Гизатуллин Ирек Альфредович",
+"title": "ХОДАТАЙСТВО ЭКСПЕРТА В МЕХАНИЗМЕ ОБЕСПЕЧЕНИЯ ЕГО БЕЗОПАСНОСТИ: ПРОЦЕССУАЛЬНЫЙ АСПЕКТ",
+"t": [
+"upp128"
+],
+"manual": true,
+"n": "p46a79c"
+},
+{
+"slug": "/article/n/hodataystvo-ob-izbranii-mery-protsessualnogo-prinuzhdeniya-ili-proizvodstve-sledstvennogo-i-inogo-protsessualnogo-deystviya-ob",
+"year": "2023",
+"vak": true,
+"journal": "Юристъ - Правоведъ",
+"authors": "Ендольцева Анна Андреевна",
+"title": "ХОДАТАЙСТВО ОБ ИЗБРАНИИ МЕРЫ ПРОЦЕССУАЛЬНОГО ПРИНУЖДЕНИЯ ИЛИ ПРОИЗВОДСТВЕ СЛЕДСТВЕННОГО И ИНОГО ПРОЦЕССУАЛЬНОГО ДЕЙСТВИЯ: ОБ УНИФИКАЦИИ ПРОЦЕССУАЛЬНОЙ ФОРМЫ",
+"t": [
+"upp128"
+],
+"manual": true,
+"n": "p1c29f5"
+},
+{
 "slug": "/article/n/voprosy-sovershenstvovaniya-pravovoy-reglamentatsii-instituta-hodataystv-v-ugolovnom-sudoproizvodstve-rossii",
 "year": "2023",
 "vak": true,
@@ -5562,17 +5593,56 @@
 "n": "pce22ee"
 },
 {
-"slug": "/article/n/problemy-pravovogo-regulirovaniya-podsudnosti-hodataystv-o-proizvodstve-sledstvennyh-i-inyh-protsessualnyh-deystviy-podavaemyh-v",
-"year": "2024",
-"vak": false,
-"journal": "Социальные нормы и практики",
-"authors": "Шигуров Александр Викторович",
-"title": "ПРОБЛЕМЫ ПРАВОВОГО РЕГУЛИРОВАНИЯ ПОДСУДНОСТИ ХОДАТАЙСТВ О ПРОИЗВОДСТВЕ СЛЕДСТВЕННЫХ И ИНЫХ ПРОЦЕССУАЛЬНЫХ ДЕЙСТВИЙ, ПОДАВАЕМЫХ В СООТВЕТСТВИИ СО СТ. 165 УПК РФ",
+"slug": "/article/n/otsenka-tendentsiy-k-ponimaniyu-razumnogo-sroka-v-ugolovnom-sudoproizvodstve-perspektivy-sovershenstvovaniya-srokov-stadii",
+"year": "2026",
+"vak": true,
+"journal": "Полицейская и следственная деятельность",
+"authors": "Захарова Анастасия Алексеевна",
+"title": "Оценка тенденций к пониманию разумного срока в уголовном судопроизводстве. Перспективы совершенствования сроков стадии предварительного расследования",
 "t": [
-"upp128"
+"upp130"
 ],
 "manual": true,
-"n": "p04361d"
+"n": "pbf70d1"
+},
+{
+"slug": "/article/n/dvoynye-standarty-zakonodatelya-legalizatsiya-manipulirovaniya-protsessualnymi-srokami",
+"year": "2025",
+"vak": true,
+"journal": "Вестник экономической безопасности",
+"authors": "Александр Александрович Сумин; Кристина Юрьевна Яковлева",
+"title": "Двойные стандарты законодателя: легализация манипулирования процессуальными сроками",
+"t": [
+"upp130"
+],
+"manual": true,
+"n": "pb6248c"
+},
+{
+"slug": "/article/n/o-sposobe-preodoleniya-protivorechiy-svyazannyh-s-ischisleniem-sroka-zaderzhaniya-podozrevaemogo",
+"year": "2025",
+"vak": true,
+"journal": "Вестник Санкт-Петербургского университета МВД России",
+"authors": "Даниил Александрович Шайденко",
+"title": "О способе преодоления противоречий, связанных с исчислением срока задержания подозреваемого",
+"t": [
+"upp130"
+],
+"manual": true,
+"n": "pcc9933"
+},
+{
+"slug": "/article/n/razumnyy-srok-sudoproizvodstva-zakonodatelnoe-ustanovlenie-ili-sudeyskoe-usmotrenie",
+"year": "2025",
+"vak": true,
+"journal": "Электронное приложение к Российскому юридическому журналу",
+"authors": "Осинцев Дмитрий Владимирович",
+"title": "РАЗУМНЫЙ СРОК СУДОПРОИЗВОДСТВА: ЗАКОНОДАТЕЛЬНОЕ УСТАНОВЛЕНИЕ ИЛИ СУДЕЙСКОЕ УСМОТРЕНИЕ?",
+"t": [
+"upp130"
+],
+"manual": true,
+"n": "pda2927"
 },
 {
 "slug": "/article/n/aktualnye-problemy-pravovoy-reglamentatsii-ugolovno-protsessualnyh-srokov",
@@ -5586,57 +5656,5 @@
 ],
 "manual": true,
 "n": "pfabe5d"
-},
-{
-"slug": "/article/n/ponyatie-ugolovno-protsessualnogo-sroka",
-"year": "2024",
-"vak": true,
-"journal": "Вестник Сибирского юридического института МВД России",
-"authors": "Анастасия Максимовна Черкасова",
-"title": "ПОНЯТИЕ УГОЛОВНО-ПРОЦЕССУАЛЬНОГО СРОКА",
-"t": [
-"upp130"
-],
-"manual": true,
-"n": "pa0cef9"
-},
-{
-"slug": "/article/n/rol-ugolovno-protsessualnyh-srokov-v-obespechenii-prav-i-svobod-uchastnikov-ugolovnogo-protsessa",
-"year": "2025",
-"vak": false,
-"journal": "Актуальные вопросы борьбы с преступлениями",
-"authors": "Жусупов Болотбек Асанович; Абдылдаева Айнура Аттокуровна",
-"title": "Роль уголовно процессуальных сроков в обеспечении прав и свобод участников уголовного процесса",
-"t": [
-"upp130"
-],
-"manual": true,
-"n": "pb55d37"
-},
-{
-"slug": "/article/n/sroki-v-ugolovnom-protsesse-kak-pravovaya-kategoriya",
-"year": "2025",
-"vak": false,
-"journal": "Актуальные вопросы борьбы с преступлениями",
-"authors": "Абдылдаева Айнура Аттокуровна",
-"title": "Сроки в уголовном процессе как правовая категория",
-"t": [
-"upp130"
-],
-"manual": true,
-"n": "pbfdcae"
-},
-{
-"slug": "/article/n/o-nekotoryh-voprosah-obespecheniya-zakonnosti-dokazyvaniya-i-soblyudeniya-razumnyh-srokov-ugolovnogo-sudoproizvodstva-po-ugolovnym",
-"year": "2024",
-"vak": false,
-"journal": "Искусство правоведения. The art of law",
-"authors": "Страхова Светлана Вячеславовна",
-"title": "О НЕКОТОРЫХ ВОПРОСАХ ОБЕСПЕЧЕНИЯ ЗАКОННОСТИ ДОКАЗЫВАНИЯ И СОБЛЮДЕНИЯ РАЗУМНЫХ СРОКОВ УГОЛОВНОГО СУДОПРОИЗВОДСТВА ПО УГОЛОВНЫМ ДЕЛАМ О МОШЕННИЧЕСТВЕ, СОВЕРШАЕМОМ С ИСПОЛЬЗОВАНИЕМ СРЕДСТВ МОБИЛЬНОЙ СВЯЗИ",
-"t": [
-"upp130"
-],
-"manual": true,
-"n": "p74f16e"
 }
 ]

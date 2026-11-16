@@ -650,7 +650,8 @@
 "tp017",
 "tp024",
 "tp026",
-"tp027"
+"tp027",
+"tp025"
 ],
 "n": "t068f03"
 },
@@ -876,7 +877,8 @@
 "t": [
 "tp024",
 "tp026",
-"tp051"
+"tp051",
+"tp025"
 ],
 "n": "t207fe8"
 },
@@ -903,7 +905,8 @@
 "t": [
 "tp024",
 "tp026",
-"tp047"
+"tp047",
+"tp025"
 ],
 "n": "tf3feb0"
 },
@@ -916,7 +919,8 @@
 "title": "Стабильность трудовых правоотношений при расторжении трудового договора по инициативе работодателя",
 "t": [
 "tp024",
-"tp026"
+"tp026",
+"tp025"
 ],
 "n": "t45cbaf"
 },
@@ -1299,7 +1303,8 @@
 "authors": "Балашова Надежда Валерьевна",
 "title": "К вопросу правового регулирования отпусков",
 "t": [
-"tp037"
+"tp037",
+"tp038"
 ],
 "n": "tc34850"
 },
@@ -2522,6 +2527,19 @@
 "n": "t02cabb"
 },
 {
+"slug": "/article/n/sootnoshenie-naemnogo-truda-i-individualnoy-ekonomicheskoy-deyatelnosti-pravovye-voprosy",
+"year": "2024",
+"vak": true,
+"journal": "Гуманитарные, социально-экономические и общественные науки",
+"authors": "Соотнолинец А. А.",
+"title": "СООТНОШЕНИЕ НАЕМНОГО ТРУДА И ИНДИВИДУАЛЬНОЙ ЭКОНОМИЧЕСКОЙ ДЕЯТЕЛЬНОСТИ: ПРАВОВЫЕ ВОПРОСЫ",
+"t": [
+"tp002"
+],
+"manual": true,
+"n": "t941042"
+},
+{
 "slug": "/article/n/uvolnenie-rabotnika-kak-vid-distsiplinarnogo-vzyskaniya",
 "year": "2024",
 "vak": true,
@@ -2535,16 +2553,16 @@
 "n": "t2a07c7"
 },
 {
-"slug": "/article/n/esche-raz-o-korruptsionnom-distsiplinarnom-pravonarushenii-i-voprosah-uvolneniya-po-utrate-doveriya-gossluzhaschego",
+"slug": "/article/n/rol-sudebnyh-resheniy-v-preodolenii-neopredelennosti-normativnogo-regulirovaniya-uvolneniya-za-progul",
 "year": "2023",
 "vak": true,
-"journal": "Административное и муниципальное право",
-"authors": "Куракин Алексей Валентинович",
-"title": "Еще раз о коррупционном дисциплинарном правонарушении и вопросах увольнения по утрате доверия госслужащего",
+"journal": "Актуальные проблемы государства и права",
+"authors": "Золоторев Василий Григорьевич; Щедрина Юлия Владимировна",
+"title": "Роль судебных решений в преодолении неопределенности нормативного регулирования увольнения за прогул",
 "t": [
 "tp025"
 ],
 "manual": true,
-"n": "tf0e87c"
+"n": "ta7b4c1"
 }
 ]

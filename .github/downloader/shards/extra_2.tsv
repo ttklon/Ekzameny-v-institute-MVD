@@ -1,5 +1,0 @@
-consqlist	.github/downloader/d5/cons_q8.txt	.github/downloader/d5/cons_q8.tsv
-crawllist	.github/downloader/d5/lib_crawl2.txt	.github/downloader/d5/lib_roots.tsv
-cybersearch	.github/downloader/d5/cyber_q_x3.txt#40	.github/downloader/d5/cyber_x3.tsv
-get	https://vsrf.ru/documents/own/?category=resolutions_plenum_supreme_court_russian&year=2026	.work/d5/vsrf/pl2026.html
-get	https://vsrf.ru/documents/own/?category=resolutions_plenum_supreme_court_russian&year=2025	.work/d5/vsrf/pl2025.html

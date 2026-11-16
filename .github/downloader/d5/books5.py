@@ -142,9 +142,10 @@ def run(code):
             elif len(ks) >= 3 and ht >= 1 and sum(1 for k in ks if k in xl) >= max(3, (len(ks) * 3 + 3) // 4): q.append(t['id'])
         b['q'] = q
         ts = (b['title'] + ' ' + b.get('short', '')).lower().replace('ё', 'е')
-        b['off'] = not re.search(REL[code], ts) or bool(NREL.get(code) and re.search(NREL[code], ts))
+        b['off'] = False if o.get('force') else (not re.search(REL[code], ts) or bool(NREL.get(code) and re.search(NREL[code], ts)))
         b['general'] = bool(re.search(GEN[code], ' '.join(b['title'].lower().replace('ё', 'е').split()).strip(' .')))
         out.append(b)
+    got = {b['n'] for b in out}; out += [b for n, b in old.items() if n not in got]   # записи, добавленные вне списка (rebooks.py), сохраняются
     json.dump(out, open(P, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
     print(code, 'описано:', len(out), st, 'без вопросов и не общие:', sum(1 for b in out if not b.get('q') and not b.get('general') and not b.get('bad')))
     return out

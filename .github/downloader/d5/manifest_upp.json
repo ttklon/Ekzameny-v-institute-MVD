@@ -133,6 +133,29 @@
 "vak": true
 },
 {
+"key": "pa33cd1",
+"cat": "art",
+"authors": "Адиев",
+"title": "Участие защитника в уголовном судопроизводстве России на этапе предварительного расследования",
+"kind": "статья",
+"pub": "Закон и право",
+"year": 2024,
+"pages": 4,
+"size": 337603,
+"q": [
+"upp012",
+"upp030",
+"upp031",
+"upp033",
+"upp044"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Адиев. Участие защитника в уголовном судопроизводстве России на этапе предварительного расследования. Закон и право, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/uchastie-zaschitnika-v-ugolovnom-sudoproizvodstve-rossii-na-etape-predvaritelnogo-rassledovaniya",
+"vak": true
+},
+{
 "key": "pa488ef",
 "cat": "art",
 "authors": "Айзенберг",
@@ -163,7 +186,8 @@
 "pages": 6,
 "size": 1077427,
 "q": [
-"upp074"
+"upp074",
+"upp130"
 ],
 "general": false,
 "wide": false,
@@ -407,6 +431,44 @@
 "vak": true
 },
 {
+"key": "p6cf8ab",
+"cat": "art",
+"authors": "Бажанов, Малахов",
+"title": "Судебные издержки и порядок их взыскания по уголовным делам в свете руководящих разъяснений Пленума Верховного Суда РСФСР (ссср) второй половины хх века",
+"kind": "статья",
+"pub": "Вестник Академии права и управления",
+"year": 2025,
+"pages": 8,
+"size": 178219,
+"q": [
+"upp131"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Бажанов, Малахов. Судебные издержки и порядок их взыскания по уголовным делам…. Вестник Академии права и управления, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/sudebnye-izderzhki-i-poryadok-ih-vzyskaniya-po-ugolovnym-delam-v-svete-rukovodyaschih-razyasneniy-plenuma-verhovnogo-suda-rsfsr",
+"vak": true
+},
+{
+"key": "p0bb495",
+"cat": "art",
+"authors": "Барабаш, Ретюнских",
+"title": "О некоторых проблемах исчисления срока задержания лица по подозрению в совершении преступления",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2023,
+"pages": 3,
+"size": 284232,
+"q": [
+"upp126"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Барабаш, Ретюнских. О некоторых проблемах исчисления срока задержания…. Право и государство — теория и практика, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/o-nekotoryh-problemah-ischisleniya-sroka-zaderzhaniya-litsa-po-podozreniyu-v-sovershenii-prestupleniya",
+"vak": true
+},
+{
 "key": "p868a1a",
 "cat": "art",
 "authors": "Бахмадов",
@@ -442,6 +504,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Берова, Тутуков. К вопросу о совершенствовании сроков…. Пробелы в российском законодательстве. Юридический журнал, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/k-voprosu-o-sovershenstvovanii-srokov-i-poryadka-obzhalovaniya-ryada-deystviy-i-resheniy-v-ugolovnom-sudoproizvodstve",
+"vak": true
+},
+{
+"key": "p1d6d3a",
+"cat": "art",
+"authors": "Бибикова",
+"title": "О наложении ареста на имущество как мере уголовно-процессуального принуждения в Российской Федерации",
+"kind": "статья",
+"pub": "Судебная экспертиза и исследования",
+"year": 2025,
+"pages": 4,
+"size": 1636308,
+"q": [
+"upp022"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Бибикова. О наложении ареста на имущество как мере уголовно-процессуального…. Судебная экспертиза и исследования, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/o-nalozhenii-aresta-na-imuschestvo-kak-mere-ugolovno-protsessualnogo-prinuzhdeniya-v-rossiyskoy-federatsii",
 "vak": true
 },
 {
@@ -507,6 +588,25 @@
 "vak": true
 },
 {
+"key": "p013b4a",
+"cat": "art",
+"authors": "Блинова",
+"title": "Презумпция правосудности приговора и некоторые проблемы ее опровержения в суде кассационной инстанции",
+"kind": "статья",
+"pub": "Правовая политика и правовая жизнь",
+"year": 2026,
+"pages": 6,
+"size": 321002,
+"q": [
+"upp060"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Блинова. Презумпция правосудности приговора и некоторые проблемы ее…. Правовая политика и правовая жизнь, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/prezumptsiya-pravosudnosti-prigovora-i-nekotorye-problemy-ee-oproverzheniya-v-sude-kassatsionnoy-instantsii",
+"vak": true
+},
+{
 "key": "p25d14e",
 "cat": "art",
 "authors": "Бобров",
@@ -527,6 +627,26 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Бобров. Обеспечение прав участников уголовного судопроизводства…. Вестник Московского университета МВД России, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/obespechenie-prav-uchastnikov-ugolovnogo-sudoproizvodstva-pri-okonchanii-predvaritelnogo-sledstviya-s-obvinitelnym-zaklyucheniem",
+"vak": true
+},
+{
+"key": "p365736",
+"cat": "art",
+"authors": "Борисевич",
+"title": "О единстве межотраслевых институтов, регулирующих пересмотр судебных актов в апелляционном, кассационном, надзорном порядке, в процессуальном праве Российской Федерации",
+"kind": "статья",
+"pub": "Труды Института государства и права Российской академии наук",
+"year": 2025,
+"pages": 34,
+"size": 204839,
+"q": [
+"upp060",
+"upp061"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Борисевич. О единстве межотраслевых институтов…. Труды Института государства и права Российской академии наук, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/o-edinstve-mezhotraslevyh-institutov-reguliruyuschih-peresmotr-sudebnyh-aktov-v-apellyatsionnom-kassatsionnom-nadzornom-poryadke-v",
 "vak": true
 },
 {
@@ -565,6 +685,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Булатов, Дежнев. Развитие правового регулирования иных мер…. Научный вестник Омской академии МВД России, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/razvitie-pravovogo-regulirovaniya-inyh-mer-protsessualnogo-prinuzhdeniya-v-kontekste-zaschity-konstitutsionnyh-prav-lichnosti",
+"vak": true
+},
+{
+"key": "pb557a5",
+"cat": "art",
+"authors": "Буханов",
+"title": "Принцип языка уголовного судопроизводства: понятие и механизм реализации",
+"kind": "статья",
+"pub": "Пробелы в российском законодательстве. Юридический журнал",
+"year": 2023,
+"pages": 6,
+"size": 189496,
+"q": [
+"upp086"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Буханов. Принцип языка уголовного судопроизводства…. Пробелы в российском законодательстве. Юридический журнал, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/printsip-yazyka-ugolovnogo-sudoproizvodstva-ponyatie-i-mehanizm-realizatsii",
 "vak": true
 },
 {
@@ -636,12 +775,33 @@
 "pages": 11,
 "size": 714517,
 "q": [
-"upp015"
+"upp015",
+"upp122"
 ],
 "general": false,
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Валюлин. Постановления правительства Российской Федерации…. Вестник Восточно-Сибирского института МВД России, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/postanovleniya-pravitelstva-rossiyskoy-federatsii-o-hranenii-veschestvennyh-dokazatelstv-v-ugolovnom-protsesse",
+"vak": true
+},
+{
+"key": "p18cfe9",
+"cat": "art",
+"authors": "Варламова, Зашляпин",
+"title": "Допустимость показаний несовершеннолетнего свидетеля в уголовном судопроизводстве",
+"kind": "статья",
+"pub": "Юридическая наука",
+"year": 2024,
+"pages": 6,
+"size": 154139,
+"q": [
+"upp120",
+"upp041"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Варламова, Зашляпин. Допустимость показаний несовершеннолетнего свидетеля в уголовном…. Юридическая наука, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/dopustimost-pokazaniy-nesovershennoletnego-svidetelya-v-ugolovnom-sudoproizvodstve",
 "vak": true
 },
 {
@@ -656,12 +816,51 @@
 "size": 1366647,
 "q": [
 "upp092",
+"upp097",
 "upp098"
 ],
 "general": false,
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Веретенников. К вопросу о неравенстве процессуальных прав и процессуальных…. Северо-Кавказский юридический вестник, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/k-voprosu-o-neravenstve-protsessualnyh-prav-i-protsessualnyh-vozmozhnostey-uchastnikov-ugolovnogo-sudoproizvodstva-so-storony",
+"vak": true
+},
+{
+"key": "p325a58",
+"cat": "art",
+"authors": "Вилкова, Самсонов",
+"title": "Электронные доказательства в отсутствие электронного уголовного дела: анахронизм уголовного судопроизводства",
+"kind": "статья",
+"pub": "Всероссийский криминологический журнал",
+"year": 2026,
+"pages": 11,
+"size": 571677,
+"q": [
+"upp122"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Вилкова, Самсонов. Электронные доказательства в отсутствие электронного…. Всероссийский криминологический журнал, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/elektronnye-dokazatelstva-v-otsutstvie-elektronnogo-ugolovnogo-dela-anahronizm-ugolovnogo-sudoproizvodstva",
+"vak": true
+},
+{
+"key": "pd20f5d",
+"cat": "art",
+"authors": "Власова, Моисеева и др.",
+"title": "Актуальные аспекты института ходатайств в современном уголовно-процессуальном праве",
+"kind": "статья",
+"pub": "Вестник Сургутского государственного университета",
+"year": 2025,
+"pages": 8,
+"size": 403242,
+"q": [
+"upp128"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Власова, Моисеева и др. Актуальные аспекты института…. Вестник Сургутского государственного университета, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/aktualnye-aspekty-instituta-hodataystv-v-sovremennom-ugolovno-protsessualnom-prave",
 "vak": true
 },
 {
@@ -675,12 +874,32 @@
 "pages": 14,
 "size": 388170,
 "q": [
+"upp011",
 "upp037"
 ],
 "general": false,
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Внукова, Шепелёва. Проблемные аспекты правового института привлечения лица…. Ленинградский юридический журнал, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/problemnye-aspekty-pravovogo-instituta-privlecheniya-litsa-v-kachestve-obvinyaemogo",
+"vak": true
+},
+{
+"key": "pc986fc",
+"cat": "art",
+"authors": "Волков",
+"title": "О границах права на ходатайство и жалобу на этапе направления прокурором уголовного дела в суд",
+"kind": "статья",
+"pub": "Аграрное и земельное право",
+"year": 2024,
+"pages": 4,
+"size": 327422,
+"q": [
+"upp023"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Волков. О границах права на ходатайство и жалобу на этапе направления прокурором…. Аграрное и земельное право, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/o-granitsah-prava-na-hodataystvo-i-zhalobu-na-etape-napravleniya-prokurorom-ugolovnogo-dela-v-sud",
 "vak": true
 },
 {
@@ -702,6 +921,25 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Волынская, Семенкова. Реализация принципа законности при осуществлении производства…. Криминологический журнал, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/realizatsiya-printsipa-zakonnosti-pri-osuschestvlenii-proizvodstva-o-primenenii-prinuditelnyh-mer-meditsinskogo-haraktera",
 "vak": false
+},
+{
+"key": "pc4398b",
+"cat": "art",
+"authors": "Воробьев, Адил",
+"title": "Особенности защиты права на тайну переписки",
+"kind": "статья",
+"pub": "Закон и право",
+"year": 2024,
+"pages": 6,
+"size": 340404,
+"q": [
+"upp081"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Воробьев, Адил. Особенности защиты права на тайну переписки. Закон и право, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/osobennosti-zaschity-prava-na-taynu-perepiski",
+"vak": true
 },
 {
 "key": "p079c0b",
@@ -781,6 +1019,45 @@
 "vak": false
 },
 {
+"key": "pbb2181",
+"cat": "art",
+"authors": "Гарбуз",
+"title": "Соотношение доказывания юридически значимых обстоятельств в рамках гражданского иска по делам об экологических преступлениях с установлением уголовно-правовых целей расследования",
+"kind": "статья",
+"pub": "Аграрное и земельное право",
+"year": 2025,
+"pages": 4,
+"size": 857600,
+"q": [
+"upp017",
+"upp113"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Гарбуз. Соотношение доказывания юридически значимых обстоятельств в рамках…. Аграрное и земельное право, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/sootnoshenie-dokazyvaniya-yuridicheski-znachimyh-obstoyatelstv-v-ramkah-grazhdanskogo-iska-po-delam-ob-ekologicheskih",
+"vak": true
+},
+{
+"key": "p26ae54",
+"cat": "art",
+"authors": "Гарифуллин",
+"title": "Актуальные вопросы обеспечения прав несовершеннолетних подозреваемых и обвиняемых в досудебном производстве России",
+"kind": "статья",
+"pub": "Евразийская адвокатура",
+"year": 2025,
+"pages": 6,
+"size": 238196,
+"q": [
+"upp011"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Гарифуллин. Актуальные вопросы обеспечения прав несовершеннолетних подозреваемых…. Евразийская адвокатура, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/aktualnye-voprosy-obespecheniya-prav-nesovershennoletnih-podozrevaemyh-i-obvinyaemyh-v-dosudebnom-proizvodstve-rossii",
+"vak": true
+},
+{
 "key": "p911af3",
 "cat": "art",
 "authors": "Гизатуллин",
@@ -835,6 +1112,26 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Головкин, Крамская. Оплата труда переводчика в ходе…. Юридическая наука и практика — Вестник Нижегородской, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/oplata-truda-perevodchika-v-hode-ugolovnogo-sudoproizvodstva-nekotorye-voprosy-trebuyut-razyasneniy",
+"vak": true
+},
+{
+"key": "pb17874",
+"cat": "art",
+"authors": "Гордей, Крапчатова",
+"title": "Государственная политика уголовно-правовой защиты участников уголовного судопроизводства в РФ: проблемы и пути их разрешения",
+"kind": "статья",
+"pub": "Вестник Удмуртского университета. Серия «Экономика и право»",
+"year": 2023,
+"pages": 10,
+"size": 281472,
+"q": [
+"upp004",
+"upp098"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Гордей, Крапчатова. Государственная политика уголовно-правовой…. Вестник Удмуртского университета. Серия Экономика и п.pdf",
+"url": "https://cyberleninka.ru/article/n/gosudarstvennaya-politika-ugolovno-pravovoy-zaschity-uchastnikov-ugolovnogo-sudoproizvodstva-v-rf-problemy-i-puti-ih-razresheniya",
 "vak": true
 },
 {
@@ -976,6 +1273,25 @@
 "vak": false
 },
 {
+"key": "pc33b11",
+"cat": "art",
+"authors": "Гутаев",
+"title": "К вопросу о приостановлении и возобновлении предварительного следствия",
+"kind": "статья",
+"pub": "Право и управление",
+"year": 2024,
+"pages": 3,
+"size": 266752,
+"q": [
+"upp035"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Гутаев. К вопросу о приостановлении и возобновлении предварительного следствия. Право и управление, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-o-priostanovlenii-i-vozobnovlenii-predvaritelnogo-sledstviya",
+"vak": true
+},
+{
 "key": "p4c3213",
 "cat": "art",
 "authors": "Гущин",
@@ -986,12 +1302,75 @@
 "pages": 6,
 "size": 1410110,
 "q": [
-"upp018"
+"upp018",
+"upp125"
 ],
 "general": false,
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Гущин. К вопросу об основаниях для избрания мер процессуального…. Вестник Воронежского института МВД России, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/k-voprosu-ob-osnovaniyah-dlya-izbraniya-mer-protsessualnogo-prinuzhdeniya",
+"vak": true
+},
+{
+"key": "p40a6db",
+"cat": "art",
+"authors": "Данг",
+"title": "Основные направления развития общих условий предварительного расследования в досудебном производстве: сравнительно-правовое исследование",
+"kind": "статья",
+"pub": "Вестник Московского университета МВД России",
+"year": 2023,
+"pages": 6,
+"size": 793382,
+"q": [
+"upp039",
+"upp030",
+"upp031",
+"upp033",
+"upp044"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Данг. Основные направления развития общих условий предварительного…. Вестник Московского университета МВД России, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/osnovnye-napravleniya-razvitiya-obschih-usloviy-predvaritelnogo-rassledovaniya-v-dosudebnom-proizvodstve-sravnitelno-pravovoe",
+"vak": true
+},
+{
+"key": "p4211ce",
+"cat": "art",
+"authors": "Даниленко, Таболина",
+"title": "О некоторых тенденциях развития надзора прокурора за процессуальной деятельностью органов дознания",
+"kind": "статья",
+"pub": "Право и политика",
+"year": 2024,
+"pages": 16,
+"size": 189460,
+"q": [
+"upp008"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Даниленко, Таболина. О некоторых тенденциях развития надзора прокурора за процессуальной…. Право и политика, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/o-nekotoryh-tendentsiyah-razvitiya-nadzora-prokurora-za-protsessualnoy-deyatelnostyu-organov-doznaniya",
+"vak": true
+},
+{
+"key": "p7d1376",
+"cat": "art",
+"authors": "Даниленко",
+"title": "Орган дознания как участник уголовного судопроизводства",
+"kind": "статья",
+"pub": "Вестник Университета имени О. Е. Кутафина",
+"year": 2024,
+"pages": 8,
+"size": 397789,
+"q": [
+"upp008",
+"upp098"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Даниленко. Орган дознания как участник уголовного судопроизводства. Вестник Университета имени О. Е. Кутафина, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/organ-doznaniya-kak-uchastnik-ugolovnogo-sudoproizvodstva",
 "vak": true
 },
 {
@@ -1128,12 +1507,32 @@
 "pages": 9,
 "size": 314344,
 "q": [
+"upp043",
 "upp063"
 ],
 "general": false,
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Диденко, Моругина. Особенности производства судебных экспертиз по уголовным делам в отношении…. Юристъ - Правоведъ, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/osobennosti-proizvodstva-sudebnyh-ekspertiz-po-ugolovnym-delam-v-otnoshenii-nesovershennoletnih",
+"vak": true
+},
+{
+"key": "p013801",
+"cat": "art",
+"authors": "Дистанова",
+"title": "Исполнимость как свойство судебного решения в уголовном процессе",
+"kind": "статья",
+"pub": "Правовое государство: теория и практика",
+"year": 2025,
+"pages": 6,
+"size": 277137,
+"q": [
+"upp053"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Дистанова. Исполнимость как свойство судебного решения в уголовном…. Правовое государство — теория и практика, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/ispolnimost-kak-svoystvo-sudebnogo-resheniya-v-ugolovnom-protsesse",
 "vak": true
 },
 {
@@ -1267,6 +1666,7 @@
 "size": 521192,
 "q": [
 "upp114",
+"upp115",
 "upp014"
 ],
 "general": false,
@@ -1312,6 +1712,26 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Жигулина. Понятие, содержание и структура принципа независимости судей в уголовном…. Новый юридический журнал, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/ponyatie-soderzhanie-i-struktura-printsipa-nezavisimosti-sudey-v-ugolovnom-sudoproizvodstve-1",
 "vak": false
+},
+{
+"key": "pa89f2f",
+"cat": "art",
+"authors": "Жукова, Пивень и др.",
+"title": "О правовых средствах оказания защитником квалифицированной юридической помощи при применении мер процессуального принуждения",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2024,
+"pages": 3,
+"size": 306958,
+"q": [
+"upp105",
+"upp127"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Жукова, Пивень и др. О правовых средствах оказания защитником…. Право и государство — теория и практика, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/o-pravovyh-sredstvah-okazaniya-zaschitnikom-kvalifitsirovannoy-yuridicheskoy-pomoschi-pri-primenenii-mer-protsessualnogo-1",
+"vak": true
 },
 {
 "key": "p8a2b62",
@@ -1373,6 +1793,25 @@
 "vak": true
 },
 {
+"key": "pe84887",
+"cat": "art",
+"authors": "Замылин",
+"title": "Противодействие расследованию на досудебной стадии уголовного процесса: о понятии и его закономерностях",
+"kind": "статья",
+"pub": "Вестник Волгоградской академии МВД России",
+"year": 2026,
+"pages": 11,
+"size": 226392,
+"q": [
+"upp069"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Замылин. Противодействие расследованию на досудебной стадии…. Вестник Волгоградской академии МВД России, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/protivodeystvie-rassledovaniyu-na-dosudebnoy-stadii-ugolovnogo-protsessa-o-ponyatii-i-ego-zakonomernostyah",
+"vak": true
+},
+{
 "key": "pcceb31",
 "cat": "art",
 "authors": "Заракушева, Зеленкина",
@@ -1392,6 +1831,25 @@
 "vak": false
 },
 {
+"key": "pa4b232",
+"cat": "art",
+"authors": "Зелюка",
+"title": "Институт замены наказания в контексте уголовно-процессуальной характеристики исполнения приговора",
+"kind": "статья",
+"pub": "Общество и право",
+"year": 2025,
+"pages": 6,
+"size": 152876,
+"q": [
+"upp059"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Зелюка. Институт замены наказания в контексте уголовно-процессуальной характеристики исполнения…. Общество и право, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/institut-zameny-nakazaniya-v-kontekste-ugolovno-protsessualnoy-harakteristiki-ispolneniya-prigovora",
+"vak": true
+},
+{
 "key": "pffdf57",
 "cat": "art",
 "authors": "Золотов, Владимиров и др.",
@@ -1408,6 +1866,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Золотов, Владимиров и др. И вновь о модернизации уголовного процесса…. Право и государство — теория и практика, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/i-vnov-o-modernizatsii-ugolovnogo-protsessa-rossii-cherez-reglamentatsiyu-neglasnyh-sledstvennyh-deystviy-chast-2",
+"vak": true
+},
+{
+"key": "p6f9538",
+"cat": "art",
+"authors": "Золочевская",
+"title": "Некоторые гарантии прав подозреваемого и проблемы их обеспечения при задержании лица по подозрению в совершении преступления",
+"kind": "статья",
+"pub": "Научный вестник Орловского юридического института МВД России имени В. В. Лукьянова",
+"year": 2025,
+"pages": 6,
+"size": 253807,
+"q": [
+"upp126"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Золочевская. Некоторые гарантии прав подозреваемого…. Научный вестник Орловского юридического института МВД, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/nekotorye-garantii-prav-podozrevaemogo-i-problemy-ih-obespecheniya-pri-zaderzhanii-litsa-po-podozreniyu-v-sovershenii-prestupleniya",
 "vak": true
 },
 {
@@ -1450,6 +1927,25 @@
 "vak": true
 },
 {
+"key": "pa17cb5",
+"cat": "art",
+"authors": "Иванов",
+"title": "К вопросу о процессе доказывания в уголовном судопроизводстве (сущностно-содержательная характеристика)",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2025,
+"pages": 6,
+"size": 1036853,
+"q": [
+"upp016"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Иванов. К вопросу о процессе доказывания в уголовном судопроизводстве…. Право и государство — теория и практика, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-o-protsesse-dokazyvaniya-v-ugolovnom-sudoproizvodstve-suschnostno-soderzhatelnaya-harakteristika",
+"vak": true
+},
+{
 "key": "p4ffeba",
 "cat": "art",
 "authors": "Иванов",
@@ -1466,6 +1962,26 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Иванов. Особенности проверки и оценки показаний малолетних потерпевших…. Вестник экономики, права и социологии, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/osobennosti-proverki-i-otsenki-pokazaniy-maloletnih-poterpevshih-pri-rassledovanii-posyagatelstv-na-polovuyu-neprikosnovennost",
+"vak": true
+},
+{
+"key": "p959a8a",
+"cat": "art",
+"authors": "Иванов",
+"title": "Реализация права на информацию участниками уголовного судопроизводства",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2025,
+"pages": 3,
+"size": 901153,
+"q": [
+"upp079",
+"upp098"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Иванов. Реализация права на информацию участниками уголовного…. Право и государство — теория и практика, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/realizatsiya-prava-na-informatsiyu-uchastnikami-ugolovnogo-sudoproizvodstva",
 "vak": true
 },
 {
@@ -1506,6 +2022,27 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Ивенский. О коррекции стереотипов в темпоральных и эксекуционных…. Вестник Самарского юридического института, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/o-korrektsii-stereotipov-v-temporalnyh-i-eksekutsionnyh-harakteristikah-nachala-stadii-ispolneniya-prigovora",
+"vak": true
+},
+{
+"key": "pfaf21d",
+"cat": "art",
+"authors": "Ивенский",
+"title": "О праве частных лиц на инициирование судебного разбирательства в стадии исполнения приговора",
+"kind": "статья",
+"pub": "Вестник Самарского юридического института",
+"year": 2024,
+"pages": 7,
+"size": 5100472,
+"q": [
+"upp051",
+"upp052",
+"upp059"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Ивенский. О праве частных лиц на инициирование судебного…. Вестник Самарского юридического института, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/o-prave-chastnyh-lits-na-initsiirovanie-sudebnogo-razbiratelstva-v-stadii-ispolneniya-prigovora",
 "vak": true
 },
 {
@@ -1724,6 +2261,26 @@
 "vak": true
 },
 {
+"key": "p2dd6c2",
+"cat": "art",
+"authors": "Кильдигушев",
+"title": "Органы внутренних дел как участник уголовного процесса",
+"kind": "статья",
+"pub": "Аграрное и земельное право",
+"year": 2024,
+"pages": 3,
+"size": 401416,
+"q": [
+"upp094",
+"upp098"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Кильдигушев. Органы внутренних дел как участник уголовного процесса. Аграрное и земельное право, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/organy-vnutrennih-del-kak-uchastnik-ugolovnogo-protsessa",
+"vak": true
+},
+{
 "key": "p00fe1c",
 "cat": "art",
 "authors": "Кирсанова",
@@ -1868,6 +2425,7 @@
 "size": 394491,
 "q": [
 "upp114",
+"upp115",
 "upp014"
 ],
 "general": false,
@@ -2007,6 +2565,52 @@
 "vak": true
 },
 {
+"key": "pf5a615",
+"cat": "art",
+"authors": "Корнакова, Завгороднева",
+"title": "Отдельная категория лиц как особый круг участников уголовно-процессуальных отношений",
+"kind": "статья",
+"pub": "Всероссийский криминологический журнал",
+"year": 2025,
+"pages": 10,
+"size": 584933,
+"q": [
+"upp065",
+"upp098",
+"upp107"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Корнакова, Завгороднева. Отдельная категория лиц как особый круг…. Всероссийский криминологический журнал, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/otdelnaya-kategoriya-lits-kak-osobyy-krug-uchastnikov-ugolovno-protsessualnyh-otnosheniy",
+"vak": true
+},
+{
+"key": "p75fa90",
+"cat": "art",
+"authors": "Корнелюк, Самигуллин",
+"title": "Актуальные вопросы реализации полномочий дознавателя, органа дознания в ходе предварительного расследования",
+"kind": "статья",
+"pub": "Аграрное и земельное право",
+"year": 2023,
+"pages": 3,
+"size": 333618,
+"q": [
+"upp096",
+"upp007",
+"upp008",
+"upp030",
+"upp031",
+"upp033",
+"upp044"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Корнелюк, Самигуллин. Актуальные вопросы реализации полномочий дознавателя, органа…. Аграрное и земельное право, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/aktualnye-voprosy-realizatsii-polnomochiy-doznavatelya-organa-doznaniya-v-hode-predvaritelnogo-rassledovaniya",
+"vak": true
+},
+{
 "key": "p069944",
 "cat": "art",
 "authors": "Корчагин",
@@ -2038,12 +2642,51 @@
 "size": 216618,
 "q": [
 "upp102",
+"upp108",
 "upp098"
 ],
 "general": false,
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Косенко. О процессуальном статусе участников проверки сообщения о преступлении. Вестник Академии права и управления, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/o-protsessualnom-statuse-uchastnikov-proverki-soobscheniya-o-prestuplenii",
+"vak": true
+},
+{
+"key": "pb6093b",
+"cat": "art",
+"authors": "Костенюк",
+"title": "Гласность в уголовном процессе в условиях чрезвычайной ситуации, в том числе с участием присяжных заседателей: проблемы правового регулирования",
+"kind": "статья",
+"pub": "Проблемы экономики и юридической практики",
+"year": 2023,
+"pages": 6,
+"size": 303150,
+"q": [
+"upp056"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Костенюк. Гласность в уголовном процессе в условиях чрезвычайной…. Проблемы экономики и юридической практики, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/glasnost-v-ugolovnom-protsesse-v-usloviyah-chrezvychaynoy-situatsii-v-tom-chisle-s-uchastiem-prisyazhnyh-zasedateley-problemy",
+"vak": true
+},
+{
+"key": "pa342c7",
+"cat": "art",
+"authors": "Красильников, Салеева",
+"title": "Процессуальный и ведомственный контроль за законностью принятия процессуальных решений, влекущих реабилитацию подозреваемого (обвиняемого), подсудимого: теория и практика организации в органах предварительного следствия в системе МВД России",
+"kind": "статья",
+"pub": "Труды Академии управления МВД России",
+"year": 2024,
+"pages": 12,
+"size": 213332,
+"q": [
+"upp095"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Красильников, Салеева. Процессуальный и ведомственный контроль…. Труды Академии управления МВД России, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/protsessualnyy-i-vedomstvennyy-kontrol-za-zakonnostyu-prinyatiya-protsessualnyh-resheniy-vlekuschih-reabilitatsiyu-podozrevaemogo",
 "vak": true
 },
 {
@@ -2175,6 +2818,7 @@
 "pages": 9,
 "size": 211630,
 "q": [
+"upp010",
 "upp011"
 ],
 "general": false,
@@ -2203,6 +2847,27 @@
 "vak": true
 },
 {
+"key": "pe56004",
+"cat": "art",
+"authors": "Кузнецов",
+"title": "Проблема формальной оценки доказательств в свете действия института недопустимых доказательств: коллизии между правом и практикой",
+"kind": "статья",
+"pub": "Вестник Российского университета кооперации",
+"year": 2024,
+"pages": 5,
+"size": 832686,
+"q": [
+"upp085",
+"upp014",
+"upp114"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Кузнецов. Проблема формальной оценки доказательств в свете действия…. Вестник Российского университета кооперации, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/problema-formalnoy-otsenki-dokazatelstv-v-svete-deystviya-instituta-nedopustimyh-dokazatelstv-kollizii-mezhdu-pravom-i-praktikoy",
+"vak": true
+},
+{
 "key": "p1871b3",
 "cat": "art",
 "authors": "Кулешова",
@@ -2222,6 +2887,44 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Кулешова. Криминалистическая характеристика иностранного…. Известия Тульского государственного университета., 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/kriminalisticheskaya-harakteristika-inostrannogo-uchastnika-ugolovnogo-sudoproizvodstva-i-ee-ispolzovanie-v-rassledovanii",
+"vak": true
+},
+{
+"key": "pc4de24",
+"cat": "art",
+"authors": "Кумышева, Сеногноев",
+"title": "Определение предмета и пределов доказывания для установления целей уголовного преследования",
+"kind": "статья",
+"pub": "Право и управление",
+"year": 2024,
+"pages": 4,
+"size": 283636,
+"q": [
+"upp113"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Кумышева, Сеногноев. Определение предмета и пределов доказывания для установления целей…. Право и управление, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/opredelenie-predmeta-i-predelov-dokazyvaniya-dlya-ustanovleniya-tseley-ugolovnogo-presledovaniya",
+"vak": true
+},
+{
+"key": "p09a17d",
+"cat": "art",
+"authors": "Курбатова",
+"title": "О процессуальных гарантиях для уязвимых лиц, подозреваемых, обвиняемых в совершении преступления: международно-европейский аспект",
+"kind": "статья",
+"pub": "Пробелы в российском законодательстве. Юридический журнал",
+"year": 2024,
+"pages": 6,
+"size": 252942,
+"q": [
+"upp104"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Курбатова. О процессуальных гарантиях для уязвимых лиц…. Пробелы в российском законодательстве. Юридический журнал, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/o-protsessualnyh-garantiyah-dlya-uyazvimyh-lits-podozrevaemyh-obvinyaemyh-v-sovershenii-prestupleniya-mezhdunarodno-evropeyskiy",
 "vak": true
 },
 {
@@ -2302,6 +3005,25 @@
 "vak": false
 },
 {
+"key": "pa3742c",
+"cat": "art",
+"authors": "Лаврова, Седых",
+"title": "Эволюция уголовно-процессуальных функций прокурора в российском законодательстве",
+"kind": "статья",
+"pub": "Право и практика",
+"year": 2025,
+"pages": 6,
+"size": 649620,
+"q": [
+"upp088"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Лаврова, Седых. Эволюция уголовно-процессуальных функций прокурора в российском законодательстве. Право и практика, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/evolyutsiya-ugolovno-protsessualnyh-funktsiy-prokurora-v-rossiyskom-zakonodatelstve",
+"vak": true
+},
+{
 "key": "p80a5ce",
 "cat": "art",
 "authors": "Лазарева",
@@ -2324,6 +3046,25 @@
 "vak": true
 },
 {
+"key": "p95517c",
+"cat": "art",
+"authors": "Латыпов",
+"title": "Лицо, в отношении которого ведется производство о применении принудительных мер медицинского характера: вопросы теории и нормативного регулирования /",
+"kind": "статья",
+"pub": "Вестник Казанского юридического института МВД России",
+"year": 2023,
+"pages": 10,
+"size": 373405,
+"q": [
+"upp064"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Латыпов. Лицо, в отношении которого ведется производство…. Вестник Казанского юридического института МВД России, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/litso-v-otnoshenii-kotorogo-vedetsya-proizvodstvo-o-primenenii-prinuditelnyh-mer-meditsinskogo-haraktera-voprosy-teorii-i",
+"vak": true
+},
+{
 "key": "p62fe24",
 "cat": "art",
 "authors": "Лебедев, Фойгель",
@@ -2341,6 +3082,45 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Лебедев, Фойгель. Следственные действия в российском уголовном…. Всероссийский криминологический журнал, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/sledstvennye-deystviya-v-rossiyskom-ugolovnom-sudoproizvodstve-analiz-doktrinalnyh-i-pravovyh-protivorechiy",
+"vak": true
+},
+{
+"key": "p3aa19e",
+"cat": "art",
+"authors": "Левченко",
+"title": "Доказывание в стадии возбуждения уголовного дела",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2023,
+"pages": 3,
+"size": 304298,
+"q": [
+"upp027",
+"upp028"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Левченко. Доказывание в стадии возбуждения уголовного дела. Право и государство — теория и практика, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/dokazyvanie-v-stadii-vozbuzhdeniya-ugolovnogo-dela-1",
+"vak": true
+},
+{
+"key": "p239efb",
+"cat": "art",
+"authors": "Левченко",
+"title": "Некоторые проблемы потерпевшего как гражданского истца",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2023,
+"pages": 2,
+"size": 290297,
+"q": [
+"upp097"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Левченко. Некоторые проблемы потерпевшего как гражданского истца. Право и государство — теория и практика, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/nekotorye-problemy-poterpevshego-kak-grazhdanskogo-isttsa",
 "vak": true
 },
 {
@@ -2382,6 +3162,25 @@
 "vak": true
 },
 {
+"key": "pa8dc80",
+"cat": "art",
+"authors": "Либензон",
+"title": "Проблемы определения территориальной подсудности по делам о контрабанде",
+"kind": "статья",
+"pub": "Актуальные проблемы российского права",
+"year": 2023,
+"pages": 11,
+"size": 308378,
+"q": [
+"upp049"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Либензон. Проблемы определения территориальной подсудности по делам…. Актуальные проблемы российского права, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/problemy-opredeleniya-territorialnoy-podsudnosti-po-delam-o-kontrabande",
+"vak": true
+},
+{
 "key": "paab57d",
 "cat": "art",
 "authors": "Лисицкая",
@@ -2418,6 +3217,26 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Ломов. Реабилитация в уголовном процессе — понятие, основания и порядок возмещения вреда…. Вестник магистратуры, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/reabilitatsiya-v-ugolovnom-protsesse-ponyatie-osnovaniya-i-poryadok-vozmescheniya-vreda-v-rossiyskoy-federatsii",
 "vak": false
+},
+{
+"key": "pba2e04",
+"cat": "art",
+"authors": "Лопотенко",
+"title": "Некоторые аспекты определения предмета уголовно-процессуального обжалования в досудебном производстве",
+"kind": "статья",
+"pub": "Теория и практика общественного развития",
+"year": 2025,
+"pages": 6,
+"size": 265669,
+"q": [
+"upp087",
+"upp129"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Лопотенко. Некоторые аспекты определения предмета…. Теория и практика общественного развития, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/nekotorye-aspekty-opredeleniya-predmeta-ugolovno-protsessualnogo-obzhalovaniya-v-dosudebnom-proizvodstve",
+"vak": true
 },
 {
 "key": "pa72c9f",
@@ -2477,6 +3296,25 @@
 "vak": true
 },
 {
+"key": "p003926",
+"cat": "art",
+"authors": "Мадинабону",
+"title": "Достаточность доказательств для привлечения в качестве обвиняемого",
+"kind": "статья",
+"pub": "Общество и инновации",
+"year": 2026,
+"pages": 9,
+"size": 310889,
+"q": [
+"upp037"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Мадинабону. Достаточность доказательств для привлечения в качестве обвиняемого. Общество и инновации, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/dostatochnost-dokazatelstv-dlya-privlecheniya-v-kachestve-obvinyaemogo",
+"vak": true
+},
+{
 "key": "p607ed6",
 "cat": "art",
 "authors": "Майоров",
@@ -2487,6 +3325,7 @@
 "pages": 8,
 "size": 668877,
 "q": [
+"upp100",
 "upp106"
 ],
 "general": false,
@@ -2575,6 +3414,25 @@
 "vak": false
 },
 {
+"key": "pf3348c",
+"cat": "art",
+"authors": "Мальцагов, Дадаев и др.",
+"title": "Основные этапы становления и реализация принципа презумпции невиновности в досудебном российском уголовном судопроизводстве",
+"kind": "статья",
+"pub": "Право и практика",
+"year": 2023,
+"pages": 4,
+"size": 882955,
+"q": [
+"upp082"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Мальцагов, Дадаев и др. Основные этапы становления и реализация принципа презумпции невиновности…. Право и практика, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/osnovnye-etapy-stanovleniya-i-realizatsiya-printsipa-prezumptsii-nevinovnosti-v-dosudebnom-rossiyskom-ugolovnom-sudoproizvodstve",
+"vak": true
+},
+{
 "key": "p6f99f5",
 "cat": "art",
 "authors": "Мальцагов, Дадаев",
@@ -2595,6 +3453,25 @@
 "vak": true
 },
 {
+"key": "p017940",
+"cat": "art",
+"authors": "Манукян",
+"title": "Справедливость и гуманизм как принципы уголовного судопроизводства Российской Федерации",
+"kind": "статья",
+"pub": "Закон и право",
+"year": 2025,
+"pages": 5,
+"size": 388284,
+"q": [
+"upp073"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Манукян. Справедливость и гуманизм как принципы уголовного судопроизводства Российской Федерации. Закон и право, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/spravedlivost-i-gumanizm-kak-printsipy-ugolovnogo-sudoproizvodstva-rossiyskoy-federatsii",
+"vak": true
+},
+{
 "key": "pb35f28",
 "cat": "art",
 "authors": "Мартыненко",
@@ -2611,6 +3488,30 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Мартыненко. О возможных субъектах предъявления гражданского иска и недостатках…. Юридическая наука, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/o-vozmozhnyh-subektah-predyavleniya-grazhdanskogo-iska-i-nedostatkah-zakonodatelnogo-regulirovaniya-ego-razresheniya-v-ugolovnom",
+"vak": true
+},
+{
+"key": "p1790e1",
+"cat": "art",
+"authors": "Маслова",
+"title": "Полномочия прокурора в процессе применения мер безопасности в стадии предварительного расследования",
+"kind": "статья",
+"pub": "Вестник экономики, права и социологии",
+"year": 2024,
+"pages": 5,
+"size": 756471,
+"q": [
+"upp030",
+"upp006",
+"upp007",
+"upp031",
+"upp033",
+"upp044"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Маслова. Полномочия прокурора в процессе применения мер безопасности…. Вестник экономики, права и социологии, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/polnomochiya-prokurora-v-protsesse-primeneniya-mer-bezopasnosti-v-stadii-predvaritelnogo-rassledovaniya",
 "vak": true
 },
 {
@@ -2772,6 +3673,67 @@
 "vak": false
 },
 {
+"key": "pa7ccf6",
+"cat": "art",
+"authors": "Мирзоев, Настуева",
+"title": "Проблемы защиты чести и достоинства личности в уголовном судопроизводстве",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2024,
+"pages": 3,
+"size": 316723,
+"q": [
+"upp077"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Мирзоев, Настуева. Проблемы защиты чести и достоинства личности…. Право и государство — теория и практика, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/problemy-zaschity-chesti-i-dostoinstva-lichnosti-v-ugolovnom-sudoproizvodstve",
+"vak": true
+},
+{
+"key": "p70198e",
+"cat": "art",
+"authors": "Михайлова",
+"title": "К вопросу о роли прокурора на этапе завершения стадии предварительного расследования",
+"kind": "статья",
+"pub": "Аграрное и земельное право",
+"year": 2025,
+"pages": 3,
+"size": 860807,
+"q": [
+"upp044",
+"upp030",
+"upp031",
+"upp033"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Михайлова. К вопросу о роли прокурора на этапе завершения стадии предварительного…. Аграрное и земельное право, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-o-roli-prokurora-na-etape-zaversheniya-stadii-predvaritelnogo-rassledovaniya",
+"vak": true
+},
+{
+"key": "pa0e6a8",
+"cat": "art",
+"authors": "Михайлова",
+"title": "О полномочиях прокурора при проверке вещественных доказательств по уголовному делу оконченному производству",
+"kind": "статья",
+"pub": "Аграрное и земельное право",
+"year": 2023,
+"pages": 3,
+"size": 293446,
+"q": [
+"upp006",
+"upp015"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Михайлова. О полномочиях прокурора при проверке вещественных доказательств…. Аграрное и земельное право, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/o-polnomochiyah-prokurora-pri-proverke-veschestvennyh-dokazatelstv-po-ugolovnomu-delu-okonchennomu-proizvodstvu",
+"vak": true
+},
+{
 "key": "p4119bc",
 "cat": "art",
 "authors": "Мозина",
@@ -2829,6 +3791,65 @@
 "vak": true
 },
 {
+"key": "pe3134a",
+"cat": "art",
+"authors": "Мядзелец",
+"title": "Понятие «любое лицо, подвергнутое мерам процессуального принуждения» как институциональный элемент механизма возмещения вреда в соответствии с ч. 3 ст. 133 УПК РФ",
+"kind": "статья",
+"pub": "Вестник экономической безопасности",
+"year": 2023,
+"pages": 5,
+"size": 263331,
+"q": [
+"upp018"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Мядзелец. Понятие любое лицо, подвергнутое мерам процессуального принуждения…. Вестник экономической безопасности, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/ponyatie-lyuboe-litso-podvergnutoe-meram-protsessualnogo-prinuzhdeniya-kak-institutsionalnyy-element-mehanizma-vozmescheniya-vreda",
+"vak": true
+},
+{
+"key": "p258602",
+"cat": "art",
+"authors": "Назарова",
+"title": "Стадия возбуждения уголовного дела – важный этап уголовного судопроизводства",
+"kind": "статья",
+"pub": "Научный вестник Орловского юридического института МВД России имени В. В. Лукьянова",
+"year": 2026,
+"pages": 7,
+"size": 292019,
+"q": [
+"upp027",
+"upp028"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Назарова. Стадия возбуждения уголовного дела – важный этап…. Научный вестник Орловского юридического института МВД, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/stadiya-vozbuzhdeniya-ugolovnogo-dela-vazhnyy-etap-ugolovnogo-sudoproizvodstva",
+"vak": true
+},
+{
+"key": "p9e633d",
+"cat": "art",
+"authors": "Назырова",
+"title": "Отдельные проблемы обеспечения безопасности участников уголовного судопроизводства",
+"kind": "статья",
+"pub": "Вестник Восточно-Сибирского института МВД России",
+"year": 2024,
+"pages": 10,
+"size": 660044,
+"q": [
+"upp108",
+"upp098"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Назырова. Отдельные проблемы обеспечения безопасности…. Вестник Восточно-Сибирского института МВД России, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/otdelnye-problemy-obespecheniya-bezopasnosti-uchastnikov-ugolovnogo-sudoproizvodstva",
+"vak": true
+},
+{
 "key": "pa9285b",
 "cat": "art",
 "authors": "Назырова",
@@ -2868,6 +3889,25 @@
 "vak": true
 },
 {
+"key": "p797b2f",
+"cat": "art",
+"authors": "Наметкин, Федулов",
+"title": "Проблемы применения института отводов в отечественном уголовном процессе",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2024,
+"pages": 3,
+"size": 331295,
+"q": [
+"upp112"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Наметкин, Федулов. Проблемы применения института отводов в отечественном…. Право и государство — теория и практика, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/problemy-primeneniya-instituta-otvodov-v-otechestvennom-ugolovnom-protsesse",
+"vak": true
+},
+{
 "key": "pa230ff",
 "cat": "art",
 "authors": "Наруцкая",
@@ -2885,6 +3925,28 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Наруцкая. Обеспечение прав несовершеннолетних подозреваемых и обвиняемых — правовые…. Вестник экономики и права, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/obespechenie-prav-nesovershennoletnih-podozrevaemyh-i-obvinyaemyh-pravovye-garantii-i-protsessualnye-realii",
 "vak": false
+},
+{
+"key": "p8b8061",
+"cat": "art",
+"authors": "Нгуев",
+"title": "Программное обеспечение для управления приемом, рассмотрением и разрешением сообщений о преступлениях, заявлений о преступлениях и предложений о возбуждении уголовного дела является важным прорывом в деятельности уголовного расследования",
+"kind": "статья",
+"pub": "Международный научный вестник",
+"year": 2025,
+"pages": 5,
+"size": 252678,
+"q": [
+"upp029",
+"upp024",
+"upp027",
+"upp028"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Нгуев. Программное обеспечение для управления приемом, рассмотрением и разрешением…. Международный научный вестник, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/programmnoe-obespechenie-dlya-upravleniya-priemom-rassmotreniem-i-razresheniem-soobscheniy-o-prestupleniyah-zayavleniy-o",
+"vak": true
 },
 {
 "key": "p483a17",
@@ -3004,6 +4066,63 @@
 "vak": true
 },
 {
+"key": "pd6bd51",
+"cat": "art",
+"authors": "Огарь",
+"title": "Процессуальные средства доказывания до начала уголовного преследования",
+"kind": "статья",
+"pub": "Вестник Сибирского юридического института МВД России",
+"year": 2023,
+"pages": 6,
+"size": 579742,
+"q": [
+"upp116"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Огарь. Процессуальные средства доказывания до начала…. Вестник Сибирского юридического института МВД России, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/protsessualnye-sredstva-dokazyvaniya-do-nachala-ugolovnogo-presledovaniya",
+"vak": true
+},
+{
+"key": "p683571",
+"cat": "art",
+"authors": "Озерова, Кирикова",
+"title": "Нужно ли дознание в сокращенной форме как отдельная форма расследования?",
+"kind": "статья",
+"pub": "Вестник Санкт-Петербургского университета МВД России",
+"year": 2025,
+"pages": 6,
+"size": 25234582,
+"q": [
+"upp033"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Озерова, Кирикова. Нужно ли дознание в сокращенной форме…. Вестник Санкт-Петербургского университета МВД России, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/nuzhno-li-doznanie-v-sokraschennoy-forme-kak-otdelnaya-forma-rassledovaniya",
+"vak": true
+},
+{
+"key": "p1c373e",
+"cat": "art",
+"authors": "Олейник",
+"title": "Процессуальные и иные средства обеспечения безопасности подозреваемого, обвиняемого и лица, в отношении которого уголовное дело выделено в отдельное производство в связи с заключением с ним досудебного соглашения о сотрудничестве",
+"kind": "статья",
+"pub": "Вестник Волгоградской академии МВД России",
+"year": 2023,
+"pages": 9,
+"size": 602768,
+"q": [
+"upp104"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Олейник. Процессуальные и иные средства обеспечения безопасности…. Вестник Волгоградской академии МВД России, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/protsessualnye-i-inye-sredstva-obespecheniya-bezopasnosti-podozrevaemogo-obvinyaemogo-i-litsa-v-otnoshenii-kotorogo-ugolovnoe-delo",
+"vak": true
+},
+{
 "key": "p574e39",
 "cat": "art",
 "authors": "Османов, Стаурский и др.",
@@ -3065,6 +4184,27 @@
 "vak": false
 },
 {
+"key": "p0807e1",
+"cat": "art",
+"authors": "Папикян",
+"title": "Доктринальные подходы к классификации нарушений уголовно-процессуального закона, влекущих недопустимость доказательств",
+"kind": "статья",
+"pub": "Вестник экономики, права и социологии",
+"year": 2026,
+"pages": 5,
+"size": 488636,
+"q": [
+"upp115",
+"upp014",
+"upp114"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Папикян. Доктринальные подходы к классификации нарушений…. Вестник экономики, права и социологии, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/doktrinalnye-podhody-k-klassifikatsii-narusheniy-ugolovno-protsessualnogo-zakona-vlekuschih-nedopustimost-dokazatelstv",
+"vak": true
+},
+{
 "key": "p331417",
 "cat": "art",
 "authors": "Пахомов",
@@ -3113,9 +4253,9 @@
 "pages": 6,
 "size": 294806,
 "q": [
+"upp022",
 "upp125",
-"upp127",
-"upp022"
+"upp127"
 ],
 "general": false,
 "wide": false,
@@ -3174,6 +4314,7 @@
 "size": 529512,
 "q": [
 "upp004",
+"upp107",
 "upp098"
 ],
 "general": false,
@@ -3212,14 +4353,33 @@
 "pages": 7,
 "size": 368412,
 "q": [
-"upp079",
-"upp077"
+"upp077",
+"upp079"
 ],
 "general": false,
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Петухова. Принципы законности, уважения чести, достоинства и неприкосновенности…. Гуманитарный научный журнал, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/printsipy-zakonnosti-uvazheniya-chesti-dostoinstva-i-neprikosnovennosti-lichnosti-ohrany-prav-i-svobod-cheloveka-i-grazhdanina-v-2",
 "vak": false
+},
+{
+"key": "p89ef96",
+"cat": "art",
+"authors": "Пивень, Ильницкая и др.",
+"title": "Актуальные вопросы прекращения уголовного дела и уголовного преследования в досудебном производстве",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2025,
+"pages": 4,
+"size": 802855,
+"q": [
+"upp047"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Пивень, Ильницкая и др. Актуальные вопросы прекращения уголовного дела…. Право и государство — теория и практика, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/aktualnye-voprosy-prekrascheniya-ugolovnogo-dela-i-ugolovnogo-presledovaniya-v-dosudebnom-proizvodstve",
+"vak": true
 },
 {
 "key": "p3c32ac",
@@ -3233,12 +4393,32 @@
 "size": 244099,
 "q": [
 "upp022",
+"upp125",
 "upp127"
 ],
 "general": false,
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Пильщиков. Меры уголовно-процессуального принуждения в системе государственного принуждения. Право и управление, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/mery-ugolovno-protsessualnogo-prinuzhdeniya-v-sisteme-gosudarstvennogo-prinuzhdeniya",
+"vak": true
+},
+{
+"key": "p73c4c2",
+"cat": "art",
+"authors": "Плошкина",
+"title": "О необходимости института досудебного соглашения о сотрудничестве в российском уголовном процессе",
+"kind": "статья",
+"pub": "Lex Russica",
+"year": 2024,
+"pages": 9,
+"size": 327930,
+"q": [
+"upp054"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Плошкина. О необходимости института досудебного соглашения о сотрудничестве в российском уголовном процессе. Lex Russica, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/o-neobhodimosti-instituta-dosudebnogo-soglasheniya-o-sotrudnichestve-v-rossiyskom-ugolovnom-protsesse",
 "vak": true
 },
 {
@@ -3261,6 +4441,44 @@
 "vak": true
 },
 {
+"key": "p1c99ae",
+"cat": "art",
+"authors": "Поликарпова",
+"title": "Основные проблемы института предъявления обвинения в российском уголовном судопроизводстве: вопросы теории и практики",
+"kind": "статья",
+"pub": "Юридические исследования",
+"year": 2026,
+"pages": 17,
+"size": 222260,
+"q": [
+"upp075"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Поликарпова. Основные проблемы института предъявления обвинения в российском уголовном…. Юридические исследования, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/osnovnye-problemy-instituta-predyavleniya-obvineniya-v-rossiyskom-ugolovnom-sudoproizvodstve-voprosy-teorii-i-praktiki",
+"vak": true
+},
+{
+"key": "p781734",
+"cat": "art",
+"authors": "Поликарпова",
+"title": "Тенденции совершенствования процессуального статуса подозреваемого в российском уголовном судопроизводстве и некоторые препятствия к его реализации",
+"kind": "статья",
+"pub": "Юридический вестник Дагестанского государственного университета",
+"year": 2024,
+"pages": 6,
+"size": 242150,
+"q": [
+"upp102"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Поликарпова. Тенденции совершенствования процессуального…. Юридический вестник Дагестанского государственного унив.pdf",
+"url": "https://cyberleninka.ru/article/n/tendentsii-sovershenstvovaniya-protsessualnogo-statusa-podozrevaemogo-v-rossiyskom-ugolovnom-sudoproizvodstve-i-nekotorye",
+"vak": true
+},
+{
 "key": "p9e1c1b",
 "cat": "art",
 "authors": "Попандопуло, Ковган и др.",
@@ -3277,6 +4495,45 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Попандопуло, Ковган и др. Доказывание и доказательства — сравнительный анализ в административном…. Философия права, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/dokazyvanie-i-dokazatelstva-sravnitelnyy-analiz-v-administrativnom-i-ugolovnom-protsessah",
+"vak": true
+},
+{
+"key": "p8421b3",
+"cat": "art",
+"authors": "Постников",
+"title": "Применение специальных знаний и назначение судебных экспертиз при расследовании дел о легализации (отмывании) денежных средств, полученных преступным путем",
+"kind": "статья",
+"pub": "Baikal Research Journal",
+"year": 2025,
+"pages": 9,
+"size": 1029002,
+"q": [
+"upp043",
+"upp109"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Постников. Применение специальных знаний и назначение судебных экспертиз при расследовании дел…. Baikal Research Journal, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/primenenie-spetsialnyh-znaniy-i-naznachenie-sudebnyh-ekspertiz-pri-rassledovanii-del-o-legalizatsii-otmyvanii-denezhnyh-sredstv",
+"vak": true
+},
+{
+"key": "p7ce867",
+"cat": "art",
+"authors": "Потапова",
+"title": "Ретроспективный анализ трансформации статусов участников уголовного судопроизводства",
+"kind": "статья",
+"pub": "Научный вестник Орловского юридического института МВД России имени В. В. Лукьянова",
+"year": 2026,
+"pages": 8,
+"size": 218795,
+"q": [
+"upp098"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Потапова. Ретроспективный анализ трансформации статусов…. Научный вестник Орловского юридического института МВД, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/retrospektivnyy-analiz-transformatsii-statusov-uchastnikov-ugolovnogo-sudoproizvodstva",
 "vak": true
 },
 {
@@ -3300,6 +4557,25 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Пудрова. Повышение эффективности прокурорского надзора за деятельностью органов предварительного…. Вестник науки, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/povyshenie-effektivnosti-prokurorskogo-nadzora-za-deyatelnostyu-organov-predvaritelnogo-sledstviya-na-primere-sledovateley",
 "vak": false
+},
+{
+"key": "p843df1",
+"cat": "art",
+"authors": "Раджабов",
+"title": "К вопросу об особом порядке судебного рассмотрения уголовных дел",
+"kind": "статья",
+"pub": "Закон и право",
+"year": 2024,
+"pages": 3,
+"size": 190170,
+"q": [
+"upp055"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Раджабов. К вопросу об особом порядке судебного рассмотрения уголовных дел. Закон и право, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-ob-osobom-poryadke-sudebnogo-rassmotreniya-ugolovnyh-del",
+"vak": true
 },
 {
 "key": "p314bfe",
@@ -3338,6 +4614,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Ретюнских. Трансформация процессуальной природы задержания лица по подозрению…. Аграрное и земельное право, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/transformatsiya-protsessualnoy-prirody-zaderzhaniya-litsa-po-podozreniyu-v-sovershenii-prestupleniya",
+"vak": true
+},
+{
+"key": "p93e194",
+"cat": "art",
+"authors": "Роганов, Роганова",
+"title": "Уголовно-процессуальные аспекты следственного осмотра",
+"kind": "статья",
+"pub": "Ленинградский юридический журнал",
+"year": 2025,
+"pages": 14,
+"size": 363009,
+"q": [
+"upp038"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Роганов, Роганова. Уголовно-процессуальные аспекты следственного осмотра. Ленинградский юридический журнал, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/ugolovno-protsessualnye-aspekty-sledstvennogo-osmotra",
 "vak": true
 },
 {
@@ -3391,6 +4686,7 @@
 "size": 329855,
 "q": [
 "upp097",
+"upp099",
 "upp100",
 "upp098"
 ],
@@ -3399,6 +4695,25 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Россинский. Критерии для разграничения статусов…. Вестник Уфимского юридического института МВД России, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/kriterii-dlya-razgranicheniya-statusov-poterpevshego-i-grazhdanskogo-isttsa-kak-uchastnikov-ugolovnogo-sudoproizvodstva",
 "vak": false
+},
+{
+"key": "p43dfb4",
+"cat": "art",
+"authors": "Россинский",
+"title": "О предрасположенности статьи 217 уголовно-процессуального кодекса Российской Федерации к злоупотреблениям со стороны защиты",
+"kind": "статья",
+"pub": "Юристъ - Правоведъ",
+"year": 2025,
+"pages": 7,
+"size": 344074,
+"q": [
+"upp101"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Россинский. О предрасположенности статьи 217 уголовно-процессуального кодекса Российской…. Юристъ - Правоведъ, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/o-predraspolozhennosti-stati-217-ugolovno-protsessualnogo-kodeksa-rossiyskoy-federatsii-k-zloupotrebleniyam-so-storony-zaschity",
+"vak": true
 },
 {
 "key": "pf0029a",
@@ -3437,6 +4752,64 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Россинский. Потерпевший в уголовном процессе…. Труды Института государства и права Российской академии наук, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/poterpevshiy-v-ugolovnom-protsesse-zhertva-prestupleniya-alternativnyy-obvinitel-ili-obladatel-tsennyh-svedeniy",
+"vak": true
+},
+{
+"key": "p309274",
+"cat": "art",
+"authors": "Ростов",
+"title": "О сути и содержании приостановления производства по делу в уголовном судопроизводстве России",
+"kind": "статья",
+"pub": "Вестник Сибирского юридического института МВД России",
+"year": 2023,
+"pages": 6,
+"size": 745176,
+"q": [
+"upp062"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Ростов. О сути и содержании приостановления производства…. Вестник Сибирского юридического института МВД России, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/o-suti-i-soderzhanii-priostanovleniya-proizvodstva-po-delu-v-ugolovnom-sudoproizvodstve-rossii",
+"vak": true
+},
+{
+"key": "p97db72",
+"cat": "art",
+"authors": "Рыжкова, Мельник",
+"title": "Международное сотрудничество в сфере уголовного судопроизводства: опыт мальты",
+"kind": "статья",
+"pub": "Электронное приложение к Российскому юридическому журналу",
+"year": 2023,
+"pages": 6,
+"size": 345719,
+"q": [
+"upp066"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Рыжкова, Мельник. Международное сотрудничество в сфере…. Электронное приложение к Российскому юридическому журналу, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/mezhdunarodnoe-sotrudnichestvo-v-sfere-ugolovnogo-sudoproizvodstva-opyt-malty",
+"vak": true
+},
+{
+"key": "p035af9",
+"cat": "art",
+"authors": "Рябинина, Чистилина",
+"title": "Использование цифровых технологий в ходе судебного разбирательства по уголовному делу: проблемы и перспективы",
+"kind": "статья",
+"pub": "Научный вестник Орловского юридического института МВД России имени В. В. Лукьянова",
+"year": 2025,
+"pages": 8,
+"size": 292974,
+"q": [
+"upp051",
+"upp052"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Рябинина, Чистилина. Использование цифровых технологий…. Научный вестник Орловского юридического института МВД, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/ispolzovanie-tsifrovyh-tehnologiy-v-hode-sudebnogo-razbiratelstva-po-ugolovnomu-delu-problemy-i-perspektivy",
 "vak": true
 },
 {
@@ -3529,6 +4902,7 @@
 "pages": 3,
 "size": 76884,
 "q": [
+"upp041",
 "upp108",
 "upp039",
 "upp098"
@@ -3569,6 +4943,7 @@
 "pages": 7,
 "size": 139244,
 "q": [
+"upp019",
 "upp022",
 "upp127"
 ],
@@ -3577,6 +4952,26 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Сафронов. Практические проблемы принуждения, как меры обеспечения…. Российско-азиатский правовой журнал, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/prakticheskie-problemy-prinuzhdeniya-kak-mery-obespecheniya-pri-proizvodstve-po-ugolovnym-delam",
 "vak": false
+},
+{
+"key": "pd14c14",
+"cat": "art",
+"authors": "Свидерский, Владимиров",
+"title": "Проблемы реализации принципа состязательности сторон при назначении судебно-медицинской экспертизы по уголовным делам",
+"kind": "статья",
+"pub": "Вестник Самарского юридического института",
+"year": 2024,
+"pages": 7,
+"size": 769017,
+"q": [
+"upp109",
+"upp083"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Свидерский, Владимиров. Проблемы реализации принципа состязательности…. Вестник Самарского юридического института, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/problemy-realizatsii-printsipa-sostyazatelnosti-storon-pri-naznachenii-sudebno-meditsinskoy-ekspertizy-po-ugolovnym-delam",
+"vak": true
 },
 {
 "key": "paec885",
@@ -3608,6 +5003,7 @@
 "pages": 6,
 "size": 827798,
 "q": [
+"upp045",
 "upp046"
 ],
 "general": false,
@@ -3636,6 +5032,25 @@
 "vak": false
 },
 {
+"key": "p0f25cb",
+"cat": "art",
+"authors": "Симагин",
+"title": "Назначение судебной экспертизы в суде апелляционной инстанции по гражданским делам в условиях состязательности процесса",
+"kind": "статья",
+"pub": "Философия права",
+"year": 2025,
+"pages": 5,
+"size": 318945,
+"q": [
+"upp058"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Симагин. Назначение судебной экспертизы в суде апелляционной инстанции по гражданским делам…. Философия права, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/naznachenie-sudebnoy-ekspertizy-v-sude-apellyatsionnoy-instantsii-po-grazhdanskim-delam-v-usloviyah-sostyazatelnosti-protsessa",
+"vak": true
+},
+{
 "key": "p6712f4",
 "cat": "art",
 "authors": "Синекин",
@@ -3652,6 +5067,52 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Синекин. Роль и место принципа справедливости в системе…. Научный вестник Орловского юридического института МВД, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/rol-i-mesto-printsipa-spravedlivosti-v-sisteme-printsipov-ugolovnogo-sudoproizvodstva",
+"vak": true
+},
+{
+"key": "pb435c3",
+"cat": "art",
+"authors": "Синельников",
+"title": "Приостановление и возобновление предварительного расследования: понятие и сущность",
+"kind": "статья",
+"pub": "Вестник Сибирского юридического института МВД России",
+"year": 2025,
+"pages": 6,
+"size": 405152,
+"q": [
+"upp031",
+"upp035",
+"upp030",
+"upp033",
+"upp044"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Синельников. Приостановление и возобновление…. Вестник Сибирского юридического института МВД России, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/priostanovlenie-i-vozobnovlenie-predvaritelnogo-rassledovaniya-ponyatie-i-suschnost",
+"vak": true
+},
+{
+"key": "pd2c776",
+"cat": "art",
+"authors": "Смирнов",
+"title": "Баланс процессуальных функций и формы предварительного расследования",
+"kind": "статья",
+"pub": "Правовое государство: теория и практика",
+"year": 2024,
+"pages": 8,
+"size": 297438,
+"q": [
+"upp091",
+"upp030",
+"upp031",
+"upp033",
+"upp044"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Смирнов. Баланс процессуальных функций и формы предварительного…. Правовое государство — теория и практика, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/balans-protsessualnyh-funktsiy-i-formy-predvaritelnogo-rassledovaniya",
 "vak": true
 },
 {
@@ -3732,6 +5193,44 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Соломонова. Проблемы обеспечения неприкосновенности жилища в уголовном…. Юридическая наука и практика, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/problemy-obespecheniya-neprikosnovennosti-zhilischa-v-ugolovnom-sudoproizvodstve-rossii",
 "vak": false
+},
+{
+"key": "p22e45d",
+"cat": "art",
+"authors": "Сорокина, Шумов",
+"title": "Разграничение понятий \"подсудность уголовных дел\" и \"компетенция суда\": теоретико-правовой аспект",
+"kind": "статья",
+"pub": "Гуманитарные, социально-экономические и общественные науки",
+"year": 2023,
+"pages": 3,
+"size": 136356,
+"q": [
+"upp049"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Сорокина, Шумов. Разграничение понятий подсудность…. Гуманитарные, социально-экономические и общественные науки, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/razgranichenie-ponyatiy-podsudnost-ugolovnyh-del-i-kompetentsiya-suda-teoretiko-pravovoy-aspekt",
+"vak": true
+},
+{
+"key": "p445c19",
+"cat": "art",
+"authors": "Степанов",
+"title": "Дознание в сокращенной форме: так ли плох законодатель или практика пошла не тем путем?",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2024,
+"pages": 4,
+"size": 317310,
+"q": [
+"upp034"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Степанов. Дознание в сокращенной форме — так ли плох законодатель…. Право и государство — теория и практика, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/doznanie-v-sokraschennoy-forme-tak-li-ploh-zakonodatel-ili-praktika-poshla-ne-tem-putem",
+"vak": true
 },
 {
 "key": "p3b65b1",
@@ -3830,6 +5329,25 @@
 "vak": true
 },
 {
+"key": "p8992b2",
+"cat": "art",
+"authors": "Суров",
+"title": "Принципы и цели прекращения уголовного преследования и уголовного дела в отношении лиц, принимающих участие в Специальной военной операции",
+"kind": "статья",
+"pub": "Закон и право",
+"year": 2024,
+"pages": 4,
+"size": 216476,
+"q": [
+"upp047"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Суров. Принципы и цели прекращения уголовного преследования и уголовного дела в отношении лиц…. Закон и право, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/printsipy-i-tseli-prekrascheniya-ugolovnogo-presledovaniya-i-ugolovnogo-dela-v-otnoshenii-lits-prinimayuschih-uchastie-v",
+"vak": true
+},
+{
 "key": "pd4ac6d",
 "cat": "art",
 "authors": "Сушина",
@@ -3868,6 +5386,66 @@
 "vak": true
 },
 {
+"key": "pde83b7",
+"cat": "art",
+"authors": "Тарасова, Шиплюк",
+"title": "Проблемы отложения предварительного слушания по уголовным делам",
+"kind": "статья",
+"pub": "КриминалистЪ",
+"year": 2024,
+"pages": 6,
+"size": 275354,
+"q": [
+"upp050"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Тарасова, Шиплюк. Проблемы отложения предварительного слушания по уголовным делам. КриминалистЪ, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/problemy-otlozheniya-predvaritelnogo-slushaniya-po-ugolovnym-delam",
+"vak": true
+},
+{
+"key": "pe466d1",
+"cat": "art",
+"authors": "Таричко",
+"title": "Цель уголовного процесса как инструмент типологии",
+"kind": "статья",
+"pub": "Вестник Омского университета. Серия «Право»",
+"year": 2025,
+"pages": 9,
+"size": 423613,
+"q": [
+"upp001"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Таричко. Цель уголовного процесса как инструмент типологии. Вестник Омского университета. Серия Право, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/tsel-ugolovnogo-protsessa-kak-instrument-tipologii",
+"vak": true
+},
+{
+"key": "p31939a",
+"cat": "art",
+"authors": "Татьянин, Ишимов",
+"title": "Некоторые особенности производства предварительного следствия по уголовным делам о преступлениях, совершенных группами несовершеннолетних",
+"kind": "статья",
+"pub": "Вестник Удмуртского университета. Серия «Экономика и право»",
+"year": 2023,
+"pages": 8,
+"size": 232152,
+"q": [
+"upp036",
+"upp032",
+"upp039",
+"upp063"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Татьянин, Ишимов. Некоторые особенности производства…. Вестник Удмуртского университета. Серия Экономика и право, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/nekotorye-osobennosti-proizvodstva-predvaritelnogo-sledstviya-po-ugolovnym-delam-o-prestupleniyah-sovershennyh-gruppami",
+"vak": true
+},
+{
 "key": "p81f314",
 "cat": "art",
 "authors": "Татьянина, Шамсеева",
@@ -3878,6 +5456,7 @@
 "pages": 7,
 "size": 254614,
 "q": [
+"upp019",
 "upp078"
 ],
 "general": false,
@@ -3946,6 +5525,50 @@
 "vak": false
 },
 {
+"key": "p82b644",
+"cat": "art",
+"authors": "Тихонов",
+"title": "Отдельные вопросы «восстановления» недопустимых доказательств путем допроса участников производства следственных и оперативно-розыскных действий: по материалам судебной практики",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2023,
+"pages": 3,
+"size": 390010,
+"q": [
+"upp041",
+"upp014",
+"upp039",
+"upp098",
+"upp114"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Тихонов. Отдельные вопросы восстановления недопустимых доказательств…. Право и государство — теория и практика, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/otdelnye-voprosy-vosstanovleniya-nedopustimyh-dokazatelstv-putem-doprosa-uchastnikov-proizvodstva-sledstvennyh-i-operativno",
+"vak": true
+},
+{
+"key": "p679024",
+"cat": "art",
+"authors": "Ткачева",
+"title": "Разумный срок судебного разбирательства по уголовному делу",
+"kind": "статья",
+"pub": "Вестник Балтийского федерального университета им. И. Канта. Серия: Гуманитарные и общественные науки",
+"year": 2024,
+"pages": 14,
+"size": 444449,
+"q": [
+"upp052",
+"upp074",
+"upp051"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Ткачева. Разумный срок судебного разбирательства…. Вестник Балтийского федерального университета им. И. Канта., 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/razumnyy-srok-sudebnogo-razbiratelstva-po-ugolovnomu-delu",
+"vak": true
+},
+{
 "key": "pfbe1fb",
 "cat": "art",
 "authors": "Ткаченко, Пивень",
@@ -3982,6 +5605,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Ткачёв. Понятие и сущность института реабилитации в современном уголовном процессе России. Право и политика, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/ponyatie-i-suschnost-instituta-reabilitatsii-v-sovremennom-ugolovnom-protsesse-rossii",
+"vak": true
+},
+{
+"key": "p185807",
+"cat": "art",
+"authors": "Ткачёва",
+"title": "Критерии выбора процессуального порядка ограничения конституционных прав личности в досудебном производстве",
+"kind": "статья",
+"pub": "Вестник Сибирского юридического института МВД России",
+"year": 2024,
+"pages": 7,
+"size": 520765,
+"q": [
+"upp040"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Ткачёва. Критерии выбора процессуального порядка…. Вестник Сибирского юридического института МВД России, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/kriterii-vybora-protsessualnogo-poryadka-ogranicheniya-konstitutsionnyh-prav-lichnosti-v-dosudebnom-proizvodstve",
 "vak": true
 },
 {
@@ -4025,6 +5667,25 @@
 "vak": true
 },
 {
+"key": "p19ec40",
+"cat": "art",
+"authors": "Торбин",
+"title": "Единый реестр судебных переводчиков как организационно-правовая форма обеспечения их участия в уголовном судопроизводстве",
+"kind": "статья",
+"pub": "Проблемы экономики и юридической практики",
+"year": 2024,
+"pages": 6,
+"size": 273110,
+"q": [
+"upp110"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Торбин. Единый реестр судебных переводчиков…. Проблемы экономики и юридической практики, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/edinyy-reestr-sudebnyh-perevodchikov-kak-organizatsionno-pravovaya-forma-obespecheniya-ih-uchastiya-v-ugolovnom-sudoproizvodstve",
+"vak": true
+},
+{
 "key": "pdfc6ac",
 "cat": "art",
 "authors": "Торбин",
@@ -4035,8 +5696,8 @@
 "pages": 4,
 "size": 202136,
 "q": [
-"upp113",
-"upp017"
+"upp017",
+"upp113"
 ],
 "general": false,
 "wide": false,
@@ -4094,6 +5755,7 @@
 "pages": 9,
 "size": 485656,
 "q": [
+"upp090",
 "upp098"
 ],
 "general": false,
@@ -4153,6 +5815,7 @@
 "pages": 5,
 "size": 205894,
 "q": [
+"upp022",
 "upp127"
 ],
 "general": false,
@@ -4221,6 +5884,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Умярова. Механизм реализации судебного контроля…. Вестник Сибирского юридического института МВД России, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/mehanizm-realizatsii-sudebnogo-kontrolya-za-otdelnymi-sledstvennymi-deystviyami-obyskom-i-vyemkoy",
+"vak": true
+},
+{
+"key": "p36a703",
+"cat": "art",
+"authors": "Усольцев",
+"title": "Гражданский иск в уголовном деле: отдельные уголовно-процессуальные аспекты",
+"kind": "статья",
+"pub": "Вестник Сургутского государственного университета",
+"year": 2023,
+"pages": 7,
+"size": 943799,
+"q": [
+"upp106"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Усольцев. Гражданский иск в уголовном деле — отдельные…. Вестник Сургутского государственного университета, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/grazhdanskiy-isk-v-ugolovnom-dele-otdelnye-ugolovno-protsessualnye-aspekty",
 "vak": true
 },
 {
@@ -4304,6 +5986,45 @@
 "vak": true
 },
 {
+"key": "p88178d",
+"cat": "art",
+"authors": "Федоренко, Скрипник",
+"title": "К проблеме реализации принципов уголовного судопроизводства в Российской Федерации",
+"kind": "статья",
+"pub": "Право и практика",
+"year": 2025,
+"pages": 4,
+"size": 459171,
+"q": [
+"upp073"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Федоренко, Скрипник. К проблеме реализации принципов уголовного судопроизводства в Российской…. Право и практика, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/k-probleme-realizatsii-printsipov-ugolovnogo-sudoproizvodstva-v-rossiyskoy-federatsii",
+"vak": true
+},
+{
+"key": "p0191bc",
+"cat": "art",
+"authors": "Федорова, Зашляпин",
+"title": "Эволюционирование порядка хранения вещественных доказательств",
+"kind": "статья",
+"pub": "Legal Bulletin",
+"year": 2025,
+"pages": 15,
+"size": 330844,
+"q": [
+"upp015",
+"upp122"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Федорова, Зашляпин. Эволюционирование порядка хранения вещественных доказательств. Legal Bulletin, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/evolyutsionirovanie-poryadka-hraneniya-veschestvennyh-dokazatelstv",
+"vak": true
+},
+{
 "key": "pd34acc",
 "cat": "art",
 "authors": "Федюнин, Перетятько",
@@ -4333,8 +6054,8 @@
 "pages": 13,
 "size": 1115071,
 "q": [
-"upp045",
-"upp044"
+"upp044",
+"upp045"
 ],
 "general": false,
 "wide": false,
@@ -4403,6 +6124,25 @@
 "vak": false
 },
 {
+"key": "pebfb04",
+"cat": "art",
+"authors": "Хайбулаева",
+"title": "Некоторые проблемные вопросы производства по делам о применении принудительных мер медицинского характера",
+"kind": "статья",
+"pub": "Государственная служба и кадры",
+"year": 2023,
+"pages": 4,
+"size": 292455,
+"q": [
+"upp064"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Хайбулаева. Некоторые проблемные вопросы производства по делам о применении…. Государственная служба и кадры, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/nekotorye-problemnye-voprosy-proizvodstva-po-delam-o-primenenii-prinuditelnyh-mer-meditsinskogo-haraktera",
+"vak": true
+},
+{
 "key": "p7077c0",
 "cat": "art",
 "authors": "Хаметова",
@@ -4433,7 +6173,8 @@
 "pages": 3,
 "size": 301070,
 "q": [
-"upp025"
+"upp025",
+"upp130"
 ],
 "general": false,
 "wide": false,
@@ -4458,6 +6199,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Хаметова. Особенности тактики допроса несовершеннолетних свидетелей. Право и государство — теория и практика, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/osobennosti-taktiki-doprosa-nesovershennoletnih-svideteley",
+"vak": true
+},
+{
+"key": "pe302d9",
+"cat": "art",
+"authors": "Химичева, Тутынин",
+"title": "Обеспечение взыскания процессуальных издержек в уголовном судопроизводстве",
+"kind": "статья",
+"pub": "Вестник Волгоградской академии МВД России",
+"year": 2025,
+"pages": 9,
+"size": 359876,
+"q": [
+"upp131"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Химичева, Тутынин. Обеспечение взыскания процессуальных издержек…. Вестник Волгоградской академии МВД России, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/obespechenie-vzyskaniya-protsessualnyh-izderzhek-v-ugolovnom-sudoproizvodstve",
 "vak": true
 },
 {
@@ -4509,6 +6269,7 @@
 "pages": 3,
 "size": 939363,
 "q": [
+"upp101",
 "upp105",
 "upp083"
 ],
@@ -4586,7 +6347,8 @@
 "pages": 7,
 "size": 161862,
 "q": [
-"upp023"
+"upp023",
+"upp128"
 ],
 "general": false,
 "wide": false,
@@ -4633,6 +6395,65 @@
 "vak": true
 },
 {
+"key": "p1a596c",
+"cat": "art",
+"authors": "Шаназарова",
+"title": "Обеспечение конституционных прав подозреваемого, обвиняемого и законность их ограничения в досудебных стадиях уголовного процесса",
+"kind": "статья",
+"pub": "Аграрное и земельное право",
+"year": 2025,
+"pages": 3,
+"size": 837181,
+"q": [
+"upp084",
+"upp118",
+"upp051"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Шаназарова. Обеспечение конституционных прав подозреваемого, обвиняемого и законность…. Аграрное и земельное право, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/obespechenie-konstitutsionnyh-prav-podozrevaemogo-obvinyaemogo-i-zakonnost-ih-ogranicheniya-v-dosudebnyh-stadiyah-ugolovnogo",
+"vak": true
+},
+{
+"key": "pc30daa",
+"cat": "art",
+"authors": "Шарипова",
+"title": "Недоказательственное значение вещественных доказательств в уголовном процессе",
+"kind": "статья",
+"pub": "Вестник Томского государственного университета. Право",
+"year": 2025,
+"pages": 12,
+"size": 395686,
+"q": [
+"upp015"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Шарипова. Недоказательственное значение вещественных…. Вестник Томского государственного университета. Право, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/nedokazatelstvennoe-znachenie-veschestvennyh-dokazatelstv-v-ugolovnom-protsesse",
+"vak": true
+},
+{
+"key": "pa1a452",
+"cat": "art",
+"authors": "Шаров",
+"title": "К вопросу о процессуальной функции следователя",
+"kind": "статья",
+"pub": "Судебная экспертиза и исследования",
+"year": 2026,
+"pages": 3,
+"size": 211240,
+"q": [
+"upp088"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Шаров. К вопросу о процессуальной функции следователя. Судебная экспертиза и исследования, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-o-protsessualnoy-funktsii-sledovatelya",
+"vak": true
+},
+{
 "key": "p0a7b16",
 "cat": "art",
 "authors": "Шаталов",
@@ -4649,6 +6470,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Шаталов. Основные направления совершенствования доступа к правосудию…. Теория и практика общественного развития, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/osnovnye-napravleniya-sovershenstvovaniya-dostupa-k-pravosudiyu-v-kassatsionnom-proizvodstve-s-ispolzovaniem-tsifrovyh-tehnologiy",
+"vak": true
+},
+{
+"key": "pd3451b",
+"cat": "art",
+"authors": "Шевчук",
+"title": "К вопросу о генезисе домашнего ареста как меры пресечения",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2024,
+"pages": 3,
+"size": 714424,
+"q": [
+"upp020"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Шевчук. К вопросу о генезисе домашнего ареста как меры пресечения. Право и государство — теория и практика, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-o-genezise-domashnego-aresta-kak-mery-presecheniya",
 "vak": true
 },
 {
@@ -4682,9 +6522,9 @@
 "size": 522976,
 "q": [
 "upp040",
+"upp065",
 "upp032",
-"upp039",
-"upp065"
+"upp039"
 ],
 "general": false,
 "wide": false,
@@ -4741,6 +6581,7 @@
 "pages": 6,
 "size": 334369,
 "q": [
+"upp032",
 "upp046",
 "upp044",
 "upp045"
@@ -4750,6 +6591,45 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Щетинина. Функция прокурора на этапе окончания предварительного следствия с составлением…. Вопросы права, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/funktsiya-prokurora-na-etape-okonchaniya-predvaritelnogo-sledstviya-s-sostavleniem-obvinitelnogo-zaklyucheniya-1",
 "vak": false
+},
+{
+"key": "pb49a14",
+"cat": "art",
+"authors": "Эляшов, Ширепов и др.",
+"title": "Принцип неприкосновенности личности в российском уголовном судопроизводстве",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2023,
+"pages": 3,
+"size": 297987,
+"q": [
+"upp078"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Эляшов, Ширепов и др. Принцип неприкосновенности личности в российском…. Право и государство — теория и практика, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/printsip-neprikosnovennosti-lichnosti-v-rossiyskom-ugolovnom-sudoproizvodstve",
+"vak": true
+},
+{
+"key": "p6d45ae",
+"cat": "art",
+"authors": "Юдина",
+"title": "О некоторых вопросах оценки достаточности доказательств в досудебном производстве по уголовным делам",
+"kind": "статья",
+"pub": "Вестник Восточно-Сибирского института МВД России",
+"year": 2023,
+"pages": 11,
+"size": 561683,
+"q": [
+"upp014",
+"upp085"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Юдина. О некоторых вопросах оценки достаточности доказательств…. Вестник Восточно-Сибирского института МВД России, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/o-nekotoryh-voprosah-otsenki-dostatochnosti-dokazatelstv-v-dosudebnom-proizvodstve-po-ugolovnym-delam",
+"vak": true
 },
 {
 "key": "pc75a90",
@@ -5250,6 +7130,25 @@
 "toc": true
 },
 {
+"key": "pbf89170",
+"cat": "book",
+"authors": "Ахмедов",
+"title": "Производство по уголовным делам о преступлениях экстремистской направленности",
+"kind": "учебное пособие",
+"pub": "ВИ МВД",
+"year": 2022,
+"pages": 88,
+"size": 1211803,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Ахмедов. Производство по уголовным делам о преступлениях экстремистской направленности. Учебное пособие. ВИ МВД, 2022.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовное право/2022 Пр-во по уг.делам/ПР-ВО ПО УГ.ДЕЛАМ (экстр.).pdf",
+"how": "титульный лист (сверено вручную)",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Уголовное право/2022 Пр-во по уг.делам/ПР-ВО ПО УГ.ДЕЛАМ (экстр.).pdf"
+},
+{
 "key": "pbf86f0e",
 "cat": "book",
 "authors": "Ахунов и др",
@@ -5447,6 +7346,56 @@
 "tocdone": true,
 "q0": [
 "upp067"
+],
+"toc": true
+},
+{
+"key": "pbc78428",
+"cat": "book",
+"authors": "Богаткина, Ахунов",
+"title": "Правовые позиции судебных органов в сфере уголовного судопроизводства Российской Федерации",
+"kind": "учебное пособие",
+"pub": "КЮИ МВД",
+"year": 2022,
+"pages": 59,
+"size": 658886,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Богаткина, Ахунов. Правовые позиции судебных органов в сфере уголовного судопроизводства…. Учебное пособие. КЮИ МВД, 2022.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронная библиотека КЮИ/Уголовное право/2022 Прав.позиции/Богаткина, Ахунов.pdf",
+"how": "титульный лист (сверено вручную)",
+"old": true,
+"garbled": false,
+"lib": "Электронная библиотека КЮИ/Уголовное право/2022 Прав.позиции/Богаткина, Ахунов.pdf"
+},
+{
+"key": "pbb00a03",
+"cat": "book",
+"authors": "Богаткина",
+"title": "Международное сотрудничество в сфере уголовного судопроизводства Российской Федерации в стадии предварительного расследования",
+"kind": "учебно-практическое пособие",
+"pub": "КЮИ МВД",
+"year": 2024,
+"pages": 136,
+"size": 1050191,
+"q": [
+"upp066",
+"upp030",
+"upp031",
+"upp033",
+"upp044",
+"upp059"
+],
+"general": false,
+"dst": "3. Учебная литература/Богаткина. Международное сотрудничество в сфере уголовного судопроизводства…. Учебно-практическое пособие. КЮИ МВД, 2024.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронная библиотека КЮИ/Уголовно процессуальное право/2024 Международное/Международное сотрудничество.pdf",
+"how": "титульный лист (описание составлено вручную)",
+"old": false,
+"garbled": false,
+"lib": "Электронная библиотека КЮИ/Уголовно процессуальное право/2024 Международное/Международное сотрудничество.pdf",
+"tocdone": true,
+"q0": [
+"upp066"
 ],
 "toc": true
 },
@@ -5879,6 +7828,25 @@
 "toc": true
 },
 {
+"key": "pb25e266",
+"cat": "book",
+"authors": "Дутов, Смагин",
+"title": "Досудебное производство по уголовным делам (в вопросах и ответах)",
+"kind": "учебное пособие",
+"pub": "ВИ МВД",
+"year": 2023,
+"pages": 63,
+"size": 477363,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Дутов, Смагин. Досудебное производство по уголовным делам (в вопросах и ответах). Учебное пособие. ВИ МВД, 2023.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовное право/2023 Досуд.произ по УД/Досуд.произ по УД.pdf",
+"how": "титульный лист (сверено вручную)",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Уголовное право/2023 Досуд.произ по УД/Досуд.произ по УД.pdf"
+},
+{
 "key": "pbd5e670",
 "cat": "book",
 "authors": "Ермаков и др",
@@ -6127,6 +8095,25 @@
 "toc": true
 },
 {
+"key": "pbef78e7",
+"cat": "book",
+"authors": "Кангезов, Седых",
+"title": "Деятельность следователя по реализации общих условий предварительного расследования",
+"kind": "учебное пособие",
+"pub": "Ставропольский филиал КрУ МВД",
+"year": 2022,
+"pages": 81,
+"size": 774342,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Кангезов, Седых. Деятельность следователя по реализации общих…. Учебное пособие. Ставропольский филиал КрУ МВД, 2022.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовное право/2022 Деятельность следователя/УП_Кангезов,  Седых.pdf",
+"how": "титульный лист (сверено вручную)",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Уголовное право/2022 Деятельность следователя/УП_Кангезов,  Седых.pdf"
+},
+{
 "key": "pba938ba",
 "cat": "book",
 "authors": "Кангезов",
@@ -6218,6 +8205,49 @@
 "upp095",
 "upp096"
 ],
+"toc": true
+},
+{
+"key": "pba2bfae",
+"cat": "book",
+"authors": "Касьянова",
+"title": "Основы уголовного процесса",
+"kind": "сборник задач",
+"pub": "ВИ МВД",
+"year": 2024,
+"pages": 47,
+"size": 537001,
+"q": [
+"upp002",
+"upp003",
+"upp004",
+"upp018",
+"upp022",
+"upp030",
+"upp031",
+"upp033",
+"upp035",
+"upp038",
+"upp039",
+"upp044",
+"upp051",
+"upp052",
+"upp071",
+"upp073",
+"upp090",
+"upp094",
+"upp098",
+"upp127"
+],
+"general": false,
+"dst": "3. Учебная литература/Касьянова. Основы уголовного процесса. Сборник задач. ВИ МВД, 2024.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Сб.задач/ОУП Касьянова Е.В.pdf",
+"how": "титульный лист (описание составлено вручную)",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Сб.задач/ОУП Касьянова Е.В.pdf",
+"tocdone": true,
+"q0": [],
 "toc": true
 },
 {
@@ -6678,6 +8708,25 @@
 "toc": true
 },
 {
+"key": "pb38ed61",
+"cat": "book",
+"authors": "Кузьмин",
+"title": "Организация руководителями органов предварительного расследования в системе МВД России расследования корыстных и корыстно-насильственных преступлений",
+"kind": "учебное пособие",
+"pub": "РЮИ МВД",
+"year": 2024,
+"pages": 64,
+"size": 682612,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Кузьмин. Организация руководителями органов предварительного расследования в системе…. Учебное пособие. РЮИ МВД, 2024.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовное право/2024 Организация руководителями/ОРГАНИЗАЦИЯ.pdf",
+"how": "титульный лист (сверено вручную)",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Уголовное право/2024 Организация руководителями/ОРГАНИЗАЦИЯ.pdf"
+},
+{
 "key": "pbfd88b5",
 "cat": "book",
 "authors": "Кулеш и др",
@@ -6781,6 +8830,60 @@
 "upp052",
 "upp054"
 ],
+"toc": true
+},
+{
+"key": "pbba2a6e",
+"cat": "book",
+"authors": "Кутуев, Андреева",
+"title": "Основы уголовного процесса",
+"kind": "учебное пособие",
+"pub": "СПбУ МВД",
+"year": 2022,
+"pages": 92,
+"size": 1177417,
+"q": [
+"upp002",
+"upp003",
+"upp004",
+"upp008",
+"upp014",
+"upp018",
+"upp022",
+"upp027",
+"upp028",
+"upp030",
+"upp031",
+"upp033",
+"upp035",
+"upp038",
+"upp039",
+"upp044",
+"upp045",
+"upp046",
+"upp047",
+"upp051",
+"upp052",
+"upp071",
+"upp073",
+"upp090",
+"upp092",
+"upp094",
+"upp098",
+"upp101",
+"upp114",
+"upp115",
+"upp127"
+],
+"general": false,
+"dst": "3. Учебная литература/Кутуев, Андреева. Основы уголовного процесса. Учебное пособие. СПбУ МВД, 2022.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Осн.уг.процесса/436207.pdf",
+"how": "титульный лист (описание составлено вручную)",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Осн.уг.процесса/436207.pdf",
+"tocdone": true,
+"q0": [],
 "toc": true
 },
 {
@@ -7027,35 +9130,23 @@
 "toc": true
 },
 {
-"key": "pbb00a03",
+"key": "pb76d080",
 "cat": "book",
-"authors": "Богаткина",
-"title": "Международное сотрудничество в сфере уголовного судопроизводства Российской Федерации в стадии предварительного расследования",
-"kind": "учебно-практическое пособие",
+"authors": "Марданов и др",
+"title": "Дознание в органах внутренних дел",
+"kind": "наглядное пособие",
 "pub": "КЮИ МВД",
-"year": 2024,
-"pages": 136,
-"size": 1050191,
-"q": [
-"upp066",
-"upp030",
-"upp031",
-"upp033",
-"upp044",
-"upp059"
-],
+"year": 2020,
+"pages": 187,
+"size": 1697715,
+"q": [],
 "general": false,
-"dst": "3. Учебная литература/Богаткина. Международное сотрудничество в сфере уголовного судопроизводства…. Учебно-практическое пособие. КЮИ МВД, 2024.pdf",
-"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронная библиотека КЮИ/Уголовно процессуальное право/2024 Международное/Международное сотрудничество.pdf",
-"how": "титульный лист (описание составлено вручную)",
-"old": false,
+"dst": "3. Учебная литература/Марданов и др. Дознание в органах внутренних дел. Наглядное пособие. КЮИ МВД, 2020.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронная библиотека КЮИ/Уголовное право/2020 Дознание в ОВД нагляд пос Марданов/Дознание в ОВД - Марданов и др.pdf",
+"how": "титульный лист (сверено вручную)",
+"old": true,
 "garbled": false,
-"lib": "Электронная библиотека КЮИ/Уголовно процессуальное право/2024 Международное/Международное сотрудничество.pdf",
-"tocdone": true,
-"q0": [
-"upp066"
-],
-"toc": true
+"lib": "Электронная библиотека КЮИ/Уголовное право/2020 Дознание в ОВД нагляд пос Марданов/Дознание в ОВД - Марданов и др.pdf"
 },
 {
 "key": "pbb9554d",
@@ -7132,6 +9223,25 @@
 "upp095"
 ],
 "toc": true
+},
+{
+"key": "pb9ab281",
+"cat": "book",
+"authors": "Михайлова",
+"title": "Особенности производства по уголовным делам в отношении несовершеннолетних",
+"kind": "учебное пособие",
+"pub": "БЮИ МВД",
+"year": 2024,
+"pages": 44,
+"size": 637324,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Михайлова. Особенности производства по уголовным делам в отношении несовершеннолетних. Учебное пособие. БЮИ МВД, 2024.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовное право/2024 Уг.дела несоверш/Уг.дела несовершен.pdf",
+"how": "титульный лист (сверено вручную)",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Уголовное право/2024 Уг.дела несоверш/Уг.дела несовершен.pdf"
 },
 {
 "key": "pb3eb823",
@@ -7342,98 +9452,37 @@
 "toc": true
 },
 {
-"key": "pba2bfae",
+"key": "pbaed133",
 "cat": "book",
-"authors": "Касьянова",
-"title": "Основы уголовного процесса",
-"kind": "сборник задач",
-"pub": "ВИ МВД",
-"year": 2024,
-"pages": 47,
-"size": 537001,
+"authors": "Нуркаева, Осипова",
+"title": "Практикум по уголовному процессу",
+"kind": "практикум",
+"pub": "УЮИ МВД",
+"year": 2025,
+"pages": 102,
+"size": 1106715,
 "q": [
 "upp002",
-"upp003",
 "upp004",
 "upp018",
-"upp022",
 "upp030",
 "upp031",
 "upp033",
-"upp035",
+"upp037",
 "upp038",
 "upp039",
 "upp044",
-"upp051",
-"upp052",
 "upp071",
-"upp073",
 "upp090",
-"upp094",
-"upp098",
-"upp127"
+"upp098"
 ],
 "general": false,
-"dst": "3. Учебная литература/Касьянова. Основы уголовного процесса. Сборник задач. ВИ МВД, 2024.pdf",
-"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Сб.задач/ОУП Касьянова Е.В.pdf",
+"dst": "3. Учебная литература/Нуркаева, Осипова. Практикум по уголовному процессу. УЮИ МВД, 2025.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2025 Практикум по уг.процессу/Практикум по уг.процессу.pdf",
 "how": "титульный лист (описание составлено вручную)",
 "old": false,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Сб.задач/ОУП Касьянова Е.В.pdf",
-"tocdone": true,
-"q0": [],
-"toc": true
-},
-{
-"key": "pbba2a6e",
-"cat": "book",
-"authors": "Кутуев, Андреева",
-"title": "Основы уголовного процесса",
-"kind": "учебное пособие",
-"pub": "СПбУ МВД",
-"year": 2022,
-"pages": 92,
-"size": 1177417,
-"q": [
-"upp002",
-"upp003",
-"upp004",
-"upp008",
-"upp014",
-"upp018",
-"upp022",
-"upp027",
-"upp028",
-"upp030",
-"upp031",
-"upp033",
-"upp035",
-"upp038",
-"upp039",
-"upp044",
-"upp045",
-"upp046",
-"upp047",
-"upp051",
-"upp052",
-"upp071",
-"upp073",
-"upp090",
-"upp092",
-"upp094",
-"upp098",
-"upp101",
-"upp114",
-"upp115",
-"upp127"
-],
-"general": false,
-"dst": "3. Учебная литература/Кутуев, Андреева. Основы уголовного процесса. Учебное пособие. СПбУ МВД, 2022.pdf",
-"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Осн.уг.процесса/436207.pdf",
-"how": "титульный лист (описание составлено вручную)",
-"old": false,
-"garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Осн.уг.процесса/436207.pdf",
+"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2025 Практикум по уг.процессу/Практикум по уг.процессу.pdf",
 "tocdone": true,
 "q0": [],
 "toc": true
@@ -7482,6 +9531,62 @@
 "upp064",
 "upp125"
 ],
+"toc": true
+},
+{
+"key": "pba8c0be",
+"cat": "book",
+"authors": "Павлов",
+"title": "Обеспечение участия преследуемого лица в досудебном производстве",
+"kind": "учебное пособие",
+"pub": "ОмА МВД",
+"year": 2023,
+"pages": 100,
+"size": 709767,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Павлов. Обеспечение участия преследуемого лица в досудебном производстве. Учебное пособие. ОмА МВД, 2023.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовное право/2023 Обесп.участия преследуемого/420.pdf",
+"how": "титульный лист (сверено вручную)",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Уголовное право/2023 Обесп.участия преследуемого/420.pdf"
+},
+{
+"key": "pbca7068",
+"cat": "book",
+"authors": "Победкин",
+"title": "Уголовно-процессуальное доказывание",
+"kind": "учебно-практическое пособие",
+"pub": "Академия управления МВД",
+"year": 2025,
+"pages": 324,
+"size": 2085187,
+"q": [
+"upp002",
+"upp004",
+"upp014",
+"upp015",
+"upp038",
+"upp039",
+"upp071",
+"upp085",
+"upp090",
+"upp098",
+"upp109",
+"upp114",
+"upp115",
+"upp121"
+],
+"general": false,
+"dst": "3. Учебная литература/Победкин. Уголовно-процессуальное доказывание. Учебно-практическое пособие. Академия управления МВД, 2025.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2025 УП/Уг-проц.доказ.pdf",
+"how": "титульный лист (описание составлено вручную)",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2025 УП/Уг-проц.доказ.pdf",
+"tocdone": true,
+"q0": [],
 "toc": true
 },
 {
@@ -7580,42 +9685,6 @@
 "toc": true
 },
 {
-"key": "pbaed133",
-"cat": "book",
-"authors": "Нуркаева, Осипова",
-"title": "Практикум по уголовному процессу",
-"kind": "практикум",
-"pub": "УЮИ МВД",
-"year": 2025,
-"pages": 102,
-"size": 1106715,
-"q": [
-"upp002",
-"upp004",
-"upp018",
-"upp030",
-"upp031",
-"upp033",
-"upp037",
-"upp038",
-"upp039",
-"upp044",
-"upp071",
-"upp090",
-"upp098"
-],
-"general": false,
-"dst": "3. Учебная литература/Нуркаева, Осипова. Практикум по уголовному процессу. УЮИ МВД, 2025.pdf",
-"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2025 Практикум по уг.процессу/Практикум по уг.процессу.pdf",
-"how": "титульный лист (описание составлено вручную)",
-"old": false,
-"garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2025 Практикум по уг.процессу/Практикум по уг.процессу.pdf",
-"tocdone": true,
-"q0": [],
-"toc": true
-},
-{
 "key": "pbf03e56",
 "cat": "book",
 "authors": "",
@@ -7666,45 +9735,23 @@
 "toc": true
 },
 {
-"key": "pbde1193",
-"cat": "sci",
-"authors": "",
-"title": "Проблемы предварительного следствия и дознания",
-"kind": "сборник научных трудов № 34",
-"pub": "ВНИИ МВД",
-"year": 2025,
-"pages": 298,
-"size": 2221085,
-"q": [
-"upp003",
-"upp007",
-"upp027",
-"upp028",
-"upp030",
-"upp031",
-"upp033",
-"upp037",
-"upp038",
-"upp039",
-"upp040",
-"upp043",
-"upp044",
-"upp047",
-"upp051",
-"upp073",
-"upp086",
-"upp094"
-],
+"key": "pb23f57c",
+"cat": "book",
+"authors": "Ростовцев и др",
+"title": "Электронные носители информации в уголовном судопроизводстве",
+"kind": "учебное пособие",
+"pub": "МосУ МВД",
+"year": 2022,
+"pages": 100,
+"size": 1200524,
+"q": [],
 "general": false,
-"dst": "4. Научные материалы (с 2023 года)/Проблемы предварительного следствия и дознания. Сборник научных трудов № 34. ВНИИ МВД, 2025.pdf",
-"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Дознание/2025 Проблемы предв.сл/Пробл.предв.след.pdf",
-"how": "титульный лист (описание составлено вручную)",
-"old": false,
+"dst": "3. Учебная литература/Ростовцев и др. Электронные носители информации в уголовном судопроизводстве. Учебное пособие. МосУ МВД, 2022.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2023 Эл.носит.информац/Эл.носит.информац.pdf",
+"how": "титульный лист (сверено вручную)",
+"old": true,
 "garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Дознание/2025 Проблемы предв.сл/Пробл.предв.след.pdf",
-"tocdone": true,
-"q0": [],
-"toc": true
+"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2023 Эл.носит.информац/Эл.носит.информац.pdf"
 },
 {
 "key": "pb228d04",
@@ -7960,6 +10007,25 @@
 "toc": true
 },
 {
+"key": "pb266e4e",
+"cat": "book",
+"authors": "Трифонова",
+"title": "Досудебное производство по уголовному делу в отношении умершего подозреваемого (обвиняемого)",
+"kind": "учебно-практическое пособие",
+"pub": "ВА МВД",
+"year": 2024,
+"pages": 156,
+"size": 1205162,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Трифонова. Досудебное производство по уголовному делу в отношении умершего…. Учебно-практическое пособие. ВА МВД, 2024.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронная библиотека КЮИ/Уголовное право/2024 Досуд.произв/ЭР-9780.pdf",
+"how": "титульный лист (сверено вручную)",
+"old": false,
+"garbled": false,
+"lib": "Электронная библиотека КЮИ/Уголовное право/2024 Досуд.произв/ЭР-9780.pdf"
+},
+{
 "key": "pb7a0e79",
 "cat": "book",
 "authors": "Трубчанинов и др",
@@ -8003,85 +10069,6 @@
 "upp094",
 "upp095",
 "upp121"
-],
-"toc": true
-},
-{
-"key": "pbca7068",
-"cat": "book",
-"authors": "Победкин",
-"title": "Уголовно-процессуальное доказывание",
-"kind": "учебно-практическое пособие",
-"pub": "Академия управления МВД",
-"year": 2025,
-"pages": 324,
-"size": 2085187,
-"q": [
-"upp002",
-"upp004",
-"upp014",
-"upp015",
-"upp038",
-"upp039",
-"upp071",
-"upp085",
-"upp090",
-"upp098",
-"upp109",
-"upp114",
-"upp115",
-"upp121"
-],
-"general": false,
-"dst": "3. Учебная литература/Победкин. Уголовно-процессуальное доказывание. Учебно-практическое пособие. Академия управления МВД, 2025.pdf",
-"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2025 УП/Уг-проц.доказ.pdf",
-"how": "титульный лист (описание составлено вручную)",
-"old": false,
-"garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2025 УП/Уг-проц.доказ.pdf",
-"tocdone": true,
-"q0": [],
-"toc": true
-},
-{
-"key": "pba9d487",
-"cat": "book",
-"authors": "ред. Кутуев",
-"title": "Уголовно-процессуальное право (уголовный процесс). Общая часть",
-"kind": "учебно-практическое пособие",
-"pub": "СПбУ МВД",
-"year": 2022,
-"pages": 112,
-"size": 1363092,
-"q": [
-"upp125",
-"upp002",
-"upp003",
-"upp004",
-"upp007",
-"upp018",
-"upp022",
-"upp026",
-"upp027",
-"upp028",
-"upp059",
-"upp070",
-"upp071",
-"upp073",
-"upp090",
-"upp098",
-"upp127"
-],
-"general": false,
-"dst": "3. Учебная литература/ред. Кутуев. Уголовно-процессуальное право (уголовный процесс). Общая часть. Учебно-практическое пособие. СПбУ МВД, 2022.pdf",
-"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Уг.проц.право/436245.pdf",
-"how": "титульный лист (описание составлено вручную)",
-"old": false,
-"garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Уг.проц.право/436245.pdf",
-"tocdone": true,
-"q0": [
-"upp125"
 ],
 "toc": true
 },
@@ -8157,6 +10144,44 @@
 "tocdone": true,
 "q0": [],
 "toc": true
+},
+{
+"key": "pb38b8c7",
+"cat": "book",
+"authors": "Файрушина и др",
+"title": "Процессуальные действия сотрудников подразделений дознания по расследованию преступлений, предусмотренных ст.ст. 256, 258, 260 УК РФ",
+"kind": "учебное пособие",
+"pub": "УЮИ МВД",
+"year": 2022,
+"pages": 80,
+"size": 947593,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Файрушина и др. Процессуальные действия сотрудников подразделений дознания…. Учебное пособие. УЮИ МВД, 2022.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовное право/2022 Процессуальные действия сотрудников/Процессуальные действия сотрудников.pdf",
+"how": "титульный лист (сверено вручную)",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Уголовное право/2022 Процессуальные действия сотрудников/Процессуальные действия сотрудников.pdf"
+},
+{
+"key": "pb49bc5a",
+"cat": "book",
+"authors": "Хакимова и др",
+"title": "Применение уголовно-процессуальных мер безопасности при расследовании сбыта наркотических средств",
+"kind": "учебно-практическое пособие",
+"pub": "УЮИ МВД",
+"year": 2022,
+"pages": 104,
+"size": 1675014,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Хакимова и др. Применение уголовно-процессуальных мер безопасности…. Учебно-практическое пособие. УЮИ МВД, 2022.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовное право/2022 Сбыт наркотических средств/Сбыт наркотических средств.pdf",
+"how": "титульный лист (сверено вручную)",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Уголовное право/2022 Сбыт наркотических средств/Сбыт наркотических средств.pdf"
 },
 {
 "key": "pb8d04dd",
@@ -8261,6 +10286,44 @@
 "upp096"
 ],
 "toc": true
+},
+{
+"key": "pb56ce1e",
+"cat": "book",
+"authors": "Черников",
+"title": "Содержание отдельных процессуальных документов на стадии предварительного расследования",
+"kind": "учебно-наглядное пособие",
+"pub": "Ставропольский филиал КрУ МВД",
+"year": 2023,
+"pages": 40,
+"size": 444795,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Черников. Содержание отдельных процессуальных документов…. Учебно-наглядное пособие. Ставропольский филиал КрУ МВД, 2023.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2023 Содерж.докум/УНП_Черников.pdf",
+"how": "титульный лист (сверено вручную)",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2023 Содерж.докум/УНП_Черников.pdf"
+},
+{
+"key": "pb2563c3",
+"cat": "book",
+"authors": "Чернова",
+"title": "Допрос и предъявление для опознания: уголовно-процессуальный и криминалистический аспекты",
+"kind": "учебное пособие",
+"pub": "ТИПК МВД",
+"year": 2021,
+"pages": 92,
+"size": 1447019,
+"q": [],
+"general": false,
+"dst": "3. Учебная литература/Чернова. Допрос и предъявление для опознания — уголовно-процессуальный…. Учебное пособие. ТИПК МВД, 2021.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовное право/2021 Допрос и предьявление для опознания/Чернова С. С..pdf",
+"how": "титульный лист (сверено вручную)",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Уголовное право/2021 Допрос и предьявление для опознания/Чернова С. С..pdf"
 },
 {
 "key": "pba1535a",
@@ -8790,6 +10853,48 @@
 "toc": true
 },
 {
+"key": "pba9d487",
+"cat": "book",
+"authors": "ред. Кутуев",
+"title": "Уголовно-процессуальное право (уголовный процесс). Общая часть",
+"kind": "учебно-практическое пособие",
+"pub": "СПбУ МВД",
+"year": 2022,
+"pages": 112,
+"size": 1363092,
+"q": [
+"upp125",
+"upp002",
+"upp003",
+"upp004",
+"upp007",
+"upp018",
+"upp022",
+"upp026",
+"upp027",
+"upp028",
+"upp059",
+"upp070",
+"upp071",
+"upp073",
+"upp090",
+"upp098",
+"upp127"
+],
+"general": false,
+"dst": "3. Учебная литература/ред. Кутуев. Уголовно-процессуальное право (уголовный процесс). Общая часть. Учебно-практическое пособие. СПбУ МВД, 2022.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Уг.проц.право/436245.pdf",
+"how": "титульный лист (описание составлено вручную)",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Уг.проц.право/436245.pdf",
+"tocdone": true,
+"q0": [
+"upp125"
+],
+"toc": true
+},
+{
 "key": "pb849fbe",
 "cat": "book",
 "authors": "ред. Михалёв",
@@ -9095,32 +11200,6 @@
 "note": "из базы «Административная деятельность полиции»"
 },
 {
-"key": "emp:Судебный департамент при ВС РФ. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2023 году.pdf",
-"cat": "emp",
-"title": "Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2023 году.pdf",
-"dst": "5. Эмпирические материалы (с 2023 года)/Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2023 году.pdf",
-"size": 3809317,
-"url": "",
-"pages": 117,
-"q": [],
-"general": true,
-"year": 0,
-"note": "из базы «Административная деятельность полиции»"
-},
-{
-"key": "emp:Судебный департамент при ВС РФ. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2024 году.pdf",
-"cat": "emp",
-"title": "Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2024 году.pdf",
-"dst": "5. Эмпирические материалы (с 2023 года)/Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2024 году.pdf",
-"size": 3075323,
-"url": "",
-"pages": 116,
-"q": [],
-"general": true,
-"year": 0,
-"note": "из базы «Административная деятельность полиции»"
-},
-{
 "key": "emp:Судебный департамент при ВС РФ. Форма № 1. Отчет о рассмотрении уголовных дел по первой инстанции за 2023 год.xls",
 "cat": "emp",
 "title": "Судебный департамент при ВС РФ. Форма № 1. Отчет о рассмотрении уголовных дел по первой инстанции за 2023 год.xls",
@@ -9197,6 +11276,32 @@
 "general": true,
 "year": 2025,
 "note": ""
+},
+{
+"key": "emp:Судебный департамент при ВС РФ. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2023 году.pdf",
+"cat": "emp",
+"title": "Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2023 году.pdf",
+"dst": "5. Эмпирические материалы (с 2023 года)/Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2023 году.pdf",
+"size": 3809317,
+"url": "",
+"pages": 117,
+"q": [],
+"general": true,
+"year": 0,
+"note": "из базы «Административная деятельность полиции»"
+},
+{
+"key": "emp:Судебный департамент при ВС РФ. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2024 году.pdf",
+"cat": "emp",
+"title": "Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2024 году.pdf",
+"dst": "5. Эмпирические материалы (с 2023 года)/Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2024 году.pdf",
+"size": 3075323,
+"url": "",
+"pages": 116,
+"q": [],
+"general": true,
+"year": 0,
+"note": "из базы «Административная деятельность полиции»"
 },
 {
 "key": "pbdcc29c",
@@ -9731,6 +11836,25 @@
 "toc": true
 },
 {
+"key": "pb6030c8",
+"cat": "sci",
+"authors": "Анучина",
+"title": "Досудебное производство по уголовному делу в случае смерти подозреваемого или обвиняемого",
+"kind": "научно-практическое пособие",
+"pub": "Академия управления МВД",
+"year": 2022,
+"pages": 80,
+"size": 530620,
+"q": [],
+"general": false,
+"dst": "4. Научные материалы (с 2023 года)/Издания до 2023 года (сверить с действующими актами)/Анучина. Досудебное производство по уголовному делу в случае…. Научно-практическое пособие. Академия управления МВД, 2022.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовное право/2022 Досудебное пр-во/Досудебное производство.pdf",
+"how": "титульный лист (сверено вручную)",
+"old": true,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Уголовное право/2022 Досудебное пр-во/Досудебное производство.pdf"
+},
+{
 "key": "pbb82e01",
 "cat": "sci",
 "authors": "Дутов, Касьянова",
@@ -9902,169 +12026,6 @@
 "toc": true
 },
 {
-"key": "pb6bcf2c",
-"cat": "sci",
-"authors": "",
-"title": "Современное уголовно-процессуальное право – уроки истории и проблемы дальнейшего реформирования",
-"kind": "материалы конференции",
-"pub": "ОрЮИ МВД",
-"year": 2024,
-"pages": 261,
-"size": 3861509,
-"q": [
-"upp003",
-"upp004",
-"upp005",
-"upp007",
-"upp008",
-"upp024",
-"upp026",
-"upp027",
-"upp028",
-"upp034",
-"upp035",
-"upp038",
-"upp039",
-"upp046",
-"upp047",
-"upp070",
-"upp073",
-"upp090",
-"upp094",
-"upp098"
-],
-"general": false,
-"dst": "4. Научные материалы (с 2023 года)/Современное уголовно-процессуальное право – уроки истории и проблемы…. Материалы конференции. Часть 2. ОрЮИ МВД, 2024.pdf",
-"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Совр.УПЦ Ч.2/УПЦ Ч.2.pdf",
-"how": "титульный лист",
-"old": false,
-"garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Совр.УПЦ Ч.2/УПЦ Ч.2.pdf",
-"tocdone": true,
-"q0": [],
-"toc": true
-},
-{
-"key": "pb11c6ba",
-"cat": "sci",
-"authors": "",
-"title": "Современное уголовно-процессуальное право – уроки истории и проблемы дальнейшего реформирования",
-"kind": "материалы конференции",
-"pub": "ОрЮИ МВД",
-"year": 2024,
-"pages": 282,
-"size": 4673682,
-"q": [
-"upp008",
-"upp018",
-"upp020",
-"upp022",
-"upp026",
-"upp033",
-"upp038",
-"upp039",
-"upp047",
-"upp075",
-"upp094",
-"upp127"
-],
-"general": false,
-"dst": "4. Научные материалы (с 2023 года)/Современное уголовно-процессуальное право – уроки истории и проблемы…. Материалы конференции. Часть 1. ОрЮИ МВД, 2024.pdf",
-"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Совр УПЦ/Совр УПЦ.pdf",
-"how": "титульный лист",
-"old": false,
-"garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Совр УПЦ/Совр УПЦ.pdf",
-"tocdone": true,
-"q0": [],
-"toc": true
-},
-{
-"key": "pb0df00f",
-"cat": "sci",
-"authors": "",
-"title": "Современное уголовно-процессуальное право – уроки истории и проблемы дальнейшего реформирования",
-"kind": "материалы конференции",
-"pub": "ОрЮИ МВД",
-"year": 2023,
-"pages": 248,
-"size": 43259529,
-"q": [
-"upp003",
-"upp008",
-"upp018",
-"upp020",
-"upp021",
-"upp026",
-"upp027",
-"upp028",
-"upp030",
-"upp033",
-"upp038",
-"upp039",
-"upp047",
-"upp051",
-"upp066",
-"upp067",
-"upp073",
-"upp074",
-"upp086",
-"upp127"
-],
-"general": false,
-"dst": "4. Научные материалы (с 2023 года)/Современное уголовно-процессуальное право – уроки истории и проблемы…. Материалы конференции. Часть 2. ОрЮИ МВД, 2023.pdf",
-"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2023 Совр.УПП.Ч.2/Совр.уголовно-процессуальное право_ч.2.pdf",
-"how": "титульный лист",
-"old": false,
-"garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2023 Совр.УПП.Ч.2/Совр.уголовно-процессуальное право_ч.2.pdf",
-"tocdone": true,
-"q0": [],
-"toc": true
-},
-{
-"key": "pbcec88f",
-"cat": "sci",
-"authors": "",
-"title": "Современное уголовно-процессуальное право – уроки истории и проблемы дальнейшего реформирования",
-"kind": "материалы конференции",
-"pub": "ОрЮИ МВД",
-"year": 2023,
-"pages": 255,
-"size": 44236055,
-"q": [
-"upp079",
-"upp125",
-"upp004",
-"upp008",
-"upp018",
-"upp020",
-"upp021",
-"upp026",
-"upp027",
-"upp028",
-"upp038",
-"upp039",
-"upp065",
-"upp066",
-"upp090",
-"upp098"
-],
-"general": false,
-"dst": "4. Научные материалы (с 2023 года)/Современное уголовно-процессуальное право – уроки истории и проблемы…. Материалы конференции. Часть 1. ОрЮИ МВД, 2023.pdf",
-"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2023 Сов.УПП. Ч.1/Совр. уголовно-процессуальное право_ч.1.pdf",
-"how": "титульный лист",
-"old": false,
-"garbled": false,
-"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2023 Сов.УПП. Ч.1/Совр. уголовно-процессуальное право_ч.1.pdf",
-"tocdone": true,
-"q0": [
-"upp079",
-"upp125"
-],
-"toc": true
-},
-{
 "key": "pb577ee0",
 "cat": "sci",
 "authors": "Макаренко",
@@ -10230,6 +12191,47 @@
 "upp101",
 "upp107"
 ],
+"toc": true
+},
+{
+"key": "pbde1193",
+"cat": "sci",
+"authors": "",
+"title": "Проблемы предварительного следствия и дознания",
+"kind": "сборник научных трудов № 34",
+"pub": "ВНИИ МВД",
+"year": 2025,
+"pages": 298,
+"size": 2221085,
+"q": [
+"upp003",
+"upp007",
+"upp027",
+"upp028",
+"upp030",
+"upp031",
+"upp033",
+"upp037",
+"upp038",
+"upp039",
+"upp040",
+"upp043",
+"upp044",
+"upp047",
+"upp051",
+"upp073",
+"upp086",
+"upp094"
+],
+"general": false,
+"dst": "4. Научные материалы (с 2023 года)/Проблемы предварительного следствия и дознания. Сборник научных трудов № 34. ВНИИ МВД, 2025.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Дознание/2025 Проблемы предв.сл/Пробл.предв.след.pdf",
+"how": "титульный лист (описание составлено вручную)",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Дознание/2025 Проблемы предв.сл/Пробл.предв.след.pdf",
+"tocdone": true,
+"q0": [],
 "toc": true
 },
 {
@@ -10534,6 +12536,169 @@
 "q0": [
 "upp067"
 ],
+"toc": true
+},
+{
+"key": "pbcec88f",
+"cat": "sci",
+"authors": "",
+"title": "Современное уголовно-процессуальное право – уроки истории и проблемы дальнейшего реформирования",
+"kind": "материалы конференции",
+"pub": "ОрЮИ МВД",
+"year": 2023,
+"pages": 255,
+"size": 44236055,
+"q": [
+"upp079",
+"upp125",
+"upp004",
+"upp008",
+"upp018",
+"upp020",
+"upp021",
+"upp026",
+"upp027",
+"upp028",
+"upp038",
+"upp039",
+"upp065",
+"upp066",
+"upp090",
+"upp098"
+],
+"general": false,
+"dst": "4. Научные материалы (с 2023 года)/Современное уголовно-процессуальное право – уроки истории и проблемы…. Материалы конференции. Часть 1. ОрЮИ МВД, 2023.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2023 Сов.УПП. Ч.1/Совр. уголовно-процессуальное право_ч.1.pdf",
+"how": "титульный лист",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2023 Сов.УПП. Ч.1/Совр. уголовно-процессуальное право_ч.1.pdf",
+"tocdone": true,
+"q0": [
+"upp079",
+"upp125"
+],
+"toc": true
+},
+{
+"key": "pb11c6ba",
+"cat": "sci",
+"authors": "",
+"title": "Современное уголовно-процессуальное право – уроки истории и проблемы дальнейшего реформирования",
+"kind": "материалы конференции",
+"pub": "ОрЮИ МВД",
+"year": 2024,
+"pages": 282,
+"size": 4673682,
+"q": [
+"upp008",
+"upp018",
+"upp020",
+"upp022",
+"upp026",
+"upp033",
+"upp038",
+"upp039",
+"upp047",
+"upp075",
+"upp094",
+"upp127"
+],
+"general": false,
+"dst": "4. Научные материалы (с 2023 года)/Современное уголовно-процессуальное право – уроки истории и проблемы…. Материалы конференции. Часть 1. ОрЮИ МВД, 2024.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Совр УПЦ/Совр УПЦ.pdf",
+"how": "титульный лист",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Совр УПЦ/Совр УПЦ.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "pb0df00f",
+"cat": "sci",
+"authors": "",
+"title": "Современное уголовно-процессуальное право – уроки истории и проблемы дальнейшего реформирования",
+"kind": "материалы конференции",
+"pub": "ОрЮИ МВД",
+"year": 2023,
+"pages": 248,
+"size": 43259529,
+"q": [
+"upp003",
+"upp008",
+"upp018",
+"upp020",
+"upp021",
+"upp026",
+"upp027",
+"upp028",
+"upp030",
+"upp033",
+"upp038",
+"upp039",
+"upp047",
+"upp051",
+"upp066",
+"upp067",
+"upp073",
+"upp074",
+"upp086",
+"upp127"
+],
+"general": false,
+"dst": "4. Научные материалы (с 2023 года)/Современное уголовно-процессуальное право – уроки истории и проблемы…. Материалы конференции. Часть 2. ОрЮИ МВД, 2023.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2023 Совр.УПП.Ч.2/Совр.уголовно-процессуальное право_ч.2.pdf",
+"how": "титульный лист",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2023 Совр.УПП.Ч.2/Совр.уголовно-процессуальное право_ч.2.pdf",
+"tocdone": true,
+"q0": [],
+"toc": true
+},
+{
+"key": "pb6bcf2c",
+"cat": "sci",
+"authors": "",
+"title": "Современное уголовно-процессуальное право – уроки истории и проблемы дальнейшего реформирования",
+"kind": "материалы конференции",
+"pub": "ОрЮИ МВД",
+"year": 2024,
+"pages": 261,
+"size": 3861509,
+"q": [
+"upp003",
+"upp004",
+"upp005",
+"upp007",
+"upp008",
+"upp024",
+"upp026",
+"upp027",
+"upp028",
+"upp034",
+"upp035",
+"upp038",
+"upp039",
+"upp046",
+"upp047",
+"upp070",
+"upp073",
+"upp090",
+"upp094",
+"upp098"
+],
+"general": false,
+"dst": "4. Научные материалы (с 2023 года)/Современное уголовно-процессуальное право – уроки истории и проблемы…. Материалы конференции. Часть 2. ОрЮИ МВД, 2024.pdf",
+"url": "http://lib.eioskuimvd.ru/jirbis2/_docs_file/Эл. библ. для учебы/Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Совр.УПЦ Ч.2/УПЦ Ч.2.pdf",
+"how": "титульный лист",
+"old": false,
+"garbled": false,
+"lib": "Электронные издания ВУЗов МВД России/Уголовно процессуальное право/2024 Совр.УПЦ Ч.2/УПЦ Ч.2.pdf",
+"tocdone": true,
+"q0": [],
 "toc": true
 },
 {

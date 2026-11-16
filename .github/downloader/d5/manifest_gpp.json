@@ -1,5 +1,24 @@
 [
 {
+"key": "g0b0d6b",
+"cat": "art",
+"authors": "Абубакарова, Османов и др.",
+"title": "Бремя доказывания при разбирательстве гражданских дел",
+"kind": "статья",
+"pub": "Журнал прикладных исследований",
+"year": 2023,
+"pages": 5,
+"size": 9550454,
+"q": [
+"gpp031"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Абубакарова, Османов и др. Бремя доказывания при разбирательстве гражданских дел. Журнал прикладных исследований, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/bremya-dokazyvaniya-pri-razbiratelstve-grazhdanskih-del",
+"vak": true
+},
+{
 "key": "gd95bb3",
 "cat": "art",
 "authors": "Авдеева",
@@ -30,12 +49,32 @@
 "pages": 6,
 "size": 309748,
 "q": [
-"gpp045"
+"gpp045",
+"gpp046"
 ],
 "general": false,
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Акулова. Актуальные вопросы применения упрощенного производства при рассмотрении…. Государственная служба и кадры, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/aktualnye-voprosy-primeneniya-uproschennogo-proizvodstva-pri-rassmotrenii-grazhdanskih-del",
+"vak": true
+},
+{
+"key": "gee6fef",
+"cat": "art",
+"authors": "Акулова",
+"title": "Коллизии процессуального статуса прокурора в гражданском судопроизводстве",
+"kind": "статья",
+"pub": "Образование. Наука. Научные кадры",
+"year": 2025,
+"pages": 6,
+"size": 252628,
+"q": [
+"gpp016"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Акулова. Коллизии процессуального статуса прокурора в гражданском…. Образование. Наука. Научные кадры, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/kollizii-protsessualnogo-statusa-prokurora-v-grazhdanskom-sudoproizvodstve",
 "vak": true
 },
 {
@@ -127,8 +166,8 @@
 "q": [
 "gpp036",
 "gpp039",
-"gpp006",
-"gpp040"
+"gpp040",
+"gpp006"
 ],
 "general": false,
 "wide": false,
@@ -175,6 +214,26 @@
 "vak": false
 },
 {
+"key": "g119017",
+"cat": "art",
+"authors": "Атаева",
+"title": "Проблемы кассационного производства по гражданским делам",
+"kind": "статья",
+"pub": "Закон и право",
+"year": 2025,
+"pages": 4,
+"size": 194456,
+"q": [
+"gpp048",
+"gpp050"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Атаева. Проблемы кассационного производства по гражданским делам. Закон и право, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/problemy-kassatsionnogo-proizvodstva-po-grazhdanskim-delam",
+"vak": true
+},
+{
 "key": "gdd31b0",
 "cat": "art",
 "authors": "Байкова",
@@ -213,6 +272,25 @@
 "vak": true
 },
 {
+"key": "g0f5c13",
+"cat": "art",
+"authors": "Баринов, Новичкова и др.",
+"title": "Автоматизация юридических действий и применение технологий искусственного интеллекта при принятии искового заявления",
+"kind": "статья",
+"pub": "Аграрное и земельное право",
+"year": 2024,
+"pages": 5,
+"size": 333109,
+"q": [
+"gpp021"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Баринов, Новичкова и др. Автоматизация юридических действий и применение технологий…. Аграрное и земельное право, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/avtomatizatsiya-yuridicheskih-deystviy-i-primenenie-tehnologiy-iskusstvennogo-intellekta-pri-prinyatii-iskovogo-zayavleniya",
+"vak": true
+},
+{
 "key": "g74229f",
 "cat": "art",
 "authors": "Баскончин, Гуськов и др.",
@@ -223,13 +301,52 @@
 "pages": 7,
 "size": 246400,
 "q": [
-"gpp002"
+"gpp002",
+"gpp028"
 ],
 "general": false,
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Баскончин, Гуськов и др. Предмет доказывания в гражданском…. Вестник Пензенского государственного университета, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/predmet-dokazyvaniya-v-grazhdanskom-protsesse",
 "vak": false
+},
+{
+"key": "g22793f",
+"cat": "art",
+"authors": "Бахарева, Вершинина",
+"title": "Некоторые аспекты применения судом обеспечительных мер по семейным делам, затрагивающим интересы детей",
+"kind": "статья",
+"pub": "Вестник Саратовской государственной юридической академии",
+"year": 2023,
+"pages": 5,
+"size": 199026,
+"q": [
+"gpp026"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Бахарева, Вершинина. Некоторые аспекты применения…. Вестник Саратовской государственной юридической академии, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/nekotorye-aspekty-primeneniya-sudom-obespechitelnyh-mer-po-semeynym-delam-zatragivayuschim-interesy-detey",
+"vak": true
+},
+{
+"key": "gd06312",
+"cat": "art",
+"authors": "Бахилин",
+"title": "Последствия манипулирования подсудностью в суде первой инстанции",
+"kind": "статья",
+"pub": "Электронное приложение к Российскому юридическому журналу",
+"year": 2023,
+"pages": 9,
+"size": 149213,
+"q": [
+"gpp038"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Бахилин. Последствия манипулирования подсудностью…. Электронное приложение к Российскому юридическому журналу, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/posledstviya-manipulirovaniya-podsudnostyu-v-sude-pervoy-instantsii-1",
+"vak": true
 },
 {
 "key": "ga7d56c",
@@ -251,6 +368,25 @@
 "vak": true
 },
 {
+"key": "g7defbe",
+"cat": "art",
+"authors": "Беженцев, Игошин",
+"title": "Юридические гарантии прав и свобод граждан: система и значение для административно-процессуального регулирования",
+"kind": "статья",
+"pub": "Гуманитарные, социально-экономические и общественные науки",
+"year": 2023,
+"pages": 7,
+"size": 164114,
+"q": [
+"gpp001"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Беженцев, Игошин. Юридические гарантии прав и свобод…. Гуманитарные, социально-экономические и общественные науки, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/yuridicheskie-garantii-prav-i-svobod-grazhdan-sistema-i-znachenie-dlya-administrativno-protsessualnogo-regulirovaniya",
+"vak": true
+},
+{
 "key": "gdc4e24",
 "cat": "art",
 "authors": "Белоусов",
@@ -261,6 +397,7 @@
 "pages": 6,
 "size": 317716,
 "q": [
+"gpp005",
 "gpp046"
 ],
 "general": false,
@@ -280,6 +417,7 @@
 "pages": 3,
 "size": 94283,
 "q": [
+"gpp029",
 "gpp030"
 ],
 "general": false,
@@ -326,6 +464,25 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Бобловская. Доказательства в гражданском процессе — новые…. Международный журнал гуманитарных и естественных наук, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/dokazatelstva-v-grazhdanskom-protsesse-novye-podhody-i-ih-vliyanie-na-sudebnoe-razbiratelstvo",
 "vak": false
+},
+{
+"key": "g061785",
+"cat": "art",
+"authors": "Бобров",
+"title": "Процессуальная специфика действий судов, а также лиц, участвующих в деле при рассмотрении гражданских и корпоративных споров арбитражными судами",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2024,
+"pages": 5,
+"size": 327535,
+"q": [
+"gpp011"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Бобров. Процессуальная специфика действий судов, а также лиц, участвующих…. Право и государство — теория и практика, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/protsessualnaya-spetsifika-deystviy-sudov-a-takzhe-lits-uchastvuyuschih-v-dele-pri-rassmotrenii-grazhdanskih-i-korporativnyh-sporov",
+"vak": true
 },
 {
 "key": "g8caeec",
@@ -416,6 +573,7 @@
 "pages": 7,
 "size": 294739,
 "q": [
+"gpp034",
 "gpp035"
 ],
 "general": false,
@@ -464,6 +622,44 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Вагузова. Современные проблемы определения понятия и сущности института обеспечения иска…. Вестник науки, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/sovremennye-problemy-opredeleniya-ponyatiya-i-suschnosti-instituta-obespecheniya-iska-v-grazhdanskom-protsesse",
 "vak": false
+},
+{
+"key": "gc1c3d6",
+"cat": "art",
+"authors": "Васильчикова",
+"title": "Актуальные вопросы участия в деле прокурора в порядке ч. 3 ст. 45 ГПК РФ",
+"kind": "статья",
+"pub": "КриминалистЪ",
+"year": 2024,
+"pages": 6,
+"size": 3963351,
+"q": [
+"gpp015"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Васильчикова. Актуальные вопросы участия в деле прокурора в порядке ч. 3 ст. 45 ГПК РФ. КриминалистЪ, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/aktualnye-voprosy-uchastiya-v-dele-prokurora-v-poryadke-ch-3-st-45-gpk-rf",
+"vak": true
+},
+{
+"key": "g4cd212",
+"cat": "art",
+"authors": "Винниченко, Гаврилова",
+"title": "Верховный суд РСФСР как суд первой инстанции",
+"kind": "статья",
+"pub": "Lex Russica",
+"year": 2023,
+"pages": 11,
+"size": 350974,
+"q": [
+"gpp050"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Винниченко, Гаврилова. Верховный суд РСФСР как суд первой инстанции. Lex Russica, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/verhovnyy-sud-rsfsr-kak-sud-pervoy-instantsii",
+"vak": true
 },
 {
 "key": "g30c108",
@@ -727,12 +923,32 @@
 "pages": 3,
 "size": 300554,
 "q": [
+"gpp024",
 "gpp037"
 ],
 "general": false,
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Гуляева, Гнетова и др. Особенности разрешения встречного иска по уставу…. Право и государство — теория и практика, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/osobennosti-razresheniya-vstrechnogo-iska-po-ustavu-grazhdanskogo-sudoproizvodstva",
+"vak": true
+},
+{
+"key": "g7df6bd",
+"cat": "art",
+"authors": "Гуляева, Силаева",
+"title": "Использование скриншотов при доказывании в гражданском процессе в Российской Федерации",
+"kind": "статья",
+"pub": "Юридическая наука",
+"year": 2023,
+"pages": 4,
+"size": 1414669,
+"q": [
+"gpp034"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Гуляева, Силаева. Использование скриншотов при доказывании в гражданском процессе в Российской…. Юридическая наука, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/ispolzovanie-skrinshotov-pri-dokazyvanii-v-grazhdanskom-protsesse-v-rossiyskoy-federatsii",
 "vak": true
 },
 {
@@ -888,6 +1104,25 @@
 "vak": true
 },
 {
+"key": "g0c56c1",
+"cat": "art",
+"authors": "Иванченко",
+"title": "К вопросу о характере и целях принципа надлежащего извещения лиц, участвующих в деле и классификации надлежащих извещений",
+"kind": "статья",
+"pub": "Ученые записки Крымского федерального университета имени В. И. Вернадского. Юридические науки",
+"year": 2023,
+"pages": 9,
+"size": 559774,
+"q": [
+"gpp011"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Иванченко. К вопросу о характере и целях принципа…. Ученые записки Крымского федерального университета имени В., 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-o-haraktere-i-tselyah-printsipa-nadlezhaschego-izvescheniya-lits-uchastvuyuschih-v-dele-i-klassifikatsii-nadlezhaschih",
+"vak": true
+},
+{
 "key": "gfaf21d",
 "cat": "art",
 "authors": "Ивенский",
@@ -938,7 +1173,8 @@
 "size": 405507,
 "q": [
 "gpp032",
-"gpp028"
+"gpp028",
+"gpp003"
 ],
 "general": false,
 "wide": false,
@@ -978,12 +1214,32 @@
 "size": 641717,
 "q": [
 "gpp028",
+"gpp029",
 "gpp032"
 ],
 "general": false,
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Камаров. Конституционно-судебное доказывание и доказательства…. Вестник Волжского университета им. В. Н. Татищева, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/konstitutsionno-sudebnoe-dokazyvanie-i-dokazatelstva-v-rossiyskoy-federatsii",
+"vak": true
+},
+{
+"key": "ga0553f",
+"cat": "art",
+"authors": "Карандашева",
+"title": "Исполнение иностранного судебного решения в рамках исполнения судебного поручения",
+"kind": "статья",
+"pub": "Вестник Университета имени О. Е. Кутафина",
+"year": 2023,
+"pages": 8,
+"size": 427425,
+"q": [
+"gpp041"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Карандашева. Исполнение иностранного судебного решения в рамках…. Вестник Университета имени О. Е. Кутафина, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/ispolnenie-inostrannogo-sudebnogo-resheniya-v-ramkah-ispolneniya-sudebnogo-porucheniya",
 "vak": true
 },
 {
@@ -1004,6 +1260,27 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Карева, Юртаев. Проблемные вопросы судебного доказывания в цивилистическом процессе. Закон и право, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/problemnye-voprosy-sudebnogo-dokazyvaniya-v-tsivilisticheskom-protsesse",
+"vak": true
+},
+{
+"key": "g20a880",
+"cat": "art",
+"authors": "Карева, Юртаев",
+"title": "Проблемы оценки электронных доказательств в ходе судебного доказывания в цивилистическом процессе",
+"kind": "статья",
+"pub": "Вестник Нижегородского университета им. Н. И. Лобачевского",
+"year": 2024,
+"pages": 8,
+"size": 754204,
+"q": [
+"gpp035",
+"gpp028",
+"gpp032"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Карева, Юртаев. Проблемы оценки электронных…. Вестник Нижегородского университета им. Н. И. Лобачевского, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/problemy-otsenki-elektronnyh-dokazatelstv-v-hode-sudebnogo-dokazyvaniya-v-tsivilisticheskom-protsesse",
 "vak": true
 },
 {
@@ -1144,6 +1421,44 @@
 "vak": false
 },
 {
+"key": "g3ca5ae",
+"cat": "art",
+"authors": "Кормильцева",
+"title": "Неуплата средств на содержание детей или нетрудоспособных родителей: проблемные вопросы и анализ судебной практики",
+"kind": "статья",
+"pub": "Вестник Казанского юридического института МВД России",
+"year": 2026,
+"pages": 11,
+"size": 410152,
+"q": [
+"gpp041"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Кормильцева. Неуплата средств на содержание детей…. Вестник Казанского юридического института МВД России, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/neuplata-sredstv-na-soderzhanie-detey-ili-netrudosposobnyh-roditeley-problemnye-voprosy-i-analiz-sudebnoy-praktiki",
+"vak": true
+},
+{
+"key": "gfeb0e8",
+"cat": "art",
+"authors": "Корнилова, Орлова",
+"title": "Распределение бремени доказывания в гражданском процессе в условиях отрицания иска ответчиком",
+"kind": "статья",
+"pub": "Юридическая наука",
+"year": 2026,
+"pages": 3,
+"size": 49574,
+"q": [
+"gpp031"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Корнилова, Орлова. Распределение бремени доказывания в гражданском процессе в условиях…. Юридическая наука, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/raspredelenie-bremeni-dokazyvaniya-v-grazhdanskom-protsesse-v-usloviyah-otritsaniya-iska-otvetchikom",
+"vak": true
+},
+{
 "key": "g14666d",
 "cat": "art",
 "authors": "Косыгина, Уханова",
@@ -1220,6 +1535,25 @@
 "vak": false
 },
 {
+"key": "g39eba8",
+"cat": "art",
+"authors": "Леньков",
+"title": "Формирование партнерской модели гражданского общества современной России через призму конституционной нормы о необходимости государственной поддержки институтов гражданского общества",
+"kind": "статья",
+"pub": "Государственное и муниципальное управление. Ученые записки",
+"year": 2024,
+"pages": 10,
+"size": 1731425,
+"q": [
+"gpp017"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Леньков. Формирование партнерской модели…. Государственное и муниципальное управление. Ученые записки, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/formirovanie-partnerskoy-modeli-grazhdanskogo-obschestva-sovremennoy-rossii-cherez-prizmu-konstitutsionnoy-normy-o-neobhodimosti",
+"vak": true
+},
+{
 "key": "gaabab9",
 "cat": "art",
 "authors": "Липатова",
@@ -1287,7 +1621,8 @@
 "pages": 15,
 "size": 393241,
 "q": [
-"gpp015"
+"gpp015",
+"gpp048"
 ],
 "general": false,
 "wide": false,
@@ -1326,8 +1661,8 @@
 "size": 875553,
 "q": [
 "gpp008",
-"gpp026",
-"gpp027"
+"gpp027",
+"gpp026"
 ],
 "general": false,
 "wide": false,
@@ -1346,6 +1681,8 @@
 "pages": 8,
 "size": 2772438,
 "q": [
+"gpp005",
+"gpp045",
 "gpp052"
 ],
 "general": false,
@@ -1372,6 +1709,44 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Магомедова. Упрощенное производство — самостоятельный вид гражданского судопроизводства…. Закон и право, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/uproschennoe-proizvodstvo-samostoyatelnyy-vid-grazhdanskogo-sudoproizvodstva-ili-raznovidnost-iskovogo-proizvodstva",
+"vak": true
+},
+{
+"key": "g84f47d",
+"cat": "art",
+"authors": "Мананников",
+"title": "Прокурорская проверка как ведомственный инструмент правозащитной деятельности",
+"kind": "статья",
+"pub": "Пробелы в российском законодательстве. Юридический журнал",
+"year": 2024,
+"pages": 6,
+"size": 257013,
+"q": [
+"gpp016"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Мананников. Прокурорская проверка как ведомственный…. Пробелы в российском законодательстве. Юридический журнал, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/prokurorskaya-proverka-kak-vedomstvennyy-instrument-pravozaschitnoy-deyatelnosti",
+"vak": true
+},
+{
+"key": "g2061fb",
+"cat": "art",
+"authors": "Маренков",
+"title": "Недостатки языка гражданского процессуального закона (на примере норм, регулирующих особое производство)",
+"kind": "статья",
+"pub": "Вестник Воронежского государственного университета. Серия: Право",
+"year": 2025,
+"pages": 9,
+"size": 302995,
+"q": [
+"gpp021"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Маренков. Недостатки языка гражданского…. Вестник Воронежского государственного университета. Серия — Право, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/nedostatki-yazyka-grazhdanskogo-protsessualnogo-zakona-na-primere-norm-reguliruyuschih-osoboe-proizvodstvo",
 "vak": true
 },
 {
@@ -1442,6 +1817,8 @@
 "pages": 4,
 "size": 315705,
 "q": [
+"gpp021",
+"gpp045",
 "gpp052"
 ],
 "general": false,
@@ -1501,6 +1878,7 @@
 "pages": 10,
 "size": 371559,
 "q": [
+"gpp005",
 "gpp052"
 ],
 "general": false,
@@ -1539,12 +1917,32 @@
 "pages": 13,
 "size": 352844,
 "q": [
-"gpp022"
+"gpp022",
+"gpp030"
 ],
 "general": false,
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Нахова. К вопросу о взаимосвязи концепции предмета доказывания в гражданском…. Ленинградский юридический журнал, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/k-voprosu-o-vzaimosvyazi-kontseptsii-predmeta-dokazyvaniya-v-grazhdanskom-protsesse-i-teorii-iska",
+"vak": true
+},
+{
+"key": "g9d2248",
+"cat": "art",
+"authors": "Нахова",
+"title": "К вопросу о концепции локального предмета доказывания в гражданском процессе",
+"kind": "статья",
+"pub": "Ленинградский юридический журнал",
+"year": 2024,
+"pages": 15,
+"size": 365115,
+"q": [
+"gpp030"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Нахова. К вопросу о концепции локального предмета доказывания в гражданском…. Ленинградский юридический журнал, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-o-kontseptsii-lokalnogo-predmeta-dokazyvaniya-v-grazhdanskom-protsesse",
 "vak": true
 },
 {
@@ -1565,6 +1963,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Нахова. К вопросу о частных правилах распределения обязанностей по доказыванию. Ленинградский юридический журнал, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/k-voprosu-o-chastnyh-pravilah-raspredeleniya-obyazannostey-po-dokazyvaniyu",
+"vak": true
+},
+{
+"key": "g535621",
+"cat": "art",
+"authors": "Нахова",
+"title": "Концептуальные аспекты учения о предмете доказывания в гражданском процессе",
+"kind": "статья",
+"pub": "Ленинградский юридический журнал",
+"year": 2023,
+"pages": 28,
+"size": 409830,
+"q": [
+"gpp030"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Нахова. Концептуальные аспекты учения о предмете доказывания в гражданском…. Ленинградский юридический журнал, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/kontseptualnye-aspekty-ucheniya-o-predmete-dokazyvaniya-v-grazhdanskom-protsesse",
 "vak": true
 },
 {
@@ -1706,6 +2123,25 @@
 "vak": false
 },
 {
+"key": "ge6f641",
+"cat": "art",
+"authors": "Певная, Вишневский и др.",
+"title": "Институты общественного контроля как площадки гражданского участия: правовое регулирование и информационная открытость (кейс Свердловской области)",
+"kind": "статья",
+"pub": "Вестник Пермского национального исследовательского политехнического университета. Социально-экономические науки",
+"year": 2024,
+"pages": 18,
+"size": 681650,
+"q": [
+"gpp017"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Певная, Вишневский и др. Институты общественного контроля…. Вестник Пермского национального исследовательского, 2024.pdf",
+"url": "https://cyberleninka.ru/article/n/instituty-obschestvennogo-kontrolya-kak-ploschadki-grazhdanskogo-uchastiya-pravovoe-regulirovanie-i-informatsionnaya-otkrytost-keys",
+"vak": true
+},
+{
 "key": "g6a884c",
 "cat": "art",
 "authors": "Пеленицына, Грудцына",
@@ -1744,6 +2180,45 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Петрова. Производство в суде апелляционной инстанции. Форум молодых ученых, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/proizvodstvo-v-sude-apellyatsionnoy-instantsii",
 "vak": false
+},
+{
+"key": "g4ff978",
+"cat": "art",
+"authors": "Попов, Тришина",
+"title": "Отдельные аспекты реализации прокурором законоохранительной функции в гражданском судопроизводстве: диалектика публичного и частного интереса",
+"kind": "статья",
+"pub": "Вестник Саратовской государственной юридической академии",
+"year": 2026,
+"pages": 9,
+"size": 347421,
+"q": [
+"gpp016"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Попов, Тришина. Отдельные аспекты реализации…. Вестник Саратовской государственной юридической академии, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/otdelnye-aspekty-realizatsii-prokurorom-zakonoohranitelnoy-funktsii-v-grazhdanskom-sudoproizvodstve-dialektika-publichnogo-i",
+"vak": true
+},
+{
+"key": "ge86d56",
+"cat": "art",
+"authors": "Попова",
+"title": "Вопросы судебного доказывания по гражданским делам о защите чести и достоинства граждан, а также деловой репутации граждан и юридических лиц",
+"kind": "статья",
+"pub": "Теория и практика общественного развития",
+"year": 2023,
+"pages": 5,
+"size": 684702,
+"q": [
+"gpp029",
+"gpp028"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Попова. Вопросы судебного доказывания по гражданским делам о защите…. Теория и практика общественного развития, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/voprosy-sudebnogo-dokazyvaniya-po-grazhdanskim-delam-o-zaschite-chesti-i-dostoinstva-grazhdan-a-takzhe-delovoy-reputatsii-grazhdan",
+"vak": true
 },
 {
 "key": "g9956ae",
@@ -1804,6 +2279,25 @@
 "vak": false
 },
 {
+"key": "gaf1448",
+"cat": "art",
+"authors": "Рыжков",
+"title": "Изменение фактических обстоятельств в контексте вынесения судебных актов по гражданским делам",
+"kind": "статья",
+"pub": "Правоприменение",
+"year": 2023,
+"pages": 10,
+"size": 713584,
+"q": [
+"gpp051"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Рыжков. Изменение фактических обстоятельств в контексте вынесения судебных актов по гражданским…. Правоприменение, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/izmenenie-fakticheskih-obstoyatelstv-v-kontekste-vyneseniya-sudebnyh-aktov-po-grazhdanskim-delam",
+"vak": true
+},
+{
 "key": "g87a055",
 "cat": "art",
 "authors": "Сагитова",
@@ -1814,6 +2308,7 @@
 "pages": 4,
 "size": 262981,
 "q": [
+"gpp026",
 "gpp027"
 ],
 "general": false,
@@ -1840,6 +2335,25 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Салчак, Монгуш. Защита интересов ответчика. Universum — экономика и юриспруденция, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/zaschita-interesov-otvetchika",
 "vak": false
+},
+{
+"key": "g898e9b",
+"cat": "art",
+"authors": "Сальникова",
+"title": "Роль преюдиции в вопросах доказывания в гражданском процессуальном праве Российской Федерации",
+"kind": "статья",
+"pub": "Известия высших учебных заведений. Поволжский регион. Общественные науки",
+"year": 2023,
+"pages": 8,
+"size": 364051,
+"q": [
+"gpp028"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Сальникова. Роль преюдиции в вопросах доказывания…. Известия высших учебных заведений. Поволжский регион., 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/rol-preyuditsii-v-voprosah-dokazyvaniya-v-grazhdanskom-protsessualnom-prave-rossiyskoy-federatsii",
+"vak": true
 },
 {
 "key": "g4ae477",
@@ -1897,6 +2411,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Сафронский. Интеграция криминалистических категорий в практику участия прокурора в гражданском…. Legal Concept, 2023.pdf",
 "url": "https://cyberleninka.ru/article/n/integratsiya-kriminalisticheskih-kategoriy-v-praktiku-uchastiya-prokurora-v-grazhdanskom-sudoproizvodstve",
+"vak": true
+},
+{
+"key": "g244b54",
+"cat": "art",
+"authors": "Свердлова",
+"title": "Определения и решения проверочных инстанций в гражданском и арбитражном судопроизводстве",
+"kind": "статья",
+"pub": "Вестник юридического факультета Южного федерального университета",
+"year": 2023,
+"pages": 6,
+"size": 165768,
+"q": [
+"gpp047"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Свердлова. Определения и решения проверочных…. Вестник юридического факультета Южного федерального университета, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/opredeleniya-i-resheniya-proverochnyh-instantsiy-v-grazhdanskom-i-arbitrazhnom-sudoproizvodstve",
 "vak": true
 },
 {
@@ -1996,6 +2529,25 @@
 "vak": false
 },
 {
+"key": "gb999a8",
+"cat": "art",
+"authors": "Серостанов",
+"title": "Понятие безусловных оснований для отмены судебных актов в апелляционном и кассационном порядке",
+"kind": "статья",
+"pub": "Электронное приложение к Российскому юридическому журналу",
+"year": 2025,
+"pages": 8,
+"size": 236717,
+"q": [
+"gpp049"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Серостанов. Понятие безусловных оснований для отмены…. Электронное приложение к Российскому юридическому журналу, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/ponyatie-bezuslovnyh-osnovaniy-dlya-otmeny-sudebnyh-aktov-v-apellyatsionnom-i-kassatsionnom-poryadke",
+"vak": true
+},
+{
 "key": "g325a40",
 "cat": "art",
 "authors": "Скоренко",
@@ -2012,6 +2564,27 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Скоренко. Фотография как вещественное доказательство в упрощенном…. Вестник Университета имени О. Е. Кутафина, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/fotografiya-kak-veschestvennoe-dokazatelstvo-v-uproschennom-proizvodstve-po-apk-rf-i-gpk-rf",
+"vak": true
+},
+{
+"key": "g51d45a",
+"cat": "art",
+"authors": "Смагина, Фролова",
+"title": "Оптимизация стадии подготовки дел к судебному разбирательству в цивилистическом процессе с помощью искусственного интеллекта",
+"kind": "статья",
+"pub": "Вестник Университета имени О. Е. Кутафина",
+"year": 2025,
+"pages": 7,
+"size": 411203,
+"q": [
+"gpp039",
+"gpp006",
+"gpp040"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Смагина, Фролова. Оптимизация стадии подготовки дел к судебному…. Вестник Университета имени О. Е. Кутафина, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/optimizatsiya-stadii-podgotovki-del-k-sudebnomu-razbiratelstvu-v-tsivilisticheskom-protsesse-s-pomoschyu-iskusstvennogo-intellekta",
 "vak": true
 },
 {
@@ -2035,6 +2608,45 @@
 "vak": false
 },
 {
+"key": "gfaef4d",
+"cat": "art",
+"authors": "Смирнова, Небратенко и др.",
+"title": "Как обеспечить свидетельский иммунитет присяжных заседателей при производстве в суде апелляционной инстанции?",
+"kind": "статья",
+"pub": "Вестник Томского государственного университета. Право",
+"year": 2023,
+"pages": 10,
+"size": 345680,
+"q": [
+"gpp047",
+"gpp050"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Смирнова, Небратенко и др. Как обеспечить свидетельский…. Вестник Томского государственного университета. Право, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/kak-obespechit-svidetelskiy-immunitet-prisyazhnyh-zasedateley-pri-proizvodstve-v-sude-apellyatsionnoy-instantsii",
+"vak": true
+},
+{
+"key": "g408562",
+"cat": "art",
+"authors": "Староверова",
+"title": "Правовая природа исключительной подсудности судебных споров о правах на недвижимое имущество",
+"kind": "статья",
+"pub": "Вестник экономической безопасности",
+"year": 2026,
+"pages": 5,
+"size": 286635,
+"q": [
+"gpp007"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Староверова. Правовая природа исключительной подсудности судебных споров…. Вестник экономической безопасности, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/pravovaya-priroda-isklyuchitelnoy-podsudnosti-sudebnyh-sporov-o-pravah-na-nedvizhimoe-imuschestvo",
+"vak": true
+},
+{
 "key": "g55daba",
 "cat": "art",
 "authors": "Супрун",
@@ -2055,6 +2667,25 @@
 "vak": false
 },
 {
+"key": "gab9230",
+"cat": "art",
+"authors": "Сычева, Казанкова",
+"title": "Особенности рассмотрения гражданских дел в порядке упрощенного производства",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2025,
+"pages": 2,
+"size": 1020555,
+"q": [
+"gpp046"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Сычева, Казанкова. Особенности рассмотрения гражданских дел в порядке…. Право и государство — теория и практика, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/osobennosti-rassmotreniya-grazhdanskih-del-v-poryadke-uproschennogo-proizvodstva-1",
+"vak": true
+},
+{
 "key": "gd982ef",
 "cat": "art",
 "authors": "Тагиров",
@@ -2072,6 +2703,25 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Тагиров. Особенности участия прокурора в гражданском процессе для дачи заключения…. Вопросы российской юстиции, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/osobennosti-uchastiya-prokurora-v-grazhdanskom-protsesse-dlya-dachi-zaklyucheniya-po-delu",
 "vak": false
+},
+{
+"key": "g3e7c98",
+"cat": "art",
+"authors": "Титова",
+"title": "Принцип добросовестности как торжество силы права в гражданском процессе",
+"kind": "статья",
+"pub": "Legal Bulletin",
+"year": 2026,
+"pages": 10,
+"size": 267507,
+"q": [
+"gpp003"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Титова. Принцип добросовестности как торжество силы права в гражданском процессе. Legal Bulletin, 2026.pdf",
+"url": "https://cyberleninka.ru/article/n/printsip-dobrosovestnosti-kak-torzhestvo-sily-prava-v-grazhdanskom-protsesse",
+"vak": true
 },
 {
 "key": "g0628ff",
@@ -2143,13 +2793,33 @@
 "pages": 9,
 "size": 371055,
 "q": [
-"gpp034"
+"gpp034",
+"gpp035"
 ],
 "general": false,
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Трепалин. Проблемы допустимости доказательств по гражданским и административным делам. Вестник науки, 2026.pdf",
 "url": "https://cyberleninka.ru/article/n/problemy-dopustimosti-dokazatelstv-po-grazhdanskim-i-administrativnym-delam",
 "vak": false
+},
+{
+"key": "g28665c",
+"cat": "art",
+"authors": "Тюленев",
+"title": "Обязательства по сохранению спорного имущества как обеспечительная мера в гражданском процессе",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2023,
+"pages": 4,
+"size": 332028,
+"q": [
+"gpp026"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Тюленев. Обязательства по сохранению спорного имущества…. Право и государство — теория и практика, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/obyazatelstva-po-sohraneniyu-spornogo-imuschestva-kak-obespechitelnaya-mera-v-grazhdanskom-protsesse",
+"vak": true
 },
 {
 "key": "gcefe49",
@@ -2187,6 +2857,25 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Федорова. К вопросу о правовой природе судебного представительства. Образование и право, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/k-voprosu-o-pravovoy-prirode-sudebnogo-predstavitelstva",
+"vak": true
+},
+{
+"key": "gc32692",
+"cat": "art",
+"authors": "Федченко",
+"title": "Правовая природа соглашений о международной подсудности",
+"kind": "статья",
+"pub": "Вестник Московского университета. Серия 11. Право",
+"year": 2023,
+"pages": 15,
+"size": 239635,
+"q": [
+"gpp007"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Федченко. Правовая природа соглашений о международной подсудности. Вестник Московского университета. Серия 11. Право, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/pravovaya-priroda-soglasheniy-o-mezhdunarodnoy-podsudnosti-1",
 "vak": true
 },
 {
@@ -2247,6 +2936,63 @@
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Хабибуллин. К вопросу о понимании юридической природы явлений судебной…. Вестник экономики, права и социологии, 2024.pdf",
 "url": "https://cyberleninka.ru/article/n/k-voprosu-o-ponimanii-yuridicheskoy-prirody-yavleniy-sudebnoy-sfery-na-primere-sudebnogo-dokazyvaniya",
+"vak": true
+},
+{
+"key": "g644b93",
+"cat": "art",
+"authors": "Хамов",
+"title": "Инстанционная подсудность дел в цивилистическом процессе (на примере дел о защите интеллектуальных прав)",
+"kind": "статья",
+"pub": "Право и государство: теория и практика",
+"year": 2025,
+"pages": 3,
+"size": 879145,
+"q": [
+"gpp050"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Хамов. Инстанционная подсудность дел в цивилистическом процессе (на…. Право и государство — теория и практика, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/instantsionnaya-podsudnost-del-v-tsivilisticheskom-protsesse-na-primere-del-o-zaschite-intellektualnyh-prav",
+"vak": true
+},
+{
+"key": "g1e92fb",
+"cat": "art",
+"authors": "Хасбулаев",
+"title": "Бремя доказывания в гражданском процессе",
+"kind": "статья",
+"pub": "Государственная служба и кадры",
+"year": 2023,
+"pages": 3,
+"size": 173519,
+"q": [
+"gpp031"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Хасбулаев. Бремя доказывания в гражданском процессе. Государственная служба и кадры, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/bremya-dokazyvaniya-v-grazhdanskom-protsesse-1",
+"vak": true
+},
+{
+"key": "gf1f47b",
+"cat": "art",
+"authors": "Чекмарев, Чекмарева",
+"title": "К вопросу о цели судебного доказывания в гражданском процессе",
+"kind": "статья",
+"pub": "Вестник Саратовской государственной юридической академии",
+"year": 2023,
+"pages": 7,
+"size": 215752,
+"q": [
+"gpp028"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Чекмарев, Чекмарева. К вопросу о цели судебного…. Вестник Саратовской государственной юридической академии, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/k-voprosu-o-tseli-sudebnogo-dokazyvaniya-v-grazhdanskom-protsesse",
 "vak": true
 },
 {
@@ -2338,6 +3084,7 @@
 "pages": 8,
 "size": 195320,
 "q": [
+"gpp006",
 "gpp039",
 "gpp040"
 ],
@@ -2346,6 +3093,25 @@
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Эльмурзаев, Рассаева и др. Подготовка дела к судебному разбирательству. Human Progress, 2025.pdf",
 "url": "https://cyberleninka.ru/article/n/podgotovka-dela-k-sudebnomu-razbiratelstvu-1",
 "vak": false
+},
+{
+"key": "gd2448f",
+"cat": "art",
+"authors": "Эрзин",
+"title": "Протокол в цивилистическом процессе: некоторые аспекты судебной коммуникации и принципа непосредственности",
+"kind": "статья",
+"pub": "Вестник Университета имени О. Е. Кутафина",
+"year": 2023,
+"pages": 7,
+"size": 396681,
+"q": [
+"gpp044"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Эрзин. Протокол в цивилистическом процессе — некоторые аспекты судебной…. Вестник Университета имени О. Е. Кутафина, 2023.pdf",
+"url": "https://cyberleninka.ru/article/n/protokol-v-tsivilisticheskom-protsesse-nekotorye-aspekty-sudebnoy-kommunikatsii-i-printsipa-neposredstvennosti",
+"vak": true
 },
 {
 "key": "gf1bb43",
@@ -2378,13 +3144,52 @@
 "pages": 7,
 "size": 242509,
 "q": [
-"gpp012"
+"gpp012",
+"gpp003"
 ],
 "general": false,
 "wide": false,
 "dst": "4. Научные материалы (с 2023 года)/Статьи/Юзбашева, Девлетмурзаев и др. Проблемы эффективности оказания…. Вестник Дагестанского государственного университета.pdf",
 "url": "https://cyberleninka.ru/article/n/problemy-effektivnosti-okazaniya-yuridicheskoy-pomoschi-v-kontekste-printsipa-sostyazatelnosti-storon-v-grazhdanskom-protsesse",
 "vak": false
+},
+{
+"key": "ge5f977",
+"cat": "art",
+"authors": "Ягодина",
+"title": "Переписка сторон как категория материального и процессуального права",
+"kind": "статья",
+"pub": "Юридическая наука и практика: Вестник Нижегородской академии МВД России",
+"year": 2025,
+"pages": 6,
+"size": 252970,
+"q": [
+"gpp024"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Ягодина. Переписка сторон как категория материального…. Юридическая наука и практика — Вестник Нижегородской, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/perepiska-storon-kak-kategoriya-materialnogo-i-protsessualnogo-prava",
+"vak": true
+},
+{
+"key": "g9c6745",
+"cat": "art",
+"authors": "Яковлева, Чижов",
+"title": "Принцип правовой определенности и новая кассация в гражданском процессе",
+"kind": "статья",
+"pub": "Вестник Поволжского института управления",
+"year": 2025,
+"pages": 11,
+"size": 462642,
+"q": [
+"gpp048"
+],
+"general": false,
+"wide": false,
+"dst": "4. Научные материалы (с 2023 года)/Статьи/Яковлева, Чижов. Принцип правовой определенности и новая кассация…. Вестник Поволжского института управления, 2025.pdf",
+"url": "https://cyberleninka.ru/article/n/printsip-pravovoy-opredelennosti-i-novaya-kassatsiya-v-grazhdanskom-protsesse",
+"vak": true
 },
 {
 "key": "gb5d479f",
@@ -2769,32 +3574,6 @@
 "toc": true
 },
 {
-"key": "emp:Судебный департамент при ВС РФ. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2023 году.pdf",
-"cat": "emp",
-"title": "Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2023 году.pdf",
-"dst": "5. Эмпирические материалы (с 2023 года)/Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2023 году.pdf",
-"size": 3809317,
-"url": "",
-"pages": 117,
-"q": [],
-"general": true,
-"year": 0,
-"note": "из базы «Административная деятельность полиции»"
-},
-{
-"key": "emp:Судебный департамент при ВС РФ. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2024 году.pdf",
-"cat": "emp",
-"title": "Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2024 году.pdf",
-"dst": "5. Эмпирические материалы (с 2023 года)/Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2024 году.pdf",
-"size": 3075323,
-"url": "",
-"pages": 116,
-"q": [],
-"general": true,
-"year": 0,
-"note": "из базы «Административная деятельность полиции»"
-},
-{
 "key": "emp:Судебный департамент при ВС РФ. Форма № 2. Гражданские и административные дела, первая инстанция, 2023 год.xls",
 "cat": "emp",
 "title": "Судебный департамент при ВС РФ. Форма № 2. Гражданские и административные дела, первая инстанция, 2023 год.xls",
@@ -2871,6 +3650,32 @@
 "general": true,
 "year": 2025,
 "note": ""
+},
+{
+"key": "emp:Судебный департамент при ВС РФ. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2023 году.pdf",
+"cat": "emp",
+"title": "Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2023 году.pdf",
+"dst": "5. Эмпирические материалы (с 2023 года)/Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2023 году.pdf",
+"size": 3809317,
+"url": "",
+"pages": 117,
+"q": [],
+"general": true,
+"year": 0,
+"note": "из базы «Административная деятельность полиции»"
+},
+{
+"key": "emp:Судебный департамент при ВС РФ. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2024 году.pdf",
+"cat": "emp",
+"title": "Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2024 году.pdf",
+"dst": "5. Эмпирические материалы (с 2023 года)/Судебный департамент. Обзор судебной статистики о деятельности судов общей юрисдикции и мировых судей в 2024 году.pdf",
+"size": 3075323,
+"url": "",
+"pages": 116,
+"q": [],
+"general": true,
+"year": 0,
+"note": "из базы «Административная деятельность полиции»"
 },
 {
 "key": "gb72447c",
