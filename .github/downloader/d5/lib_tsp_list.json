@@ -1395,5 +1395,35 @@
 "force": true,
 "n": "sx000002",
 "ext": true
+},
+{
+"url": "http://vii.sfu-kras.ru/images/uh_taktpod.pdf",
+"rel": "СФУ/Тактическая подготовка курсантов учебных военных центров. Учебник. 2018.pdf",
+"year": 2018,
+"short": "",
+"size": 0,
+"force": true,
+"n": "sx000003",
+"ext": true
+},
+{
+"url": "http://vii.sfu-kras.ru/images/libs/RHBZ_2018.pdf",
+"rel": "СФУ/Радиационная, химическая и биологическая защита. Учебник.pdf",
+"year": 2018,
+"short": "",
+"size": 0,
+"force": true,
+"n": "sx000004",
+"ext": true
+},
+{
+"url": "http://vii.sfu-kras.ru/images/libs/uprav_podrasboy.pdf",
+"rel": "СФУ/Общая тактика. Управление подразделениями в бою. 2011.pdf",
+"year": 2011,
+"short": "",
+"size": 0,
+"force": true,
+"n": "sx000005",
+"ext": true
 }
 ]
