@@ -88,6 +88,22 @@ for key, req, folder, name, codes in acts.IPS: put('acts', key, folder, name, co
 for d, n, topic, codes in acts.KS: put('ks', '%s_%s' % (n, d[-4:]), 'ks', 'Постановление КС РФ от %s № %s (%s)' % (d, n, topic), codes.split(), topic, 'ips')
 for d, n, topic, codes in acts.PL: put('pl', '%s_%s' % (d[-4:] + d[3:5] + d[:2], n), 'pl', 'Постановление Пленума ВС РФ от %s № %s (%s)' % (d, n, topic), codes.split(), topic, 'cons')
 for key, q, exp, folder, name, codes in acts.CONS: put('cons', key, folder, name, codes.split(), name, 'cons')
+# --- документы, взятые не с consultant.ru: там они открыты только по расписанию (рабочие дни 20:00–24:00 мск, выходные)
+ALT = {'pact': dict(src='.work/d5/alt/pact.pdf', html='.work/d5/alt/pact.html', site='un.org (официальный сайт ООН)',
+                    url='https://www.un.org/ru/documents/decl_conv/conventions/pactpol.shtml',
+                    edition='текст на русском языке с сайта ООН (United Nations Treaty Series, vol. 999, p. 225–240); страница сайта сохранена как есть')}
+for key, q, exp, folder, name, codes in acts.CONS:
+    a = ALT.get(key)
+    if not a or not os.path.exists(a['src']): continue
+    name = fit(name)
+    for code in codes.split():
+        d = S(code) + FOLD[folder]; os.makedirs(d + H, exist_ok=True)
+        if not os.path.exists(d + name + '.pdf'): shutil.copyfile(a['src'], d + name + '.pdf')
+        if os.path.exists(a['html']) and not os.path.exists(d + H + name + '.html'): shutil.copyfile(a['html'], d + H + name + '.html')
+        row = LOG.get(a['src'])
+        MAN[(code, key)] = dict(code=code, key=key, grp='alt', folder=FOLD[folder], name=name + '.pdf', site=a['site'], url=a['url'], edition=a['edition'], state='',
+                                checked=(row[0][8:10] + '.' + row[0][5:7] + '.' + row[0][:4]) if row else '16.11.2026', sha=sha(d + name + '.pdf'), topic=name, html=True)
+    DROP[:] = [x for x in DROP if x['key'] != key]
 # --- копии из собранных баз (акты там скачаны и сверены 14–15.11.2026)
 A = 'Административная деятельность полиции/2. Источники/1. Нормативные правовые акты/'; K = 'Криминалистика/2. Источники/1. Нормативные правовые акты/'
 COPY = [(c, K + '1. Конституция РФ/Конституция РФ*.pdf', 1, 'Криминалистика', 'официальный текст с изменениями, опубликован 06.10.2022 (publication.pravo.gov.ru); скан без текстового слоя') for c in DISC]
@@ -113,6 +129,15 @@ DP = D5 + 'acts_dropped.json'   # исходные файлы после рас�
 OLD = {d['key']: d for d in (json.load(open(DP, encoding='utf-8')) if os.path.exists(DP) else [])}
 for d in DROP:
     if d['why'] == 'не получен' and d['key'] in OLD: d['why'] = OLD[d['key']]['why']
+SCHED = ('текст не получен: страница документа на consultant.ru (некоммерческая версия) пришла без текста (загрузка 16.11.2026, около 03:00 по московскому времени). '
+         'Вероятная причина — расписание сайта: такая же страница Международного пакта о гражданских и политических правах, сохранённая в тот же час, содержит объявление, '
+         'что документ открыт в рабочие дни с 20:00 до 24:00 по московскому времени, а в выходные и праздничные дни в любое время. Сама страница этого документа на такое объявление не проверялась; '
+         'поиск другого открытого источника (поиск в интернете 16.11.2026) пригодных адресов не дал')
+WHY = {'extr': SCHED, 'mlat': SCHED,
+       '20080624_11': 'на странице документа consultant.ru стоит отметка «Документ утратил силу или отменен»; из базы убран. Признан утратившим силу постановлением Пленума ВС РФ '
+                      'от 21.05.2026 № 15 «О подготовке гражданских дел к судебному разбирательству» — оно в базе'}
+for d in DROP:
+    if d['key'] in WHY: d['why'] = WHY[d['key']]
 if DROP: json.dump(DROP, open(DP, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
 import collections
 print('записей:', len(MAN), dict(collections.Counter(m['code'] for m in MAN.values())))
