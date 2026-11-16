@@ -1375,5 +1375,25 @@
 "size": 440320,
 "force": true,
 "n": "sb0921cf"
+},
+{
+"url": "http://vii.sfu-kras.ru/images/pdf/u26_obshhaya-taktika.pdf",
+"rel": "СФУ/Общая тактика. Учебник. 2-е изд. 2017.pdf",
+"year": 2017,
+"short": "",
+"size": 0,
+"force": true,
+"n": "sx000001",
+"ext": true
+},
+{
+"url": "https://fs.guap.ru/uvc/meth/2_2_3.pdf",
+"rel": "ГУАП/Евдокимов. Военная топография. 2008.pdf",
+"year": 2008,
+"short": "",
+"size": 0,
+"force": true,
+"n": "sx000002",
+"ext": true
 }
 ]

@@ -1,5 +1,5 @@
-cons	https://www.consultant.ru/document/cons_doc_LAW_534842/#21.05.2026	.work/d5/pl/20260521_15.pdf
-get	https://www.consultant.ru/document/cons_doc_LAW_5531/	.work/d5/diag/pact_cons.html
-pdf	https://www.un.org/ru/documents/decl_conv/conventions/pactpol.shtml	.work/d5/alt/pact.pdf
-get	https://www.un.org/ru/documents/decl_conv/conventions/pactpol.shtml	.work/d5/alt/pact.html
-ddglist	.github/downloader/d5/ddg_q3.txt	.github/downloader/d5/ddg_x3.tsv
+kontur	https://normativ.kontur.ru/document?moduleId=1&documentId=303278	.work/d5/alt/extr.pdf
+kontur	https://normativ.kontur.ru/document?moduleId=1&documentId=36823	.work/d5/alt/mlat.pdf
+cons	https://www.consultant.ru/document/cons_doc_LAW_121346/#13.12.1957	.work/d5/cons3/extr.pdf
+cons	https://www.consultant.ru/document/cons_doc_LAW_121347/#20.04.1959	.work/d5/cons3/mlat.pdf
+cybersearch	.github/downloader/d5/cyber_q_x4.txt#40	.github/downloader/d5/cyber_x4.tsv

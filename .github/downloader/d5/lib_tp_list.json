@@ -94,5 +94,25 @@
 "short": "Трудовое право",
 "size": 862208,
 "n": "tba4fe99"
+},
+{
+"url": "https://www.alt.ranepa.ru/files/news/2025/trudovoe_pravo_minkina_n.i._2025.pdf",
+"rel": "РАНХиГС/Минкина. Трудовое право. 2025.pdf",
+"year": 2025,
+"short": "",
+"size": 0,
+"force": true,
+"n": "tx000001",
+"ext": true
+},
+{
+"url": "https://agprf.org/userfiles/ufiles/ob akademii/DYuI/UMM/UMM_11.pdf",
+"rel": "УП РФ/Демидо, Присекин. Сроки в трудовом праве. 2023.pdf",
+"year": 2023,
+"short": "",
+"size": 0,
+"force": true,
+"n": "tx000002",
+"ext": true
 }
 ]
