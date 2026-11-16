@@ -1,0 +1,2 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-16 00:02:53	get	https://vsrf.ru/documents/own/?category=resolutions_plenum_supreme_court_russian&year=2024	.work/d5/vsrf/pl2024.html	ошибка: curl: (28) Connection timed out after 15001 milliseconds curl: (28) Connection timed out after 15002 milliseconds	000	0		
