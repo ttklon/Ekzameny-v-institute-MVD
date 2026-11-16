@@ -53,6 +53,8 @@ def match(code, text, tt, tk):
         sh = max(a, b); m = min(len(ks), len(sk))
         if (len(ks) == 1 and a == 1) or (len(sk) == 1 and sk[0] in ks[:2]) or (sh >= 2 and sh * 2 >= m): out.append(t['id'])
     return out
+# постановления Пленума, привязанные к вопросам вручную (по предмету постановления): автоматическое совпадение слов давало лишние вопросы
+COURTQ = {('up', '20231219_47'): ['up050'], ('up', '20250624_10'): ['up006', 'up108'], ('up', '20240625_18'): ['up048']}
 def run(code):
     S = DISC[code]['dir'] + '/2. Источники/'
     tt = topics(code); tk = {t['id']: keys(code, t['text']) for t in tt}; ref = {t['id']: t['refs'] for t in tt}
@@ -71,6 +73,7 @@ def run(code):
         subj = m['topic'] if m['court'] else re.sub(r'^.*?№ \S+ ', '', m['name'][:-4])
         subj = re.sub(r'^Постановление (КС|Пленума ВС) РФ от \S+ № \S+ \((.*)\)$', r'\2', subj)
         if m['all']: m['q'] = []
+        elif (code, m['key']) in COURTQ: m['q'] = COURTQ[(code, m['key'])]
         elif m['court']: m['q'] = match(code, subj, tt, tk)
         else:
             rx = act_regex(code, m['key'], m['name'])
