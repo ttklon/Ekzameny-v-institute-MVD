@@ -10,7 +10,7 @@
 после удаления неполная ссылка ниже (например, «ч. 2») стала бы относиться к другой статье или акту."""
 import re, sys, os, glob
 HERE = os.path.dirname(os.path.abspath(__file__)); A = os.path.join(HERE, '..', 'adp2') + '/'
-F_DEF = 0.598
+F_DEF = 0.58
 PERI = ['отграничен', 'отлич', 'смежн', 'ответственност', 'взаимодейств', 'гаранти', 'проблем', 'практическ', 'значени', 'соотношен', 'обжалован', 'оформлен',
         'контроль', 'надзор', 'особенност', 'иные ', 'другие ', 'други', 'история', 'зарубеж', 'перспектив', 'статистик', 'последстви', 'связь', 'оценк', 'пределы', 'ошибк', 'итог', 'вывод', 'краткий']
 ABBR = {'ст', 'ч', 'п', 'подп', 'абз', 'гл', 'разд', 'утв', 'г', 'гг', 'т', 'см', 'др', 'пр', 'им', 'ул', 'руб', 'тыс', 'млн', 'е', 'д', 'н', 'э', 'ред', 'рис', 'табл', 'прим', 'стр'}
@@ -21,7 +21,8 @@ SEQ = re.compile(r'- \*\*(//)?(Ч|Ст|П|Подп|Гл|Часть|Статья|
 COUNT = re.compile(r'\b(два|две|двух|три|трёх|четыре|четырёх|пять|шесть|семь|восемь|девять|десять|одиннадцать|двенадцать|тринадцать|перечень|структура|система|виды|вид|классификаци\w+|группы|наказани\w+|санкци\w+|состав|составы|элементы|алгоритм|порядок действий|этапы|стадии)\b')
 ANA = re.compile(r'(Его|Её|Их|Ему|Ей|Им|Эти|Этот|Эта|Это|Этим|Этой|Этого|Этих|Такой|Такие|Такое|Такая|Таким|При этом|Кроме того|Также|Он|Она|Они|Оно|Там же|Тот же|Те же|Та же|То же|В этом|В этих|В таком|В таких|Для этого|Поэтому|Однако|Но|А|И|Вместе с тем|Наряду с этим|Указанн\w+|Названн\w+|Данн\w+|Последн\w+|Иначе|Тогда|Здесь|Отсюда|Остальн\w+|В остальн\w+|Помимо этого|Например|Так|В частности|То есть|Исключени\w+|Следовательно|Значит|Соответственно|Тем самым|В обоих|Оба|Обе|Второй|Вторая|Второе|Третий|Третья|Третье)[ ,:—]')
 ELEM = re.compile(r'\*\*(объект|объективная сторона|субъект|субъективная сторона|предмет|родовой объект|видовой объект)')
-DROP = {}; SKIP = []; AUTO = []; AUTOSEC = False; LEFT = {}
+DROP = {}; SKIP = []; AUTO = []; AUTOSEC = False; LEFT = {}; BC = {}
+
 _d = os.path.join(HERE, 'drop25.txt')
 if os.path.exists(_d):
     for _l in open(_d, encoding='utf-8'):
@@ -29,6 +30,14 @@ if os.path.exists(_d):
         if _m: DROP.setdefault(int(_m.group(1)), []).extend(int(x) for x in _m.group(2).replace(' ', '').split(',') if x)
 def wc(s): return len(s.split())
 def stems(s): return {w[:5] for w in re.findall(r'[а-яё]{5,}', s.lower())}
+def stems4(s): return {w[:4] for w in re.findall(r'[а-яё]{4,}', s.lower())}
+def _generic():
+    cnt = {}; fs = sorted(glob.glob(A + 'q*.txt'))
+    for f in fs:
+        with open(f, encoding='utf-8') as fh: t = fh.readline()
+        for x in stems4(re.sub(r'^# Вопрос \d+\. ', '', t)): cnt[x] = cnt.get(x, 0) + 1
+    return {x for x, c in cnt.items() if c > 0.08 * max(len(fs), 1)}
+GENERIC = _generic()
 def split_sent(t):
     out = []; d1 = d2 = 0; sl = False; start = 0; i = 0; n = len(t)
     while i < n:
@@ -88,6 +97,10 @@ def resolve(pieces, skip=frozenset()):
     act = art = disp = None; res = {}; names = {}
     for pid, t in pieces:
         if pid in skip: continue
+        if t.startswith('## '):                      # контекст ссылок действует в пределах раздела
+            act = art = disp = None
+            m = re.findall(r'[Сс]т\.\s*([\d.]+\d)', t)
+            if m and '//' not in t: art = m[-1]
         for k, m in enumerate(REF.finditer(t)):
             a, s, d = ref_ctx(m.group(1))
             if a: act = a; art = s; disp = d
@@ -191,7 +204,7 @@ def cut(txt, F, log=None):
     def kill_units(us, name, label):
         ids = [(id(u), k) for u in us for k in range(len(u.sents) if u.kind in TXT else 1)]
         t = ' '.join(u.text() for u in us)
-        move = check(ids, t, fix=True)
+        move = check(ids, t)      # ссылки автоматически не дополняются: при риске удаление отменяется
         if move is None: return False
         if move:
             pl = [i for i, u in enumerate(units) if u.sec in prav and u.kind == 'li' and not u.dead]
@@ -246,17 +259,19 @@ def cut(txt, F, log=None):
             if bl[0].sec == k and any(not x.dead for x in bl): res.append(bl)
         return res
     def aw(bl): return sum(x.words() for x in bl)
-    def rel(bl): return len(stems(' '.join(x.text() for x in bl)) & tst)
+    def rel(bl): return len(stems4(' '.join(x.text() for x in bl)) & tst4)
     size0 = {}
     for bl in blocks: size0[bl[0].sec] = size0.get(bl[0].sec, 0) + 1
-    def trim(rounds, name):
+    tst4 = stems4(title) - GENERIC
+    core = {k: len(stems4(re.sub(r'^## \d+\. ', '', h)) & tst4) >= 2 for k, h in heads.items()}     # раздел прямо отвечает на формулировку вопроса
+    def trim(rounds, name, with_core=False):
         """прореживание: первый блок раздела остаётся; в разделе остаётся не меньше половины блоков (и не меньше двух)"""
         for _ in range(rounds):
             excess = cur() - target
             if excess <= 25: break
             cand = {}
             for k in body:
-                at = sec_atoms(k); floor = max(2, -(-size0.get(k, 0) * 2 // 5)); free = max(0, len(at) - floor)
+                at = sec_atoms(k); floor = max(2, -(-size0.get(k, 0) * (7 if core[k] else 4) // 10)); free = max(0, len(at) - floor)
                 cand[k] = ([bl for bl in at[1:] if not any(x.prot or x.kind == 'def' for x in bl)], free)
             pool = sum(aw(bl) for k in body for bl in cand[k][0])
             if pool == 0: break
@@ -308,7 +323,7 @@ def cut(txt, F, log=None):
             keep.append(sn)
         u.sents = keep
     stat['bang'] = cur()
-    LEFT[qn] = (cur() - target, [(k, re.sub(r'^## \d+\. ', '', heads[k])[:26], sum(u.words() for u in units if u.sec == k and u.kind not in ('bang', 'head')), 'P' if k in prav else '') for k in heads if any(not u.dead for u in units if u.sec == k and u.kind != 'head' and u.kind != 'bang')])
+    LEFT[qn] = (cur() - target, [(k, re.sub(r'^## \d+\. ', '', heads[k])[:26], sum(u.words() for u in units if u.sec == k and u.kind not in ('bang', 'head')), 'P' if k in prav else 'C' if core[k] else '') for k in heads if any(not u.dead for u in units if u.sec == k and u.kind != 'head' and u.kind != 'bang')])
     # сборка
     out = []; prev = None
     for u in units:
