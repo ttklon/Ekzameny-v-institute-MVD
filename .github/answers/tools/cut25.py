@@ -70,25 +70,34 @@ def parse(txt):
         else: k = 'p'
         units.append(Unit(line, sec, k))
     return units, heads
+UNITW = r'(?:[Чч]|[Пп]|[Сс]т|[Гл]л|[Пп]одп|[Аа]бз|[Рр]азд)\.'
 def ref_ctx(r):
-    """(акт, статья) из текста ссылки; None — нет"""
-    m = re.search(r'[А-ЯЁA-Z№]', r[1:]); act = None
-    if m:
-        a = r[1 + m.start():]
-        if not re.match(r'(Ч|П|Ст|Гл|Подп|Абз)\.', a): act = re.sub(r'[^а-яёa-z0-9№]', '', a.lower())[:14]
+    """(ключ акта, статья, название акта как в ссылке) из текста ссылки"""
+    m = re.search(r'(?<![А-Яа-яёЁ])(?!' + UNITW + r')[А-ЯЁA-Z№][^/]*$', r[1:]) if len(r) > 1 else None
+    act = disp = None
+    if re.match(r'(?!' + UNITW + r')[А-ЯЁ]', r): m2 = r
+    else: m2 = r[1 + m.start():] if m else None
+    if m2:
+        disp = m2.strip(); act = re.sub(r'[^а-яёa-z0-9№]', '', disp.lower())[:14]
+        if not act: act = disp = None
     arts = re.findall(r'[Сс]т\.\s*([\d.]+\d)', r)
-    return act, (arts[-1] if arts else None)
+    return act, (arts[-1] if arts else None), disp
 def resolve(pieces, skip=frozenset()):
-    """pieces: [(id, текст)] по порядку; возвращает {(id, k): (акт, статья)} для ссылок вне skip"""
-    act = art = None; res = {}
+    """pieces: [(id, текст)] по порядку; {(id, k): (акт, статья)} и {(id, k): название акта} для ссылок вне skip"""
+    act = art = disp = None; res = {}; names = {}
     for pid, t in pieces:
         if pid in skip: continue
         for k, m in enumerate(REF.finditer(t)):
-            a, s = ref_ctx(m.group(1))
-            if a: act = a; art = s
+            a, s, d = ref_ctx(m.group(1))
+            if a: act = a; art = s; disp = d
             elif s: art = s
-            res[(pid, k)] = (act, art)
-    return res
+            res[(pid, k)] = (act, art); names[(pid, k)] = disp
+    return res, names
+NOM = {'КоАП РФ': '//Кодекс Российской Федерации об административных правонарушениях//', 'Уголовный кодекс': '//Уголовный кодекс Российской Федерации//', 'УК РФ': '//Уголовный кодекс Российской Федерации//',
+       'УПК РФ': '//Уголовно-процессуальный кодекс Российской Федерации//', 'КАС РФ': '//Кодекс административного судопроизводства Российской Федерации//', 'Семейный кодекс': '//Семейный кодекс Российской Федерации//',
+       'Закон о полиции': '//Федеральный закон от 07.02.2011 № 3-ФЗ «О полиции»//', 'Закон о службе': '//Федеральный закон от 30.11.2011 № 342-ФЗ «О службе в органах внутренних дел Российской Федерации и внесении изменений в отдельные законодательные акты Российской Федерации»//',
+       'Закон о прокуратуре': '//Федеральный закон от 17.01.1992 № 2202-1 «О прокуратуре Российской Федерации»//', 'Росгвардия': 'Федеральная служба войск национальной гвардии Российской Федерации'}
+GEN = re.compile(r'//(Федерального|Кодекса|Закона|Указа|Положения|Наставления|Инструкции|Правил|Порядка|[Пп]риказа|[Пп]остановления|Типового|Устава|Требований|Административного|Руководства|Концепции|Перечня|Уголовного|Трудового|Гражданского|Воздушного|Семейного|Основ|Конституции)\b')
 def cut(txt, F, log=None):
     units, heads = parse(txt); title = units[0].line; tst = stems(title)
     w0 = wc(txt); target = int(w0 * F)
@@ -135,19 +144,61 @@ def cut(txt, F, log=None):
                 for k, s in enumerate(u.sents): res.append(((id(u), k), s))
             else: res.append(((id(u), 0), u.line))
         return res
-    def safe(skip_ids, removed_text):
-        ps = pieces(); skip = frozenset(skip_ids)
+    def check(skip_ids, removed_text, fix=False):
+        """None — удалять нельзя; иначе список (полное название, сокращение) для переноса в «Правовую основу».
+        fix=True: неполная ссылка ниже, которая после удаления стала бы относиться к другому акту или статье, дополняется."""
+        ps = pieces(); skip = frozenset(skip_ids); move = []
         rest = ' '.join(t for pid, t in ps if pid not in skip)
-        for ab in re.findall(r'далее —\s+([^)/;»]+?)[)/;»]', removed_text):
-            ab = ab.strip(' .'); key = ab[:-1] if len(ab) > 6 else ab
-            if key and key in rest: return False
-        if '//' not in removed_text: return True
-        a = resolve(ps); b = resolve(ps, skip)
-        return all(a[k] == v for k, v in b.items())
+        for m in re.finditer(r'далее —\s+([^)/;»]+?)[)/;»]', removed_text):
+            ab = m.group(1).strip(' .'); key = ab[:-1] if len(ab) > 6 else ab
+            if not key or key not in rest: continue
+            if re.search(r'далее —\s+' + re.escape(ab), rest): continue
+            if ab in NOM: move.append((NOM[ab], ab)); continue
+            fm = re.search(r'(//[^/]+//|«[^«»]+(?:«[^«»]*»[^«»]*)*»(?:,? утв\.[^()]*?)?)\s*\(далее —\s+' + re.escape(ab) + r'\)', removed_text)
+            if not fm: return None
+            full = fm.group(1).strip()
+            if full.startswith('//') and (GEN.match(full) or re.match(r'//' + UNITW, full) or not re.match(r'//[А-ЯЁ]', full)): return None
+            if not full.startswith('//') and 'утв' not in full: return None
+            move.append((full, ab))
+        if '//' in removed_text:
+            um = {id(u): u for u in units}
+            ps2 = [x for x in ps if um[x[0][0]].kind != 'bang']       # «Главное для запоминания» — самостоятельный текст
+            a, na = resolve(ps2); b, _ = resolve(ps2, skip)
+            bad = [k for k in b if a[k] != b[k]]
+            if bad and not fix: return None
+            patches = []
+            for _ in range(6):
+                if not bad: break
+                k = bad[0]; (pid, si), ri = k; u = um[pid]
+                if u.kind not in TXT or a[k][0] is None or na[k] is None: return None
+                refs = list(REF.finditer(u.sents[si])); m = refs[ri]; r = m.group(1)
+                add = ''
+                if a[k][1] and not re.search(r'[Сс]т\.', r): add += ' ст. ' + a[k][1]
+                add += ' ' + na[k]
+                old = u.sents[si]; u.sents[si] = old[:m.end(1)] + add + old[m.end(1):]; patches.append((u, si, old))
+                ps = pieces(); ps2 = [x for x in ps if um[x[0][0]].kind != 'bang']
+                a2, _n = resolve(ps2, skip)
+                bad = [kk for kk in a2 if kk in a and a[kk] != a2[kk]]
+            if bad:
+                for u, si, old in reversed(patches): u.sents[si] = old
+                return None
+            if log is not None:
+                for u, si, old in patches: log.append('ССЫЛКА дополнена: ' + u.sents[si][:110])
+        return move
+    def safe(skip_ids, removed_text): return check(skip_ids, removed_text) == []
     def kill_units(us, name, label):
         ids = [(id(u), k) for u in us for k in range(len(u.sents) if u.kind in TXT else 1)]
         t = ' '.join(u.text() for u in us)
-        if not safe(ids, t): return False
+        move = check(ids, t, fix=True)
+        if move is None: return False
+        if move:
+            pl = [i for i, u in enumerate(units) if u.sec in prav and u.kind == 'li' and not u.dead]
+            if not pl: return False     # (ссылки, дополненные выше, остаются дополненными — это безвредно)
+            at = pl[-1]
+            for full, ab in move:
+                nu = Unit('- %s (далее — %s).' % (full, ab), units[at].sec, 'li'); nu.prot = True; nu.block = [nu]
+                at += 1; units.insert(at, nu)
+                if log is not None: log.append('ПЕРЕНОС в «Правовую основу»: ' + nu.line[:110])
         for u in us: u.dead = True
         if log is not None: log.append('%s −%d: %s' % (name, wc(t), label[:80]))
         return True
@@ -157,14 +208,14 @@ def cut(txt, F, log=None):
     if qn in DROP:
         for k in sorted(DROP[qn], reverse=True):
             if k not in heads or k == 1 or k in prav: SKIP.append((qn, k, 'нет/защищён')); continue
-            us = [u for u in units if u.sec == k and not u.dead]
+            us = [u for u in units if u.sec == k and not u.dead and u.kind != 'bang']
             if not kill_units(us, 'РАЗДЕЛ', heads[k]): SKIP.append((qn, k, 'небезопасно'))
     else:
         for k in sorted(heads, reverse=True):
             if k == 1 or k in prav or cur() <= target: continue
             hs = re.sub(r'^## \d+\. ', '', heads[k].lower())
             if not [p for p in PERI if p in hs and not any(p.strip()[:5] in w for w in re.findall(r'[а-яё]+', title.lower()))]: continue
-            us = [u for u in units if u.sec == k and not u.dead]
+            us = [u for u in units if u.sec == k and not u.dead and u.kind != 'bang']
             if cur() - sum(u.words() for u in us) < target - 40: continue
             kill_units(us, 'РАЗДЕЛ', hs)
     stat['sec'] = cur()
