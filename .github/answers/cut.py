@@ -8,13 +8,34 @@ def parse(spec):
     s = set()
     for part in spec.replace(' ', '').split(','):
         if not part: continue
+        if part == 'A': s.add('A'); continue
+        if part[0] == 'K': s.add(part); continue
         if '-' in part:
             a, b = part.split('-'); s |= set(range(int(a), int(b) + 1))
         else: s.add(int(part))
     return s
-def apply(n, dele):
+def apply(n, dele, ren=None):
     L = open('/tmp/auto/q%03d.txt' % n, encoding='utf-8').read().split('\n')
+    for i, h in (ren or {}).items():
+        assert L[i].startswith('## '), (n, i, L[i][:40])
+        L[i] = '## 0. ' + h
     dele = set(dele)
+    if 'A' in dele:
+        from ol import is_A
+        keep = {int(x[1:]) for x in dele if isinstance(x, str) and x[0] == 'K'}
+        dele = {x for x in dele if isinstance(x, int)} | {i for i, x in enumerate(L) if is_A(x) and i not in keep}
+    else:
+        dele = {x for x in dele if isinstance(x, int)}
+    AUTO = re.compile(r'^(Это определение законное|Определение законное|Оба определения законные|Все три определения даны в самой Инструкции|Оба определения даны в законе|Определение дано в законе)\.$')
+    dele |= {i for i, x in enumerate(L) if AUTO.match(x.strip())}
+    rest = '\n'.join(x for i, x in enumerate(L) if i not in dele)
+    for i in dele:
+        if 0 <= i < len(L) and 'далее —' in L[i]:
+            for ab in re.findall(r'далее — ([^)/;]+?)[)/;]', L[i]):
+                ab = ab.strip(' .')
+                key = ab[:-1] if len(ab) > 6 else ab
+                if key in rest: print('   !!! удалено введение сокращения, а оно используется:', n, i, ab)
+        if 0 <= i < len(L) and L[i].startswith('!!'): raise SystemExit('удаляется !! %d %d' % (n, i))
     isli = lambda x: x.lstrip().startswith('- ')
     # вводная строка списка без пунктов — удалить; пункты без вводной оставить
     def nxt(i):
@@ -50,16 +71,19 @@ def apply(n, dele):
         res.append('## %d. %s\n%s' % (k, re.sub(r'^## \d+\. ', '', h), body.rstrip() + '\n\n'))
     txt = ''.join(res).rstrip() + '\n\n' + main + '\n'
     txt = re.sub(r'\n{3,}', '\n\n', txt)
+    txt = re.sub(r'(?m)^((?:- )?\*\*)\d+\.\d+\. ', r'\1', txt)
     return txt
 if __name__ == '__main__':
     Q = mk2.load_v1(); tot1 = tot2 = 0; only = set(int(x) for x in sys.argv[1:])
-    cuts = {}
+    cuts = {}; rens = {}
     for ln in open('/tmp/w/cuts.txt', encoding='utf-8'):
         ln = ln.split('#')[0].strip()
         if not ln: continue
-        n, spec = ln.split(':'); cuts[int(n)] = parse(spec)
+        n, spec = ln.split(':', 1)
+        parts = spec.split('|'); cuts[int(n)] = parse(parts[0])
+        rens[int(n)] = {int(x.split('=', 1)[0].strip().lstrip('H')): x.split('=', 1)[1].strip() for x in parts[1:]}
     for n in sorted(cuts):
-        txt = apply(n, cuts[n])
+        txt = apply(n, cuts[n], rens[n])
         open(ROOT + '/adp2/q%03d.txt' % n, 'w', encoding='utf-8').write(txt)
         w1, w2 = len(Q[n][1].split()), len(txt.split()); tot1 += w1; tot2 += w2
         if not only or n in only:
