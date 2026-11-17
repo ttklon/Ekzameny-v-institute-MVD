@@ -18,7 +18,7 @@ def body(t):
 def acts(t):
     return {m.group(1).rstrip('.-/') for m in NUM.finditer(body(t))}
 def has(a, line):
-    return re.search(r'№\s?' + re.escape(a) + r'(?![\d\-/А-Яа-я])', line) is not None
+    return re.search(r'№\s?' + re.escape(a) + r'(?![\d\-А-Яа-я]|/\d)', line) is not None
 def lost(n):
     return sorted(acts(old(n)) - acts(cur(n)))
 hk = lambda h: re.sub(r'^##\s*\d+\.\s*', '', h).strip()
