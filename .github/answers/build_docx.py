@@ -5,6 +5,10 @@
     python .github/answers/build_docx.py adp 1 10         — документ на вопросы 1–10
     python .github/answers/build_docx.py adp 1 149 --one  — один документ на все вопросы (с содержанием)
     python .github/answers/build_docx.py adp --all        — все документы по десять вопросов и общий документ
+    python .github/answers/build_docx.py adp2 --sample    — один документ на те вопросы, которые уже написаны
+                                                            (номера могут идти не подряд)
+
+Коды: adp — вариант 1 («Подробные ответы»), adp2 — вариант 2 («Краткие связные ответы»).
 
 Готовые документы кладутся в папку варианта ответов:
     <Дисциплина>/3. Ответы на вопросы/<Вариант>/
@@ -39,12 +43,14 @@ EMPTY_AFTER_QUESTION = 5
 
 DISCIPLINES = {
     "adp": "Административная деятельность полиции",
+    "adp2": "Административная деятельность полиции",
 }
 
 # Папка варианта ответов внутри «3. Ответы на вопросы». У дисциплины может быть несколько вариантов
 # ответов (разный стиль или объём); у каждого варианта — своя папка с исходным текстом и своя папка с документами.
 VARIANTS = {
     "adp": "Вариант 1. Подробные ответы",
+    "adp2": "Вариант 2. Краткие связные ответы",
 }
 PER_FILE = 10
 
@@ -330,7 +336,12 @@ def contents(doc, code, questions):
     par = doc.add_paragraph()
     para_format(par.paragraph_format, after=18, first=0)
     par.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    run = par.add_run("Ответы на вопросы %d–%d" % (questions[0]["n"], questions[-1]["n"]))
+    nums = [q["n"] for q in questions]
+    if nums == list(range(nums[0], nums[-1] + 1)):
+        title = "Ответы на вопросы %d–%d" % (nums[0], nums[-1])
+    else:
+        title = "Ответы на вопросы " + ", ".join(str(n) for n in nums)
+    run = par.add_run(VARIANTS[code] + ". " + title if code != "adp" else title)
     run.bold = True
     run.font.size = Pt(16)
 
@@ -381,7 +392,7 @@ def last_question(code):
     return max(nums)
 
 
-def build(code, first, last, one=False):
+def build(code, first, last, one=False, sample=False):
     src = sorted(glob.glob(os.path.join(ROOT, ".github", "answers", code, "*.txt")))
     lines = []
     for path in src:
@@ -395,8 +406,12 @@ def build(code, first, last, one=False):
             questions.append(cur)
         elif cur is not None:
             cur["body"].append(line)
-    questions = [q for q in questions if first <= q["n"] <= last]
-    assert [q["n"] for q in questions] == list(range(first, last + 1)), [q["n"] for q in questions]
+    questions = sorted((q for q in questions if first <= q["n"] <= last), key=lambda q: q["n"])
+    if sample:
+        one = True
+        assert questions and len({q["n"] for q in questions}) == len(questions)
+    else:
+        assert [q["n"] for q in questions] == list(range(first, last + 1)), [q["n"] for q in questions]
 
     doc = Document()
     prepare(doc)
@@ -456,8 +471,11 @@ def build(code, first, last, one=False):
             par = doc.add_paragraph()
             para_format(par.paragraph_format, after=0, first=0)
 
-    name = "Все ответы %03d–%03d (один файл).docx" if one else "Ответы на вопросы %03d–%03d.docx"
-    out = os.path.join(out_dir(code), name % (first, last))
+    if sample:
+        name = "Пробные ответы (вопросы %s).docx" % ", ".join(str(q["n"]) for q in questions)
+    else:
+        name = ("Все ответы %03d–%03d (один файл).docx" if one else "Ответы на вопросы %03d–%03d.docx") % (first, last)
+    out = os.path.join(out_dir(code), name)
     doc.save(out)
     return out
 
@@ -466,7 +484,9 @@ if __name__ == "__main__":
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     flags = [a for a in sys.argv[1:] if a.startswith("--")]
     code = args[0]
-    if "--all" in flags:
+    if "--sample" in flags:
+        print(build(code, 1, 10 ** 6, sample=True))
+    elif "--all" in flags:
         total = last_question(code)
         for start in range(1, total + 1, PER_FILE):
             print(build(code, start, min(start + PER_FILE - 1, total)))
