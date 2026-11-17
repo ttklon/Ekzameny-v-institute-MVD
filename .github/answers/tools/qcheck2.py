@@ -28,7 +28,7 @@ def articles(raw, koap=False):
     return res
 POL = [articles(t) for t in load(r'№ 3-ФЗ О полиции')]
 KOAP = [articles(t, True) for t in load(r'КоАП РФ от 30\.12\.2001')]
-print('статей: Закон о полиции', [len(x) for x in POL], 'КоАП', [len(x) for x in KOAP])
+if __name__ == '__main__': print('статей: Закон о полиции', [len(x) for x in POL], 'КоАП', [len(x) for x in KOAP])
 NAMED = [(r'ополиции|№3фз', 'POL', r'№ 3-ФЗ О полиции'), (r'коап|обадминистративныхправ', 'KOAP', r'КоАП РФ от'), (r'ослужбе', None, r'№ 342-ФЗ'), (r'опрокуратуре', None, r'№ 2202-1'),
          (r'уголовногокодекса|^укрф|уголовныйкодекс', None, r'УК РФ|Уголовный кодекс'), (r'уголовнопроцесс|упкрф', None, r'УПК|Уголовно-процессуальн'), (r'конституци', 'SKIP', ''), (r'положенияоминистерстве|положениеоминистерстве|положенияомвд|положениеомвд', None, r'№ 699'), (r'кодексаэтики|кодексэтики', None, r'№ 460')]
 cache = {}
@@ -72,8 +72,9 @@ for f in sorted(glob.glob(cut25.A + 'q*.txt')):
                 if not any(art in A and all(sg in A[art] for sg in segs) for A in arts):
                     found = sorted({x for A in arts for x, t in A.items() if all(sg in t for sg in segs)})
                     out.append('q%03d:%d НЕ В ЭТОЙ СТАТЬЕ (%s → ст. %s): «%s» | найдено в ст.: %s' % (n, i + 1, line[refs[k].start():refs[k].end()][:60], art, q[:110], ', '.join(found[:6])))
-print('цитат со ссылкой:', tot, 'проверено по акту:', chk, 'по статье:', art_chk, 'замечаний:', len(out))
-for o in out: print(o)
-if len(sys.argv) > 2:
+MAIN = __name__ == '__main__'
+if MAIN: print('цитат со ссылкой:', tot, 'проверено по акту:', chk, 'по статье:', art_chk, 'замечаний:', len(out))
+for o in (out if MAIN else []): print(o)
+if MAIN and len(sys.argv) > 2:
     for o in out:
         m = re.match(r'q(\d+):(\d+) ', o); L = open(cut25.A + 'q%s.txt' % m.group(1), encoding='utf-8').read().split('\n'); print('>>', o[:60]); print('   ', L[int(m.group(2)) - 1][:700])
