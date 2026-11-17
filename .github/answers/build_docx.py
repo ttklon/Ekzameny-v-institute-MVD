@@ -2,7 +2,12 @@
 """Сборка ответов на экзаменационные вопросы в документ Word.
 
 Запуск:
-    python .github/answers/build_docx.py adp 1 10
+    python .github/answers/build_docx.py adp 1 10         — документ на вопросы 1–10
+    python .github/answers/build_docx.py adp 1 149 --one  — один документ на все вопросы (с содержанием)
+    python .github/answers/build_docx.py adp --all        — все документы по десять вопросов и общий документ
+
+Готовые документы кладутся в папку варианта ответов:
+    <Дисциплина>/3. Ответы на вопросы/<Вариант>/
 
 Исходный текст ответов лежит в .github/answers/<код>/*.txt в простой разметке:
     # Вопрос N. …      — заголовок вопроса
@@ -10,6 +15,7 @@
     > …                — определение (абзац с линией слева)
     !! …               — «Главное для запоминания» (абзац в рамке)
     - …                — пункт перечня
+      - …              — пункт перечня второго уровня (два пробела перед дефисом)
     **…**  //…//  __…__ — полужирный, курсив, подчёркивание
 
 Оформление: шрифт PT Astra Serif, одинарный межстрочный интервал,
@@ -34,6 +40,13 @@ EMPTY_AFTER_QUESTION = 5
 DISCIPLINES = {
     "adp": "Административная деятельность полиции",
 }
+
+# Папка варианта ответов внутри «3. Ответы на вопросы». У дисциплины может быть несколько вариантов
+# ответов (разный стиль или объём); у каждого варианта — своя папка с исходным текстом и своя папка с документами.
+VARIANTS = {
+    "adp": "Вариант 1. Подробные ответы",
+}
+PER_FILE = 10
 
 # Сокращённые названия актов: (шаблон сокращения, сокращение, полное название, признак полного названия).
 # Сокращение попадает в справку под заголовком вопроса, только если в самом ответе
@@ -280,6 +293,72 @@ def prepare(doc):
     style_fonts(st["Footer"], 11)
 
 
+def bookmark(par, name, num):
+    """Закладка на абзаце: на неё ведут ссылки из содержания."""
+    start = OxmlElement("w:bookmarkStart")
+    start.set(qn("w:id"), str(num))
+    start.set(qn("w:name"), name)
+    end = OxmlElement("w:bookmarkEnd")
+    end.set(qn("w:id"), str(num))
+    par._p.insert(par._p.index(par._p.get_or_add_pPr()) + 1, start)
+    par._p.append(end)
+
+
+def link_to_bookmark(par, text, name):
+    """Текст-ссылка на закладку внутри документа (переход по щелчку с Ctrl)."""
+    link = OxmlElement("w:hyperlink")
+    link.set(qn("w:anchor"), name)
+    link.set(qn("w:history"), "1")
+    run = OxmlElement("w:r")
+    t = OxmlElement("w:t")
+    t.set(qn("xml:space"), "preserve")
+    t.text = typo(text)
+    run.append(t)
+    link.append(run)
+    par._p.append(link)
+
+
+def contents(doc, code, questions):
+    """Титульная строка и содержание общего документа: перечень вопросов со ссылками на ответы."""
+    par = doc.add_paragraph()
+    para_format(par.paragraph_format, after=6, first=0)
+    par.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    run = par.add_run(DISCIPLINES[code])
+    run.bold = True
+    run.font.size = Pt(16)
+
+    par = doc.add_paragraph()
+    para_format(par.paragraph_format, after=18, first=0)
+    par.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    run = par.add_run("Ответы на вопросы %d–%d" % (questions[0]["n"], questions[-1]["n"]))
+    run.bold = True
+    run.font.size = Pt(16)
+
+    par = doc.add_paragraph()
+    para_format(par.paragraph_format, after=10, first=0, keep=True)
+    par.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    par.add_run("Содержание").bold = True
+
+    for q in questions:
+        par = doc.add_paragraph()
+        para_format(par.paragraph_format, after=3, left=1.25, first=-1.25)
+        par.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        par.paragraph_format.tab_stops.add_tab_stop(Cm(1.25))
+        link_to_bookmark(par, "%d.\t%s" % (q["n"], q["title"]), "q%03d" % q["n"])
+        # знак табуляции внутри ссылки
+        t = par._p.findall(".//" + qn("w:t"))[-1]
+        num, title = t.text.split("\t", 1)
+        t.text = num
+        tab = OxmlElement("w:tab")
+        t.addnext(tab)
+        t2 = OxmlElement("w:t")
+        t2.set(qn("xml:space"), "preserve")
+        t2.text = title
+        tab.addnext(t2)
+
+    doc.add_page_break()
+
+
 def abbr_note(text):
     used = []
     for pat, short, full, mark in ABBR:
@@ -289,7 +368,20 @@ def abbr_note(text):
     return "; ".join("**%s** — %s" % (short, full) for short, full in used)
 
 
-def build(code, first, last):
+def out_dir(code):
+    path = os.path.join(ROOT, DISCIPLINES[code], "3. Ответы на вопросы", VARIANTS[code])
+    os.makedirs(path, exist_ok=True)
+    return path
+
+
+def last_question(code):
+    nums = []
+    for path in glob.glob(os.path.join(ROOT, ".github", "answers", code, "*.txt")):
+        nums += [int(n) for n in re.findall(r"(?m)^# Вопрос (\d+)\. ", open(path, encoding="utf-8").read())]
+    return max(nums)
+
+
+def build(code, first, last, one=False):
     src = sorted(glob.glob(os.path.join(ROOT, ".github", "answers", code, "*.txt")))
     lines = []
     for path in src:
@@ -312,9 +404,14 @@ def build(code, first, last):
     doc.core_properties.language = "ru-RU"
     doc.core_properties.author = ""
 
+    if one:
+        contents(doc, code, questions)
+
     for q in questions:
         head = doc.add_paragraph(style="Heading 1")
         add_runs(head, "Вопрос %d. %s" % (q["n"], q["title"]))
+        if one:
+            bookmark(head, "q%03d" % q["n"], q["n"])
 
         note = abbr_note("\n".join(q["body"]))
         if note:
@@ -346,20 +443,33 @@ def build(code, first, last):
                 para_format(par.paragraph_format, after=3, left=1.25, first=-0.6)
                 par.paragraph_format.tab_stops.add_tab_stop(Cm(1.25))
                 add_runs(par, "–\t" + line[2:])
+            elif re.match(r" {2,}- ", line):
+                par = doc.add_paragraph()
+                para_format(par.paragraph_format, after=3, left=2.0, first=-0.6)
+                par.paragraph_format.tab_stops.add_tab_stop(Cm(2.0))
+                add_runs(par, "–\t" + line.lstrip()[2:])
             else:
-                assert not line.startswith(("#", ">", "!")), line[:60]
+                assert not line.startswith(("#", ">", "!", " ")), line[:60]
                 add_runs(doc.add_paragraph(), line)
 
         for _ in range(EMPTY_AFTER_QUESTION):
             par = doc.add_paragraph()
             para_format(par.paragraph_format, after=0, first=0)
 
-    out_dir = os.path.join(ROOT, DISCIPLINES[code], "3. Ответы на вопросы")
-    out = os.path.join(out_dir, "Ответы на вопросы %03d–%03d.docx" % (first, last))
+    name = "Все ответы %03d–%03d (один файл).docx" if one else "Ответы на вопросы %03d–%03d.docx"
+    out = os.path.join(out_dir(code), name % (first, last))
     doc.save(out)
     return out
 
 
 if __name__ == "__main__":
-    code, first, last = sys.argv[1], int(sys.argv[2]), int(sys.argv[3])
-    print(build(code, first, last))
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    flags = [a for a in sys.argv[1:] if a.startswith("--")]
+    code = args[0]
+    if "--all" in flags:
+        total = last_question(code)
+        for start in range(1, total + 1, PER_FILE):
+            print(build(code, start, min(start + PER_FILE - 1, total)))
+        print(build(code, 1, total, one=True))
+    else:
+        print(build(code, int(args[1]), int(args[2]), one="--one" in flags))
