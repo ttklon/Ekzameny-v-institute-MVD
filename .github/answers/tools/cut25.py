@@ -18,14 +18,15 @@ EXC = re.compile(r'не допуска|запрещ|исключени|кром�
 PRAV = re.compile(r'[Пп]равов\w+ (основ|регулир|база)|[Нн]ормативн\w+ (основ|база|правов|закрепл)|[Ии]сточники|[Кк]онституционн\w+ (и законодательн\w+ )?основ')
 REF = re.compile(r'//(.+?)//')
 SEQ = re.compile(r'- \*\*(//)?(Ч|Ст|П|Подп|Гл|Часть|Статья|Пункт|Глава|Перв|Втор|Трет|Четв|Пят|Шест|Седьм|Восьм|Девят|Десят|\d)')
-COUNT = re.compile(r'\b(два|две|двух|три|трёх|четыре|четырёх|пять|шесть|семь|восемь|девять|десять|одиннадцать|двенадцать|тринадцать|перечень|структура|система|виды|классификац)\b')
+COUNT = re.compile(r'\b(два|две|двух|три|трёх|четыре|четырёх|пять|шесть|семь|восемь|девять|десять|одиннадцать|двенадцать|тринадцать|перечень|структура|система|виды|вид|классификаци\w+|группы|наказани\w+|санкци\w+|состав|составы|элементы|алгоритм|порядок действий|этапы|стадии)\b')
 ANA = re.compile(r'(Его|Её|Их|Ему|Ей|Им|Эти|Этот|Эта|Это|Этим|Этой|Этого|Этих|Такой|Такие|Такое|Такая|Таким|При этом|Кроме того|Также|Он|Она|Они|Оно|Там же|Тот же|Те же|Та же|То же|В этом|В этих|В таком|В таких|Для этого|Поэтому|Однако|Но|А|И|Вместе с тем|Наряду с этим|Указанн\w+|Названн\w+|Данн\w+|Последн\w+|Иначе|Тогда|Здесь|Отсюда|Остальн\w+|В остальн\w+|Помимо этого|Например|Так|В частности|То есть|Исключени\w+|Следовательно|Значит|Соответственно|Тем самым|В обоих|Оба|Обе|Второй|Вторая|Второе|Третий|Третья|Третье)[ ,:—]')
-DROP = {}; SKIP = []
+ELEM = re.compile(r'\*\*(объект|объективная сторона|субъект|субъективная сторона|предмет|родовой объект|видовой объект)')
+DROP = {}; SKIP = []; AUTO = []; AUTOSEC = False; LEFT = {}
 _d = os.path.join(HERE, 'drop25.txt')
 if os.path.exists(_d):
     for _l in open(_d, encoding='utf-8'):
         _m = re.match(r'(\d+):\s*([\d,\s]*)$', _l.strip())
-        if _m: DROP[int(_m.group(1))] = [int(x) for x in _m.group(2).replace(' ', '').split(',') if x]
+        if _m: DROP.setdefault(int(_m.group(1)), []).extend(int(x) for x in _m.group(2).replace(' ', '').split(',') if x)
 def wc(s): return len(s.split())
 def stems(s): return {w[:5] for w in re.findall(r'[а-яё]{5,}', s.lower())}
 def split_sent(t):
@@ -53,8 +54,8 @@ class Unit:
     def __init__(s, line, sec, kind):
         s.line = line; s.sec = sec; s.kind = kind; s.dead = False; s.prot = False; s.block = None
         m = re.match(r'^(\s*- |> |!! |\d+\. )?(.*)$', line, re.S); s.pre = m.group(1) or ''; body = m.group(2)
-        s.sents = split_sent(body) if kind in TXT else [body]
-    def text(s): return s.pre + ' '.join(x.strip() for x in s.sents)
+        s.sents = split_sent(body) if kind in TXT or kind == 'bang' else [body]
+    def text(s): return s.pre + ' '.join(x.strip() for x in s.sents) if s.kind in TXT or s.kind == 'bang' else s.line
     def words(s): return 0 if s.dead else wc(s.text())
 def parse(txt):
     units = []; sec = 0; heads = {}
@@ -123,6 +124,7 @@ def cut(txt, F, log=None):
         thesis = u.kind == 'li' and all(x.kind != 'num' for x in b) and not any(x.line.rstrip().endswith(';') for x in tops)
         if thesis and sum(1 for x in tops if SEQ.match(x.line)) >= max(2, 0.6 * len(tops)): thesis = False   # структура статьи, нумерованные элементы
         if thesis and COUNT.search(heads.get(u.sec, '').lower()): thesis = False                           # «три этапа», «двенадцать оснований»
+        if thesis and len(ELEM.findall(' '.join(x.line[:60].lower() for x in tops))) >= 2: thesis = False       # элементы состава
         if thesis:
             grp = None; par = None
             for x in b:
@@ -237,7 +239,7 @@ def cut(txt, F, log=None):
     tails(3, False, 't3')
     # 3. соразмерное сокращение разделов: у каждого раздела свой бюджет, первый блок раздела остаётся,
     #    остальные блоки убираются в порядке: без цитаты → не связанные с формулировкой вопроса → ближе к концу
-    body = [k for k in heads if k != 1 and k not in prav]
+    body = [k for k in heads if k not in prav]      # в разделе 1 определение и первый блок защищены
     def sec_atoms(k):
         res = []
         for bl in blocks:
@@ -245,37 +247,73 @@ def cut(txt, F, log=None):
         return res
     def aw(bl): return sum(x.words() for x in bl)
     def rel(bl): return len(stems(' '.join(x.text() for x in bl)) & tst)
-    def trim(rounds, name, keep_first=True):
+    size0 = {}
+    for bl in blocks: size0[bl[0].sec] = size0.get(bl[0].sec, 0) + 1
+    def trim(rounds, name):
+        """прореживание: первый блок раздела остаётся; в разделе остаётся не меньше половины блоков (и не меньше двух)"""
         for _ in range(rounds):
             excess = cur() - target
             if excess <= 25: break
-            cand = {k: [bl for bl in sec_atoms(k)[(1 if keep_first else 0):] if not any(x.prot or x.kind == 'def' for x in bl)] for k in body}
-            if not keep_first:
-                for k in body:
-                    if len(sec_atoms(k)) < 2: cand[k] = []      # последний блок раздела не убираем
-            pool = sum(aw(bl) for k in body for bl in cand[k])
+            cand = {}
+            for k in body:
+                at = sec_atoms(k); floor = max(2, -(-size0.get(k, 0) * 2 // 5)); free = max(0, len(at) - floor)
+                cand[k] = ([bl for bl in at[1:] if not any(x.prot or x.kind == 'def' for x in bl)], free)
+            pool = sum(aw(bl) for k in body for bl in cand[k][0])
             if pool == 0: break
             share = min(1.0, excess / pool); progress = False
             for k in body:
-                need = share * sum(aw(bl) for bl in cand[k]); got = 0
-                order = sorted(enumerate(cand[k]), key=lambda x: (cls(' '.join(u.text() for u in x[1])) == 1, min(rel(x[1]), 2), -x[0]))
+                cs, free = cand[k]
+                need = share * sum(aw(bl) for bl in cs); got = 0
+                order = sorted(enumerate(cs), key=lambda x: (cls(' '.join(u.text() for u in x[1])) == 1, min(rel(x[1]), 2), -x[0]))
                 for _i, bl in order:
                     w = aw(bl)
+                    if free <= 0: break
                     if got + w / 2 > need or cur() - w < target - 30: continue
                     us = [x for x in bl if not x.dead]
-                    if kill_units(us, name, us[0].text()): got += w; progress = True
+                    if kill_units(us, name, us[0].text()): got += w; progress = True; free -= 1
             if not progress: break
+        stat[name] = cur()
+    def auto_sections(name):
+        """если прореживания не хватило — убираются целые разделы: сначала не связанные с формулировкой вопроса, ближе к концу"""
+        while cur() - target > 60:
+            excess = cur() - target; live = [k for k in body if sec_atoms(k)]
+            if len(live) <= 3: break
+            cs = []
+            for k in live[1:]:
+                us = [u for u in units if u.sec == k and not u.dead and u.kind != 'bang']
+                if any(u.prot for u in us): continue
+                w = sum(u.words() for u in us)
+                if w > excess + 45: continue
+                cs.append((match[k], -k, w, us, k))
+            done = False
+            for c in sorted(cs, key=lambda x: x[:2]):
+                if kill_units(c[3], name, heads[c[4]]): AUTO.append((qn, heads[c[4]][:60], c[2])); done = True; break
+            if not done: break
         stat[name] = cur()
     trim(6, 'b')
     tails(3, True, 't3e'); tails(2, False, 't2')
-    trim(4, 'b2')
+    if AUTOSEC: auto_sections('s2')
+    trim(3, 'b2')
     tails(2, True, 't2e'); tails(1, False, 't1')
-    trim(3, 'b3', keep_first=False)
+    # «Главное для запоминания»: убираются предложения о том, чего в ответе больше нет
+    gone = stems(' '.join(u.line for u in units if u.dead)); kept = stems(' '.join(u.text() for u in units if not u.dead and u.kind != 'bang'))
+    for u in units:
+        if u.kind != 'bang': continue
+        keep = []
+        for i, sn in enumerate(u.sents):
+            st = stems(sn); nov = (st - kept) & gone
+            if i >= 2 and len(st) >= 3 and len(nov) >= max(2, 0.3 * len(st)):
+                if log is not None: log.append('!! −%d: %s' % (wc(sn), sn[:90]))
+                continue
+            keep.append(sn)
+        u.sents = keep
+    stat['bang'] = cur()
+    LEFT[qn] = (cur() - target, [(k, re.sub(r'^## \d+\. ', '', heads[k])[:26], sum(u.words() for u in units if u.sec == k and u.kind not in ('bang', 'head')), 'P' if k in prav else '') for k in heads if any(not u.dead for u in units if u.sec == k and u.kind != 'head' and u.kind != 'bang')])
     # сборка
     out = []; prev = None
     for u in units:
         if u.dead: continue
-        if u.kind in TXT:
+        if u.kind in TXT or u.kind == 'bang':
             t = u.text().rstrip()
             if u.line.rstrip().endswith(';') and t.endswith('.'): t = t[:-1] + ';'
         else: t = u.line
@@ -308,3 +346,8 @@ if __name__ == '__main__':
             if wc(t) < tg - 60: low.append((f[-7:-4], tg, wc(t)))
             if mode == 'apply': open(f, 'w', encoding='utf-8').write(t)
         print('было', T0, 'стало', T1, 'доля', round(T1 / T0, 3)); print(agg); print('не дотянули:', len(bad), bad[:60]); print('перебор:', [(f, tg, w) for f, tg, w in low]); print('разделы не убраны:', SKIP)
+        if mode == 'left':
+            for n in sorted(LEFT):
+                if LEFT[n][0] > 45: print('%d|+%d|%s' % (n, LEFT[n][0], '|'.join('%d%s %s=%d' % (k, f, h, w) for k, h, w, f in LEFT[n][1])))
+        print('разделы убраны автоматически:', len(AUTO))
+        for x in AUTO: print('  ', x)
