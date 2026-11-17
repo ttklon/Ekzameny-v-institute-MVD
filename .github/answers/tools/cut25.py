@@ -90,7 +90,7 @@ def ref_ctx(r):
     if m2:
         disp = m2.strip(); act = re.sub(r'[^а-яёa-z0-9№]', '', disp.lower())[:14]
         if not act: act = disp = None
-    arts = re.findall(r'[Сс]т\.\s*([\d.]+\d)', r)
+    arts = re.findall(r'[Сс]т\.\s*(\d+(?:\.\d+)*)', r)
     return act, (arts[-1] if arts else None), disp
 def resolve(pieces, skip=frozenset()):
     """pieces: [(id, текст)] по порядку; {(id, k): (акт, статья)} и {(id, k): название акта} для ссылок вне skip"""
@@ -99,7 +99,7 @@ def resolve(pieces, skip=frozenset()):
         if pid in skip: continue
         if t.startswith('## '):                      # контекст ссылок действует в пределах раздела
             act = art = disp = None
-            m = re.findall(r'[Сс]т\.\s*([\d.]+\d)', t)
+            m = re.findall(r'[Сс]т\.\s*(\d+(?:\.\d+)*)', t)
             if m and '//' not in t: art = m[-1]
         for k, m in enumerate(REF.finditer(t)):
             a, s, d = ref_ctx(m.group(1))
