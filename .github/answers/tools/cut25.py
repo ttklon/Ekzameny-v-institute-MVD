@@ -130,9 +130,9 @@ def to_nom(ref):
 def abbr_used(ab, text):
     """используется ли сокращённое название (в любом падеже) в тексте"""
     if '№' in ab:
-        return re.search(r'(?<![\\d/-])' + re.escape(ab[ab.index('№'):]) + r'(?![\\d/-])', text) is not None
+        return re.search(r'(?<![\d/-])' + re.escape(ab[ab.index('№'):]) + r'(?![\d/-])', text) is not None
     ws = ab.split()
-    pat = r'\\s+'.join(re.escape(w[:max(3, len(w) - 2)]) + r'\\w*' if len(w) > 3 else re.escape(w) for w in ws)
+    pat = r'\s+'.join(re.escape(w[:max(3, len(w) - 2)]) + r'\w*' if len(w) > 3 else re.escape(w) for w in ws)
     return re.search(r'(?<![А-Яа-яёЁ])' + pat, text) is not None
 GEN = re.compile(r'//(Федерального|Кодекса|Закона|Указа|Положения|Наставления|Инструкции|Правил|Порядка|[Пп]риказа|[Пп]остановления|Типового|Устава|Требований|Административного|Руководства|Концепции|Перечня|Уголовного|Трудового|Гражданского|Воздушного|Семейного|Основ|Конституции)\b')
 def cut(txt, F, log=None):
