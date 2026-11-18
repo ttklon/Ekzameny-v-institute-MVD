@@ -16,7 +16,7 @@ import sys, os, re, subprocess, difflib
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.join(HERE, '..')
 OLD, CUR = '4b36cfb', 'b39f4c9'
 FULL = bool(os.environ.get('FULL'))        # FULL=1 — не обрезать длинные строки в view
-RATIO = 0.6853                           # доля объёма редакции на 25 часов от редакции на 36 часов; цель для каждого ответа
+RATIO = 0.6853                           # доля объёма редакции на 25 часов от редакции на 36 часов; цель для ответа — среднее между нынешним объёмом и этой долей
 OPS = os.path.join(HERE, 'law26_ops.tsv')
 def show(rev, n):
     t = subprocess.run(['git', 'show', '%s:.github/answers/adp2/q%03d.txt' % (rev, n)], capture_output=True, text=True, cwd=ROOT).stdout
@@ -66,10 +66,10 @@ def main():
     if cmd == 'view':
         for n in map(int, sys.argv[2:]):
             M = merged(n); cur = sum(wc(l) for s, l in M if s != 'R'); old = sum(wc(l) for s, l in M if s != 'C')
-            print('=== q%03d: сейчас %d слов, в редакции на 36 часов %d, цель %d' % (n, cur, old, round(old * RATIO)))
-            lim = {'K': 900, 'R': 520, 'C': 400}
+            print('=== q%03d: сейчас %d слов, в редакции на 36 часов %d, цель %d' % (n, cur, old, round((cur + old * RATIO) / 2)))
+            lim = {'K': 760, 'R': 460, 'C': 460}
             for i, (s, l) in enumerate(M):
-                m = 420 if l.startswith('!! ') else lim[s]
+                m = 160 if l.startswith('!! ') else lim[s]
                 print('%s%d(%d) %s' % (s, i, wc(l), l if len(l) <= m or FULL else l[:m] + '…'))
     elif cmd == 'apply':
         O = ops(); only = [int(x) for x in sys.argv[2:]]
@@ -77,7 +77,7 @@ def main():
             if only and n not in only: continue
             t = render(build(n, O[n])); was = wc('\n'.join(l for s, l in merged(n) if s != 'R'))
             old = sum(wc(l) for s, l in merged(n) if s != 'C')
-            open(path(n), 'w', encoding='utf-8').write(t); print('q%03d %d → %d (%+d); цель %d' % (n, was, wc(t), wc(t) - was, round(old * RATIO)))
+            open(path(n), 'w', encoding='utf-8').write(t); print('q%03d %d → %d (%+d); цель %d' % (n, was, wc(t), wc(t) - was, round((was + old * RATIO) / 2)))
         print('всего слов: %d' % sum(wc(open(path(n), encoding='utf-8').read()) for n in range(1, 150)))
     elif cmd == 'add':                       # решения со стандартного ввода: «N + 12 13», «N - 5», «N = 17 текст», «N > 17 текст»
         with open(OPS, 'a', encoding='utf-8') as f:
