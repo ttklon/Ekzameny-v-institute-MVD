@@ -18,7 +18,7 @@ import os, sys, re, math
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE); os.chdir(os.path.join(HERE, '..'))
 import cut25 as C
 TOTAL = float(os.environ.get('TOTAL', 147300))   # слов в txt; единый docx добавляет около 2 150 слов (титул, оглавление)
-NANCH = int(os.environ.get('NANCH', 1)); TPOW = float(os.environ.get('TPOW', 0.5)); PBKEEP = int(os.environ.get('PBKEEP', 0)); FLOOR = float(os.environ.get('FLOOR', 0.12))
+NANCH = int(os.environ.get('NANCH', 1)); TPOW = float(os.environ.get('TPOW', 0.5)); PBKEEP = int(os.environ.get('PBKEEP', 0)); FLOOR = float(os.environ.get('FLOOR', 0.06))
 REV = os.environ.get('REV', '4b36cfb')              # исходник — проверенная редакция на 36 часов; apply всегда строит заново от неё
 import subprocess, functools
 @functools.lru_cache(None)
@@ -291,6 +291,16 @@ def plan(q, target):
         if cur + cost <= target:
             for k in need: items[k].keep = True; items[k].why = items[k].why or 'оц'; keptw[units[items[k].u].sec] += items[k].w
             cur += cost
+    # ни один раздел не пропадает целиком (кроме убранных вручную): остаётся первый пункт, а если он длинный — самый короткий
+    for si in range(len(secs)):
+        hs_ = [head[ui] for ui, u in enumerate(units) if u.sec == si]
+        if not hs_ or any(items[i].keep for i, it in enumerate(items) if units[it.u].sec == si) or all(i in banned for i in hs_): continue
+        ok = [i for i in hs_ if i not in banned and not any(k in banned for k in closure(i))]
+        if not ok: continue
+        cst = lambda i: sum(items[k].w for k in closure(i) if not items[k].keep)
+        i = ok[0] if cst(ok[0]) <= 70 else min(ok, key=cst)
+        for k in closure(i):
+            if not items[k].keep: items[k].keep = True; items[k].why = 'разд'
     # блок не должен сообщать того, чего в тексте нет: слова блока, пропавшие из оставленного текста, возвращаем вместе с пунктом
     bst = lambda w: w[:5] if len(w) > 6 else w[:4]
     bwords = lambda t: [w for w in re.findall(r'[а-яё]+', re.sub(r'//.*?//', ' ', t).lower().replace('ё', 'е')) if len(w) >= 5]
@@ -384,8 +394,8 @@ if __name__ == '__main__':
             print('q%03d %d→%d (после %d) | %s' % (q, tot, T[q], cur, title[2:210]))
             print('   ' + ' | '.join('%s%s(%d,б%d)' % ('−' if si in drop else '+', re.sub(r'^## ', '', secs[si][0])[:52], w[si], an[si]) for si in range(len(secs))))
         sys.exit()
-    lo, hi = TOTAL * 0.7, TOTAL * 1.1                         # подбор внутренних целей под общий объём
-    for _ in range(12):
+    lo, hi = TOTAL * 0.3, TOTAL * 1.1                         # подбор внутренних целей под общий объём
+    for _ in range(14):
         mid = (lo + hi) / 2; out = run(mid); tot = sum(wc(out[q][0]) for q in out)
         if tot > TOTAL: hi = mid
         else: lo = mid
