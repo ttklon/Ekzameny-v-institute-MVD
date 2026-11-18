@@ -17,8 +17,8 @@
 import os, sys, re, math
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE); os.chdir(os.path.join(HERE, '..'))
 import cut25 as C
-TOTAL = float(os.environ.get('TOTAL', 147300))   # слов в txt; единый docx добавляет около 2 150 слов (титул, оглавление)
-NANCH = int(os.environ.get('NANCH', 1)); TPOW = float(os.environ.get('TPOW', 0.5)); PBKEEP = int(os.environ.get('PBKEEP', 0)); FLOOR = float(os.environ.get('FLOOR', 0.06))
+TOTAL = float(os.environ.get('TOTAL', 148200))   # слов в txt; единый docx добавляет около 2 150 слов (титул, оглавление)
+ALEN = float(os.environ.get('ALEN', 0.002)); ATHR = float(os.environ.get('ATHR', 0.22)); NANCH = int(os.environ.get('NANCH', 1)); TPOW = float(os.environ.get('TPOW', 0.5)); PBKEEP = int(os.environ.get('PBKEEP', 0)); FLOOR = float(os.environ.get('FLOOR', 0))
 REV = os.environ.get('REV', '4b36cfb')              # исходник — проверенная редакция на 36 часов; apply всегда строит заново от неё
 import subprocess, functools
 @functools.lru_cache(None)
@@ -224,13 +224,13 @@ def plan(q, target):
         need = (ST(s) - STOP) | ARTS(s); btok |= need
         need = {x for x in need if x in df}; tot = sum(wt(x) for x in need) or 1
         for _ in range(NANCH):
-            val = lambda i: sum(wt(x) for x in need & toks[i]) / (1 + 0.002 * items[i].w)
+            val = lambda i: sum(wt(x) for x in need & toks[i]) / (1 + ALEN * items[i].w)
             best = max((i for i in range(len(items)) if i not in banned and units[items[i].u].sec not in pbsec), key=val, default=None)
-            if best is None or sum(wt(x) for x in need & toks[best]) < 0.22 * tot:      # в тексте опоры нет — ищем в «Правовой основе»
+            if best is None or sum(wt(x) for x in need & toks[best]) < ATHR * tot:      # в тексте опоры нет — ищем в «Правовой основе»
                 best = max((i for i in range(len(items)) if i not in banned), key=val, default=None)
             if best is None: break
             got = sum(wt(x) for x in need & toks[best])
-            if got < 0.22 * tot or got == 0: break
+            if got < ATHR * tot or got == 0: break
             if not items[best].keep: items[best].keep = True; items[best].why = 'блок'
             need -= toks[best]
     for i in manual: items[i].keep = True; items[i].why = 'руч'
@@ -295,12 +295,45 @@ def plan(q, target):
     for si in range(len(secs)):
         hs_ = [head[ui] for ui, u in enumerate(units) if u.sec == si]
         if not hs_ or any(items[i].keep for i, it in enumerate(items) if units[it.u].sec == si) or all(i in banned for i in hs_): continue
+        if PERI.search(secs[si][0]) and not ((ST(secs[si][0]) - STOP) & tt): continue      # второстепенный раздел, которого нет ни в вопросе, ни в блоке, уходит целиком
         ok = [i for i in hs_ if i not in banned and not any(k in banned for k in closure(i))]
         if not ok: continue
         cst = lambda i: sum(items[k].w for k in closure(i) if not items[k].keep)
-        i = ok[0] if cst(ok[0]) <= 70 else min(ok, key=cst)
+        i = ok[0] if cst(ok[0]) <= 45 else min(ok, key=cst)
         for k in closure(i):
             if not items[k].keep: items[k].keep = True; items[k].why = 'разд'
+    # ссылка блока (статья + часть/пункт) должна остаться и в тексте: возвращаем самый короткий пункт, где она стояла
+    def refkeys(lns):
+        pieces = [((i, 0), l) for i, l in enumerate(lns) if l.strip()]; res, _ = C.resolve(pieces); out = {}
+        for (i, _z), line in pieces:
+            for k, m in enumerate(C.REF.finditer(line)):
+                act, art = res[((i, 0), k)]; r = m.group(1)
+                arts = re.findall(r'[Сс]т\.\s*(\d+(?:\.\d+)*)', r) or ([art] if art else [])
+                parts = re.findall(r'(?:[Чч]|[Пп]|подп|Подп)\.\s*([\dа-я«»., и–-]+?)(?=\s*(?:ст\.|ч\.|п\.|$|[А-ЯЁа-яё]{3}))', r); ns = set()
+                for p_ in parts: ns |= set(re.findall(r'\d+(?:\.\d+)*', p_))
+                for a_ in arts:
+                    for x in (ns or {''}): out.setdefault((a_, x), []).append((line, r))
+        return out
+    if blk:
+        srcl = [l for l in src(q).split('\n') if not l.startswith('!! ')]; ko = refkeys(srcl); kk = refkeys([blk[3:]])
+        where = {}
+        for ui, u in enumerate(units):
+            for k, l in enumerate(u.lines): where.setdefault(l, []).append((ui, k))
+        for key in sorted(kk):
+            if not key[1] or key not in ko: continue
+            its = set()
+            for line, r in ko[key]:
+                for ui, k in where.get(line, []):
+                    for j, sn in enumerate(lines[(ui, k)][1]):
+                        if r in sn: its.add(idx[(ui, k, j)])
+            if not its or any(items[i].keep for i in its): continue
+            cand = []
+            for i in its:
+                need = [k for k in closure(i) if not items[k].keep]
+                if i in banned or any(k in banned for k in need): continue
+                cand.append((sum(items[k].w for k in need), i, need))
+            if cand:
+                for k in min(cand)[2]: items[k].keep = True; items[k].why = items[k].why or 'ссылка'
     # блок не должен сообщать того, чего в тексте нет: слова блока, пропавшие из оставленного текста, возвращаем вместе с пунктом
     bst = lambda w: w[:5] if len(w) > 6 else w[:4]
     bwords = lambda t: [w for w in re.findall(r'[а-яё]+', re.sub(r'//.*?//', ' ', t).lower().replace('ё', 'е')) if len(w) >= 5]
