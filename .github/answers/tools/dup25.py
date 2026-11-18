@@ -11,7 +11,7 @@ only = [int(a) for a in sys.argv[1:] if a.isdigit()]; new = 'new' in sys.argv; n
 for q in range(1, 150):
     if only and q not in only: continue
     L = open(os.path.join(A, 'q%03d.txt' % q), encoding='utf-8').read().split('\n')
-    H = set(subprocess.run(['git', 'show', 'HEAD:.github/answers/adp2/q%03d.txt' % q], capture_output=True, text=True, cwd=HERE).stdout.split('\n')) if new else set()
+    H = set(subprocess.run(['git', 'show', os.environ.get('REV', 'HEAD') + ':.github/answers/adp2/q%03d.txt' % q], capture_output=True, text=True, cwd=HERE).stdout.split('\n')) if new else set()
     S = [(i, l, sh(l)) for i, l in enumerate(L) if l.strip() and not l.startswith(('!!', '#'))]
     for a in range(len(S)):
         for b in range(a + 1, len(S)):
