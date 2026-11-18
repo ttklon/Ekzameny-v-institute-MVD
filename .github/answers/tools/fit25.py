@@ -327,11 +327,13 @@ def plan(q, target):
     # акт, названный в ответе, не должен исчезнуть совсем: оставляем самый короткий пункт, где он упомянут
     NUM = re.compile(r'№\s?(\d[\d/.\-]*(?:-?[А-Яа-яA-Z]{1,4})?\d*)')
     nums = [{m.group(1).rstrip('.-/') for m in NUM.finditer(it.text)} for it in items]
+    dated = lambda a, t: bool(re.search(r'от \d{1,2}[. ][\d.а-я]+ ?\d{4}(?: г\.)? № ?' + re.escape(a) + r'(?![\d\-])', t))
     for a in sorted(set().union(*nums) if nums else ()):
-        if any(it.keep and a in nums[i] for i, it in enumerate(items)) or a in title: continue
+        full = [i for i, it in enumerate(items) if a in nums[i] and dated(a, it.text)]   # полное название акта (с датой) должно остаться, если оно было
+        if any(items[i].keep for i in full) or (not full and (any(it.keep and a in nums[i] for i, it in enumerate(items)) or a in title)): continue
         cand = []
         for i, it in enumerate(items):
-            if a not in nums[i] or i in banned: continue
+            if a not in nums[i] or i in banned or (full and i not in full): continue
             need = [k for k in closure(i) if not items[k].keep]
             if any(k in banned for k in need): continue
             cand.append((sum(items[k].w for k in need), i, need))
