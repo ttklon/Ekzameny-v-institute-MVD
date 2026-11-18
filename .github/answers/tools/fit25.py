@@ -339,9 +339,9 @@ def plan(q, target):
     bwords = lambda t: [w for w in re.findall(r'[а-яё]+', re.sub(r'//.*?//', ' ', t).lower().replace('ё', 'е')) if len(w) >= 5]
     itst = [set(bst(w) for w in bwords(it.text)) for it in items]
     for sn in bs:
-        ws = set(bwords(sn))
+        ws = set(bwords(sn)) - {'главное', 'запоминания'}
         if len(ws) < 4: continue
-        for _ in range(4):
+        for _ in range(8):
             keptst = set(bst(w) for w in bwords(title + ' ' + ' '.join(secs[si][0] for si in {units[it.u].sec for it in items if it.keep})))
             for i, it in enumerate(items):
                 if it.keep: keptst |= itst[i]
