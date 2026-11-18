@@ -6,8 +6,8 @@ import re, sys, os, subprocess
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE); import cut25
 A = os.path.join(HERE, '..', 'adp2')
 st = lambda w: w[:5] if len(w) > 6 else w[:4]
-words = lambda s: [w for w in re.findall(r'[а-яё]+', re.sub(r'//[^/]*//', ' ', s).lower().replace('ё', 'е')) if len(w) >= 5]
-nums = lambda s: set(re.findall(r'\d+(?:\.\d+)*', ' '.join(re.findall(r'//([^/]*)//', s))))
+words = lambda s: [w for w in re.findall(r'[а-яё]+', re.sub(r'//.*?//', ' ', s).lower().replace('ё', 'е')) if len(w) >= 5]
+nums = lambda s: set(re.findall(r'\d+(?:\.\d+)*', ' '.join(re.findall(r'//(.*?)//', s))))
 only = [int(a) for a in sys.argv[1:] if a.isdigit()]; ap = 'apply' in sys.argv; show = 'show' in sys.argv; nr = nw = nb = 0
 for q in range(1, 150):
     if only and q not in only: continue

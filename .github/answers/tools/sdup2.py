@@ -3,7 +3,7 @@
 import re, sys, os
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE); import cut25
 A = os.path.join(HERE, '..', 'adp2'); only = [int(a) for a in sys.argv[1:] if a.isdigit()]; n = 0
-key = lambda s: re.sub(r'[^а-яёa-z0-9]+', ' ', re.sub(r'//[^/]*//', '', s).lower()).strip()
+key = lambda s: re.sub(r'[^а-яёa-z0-9]+', ' ', re.sub(r'//.*?//', '', s).lower()).strip()
 for q in range(1, 150):
     if only and q not in only: continue
     seen = {}
