@@ -18,6 +18,7 @@ import os, sys, re, math
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE); os.chdir(os.path.join(HERE, '..'))
 import cut25 as C
 TOTAL = float(os.environ.get('TOTAL', 147300))   # слов в txt; единый docx добавляет около 2 150 слов (титул, оглавление)
+NANCH = int(os.environ.get('NANCH', 1)); TPOW = float(os.environ.get('TPOW', 0.5)); PBKEEP = int(os.environ.get('PBKEEP', 0)); FLOOR = float(os.environ.get('FLOOR', 0.12))
 REV = os.environ.get('REV', '4b36cfb')              # исходник — проверенная редакция на 36 часов; apply всегда строит заново от неё
 import subprocess, functools
 @functools.lru_cache(None)
@@ -31,6 +32,7 @@ CORE = re.compile(r'(основани|порядок|срок|вид[ыа]? |п�
 SEQ = re.compile(r'(?:- |\d+\. )?\*\*(//)?(Ч\.|Ст\.|П\.|Подп\.|Гл\.|Часть|Статья|Пункт|Глава|Перв|Втор|Трет|Четв|Пят|Шест|Седьм|Восьм|Девят|Десят|\d)')
 PB = re.compile(r'равовая основа|равовое регулирование|ормативн\w+ (основ|закреплен)|онституционн\w+ (и законодательн\w+ )?основ')
 PRE = re.compile(r'^(\s*- |\d+\. )?(.*)$', re.S)
+ORD = re.compile(r'\*\*(Перв|Втор|Трет|Четв[её]рт|Пят|Шест|Седьм|Восьм|Девят|Десят)\w*[.:*]')
 def kind(l):
     if l.startswith('> '): return 'def'
     if l.startswith('  - '): return 'sub'
@@ -63,7 +65,7 @@ def headlen(ss):
     if tot - sum(wc(s) for s in ss[:k]) < 8: return len(ss)
     return k
 class U:
-    def __init__(s, lines, sec, grp): s.lines = lines; s.sec = sec; s.grp = grp
+    def __init__(s, lines, sec, grp): s.lines = lines; s.sec = sec; s.grp = grp; s.par = None
     @property
     def text(s): return ' '.join(s.lines)
 class It:
@@ -92,8 +94,11 @@ def parse(q):
                 if l.rstrip().rstrip('*').rstrip().endswith(':') or (C.COUNT.search(l.lower()) and j < len(ls) and kind(ls[j]) != 'p'):
                     while j < len(ls) and kind(ls[j]) in ('li', 'sub', 'num'): j += 1
                     if j > i + 1: units.append(U(ls[i:j], si, 'list')); i = j; continue
+                if ORD.match(l):                            # «Первое… Второе…» — один перечень, из середины не режется
+                    while j < len(ls) and kind(ls[j]) == 'p' and ORD.match(ls[j]): j += 1
+                    if j > i + 1: units.append(U(ls[i:j], si, 'list')); i = j; continue
                 units.append(U([l], si, 'p')); i += 1; continue
-            j = i
+            j = i; n0 = len(units); par = n0 - 1 if i and kind(ls[i - 1]) == 'p' and units and units[-1].sec == si and units[-1].grp == 'p' else None
             while j < len(ls) and kind(ls[j]) in ('li', 'sub', 'num'): j += 1
             run = ls[i:j]; i = j
             if counted and not any(u.sec == si and u.grp != 'def' for u in units): units.append(U(run, si, 'list')); continue
@@ -108,6 +113,7 @@ def parse(q):
                 if lo is not None and k == lo:
                     units.append(U([x for _, ls_ in items[lo:hi + 1] for x in ls_], si, 'list')); k = hi + 1; continue
                 units.append(U(items[k][1], si, 'fact')); k += 1
+            for u in units[n0:]: u.par = par                # перечень без двоеточия во вводной строке всё равно держит строку, под которой стоит
     return title, secs, units, blk
 def over():
     o = {}; p = os.path.join(HERE, 'fit25_over.txt')
@@ -117,9 +123,21 @@ def over():
             if m: o.setdefault(int(m.group(1)), []).append((m.group(2), m.group(3)))
     return o
 OVER = over()
+def secprio():                                             # строки «N ! ## заголовок» (главный раздел) и «N ? ## заголовок» (второстепенный)
+    o = {}; p = os.path.join(HERE, 'fit25_over.txt')
+    if os.path.exists(p):
+        for l in open(p, encoding='utf-8'):
+            m = re.match(r'(\d+) ([!?]) ## (.+)', l.rstrip('\n'))
+            if m: o.setdefault(int(m.group(1)), []).append((m.group(3), 2.2 if m.group(2) == '!' else 0.3))
+    return o
+SECPRIO = secprio()
+hm = lambda h, p: h == p[:-1] if p.endswith('$') else h.startswith(p)      # «$» в конце — заголовок целиком
+for _q, _l in SECPRIO.items():
+    _h = [re.sub(r'^## \d+\.\s*', '', l) for l in src(_q).split('\n') if l.startswith('## ')]
+    for _p, _v in _l: assert sum(1 for h in _h if hm(h, _p)) == 1, 'q%03d: раздел «%s» найден %d раз' % (_q, _p, sum(1 for h in _h if hm(h, _p)))
 def targets(total):
     body = {q: wc(src(q)) for q in range(1, 150)}
-    mean = sum(body.values()) / 149; raw = {q: math.sqrt(body[q] * mean) for q in body}; k = total / sum(raw.values())
+    mean = sum(body.values()) / 149; raw = {q: body[q] ** TPOW * mean ** (1 - TPOW) for q in body}; k = total / sum(raw.values())
     return {q: raw[q] * k for q in body}
 def plan(q, target):
     title, secs, units, blk = parse(q)
@@ -164,6 +182,7 @@ def plan(q, target):
         if ui and units[ui - 1].sec != u.sec: lab = None
         first = lines[(ui, 0)][1][0]
         if ui and units[ui - 1].sec == u.sec and ana(first) and units[ui - 1].grp != 'def': items[head[ui]].deps.add(head[ui - 1])
+        if u.par is not None: items[head[ui]].deps.add(head[u.par])
         if u.grp == 'p':
             if first.startswith('**'): lab = ui
             elif lab is not None: items[head[ui]].deps.add(head[lab])
@@ -184,7 +203,7 @@ def plan(q, target):
     for ii, it in enumerate(items):
         u = units[it.u]
         if u.grp == 'def': it.keep = True; it.why = 'опр'
-        elif u.sec in pbsec and it.kd == 'head': it.keep = True; it.why = 'ПО'
+        elif PBKEEP and u.sec in pbsec and it.kd == 'head': it.keep = True; it.why = 'ПО'
         elif '(далее —' in it.text: it.keep = True; it.why = 'далее'
     banned = set(); manual = set()
     for sign, pref in OVER.get(q, []):
@@ -195,12 +214,16 @@ def plan(q, target):
             if sign == '+': manual.add(i)
             elif units[items[i].u].grp != 'def' and '(далее —' not in items[i].text: banned.add(i)
     for i in banned: items[i].keep = False; items[i].why = 'руч−'
+    for si, (h, _) in enumerate(secs):                     # «!» — от главного раздела остаются начала всех пунктов
+        if any(v > 1 and hm(re.sub(r'^## \d+\.\s*', '', h), pref) for pref, v in SECPRIO.get(q, [])):
+            for i, it in enumerate(items):
+                if units[it.u].sec == si and it.kd == 'head' and i not in banned: it.keep = True; it.why = it.why or 'руч!'
     # опоры блока — среди того, что не убрано вручную
     bs = [s for s in C.split_sent(re.sub(r'^!! \*\*Главное для запоминания\.\*\*\s*', '', blk)) if s.strip()]; btok = set()
     for s in bs:
         need = (ST(s) - STOP) | ARTS(s); btok |= need
         need = {x for x in need if x in df}; tot = sum(wt(x) for x in need) or 1
-        for _ in range(3):
+        for _ in range(NANCH):
             val = lambda i: sum(wt(x) for x in need & toks[i]) / (1 + 0.002 * items[i].w)
             best = max((i for i in range(len(items)) if i not in banned and units[items[i].u].sec not in pbsec), key=val, default=None)
             if best is None or sum(wt(x) for x in need & toks[best]) < 0.22 * tot:      # в тексте опоры нет — ищем в «Правовой основе»
@@ -223,6 +246,7 @@ def plan(q, target):
     for si, (h, _) in enumerate(secs):
         s = -0.6 if PERI.search(h) else 0.0
         if si == 0: s += 0.5
+        s += 0.8 * len((ST(h) - STOP) & tt) / max(len(ST(h) - STOP), 1)     # раздел назван словами вопроса — это часть вопроса
         if si in pbsec: s = -0.2                              # цитаты «Правовой основы» — после текста: норма обычно повторена в разделах
         ssc[si] = s
     firstu = {}
@@ -242,14 +266,30 @@ def plan(q, target):
     headw = wc(title) + wc(blk)
     size = lambda: headw + sum(it.w for it in items if it.keep) + sum(wc(secs[si][0]) for si in {units[it.u].sec for it in items if it.keep})
     cur = size()
-    target = max(target, cur + 0.10 * sum(it.w for i, it in enumerate(items) if not it.keep and i not in banned))   # большому обязательному ядру — ещё доля остального
-    for i in sorted((i for i, it in enumerate(items) if not it.keep and i not in banned), key=lambda i: -sc[i]):
+    target = max(target, cur + FLOOR * sum(it.w for i, it in enumerate(items) if not it.keep and i not in banned))   # большому обязательному ядру — ещё доля остального
+    # возврат текста «по уровню»: каждый раз добавляем лучший пункт того раздела, от которого осталась наименьшая доля, —
+    # так ни одна часть вопроса не выпадает, пока другая стоит целиком; второстепенным разделам и «Правовой основе» доля меньше
+    secw = {}; prio = {}
+    for i, it in enumerate(items): secw[units[it.u].sec] = secw.get(units[it.u].sec, 0) + it.w
+    for si, (h, _) in enumerate(secs):
+        hs = ST(h) - STOP
+        prio[si] = 0.4 if si in pbsec else 0.55 if PERI.search(h) else 1.0 + 0.5 * len(hs & tt) / max(len(hs), 1)
+    for si, (h, _) in enumerate(secs):
+        for pref, v in SECPRIO.get(q, []):
+            if hm(re.sub(r'^## \d+\.\s*', '', h), pref): prio[si] = v
+    keptw = {si: sum(it.w for it in items if it.keep and units[it.u].sec == si) for si in secw}
+    cand = {si: sorted((i for i, it in enumerate(items) if units[it.u].sec == si and not it.keep and i not in banned), key=lambda i: sc[i]) for si in secw}
+    while True:
+        live = [si for si in cand if cand[si] and prio[si] > 0]
+        if not live: break
+        si = min(live, key=lambda si: keptw[si] / max(secw[si], 1) / prio[si])
+        i = cand[si].pop()
         if items[i].keep: continue
         need = [k for k in closure(i) if not items[k].keep]
         if any(k in banned for k in need): continue
-        cost = sum(items[k].w for k in need) + sum(wc(secs[si][0]) for si in {units[items[k].u].sec for k in need} - {units[it.u].sec for it in items if it.keep})
+        cost = sum(items[k].w for k in need) + sum(wc(secs[x][0]) for x in {units[items[k].u].sec for k in need} - {units[it.u].sec for it in items if it.keep})
         if cur + cost <= target:
-            for k in need: items[k].keep = True; items[k].why = items[k].why or 'оц'
+            for k in need: items[k].keep = True; items[k].why = items[k].why or 'оц'; keptw[units[items[k].u].sec] += items[k].w
             cur += cost
     # блок не должен сообщать того, чего в тексте нет: слова блока, пропавшие из оставленного текста, возвращаем вместе с пунктом
     bst = lambda w: w[:5] if len(w) > 6 else w[:4]
