@@ -3,7 +3,9 @@
 1) блок с названием (**…**) вместе с его пунктами; 2) пункты перечня, от которого осталась часть;
 3) вводная строка, от которой остались одни пункты. Пункты, оказавшиеся под чужой вводной строкой,
 возвращаются под свою. Текст берётся из 30db505; сохранившиеся строки остаются в нынешнем виде.
-Применён; повторный запуск ничего не меняет."""
+Применён в два прохода: «apply» и «apply unnamed» (вводная строка без названия, выпавшая вместе со всем перечнем).
+После первого прохода вручную убраны повторы там, где сохранившаяся строка была переписана (введено полное название акта);
+повторно не запускать: скрипт вернёт эти повторы."""
 import re, sys, os, subprocess
 HERE = os.path.dirname(os.path.abspath(__file__)); A = os.path.join(HERE, '..', 'adp2')
 isb = lambda s: bool(re.match(r'\s*(-|\d+\.)\s', s))
@@ -48,6 +50,7 @@ def punct(cur, o):
     if o.rstrip().endswith(';') and cur.rstrip().endswith('.'): return cur.rstrip()[:-1] + ';'
     if o.rstrip().endswith('.') and cur.rstrip().endswith(';'): return cur.rstrip()[:-1] + '.'
     return cur
+UNNAMED = 'unnamed' in sys.argv   # второй проход: вводная строка без названия, выпавшая вместе со всем перечнем
 def fix_section(obody, cbody, log):
     C = list(cbody); added = 0
     def find(l):
@@ -59,6 +62,7 @@ def fix_section(obody, cbody, log):
     OB = blocks(obody)
     for bi, b in enumerate(OB):
         head, items = b[0], b[1:]
+        if head is None and UNNAMED: continue
         if head is None:
             for k, x in enumerate(items):
                 if find(x) is not None: continue
@@ -76,7 +80,8 @@ def fix_section(obody, cbody, log):
             while run_end < len(C) and isb(C[run_end]): run_end += 1
             if all(hp < p < run_end for p in ip): continue
         if hp is None and not items and not named: continue          # обычный абзац — не возвращаем
-        if hp is None and items and not named and all(p is None for p in ip): continue   # безымянный блок целиком — не возвращаем
+        whole = hp is None and bool(items) and not named and all(p is None for p in ip)   # вводная строка и весь её перечень
+        if UNNAMED != whole: continue
         # собрать полный блок
         cur_items = {}
         for x, p in zip(items, ip):
