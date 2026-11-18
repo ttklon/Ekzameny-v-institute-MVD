@@ -18,7 +18,10 @@ import os, sys, re, math
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE); os.chdir(os.path.join(HERE, '..'))
 import cut25 as C
 TOTAL = float(os.environ.get('TOTAL', 147300))   # слов в txt; единый docx добавляет около 2 150 слов (титул, оглавление)
-SRC = os.environ.get('SRC', 'adp2')
+REV = os.environ.get('REV', '4b36cfb')              # исходник — проверенная редакция на 36 часов; apply всегда строит заново от неё
+import subprocess, functools
+@functools.lru_cache(None)
+def src(q): return subprocess.run(['git', 'show', '%s:.github/answers/adp2/q%03d.txt' % (REV, q)], capture_output=True, text=True).stdout
 wc = lambda s: len(s.split())
 ST = lambda s: {w[:6] for w in re.findall(r'[а-яё]{5,}', s.lower().replace('ё', 'е'))}
 ARTS = lambda s: {'#' + a for a in re.findall(r'(?:ст|п|ч)\. (\d+(?:\.\d+)*)', s)} | {'#' + a for a in re.findall(r'\b(\d{2,}(?:[ .]\d{3})*)\b', s)}
@@ -71,7 +74,7 @@ class It:
     @property
     def w(s): return wc(s.text)
 def parse(q):
-    L = open('%s/q%03d.txt' % (SRC, q), encoding='utf-8').read().split('\n')
+    L = src(q).split('\n')
     title = L[0]; blk = next((l for l in L if l.startswith('!! ')), ''); secs = []
     for l in L[1:]:
         if l.startswith('!! ') or not l.strip(): continue
@@ -115,7 +118,7 @@ def over():
     return o
 OVER = over()
 def targets(total):
-    body = {q: wc(open('%s/q%03d.txt' % (SRC, q), encoding='utf-8').read()) for q in range(1, 150)}
+    body = {q: wc(src(q)) for q in range(1, 150)}
     mean = sum(body.values()) / 149; raw = {q: math.sqrt(body[q] * mean) for q in body}; k = total / sum(raw.values())
     return {q: raw[q] * k for q in body}
 def plan(q, target):
@@ -198,7 +201,10 @@ def plan(q, target):
         need = (ST(s) - STOP) | ARTS(s); btok |= need
         need = {x for x in need if x in df}; tot = sum(wt(x) for x in need) or 1
         for _ in range(3):
-            best = max((i for i in range(len(items)) if i not in banned), key=lambda i: sum(wt(x) for x in need & toks[i]) / (1 + 0.002 * items[i].w), default=None)
+            val = lambda i: sum(wt(x) for x in need & toks[i]) / (1 + 0.002 * items[i].w)
+            best = max((i for i in range(len(items)) if i not in banned and units[items[i].u].sec not in pbsec), key=val, default=None)
+            if best is None or sum(wt(x) for x in need & toks[best]) < 0.22 * tot:      # в тексте опоры нет — ищем в «Правовой основе»
+                best = max((i for i in range(len(items)) if i not in banned), key=val, default=None)
             if best is None: break
             got = sum(wt(x) for x in need & toks[best])
             if got < 0.22 * tot or got == 0: break
@@ -215,46 +221,72 @@ def plan(q, target):
         if it.why in ('блок', 'руч'): ancw[s_] = ancw.get(s_, 0) + it.w
     ssc = {}
     for si, (h, _) in enumerate(secs):
-        hs = ST(h) - STOP
-        s = 2.0 * ancw.get(si, 0) / max(secw.get(si, 1), 1) + 1.2 * len(hs & tt) / max(len(hs), 1) - 0.03 * si
-        if PERI.search(h): s -= 0.7
-        if si == 0: s += 1.0
-        if si in pbsec: s = 1.1
+        s = -0.6 if PERI.search(h) else 0.0
+        if si == 0: s += 0.5
+        if si in pbsec: s = -0.2                              # цитаты «Правовой основы» — после текста: норма обычно повторена в разделах
         ssc[si] = s
     firstu = {}
-    for ui, u in enumerate(units): firstu.setdefault(u.sec, ui)
+    for ui, u in enumerate(units):
+        if u.grp != 'def': firstu.setdefault(u.sec, ui)
     sc = {}
     for i, it in enumerate(items):
         u = units[it.u]; t = toks[i]; n = len(t) or 1
-        s = 1.2 * len(t & tt) / max(len(tt), 1) + 1.0 * len(t & btok) / n + 0.2 * ('«' in it.text) + 0.15 * ('//' in it.text)
+        s = 1.5 * len(t & tt) / max(len(tt), 1) + 1.2 * len(t & btok) / n + 0.2 * ('«' in it.text) + 0.15 * ('//' in it.text)
         if it.kd == 'head':
-            s += 0.4 * (firstu[u.sec] == it.u) + 0.3 * (u.grp == 'list')
+            s += 1.0 * (firstu.get(u.sec) == it.u) + 0.4 * (u.grp == 'list')
             if CORE.match(re.sub(r'^(- |\d+\. )?(\*\*)?(//)?', '', u.lines[0]).lower()): s += 0.3
-            if PERI.search(u.text[:60]): s -= 0.4
-            sc[i] = ssc[u.sec] + 0.35 * s
-        else: sc[i] = ssc[u.sec] + 0.35 * s - 0.04 * it.parts[0][1]
-    # основа: начала всех единиц в оставленных разделах
-    for i, it in enumerate(items):
-        if it.kd == 'head' and not it.keep and i not in banned: it.keep = True; it.why = 'осн'
+            if PERI.search(u.text[:60]): s -= 0.5
+            s += 0.25 * (it.w <= 20)                              # короткий пункт дёшев — его выгоднее оставить
+        else: s -= 0.35 + 0.1 * it.parts[0][1]
+        sc[i] = ssc[u.sec] + s
     headw = wc(title) + wc(blk)
     size = lambda: headw + sum(it.w for it in items if it.keep) + sum(wc(secs[si][0]) for si in {units[it.u].sec for it in items if it.keep})
     cur = size()
-    if cur > target:                                           # не помещается: снимаются единицы с низшей оценкой, не опоры блока
-        rdep = {}
-        for i, it in enumerate(items):
-            for d in it.deps: rdep.setdefault(d, set()).add(i)
-        for i in sorted((i for i, it in enumerate(items) if it.why == 'осн'), key=lambda i: sc[i]):
-            if cur <= target: break
-            if any(items[k].keep for k in rdep.get(i, ())): continue
-            items[i].keep = False; items[i].why = 'оц−'; cur = size()
-    for i in sorted((i for i, it in enumerate(items) if it.kd == 'tail' and not it.keep and i not in banned), key=lambda i: -sc[i]):
-        if items[i].keep or not items[head[items[i].u]].keep: continue
+    target = max(target, cur + 0.10 * sum(it.w for i, it in enumerate(items) if not it.keep and i not in banned))   # большому обязательному ядру — ещё доля остального
+    for i in sorted((i for i, it in enumerate(items) if not it.keep and i not in banned), key=lambda i: -sc[i]):
+        if items[i].keep: continue
         need = [k for k in closure(i) if not items[k].keep]
-        if any(k in banned or items[k].why == 'оц−' for k in need): continue
-        cost = sum(items[k].w for k in need)
+        if any(k in banned for k in need): continue
+        cost = sum(items[k].w for k in need) + sum(wc(secs[si][0]) for si in {units[items[k].u].sec for k in need} - {units[it.u].sec for it in items if it.keep})
         if cur + cost <= target:
-            for k in need: items[k].keep = True; items[k].why = 'оц'
+            for k in need: items[k].keep = True; items[k].why = items[k].why or 'оц'
             cur += cost
+    # блок не должен сообщать того, чего в тексте нет: слова блока, пропавшие из оставленного текста, возвращаем вместе с пунктом
+    bst = lambda w: w[:5] if len(w) > 6 else w[:4]
+    bwords = lambda t: [w for w in re.findall(r'[а-яё]+', re.sub(r'//.*?//', ' ', t).lower().replace('ё', 'е')) if len(w) >= 5]
+    itst = [set(bst(w) for w in bwords(it.text)) for it in items]
+    for sn in bs:
+        ws = set(bwords(sn))
+        if len(ws) < 4: continue
+        for _ in range(4):
+            keptst = set(bst(w) for w in bwords(title + ' ' + ' '.join(secs[si][0] for si in {units[it.u].sec for it in items if it.keep})))
+            for i, it in enumerate(items):
+                if it.keep: keptst |= itst[i]
+            miss = {bst(w) for w in ws if bst(w) not in keptst}
+            if not (len(miss) >= 3 or (len(miss) >= 2 and len(miss) / len(ws) > 0.25)): break
+            cand = []
+            for i, it in enumerate(items):
+                if it.keep or i in banned or not (miss & itst[i]): continue
+                need = [k for k in closure(i) if not items[k].keep]
+                if any(k in banned for k in need): continue
+                got = set().union(*[itst[k] for k in need]) & miss
+                cand.append((len(got) / (12.0 + sum(items[k].w for k in need)), i, need))
+            if not cand: break
+            _, i, need = max(cand)
+            for k in need: items[k].keep = True; items[k].why = items[k].why or 'блок2'
+    # акт, названный в ответе, не должен исчезнуть совсем: оставляем самый короткий пункт, где он упомянут
+    NUM = re.compile(r'№\s?(\d[\d/.\-]*(?:-?[А-Яа-яA-Z]{1,4})?\d*)')
+    nums = [{m.group(1).rstrip('.-/') for m in NUM.finditer(it.text)} for it in items]
+    for a in sorted(set().union(*nums) if nums else ()):
+        if any(it.keep and a in nums[i] for i, it in enumerate(items)) or a in title: continue
+        cand = []
+        for i, it in enumerate(items):
+            if a not in nums[i] or i in banned: continue
+            need = [k for k in closure(i) if not items[k].keep]
+            if any(k in banned for k in need): continue
+            cand.append((sum(items[k].w for k in need), i, need))
+        if cand:
+            for k in min(cand)[2]: items[k].keep = True; items[k].why = items[k].why or 'акт'
     plan.ssc = ssc; plan.pbsec = pbsec; plan.bs = bs; plan.toks = toks; plan.df = df
     return title, secs, units, blk, items, head, lines, idx
 def build(q, target):
@@ -304,7 +336,7 @@ if __name__ == '__main__':
             title, secs, units, blk, items, head, lines, idx = plan(q, 10 ** 9); ssc = plan.ssc
             w = {si: sum(it.w for it in items if units[it.u].sec == si) for si in range(len(secs))}
             an = {si: sum(1 for it in items if units[it.u].sec == si and it.why == 'блок') for si in range(len(secs))}
-            tot = wc(open('%s/q%03d.txt' % (SRC, q), encoding='utf-8').read()); drop = set(); cur = tot
+            tot = wc(src(q)); drop = set(); cur = tot
             for si in sorted((si for si in range(len(secs)) if si and si not in plan.pbsec and secs[si][0]), key=lambda si: ssc[si]):
                 if cur <= T[q] * 1.07: break
                 if cur - w[si] < T[q] * 0.93: continue
@@ -321,11 +353,12 @@ if __name__ == '__main__':
     for q in range(1, 150):
         txt, log, t = out[q]
         if mode == 'show' and (not only or q in only):
-            print('\n=== q%03d %d → %d (цель %d) %s' % (q, wc(open('%s/q%03d.txt' % (SRC, q), encoding='utf-8').read()), wc(txt), t, txt.split('\n')[0][2:120]))
+            print('\n=== q%03d %d → %d (цель %d) %s' % (q, wc(src(q)), wc(txt), t, txt.split('\n')[0][2:120]))
             for c in log: print('  − ' + c)
         if mode == 'apply' and (not only or q in only): open('adp2/q%03d.txt' % q, 'w', encoding='utf-8').write(txt)
     ov = [(q, wc(out[q][0]), int(out[q][2])) for q in out if wc(out[q][0]) > out[q][2] * 1.08]
-    print('итого слов', tot, '| внутренняя цель', int(lo), '| выше своей цели более чем на 8%:', len(ov))
+    nb = sum(1 for q in out for c in out[q][1] if 'БЛОК −' in c)
+    print('итого слов', tot, '| из блоков снято предложений', nb, '| внутренняя цель', int(lo), '| выше своей цели более чем на 8%:', len(ov))
     if mode == 'sim':
         for q, w, t in ov: print('  q%03d %d при цели %d' % (q, w, t))
         nsec = sum(1 for q in out for c in out[q][1] if c.startswith('РАЗДЕЛ')); ntail = sum(1 for q in out for c in out[q][1] if c.startswith('   хвост'))
