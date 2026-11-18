@@ -61,25 +61,17 @@ def act_idx(disp):
         AFC[disp] = idx_files(pat) if kind != 'UNK' and pat else []
     return AFC[disp]
 ARTID = {a: i for i, a in enumerate(A_.arts)}
-SPLIT = re.compile(r'(?<=[.!?…»)])\s+(?=[А-ЯЁ«*])')
-def sentences(line):
-    out = []; cur = ''
-    for p in SPLIT.split(line):
-        cur = (cur + ' ' + p) if cur else p
-        if cur.count('«') <= cur.count('»') and cur.count('//') % 2 == 0 and cur.count('(') <= cur.count(')') and not re.search(r'(?:^|\s)(?:ст|ч|п|пп|подп|гл|абз|т|см|им|г|гг|др|руб|тыс|млн|д|е|н|примеч)\.$', cur):
-            out.append(cur); cur = ''
-    if cur: out.append(cur)
-    return out
-REFNUM = re.compile(r'(?:стать[а-я]*|ст\.|част[а-я]*|ч\.|пункт[а-я]*|п\.|пп\.|подп\.|подпункт[а-я]*|глав[а-я]*|гл\.|раздел[а-я]*|абз\.|абзац[а-я]*|примечани[а-я]*|приложени[а-я]*|№)\s*\d+(?:\.\d+)*(?:\s*(?:,|и|–|—|-)\s*\d+(?:\.\d+)*)*', re.I)
-def strip(s):
-    s = re.sub(r'//.+?//', ' ', s); s = REFNUM.sub(' ', s); s = re.sub(r'\d{1,2}\.\d{2}\.\d{4}', ' ', s)
-    s = re.sub(r'^\s*(?:[-–>]\s*)?(?:\*\*)?\d+[.)]\s', ' ', s); s = re.sub(r'\b(?:19|20)\d\d\s*(?:г\.|год[а-я]*)', ' ', s)
-    return s.replace('**', ' ')
+sentences = K.sentences; strip = K.strip
 def run(n):
     lines = open(cut25.A + 'q%03d.txt' % n, encoding='utf-8').read().split('\n')
     pieces = [((i, 0), l) for i, l in enumerate(lines) if l.strip()]
     res, names = cut25.resolve(pieces); rows = []
     allacts = list(dict.fromkeys(d for d in names.values() if d))
+    hart = {}; ha = None                        # статья из заголовка раздела — для ссылок вида «ч. N» в начале пункта
+    for j, l in enumerate(lines):
+        if l.startswith('## '):
+            m_ = re.findall(r'[Сс]т(?:\.|атья)\s*(\d+(?:\.\d+)*)', l); ha = m_[-1] if m_ else None
+        hart[j] = ha
     for (i, _z), line in pieces:
         if line.startswith('#'): continue
         block = line.startswith('!!')
@@ -92,36 +84,40 @@ def run(n):
             for w in nums: wt[w] = 0.0
             # названная статья
             rc = ''; rmiss = ''; rname = ''
-            tg = []
+            tg = []; prev = None
             for k, m in enumerate(refs):
-                if not (a <= m.start() < b): continue
                 own = cut25.ref_ctx(m.group(1)); act, art = res.get(((i, 0), k), (None, None)); disp = names.get(((i, 0), k))
-                if not art and not own[0]: continue
-                tg.append((art, disp, False))
-                if not own[0]: tg += [(art, d, True) for d in allacts if d != disp]      # акт взят из контекста: пробуем и другие акты ответа
-            got = set(); tried = False; best = -1.0
-            for art, disp, fb in tg:
-                if not disp or (fb and best >= 0.6 and not (nums and len(got) < len(nums))): continue
-                for fi in act_idx(disp):
-                    c0, c1 = int(A_.f0[fi]), int(A_.f0[fi + 1])
-                    aid = ARTID.get(re.sub(r'\D', '', art)) if art else None
-                    if aid is not None:
-                        ch = (c0 + np.nonzero(A_.cart[c0:c1] == aid)[0]).tolist()
-                        if not ch: continue
-                        if len(ch) > 8:
-                            mask = np.zeros(A_.C, dtype=bool); mask[ch] = True; two = A_.score(words + nums, {**wt, **{x: 1.0 for x in nums}}, mask); t = int(two.argmax()); ch2 = [c for c in (t - 1, t, t + 1, t + 2) if c in ch]
-                        else: ch2 = ch
-                        cv, _h = A_.cover(words, wt, ch2); _c, hn = A_.cover(nums, {x: 1 for x in nums}, ch)
-                    elif fb or art and c1 - c0 > 3 and (A_.cart[c0:c1] != 0).mean() > 0.5: continue    # в акте со статьями такой статьи нет
-                    else:
-                        mask = np.zeros(A_.C, dtype=bool); mask[c0:c1] = True
-                        two = A_.score(words + nums, {**wt, **{x: 1.0 for x in nums}}, mask); t = int(two.argmax())
-                        ch = [c for c in range(t - 2, t + 4) if c0 <= c < c1]
-                        cv, _h = A_.cover(words, wt, [c for c in (t - 1, t, t + 1, t + 2) if c0 <= c < c1]); _c, hn = A_.cover(nums, {x: 1 for x in nums}, ch)
-                    tried = True; val = cv + (len(hn) / len(nums) if nums else 0)
-                    if val > best + (len(got) / len(nums) if nums and best >= 0 else 0) or best < 0:
-                        best = cv; got = set(hn); rname = ('~' if fb else '') + A_.names[fi][:40]
-            if tried: rc = '%.2f' % best; rmiss = ','.join(x for x in nums if x not in got)
+                hasart = bool(re.search(r'[Сс]т(?:\.|ать)', m.group(1)))
+                arts_ = [art] if hasart or not (prev or hart.get(i)) else [x for x in dict.fromkeys([prev, hart.get(i), art]) if x]
+                if hasart: prev = art
+                if not (a <= m.start() < b): continue
+                if not arts_[0] and not own[0]: continue
+                tg.append([(x, disp, False) for x in arts_] + ([(x, d, True) for x in arts_ for d in allacts if d != disp] if not own[0] else []))
+            got = set(); tried = False; uni = set(); wn = {x: 1.0 for x in nums}
+            for cands in tg:                       # по каждой ссылке — лучший из возможных вариантов (статья из контекста, акт из контекста)
+                best = -1.0; bh = set(); bn = set(); bname = ''
+                for art, disp, fb in cands:
+                    if not disp or (fb and best >= 0.6 and len(bn) == len(nums)): continue
+                    for fi in act_idx(disp):
+                        c0, c1 = int(A_.f0[fi]), int(A_.f0[fi + 1])
+                        aid = ARTID.get(re.sub(r'\D', '', art)) if art else None
+                        if aid is not None:
+                            ch = (c0 + np.nonzero(A_.cart[c0:c1] == aid)[0]).tolist()
+                            if not ch: continue
+                            if len(ch) > 8:
+                                mask = np.zeros(A_.C, dtype=bool); mask[ch] = True; two = A_.score(words + nums, {**wt, **wn}, mask); t = int(two.argmax()); ch2 = [c for c in (t - 1, t, t + 1, t + 2) if c in ch]
+                            else: ch2 = ch
+                        elif fb or art and c1 - c0 > 3 and (A_.cart[c0:c1] != 0).mean() > 0.5: continue    # в акте со статьями такой статьи нет
+                        else:
+                            mask = np.zeros(A_.C, dtype=bool); mask[c0:c1] = True
+                            two = A_.score(words + nums, {**wt, **wn}, mask); t = int(two.argmax())
+                            ch = [c for c in range(t - 2, t + 4) if c0 <= c < c1]; ch2 = [c for c in (t - 1, t, t + 1, t + 2) if c0 <= c < c1]
+                        cv, h = A_.cover(words, wt, ch2); _c, hn = A_.cover(nums, wn, ch)
+                        tried = True; val = cv + (len(hn) / len(nums) if nums else 0)
+                        if val > best: best = val; bh = h; bn = hn; bname = ('~' if fb else '') + A_.names[fi][:40]
+                uni |= bh; got |= bn; rname = rname or bname
+            if tried:
+                rc = '%.2f' % (sum(wt[w] for w in words if w in uni) / (sum(wt[w] for w in words) or 1)); rmiss = ','.join(x for x in nums if x not in got)
             elif tg: rc = 'нет'
             # лучшее место в актах и в литературе
             o = []; anyn = set(got)

@@ -60,6 +60,20 @@ def segments(path):
     for m in ART.finditer(raw):
         segs.append((cur, raw[p:m.start()])); p = m.start(); cur = re.sub(r'\D', '', m.group(1))
     segs.append((cur, raw[p:])); return segs
+SPLIT = re.compile(r'(?<=[.!?…»)])\s+(?=[А-ЯЁ«*])')
+def sentences(line):
+    out = []; cur = ''
+    for p in SPLIT.split(line):
+        cur = (cur + ' ' + p) if cur else p
+        if cur.count('«') <= cur.count('»') and cur.count('//') % 2 == 0 and cur.count('(') <= cur.count(')') and not re.search(r'(?:^|\s)(?:ст|ч|п|пп|подп|гл|абз|т|см|им|г|гг|др|руб|тыс|млн|д|е|н|примеч)\.$', cur):
+            out.append(cur); cur = ''
+    if cur: out.append(cur)
+    return out
+REFNUM = re.compile(r'(?:стать[а-я]*|ст\.|част[а-я]*|ч\.|пункт[а-я]*|п\.|пп\.|подп\.|подпункт[а-я]*|глав[а-я]*|гл\.|раздел[а-я]*|абз\.|абзац[а-я]*|примечани[а-я]*|приложени[а-я]*|№)\s*\d+(?:\.\d+)*(?:\s*(?:,|и|–|—|-)\s*\d+(?:\.\d+)*)*', re.I)
+def strip(s):
+    s = re.sub(r'//.+?//', ' ', s); s = REFNUM.sub(' ', s); s = re.sub(r'\d{1,2}\.\d{2}\.\d{4}', ' ', s)
+    s = re.sub(r'^\s*(?:[-–>]\s*)?(?:\*\*)?\d+[.)]\s', ' ', s); s = re.sub(r'\b(?:19|20)\d\d\s*(?:г\.|год[а-я]*)', ' ', s)
+    return s.replace('**', ' ')
 if __name__ == '__main__':
     for s in ('штраф от одной тысячи до двух тысяч пятисот рублей или арест на срок до пятнадцати суток', 'в трёхдневный срок; не позднее 3 часов; 1 000 рублей',
               'двадцать пять дней, сто двадцать часов, сорок восемь часов, двух тысяч, одной тысячи пятисот'): print(tokens(s))
