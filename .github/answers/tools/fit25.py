@@ -18,7 +18,7 @@ import os, sys, re, math
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE); os.chdir(os.path.join(HERE, '..'))
 import cut25 as C
 TOTAL = float(os.environ.get('TOTAL', 148200))   # слов в txt; единый docx добавляет около 2 150 слов (титул, оглавление)
-ALEN = float(os.environ.get('ALEN', 0.002)); ATHR = float(os.environ.get('ATHR', 0.22)); NANCH = int(os.environ.get('NANCH', 1)); TPOW = float(os.environ.get('TPOW', 0.5)); PBKEEP = int(os.environ.get('PBKEEP', 0)); FLOOR = float(os.environ.get('FLOOR', 0))
+BSUP = float(os.environ.get('BSUP', 0.5)); ALEN = float(os.environ.get('ALEN', 0.002)); ATHR = float(os.environ.get('ATHR', 0.22)); NANCH = int(os.environ.get('NANCH', 0)); TPOW = float(os.environ.get('TPOW', 0.5)); PBKEEP = int(os.environ.get('PBKEEP', 0)); FLOOR = float(os.environ.get('FLOOR', 0))
 REV = os.environ.get('REV', '4b36cfb')              # исходник — проверенная редакция на 36 часов; apply всегда строит заново от неё
 import subprocess, functools
 @functools.lru_cache(None)
@@ -27,7 +27,7 @@ wc = lambda s: len(s.split())
 ST = lambda s: {w[:6] for w in re.findall(r'[а-яё]{5,}', s.lower().replace('ё', 'е'))}
 ARTS = lambda s: {'#' + a for a in re.findall(r'(?:ст|п|ч)\. (\d+(?:\.\d+)*)', s)} | {'#' + a for a in re.findall(r'\b(\d{2,}(?:[ .]\d{3})*)\b', s)}
 STOP = ST('полиции полиция российской федерации закона закон федерального федеральный статья также которые которых является могут может должен должны лица лицо органов органы внутренних дел сотрудник сотрудника сотрудники административного административных административной правонарушениях правонарушения кодекса главное запоминания далее только случае случаях порядке порядок числе россии')
-PERI = re.compile(r'отграничен|отлич|смежн|взаимодейств|гаранти|проблем|практическ|значени|соотношен|обжалован|оформлен|история|перспектив|статистик|последстви|ошибк|разъяснени|пример|иные |другие |други[хм] ', re.I)
+PERI = re.compile(r'отграничен|отлич|смежн|взаимодейств|гаранти|проблем|практическ|(?<![Нн]а)значени|соотношен|обжалован|оформлен|история|перспектив|статистик|последстви|ошибк|разъяснени|пример|иные |другие |други[хм] ', re.I)
 CORE = re.compile(r'(основани|порядок|срок|вид[ыа]? |понят|признак|субъект|объект|состав|полномочи|права|право |обязанност|запрет|услови|цел[ьи]|задач|функци|принцип|кто |структур|систем|форм|мер[ыа] |содержани)')
 SEQ = re.compile(r'(?:- |\d+\. )?\*\*(//)?(Ч\.|Ст\.|П\.|Подп\.|Гл\.|Часть|Статья|Пункт|Глава|Перв|Втор|Трет|Четв|Пят|Шест|Седьм|Восьм|Девят|Десят|\d)')
 PB = re.compile(r'равовая основа|равовое регулирование|ормативн\w+ (основ|закреплен)|онституционн\w+ (и законодательн\w+ )?основ')
@@ -242,6 +242,100 @@ def plan(q, target):
     for it in items:
         s_ = units[it.u].sec; secw[s_] = secw.get(s_, 0) + it.w
         if it.why in ('блок', 'руч'): ancw[s_] = ancw.get(s_, 0) + it.w
+    # ссылка блока (статья + часть/пункт) должна остаться и в тексте: возвращаем самый короткий пункт, где она стояла
+    def refkeys(lns):
+        pieces = [((i, 0), l) for i, l in enumerate(lns) if l.strip()]; res, _ = C.resolve(pieces); out = {}
+        for (i, _z), line in pieces:
+            for k, m in enumerate(C.REF.finditer(line)):
+                act, art = res[((i, 0), k)]; r = m.group(1)
+                arts = re.findall(r'[Сс]т\.\s*(\d+(?:\.\d+)*)', r) or ([art] if art else [])
+                parts = re.findall(r'(?:[Чч]|[Пп]|подп|Подп)\.\s*([\dа-я«»., и–-]+?)(?=\s*(?:ст\.|ч\.|п\.|$|[А-ЯЁа-яё]{3}))', r); ns = set()
+                for p_ in parts: ns |= set(re.findall(r'\d+(?:\.\d+)*', p_))
+                for a_ in arts:
+                    for x in (ns or {''}): out.setdefault((a_, x), []).append((line, r))
+        return out
+    if blk:
+        srcl = [l for l in src(q).split('\n') if not l.startswith('!! ')]; ko = refkeys(srcl); kk = refkeys([blk[3:]])
+        where = {}
+        for ui, u in enumerate(units):
+            for k, l in enumerate(u.lines): where.setdefault(l, []).append((ui, k))
+        for key in sorted(kk):
+            if not key[1] or key not in ko: continue
+            its = set()
+            for line, r in ko[key]:
+                for ui, k in where.get(line, []):
+                    for j, sn in enumerate(lines[(ui, k)][1]):
+                        if r in sn: its.add(idx[(ui, k, j)])
+            if not its or any(items[i].keep for i in its): continue
+            cand = []
+            for i in its:
+                need = [k for k in closure(i) if not items[k].keep]
+                if i in banned or any(k in banned for k in need): continue
+                cand.append((sum(items[k].w for k in need), i, need))
+            if cand:
+                for k in min(cand)[2]: items[k].keep = True; items[k].why = items[k].why or 'ссылка'
+    # акт, названный в ответе, не должен исчезнуть совсем: оставляем самый короткий пункт, где он упомянут
+    NUM = re.compile(r'№\s?(\d[\d/.\-]*(?:-?[А-Яа-яA-Z]{1,4})?\d*)')
+    nums = [{m.group(1).rstrip('.-/') for m in NUM.finditer(it.text)} for it in items]
+    dated = lambda a, t: bool(re.search(r'от \d{1,2}[. ][\d.а-я]+ ?\d{4}(?: г\.)? № ?' + re.escape(a) + r'(?![\d\-])', t))
+    for a in sorted(set().union(*nums) if nums else ()):
+        full = [i for i, it in enumerate(items) if a in nums[i] and dated(a, it.text)]   # полное название акта (с датой) должно остаться, если оно было
+        if any(items[i].keep for i in full) or (not full and (any(it.keep and a in nums[i] for i, it in enumerate(items)) or a in title)): continue
+        cand = []
+        for i, it in enumerate(items):
+            if a not in nums[i] or i in banned or (full and i not in full): continue
+            need = [k for k in closure(i) if not items[k].keep]
+            if any(k in banned for k in need): continue
+            cand.append((sum(items[k].w for k in need), i, need))
+        if cand:
+            for k in min(cand)[2]: items[k].keep = True; items[k].why = items[k].why or 'акт'
+    # блок не должен сообщать того, чего в тексте нет: слова блока, пропавшие из оставленного текста, возвращаем вместе с пунктом
+    bst = lambda w: w[:5] if len(w) > 6 else w[:4]
+    bwords = lambda t: [w for w in re.findall(r'[а-яё]+', re.sub(r'//.*?//', ' ', t).lower().replace('ё', 'е')) if len(w) >= 5]
+    bnums = lambda t: {'#' + x.replace(' ', '') for x in re.findall(r'(?<![\d.,№/])\b\d+(?: \d{3})*\b(?![.,]\d)', re.sub(r'//.*?//', ' ', t))}   # числа вне ссылок: сроки, суммы, количества
+    itst = [set(bst(w) for w in bwords(it.text)) | bnums(it.text) for it in items]
+    def blockwords():
+        for sn in bs:
+            ws = set(bwords(sn)) - {'главное', 'запоминания'}; nb = bnums(sn)
+            if len(ws) < 4 and not nb: continue
+            for _ in range(12):
+                keptst = set(bst(w) for w in bwords(title + ' ' + ' '.join(secs[si][0] for si in {units[it.u].sec for it in items if it.keep})))
+                allst = set().union(*itst) if itst else set()
+                for i, it in enumerate(items):
+                    if it.keep: keptst |= itst[i]
+                miss = {bst(w) for w in ws if bst(w) not in keptst}; mnum = {x for x in nb if x not in keptst and x in allst}
+                if not (mnum or len(miss) >= 3 or (len(miss) >= 2 and len(miss) / max(len(ws), 1) > 0.25)): break
+                miss |= mnum
+                cand = []
+                for i, it in enumerate(items):
+                    if it.keep or i in banned or not (miss & itst[i]): continue
+                    need = [k for k in closure(i) if not items[k].keep]
+                    if any(k in banned for k in need): continue
+                    got = set().union(*[itst[k] for k in need]) & miss
+                    cand.append((len(got) / (12.0 + sum(items[k].w for k in need)), i, need))
+                if not cand: break
+                _, i, need = max(cand)
+                for k in need: items[k].keep = True; items[k].why = items[k].why or 'блок2'
+    blockwords()
+    def blocksupport():                                    # предложение блока, у которого в тексте осталось меньше 60 % опоры, получает опорный пункт
+        for sn in bs:
+            need = {x for x in ((ST(sn) - STOP) | ARTS(sn)) if x in df}; tot = sum(wt(x) for x in need)
+            if not tot: continue
+            for _ in range(2):
+                kept = set()
+                for i, it in enumerate(items):
+                    if it.keep: kept |= toks[i]
+                if sum(wt(x) for x in need & kept) >= BSUP * tot: break
+                miss = need - kept; cand = []
+                for i, it in enumerate(items):
+                    if it.keep or i in banned or not (miss & toks[i]): continue
+                    nd = [k for k in closure(i) if not items[k].keep]
+                    if any(k in banned for k in nd): continue
+                    got = set().union(*[toks[k] for k in nd]) & miss
+                    cand.append((sum(wt(x) for x in got) / (12.0 + sum(items[k].w for k in nd)), i, nd))
+                if not cand: break
+                for k in max(cand)[2]: items[k].keep = True; items[k].why = items[k].why or 'блок3'
+    blocksupport()
     ssc = {}
     for si, (h, _) in enumerate(secs):
         s = -0.6 if PERI.search(h) else 0.0
@@ -302,76 +396,7 @@ def plan(q, target):
         i = ok[0] if cst(ok[0]) <= 45 else min(ok, key=cst)
         for k in closure(i):
             if not items[k].keep: items[k].keep = True; items[k].why = 'разд'
-    # ссылка блока (статья + часть/пункт) должна остаться и в тексте: возвращаем самый короткий пункт, где она стояла
-    def refkeys(lns):
-        pieces = [((i, 0), l) for i, l in enumerate(lns) if l.strip()]; res, _ = C.resolve(pieces); out = {}
-        for (i, _z), line in pieces:
-            for k, m in enumerate(C.REF.finditer(line)):
-                act, art = res[((i, 0), k)]; r = m.group(1)
-                arts = re.findall(r'[Сс]т\.\s*(\d+(?:\.\d+)*)', r) or ([art] if art else [])
-                parts = re.findall(r'(?:[Чч]|[Пп]|подп|Подп)\.\s*([\dа-я«»., и–-]+?)(?=\s*(?:ст\.|ч\.|п\.|$|[А-ЯЁа-яё]{3}))', r); ns = set()
-                for p_ in parts: ns |= set(re.findall(r'\d+(?:\.\d+)*', p_))
-                for a_ in arts:
-                    for x in (ns or {''}): out.setdefault((a_, x), []).append((line, r))
-        return out
-    if blk:
-        srcl = [l for l in src(q).split('\n') if not l.startswith('!! ')]; ko = refkeys(srcl); kk = refkeys([blk[3:]])
-        where = {}
-        for ui, u in enumerate(units):
-            for k, l in enumerate(u.lines): where.setdefault(l, []).append((ui, k))
-        for key in sorted(kk):
-            if not key[1] or key not in ko: continue
-            its = set()
-            for line, r in ko[key]:
-                for ui, k in where.get(line, []):
-                    for j, sn in enumerate(lines[(ui, k)][1]):
-                        if r in sn: its.add(idx[(ui, k, j)])
-            if not its or any(items[i].keep for i in its): continue
-            cand = []
-            for i in its:
-                need = [k for k in closure(i) if not items[k].keep]
-                if i in banned or any(k in banned for k in need): continue
-                cand.append((sum(items[k].w for k in need), i, need))
-            if cand:
-                for k in min(cand)[2]: items[k].keep = True; items[k].why = items[k].why or 'ссылка'
-    # блок не должен сообщать того, чего в тексте нет: слова блока, пропавшие из оставленного текста, возвращаем вместе с пунктом
-    bst = lambda w: w[:5] if len(w) > 6 else w[:4]
-    bwords = lambda t: [w for w in re.findall(r'[а-яё]+', re.sub(r'//.*?//', ' ', t).lower().replace('ё', 'е')) if len(w) >= 5]
-    itst = [set(bst(w) for w in bwords(it.text)) for it in items]
-    for sn in bs:
-        ws = set(bwords(sn)) - {'главное', 'запоминания'}
-        if len(ws) < 4: continue
-        for _ in range(8):
-            keptst = set(bst(w) for w in bwords(title + ' ' + ' '.join(secs[si][0] for si in {units[it.u].sec for it in items if it.keep})))
-            for i, it in enumerate(items):
-                if it.keep: keptst |= itst[i]
-            miss = {bst(w) for w in ws if bst(w) not in keptst}
-            if not (len(miss) >= 3 or (len(miss) >= 2 and len(miss) / len(ws) > 0.25)): break
-            cand = []
-            for i, it in enumerate(items):
-                if it.keep or i in banned or not (miss & itst[i]): continue
-                need = [k for k in closure(i) if not items[k].keep]
-                if any(k in banned for k in need): continue
-                got = set().union(*[itst[k] for k in need]) & miss
-                cand.append((len(got) / (12.0 + sum(items[k].w for k in need)), i, need))
-            if not cand: break
-            _, i, need = max(cand)
-            for k in need: items[k].keep = True; items[k].why = items[k].why or 'блок2'
-    # акт, названный в ответе, не должен исчезнуть совсем: оставляем самый короткий пункт, где он упомянут
-    NUM = re.compile(r'№\s?(\d[\d/.\-]*(?:-?[А-Яа-яA-Z]{1,4})?\d*)')
-    nums = [{m.group(1).rstrip('.-/') for m in NUM.finditer(it.text)} for it in items]
-    dated = lambda a, t: bool(re.search(r'от \d{1,2}[. ][\d.а-я]+ ?\d{4}(?: г\.)? № ?' + re.escape(a) + r'(?![\d\-])', t))
-    for a in sorted(set().union(*nums) if nums else ()):
-        full = [i for i, it in enumerate(items) if a in nums[i] and dated(a, it.text)]   # полное название акта (с датой) должно остаться, если оно было
-        if any(items[i].keep for i in full) or (not full and (any(it.keep and a in nums[i] for i, it in enumerate(items)) or a in title)): continue
-        cand = []
-        for i, it in enumerate(items):
-            if a not in nums[i] or i in banned or (full and i not in full): continue
-            need = [k for k in closure(i) if not items[k].keep]
-            if any(k in banned for k in need): continue
-            cand.append((sum(items[k].w for k in need), i, need))
-        if cand:
-            for k in min(cand)[2]: items[k].keep = True; items[k].why = items[k].why or 'акт'
+    blockwords()
     plan.ssc = ssc; plan.pbsec = pbsec; plan.bs = bs; plan.toks = toks; plan.df = df
     return title, secs, units, blk, items, head, lines, idx
 def build(q, target):
