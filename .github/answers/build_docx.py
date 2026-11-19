@@ -8,7 +8,10 @@
     python .github/answers/build_docx.py adp2 --sample    — один документ на те вопросы, которые уже написаны
                                                             (номера могут идти не подряд)
 
-Коды: adp — вариант 1 («Подробные ответы»), adp2 — вариант 2 («Сокращённые ответы»).
+Коды: adp — вариант 1 («Подробные ответы»), adp2 — вариант 2 («Сокращённые ответы») по административной
+деятельности полиции; upp — уголовно-процессуальное право (ответы сразу на оба перечня: к экзамену и к зачёту;
+какой ответ закрывает какой вопрос — в .github/answers/upp/map.tsv, по нему в общий документ
+ставятся указатели «вопрос экзамена → ответ» и «вопрос зачёта → ответ»).
 
 Готовые документы кладутся в папку варианта ответов:
     <Дисциплина>/3. Ответы на вопросы/<Вариант>/
@@ -44,6 +47,7 @@ EMPTY_AFTER_QUESTION = 5
 DISCIPLINES = {
     "adp": "Административная деятельность полиции",
     "adp2": "Административная деятельность полиции",
+    "upp": "Уголовно-процессуальное право",
 }
 
 # Папка варианта ответов внутри «3. Ответы на вопросы». У дисциплины может быть несколько вариантов
@@ -51,6 +55,22 @@ DISCIPLINES = {
 VARIANTS = {
     "adp": "Вариант 1. Подробные ответы",
     "adp2": "Вариант 2. Сокращённые ответы",
+    "upp": "Вариант 1. Краткие ответы (экзамен и зачёт)",
+}
+
+# Дисциплины с двумя перечнями вопросов: (подпись перечня, признак в имени файла перечня).
+LISTS = {
+    "upp": (("экзамен", "экзамену"), ("зачёт", "зачету")),
+}
+# Пояснение в начале общего документа.
+INTRO = {
+    "upp": "Ответы закрывают оба перечня: 66 вопросов к экзамену и 87 вопросов к зачёту. Вопросы, которые "
+           "повторяются или пересекаются, сведены в один ответ, поэтому ответов 108. Под заголовком каждого ответа "
+           "указано, какие вопросы экзамена и зачёта он закрывает; найти ответ по номеру вопроса помогают два "
+           "указателя после содержания. Статьи без названия закона — статьи Уголовно-процессуального кодекса "
+           "Российской Федерации (УПК) в редакции на 06.08.2026. УК — Уголовный кодекс Российской Федерации; "
+           "Пленум — постановление Пленума Верховного Суда Российской Федерации; КС РФ — Конституционный Суд "
+           "Российской Федерации.",
 }
 PER_FILE = 10
 
@@ -324,6 +344,76 @@ def link_to_bookmark(par, text, name):
     par._p.append(link)
 
 
+def read_lists(code):
+    """Перечни вопросов дисциплины: [(подпись, {номер: формулировка})]."""
+    res = []
+    folder = os.path.join(ROOT, DISCIPLINES[code], "1. Примерный перечень вопросов")
+    for label, mark in LISTS.get(code, ()):
+        path = [p for p in glob.glob(os.path.join(folder, "*.txt")) if mark in os.path.basename(p)][0]
+        items, cur = {}, None
+        for line in open(path, encoding="utf-8").read().replace("\r", "").split("\n"):
+            m = re.match(r"\s*(\d+)\.\s*(.*)", line)
+            if m:
+                cur = int(m.group(1))
+                items[cur] = m.group(2).strip()
+            elif cur and line.strip():
+                items[cur] += " " + line.strip()
+        res.append((label, {k: re.sub(r"\s+", " ", v) for k, v in items.items()}))
+    return res
+
+
+def read_map(code):
+    """map.tsv: номер ответа, номера вопросов первого перечня, номера вопросов второго перечня."""
+    path = os.path.join(ROOT, ".github", "answers", code, "map.tsv")
+    res = {}
+    if not os.path.exists(path):
+        return res
+    for line in open(path, encoding="utf-8").read().split("\n"):
+        if not line.strip() or line.startswith("#"):
+            continue
+        cols = (line.split("\t") + ["", ""])[:3]
+        res[int(cols[0])] = [[int(x) for x in c.replace(" ", "").split(",") if x] for c in cols[1:]]
+    return res
+
+
+def covers(code, n):
+    """Строка под заголовком ответа: какие вопросы перечней он закрывает."""
+    mp = read_map(code).get(n)
+    if not mp:
+        return ""
+    bits = []
+    for (label, _), nums in zip(LISTS[code], mp):
+        if nums:
+            bits.append("%s — вопрос%s %s" % (label, "ы" if len(nums) > 1 else "", ", ".join(map(str, nums))))
+    return "; ".join(bits)
+
+
+def list_index(doc, code, questions):
+    """Указатели: вопрос перечня → номера ответов (со ссылками)."""
+    have = {q["n"] for q in questions}
+    mp = read_map(code)
+    for idx, (label, items) in enumerate(read_lists(code)):
+        par = doc.add_paragraph()
+        para_format(par.paragraph_format, before=14, after=10, first=0, keep=True)
+        par.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        par.add_run("Указатель: вопросы перечня «%s» и номера ответов" % label).bold = True
+        for num in sorted(items):
+            answers = [n for n in sorted(mp) if num in mp[n][idx] and n in have]
+            par = doc.add_paragraph()
+            para_format(par.paragraph_format, after=3, left=1.25, first=-1.25)
+            par.alignment = WD_ALIGN_PARAGRAPH.LEFT
+            par.paragraph_format.tab_stops.add_tab_stop(Cm(1.25))
+            add_runs(par, "%d.\t%s — " % (num, items[num].rstrip(".")))
+            if not answers:
+                add_runs(par, "ответа пока нет")
+            for k, n in enumerate(answers):
+                if k:
+                    add_runs(par, ", ")
+                link_to_bookmark(par, ("ответ %d" if len(answers) == 1 else "%d") % n if k or len(answers) == 1
+                                 else "ответы %d" % n, "q%03d" % n)
+            add_runs(par, ".")
+
+
 def contents(doc, code, questions):
     """Титульная строка и содержание общего документа: перечень вопросов со ссылками на ответы."""
     par = doc.add_paragraph()
@@ -341,9 +431,18 @@ def contents(doc, code, questions):
         title = "Ответы на вопросы %d–%d" % (nums[0], nums[-1])
     else:
         title = "Ответы на вопросы " + ", ".join(str(n) for n in nums)
+    if code in LISTS:
+        title = title.replace("Ответы на вопросы", "Ответы")
     run = par.add_run(VARIANTS[code] + ". " + title if code != "adp" else title)
     run.bold = True
     run.font.size = Pt(16)
+
+    if code in INTRO:
+        par = doc.add_paragraph()
+        para_format(par.paragraph_format, after=14, first=0)
+        add_runs(par, INTRO[code])
+        for run in par.runs:
+            run.font.size = Pt(12)
 
     par = doc.add_paragraph()
     para_format(par.paragraph_format, after=10, first=0, keep=True)
@@ -366,6 +465,9 @@ def contents(doc, code, questions):
         t2.set(qn("xml:space"), "preserve")
         t2.text = title
         tab.addnext(t2)
+
+    if code in LISTS:
+        list_index(doc, code, questions)
 
     doc.add_page_break()
 
@@ -424,11 +526,20 @@ def build(code, first, last, one=False, sample=False):
 
     for q in questions:
         head = doc.add_paragraph(style="Heading 1")
-        add_runs(head, "Вопрос %d. %s" % (q["n"], q["title"]))
+        add_runs(head, ("Ответ %d. %s" if code in LISTS else "Вопрос %d. %s") % (q["n"], q["title"]))
         if one:
             bookmark(head, "q%03d" % q["n"], q["n"])
 
-        note = abbr_note("\n".join(q["body"]))
+        cov = covers(code, q["n"]) if code in LISTS else ""
+        if cov:
+            par = doc.add_paragraph()
+            para_format(par.paragraph_format, after=10, first=0)
+            par.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            add_runs(par, "//" + cov[0].upper() + cov[1:] + "//")
+            for run in par.runs:
+                run.font.size = Pt(11)
+
+        note = abbr_note("\n".join(q["body"])) if code.startswith("adp") else ""
         if note:
             par = doc.add_paragraph()
             para_format(par.paragraph_format, after=10, first=0)
