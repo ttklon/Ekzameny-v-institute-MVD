@@ -48,7 +48,7 @@ def build(n, O):
     M = merged(n); inc = {i: s != 'R' for i, (s, l) in enumerate(M)}; txt = {i: l for i, (s, l) in enumerate(M)}; after = {}
     for f in O:
         if f[0] == '+':
-            for x in f[1].split(): assert M[int(x)][0] == 'R', 'q%03d: строка %s не вычеркнута' % (n, x); inc[int(x)] = True
+            for x in f[1].split(): inc[int(x)] = True  # для оставленной строки отменяет более раннее «-»
         elif f[0] == '-':
             for x in f[1].split(): inc[int(x)] = False
         elif f[0] == '=': inc[int(f[1])] = True; txt[int(f[1])] = f[2]
