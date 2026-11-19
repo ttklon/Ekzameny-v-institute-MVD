@@ -7,6 +7,7 @@
                             «C» есть только в нынешнем тексте (изменена или вставлена позже); в скобках число слов
   law26.py apply [N…]     — собрать ответы, для которых есть решения, записать adp2/qNNN.txt, напечатать число слов
   law26.py add            — дописать решения со стандартного ввода (поля через пробел: «N + 12 13», «N = 17 текст»)
+  law26.py sub N 'было' 'стало' — заменить фрагмент в одной строке собранного ответа (решение «=» пишется само)
   law26.py words          — число слов по всем ответам
 Решения (по одному в строке, поля через табуляцию): «N  +  номера» вернуть вычеркнутые строки; «N  -  номера» убрать строки;
 «N  =  номер  текст» заменить текст строки (вычеркнутая строка при этом возвращается); «N  >  номер  текст» вставить новую
@@ -44,7 +45,7 @@ def ops():
             if not ln.strip() or ln.startswith('#'): continue
             f = ln.split('\t'); res.setdefault(int(f[0]), []).append(f[1:])
     return res
-def build(n, O):
+def build(n, O, num=False):
     M = merged(n); inc = {i: s != 'R' for i, (s, l) in enumerate(M)}; txt = {i: l for i, (s, l) in enumerate(M)}; after = {}
     for f in O:
         if f[0] == '+':
@@ -54,11 +55,11 @@ def build(n, O):
         elif f[0] == '=': inc[int(f[1])] = True; txt[int(f[1])] = f[2]
         elif f[0] == '>': after.setdefault(int(f[1]), []).append(f[2])
         else: raise SystemExit('q%03d: неизвестное решение %s' % (n, f[0]))
-    lines = []
+    lines = []; src = []
     for i in range(len(M)):
-        if inc[i]: lines.append(txt[i])
-        lines += after.get(i, [])
-    return lines
+        if inc[i]: lines.append(txt[i]); src.append(i)
+        lines += after.get(i, []); src += [None] * len(after.get(i, []))
+    return (lines, src) if num else lines
 def wc(t): return len(t.split())
 def path(n): return os.path.join(ROOT, 'adp2', 'q%03d.txt' % n)
 def main():
@@ -88,6 +89,12 @@ def main():
                 if a[1] in '=>':
                     b = a[2].split(' ', 1); f.write('\t'.join([a[0], a[1], b[0], b[1].strip()]) + '\n')
                 else: f.write('\t'.join(a) + '\n')
+    elif cmd == 'sub':                       # law26.py sub N 'старый фрагмент' 'новый фрагмент' — правка одной строки собранного текста
+        n, a, b = int(sys.argv[2]), sys.argv[3], sys.argv[4]; lines, src = build(n, ops().get(n, []), True)
+        hit = [i for i, l in enumerate(lines) if a in l]
+        if len(hit) != 1 or src[hit[0]] is None: raise SystemExit('q%03d: фрагмент найден %d раз(а) или стоит во вставленной строке' % (n, len(hit)))
+        with open(OPS, 'a', encoding='utf-8') as f: f.write('\t'.join([str(n), '=', str(src[hit[0]]), lines[hit[0]].replace(a, b).strip()]) + '\n')
+        print('q%03d: строка %d исправлена' % (n, src[hit[0]]))
     elif cmd == 'words':
         print(sum(wc(open(path(n), encoding='utf-8').read()) for n in range(1, 150)))
     elif cmd == 'selftest':
