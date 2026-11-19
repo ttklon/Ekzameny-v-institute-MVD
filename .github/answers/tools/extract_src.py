@@ -3,7 +3,7 @@
 import sys, os, glob, re
 import pymupdf
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.join(HERE, '..', '..', '..', 'Административная деятельность полиции', '2. Источники')
+ROOT = os.path.join(HERE, '..', '..', '..', os.environ.get('SRC_DISC', 'Административная деятельность полиции'), '2. Источники')   # SRC_DISC — папка другой дисциплины
 out = sys.argv[1]; os.makedirs(out, exist_ok=True)
 dirs = ['1. Нормативные правовые акты', '2. Судебная практика', '0. Загружено пользователем']
 k = 0; empty = []

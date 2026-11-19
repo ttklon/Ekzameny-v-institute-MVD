@@ -1,6 +1,6 @@
 import sys, os, glob, hashlib, pymupdf
-ROOT = '/home/user/Ekzameny-v-institute-MVD/Административная деятельность полиции/2. Источники'
-out = '/tmp/lit'; part = int(sys.argv[1]); nparts = int(sys.argv[2])
+ROOT = '/home/user/Ekzameny-v-institute-MVD/' + os.environ.get('SRC_DISC', 'Административная деятельность полиции') + '/2. Источники'
+out = os.environ.get('LIT_OUT', '/tmp/lit'); os.makedirs(out, exist_ok=True); part = int(sys.argv[1]); nparts = int(sys.argv[2])
 fs = []
 for d in ('3. Учебная литература', '4. Научные материалы (с 2023 года)', '5. Эмпирические материалы (с 2023 года)'):
     fs += sorted(glob.glob(os.path.join(ROOT, d, '**', '*.pdf'), recursive=True))
