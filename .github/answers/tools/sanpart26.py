@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """sanpart26.py SRC ПАПКА|ФАЙЛ… — санкции КоАП РФ по частям.
 Строка ответа делится на отрезки (между «;» и точками). Числа отрезка (рубли, сутки, часы) ищутся в санкции той части статьи КоАП,
-которая названа в этом отрезке; если ссылки в отрезке нет — берётся последняя ссылка строки, затем статья из заголовка раздела.
+которая названа в этом отрезке; если ссылки в отрезке нет — берётся последняя ссылка строки, затем статья из заголовка раздела,
+из строки «Норма: ст. …» или из начала предыдущего пункта того же раздела. Ключ -v печатает отрезки, для которых статья не определена.
 Числа санкций в кодексе записаны словами («от одной тысячи пятисот») — переводятся в цифры.
 SRC — папка с текстами источников (tools/extract_src.py). Пометка не означает ошибку: суммы ущерба, пороги стоимости, срок задержания
 в 48 часов в санкции не входят — такие отрезки читаются глазами.
@@ -74,20 +75,29 @@ def plist(x):
         elif y: out.append(y)
     return out
 AMT=re.compile(r'\d[\d  ]*(?:,\d)?(?: (?:до|–|-) \d[\d  ]*)? ?(?:рубл|суток|часов)')
-REF=re.compile(r'(?:[Чч]\. ?([\d\.]+(?:(?:[–,]| и ) ?[\d\.]+)*),? )?[Сс]т\. (\d+\.\d+(?:\.\d+)?)((?:, \d+\.\d+(?:\.\d+)?)*)|[Чч]\. ?([\d\.]+(?:(?:[–,]| и ) ?[\d\.]+)*)')
+REF=re.compile(r'(?:[Чч]\. ?([\d\.]+(?:(?:[–,]| и ) ?[\d\.]+)*),? )?[Сс]т\. (\d+\.\d+(?:\.\d+)?)((?:, \d+\.\d+(?:\.\d+)?)*)|(?:[Чч]\. ?|[Чч]аст[ьи] )([\d\.]+(?:(?:[–,]| и ) ?[\d\.]+)*)')
 args=sys.argv[2:]; files=[]
+args=[a for a in args if a!='-v']
 for a in args: files+= sorted(glob.glob(a+'/*.txt')) if os.path.isdir(a) else [a]
-tot=bad=0
+tot=bad=noref=0
 for f in files:
-    head=None; q=os.path.basename(f)[:-4]
+    head=None; carry=None; q=os.path.basename(f)[:-4]
     for i,l in enumerate(open(f,encoding='utf-8').read().split('\n'),1):
         if l.startswith('#'):
             m=re.search(r'[Сс]т(?:атья|\.) (\d+\.\d+(?:\.\d+)?)',l)
             if m: head=m.group(1)
             elif l.startswith('## ') or l.startswith('# '): head=None
+            carry=None
             continue
-        if not AMT.search(l): continue
-        last=None; lastart=head
+        m=re.match(r'- \*\*Норма:?\*\*:? /*[Сс]т\. (\d+\.\d+(?:\.\d+)?)',l)
+        if m: head=m.group(1); continue
+        if not AMT.search(l):
+            lead=re.match(r'[-\d. ]*\*\*(?://)?(?:[Чч]\. ?[\d\., –и]+ )?[Сс]т\. (\d+\.\d+(?:\.\d+)?)',l)
+            if lead: carry=lead.group(1)
+            continue
+        last=None; lastart=head or carry
+        lead=re.match(r'[-\d. ]*\*\*(?://)?(?:[Чч]\. ?[\d\., –и]+ )?[Сс]т\. (\d+\.\d+(?:\.\d+)?)',l)
+        if lead: carry=lead.group(1); lastart=carry
         for cl in re.split(r'(?<=[;.]) (?=[\*/А-Яа-я«(])',l):
             cl0=cl; refs=[]
             for m in REF.finditer(cl):
@@ -103,7 +113,10 @@ for f in files:
             if refs: last=refs
             if not am: continue
             use=refs or last or ([(head,None)] if head else None)
-            if not use: continue
+            if not use:
+                noref+=1
+                if '-v' in sys.argv: print('без ссылки %s:%d %s'%(q,i,cl0[:200]))
+                continue
             st=''
             for a,ps in use:
                 d=P(a)
@@ -118,4 +131,4 @@ for f in files:
             print('%s:%d [%s] нет: %s'%(q,i,'; '.join('%s ст. %s'%(','.join(ps) if ps else '—',a) for a,ps in use)[:70],' '.join(miss)))
             print('    '+cl0[:300])
             print('    => '+conv(st)[:260].replace('наложение административного штрафа','штраф'))
-print('отрезков с суммой или сроком: %d, с ненайденным числом: %d'%(tot,bad))
+print('отрезков с суммой или сроком: %d, с ненайденным числом: %d, без ссылки на КоАП: %d'%(tot,bad,noref))
