@@ -31,16 +31,13 @@ def need_ocr(p, t):
     s = re.sub(r'\s', '', t)
     if len(s) < 40: return bool(p.get_images()) or len(p.get_drawings()) > 20
     return len(BAD.findall(s)) / len(s) > 0.03
-def words(t):
-    # число «настоящих» слов: в мусоре от перевёрнутой страницы строчных слов из 4 и более букв почти нет
-    return len(re.findall(r'(?<![А-Яа-яЁёA-Za-z])(?:[а-яё]{4,}|[a-z]{4,})(?![А-Яа-яЁёA-Za-z])', t))
 def ocr(p):
     img = Image.open(io.BytesIO(p.get_pixmap(dpi=300).tobytes('png')))
-    API.SetImage(img); best = API.GetUTF8Text()
-    if words(best) < len(best) / 25:  # похоже на страницу, набранную боком (альбомные таблицы): пробуем повернуть
+    API.SetImage(img); best = API.GetUTF8Text(); conf = API.MeanTextConf()
+    if conf < 75:  # низкая уверенность — возможно, страница набрана боком (альбомная таблица): пробуем повернуть
         for a in (90, 270):
-            API.SetImage(img.rotate(a, expand=True)); t = API.GetUTF8Text()
-            if words(t) > 2 * words(best) + 5: best = t
+            API.SetImage(img.rotate(a, expand=True)); t = API.GetUTF8Text(); c = API.MeanTextConf()
+            if c > conf + 5: best, conf = t, c
     return best
 def printed(t):
     ls = [l.strip() for l in t.split('\n') if l.strip()]
