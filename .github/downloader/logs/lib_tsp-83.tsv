@@ -1,0 +1,3 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-16 09:54:05	get	http://vii.sfu-kras.ru/images/pdf/u26_obshhaya-taktika.pdf	.work/d5/tsp/lib/sx000001.pdf	ok	200	10342219	application/pdf	3d8d0d8e03350138b74a3ccb15d07f24369ae703fa12d3fd9532f94bbcedb842
+2026-11-16 09:54:09	get	https://fs.guap.ru/uvc/meth/2_2_3.pdf	.work/d5/tsp/lib/sx000002.pdf	ok	200	7215045	application/pdf	7c7e22c9d0375ebf5f7bd04c20ebdb0c232c8ba030c7ab4482fc616c38f22cc2

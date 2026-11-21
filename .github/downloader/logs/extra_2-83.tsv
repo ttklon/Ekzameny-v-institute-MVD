@@ -1,0 +1,6 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-16 10:03:59	consauto	https://www.consultant.ru/document/cons_doc_LAW_508618/	.work/d5/pl/20250624_10.pdf	ошибка: curl: (56) Recv failure: Connection reset by peer	200	0	text/html; charset=UTF-8	
+2026-11-16 10:15:31	consauto	https://www.consultant.ru/document/cons_doc_LAW_479580/	.work/d5/pl/20240625_18.pdf	ошибка: curl: (28) Operation timed out after 150001 milliseconds with 15839 bytes received curl: (56) Recv failure: Connection reset by peer	200	0	text/html; charset=UTF-8	
+2026-11-16 10:23:42	consauto	https://www.consultant.ru/document/cons_doc_LAW_465014/	.work/d5/pl/20231219_47.pdf	ошибка: curl: (28) Operation timed out after 150001 milliseconds with 15833 bytes received curl: (28) Operation timed out after 150000 milliseconds with 32231 bytes received	200	0	text/html; charset=UTF-8	
+2026-11-16 10:32:47	consauto	https://www.consultant.ru/document/cons_doc_LAW_522783/	.work/d5/pl/20251223_39.pdf	ошибка: curl: (56) Recv failure: Connection reset by peer	200	0	text/html; charset=UTF-8	
+2026-11-16 10:32:51	get	http://vii.sfu-kras.ru/12-ob-institute/180-uchebno-metodicheskaya-i-nauchnaya-literatura-vii	.work/d5/alt/vii_sfu.html	ok	200	89450	text/html; charset=utf-8	1721c78ffed66d19cddd1ad9f3dc804fed4bfd9c2c3c15a0aaf5ab54c7834e7c

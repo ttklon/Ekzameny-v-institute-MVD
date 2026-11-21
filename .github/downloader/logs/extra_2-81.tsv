@@ -1,0 +1,6 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-16 00:15:48	consqlist	.github/downloader/d5/cons_q8.txt	.github/downloader/d5/cons_q8.tsv	ok	200	45627	text/tab-separated-values; запросов с ответом: 13 из 13	a7e9acede3d59c86fcc50a44191cfcc8e2ef3e2be6144a2db1d12bca70a0eb8c
+2026-11-16 00:16:13	crawllist	.github/downloader/d5/lib_crawl2.txt	.github/downloader/d5/lib_roots.tsv	ok	200	56528	каталогов в списке с ошибкой: 0	98d503468cf06bbcfd3a3aa4d2f0dbbb4daf073c1ac648d435545fd22f4ad373
+2026-11-16 00:17:58	cybersearch	.github/downloader/d5/cyber_q_x3.txt	.github/downloader/d5/cyber_x3.tsv	ok	200	1315705	запросов выполнено: 37 из 37	06533b6fee8d77f7cd1167dee5afa101558352a518c979e46724ac04d3ba1f08
+2026-11-16 00:18:03	get	https://vsrf.ru/documents/own/?category=resolutions_plenum_supreme_court_russian&year=2026	.work/d5/vsrf/pl2026.html	ошибка: HTTP 404	404	0	text/html; charset=utf-8	
+2026-11-16 00:18:08	get	https://vsrf.ru/documents/own/?category=resolutions_plenum_supreme_court_russian&year=2025	.work/d5/vsrf/pl2025.html	ошибка: HTTP 404	404	0	text/html; charset=utf-8	

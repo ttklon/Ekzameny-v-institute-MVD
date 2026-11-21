@@ -1,0 +1,2 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-15 17:19:39	ipsact	http://ips.pravo.gov.ru/api/ips/legislation/document?bpa=c000000000&nd=1000000000102939088&rdk=1&target_format=html	.work/d5/acts/u787.pdf	ok	200	100856	application/pdf; --headless=new; html sha256=0666b59e47cdce45a417190f6d8fdb2a2e3e5937dbde4fe786cd2e506dfb64ee; Указ Президента Российской Федерации от 14.12.2020 № 787; Действует с изменениями	49aa02d98171f20270db091bb502b980fb1f7544d33272e38101402d75cb455c
