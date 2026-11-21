@@ -11,6 +11,10 @@
 схемы, отсканированные издания). Такие страницы программа распознаёт заново с изображения, если установлены
 tesserocr и pillow, а в переменной TESSDATA указана папка с rus.traineddata и eng.traineddata (без этого страницы
 остаются как есть, а их число печатается в конце). Список распознанных страниц — OUT/_ocr.tsv.
+
+Перекодировка. В статьях журнала «Закон и право» основной текст извлекается как «Òàêòèêà îñìîòðà» (русские буквы
+кодировки Windows-1251 прочитаны как западноевропейские). Если таких букв на странице больше 15 %, программа
+возвращает им русское значение — распознавание для этого не нужно.
 """
 import sys, os, glob, re, hashlib, html as _h
 import pymupdf
@@ -27,6 +31,11 @@ try:
     if os.environ.get('TESSDATA'): API = tesserocr.PyTessBaseAPI(path=os.environ['TESSDATA'], lang='rus+eng')
 except Exception as e:
     API = None
+MOJ = re.compile('[\u00c0-\u00ff]')
+MAP = {c: c + 0x350 for c in range(0xc0, 0x100)}; MAP.update({0xa8: 'Ё', 0xb8: 'ё', 0xb9: '№'})
+def recode(t):
+    s = re.sub(r'\s', '', t)
+    return t.translate(MAP) if s and len(MOJ.findall(s)) / len(s) > 0.15 else t
 def need_ocr(p, t):
     s = re.sub(r'\s', '', t)
     if len(s) < 40: return bool(p.get_images()) or len(p.get_drawings()) > 20
@@ -56,7 +65,7 @@ for f in sorted(glob.glob(os.path.join(ROOT, '**', '*'), recursive=True)):
         try:
             doc = pymupdf.open(f); parts = []
             for i, p in enumerate(doc, 1):
-                t = p.get_text()
+                t = recode(p.get_text())
                 if need_ocr(p, t):
                     if API:
                         t = ocr(p); ocr_rows.append('%s\t%d\t%d' % (name, i, len(t)))
