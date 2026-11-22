@@ -227,9 +227,10 @@ def codes_for(n):
         m = re.search(r"q(\d+)-(\d+)\.md", f)
         if int(m.group(1)) <= n <= int(m.group(2)):
             for l in open(f, encoding="utf-8"):
-                mm = re.match(r"\| ?`?([0-9a-f]{6})`? ?\|", l)
-                if mm and mm.group(1) not in out:
-                    out.append(mm.group(1))
+                mm = re.match(r"\|([^|]*)\|", l)
+                for c in (re.findall(r"\b[0-9a-f]{6}\b", mm.group(1)) if mm else ()):
+                    if c not in out:
+                        out.append(c)
     return out
 
 
