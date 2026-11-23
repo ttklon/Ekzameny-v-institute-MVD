@@ -42,6 +42,7 @@ def raw(c):
             t = open(glob.glob(os.path.join(SRC, c + '*'))[0], encoding='utf-8', errors='replace').read()
         t = t.replace('\xa0', ' ').replace('\u00ad', '')
         t = re.sub(r'\n@@ \d+ \|[^\n]*\nСтр\. \d+ из \d+\n', '\n', t)
+        t = re.sub(r'(?m)^([ \t]*Статья \d+) (\d+) \.', r'\1.\2.', t)   # надстрочный номер в тексте из HTML: «Статья 19 1 .» — это 19.1
         _raw[c] = t
     return _raw[c]
 
@@ -249,6 +250,8 @@ def show(label, text):
 
 def norm(code, art, ps, pts, lt, q=''):
     a = article(code, art)
+    if a is None and KOD.get('КоАП') and code != KOD['КоАП'] and re.fullmatch(r'\d+\.\d+(\.\d+)?', art) and article(KOD['КоАП'], art):
+        code = KOD['КоАП']; a = article(code, art); q = q + '?'      # «статья 5.28 этого кодекса»: такой статьи в названном акте нет, а в КоАП есть
     name = q + (IDX.get(code, 'Конституция')[:28] if code != KOD[MAIN] else '')
     if a is None:
         show('ст. %s %s' % (art, name), '[нет статьи]'); return
@@ -356,6 +359,24 @@ for m in re.finditer(r'(?:от \d{1,2} [а-я]+ \d{4} года |от \d\d\.\d\d\
     c = by_number(m.group(0))
     num = re.search(r'№ ?([\dА-Яа-ян./-]+)', m.group(0)).group(1).rstrip('.,')
     if c: FULL.setdefault(num, c)
+# все акты с датой и номером, названные в ответе, по порядку: запасной адрес для «пункт 5» без названия акта
+ACTS = []
+for m in re.finditer(r'(?i)(?:постановлени\w+|приказ\w*|указ\w*|Положени\w+|Правил\w*)[^.;№]{0,160}?от (?:\d\d\.\d\d\.\d{4}|\d{1,2} [а-я]+ \d{4} года) № ?[\dА-Яа-я/-]+', text):
+    c = by_number(m.group(0))
+    if c and c not in ACTS: ACTS.append(c)
+
+
+def fallback(rest):
+    kw = 'Положени' if 'Положени' in rest else 'Правил' if 'Правил' in rest else 'Пленум' if 'Пленум' in rest else None
+    if kw:
+        for c in ACTS:
+            if kw in IDX[c] or kw in raw(c)[:1500]: return c
+        return None
+    for c in ACTS:
+        if 'Пленум' in IDX[c]: return c
+    return ACTS[0] if ACTS else None
+
+
 FIRST_LAW = None
 m = re.search(r'(?:Федеральн\w+ (?:конституционн\w+ )?закон\w*|Закон\w* Российской Федерации)[^№\n]{0,90}№ ?[\dА-Яа-я./-]+', text)
 if m: FIRST_LAW = by_number(m.group(0))
@@ -368,6 +389,7 @@ def act(fragment, last):
         if key and re.search(pat, fragment):
             return (KOD.get(key, key) if key != 'ГК' else 'ГК'), ''
     if re.search(r'того же|этого (закона|кодекса)|названного', fragment):
+        if 'закон' in fragment and (not last or last in KOD.values()) and FIRST_LAW: return FIRST_LAW, '?'
         return last, '?'
     if '№' in fragment:
         c = by_number(fragment)
@@ -375,13 +397,16 @@ def act(fragment, last):
             num = re.search(r'№ ?([\dА-Яа-ян./-]+)', fragment).group(1).rstrip('.,')
             c = FULL.get(num)
         return c, '' if c else ''
-    if re.search(r'\bЗакона\b', fragment):
+    if re.search(r'\b[Зз]акона\b', fragment):
         return (last if last and last not in KOD.values() else FIRST_LAW), '?'
-    return KOD[MAIN], ''
+    return DEF, ''
 
+
+# «Далее статьи указаны по этому закону»: голая «статья N» в таком ответе — статья первого названного закона
+DEF = FIRST_LAW if FIRST_LAW and re.search(r'[Дд]алее[^.\n]{0,30}статьи указаны по этому закону', text) else KOD[MAIN]
 
 lines = text.split('\n')
-last_act = KOD[MAIN]; last_post = None; npar = 0; CTX = None; CTXN = []
+last_act = KOD[MAIN]; last_post = None; npar = 0; CTX = None; CTXN = []; PCTX = []
 for ln, l in enumerate(lines, 1):
     if not l.strip(): continue
     npar += 1
@@ -401,14 +426,14 @@ for ln, l in enumerate(lines, 1):
                                      'АПК': 'Арбитражного процессуального', 'КАС': 'административного судопроизводства',
                                      'КоАП': 'административных правонарушениях'}.get(max(hit)[1], '')
         groups.append(g_)
-    had = False; NOWN = []
+    had = False; NOWN = []; PN = []
     bare = re.sub(r'\((?:[^()]|\([^()]*\))*\)', ' ', l)        # акт назван в тексте строки, пункты — в скобках ниже
-    for m_ in re.finditer(r'(?:постановлени\w+|приказ\w*)[^.;]{0,90}?от \d\d\.\d\d\.\d{4} № ?[\dА-Яа-я/-]+', bare):
+    for m_ in re.finditer(r'(?i)(?:постановлени\w+|приказ\w*)[^.;]{0,90}?от (?:\d\d\.\d\d\.\d{4}|\d{1,2} [а-я]+ \d{4} года) № ?[\dА-Яа-я/-]+', bare):
         c_ = by_number(m_.group(0))
         if c_: last_post = c_
     m0 = re.match(r'Стать[яи] ([\d., –и]+)\.$', l.strip())
     if m0:
-        for a_ in nums(m0.group(1)): NOWN.append((KOD[MAIN], a_, [], []))
+        for a_ in nums(m0.group(1)): NOWN.append((DEF, a_, [], []))
         had = True
     if l.rstrip().endswith(':') and not re.search(r'\([^()]*стат', l):
         for m in re.finditer(r'стать(?:е|и|ёй|ей|ью|я) (\d+(?:\.\d+)?)([^,;:(]{0,80})', l):
@@ -451,14 +476,22 @@ for ln, l in enumerate(lines, 1):
             else:
                 c, q = last_post, '?'
             if not c:
+                c = fallback(rest)
+                if c: q = '??'                     # акт взят по догадке: первый подходящий из названных в ответе
+            if not c:
                 print('     · %s: [акт?]' % m.group(0)[:70]); continue
             last_post = c
             for p in nums(m.group('pt')):
-                show('%sп. %s %s' % (q, p, IDX[c][:34]), punkt(c, p, lt))
+                PN.append((c, p)); show('%sп. %s %s' % (q, p, IDX[c][:34]), punkt(c, p, lt))
     if NOWN and (l.rstrip().endswith(':') or re.match(r'Стать[яи] [\d., –и]+\.$', l.strip())):
         CTXN = NOWN                                 # вводная строка со ссылкой: пункты под ней читаются по той же норме
     elif NOWN or not re.match(r'(- |\d+\. )', l):
         if not re.match(r'(- |\d+\. )', l): CTXN = []
+    if PN and l.rstrip().endswith(':'): PCTX = PN        # вводная строка со ссылкой на пункт постановления: пункты списка читаются по нему
+    elif not re.match(r'(- |\d+\. )', l): PCTX = []
+    if not had and PCTX and re.match(r'(- |\d+\. )', l):
+        for c_, p_ in PCTX: show('↳п. %s %s' % (p_, IDX[c_][:34]), punkt(c_, p_, lt))
+        had = True
     weak = False
     if not had and CTXN and re.match(r'(- |\d+\. )', l):
         for code_, a_, ps_, pts_ in CTXN: norm(code_, a_, ps_, pts_, lt, '↳')
