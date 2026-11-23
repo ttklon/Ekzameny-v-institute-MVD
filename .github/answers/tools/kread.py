@@ -440,6 +440,10 @@ for ln, l in enumerate(lines, 1):
             rest = m.group('rest'); had = True
             if '№' in rest or re.search(r'постановлени|приказ|Положени|Правил|Обзор|Устав', rest):
                 c = by_number(rest) if '№' in rest else None
+                mnum = re.search(r'№ ?([\dА-Яа-ян./-]+)', rest)
+                if mnum and last_post and not re.search(r'от \d', rest) and \
+                        re.search(r'№ ?%s(?![\dА-Яа-я-])' % re.escape(mnum.group(1).rstrip('.,')), IDX[last_post]):
+                    c = last_post                  # «постановление № 15» — краткая ссылка на акт, уже названный в ответе с датой
                 if not c and '№' in rest:
                     num = re.search(r'№ ?([\dА-Яа-ян./-]+)', rest).group(1).rstrip('.,'); c = FULL.get(num)
                 if not c and re.search(r'того же|Положени|Правил|Обзор|Устав', rest): c = last_post
