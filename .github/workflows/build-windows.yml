@@ -1,0 +1,97 @@
+name: Сборка Windows-приложения
+
+on:
+  push:
+    branches:
+      - main
+      - "arena/**"
+    paths:
+      - "app/**"
+      - ".github/workflows/build-windows.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-windows-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Проверки
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Установка зависимостей
+        run: npm install --no-audit --no-fund
+        env:
+          ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
+
+      - name: Проверки ядра и интерфейса
+        run: npm test
+
+  build:
+    name: Сборка .exe
+    needs: test
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Установка зависимостей
+        run: npm install --no-audit --no-fund
+
+      - name: Сборка установщика и portable-версии
+        run: npm run dist:win
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+
+      - name: Список собранных файлов
+        shell: pwsh
+        run: Get-ChildItem dist | Format-Table Name, Length
+
+      - name: Загрузить .exe в релиз
+        uses: ncipollo/release-action@v1
+        with:
+          tag: app-latest
+          name: Облачный планировщик экзаменов — последняя сборка
+          body: |
+            Готовое приложение для Windows 11 (x64).
+
+            **Что скачать:**
+            - `CloudExamPlanner-1.0.0-x64.exe` — установщик (ярлык в меню «Пуск» и на рабочем столе).
+            - `CloudExamPlanner-1.0.0-portable.exe` — портативная версия, работает без установки.
+
+            Файлы с вопросами и ответами в сборку не входят — добавьте их в программе
+            кнопкой «Добавить файл» или перетаскиванием в окно.
+          artifacts: "app/dist/*.exe"
+          allowUpdates: true
+          removeArtifacts: true
+          replacesArtifacts: true
+          omitBodyDuringUpdate: true
+          omitNameDuringUpdate: true
+
+      - name: Сохранить сборку в артефактах
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-build
+          path: app/dist/*.exe
+          retention-days: 14

@@ -1,0 +1,83 @@
+{
+  "name": "cloud-exam-planner",
+  "productName": "Облачный планировщик экзаменов",
+  "version": "1.0.0",
+  "description": "Планировщик подготовки к экзаменам: импорт файлов «вопрос — ответ», подсчёт объёма и времени чтения, распределение по дням, повторения по расширяющимся интервалам, отметки прочитанного и пересчёт плана.",
+  "main": "main.js",
+  "author": {
+    "name": "Arena",
+    "email": "noreply@arena.ai"
+  },
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "test": "node test/run.js",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win --x64",
+    "pack": "electron-builder --dir"
+  },
+  "dependencies": {
+    "iconv-lite": "0.6.3",
+    "jszip": "3.10.1",
+    "pdfjs-dist": "^4.8.69"
+  },
+  "devDependencies": {
+    "electron": "33.4.11",
+    "electron-builder": "25.1.8",
+    "jsdom": "24.1.3"
+  },
+  "build": {
+    "appId": "ru.arena.cloudplanner",
+    "productName": "Облачный планировщик экзаменов",
+    "copyright": "© 2026",
+    "asar": true,
+    "compression": "maximum",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "renderer/**/*",
+      "!**/*.map"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "CloudExamPlanner-${version}-${arch}.${ext}",
+      "icon": "build/icon.ico",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Облачный планировщик экзаменов",
+      "installerLanguages": [
+        "ru_RU"
+      ],
+      "language": "1033",
+      "deleteAppDataOnUninstall": false
+    },
+    "portable": {
+      "artifactName": "CloudExamPlanner-${version}-portable.${ext}"
+    }
+  }
+}

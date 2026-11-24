@@ -1,0 +1,14 @@
+# Зависимости и сборка
+node_modules/
+dist/
+out/
+
+# Служебное
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Локальные данные приложения (не в репозитории)
+library.json
+library.json.bak
