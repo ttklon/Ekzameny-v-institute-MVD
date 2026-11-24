@@ -421,6 +421,36 @@ async function run() {
     win.Store.state.ui.settingsAdvanced = false;
   });
 
+  check("своя скорость дисциплины меняет время сразу после ползунка", () => {
+    win.App.go("discipline", { id: disc.id });
+    win.Views.setDiscTab("settings");
+    win.App.refresh();
+    const view = win.document.getElementById("view");
+    const slider = view.querySelector(".speed-slider");
+    if (!slider) throw new Error("нет ползунка скорости на вкладке дисциплины");
+    const before = win.Views.plan().perDisc[disc.id].stats.minutesTotal;
+    // Замедляемся вдвое — время должно вырасти.
+    slider.value = "75";
+    slider.dispatchEvent(new win.Event("input", { bubbles: true }));
+    const saved = win.Store.getDiscipline(disc.id).reading;
+    if (!saved || saved.wordsPerMinute !== 75) {
+      throw new Error("скорость не сохранилась: " + JSON.stringify(saved));
+    }
+    const after = win.Views.plan().perDisc[disc.id].stats.minutesTotal;
+    if (!(after > before * 1.5)) {
+      throw new Error("время не пересчиталось: " + before.toFixed(1) + " → " + after.toFixed(1) +
+        " (кэш плана не учитывает свою скорость)");
+    }
+    // Возврат к общей скорости.
+    delete win.Store.getDiscipline(disc.id).reading;
+    win.Store.save();
+    const back = win.Views.plan().perDisc[disc.id].stats.minutesTotal;
+    if (Math.abs(back - before) > 0.5) {
+      throw new Error("после возврата к общей скорость время не вернулось: " + back.toFixed(1) + " vs " + before.toFixed(1));
+    }
+    win.Views.setDiscTab("plan");
+  });
+
   // Импорт через окно (диалог подменён на пустой список).
   win.App.openImport();
   await tick(60);

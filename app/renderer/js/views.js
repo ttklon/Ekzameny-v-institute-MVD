@@ -56,6 +56,8 @@
             ":" +
             JSON.stringify(d.reads) +
             ":" +
+            JSON.stringify(d.reading || null) +
+            ":" +
             (d.questions ? d.questions.length : 0) +
             ":" +
             volumeStamp(d)
