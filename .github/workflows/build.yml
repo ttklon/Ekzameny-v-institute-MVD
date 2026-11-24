@@ -34,7 +34,13 @@ jobs:
         run: npm test
 
       - name: Build NSIS installer (ExamPlanner-Setup.exe)
-        run: npm run dist:win
+        shell: pwsh
+        run: |
+          npm run dist:win 2>&1 | Tee-Object -FilePath build-log.txt
+          if ($LASTEXITCODE -ne 0) {
+            Get-Content build-log.txt -Tail 20 | ForEach-Object { Write-Output "::error::$_" }
+            exit 1
+          }
 
       - name: Build portable exe (ExamPlanner-Portable.exe)
         run: npx electron-builder --win portable -c.artifactName="ExamPlanner-Portable.${ext}"
