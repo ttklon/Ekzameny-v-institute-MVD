@@ -233,7 +233,12 @@ function createUpdater(opts) {
       const publishedAt = Date.parse(rel.published_at || rel.created_at || "") || 0;
       const assetAt = setup ? Date.parse(setup.updated_at || setup.created_at || "") || 0 : 0;
       const stamp = rel.body || "";
-      const buildMatch = stamp.match(/сборка\s+(\d{4}-\d{2}-\d{2})\s*\/\s*([0-9a-f]{7,40})/i);
+      // В описании пишем «Сборка: 2026-11-24 / 22d51ea» — двоеточие
+      // необязательно, иначе номер сборки не находился и обновление
+      // предлагалось даже на ту же самую версию.
+      const buildMatch = stamp.match(
+        /сборка\s*[:\-—]?\s*(\d{4}-\d{2}-\d{2})\s*\/\s*([0-9a-f]{7,40})/i
+      );
       const remoteBuild = buildMatch ? buildMatch[1] + " / " + buildMatch[2].slice(0, 7) : "";
       const newer = isNewer({
         remoteVersion: String(rel.tag_name || "").includes("exam-planner")
