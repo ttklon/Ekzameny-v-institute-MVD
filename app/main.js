@@ -336,13 +336,25 @@ function registerIpc() {
     return { ok: false };
   });
 
-  ipcMain.handle("app:info", async () => ({
-    version: app.getVersion(),
-    platform: process.platform,
-    electron: process.versions.electron,
-    chrome: process.versions.chrome,
-    dataDir: store.paths.baseDir
-  }));
+  ipcMain.handle("app:info", async () => {
+    // Номер сборки: версия + дата + короткий коммит. Без него две сборки
+    // «1.0.0» неотличимы, и легко открыть старую.
+    let build = "";
+    try {
+      // Штамп дописывает сборка (см. workflow). require работает и внутри asar.
+      build = require("./package.json").buildStamp || "";
+    } catch (e) {
+      /* номер сборки не критичен */
+    }
+    return {
+      version: app.getVersion(),
+      build: build,
+      platform: process.platform,
+      electron: process.versions.electron,
+      chrome: process.versions.chrome,
+      dataDir: store.paths.baseDir
+    };
+  });
 
   ipcMain.handle("app:openDataDir", async () => {
     shell.openPath(store.paths.baseDir);

@@ -58,6 +58,17 @@ jobs:
       - name: Установка зависимостей
         run: npm install --no-audit --no-fund
 
+      - name: Штамп сборки (дата и коммит)
+        shell: pwsh
+        run: |
+          # Дата и короткий коммит попадают в приложение, чтобы старую сборку
+          # можно было отличить от новой прямо в «Настройках».
+          $stamp = "${{ github.run_id }}-${{ github.sha }}"
+          $short = "${{ github.sha }}".Substring(0,7)
+          $date = (Get-Date).ToUniversalTime().ToString("yyyy-MM-dd")
+          node -e "const f='package.json';const p=require('./'+f);p.buildStamp='$date / '+process.argv[1];require('fs').writeFileSync(f, JSON.stringify(p,null,2)+'\n')" $short
+          Get-Content package.json | Select-String buildStamp
+
       - name: Сборка установщика
         shell: pwsh
         run: |
@@ -112,6 +123,9 @@ jobs:
           replacesArtifacts: true
           omitBodyDuringUpdate: true
           omitNameDuringUpdate: true
+          # Этот релиз должен быть главным: иначе GitHub показывает первым
+          # старую сборку с другой ветки, и легко скачать не то.
+          makeLatest: true
 
       - name: Сохранить сборку в артефактах
         uses: actions/upload-artifact@v4

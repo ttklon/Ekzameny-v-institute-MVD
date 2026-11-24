@@ -2233,7 +2233,7 @@
             UI.button("Открыть папку", { size: "sm", kind: "ghost", icon: "folder", onClick: () => root.App.openDataDir() })
           ])),
         settingsRow("Занято на диске", "Библиотека и копии добавленных файлов.", h("span.mono", { id: "storageInfo" }, "…")),
-        settingsRow("Версия", "", h("span.mono", { id: "versionInfo" }, "…"))
+        settingsRow("Версия и сборка", "По дате сборки видно, свежая ли у вас версия.", h("span.mono", { id: "versionInfo" }, "…"))
       ])
     );
     wrap.appendChild(data);
@@ -2243,7 +2243,12 @@
         if (root.api && root.api.info) {
           const info = await root.api.info();
           const v = document.getElementById("versionInfo");
-          if (v) v.textContent = info.version + (info.electron ? " · Electron " + info.electron : "");
+          if (v) {
+            const parts = [info.version];
+            if (info.build) parts.push("сборка " + info.build);
+            else if (info.electron) parts.push("Electron " + info.electron);
+            v.textContent = parts.join(" · ");
+          }
         }
         if (root.api && root.api.storageStats) {
           const st = await root.api.storageStats();

@@ -43,6 +43,19 @@ const library = {
   ui: { view: "today" }
 };
 
+console.log("\nСборка и версия");
+
+test("номер сборки попадает в package.json и читается приложением", () => {
+  // Так сборка помечает себя: дата и короткий коммит. По ним видно, свежая ли
+  // у пользователя версия. Если штамп потеряется, приложение покажет «1.0.0».
+  const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "package.json"), "utf8"));
+  assert.ok(pkg.version, "нет версии в package.json");
+  if (pkg.buildStamp) {
+    assert.ok(/\d{4}-\d{2}-\d{2}/.test(pkg.buildStamp), "в штампе нет даты: " + pkg.buildStamp);
+    assert.ok(/[0-9a-f]{7}/.test(pkg.buildStamp), "в штампе нет коммита: " + pkg.buildStamp);
+  }
+});
+
 console.log("\nХранилище");
 
 test("сначала библиотеки нет — это не ошибка", () => {
