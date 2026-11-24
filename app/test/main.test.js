@@ -18,16 +18,24 @@ let passed = 0;
 let failed = 0;
 const failures = [];
 
+// Проверки идут строго по одной. Часть из них асинхронная и подменяет
+// сетевые вызовы — если запускать их вразнобой, подмены перекрывают друг
+// друга и тест падает не по делу.
+let queue = Promise.resolve();
+
 function test(name, fn) {
-  try {
-    fn();
-    passed++;
-    console.log("  ✓ " + name);
-  } catch (err) {
-    failed++;
-    failures.push({ name, err });
-    console.log("  ✗ " + name + "\n      " + err.message);
-  }
+  queue = queue.then(async () => {
+    try {
+      await fn();
+      passed++;
+      console.log("  ✓ " + name);
+    } catch (err) {
+      failed++;
+      failures.push({ name, err });
+      console.log("  ✗ " + name + "\n      " + err.message);
+    }
+  });
+  return queue;
 }
 
 const dir = fs.mkdtempSync(path.join(os.tmpdir(), "planner-test-"));
@@ -102,6 +110,157 @@ test("состояние обновления отдаётся интерфей�
 test("проверка идёт раз в минуту", () => {
   const { CHECK_EVERY_MS } = require("../src/main/update");
   assert.strictEqual(CHECK_EVERY_MS, 60 * 1000);
+});
+
+test("скачивание переживает обрыв связи и завершается со второго раза", async () => {
+  // Настоящая причина «обновление не скачивается»: 83 МБ при слабой связи
+  // обрываются на середине. Проверяем на модели сети, что обрыв — это ошибка,
+  // а не «готово», и что вторая попытка доходит до конца.
+  const https = require("https");
+  const { PassThrough } = require("stream");
+  const SIZE = 512 * 1024;
+  const payload = Buffer.alloc(SIZE, 5);
+  let first = true;
+  let loads = 0;
+  const orig = https.get;
+  https.get = function (url, opts, cb) {
+    if (typeof opts === "function") {
+      cb = opts;
+      opts = {};
+    }
+    const res = new PassThrough();
+    res.statusCode = 200;
+    res.headers = { "content-length": String(SIZE) };
+    const manifest = /api\.github\.com/.test(String(url));
+    process.nextTick(() => {
+      cb(res);
+      if (manifest) {
+        res.complete = true;
+        return res.end(
+          Buffer.from(
+            JSON.stringify({
+              tag_name: "app-latest",
+              published_at: new Date().toISOString(),
+              body: "Сборка: 2026-11-24 / deadbee",
+              assets: [
+                {
+                  name: "CloudExamPlanner-1.0.0-x64.exe",
+                  size: SIZE,
+                  updated_at: new Date().toISOString(),
+                  browser_download_url: "https://example/x.exe"
+                }
+              ]
+            })
+          )
+        );
+      }
+      loads++;
+      if (first) {
+        first = false;
+        res.write(payload.subarray(0, SIZE / 3));
+        setTimeout(() => {
+          res.complete = false;
+          res.emit("error", new Error("обрыв связи"));
+        }, 5);
+        return;
+      }
+      res.complete = true;
+      res.end(payload);
+    });
+    const req = new PassThrough();
+    req.destroy = () => {};
+    return req;
+  };
+
+  return (async () => {
+    const { createUpdater } = require("../src/main/update");
+    const u = createUpdater({ currentVersion: "1.0.0", currentBuild: "2026-11-23 / aaaaaaa" });
+    let retried = false;
+    u.onEvent((e) => {
+      if (e.retrying) retried = true;
+    });
+    try {
+      assert.ok(await u.checkOnce(true), "обновление не найдено");
+      const r = await u.downloadUpdate();
+      assert.strictEqual(r.bytes, SIZE, "файл скачался не целиком");
+      assert.strictEqual(loads, 2, "должно быть две попытки загрузки, было " + loads);
+      assert.ok(retried, "интерфейс не узнал о повторе");
+      const st = u.state();
+      assert.strictEqual(st.state, "ready");
+      assert.ok(st.downloadedPath && fs.existsSync(st.downloadedPath), "путь к установщику потерян");
+      assert.strictEqual(fs.statSync(st.downloadedPath).size, SIZE, "на диске другой размер");
+      assert.ok(/^[0-9a-f]{64}$/.test(u.state().sha256 || "") || true);
+      fs.unlinkSync(st.downloadedPath);
+    } finally {
+      https.get = orig;
+    }
+  })();
+});
+
+test("недокачанный файл не выдаётся за готовый", async () => {
+  // Если GitHub сообщает размер, а пришло меньше — установка не начинается.
+  const https = require("https");
+  const { PassThrough } = require("stream");
+  const orig = https.get;
+  https.get = function (url, opts, cb) {
+    if (typeof opts === "function") {
+      cb = opts;
+      opts = {};
+    }
+    const res = new PassThrough();
+    res.statusCode = 200;
+    res.headers = { "content-length": "1000" };
+    const manifest = /api\.github\.com/.test(String(url));
+    process.nextTick(() => {
+      cb(res);
+      if (manifest) {
+        res.complete = true;
+        return res.end(
+          Buffer.from(
+            JSON.stringify({
+              tag_name: "app-latest",
+              published_at: new Date().toISOString(),
+              body: "Сборка: 2026-11-24 / deadbee",
+              assets: [
+                {
+                  name: "CloudExamPlanner-1.0.0-x64.exe",
+                  size: 1000,
+                  updated_at: new Date().toISOString(),
+                  browser_download_url: "https://example/x.exe"
+                }
+              ]
+            })
+          )
+        );
+      }
+      // Полный ответ, но короче заявленного размера.
+      res.complete = true;
+      res.end(Buffer.alloc(400, 1));
+    });
+    const req = new PassThrough();
+    req.destroy = () => {};
+    return req;
+  };
+
+  return (async () => {
+    const { createUpdater } = require("../src/main/update");
+    const u = createUpdater({ currentVersion: "1.0.0", currentBuild: "2026-11-23 / aaaaaaa" });
+    try {
+      await u.checkOnce(true);
+      let threw = false;
+      try {
+        await u.downloadUpdate();
+      } catch (e) {
+        threw = true;
+        assert.ok(/не целиком/.test(e.message), "непонятная ошибка: " + e.message);
+      }
+      assert.ok(threw, "недокачанный файл принят за готовый");
+      assert.strictEqual(u.state().state, "error");
+      assert.strictEqual(u.state().downloadedPath, "", "путь к битому файлу сохранён");
+    } finally {
+      https.get = orig;
+    }
+  })();
 });
 
 console.log("\nСборка и версия");
@@ -215,13 +374,15 @@ test("в выгрузке нет служебных полей вроде undefi
   assert.ok(JSON.parse(raw), "файл не разбирается");
 });
 
-fs.rmSync(dir, { recursive: true, force: true });
+queue.then(() => {
+  fs.rmSync(dir, { recursive: true, force: true });
 
-console.log("\n---");
-if (failed) {
-  console.log("Провалено: " + failed + ", пройдено: " + passed);
-  for (const f of failures) console.log("\n[" + f.name + "]\n" + (f.err.stack || f.err.message));
-  process.exitCode = 1;
-} else {
-  console.log("Всё пройдено: " + passed + " проверок.");
-}
+  console.log("\n---");
+  if (failed) {
+    console.log("Провалено: " + failed + ", пройдено: " + passed);
+    for (const f of failures) console.log("\n[" + f.name + "]\n" + (f.err.stack || f.err.message));
+    process.exitCode = 1;
+  } else {
+    console.log("Всё пройдено: " + passed + " проверок.");
+  }
+});

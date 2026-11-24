@@ -85,6 +85,8 @@ function httpGet(url, options) {
           }
           chunks.push(c);
         });
+        res.on("error", reject);
+        res.on("aborted", () => reject(new Error("связь прервалась")));
         res.on("end", () =>
           resolve({
             status: res.statusCode,
@@ -125,7 +127,9 @@ function download(url, destPath, options) {
         let size = 0;
         const out = fs.createWriteStream(destPath);
         if (opts.onProgress) {
-          const total = parseInt(res.headers["content-length"] || "0", 10) || 0;
+          // Если GitHub не прислал размер — берём ожидаемый из релиза, иначе
+          // полоска стоит на 0% и кажется, что ничего не качается.
+          const total = parseInt(res.headers["content-length"] || "0", 10) || opts.expectBytes || 0;
           let last = 0;
           res.on("data", (c) => {
             size += c.length;
@@ -142,9 +146,31 @@ function download(url, destPath, options) {
             hash.update(c);
           });
         }
+        // Обрыв на середине файла — самая частая причина «не скачивается».
+        // Без этих обработчиков загрузка либо молча зависала, либо роняла
+        // приложение необработанной ошибкой потока.
+        let broke = false;
+        const fail = (err) => {
+          if (broke) return;
+          broke = true;
+          res.unpipe(out);
+          try {
+            out.destroy();
+          } catch (e) {
+            /* уже закрыт */
+          }
+          reject(err instanceof Error ? err : new Error(String(err)));
+        };
+        res.on("error", fail);
+        res.on("aborted", () => fail(new Error("связь прервалась во время скачивания")));
+        res.on("close", () => {
+          // complete === false — ответ оборвался, файл недокачан.
+          if (res.complete === false) fail(new Error("скачивание прервалось"));
+        });
         res.pipe(out);
-        out.on("error", reject);
+        out.on("error", fail);
         out.on("finish", () => {
+          if (broke) return;
           out.close(() => resolve({ bytes: size, sha256: hash.digest("hex") }));
         });
       }
@@ -165,6 +191,10 @@ function createUpdater(opts) {
   const currentBuild = o.currentBuild || "";
 
   let found = null; // найденное обновление (объект для интерфейса)
+  // Путь к скачанному установщику. Храним отдельно: emit() собирает объект
+  // заново, и без этого поля установка не находила файл («не скачивается»).
+  let downloadedPath = "";
+  let downloadedBytes = 0;
   let state = "idle"; // idle | checking | downloading | ready | installing | error
   let errorText = "";
   let timer = null;
@@ -179,6 +209,8 @@ function createUpdater(opts) {
         state: state,
         available: !!found,
         update: found,
+        downloadedPath: downloadedPath,
+        downloadedBytes: downloadedBytes,
         error: errorText,
         lastCheckAt: lastCheckAt,
         checkEveryMs: interval,
@@ -305,51 +337,83 @@ function createUpdater(opts) {
     return info.remoteAt > mine + 60 * 60 * 1000;
   }
 
-  /** Скачать найденное обновление и проверить. */
+  /**
+   * Скачать найденное обновление и проверить.
+   *
+   * Файл весит около 83 МБ, и на слабой связи загрузка иногда обрывается
+   * на середине. Поэтому попыток две: незаконченный файл удаляется и
+   * качается заново. Без этого «не скачивается» выглядело как поломка.
+   */
   async function downloadUpdate() {
     if (!found) throw new Error("сначала нужно найти обновление");
     state = "downloading";
     errorText = "";
     emit();
-    try {
-      const dir = path.join(os.tmpdir(), "cloud-exam-planner-update");
-      fs.mkdirSync(dir, { recursive: true });
-      const dest = path.join(dir, found.assetName || "setup.exe");
-      const res = await download(found.url, dest, {
-        onProgress: (p) => emit({ progress: p })
-      });
-      // Проверка: размер должен совпасть с тем, что сообщил GitHub.
-      if (found.size && res.bytes !== found.size) {
+    const dir = path.join(os.tmpdir(), "cloud-exam-planner-update");
+    const dest = path.join(dir, found.assetName || "setup.exe");
+    let lastError = null;
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try {
+        fs.mkdirSync(dir, { recursive: true });
+        const res = await download(found.url, dest, {
+          expectBytes: found.size || 0,
+          onProgress: (p) => emit({ progress: p, attempt: attempt })
+        });
+        // Размер должен совпасть с тем, что сообщил GitHub: недокачанный
+        // установщик всё равно не запустится, лучше сказать об этом сразу.
+        if (found.size && res.bytes !== found.size) {
+          throw new Error("файл скачался не целиком (" + res.bytes + " из " + found.size + " байт)");
+        }
+        downloadedPath = dest;
+        downloadedBytes = res.bytes;
+        state = "ready";
+        emit({ sha256: res.sha256 });
+        return { path: dest, bytes: res.bytes, sha256: res.sha256 };
+      } catch (e) {
+        lastError = e;
         try {
           fs.unlinkSync(dest);
-        } catch (e) {
-          /* файл всё равно не запустим */
+        } catch (e2) {
+          /* файла может уже не быть */
         }
-        throw new Error("файл скачался не целиком (" + res.bytes + " из " + found.size + " байт)");
+        log("скачивание, попытка " + attempt + ": " + ((e && e.message) || e));
+        if (attempt < 2) emit({ error: "", retrying: true });
       }
-      state = "ready";
-      emit({ downloadedPath: dest, sha256: res.sha256 });
-      return { path: dest, bytes: res.bytes, sha256: res.sha256 };
-    } catch (e) {
-      errorText = String((e && e.message) || e);
-      state = "error";
-      emit();
-      throw e;
     }
+    errorText = String((lastError && lastError.message) || lastError || "скачивание не удалось");
+    state = "error";
+    emit();
+    throw lastError || new Error(errorText);
   }
 
   /** Запустить скачанный установщик. Приложение закроется само. */
   function install(filePath, onQuit) {
-    if (!filePath || !fs.existsSync(filePath)) {
+    const file = filePath || downloadedPath;
+    if (!file || !fs.existsSync(file)) {
       throw new Error("установщик не найден — скачайте обновление заново");
     }
     state = "installing";
     emit();
-    // /S — тихая установка NSIS; ключ передаём, но установщик собран без
-    // принудительной тишины, поэтому окно покажется, если ключ не поддержан.
-    const child = spawn(filePath, [], { detached: true, stdio: "ignore" });
+    let child;
+    try {
+      child = spawn(file, [], { detached: true, stdio: "ignore" });
+    } catch (e) {
+      state = "error";
+      errorText = "не удалось запустить установщик: " + ((e && e.message) || e);
+      emit();
+      throw e;
+    }
+    // Без обработчика ошибок неудачный запуск (.exe не тот, нет прав, антивирус
+    // заблокировал) роняет всё приложение вместо понятного сообщения.
+    child.on("error", (e) => {
+      state = "error";
+      errorText = "не удалось запустить установщик: " + ((e && e.message) || e);
+      emit();
+      log(errorText);
+    });
     child.unref();
-    if (onQuit) setTimeout(onQuit, 800);
+    // Приложение закрывается только если установщик действительно стартовал.
+    if (onQuit) setTimeout(onQuit, 1200);
     return { ok: true };
   }
 

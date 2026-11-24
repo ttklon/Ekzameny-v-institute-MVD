@@ -76,6 +76,22 @@ const api = {
     }
   },
 
+  // Напоминания и запуск вместе с Windows.
+  remind: {
+    refresh: () => ipcRenderer.invoke("remind:refresh"),
+    test: () => ipcRenderer.invoke("remind:test"),
+    info: () => ipcRenderer.invoke("remind:info")
+  },
+  autostart: {
+    set: (enable) => ipcRenderer.invoke("app:autostart", enable),
+    state: () => ipcRenderer.invoke("app:autostartState")
+  },
+  onGo: (handler) => {
+    const fn = (_e, view) => handler(view);
+    ipcRenderer.on("app:go", fn);
+    return () => ipcRenderer.removeListener("app:go", fn);
+  },
+
   // Сведения о среде: интерфейсу полезно знать, Electron это или браузер.
   isElectron: true,
   platform: process.platform

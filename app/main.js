@@ -13,14 +13,18 @@ const path = require("path");
 
 const { createStore } = require("./src/main/store");
 const { createUpdater } = require("./src/main/update");
+const { createReminder } = require("./src/main/remind");
 const loader = require("./src/main/loader");
 const parser = require("./src/core/parser");
 const planner = require("./src/core/planner");
 
 const APP_TITLE = "Облачный планировщик экзаменов";
+const RELEASE_PAGE = "https://github.com/ttklon/Ekzameny-v-institute-MVD/releases/tag/app-latest";
 let mainWindow = null;
 let store = null;
 let updater = null;
+let reminder = null;
+let quitting = false; // закрытие по-настоящему, а не сворачивание в трей
 let pendingFiles = []; // файлы, открытые через «Открыть с помощью» / перетаскиванием в ярлык
 
 // Один экземпляр приложения: второй запуск открывает файл в уже работающем окне.
@@ -93,6 +97,21 @@ function createWindow() {
   });
   mainWindow.webContents.on("render-process-gone", (_e, details) => {
     console.error("Процесс интерфейса завершился:", details && details.reason);
+  });
+
+  // Закрытие окна: по настройке — либо свернуть в трей (и напоминать), либо
+  // выйти совсем. По умолчанию выходим: неожиданный «невидимый» процесс
+  // пугает больше, чем помогает.
+  mainWindow.on("close", (e) => {
+    const settings = store ? store.load().state : null;
+    const toTray = !!(settings && settings.settings && settings.settings.closeToTray);
+    if (!quitting && toTray) {
+      e.preventDefault();
+      mainWindow.hide();
+      if (reminder) reminder.refreshTray();
+      return;
+    }
+    quitting = true;
   });
 
   // Внешние ссылки — в браузере, не внутри приложения.
@@ -399,6 +418,79 @@ function sendUpdate(info) {
   }
 }
 
+/** Что осталось на сегодня — для трея и напоминания. */
+function todayInfo() {
+  try {
+    const st = store.load().state;
+    if (!st) return { tasks: 0, minutes: 0 };
+    const today = planner.todayStr();
+    const plan = planner.computeAll({ settings: st.settings, disciplines: st.disciplines }, today);
+    const items = plan.todayTasks || [];
+    return { tasks: items.length, minutes: Math.round(plan.todayMinutes || 0) };
+  } catch (e) {
+    return { tasks: 0, minutes: 0 };
+  }
+}
+
+/** Напоминания и значок в трее. */
+function startReminder() {
+  reminder = createReminder({
+    getTodayInfo: todayInfo,
+    iconPath: path.join(__dirname, "build", "icon.ico"),
+    onOpen: () => {
+      if (!mainWindow) return createWindow();
+      if (mainWindow.isMinimized()) mainWindow.restore();
+      mainWindow.show();
+      mainWindow.focus();
+    },
+    onOpenToday: () => {
+      if (!mainWindow) createWindow();
+      if (mainWindow.isMinimized()) mainWindow.restore();
+      mainWindow.show();
+      mainWindow.focus();
+      try {
+        mainWindow.webContents.send("app:go", "today");
+      } catch (e) {
+        /* окно ещё грузится */
+      }
+    },
+    onQuit: () => {
+      quitting = true;
+      app.quit();
+    }
+  });
+  reminder.configure((store.load().state || {}).settings || {});
+  reminder.start();
+
+  ipcMain.handle("remind:refresh", async () => {
+    const st = store.load().state;
+    reminder.configure((st && st.settings) || {});
+    return { ok: true };
+  });
+  ipcMain.handle("remind:test", async () => {
+    reminder.notify();
+    return { ok: true };
+  });
+  ipcMain.handle("remind:info", async () => todayInfo());
+
+  // Автозапуск при входе в Windows.
+  ipcMain.handle("app:autostart", async (_e, enable) => {
+    try {
+      app.setLoginItemSettings({ openAtLogin: !!enable, args: [] });
+      return { ok: true, enabled: app.getLoginItemSettings().openAtLogin };
+    } catch (e) {
+      return { ok: false, error: String((e && e.message) || e) };
+    }
+  });
+  ipcMain.handle("app:autostartState", async () => {
+    try {
+      return { enabled: app.getLoginItemSettings().openAtLogin };
+    } catch (e) {
+      return { enabled: false };
+    }
+  });
+}
+
 /**
  * Автообновление: раз в минуту спрашиваем GitHub. Ничего не скачивается без
  * подтверждения — сначала в окне появляется вопрос.
@@ -413,6 +505,8 @@ function startUpdater() {
   updater.onEvent(sendUpdate);
   updater.start();
 
+  startReminder();
+
   ipcMain.handle("update:check", async () => {
     await updater.checkOnce(true);
     return updater.state();
@@ -422,14 +516,21 @@ function startUpdater() {
     const r = await updater.downloadUpdate();
     return { ok: true, path: r.path, bytes: r.bytes };
   });
+
+  // Установка. Если файл почему-то не найден — не молчим, а открываем
+  // страницу загрузки, чтобы обновление можно было поставить руками.
   ipcMain.handle("update:install", async () => {
     const st = updater.state();
-    const file = st.downloadedPath || (st.update ? "" : "");
-    updater.install(file, () => app.quit());
-    return { ok: true };
+    try {
+      updater.install(st.downloadedPath, () => app.quit());
+      return { ok: true };
+    } catch (e) {
+      shell.openExternal(RELEASE_PAGE);
+      return { ok: false, error: String((e && e.message) || e), openedPage: true };
+    }
   });
   ipcMain.handle("update:openReleasePage", async () => {
-    shell.openExternal("https://github.com/" + "ttklon/Ekzameny-v-institute-MVD/releases/tag/app-latest");
+    shell.openExternal(RELEASE_PAGE);
     return { ok: true };
   });
 }

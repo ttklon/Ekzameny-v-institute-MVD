@@ -59,7 +59,13 @@
         soundVolume: 0.45,
         skyHour: null,
         reduceMotion: false,
-        showAnsweredOnly: false
+        showAnsweredOnly: false,
+        // Напоминания, трей и запуск вместе с Windows — по одному переключателю,
+        // без лишних полей. Трей включён: это удобно и не мешает.
+        remind: { enabled: true, at: "19:00", days: null },
+        tray: true,
+        closeToTray: false,
+        autostart: false
       },
       disciplines: [],
       ui: {

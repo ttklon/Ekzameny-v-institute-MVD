@@ -1077,7 +1077,10 @@
       const p = info.progress || {};
       const pct = p.total ? Math.round((p.received / p.total) * 100) : 0;
       updateCard.appendChild(h("div.update-bar", [h("div.update-bar-fill", { style: { width: pct + "%" } })]));
-      updateCard.appendChild(h("div.update-hint", "Скачиваем… " + pct + "%"));
+      const retry = info.retrying ? " Связь прервалась, качаем заново…" : "";
+      updateCard.appendChild(
+        h("div.update-hint", "Скачиваем… " + pct + "%" + (p.total ? " из " + (p.total / 1048576).toFixed(1) + " МБ" : "") + retry)
+      );
       return;
     }
     if (info.state === "installing") {
@@ -1085,18 +1088,41 @@
       return;
     }
 
+    // Ошибку показываем прямо в плашке: тост исчезает, а тут остаётся видно,
+    // что именно случилось и что делать.
+    if (info.error) {
+      updateCard.appendChild(h("div.update-error", "Не получилось: " + info.error));
+      updateCard.appendChild(
+        h("div.update-hint", "Можно скачать вручную — кнопка ниже откроет страницу загрузки.")
+      );
+    }
+
     const row = h("div.row", { style: { marginTop: "10px" } });
     row.appendChild(
-      UI.button("Обновить", {
+      UI.button(info.state === "downloading" ? "Скачиваем…" : "Обновить", {
         kind: "primary",
         icon: "import",
         onClick: async () => {
+          if (info.state === "downloading") return;
           root.Sound.play("tap");
           try {
             await root.api.update.download();
-            await root.api.update.install();
+            const res = await root.api.update.install();
+            if (res && res.ok === false) {
+              UI.toast({
+                kind: "warn",
+                title: "Установщик не запустился",
+                text: "Открыл страницу загрузки — можно поставить вручную.",
+                duration: 9000
+              });
+            }
           } catch (e) {
-            UI.toast({ kind: "warn", title: "Не удалось скачать", text: String((e && e.message) || e) });
+            UI.toast({
+              kind: "warn",
+              title: "Не удалось скачать обновление",
+              text: String((e && e.message) || e) + " Попробуйте ещё раз или скачайте вручную со страницы загрузки.",
+              duration: 10000
+            });
           }
         }
       })
@@ -1174,6 +1200,13 @@
         }
         if (action === "backup") exportBackup();
         if (action === "help") go("tips");
+      });
+    }
+
+    // Из трея попросили открыть «Сегодня».
+    if (root.api && root.api.onGo) {
+      root.api.onGo((view) => {
+        if (view) go(view);
       });
     }
 

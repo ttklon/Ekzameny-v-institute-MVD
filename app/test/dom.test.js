@@ -235,6 +235,40 @@ async function run() {
     });
   }
 
+  // Настройки: напоминания, трей и автозапуск — должны быть на экране и
+  // действительно менять состояние, а не просто быть нарисованными.
+  win.App.go("settings");
+  await tick(45);
+
+  check("в настройках есть напоминания, трей и автозапуск", () => {
+    const text = win.document.getElementById("view").textContent;
+    for (const label of ["Напоминать о занятиях", "Время напоминания", "Сворачивать в трей", "Запускать с Windows"]) {
+      if (text.indexOf(label) === -1) throw new Error("нет пункта «" + label + "»");
+    }
+  });
+
+  check("переключатель напоминаний сохраняется", () => {
+    const boxes = [...win.document.querySelectorAll("#view input[type=checkbox]")];
+    if (boxes.length < 4) throw new Error("переключателей слишком мало: " + boxes.length);
+    const before = win.Store.state.settings.remind.enabled;
+    const box = boxes.find((b) => {
+      const row = b.closest(".settings-row");
+      return row && row.textContent.indexOf("Напоминать о занятиях") !== -1;
+    });
+    if (!box) throw new Error("не нашёл переключатель напоминаний");
+    box.checked = !before;
+    box.dispatchEvent(new win.Event("change", { bubbles: true }));
+    if (win.Store.state.settings.remind.enabled === before) throw new Error("настройка не изменилась");
+    win.Store.state.settings.remind.enabled = before;
+  });
+
+  check("сворачивание в трей и автозапуск сохраняются как настройки", () => {
+    const s = win.Store.state.settings;
+    if (typeof s.closeToTray !== "boolean") throw new Error("closeToTray не задан");
+    if (typeof s.autostart !== "boolean") throw new Error("autostart не задан");
+    if (!s.remind || typeof s.remind.at !== "string") throw new Error("время напоминания не задано");
+  });
+
   // Экран дисциплины со всеми вкладками.
   const disc = win.Store.activeDisciplines()[0];
   win.App.go("discipline", { id: disc.id });

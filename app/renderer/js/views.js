@@ -2149,6 +2149,53 @@
           }))
       ])
     );
+    // =================================================================
+    //  3-b. Напоминания, трей, автозапуск — коротко, по одному переключателю
+    // =================================================================
+    const remind = h("div.card");
+    remind.appendChild(h("div.card-title", [h("h2", "Напоминания и запуск")]));
+
+    const remindOn = !!(s.remind && s.remind.enabled);
+    const remindAt = (s.remind && s.remind.at) || "18:00";
+
+    const remindGrid = h("div.settings-grid", [
+      settingsRow("Напоминать о занятиях", "Один раз в день, только если на сегодня что-то есть.",
+        switchControl("remindEnabled", remindOn, (on) => {
+          setSetting("remind", Object.assign({}, (s.remind || {}), { enabled: on, at: remindAt }), true);
+          if (root.api && root.api.remind) root.api.remind.refresh();
+          if (on) UI.toast({ kind: "ok", text: "Напомним в " + remindAt });
+        })),
+      settingsRow("Время напоминания", "Когда присылать напоминание.",
+        h("input", {
+          type: "time",
+          value: remindAt,
+          style: { width: "110px" },
+          onchange: (e) => {
+            const at = e.target.value || "18:00";
+            setSetting("remind", Object.assign({}, (s.remind || {}), { enabled: !!(s.remind && s.remind.enabled), at: at }), true);
+            if (root.api && root.api.remind) root.api.remind.refresh();
+          }
+        })),
+      settingsRow("Сворачивать в трей", "Крестик прячет окно, приложение продолжает работать.",
+        switchControl("closeToTray", !!s.closeToTray, (on) => setSetting("closeToTray", on, true))),
+      settingsRow("Запускать с Windows", "Открывается сразу после входа в систему.",
+        switchControl("autostart", !!s.autostart, (on) => {
+          const api = root.api;
+          if (!api || !api.autostart) {
+            setSetting("autostart", on, true);
+            return;
+          }
+          api.autostart.set(on).then((res) => {
+            if (res && res.ok) setSetting("autostart", !!res.enabled, true);
+            else {
+              UI.toast({ kind: "error", text: "Не удалось изменить автозапуск" });
+              root.App.refresh();
+            }
+          });
+        }))
+    ]);
+    remind.appendChild(remindGrid);
+    wrap.appendChild(remind);
     wrap.appendChild(look);
 
     // =================================================================
