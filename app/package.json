@@ -32,10 +32,8 @@
       "renderer/**/*"
     ],
     "win": {
-      "target": [
-        { "target": "nsis", "artifactName": "ExamPlanner-Setup.${ext}" },
-        { "target": "portable", "artifactName": "ExamPlanner-Portable.${ext}" }
-      ]
+      "artifactName": "ExamPlanner-Setup.${ext}",
+      "target": "nsis"
     },
     "nsis": {
       "oneClick": false,

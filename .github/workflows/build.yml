@@ -18,7 +18,6 @@ jobs:
         working-directory: app
     env:
       CSC_IDENTITY_AUTO_DISCOVERY: "false"
-      ELECTRON_CACHE: "${{ github.workspace }}/.electron-cache"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,29 +27,16 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Debug versions
-        run: |
-          node -v
-          npm -v
-          npx electron-builder --version
-
       - name: Install dependencies
         run: npm install
 
-      - name: Build (electron-builder)
-        run: npm run dist:win 2>&1 | tee build.log
-        continue-on-error: true
+      - name: Build NSIS installer (ExamPlanner-Setup.exe)
+        run: npm run dist:win
 
-      - name: Upload build log on failure
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-log
-          path: app/build.log
-          if-no-files-found: ignore
+      - name: Build portable exe (ExamPlanner-Portable.exe)
+        run: npx electron-builder --win portable -c.artifactName="ExamPlanner-Portable.${ext}"
 
       - name: Publish to GitHub Release (app-latest)
-        if: success()
         uses: ncipollo/release-action@v1
         with:
           tag: app-latest
