@@ -245,7 +245,7 @@ async function run() {
     if (/Не удалось показать/.test(view.textContent)) throw new Error(view.textContent.slice(0, 300));
   });
 
-  for (const tab of ["questions", "schedule", "settings", "plan"]) {
+  for (const tab of ["questions", "settings", "plan"]) {
     win.Views.setDiscTab(tab);
     win.App.refresh();
     await tick(35);
@@ -448,6 +448,53 @@ async function run() {
     if (Math.abs(back - before) > 0.5) {
       throw new Error("после возврата к общей скорость время не вернулось: " + back.toFixed(1) + " vs " + before.toFixed(1));
     }
+    win.Views.setDiscTab("plan");
+  });
+
+  check("воскресенье можно сделать тяжелее одним кликом", () => {
+    win.App.go("discipline", { id: disc.id });
+    win.Views.setDiscTab("settings");
+    win.App.refresh();
+    const view = win.document.getElementById("view");
+    const adv = view.querySelector(".adv-toggle");
+    if (!adv) throw new Error("нет блока «Как именно распределять»");
+    if (!view.querySelector(".day-load")) {
+      adv.dispatchEvent(new win.Event("click", { bubbles: true }));
+    }
+    const rows = win.document.getElementById("view").querySelectorAll(".day-load-row");
+    if (!rows.length) throw new Error("нет таблицы нагрузки по дням недели");
+    // Последняя строка — воскресенье, последняя клетка — «больше».
+    const sunRow = rows[rows.length - 1];
+    const cells = sunRow.querySelectorAll(".day-load-cell");
+    cells[cells.length - 1].dispatchEvent(new win.Event("click", { bubbles: true }));
+    const saved = win.Store.getDiscipline(disc.id).plan.dayLoad;
+    if (!Array.isArray(saved) || saved[0] !== 2) {
+      throw new Error("воскресенье не стало тяжёлым: " + JSON.stringify(saved));
+    }
+    // И план должен реально дать воскресеньям больше минут.
+    const pd = win.Views.plan().perDisc[disc.id];
+    const days = Object.keys(pd.days || {});
+    const sum = (wd) => {
+      let total = 0;
+      let n = 0;
+      for (const day of days) {
+        const dt = new Date(day + "T00:00:00");
+        if (dt.getDay() !== wd) continue;
+        n++;
+        total += (pd.days[day] || []).reduce((a, it) => a + it.minutes, 0);
+      }
+      return n ? total / n : 0;
+    };
+    const sun = sum(0);
+    const mon = sum(1);
+    if (!(sun > mon)) {
+      throw new Error("воскресенье не тяжелее понедельника: " + sun.toFixed(1) + " vs " + mon.toFixed(1));
+    }
+    // Возврат к обычной неделе.
+    const back = [1, 1, 1, 1, 1, 1, 1];
+    win.Store.getDiscipline(disc.id).plan.dayLoad = back;
+    win.Store.save();
+    win.Views.plan();
     win.Views.setDiscTab("plan");
   });
 

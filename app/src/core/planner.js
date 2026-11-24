@@ -75,18 +75,45 @@
   }
 
   /** Активные дни в диапазоне [start, end] без отдыха. */
-  function listActiveDays(start, end, restDays) {
-    const rest = restDays || [];
+  function listActiveDays(start, end, restDays, plan) {
     const out = [];
     if (!isValidDate(start) || !isValidDate(end)) return out;
+    // Если задана таблица по дням недели, она и решает: restDays — устаревшее
+    // поле из старых сохранений и не должно спорить с ней.
+    const hasTable = !!(plan && Array.isArray(plan.dayLoad) && plan.dayLoad.length === 7);
+    const rest = hasTable ? [] : restDays || [];
     let cur = start;
     let guard = 0;
     while (cur <= end && guard < 4000) {
-      if (rest.indexOf(weekday(cur)) === -1) out.push(cur);
+      const p = plan || { restDays: rest };
+      if (rest.indexOf(weekday(cur)) === -1 && !isDayOff(p, cur)) out.push(cur);
       cur = addDays(cur, 1);
       guard++;
     }
     return out;
+  }
+
+  /**
+   * Во сколько раз день недели тяжелее обычного.
+   * plan.dayLoad — массив из 7 чисел по дням от понедельника (0) до воскресенья (6),
+   * где 1 — обычная нагрузка, 0 — выходной, 2 — двойная. Пустые дни недели
+   * считаются обычными, а дни из старого restDays — выходными.
+   */
+  function weekdayFactor(plan, dateStr) {
+    // weekday() уже отдаёт 0 = воскресенье … 6 = суббота, как и dayLoad.
+    const wd = weekday(dateStr);
+    const table = plan && plan.dayLoad;
+    if (Array.isArray(table) && table.length === 7) {
+      const v = Number(table[wd]);
+      return isFinite(v) && v >= 0 ? v : 1;
+    }
+    const rest = (plan && plan.restDays) || [];
+    return rest.indexOf(weekday(dateStr)) === -1 ? 1 : 0;
+  }
+
+  /** Дни, отмеченные как выходные (или нулевой нагрузкой). */
+  function isDayOff(plan, dateStr) {
+    return weekdayFactor(plan, dateStr) <= 0;
   }
 
   // ---------- Оценка времени ----------
@@ -387,7 +414,7 @@
       };
     }
 
-    const days = listActiveDays(start, exam, plan.restDays || []);
+    const days = listActiveDays(start, exam, plan.restDays || [], plan);
     if (!days.length) {
       return {
         days: {},
@@ -417,6 +444,11 @@
       softCap = Math.min(softCap, Math.max(5, options.softCapMinutes));
     }
 
+    // Дневная ёмкость с учётом весов дней недели: в «тяжёлый» день влезает
+    // больше, в лёгкий — меньше. Дни с нулевым весом в days уже не попали.
+    const dayFactor = days.map((d) => Math.max(0.25, weekdayFactor(plan, d)));
+    const cap = days.map((f) => softCap * f);
+
     /** Первый учебный день не раньше даты, либо -1. */
     function dayOnOrAfter(dateStr) {
       for (let i = 0; i < days.length; i++) if (days[i] >= dateStr) return i;
@@ -433,7 +465,7 @@
       let best = -1;
       for (let k = 0; k <= window && prefIdx + k < days.length; k++) {
         const di = prefIdx + k;
-        if (load[di] + minutes <= Math.max(softCap, minutes)) {
+        if (load[di] + minutes <= Math.max(cap[di], minutes)) {
           best = di;
           break;
         }
@@ -463,9 +495,26 @@
     const newQueue = orderedIndices(disc).filter((i) => states[i].done === 0);
     const plannedNewDate = {};
 
+    // Куда поставить k-й новый вопрос: по накопленной ёмкости дней, а не по
+    // ровной сетке. Иначе «в воскресенье больше» осталось бы только словами.
+    const prefixCap = [];
+    let accCap = 0;
+    for (let i = 0; i < newDayCount; i++) {
+      accCap += dayFactor[i];
+      prefixCap.push(accCap);
+    }
+    const totalCapNew = accCap || 1;
+    function dayForNew(k) {
+      // Начало порции k в долях накопленной ёмкости. Именно начало, а не
+      // середина: иначе при ровной неделе первый день оставался бы пустым.
+      const point = (k * totalCapNew) / Math.max(1, newQueue.length);
+      for (let i = 0; i < prefixCap.length; i++) if (prefixCap[i] > point) return i;
+      return newDayCount - 1;
+    }
+
     let unplanned = 0;
     newQueue.forEach((idx, k) => {
-      const pref = Math.min(newDayCount - 1, Math.floor((k * newDayCount) / Math.max(1, newQueue.length)));
+      const pref = Math.min(newDayCount - 1, Math.max(0, dayForNew(k)));
       const di = place(idx, 1, pref, "new");
       if (di === -1) {
         for (let pass = 1; pass <= passes; pass++) unplanned += questionMinutes(disc, questions[idx], pass, settings);
@@ -763,7 +812,11 @@
       mode: "even",
       perDayQuestions: 10,
       perDayMinutes: 45,
-      restDays: [0],
+      restDays: [],
+      // Нагрузка по дням недели, от воскресенья к субботе (как weekday()):
+      // 1 — как обычно, 0 — выходной, 2 — вдвое больше. Так «в воскресенье
+      // читать больше» становится обычной настройкой, а не отдельным режимом.
+      dayLoad: [0, 1, 1, 1, 1, 1, 1],
       order: "inOrder"
     };
   }

@@ -329,6 +329,35 @@ function makeDisc(questionCount, opts) {
 
 const settings = planner.normalizeSettings({ wordsPerMinute: 150 });
 
+test("нагрузка по дням недели: воскресенье вдвое тяжелее", () => {
+  // 23 ноября 2026 — понедельник, значит 29 ноября — воскресенье.
+  const d = makeDisc(20);
+  d.plan = Object.assign(planner.defaultPlan("2026-11-24", "2026-12-06"), {
+    dayLoad: [2, 1, 1, 1, 1, 1, 1]
+  });
+  const r = planner.buildDisciplinePlan(d, settings, "2026-11-24");
+  const minutesOn = (date) => (r.days[date] || []).reduce((n, it) => n + it.minutes, 0);
+  const sundays = Object.keys(r.days).filter((x) => planner.weekday(x) === 0);
+  const mondays = Object.keys(r.days).filter((x) => planner.weekday(x) === 1);
+  assert.ok(sundays.length > 0, "воскресенья пропали из плана");
+  const sunAvg = sundays.reduce((n, x) => n + minutesOn(x), 0) / sundays.length;
+  const monAvg = mondays.reduce((n, x) => n + minutesOn(x), 0) / mondays.length;
+  assert.ok(sunAvg > monAvg, "воскресенье не тяжелее понедельника: " + sunAvg + " vs " + monAvg);
+});
+
+test("день недели с нагрузкой 0 становится выходным", () => {
+  const d = makeDisc(20);
+  d.plan = Object.assign(planner.defaultPlan("2026-11-24", "2026-12-06"), {
+    dayLoad: [0, 1, 1, 1, 1, 1, 1],
+    restDays: []
+  });
+  const r = planner.buildDisciplinePlan(d, settings, "2026-11-24");
+  const sundays = Object.keys(r.days).filter((x) => planner.weekday(x) === 0);
+  for (const x of sundays) {
+    assert.strictEqual((r.days[x] || []).length, 0, "в воскресенье " + x + " стоит работа");
+  }
+});
+
 test("план покрывает весь объём за нужное число прогонов", () => {
   const d = makeDisc(20, { words: 600 });
   d.plan.passes = 3;

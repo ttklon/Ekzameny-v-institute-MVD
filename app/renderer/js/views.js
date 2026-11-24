@@ -882,7 +882,6 @@
     const tabs = [
       ["plan", "План"],
       ["questions", "Вопросы"],
-      ["schedule", "Расписание"],
       ["settings", "Параметры"]
     ];
     const tabsEl = h("div.tabs");
@@ -901,7 +900,6 @@
 
     if (discTab === "plan") wrap.appendChild(discPlanTab(d, pd));
     else if (discTab === "questions") wrap.appendChild(discQuestionsTab(d, pd));
-    else if (discTab === "schedule") wrap.appendChild(discScheduleTab(d, pd));
     else wrap.appendChild(discSettingsTab(d, pd));
 
     return wrap;
@@ -947,7 +945,12 @@
         h("div.row", [
           h("span.tag.new", "новое"),
           h("span.tag.repeat", "повтор"),
-          h("span.muted", { style: { fontSize: "11.5px" } }, "мин/день")
+          UI.button("Весь календарь", {
+            size: "sm",
+            kind: "ghost",
+            icon: "calendar",
+            onClick: () => root.App.go("calendar")
+          })
         ])
       ])
     );
@@ -1079,44 +1082,66 @@
   }
 
   /** Вкладка «Расписание»: календарь этой дисциплины. */
-  function discScheduleTab(d, pd) {
-    const box = h("div.card");
-    const month = state().ui.calendarMonth || today().slice(0, 7);
-    box.appendChild(
-      h("div.card-title", [
-        h("h2", "Расписание"),
-        h("div.row", [
-          h("button.icon-btn", {
-            title: "Предыдущий месяц",
-            onclick: () => {
-              state().ui.calendarMonth = shiftMonth(month, -1);
-              root.App.refresh();
-            }
-          }, [UI.icon("chevronLeft")]),
-          h("b", { style: { minWidth: "140px", textAlign: "center" } }, monthName(month)),
-          h("button.icon-btn", {
-            title: "Следующий месяц",
-            onclick: () => {
-              state().ui.calendarMonth = shiftMonth(month, 1);
-              root.App.refresh();
-            }
-          }, [UI.icon("chevronRight")])
-        ])
-      ])
-    );
-    box.appendChild(monthGrid(month, (day) => {
-      const items = (pd.days || {})[day] || [];
-      return {
-        minutes: items.reduce((s2, it) => s2 + it.minutes, 0),
-        count: items.length,
-        isExam: day === d.plan.examDate,
-        onClick: () => root.App.go("today", { date: day })
-      };
-    }));
-    return box;
+  /** Вкладка «Параметры»: сроки, прогоны, скорость — по порядку вопросов. */
+  /**
+   * Нагрузка по дням недели. Три уровня вместо ползунков: понять за секунду,
+   * изменить в один клик. «В воскресенье больше» — это один клик по «Больше».
+   */
+  const DAY_NAMES = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
+  const DAY_ORDER = [1, 2, 3, 4, 5, 6, 0]; // weekday(): 0 — воскресенье
+  const DAY_LEVELS = [
+    { v: 0, label: "отдых", title: "в этот день не читаем" },
+    { v: 1, label: "обычно", title: "как все дни" },
+    { v: 2, label: "больше", title: "вдвое больше, чем в обычный день" }
+  ];
+
+  /** Таблица нагрузки по дням недели: [вс, пн, вт, ср, чт, пт, сб]. */
+  function dayLoadTable(plan) {
+    const t = plan && plan.dayLoad;
+    if (Array.isArray(t) && t.length === 7) return t.map((x) => (Number(x) === 0 ? 0 : Number(x) >= 2 ? 2 : 1));
+    const rest = (plan && plan.restDays) || [];
+    return [0, 1, 2, 3, 4, 5, 6].map((wd) => (rest.indexOf(wd) !== -1 ? 0 : 1));
   }
 
-  /** Вкладка «Параметры»: сроки, прогоны, скорость — по порядку вопросов. */
+  function dayLoadField(d) {
+    const table = dayLoadTable(d.plan);
+    const wrap = h("div.day-load");
+    const levels = h("div.day-load-head");
+    levels.appendChild(h("span"));
+    DAY_LEVELS.forEach((lv) => levels.appendChild(h("span.day-load-cap", lv.label)));
+    wrap.appendChild(levels);
+
+    DAY_ORDER.forEach((wd, i) => {
+      const row = h("div.day-load-row");
+      row.appendChild(h("span.day-load-day", DAY_NAMES[i]));
+      for (const lv of DAY_LEVELS) {
+        const on = table[wd] === lv.v;
+        row.appendChild(
+          h("button.day-load-cell" + (on ? ".on" : "") + (lv.v === 0 ? ".off" : ""), {
+            title: DAY_NAMES[i] + " — " + lv.title,
+            onclick: () => {
+              if (table[wd] === lv.v) return;
+              const next = table.slice();
+              next[wd] = lv.v;
+              updatePlan(d, { dayLoad: next, restDays: [] });
+            }
+          }, on ? "•" : "")
+        );
+      }
+      wrap.appendChild(row);
+    });
+
+    const sun = table[0];
+    const restCount = table.filter((x) => x === 0).length;
+    let hint;
+    if (restCount === 7) hint = "Все дни отмечены как отдых — плану некуда ставить вопросы.";
+    else if (sun === 2) hint = "В воскресенье читаете вдвое больше — так и посчитается.";
+    else if (sun === 0) hint = "Воскресенье — выходной.";
+    else hint = "Можно сделать выходной или наоборот более тяжёлый день.";
+
+    return planField("Нагрузка по дням недели", wrap, hint);
+  }
+
   function discSettingsTab(d, pd) {
     const box = h("div.grid", { style: { gap: "16px" } });
     const g = settings();
@@ -1322,24 +1347,7 @@
         );
       }
 
-      const chips = h("div.chips");
-      const wd = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
-      const order = [1, 2, 3, 4, 5, 6, 0];
-      order.forEach((dayNum, i) => {
-        const on = (d.plan.restDays || []).indexOf(dayNum) !== -1;
-        chips.appendChild(
-          h("button.chip" + (on ? ".on.rest" : ""), {
-            onclick: () => {
-              const rest = (d.plan.restDays || []).slice();
-              const at = rest.indexOf(dayNum);
-              if (at >= 0) rest.splice(at, 1);
-              else rest.push(dayNum);
-              updatePlan(d, { restDays: rest });
-            }
-          }, wd[i])
-        );
-      });
-      grid.appendChild(planField("Выходные (без чтения)", chips, "в эти дни нагрузка не ставится"));
+      grid.appendChild(dayLoadField(d));
 
       const orderSeg = h("div.segmented");
       [["inOrder", "по порядку"], ["mixed", "вперемешку"]].forEach(([key, label]) => {
