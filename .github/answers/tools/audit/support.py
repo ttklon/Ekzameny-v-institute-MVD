@@ -38,7 +38,7 @@ for v,b in [(11,'одиннадцат'),(12,'двенадцат'),(13,'трин�
 addn(40,'сорок','сорока'); addn(50,'пятьдесят','пятидесяти'); addn(60,'шестьдесят','шестидесяти'); addn(70,'семьдесят','семидесяти'); addn(80,'восемьдесят','восьмидесяти')
 addn(90,'девяносто','девяноста'); addn(100,'сто','ста'); addn(200,'двести','двухсот'); addn(300,'триста','трехсот'); addn(400,'четыреста','четырехсот')
 addn(500,'пятьсот','пятисот'); addn(600,'шестьсот','шестисот'); addn(700,'семьсот','семисот'); addn(800,'восемьсот','восьмисот'); addn(900,'девятьсот','девятисот')
-addn(1000,'тысяча','тысячи','тысяч','тысячу','тысячей'); addn(1000000,'миллион','миллиона','миллионов')
+addn(1000,'тысяча','тысячи','тысяч','тысячу','тысячей','тыс'); addn(1000000,'миллион','миллиона','миллионов','млн'); addn(1000000000,'миллиард','миллиарда','миллиардов','млрд')
 PREF=[('одно',1),('двух',2),('трех',3),('четырех',4),('пяти',5),('шести',6),('семи',7),('восьми',8),('девяти',9),('десяти',10),('двенадцати',12),('пятнадцати',15),('двадцати',20),('тридцати',30),('сорока',40),('шестидесяти',60)]
 UNIT=re.compile(r'^(дневн|суточн|месячн|летн|недельн|часов|кратн|процентн|минутн|годичн)')
 ORD={}
@@ -82,13 +82,23 @@ def P(tok):
     return order[bounds[i]:bounds[i+1]]
 def idf(tok):
     n=len(P(tok)); return math.log((NT+1)/(n+1))
+def _sub(v):
+    r=[]; h=v//100*100; e=v%100
+    if h: r.append(h)
+    if e:
+        if e<=20 or e%10==0: r.append(e)
+        else: r+= [e-e%10,e%10]
+    return r
 def decomp(n):
-    alts=[]
-    if n>=1000 and n%1000==0 and n<1000000: alts.append([n//1000,1000])
-    elif n>=1000000 and n%1000000==0: alts.append([n//1000000,1000000])
-    elif 20<n<100 and n%10: alts.append([n-n%10,n%10])
-    elif 100<n<1000 and n%100==0: pass
-    elif 1000<n<1000000: alts.append([n//1000,1000,n%1000])
+    """варианты записи числа словами и с «тыс.», «млн»"""
+    alts=[]; m=n//10**6; t=(n//1000)%1000; e=n%1000; w=[]
+    if m: w+=_sub(m)+[10**6]
+    if t: w+=_sub(t)+[1000]
+    if e: w+=_sub(e)
+    if len(w)>1: alts.append(w)
+    if m and n%10**5==0 and n%10**6: alts.append([m,(n%10**6)//10**5,10**6])
+    if not m and t and e and e%100==0: alts.append([t,e//100,1000])
+    if m and n%1000==0 and n%10**6: alts.append([n//1000,1000])
     return alts
 _text={}
 def window_text(pos):
@@ -161,6 +171,7 @@ _sorted=set()
 class _All:
     def __contains__(self,x): return True
 _sorted=_All()
+ABBR=re.compile(r'(?:^|[\s(«/])(?:ст|ч|п|пп|подп|гл|абз|см|т|им|ул|рис|табл|стр|прим|разд|ред|утв|напр)\.$',re.I)
 def sentences(path):
     lead=''; 
     for i,l in enumerate(open(path,encoding='utf-8'),1):
@@ -171,7 +182,11 @@ def sentences(path):
         body=re.sub(r'^\s*(?:[-*>]|\d+\.|!!)\s*','',l)
         is_item=bool(re.match(r'^\s*(?:-|\d+\.)\s',l))
         parts=re.split(r'(?<=[.;!?…])\s+(?=[«*_(]*[А-ЯЁ0-9])',body)
+        mer=[]
         for p in parts:
+            if mer and ABBR.search(mer[-1]): mer[-1]+=' '+p
+            else: mer.append(p)
+        for p in mer:
             if len(p)>=25: yield i,p,(lead if is_item else '')
         if not is_item: lead=''
         if body.rstrip().endswith(':'): lead=body
