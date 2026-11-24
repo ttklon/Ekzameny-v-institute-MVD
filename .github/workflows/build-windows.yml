@@ -103,25 +103,37 @@ jobs:
         shell: pwsh
         run: Get-ChildItem dist | Format-Table Name, Length
 
+      - name: Текст описания релиза
+        shell: pwsh
+        run: |
+          # Номер сборки в описании — по нему приложение понимает, что вышло
+          # обновление. Без него все сборки выглядят одинаково.
+          $short = "${{ github.sha }}".Substring(0,7)
+          $date = (Get-Date).ToUniversalTime().ToString("yyyy-MM-dd")
+          $lines = @(
+            "Готовое приложение для Windows 11 (x64).",
+            "",
+            "Сборка: $date / $short",
+            "",
+            "**Что скачать:**",
+            "- ``CloudExamPlanner-1.0.0-x64.exe`` — установщик (ярлык в меню «Пуск» и на рабочем столе).",
+            "- ``CloudExamPlanner-1.0.0-portable.exe`` — портативная версия, работает без установки.",
+            "",
+            "Приложение само проверяет обновления раз в минуту и спросит перед установкой.",
+            "Файлы с вопросами и ответами в сборку не входят — добавьте их кнопкой «Добавить файл»."
+          )
+          $lines -join "`n" | Out-File -FilePath release-body.md -Encoding utf8
+
       - name: Загрузить .exe в релиз
         uses: ncipollo/release-action@v1
         with:
           tag: app-latest
           name: Облачный планировщик экзаменов — последняя сборка
-          body: |
-            Готовое приложение для Windows 11 (x64).
-
-            **Что скачать:**
-            - `CloudExamPlanner-1.0.0-x64.exe` — установщик (ярлык в меню «Пуск» и на рабочем столе).
-            - `CloudExamPlanner-1.0.0-portable.exe` — портативная версия, работает без установки.
-
-            Файлы с вопросами и ответами в сборку не входят — добавьте их в программе
-            кнопкой «Добавить файл» или перетаскиванием в окно.
+          bodyFile: release-body.md
           artifacts: "app/dist/*.exe"
           allowUpdates: true
           removeArtifacts: true
           replacesArtifacts: true
-          omitBodyDuringUpdate: true
           omitNameDuringUpdate: true
           # Этот релиз должен быть главным: иначе GitHub показывает первым
           # старую сборку с другой ветки, и легко скачать не то.
