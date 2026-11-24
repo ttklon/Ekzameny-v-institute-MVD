@@ -340,6 +340,17 @@
     );
   }
 
+  /** Ближайшая дата экзамена среди дисциплин (или null). */
+  function nearestExam() {
+    let best = null;
+    for (const d of root.Store.activeDisciplines()) {
+      if (d.plan && P.isValidDate(d.plan.examDate)) {
+        if (!best || d.plan.examDate < best) best = d.plan.examDate;
+      }
+    }
+    return best;
+  }
+
   function nearestExamText() {
     let best = null;
     for (const d of root.Store.activeDisciplines()) {
@@ -523,19 +534,65 @@
   }
 
   function emptyState() {
-    const box = h("div.card");
-    box.appendChild(
-      h("div.empty", [
+    const box = h("div.grid", { style: { gap: "16px" } });
+
+    const intro = h("div.card");
+    intro.appendChild(
+      h("div.empty", { style: { paddingBottom: "10px" } }, [
         h("div.empty-icon", [UI.icon("cloud")]),
-        h("h3", "Пока пусто"),
-        h("p", "Добавьте файл с вопросами и ответами — TXT, DOCX или PDF. Программа сама найдёт вопросы, посчитает слова и распределит подготовку по дням."),
+        h("h3", "Начнём с файла"),
+        h("p", "Ничего настраивать заранее не нужно. Добавьте файл с вопросами и ответами — программа сама посчитает объём и покажет, что получилось."),
         h("div.row", [
           UI.button("Добавить файл", { kind: "primary", icon: "plus", onClick: () => root.App.openImport() }),
           UI.button("Как это работает", { kind: "ghost", icon: "info", onClick: () => root.App.go("tips") })
         ])
       ])
     );
+
+    // Три шага — что произойдёт дальше.
+    const steps = h("div.steps");
+    [
+      ["1", "Добавьте файл", "TXT, DOCX, PDF, ODT или RTF. Можно перетащить в окно или выбрать целую папку — файлы по одному вопросу склеятся в одну дисциплину."],
+      ["2", "Проверьте дату экзамена", "Программа предложит дату через месяц. Поставьте свою — от неё зависит вся нагрузка."],
+      ["3", "Читайте по списку", "Каждый день на экране «Сегодня» будет список вопросов. Отметили прочитанное — план пересчитался."]
+    ].forEach(([num, title, text]) => {
+      steps.appendChild(
+        h("div.step", [
+          h("div.step-num", num),
+          h("div", [
+            h("div.step-title", title),
+            h("div.step-text", text)
+          ])
+        ])
+      );
+    });
+    intro.appendChild(steps);
+    box.appendChild(intro);
+
+    // Что программа умеет — коротко, без технических слов.
+    const about = h("div.card");
+    about.appendChild(h("div.card-title", [h("h2", "Что внутри")]));
+    about.appendChild(
+      h("div.about-grid", [
+        aboutItem("file", "Файлы не входят в программу", "Вы добавляете свои — программа только читает их и считает. Никуда ничего не отправляется."),
+        aboutItem("stats", "Точный объём", "Слова, знаки и время чтения по каждому вопросу — видно, что читается дольше."),
+        aboutItem("calendar", "План до экзамена", "Вся работа раскладывается по дням с повторениями. Не успеваете — программа скажет."),
+        aboutItem("check", "Отметки и пересчёт", "Отмечаете прочитанное — норма на остаток дней пересчитывается сама.")
+      ])
+    );
+    box.appendChild(about);
+
     return box;
+  }
+
+  function aboutItem(icon, title, text) {
+    return h("div.about-item", [
+      h("div.about-icon", [UI.icon(icon)]),
+      h("div", [
+        h("div.about-title", title),
+        h("div.about-text", text)
+      ])
+    ]);
   }
 
   // =====================================================================
@@ -1057,167 +1114,289 @@
     return box;
   }
 
-  /** Вкладка «Параметры»: сроки, прогоны, режим, скорость. */
+  /** Вкладка «Параметры»: сроки, прогоны, скорость — по порядку вопросов. */
   function discSettingsTab(d, pd) {
-    const box = h("div.card");
-    box.appendChild(h("div.card-title", [h("h2", "Параметры дисциплины")]));
+    const box = h("div.grid", { style: { gap: "16px" } });
+    const g = settings();
 
-    const grid = h("div.plan-grid");
-
-    // Название
-    grid.appendChild(planField("Название", h("input.input", {
-      value: d.name,
-      onchange: (e) => {
-        d.name = e.target.value.trim() || d.name;
-        root.Store.save();
-        root.App.refresh();
-      }
-    })));
-
-    // Дата начала
-    grid.appendChild(planField("Начать с", h("input.input", {
-      type: "date",
-      value: d.plan.startDate,
-      onchange: (e) => updatePlan(d, { startDate: e.target.value })
-    }), "можно поставить будущую дату"));
-
-    // Дата экзамена
-    grid.appendChild(planField("Экзамен / зачёт", h("input.input", {
-      type: "date",
-      value: d.plan.examDate,
-      onchange: (e) => updatePlan(d, { examDate: e.target.value })
-    }), examHint(d)));
-
-    // Прогоны
-    grid.appendChild(
-      planField(
-        "Сколько раз прочитать",
-        UI.stepper(d.plan.passes, {
-          min: 1,
-          max: 12,
-          onChange: (v) => updatePlan(d, { passes: v })
-        }),
-        "повторения идут с растущими промежутками"
-      )
-    );
-
-    // Режим нагрузки
-    const modeSeg = h("div.segmented");
-    const modes = [
-      ["even", "равномерно"],
-      ["questions", "по вопросам"],
-      ["minutes", "по минутам"]
-    ];
-    for (const [key, label] of modes) {
-      modeSeg.appendChild(
-        h("button" + (d.plan.mode === key ? ".on" : ""), {
-          onclick: () => {
-            updatePlan(d, { mode: key });
-          }
-        }, label)
-      );
-    }
-    grid.appendChild(planField("Как распределять", modeSeg,
-      d.plan.mode === "even"
-        ? "движок делит остаток на оставшиеся дни и выравнивает нагрузку"
-        : d.plan.mode === "questions"
-          ? "фиксированное число новых вопросов в день"
-          : "фиксированное число минут в день"));
-
-    if (d.plan.mode === "questions") {
-      grid.appendChild(
-        planField("Вопросов в день", UI.stepper(d.plan.perDayQuestions, {
-          min: 1,
-          max: 200,
-          onChange: (v) => updatePlan(d, { perDayQuestions: v })
-        }), "новых вопросов, повторения добавляются сами")
-      );
-    }
-    if (d.plan.mode === "minutes") {
-      grid.appendChild(
-        planField("Минут в день", UI.stepper(d.plan.perDayMinutes, {
-          min: 5,
-          max: 600,
-          step: 5,
-          onChange: (v) => updatePlan(d, { perDayMinutes: v })
-        }), "включая повторения")
-      );
-    }
-
-    // Выходные
-    const chips = h("div.chips");
-    const wd = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
-    // В плане дни — как getDay(): 0 = воскресенье.
-    const order = [1, 2, 3, 4, 5, 6, 0];
-    order.forEach((dayNum, i) => {
-      const on = (d.plan.restDays || []).indexOf(dayNum) !== -1;
-      chips.appendChild(
-        h("button.chip" + (on ? ".on.rest" : ""), {
-          onclick: () => {
-            const rest = (d.plan.restDays || []).slice();
-            const at = rest.indexOf(dayNum);
-            if (at >= 0) rest.splice(at, 1);
-            else rest.push(dayNum);
-            updatePlan(d, { restDays: rest });
-          }
-        }, wd[i])
-      );
-    });
-    grid.appendChild(planField("Выходные (без чтения)", chips, "в эти дни нагрузка не ставится"));
-
-    // Порядок
-    const orderSeg = h("div.segmented");
-    [["inOrder", "по порядку"], ["mixed", "вперемешку"]].forEach(([key, label]) => {
-      orderSeg.appendChild(
-        h("button" + (d.plan.order === key ? ".on" : ""), {
-          onclick: () => updatePlan(d, { order: key })
-        }, label)
-      );
-    });
-    grid.appendChild(planField("Порядок вопросов", orderSeg,
-      d.plan.order === "mixed"
-        ? "вопросы перемешаны — помогает не привязываться к порядку файла"
-        : "как в файле — проще находить ответ"));
-
-    // Оценка объёма: нужна, когда в файле только вопросы без ответов.
-    const estimatedCount = d.questions.filter((q) => q.estimated).length;
-    if (estimatedCount > 0) {
-      grid.appendChild(
-        planField(
-          "Объём ответа (оценка)",
-          UI.stepper(d.assumeAnswerWords || 250, {
-            min: 30,
-            max: 1500,
-            step: 10,
-            onChange: (v) => {
-              d.assumeAnswerWords = v;
-              reestimateAnswers(d, v);
-            }
-          }),
-          "для " + estimatedCount + " " + UI.plural(estimatedCount, "вопроса", "вопросов", "вопросов") +
-            " без ответа — столько слов считается на каждый"
-        )
-      );
-    }
-
-    box.appendChild(grid);
-
-    // Предпросмотр результата
-    box.appendChild(
-      h("div", { style: { marginTop: "18px", padding: "14px 16px", borderRadius: "14px", background: "rgba(255,255,255,.42)" } }, [
-        h("div.section-label", "что получится"),
-        h("div", { style: { display: "grid", gap: "6px", marginTop: "8px", fontSize: "13.5px" } }, [
-          rowKV("Всего чтения", UI.durLong(P.totalMinutes(d, settings()))),
-          rowKV("Осталось", UI.durLong(P.remainingMinutes(d, settings()))),
-          rowKV("Дней до экзамена", daysWord(Math.max(0, P.daysBetween(today(), d.plan.examDate)))),
-          rowKV("В среднем в день", UI.dur(pd.stats.perDayMinutes || 0))
+    // =================================================================
+    //  1. Сроки — то, что нужно в первую очередь
+    // =================================================================
+    const dates = h("div.card");
+    dates.appendChild(
+      h("div.card-title", [
+        h("div", [
+          h("h2", "Сроки"),
+          h("div.muted", { style: { fontSize: "12.5px", marginTop: "3px" } },
+            "Экзамен — это главное: от него считается вся нагрузка.")
         ])
       ])
     );
 
-    // Опасная зона
-    box.appendChild(
-      h("div.row", { style: { marginTop: "18px" } }, [
+    const examDays = P.isValidDate(d.plan.examDate) ? P.daysBetween(today(), d.plan.examDate) : null;
+    dates.appendChild(
+      h("div.dates-row", [
+        h("label.date-box" + (examDays != null && examDays < 0 ? ".bad" : ""), [
+          h("span.date-label", "Экзамен или зачёт"),
+          h("input.input", {
+            type: "date",
+            value: d.plan.examDate,
+            onchange: (e) => updatePlan(d, { examDate: e.target.value })
+          }),
+          h("span.date-hint", examHint(d))
+        ]),
+        h("label.date-box", [
+          h("span.date-label", "Начать не раньше"),
+          h("input.input", {
+            type: "date",
+            value: d.plan.startDate,
+            onchange: (e) => updatePlan(d, { startDate: e.target.value })
+          }),
+          h("span.date-hint", "можно поставить будущую дату")
+        ])
+      ])
+    );
+
+    dates.appendChild(
+      h("div.settings-row", { style: { marginTop: "6px" } }, [
+        h("div", [
+          h("div.title", "Прочитать полностью"),
+          h("div.desc", "Сколько раз пройти все вопросы до экзамена. 3 — разумный минимум: первый раз понять, второй закрепить, третий проверить себя.")
+        ]),
+        h("div.row", [
+          UI.stepper(d.plan.passes, { min: 1, max: 12, onChange: (v) => updatePlan(d, { passes: v }) }),
+          h("span.muted", { style: { fontSize: "12.5px" } }, "раз")
+        ])
+      ])
+    );
+    box.appendChild(dates);
+
+    // =================================================================
+    //  2. Скорость чтения — своя для этой дисциплины
+    // =================================================================
+    const speed = h("div.card");
+    const own = d.reading || null;
+    speed.appendChild(
+      h("div.card-title", [
+        h("div", [
+          h("h2", "Скорость чтения"),
+          h("div.muted", { style: { fontSize: "12.5px", marginTop: "3px", maxWidth: "62ch" } },
+            "У разных предметов разный язык: устав читается медленнее конспекта. Здесь можно задать свою скорость — общая останется для остальных.")
+        ]),
+        own ? h("span.tag.ok", "своя") : h("span.tag", "как везде")
+      ])
+    );
+
+    const wpm = own && own.wordsPerMinute ? own.wordsPerMinute : g.wordsPerMinute || 150;
+    let avgWords = 0;
+    let answered = 0;
+    for (const q of d.questions) {
+      if (q.aWords > 0) {
+        avgWords += q.words;
+        answered++;
+      }
+    }
+    avgWords = answered ? Math.round(avgWords / answered) : 600;
+
+    const preview = h("div.read-example");
+    function paintPreview() {
+      UI.clear(preview);
+      const rate = d.reading && d.reading.wordsPerMinute ? d.reading.wordsPerMinute : (settings().wordsPerMinute || 150);
+      preview.appendChild(
+        h("div", [
+          h("div.section-label", "средний ответ — " + UI.num(avgWords) + " слов"),
+          h("div.read-big", [UI.dur(avgWords / rate), h("span.read-unit", " на один вопрос")])
+        ])
+      );
+      preview.appendChild(
+        h("div", [
+          h("div.section-label", "вся дисциплина, " + d.plan.passes + " " + UI.plural(d.plan.passes, "прогон", "прогона", "прогонов")),
+          h("div.read-big", UI.durLong(P.totalMinutes(d, settings())))
+        ])
+      );
+      const out = speed.querySelector(".speed-value");
+      if (out) out.textContent = rate + " слов/мин";
+    }
+
+    const slider = h("input.speed-slider", {
+      type: "range",
+      min: "60",
+      max: "400",
+      step: "5",
+      value: String(wpm),
+      oninput: (e) => {
+        const v = Number(e.target.value);
+        d.reading = Object.assign({}, d.reading || {}, { wordsPerMinute: v });
+        root.Store.save();
+        paintPreview();
+      },
+      onchange: () => {
+        root.Sound.play("tap");
+        root.App.refresh();
+      }
+    });
+
+    speed.appendChild(h("div.speed-line", [h("span.speed-value", wpm + " слов/мин"), slider]));
+    speed.appendChild(preview);
+
+    const speedActions = h("div.row", { style: { marginTop: "4px" } });
+    if (own) {
+      speedActions.appendChild(
+        UI.button("Как у всех", {
+          kind: "ghost",
+          size: "sm",
+          icon: "reset",
+          onClick: () => {
+            delete d.reading;
+            root.Store.save();
+            root.Sound.play("tap");
+            root.App.refresh();
+          }
+        })
+      );
+    }
+    speedActions.appendChild(
+      h("span.muted", { style: { fontSize: "12px" } },
+        "Общая скорость сейчас — " + (g.wordsPerMinute || 150) + " слов/мин. Меняется в «Настройках».")
+    );
+    speed.appendChild(speedActions);
+    box.appendChild(speed);
+
+    // =================================================================
+    //  3. Как распределять — под свёрнутым блоком
+    // =================================================================
+    const advOpen = d.advOpen === true;
+    const adv = h("div.card");
+    adv.appendChild(
+      h("button.adv-toggle", {
+        onclick: () => {
+          d.advOpen = !advOpen;
+          root.Store.save();
+          root.App.refresh();
+        }
+      }, [
+        UI.icon(advOpen ? "chevronDown" : "chevronRight"),
+        h("span", "Как именно распределять"),
+        h("span.muted", { style: { fontSize: "12px", fontWeight: "400" } },
+          advOpen ? "" : "выходные, порядок, режим")
+      ])
+    );
+
+    if (advOpen) {
+      const grid = h("div.plan-grid");
+
+      const modeSeg = h("div.segmented");
+      [["even", "равномерно"], ["questions", "по вопросам"], ["minutes", "по минутам"]].forEach(([key, label]) => {
+        modeSeg.appendChild(
+          h("button" + (d.plan.mode === key ? ".on" : ""), {
+            onclick: () => updatePlan(d, { mode: key })
+          }, label)
+        );
+      });
+      grid.appendChild(planField("Как распределять", modeSeg,
+        d.plan.mode === "even"
+          ? "весь остаток делится на оставшиеся дни — нагрузка ровная"
+          : d.plan.mode === "questions"
+            ? "фиксированное число новых вопросов в день"
+            : "фиксированное число минут в день"));
+
+      if (d.plan.mode === "questions") {
+        grid.appendChild(
+          planField("Вопросов в день", UI.stepper(d.plan.perDayQuestions, {
+            min: 1,
+            max: 200,
+            onChange: (v) => updatePlan(d, { perDayQuestions: v })
+          }), "новых вопросов, повторения добавляются сами")
+        );
+      }
+      if (d.plan.mode === "minutes") {
+        grid.appendChild(
+          planField("Минут в день", UI.stepper(d.plan.perDayMinutes, {
+            min: 5,
+            max: 600,
+            step: 5,
+            onChange: (v) => updatePlan(d, { perDayMinutes: v })
+          }), "включая повторения")
+        );
+      }
+
+      const chips = h("div.chips");
+      const wd = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
+      const order = [1, 2, 3, 4, 5, 6, 0];
+      order.forEach((dayNum, i) => {
+        const on = (d.plan.restDays || []).indexOf(dayNum) !== -1;
+        chips.appendChild(
+          h("button.chip" + (on ? ".on.rest" : ""), {
+            onclick: () => {
+              const rest = (d.plan.restDays || []).slice();
+              const at = rest.indexOf(dayNum);
+              if (at >= 0) rest.splice(at, 1);
+              else rest.push(dayNum);
+              updatePlan(d, { restDays: rest });
+            }
+          }, wd[i])
+        );
+      });
+      grid.appendChild(planField("Выходные (без чтения)", chips, "в эти дни нагрузка не ставится"));
+
+      const orderSeg = h("div.segmented");
+      [["inOrder", "по порядку"], ["mixed", "вперемешку"]].forEach(([key, label]) => {
+        orderSeg.appendChild(
+          h("button" + (d.plan.order === key ? ".on" : ""), {
+            onclick: () => updatePlan(d, { order: key })
+          }, label)
+        );
+      });
+      grid.appendChild(planField("Порядок вопросов", orderSeg,
+        d.plan.order === "mixed"
+          ? "вопросы перемешаны — помогает не привязываться к порядку файла"
+          : "как в файле — проще находить ответ"));
+
+      const estimatedCount = d.questions.filter((q) => q.estimated).length;
+      if (estimatedCount > 0) {
+        grid.appendChild(
+          planField(
+            "Объём ответа (оценка)",
+            UI.stepper(d.assumeAnswerWords || 250, {
+              min: 30,
+              max: 1500,
+              step: 10,
+              onChange: (v) => {
+                d.assumeAnswerWords = v;
+                reestimateAnswers(d, v);
+              }
+            }),
+            "для " + estimatedCount + " " + UI.plural(estimatedCount, "вопроса", "вопросов", "вопросов") +
+              " без ответа — столько слов считается на каждый"
+          )
+        );
+      }
+
+      adv.appendChild(grid);
+    }
+    box.appendChild(adv);
+
+    // =================================================================
+    //  4. Название и удаление — в конце, чтобы не мешать
+    // =================================================================
+    const misc = h("div.card");
+    misc.appendChild(h("div.card-title", [h("h2", "Название и прочее")]));
+    misc.appendChild(
+      h("div.settings-row", [
+        h("div", [h("div.title", "Название дисциплины"), h("div.desc", "Как она называется в списке и на экранах.")]),
+        h("input.input", {
+          value: d.name,
+          style: { width: "280px" },
+          onchange: (e) => {
+            d.name = e.target.value.trim() || d.name;
+            root.Store.save();
+            root.App.refresh();
+          }
+        })
+      ])
+    );
+    misc.appendChild(
+      h("div.row", { style: { marginTop: "16px" } }, [
         UI.button("Сбросить отметки", {
           kind: "ghost",
           onClick: () => {
@@ -1235,7 +1414,9 @@
         })
       ])
     );
+    box.appendChild(misc);
 
+    requestAnimationFrame(paintPreview);
     return box;
   }
 
@@ -1757,85 +1938,186 @@
 
   function viewSettings() {
     const s = settings();
+    const planData = plan();
     const wrap = h("div.grid", { style: { gap: "16px" } });
 
-    // Скорость чтения
-    const speedCard = h("div.card");
-    speedCard.appendChild(h("div.card-title", [h("h2", "Скорость чтения")]));
-    speedCard.appendChild(
-      h("div.settings-grid", [
-        settingsRow(
-          "Слов в минуту",
-          "Сколько слов вы прочитываете за минуту в учебном тексте. Влияет на всё: время вопроса, норму дня, дату финиша.",
-          UI.stepper(s.wordsPerMinute, { min: 40, max: 800, step: 5, onChange: (v) => setSetting("wordsPerMinute", v) })
-        ),
-        settingsRow(
-          "Считать в знаках",
-          "Некоторые считают скорость в знаках в минуту — так делают редакторы и корректоры. Обычно удобнее слова.",
-          switchControl("unit", s.unit === "cpm", (on) => setSetting("unit", on ? "cpm" : "wpm"), on0("знаки"), "слова")
-        ),
-        s.unit === "cpm"
-          ? settingsRow("Знаков в минуту", "Средняя скорость чтения вслух — около 900–1200 знаков в минуту.",
-            UI.stepper(s.charsPerMinute, { min: 300, max: 4000, step: 50, onChange: (v) => setSetting("charsPerMinute", v) }))
-          : null,
-        settingsRow(
-          "Повторное чтение быстрее",
-          "Во сколько раз быстрее вы читаете уже знакомый ответ. 1,5 — обычное значение.",
-          UI.stepper(Math.round(s.reviewSpeedFactor * 10), {
-            min: 10,
-            max: 30,
-            onChange: (v) => setSetting("reviewSpeedFactor", v / 10)
-          })
-        ),
-        settingsRow(
-          "Интервал повторений",
-          "Доля от срока до экзамена для первого повторения. Исследования дают оптимум 10–20 %.",
-          minuteChips()
-        )
+    // =================================================================
+    //  1. Сколько вы читаете в минуту
+    // =================================================================
+    const speed = h("div.card");
+    speed.appendChild(
+      h("div.card-title", [
+        h("div", [
+          h("h2", "Сколько вы читаете в минуту"),
+          h("div.muted", { style: { fontSize: "12.5px", marginTop: "3px", maxWidth: "62ch" } },
+            "От этого числа зависит всё остальное: сколько минут займёт ответ, сколько вопросов в день и когда вы закончите. Если не знаете — оставьте 150: это спокойное чтение учебного текста про себя.")
+        ]),
+        h("span.tag", "главное")
       ])
     );
-    wrap.appendChild(speedCard);
 
-    // План по умолчанию
-    const defCard = h("div.card");
-    defCard.appendChild(h("div.card-title", [h("h2", "Новые дисциплины")]));
-    defCard.appendChild(
-      h("div.settings-grid", [
-        settingsRow(
-          "Прогонов по умолчанию",
-          "Сколько раз прочитать файл. 3 — разумный минимум для экзамена.",
-          UI.stepper(s.defaultPasses, { min: 1, max: 10, onChange: (v) => setSetting("defaultPasses", v) })
-        ),
-        settingsRow(
-          "Как распределять",
-          "Равномерно — весь объём делится на дни. По вопросам — фиксированное число новых в день.",
-          modeControl()
-        ),
-        settingsRow(
-          "Общий бюджет в день",
-          "Если задан, работа по всем дисциплинам делится внутри этого времени: каждый день понемногу из каждой.",
-          UI.stepper(s.globalDailyMinutes, { min: 0, max: 600, step: 15, onChange: (v) => setSetting("globalDailyMinutes", v) })
-        ),
-        settingsRow(
-          "Потолок дня",
-          "Жёсткий предел минут в день на одну дисциплину. 0 — без предела.",
-          UI.stepper(s.dailyCapMinutes, { min: 0, max: 600, step: 10, onChange: (v) => setSetting("dailyCapMinutes", v) })
-        )
+    // Живой пример: сколько займёт ваш средний ответ.
+    let avgWords = 0;
+    let answered = 0;
+    for (const d of root.Store.activeDisciplines()) {
+      for (const q of d.questions) {
+        if (q.aWords > 0) {
+          avgWords += q.words;
+          answered++;
+        }
+      }
+    }
+    avgWords = answered ? Math.round(avgWords / answered) : 600;
+    const example = h("div.read-example");
+
+    const slider = h("input.speed-slider", {
+      type: "range",
+      min: "60",
+      max: "400",
+      step: "5",
+      value: String(s.wordsPerMinute),
+      oninput: (e) => {
+        const v = Number(e.target.value);
+        state().settings.wordsPerMinute = v;
+        paintSpeed();
+        root.Store.save();
+      },
+      onchange: () => {
+        root.Store.save();
+        root.Sound.play("tap");
+      }
+    });
+
+    const presets = h("div.chips");
+    [
+      [90, "медленно"],
+      [130, "спокойно"],
+      [150, "обычно"],
+      [200, "быстро"],
+      [280, "очень быстро"]
+    ].forEach(([v, label]) => {
+      presets.appendChild(
+        h("button.chip" + (s.wordsPerMinute === v ? ".on" : ""), {
+          onclick: () => {
+            state().settings.wordsPerMinute = v;
+            slider.value = String(v);
+            root.Store.save();
+            root.Sound.play("tap");
+            paintSpeed();
+          }
+        }, label + " · " + v)
+      );
+    });
+
+    function paintSpeed() {
+      const wpm = state().settings.wordsPerMinute || 150;
+      const mins = (avgWords * 1.0) / wpm;
+      UI.clear(example);
+      example.appendChild(
+        h("div", [
+          h("div.section-label", "ваш средний ответ — " + UI.num(avgWords) + " слов"),
+          h("div.read-big", [UI.dur(mins), h("span.read-unit", " на один вопрос")])
+        ])
+      );
+      example.appendChild(
+        h("div", [
+          h("div.section-label", "весь объём, все прогоны"),
+          h("div.read-big", UI.durLong(planData.totals.minutesTotal))
+        ])
+      );
+      // Обновляем подпись у ползунка без перерисовки всего экрана.
+      const out = speed.querySelector(".speed-value");
+      if (out) out.textContent = wpm + " слов/мин";
+      presets.querySelectorAll(".chip").forEach((c, i) => {
+        const v = [90, 130, 150, 200, 280][i];
+        c.classList.toggle("on", v === wpm);
+      });
+    }
+
+    speed.appendChild(
+      h("div.speed-line", [
+        h("span.speed-value", s.wordsPerMinute + " слов/мин"),
+        slider
       ])
     );
-    wrap.appendChild(defCard);
+    speed.appendChild(presets);
+    speed.appendChild(example);
+    // Заполняем пример сразу: requestAnimationFrame может не сработать до показа.
+    paintSpeed();
+    speed.appendChild(
+      h("div.muted", { style: { fontSize: "12px", marginTop: "2px" } },
+        "Повторное чтение уже знакомого ответа считается в 1,5 раза быстрее — так обычно и бывает. Изменить это можно ниже, в разделе «Тонкая настройка».")
+    );
+    wrap.appendChild(speed);
 
-    // Оформление и звук
-    const lookCard = h("div.card");
-    lookCard.appendChild(h("div.card-title", [h("h2", "Оформление и звук")]));
-    lookCard.appendChild(
+    // =================================================================
+    //  2. Время, которое вы готовы тратить
+    // =================================================================
+    const time = h("div.card");
+    time.appendChild(h("div.card-title", [h("h2", "Сколько времени в день")]));
+    time.appendChild(
+      h("div.muted", { style: { fontSize: "12.5px", marginBottom: "12px", maxWidth: "66ch" } },
+        "Если ничего не выбирать, программа делит весь объём на дни до экзамена поровну. Если хотите ограничить себя — выберите предел: план растянется сам, а дата финиша покажет, успеваете ли вы.")
+    );
+
+    const limitChips = h("div.chips");
+    [
+      [0, "без ограничения"],
+      [30, "30 минут"],
+      [45, "45 минут"],
+      [60, "1 час"],
+      [90, "1,5 часа"],
+      [120, "2 часа"]
+    ].forEach(([v, label]) => {
+      const on = (s.globalDailyMinutes || 0) === v;
+      limitChips.appendChild(
+        h("button.chip" + (on ? ".on" : ""), {
+          onclick: () => {
+            state().settings.globalDailyMinutes = v;
+            root.Store.save();
+            root.App.refresh();
+          }
+        }, label)
+      );
+    });
+    time.appendChild(
+      h("div.settings-row", [
+        h("div", [
+          h("div.title", "Предел на день"),
+          h("div.desc", "Считается по всем дисциплинам вместе — столько вы готовы читать за день.")
+        ]),
+        limitChips
+      ])
+    );
+
+    // Что получается при этом выборе — сразу видно.
+    const outcome = h("div.outcome");
+    const activeDays = planData.totals.daysWithWork || 0;
+    const perDay = activeDays > 0 ? planData.totals.minutesLeft / activeDays : 0;
+    outcome.appendChild(outcomeLine("В среднем в день", perDay > 0 ? UI.dur(perDay) : "—"));
+    outcome.appendChild(outcomeLine("Самый тяжёлый день",
+      planData.totals.maxDayMinutes > 0
+        ? UI.dur(planData.totals.maxDayMinutes) + (planData.totals.maxDay ? " (" + UI.dateShort(planData.totals.maxDay) + ")" : "")
+        : "—"));
+    outcome.appendChild(outcomeLine("Закончите", finishLine(planData)));
+    outcome.appendChild(outcomeLine("Осталось прочитать", UI.durLong(planData.totals.minutesLeft)));
+    time.appendChild(outcome);
+    wrap.appendChild(time);
+
+    // =================================================================
+    //  3. Как выглядит и звучит
+    // =================================================================
+    const look = h("div.card");
+    look.appendChild(h("div.card-title", [h("h2", "Как выглядит и звучит")]));
+    look.appendChild(
       h("div.settings-grid", [
-        settingsRow("Звуки интерфейса", "Мягкие короткие звуки при отметках и переходах.",
+        settingsRow("Звуки", "Короткие мягкие звуки при отметках и переходах между экранами.",
           switchControl("sound", s.sound, (on) => {
             setSetting("sound", on);
             root.Sound.configure({ enabled: on });
+            if (on) root.Sound.play("chime");
           })),
-        settingsRow("Громкость", "Общая громкость звуков.",
+        settingsRow("Громкость", "Общая громкость звуков приложения.",
           h("input", {
             type: "range",
             min: "0",
@@ -1848,45 +2130,115 @@
               root.Sound.configure({ volume: v });
             }
           })),
-        settingsRow("Время суток на фоне", "Небо меняется по часам. Можно зафиксировать нужное время.",
+        settingsRow("Небо на фоне", "Небо меняется по времени суток. Можно зафиксировать, если нравится определённое.",
           hourControl()),
-        settingsRow("Меньше движения", "Отключает анимации — для спокойной работы или слабого компьютера.",
+        settingsRow("Меньше движения", "Отключает анимации — спокойнее для глаз и легче для слабого компьютера.",
           switchControl("reduceMotion", s.reduceMotion, (on) => {
             setSetting("reduceMotion", on);
             document.body.classList.toggle("reduce-motion", on);
           }))
       ])
     );
-    wrap.appendChild(lookCard);
+    wrap.appendChild(look);
 
-    // Данные
-    const dataCard = h("div.card");
-    dataCard.appendChild(h("div.card-title", [h("h2", "Данные")]));
-    dataCard.appendChild(
+    // =================================================================
+    //  4. Тонкая настройка — свёрнута, чтобы не мешать
+    // =================================================================
+    const advancedOpen = !!state().ui.settingsAdvanced;
+    const adv = h("div.card");
+    adv.appendChild(
+      h("button.adv-toggle", {
+        onclick: () => {
+          state().ui.settingsAdvanced = !state().ui.settingsAdvanced;
+          root.Store.save();
+          root.App.refresh();
+        }
+      }, [
+        UI.icon(advancedOpen ? "chevronDown" : "chevronRight"),
+        h("span", "Тонкая настройка"),
+        h("span.muted", { style: { fontSize: "12px", fontWeight: "400" } },
+          advancedOpen ? "для тех, кто хочет всё под контролем" : "коэффициенты, интервалы, потолки")
+      ])
+    );
+
+    if (advancedOpen) {
+      adv.appendChild(
+        h("div.settings-grid", [
+          settingsRow(
+            "Считать в знаках",
+            "По умолчанию скорость считается в словах. Редакторы и корректоры чаще считают в знаках — можно переключить.",
+            switchControl("unit", s.unit === "cpm", (on) => setSetting("unit", on ? "cpm" : "wpm"), "знаки", "слова")
+          ),
+          s.unit === "cpm"
+            ? settingsRow("Знаков в минуту", "Средняя скорость чтения вслух — около 900–1200 знаков в минуту.",
+              UI.stepper(s.charsPerMinute, { min: 300, max: 4000, step: 50, onChange: (v) => setSetting("charsPerMinute", v) }))
+            : null,
+          settingsRow(
+            "Повторное чтение быстрее в",
+            "Во сколько раз быстрее вы читаете уже знакомый ответ. 1,5 — обычное значение, 2 — если помните почти всё.",
+            h("div.row", [
+              UI.stepper(Math.round(s.reviewSpeedFactor * 10), {
+                min: 10,
+                max: 30,
+                onChange: (v) => setSetting("reviewSpeedFactor", v / 10)
+              }),
+              h("span.muted", { style: { fontSize: "12px" } }, "раз")
+            ])
+          ),
+          settingsRow(
+            "Когда начинать повторять",
+            "Через какую долю срока до экзамена ставить первое повторение. Исследования дают оптимум 10–20 %: слишком рано — забудете, слишком поздно — не успеете закрепить.",
+            minuteChips()
+          ),
+          settingsRow(
+            "Прогонов для новых файлов",
+            "Сколько раз прочитать файл по умолчанию. 3 — разумный минимум для экзамена. У каждой дисциплины это можно поменять отдельно.",
+            UI.stepper(s.defaultPasses || 3, { min: 1, max: 10, onChange: (v) => setSetting("defaultPasses", v) })
+          ),
+          settingsRow(
+            "Как распределять новые файлы",
+            "Равномерно — весь объём делится на дни. По вопросам — фиксированное число новых в день. По минутам — фиксированное время.",
+            modeControl()
+          ),
+          settingsRow(
+            "Потолок дня на дисциплину",
+            "Жёсткий предел минут в день на одну дисциплину. 0 — без предела. Нужен редко; обычно достаточно предела на день выше.",
+            UI.stepper(s.dailyCapMinutes, { min: 0, max: 600, step: 10, onChange: (v) => setSetting("dailyCapMinutes", v) })
+          )
+        ])
+      );
+    }
+    wrap.appendChild(adv);
+
+    // =================================================================
+    //  5. Данные
+    // =================================================================
+    const data = h("div.card");
+    data.appendChild(h("div.card-title", [h("h2", "Данные")]));
+    data.appendChild(
       h("div.settings-grid", [
         settingsRow("Резервная копия", "Сохранить всю библиотеку в файл — пригодится при переносе на другой компьютер.",
           h("div.row", [
-            UI.button("Сохранить", { size: "sm", icon: "export", onClick: () => root.App.exportBackup() }),
-            UI.button("Папка с данными", { size: "sm", kind: "ghost", onClick: () => root.App.openDataDir() })
+            UI.button("Сохранить копию", { size: "sm", icon: "export", onClick: () => root.App.exportBackup() }),
+            UI.button("Открыть папку", { size: "sm", kind: "ghost", icon: "folder", onClick: () => root.App.openDataDir() })
           ])),
-        settingsRow("Занято на диске", "", h("span.mono", { id: "storageInfo" }, "…")),
+        settingsRow("Занято на диске", "Библиотека и копии добавленных файлов.", h("span.mono", { id: "storageInfo" }, "…")),
         settingsRow("Версия", "", h("span.mono", { id: "versionInfo" }, "…"))
       ])
     );
-    wrap.appendChild(dataCard);
+    wrap.appendChild(data);
 
-    // Заполняем сведения
     setTimeout(async () => {
       try {
         if (root.api && root.api.info) {
           const info = await root.api.info();
           const v = document.getElementById("versionInfo");
-          if (v) v.textContent = info.version + " · Electron " + info.electron;
+          if (v) v.textContent = info.version + (info.electron ? " · Electron " + info.electron : "");
         }
         if (root.api && root.api.storageStats) {
           const st = await root.api.storageStats();
           const el = document.getElementById("storageInfo");
-          if (el) el.textContent = fmtBytes(st.textsBytes + st.libraryBytes) + " (" + fmtBytes(st.textsBytes) + " тексты)";
+          if (el) el.textContent = fmtBytes(st.textsBytes + st.libraryBytes);
         }
       } catch (e) {
         /* сведения не критичны */
@@ -1894,6 +2246,29 @@
     }, 30);
 
     return wrap;
+  }
+
+  /** Строка «что получится» на экране настроек. */
+  function outcomeLine(label, value) {
+    return h("div.outcome-line", [
+      h("span.muted", label),
+      h("b", value)
+    ]);
+  }
+
+  /** Когда закончится подготовка при текущем плане. */
+  function finishLine(planData) {
+    let last = null;
+    for (const date of Object.keys(planData.combined)) {
+      if (planData.combined[date] && planData.combined[date].length) {
+        if (!last || date > last) last = date;
+      }
+    }
+    if (!last) return "пока нечего планировать";
+    const exam = nearestExam();
+    const rel = UI.relativeDay(last);
+    if (exam && last <= exam) return UI.dateShort(last) + " — " + rel;
+    return UI.dateShort(last) + " — позже экзамена";
   }
 
   function on0(label) {

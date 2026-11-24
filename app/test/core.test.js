@@ -411,6 +411,37 @@ test("общий бюджет делит время между дисципли�
   assert.strictEqual(discsToday.size, 2, "в работе не обе дисциплины: " + Array.from(discsToday));
 });
 
+test("у дисциплины может быть своя скорость чтения", () => {
+  const d = makeDisc(5, { words: 600 });
+  const base = planner.totalMinutes(d, settings);
+  d.reading = { wordsPerMinute: 75 };
+  const slower = planner.totalMinutes(d, settings);
+  assert.ok(Math.abs(slower - base * 2) < 0.5, "вдвое медленнее — вдвое дольше: " + base + " → " + slower);
+  d.reading = { wordsPerMinute: 300 };
+  const faster = planner.totalMinutes(d, settings);
+  assert.ok(Math.abs(faster - base / 2) < 0.5, "вдвое быстрее — вдвое короче: " + base + " → " + faster);
+  // Своя скорость не должна влиять на другие дисциплины.
+  const other = makeDisc(5, { words: 600 });
+  other.id = "d2";
+  assert.ok(Math.abs(planner.totalMinutes(other, settings) - base) < 0.01, "чужая скорость протекла");
+});
+
+test("своя скорость в знаках тоже работает", () => {
+  const d = makeDisc(4, { words: 500 });
+  d.reading = { unit: "cpm", charsPerMinute: 1200 };
+  const asChars = planner.totalMinutes(d, settings);
+  // 4 вопроса × 500 слов ≈ 12 000 знаков × 3 прогона с коэффициентом 1,5.
+  const expected = ((500 * 6.2) / 1200) * (1 + 1 / 1.5 + 1 / 1.5) * 4;
+  assert.ok(Math.abs(asChars - expected) < 2, "знаки считаются не так: " + asChars + " vs " + expected.toFixed(1));
+});
+
+test("дисциплина без своей скорости берёт общую", () => {
+  const d = makeDisc(3, { words: 400 });
+  const a = planner.totalMinutes(d, settings);
+  d.reading = {};
+  assert.ok(Math.abs(planner.totalMinutes(d, settings) - a) < 0.01, "пустая настройка изменила время");
+});
+
 test("repeated passes get shorter (review faster)", () => {
   const d = makeDisc(5, { words: 500 });
   const m1 = planner.questionMinutes(d, d.questions[0], 1, settings);

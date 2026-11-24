@@ -167,10 +167,20 @@ async function run() {
   win.document.dispatchEvent(new win.Event("DOMContentLoaded"));
   await tick(120);
 
-  check("приложение запустилось и нарисовало обзор", () => {
+  check("первый запуск объясняет, что делать", () => {
     const view = win.document.getElementById("view");
     if (!view || !view.children.length) throw new Error("экран пуст");
-    if (!view.textContent.includes("Пока пусто")) throw new Error("нет приглашения добавить файл: " + view.textContent.slice(0, 120));
+    if (!/Начнём с файла/.test(view.textContent)) {
+      throw new Error("нет приглашения добавить файл: " + view.textContent.slice(0, 160));
+    }
+    if (!view.querySelector(".steps")) throw new Error("нет шагов «что делать»");
+    const steps = view.querySelectorAll(".step");
+    if (steps.length !== 3) throw new Error("шагов: " + steps.length);
+    if (!/Добавьте файл/.test(steps[0].textContent)) throw new Error("первый шаг не про файл");
+    if (!view.querySelector(".about-grid")) throw new Error("нет блока «что внутри»");
+    // Кнопка добавления должна быть на первом экране и работать.
+    const btn = Array.from(view.querySelectorAll("button")).find((b) => /Добавить файл/.test(b.textContent));
+    if (!btn) throw new Error("нет кнопки добавления файла");
   });
 
   check("навигация построена", () => {
@@ -334,6 +344,81 @@ async function run() {
     const after = win.Views.plan().totals.minutesTotal;
     win.Store.state.settings.wordsPerMinute = 150;
     if (!(after < before)) throw new Error("время не уменьшилось при большей скорости");
+  });
+
+  // ---- Настройки: каждое изменение должно быть видно -----------------
+  win.App.go("settings");
+  await tick(60);
+  check("скорость чтения настраивается ползунком и видна сразу", () => {
+    const view = win.document.getElementById("view");
+    const slider = view.querySelector(".speed-slider");
+    if (!slider) throw new Error("нет ползунка скорости");
+    const readout = view.querySelector(".speed-value");
+    if (!readout) throw new Error("нет подписи со значением");
+    if (readout.textContent.indexOf("150") === -1) throw new Error("подпись не показывает скорость: " + readout.textContent);
+    // Двигаем ползунок и проверяем и значение, и подпись, и пример.
+    const exampleBefore = view.querySelector(".read-big").textContent;
+    slider.value = "280";
+    slider.dispatchEvent(new win.Event("input", { bubbles: true }));
+    if (win.Store.state.settings.wordsPerMinute !== 280) {
+      throw new Error("настройка не сохранилась: " + win.Store.state.settings.wordsPerMinute);
+    }
+    if (view.querySelector(".speed-value").textContent.indexOf("280") === -1) {
+      throw new Error("подпись не обновилась сразу: " + view.querySelector(".speed-value").textContent);
+    }
+    const exampleAfter = view.querySelector(".read-big").textContent;
+    if (exampleBefore === exampleAfter) throw new Error("пример не пересчитался: " + exampleAfter);
+    win.Store.state.settings.wordsPerMinute = 150;
+  });
+
+  check("готовые варианты скорости выбираются нажатием", () => {
+    const view = win.document.getElementById("view");
+    const chips = view.querySelectorAll(".chips .chip");
+    if (!chips.length) throw new Error("нет готовых вариантов");
+    const target = Array.from(chips).find((c) => /200/.test(c.textContent));
+    if (!target) throw new Error("нет варианта 200");
+    target.dispatchEvent(new win.MouseEvent("click", { bubbles: true }));
+    if (win.Store.state.settings.wordsPerMinute !== 200) {
+      throw new Error("вариант не применился: " + win.Store.state.settings.wordsPerMinute);
+    }
+    win.Store.state.settings.wordsPerMinute = 150;
+  });
+
+  check("предел времени в день меняет норму и показывает финиш", () => {
+    win.Store.state.settings.globalDailyMinutes = 0;
+    const view = win.document.getElementById("view");
+    const outcome = view.querySelector(".outcome");
+    if (!outcome) throw new Error("нет блока «что получится»");
+    const lines = outcome.querySelectorAll(".outcome-line");
+    if (lines.length < 3) throw new Error("в блоке мало строк: " + lines.length);
+    const finish = lines[1].textContent;
+    if (!finish.trim()) throw new Error("не показана дата финиша");
+    // Выбираем предел 30 минут и убеждаемся, что настройка применилась.
+    const chip = Array.from(view.querySelectorAll(".chips .chip")).find((c) => /30 минут/.test(c.textContent));
+    if (!chip) throw new Error("нет варианта «30 минут»");
+    chip.dispatchEvent(new win.MouseEvent("click", { bubbles: true }));
+    if (win.Store.state.settings.globalDailyMinutes !== 30) {
+      throw new Error("предел не применился: " + win.Store.state.settings.globalDailyMinutes);
+    }
+    win.Store.state.settings.globalDailyMinutes = 0;
+  });
+
+  check("тонкая настройка свёрнута и раскрывается", () => {
+    win.Store.state.ui.settingsAdvanced = false;
+    win.App.refresh();
+    const view = win.document.getElementById("view");
+    const toggle = view.querySelector(".adv-toggle");
+    if (!toggle) throw new Error("нет переключателя тонкой настройки");
+    // Свёрнуто: коэффициентов на экране нет.
+    if (/Повторное чтение быстрее/.test(view.textContent)) {
+      throw new Error("тонкая настройка видна, хотя должна быть свёрнута");
+    }
+    toggle.dispatchEvent(new win.MouseEvent("click", { bubbles: true }));
+    const text = win.document.getElementById("view").textContent;
+    if (!/Повторное чтение быстрее/.test(text)) {
+      throw new Error("тонкая настройка не раскрылась");
+    }
+    win.Store.state.ui.settingsAdvanced = false;
   });
 
   // Импорт через окно (диалог подменён на пустой список).

@@ -95,13 +95,33 @@
    * Минуты на один вопрос при прогоне pass.
    * Первый прогон — полное время; повторные — быстрее (параметр reviewSpeedFactor).
    */
-  function questionMinutes(disc, q, pass, settings) {
+  function questionMinutes(disc, q, pass, globalSettings) {
+    const settings = discSettings(disc, globalSettings);
     const unit = settings.unit === "cpm" ? "cpm" : "wpm";
     const rate = unit === "cpm" ? settings.charsPerMinute || 900 : settings.wordsPerMinute || 150;
     const factor = pass <= 1 ? 1 : Math.max(0.5, settings.reviewSpeedFactor || 1.5);
     const raw = unit === "cpm" ? q.chars : q.words;
     const base = raw / Math.max(1, rate);
     return (base * (q.difficulty || 1)) / factor;
+  }
+
+  /**
+   * Настройки чтения для конкретной дисциплины.
+   *
+   * У каждой дисциплины может быть своя скорость: юридический текст и конспект
+   * читаются по-разному, и одна общая цифра тут только мешает. Если у
+   * дисциплины ничего не задано — берутся общие настройки.
+   */
+  function discSettings(disc, globalSettings) {
+    const g = globalSettings || {};
+    const own = (disc && disc.reading) || null;
+    if (!own) return g;
+    const merged = Object.assign({}, g);
+    if (own.unit === "cpm" || own.unit === "wpm") merged.unit = own.unit;
+    if (own.wordsPerMinute > 0) merged.wordsPerMinute = own.wordsPerMinute;
+    if (own.charsPerMinute > 0) merged.charsPerMinute = own.charsPerMinute;
+    if (own.reviewSpeedFactor > 0) merged.reviewSpeedFactor = own.reviewSpeedFactor;
+    return merged;
   }
 
   /** Полное время вопроса со всеми прогонами. */
@@ -155,7 +175,8 @@
   }
 
   /** Сколько ещё осталось прочитать по вопросу (в минутах) с учётом прогресса. */
-  function remainingMinutes(disc, settings) {
+  function remainingMinutes(disc, globalSettings) {
+    const settings = discSettings(disc, globalSettings);
     let sum = 0;
     const passes = Math.max(1, disc.plan.passes || 1);
     disc.questions.forEach((q, i) => {
@@ -166,7 +187,8 @@
   }
 
   /** Объём дисциплины целиком (все прогоны). */
-  function totalMinutes(disc, settings) {
+  function totalMinutes(disc, globalSettings) {
+    const settings = discSettings(disc, globalSettings);
     let sum = 0;
     const passes = Math.max(1, disc.plan.passes || 1);
     disc.questions.forEach((q) => {
@@ -682,6 +704,16 @@
       if (upcoming.length >= 14) break;
     }
 
+    // Самый тяжёлый день — по всему календарю, а не только по ближайшим двум неделям.
+    let maxDayMinutes = 0;
+    let maxDay = null;
+    for (const date of Object.keys(dayTotals)) {
+      if (dayTotals[date] > maxDayMinutes) {
+        maxDayMinutes = dayTotals[date];
+        maxDay = date;
+      }
+    }
+
     return {
       today: today,
       settings: settings,
@@ -697,6 +729,9 @@
         minutesLeft: minutesLeft,
         passesTotal: passesTotal,
         passesDone: passesDone,
+        maxDayMinutes: maxDayMinutes,
+        maxDay: maxDay,
+        daysWithWork: Object.keys(dayTotals).length,
         progress: passesTotal ? passesDone / passesTotal : 0
       })
     };
@@ -774,6 +809,7 @@
     isValidDate,
     listActiveDays,
     questionMinutes,
+    discSettings,
     questionTotalMinutes,
     questionState,
     reviewDate,
