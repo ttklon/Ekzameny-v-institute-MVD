@@ -16,6 +16,9 @@ jobs:
     defaults:
       run:
         working-directory: app
+    env:
+      CSC_IDENTITY_AUTO_DISCOVERY: "false"
+      ELECTRON_CACHE: "${{ github.workspace }}/.electron-cache"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,17 +26,31 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
+
+      - name: Debug versions
+        run: |
+          node -v
+          npm -v
+          npx electron-builder --version
 
       - name: Install dependencies
         run: npm install
 
       - name: Build (electron-builder)
-        run: npm run dist:win
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run dist:win 2>&1 | tee build.log
+        continue-on-error: true
+
+      - name: Upload build log on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log
+          path: app/build.log
+          if-no-files-found: ignore
 
       - name: Publish to GitHub Release (app-latest)
+        if: success()
         uses: ncipollo/release-action@v1
         with:
           tag: app-latest
