@@ -38,7 +38,7 @@ jobs:
         run: |
           npm run dist:win 2>&1 | Tee-Object -FilePath build-log.txt
           if ($LASTEXITCODE -ne 0) {
-            Get-Content build-log.txt | Select-String -Pattern "error|failed|invalid|abort|fatal" | Select-Object -First 8 | ForEach-Object { Write-Output "::error::$_" }
+            Get-Content build-log.txt -Tail 50 | ForEach-Object { Write-Output "::warning::$_" }
             exit 1
           }
 
