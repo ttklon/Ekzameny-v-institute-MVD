@@ -122,7 +122,7 @@ jobs:
             "Приложение само проверяет обновления раз в минуту и спросит перед установкой.",
             "Файлы с вопросами и ответами в сборку не входят — добавьте их кнопкой «Добавить файл»."
           )
-          $lines -join "`n" | Out-File -FilePath release-body.md -Encoding utf8
+          $lines -join "`n" | Out-File -FilePath ../release-body.md -Encoding utf8
 
       - name: Загрузить .exe в релиз
         uses: ncipollo/release-action@v1
