@@ -1,0 +1,50 @@
+name: Build Windows EXE
+
+on:
+  push:
+    branches:
+      - "arena/6acd0eba-ekzameny-v-institute-mvd"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    name: Build Windows installer & portable
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: app
+    env:
+      CSC_IDENTITY_AUTO_DISCOVERY: "false"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test
+        run: npm test
+
+      - name: Build NSIS installer (ExamPlanner-Setup.exe)
+        run: npm run dist:win
+
+      - name: Build portable exe (ExamPlanner-Portable.exe)
+        run: npx electron-builder --win portable -c.artifactName="ExamPlanner-Portable.${ext}"
+
+      - name: Publish to GitHub Release (app-latest)
+        uses: ncipollo/release-action@v1
+        with:
+          tag: exam-planner-6acd0eba
+          name: "Облачный планировщик экзаменов (latest)"
+          allowUpdates: true
+          replacesArtifacts: true
+          prerelease: false
+          artifacts: "app/dist/ExamPlanner-Setup.exe,app/dist/ExamPlanner-Portable.exe"

@@ -1,0 +1,14 @@
+const assert = require('assert');
+const {xmlToText} = require('../src/docx');
+const {parseDocument} = require('../src/core/parser');
+const xml = '<w:p><w:r><w:t>Вопрос 1. Пон</w:t></w:r><w:r><w:t>ятие права</w:t></w:r></w:p><w:p><w:r><w:t>Ответ без маркера.</w:t></w:r></w:p><w:p><w:r><w:t>1. Подраздел ответа</w:t></w:r></w:p><w:p><w:r><w:t>Вопрос 2. Виды</w:t></w:r></w:p><w:p><w:r><w:t>Другой ответ.</w:t></w:r></w:p>';
+let text=xmlToText(xml);
+assert(text.includes('Понятие права'));
+let result=parseDocument(text);
+assert.strictEqual(result.count,2);
+assert(result.questions[0].answer.includes('Подраздел ответа'));
+assert.strictEqual(result.questions[0].question,'Понятие права');
+result=parseDocument('Содержание\n1. Оглавление\nОтвет 1. Первый\nТекст ответа.\n1. Пункт\nОтвет 2. Второй\nЕще текст.');
+assert.strictEqual(result.count,2);
+assert(result.questions[0].aWords > 0);
+console.log('✅ Заголовки реальных документов и части строк Word');
