@@ -11,6 +11,8 @@ const path = require("path");
 
 const suites = [
   { file: "core.test.js", title: "Ядро: подсчёт, разбор файлов, планирование" },
+  { file: "main.test.js", title: "Главный процесс: хранение, копии, выгрузка" },
+  { file: "contract.test.js", title: "Договор: интерфейс ⇄ мост ⇄ главный процесс" },
   { file: "dom.test.js", title: "Интерфейс: экраны, отметки, импорт" }
 ];
 

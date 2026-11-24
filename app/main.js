@@ -65,7 +65,6 @@ function createWindow() {
     title: APP_TITLE,
     show: false,
     autoHideMenuBar: true,
-    icon: path.join(__dirname, "build", "icon.png"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       contextIsolation: true,
@@ -80,6 +79,18 @@ function createWindow() {
 
   mainWindow.once("ready-to-show", () => {
     mainWindow.show();
+  });
+
+  // Ошибки интерфейса не должны оставаться невидимыми: пишем их в консоль
+  // и, если экран так и не ожил, показываем объяснение вместо пустого окна.
+  mainWindow.webContents.on("console-message", (_e, level, message, line, sourceId) => {
+    if (level >= 2) console.error("[renderer]", message, sourceId + ":" + line);
+  });
+  mainWindow.webContents.on("did-fail-load", (_e, code, desc, url) => {
+    console.error("Не загрузился интерфейс:", code, desc, url);
+  });
+  mainWindow.webContents.on("render-process-gone", (_e, details) => {
+    console.error("Процесс интерфейса завершился:", details && details.reason);
   });
 
   // Внешние ссылки — в браузере, не внутри приложения.
