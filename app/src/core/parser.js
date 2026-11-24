@@ -40,6 +40,8 @@
   const PLAIN_Q_RE = /^(вопрос|билет|задача|задание|question|problem)\s*№?\s*(\d{1,4})\s*[.):\-—]?\s+(.*)$/i;
   // «12. Текст» / «12) Текст» / «12 — Текст»
   const NUM_Q_RE = /^\s*(\d{1,4})\s*[.)]\s*(?=\S)(.{2,}?)\s*$/;
+  // «12.» отдельной строкой — так бывает, когда номер в своём абзаце.
+  const NUM_ALONE_RE = /^\s*(\d{1,4})\s*[.)]?\s*$/;
   // Явный маркер ответа: «Ответ:», «Ответ.», «ОТВЕТ», «Answer:», «Решение:»
   const ANSWER_RE = /^\s*[*_>#\s]*(ответ|answer|решение|разбор)\s*[*_]*\s*[:.\-—]\s*(.*)$/i;
   // Явный маркер конца ответа/начала примечания: «Литература», «Источник»
@@ -104,10 +106,27 @@
 
     let lastNum = 0;
     let gaps = 0;
+    let skipQuestionLine = -1;
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
       if (line.length > 600 && rule === "num") continue; // не маркер, а длинная строка
-      const m = line.match(re);
+      let m = line.match(re);
+      if (!m && rule === "num") {
+        // Номер отдельной строкой: вопрос — следующая непустая строка.
+        const alone = line.match(NUM_ALONE_RE);
+        if (alone) {
+          let j = i + 1;
+          while (j < lines.length && !lines[j].trim()) j++;
+          if (j < lines.length) {
+            const next = lines[j].trim();
+            if (hasLetter(next) && next.length >= 3 && next.length <= 250) {
+              m = [line, alone[1], next];
+              // Вопрос занял строку j — блок ответа начнётся после неё.
+              skipQuestionLine = j;
+            }
+          }
+        }
+      }
       if (!m) continue;
       const rest = (m[restGroup] || "").trim();
       // Мусор: пустой остаток, только цифры/знаки, нет букв.
@@ -133,7 +152,8 @@
         if (out.length > 0 && num < 2 && !blankBefore) continue;
       }
       lastNum = num;
-      out.push({ line: i, number: num, rest });
+      out.push({ line: i, number: num, rest, bodyStart: skipQuestionLine > i ? skipQuestionLine + 1 : -1 });
+      skipQuestionLine = -1;
       if (out.length > MAX_QUESTIONS * 2) break;
     }
     return out;
@@ -241,8 +261,9 @@
   }
 
   /**
-   * Первый абзац блока — вопрос, остальное — ответ (формат «Все ответы»).
-   * Заголовки разделов, определения и пункты перечня — уже начало ответа.
+   * Первый абзац блока — вопрос, остальное — ответ.
+   * Нужен для формата «перечень вопросов + ответы ниже», где вопрос и ответ
+   * разделены пустой строкой.
    */
   function splitFirstParagraph(rest, blockLines) {
     let question = rest;
@@ -255,7 +276,6 @@
           closed = true;
           continue;
         }
-        // «Ответ: …» — вопрос закончился, дальше идёт ответ.
         const am = ANSWER_RE.exec(ln);
         if (am || ANSWER_ONLY_RE.test(ln)) {
           closed = true;
@@ -277,6 +297,173 @@
       question: question.replace(/[ \t]+/g, " ").trim(),
       answer: answerLines.join("\n").replace(/[ \t]+/g, " ").trim()
     };
+  }
+
+  /**
+   * Граница вопроса и ответа внутри блока.
+   *
+   * Так устроено большинство реальных файлов: вопрос — это строка-заголовок
+   * (крупный шрифт в Word, поэтому в тексте она отдельной строкой), а сразу
+   * за ней идёт ответ. Пустой строки между ними может не быть вовсе, и
+   * следующий вопрос тоже начинается сразу после ответа.
+   *
+   * Правила, по которым узнаём вопрос:
+   *   1) вопрос уже в строке-маркере («1. Понятие …») — остаток строки;
+   *   2) вопрос занимает несколько строк до пустой строки (длинный заголовок);
+   *   3) вопрос — короткая первая строка без точки в конце, а вторая строка
+   *      длиннее и «рассказывает» — это уже ответ.
+   */
+  function splitByQuestionShape(rest, blockLines) {
+    const first = (rest || "").trim();
+    const lines = blockLines.slice();
+
+    // 1. Маркер пустой («1.» отдельной строкой) — вопрос в первой непустой строке.
+    if (!first) {
+      let i = 0;
+      while (i < lines.length && isBlank(lines[i])) i++;
+      if (i >= lines.length) return { question: "", answer: "" };
+      const q = lines[i].trim();
+      const answer = lines.slice(i + 1).join("\n").trim();
+      return { question: q, answer: answer };
+    }
+
+    // 2. «Ответ:» сразу в первой строке-маркере — дальше только ответ.
+    if (ANSWER_RE.test(first) || ANSWER_ONLY_RE.test(first)) {
+      return { question: "", answer: first };
+    }
+
+    // 3. Самая частая структура: маркер + вопрос в той же строке, ответ — блок.
+    //    Отвечаем на вопрос: первая ли строка заголовком является целиком?
+    //    Заголовок может состоять из двух фраз («Подготовка к обыску.
+    //    Использование помощи специалистов…») — это всё ещё вопрос, если ниже
+    //    лежит полноценный ответ. Делить по точке нужно только когда тела нет.
+    const firstIsQuestion = looksLikeHeadingLine(first) || bodyLooksLikeAnswer(lines);
+
+    if (!firstIsQuestion) {
+      // Маркер и вопрос слиплись с ответом: «1. Понятие … Административным
+      // правонарушением признаётся …» в одной строке. Разделяем по первому
+      // предложению-заголовку.
+      const split = splitHeadingFromRest(first);
+      if (split) {
+        const answer = [split.answer, ...lines].filter((x) => x && x.trim()).join("\n").trim();
+        return { question: split.question, answer: answer };
+      }
+    }
+
+    // 4. Вопрос может занимать несколько строк до первой пустой (длинный
+    //    заголовок в две-три строки). Но только если эти строки похожи на
+    //    заголовок, а не на текст ответа.
+    let end = 0;
+    let qParts = [first];
+    while (end < lines.length) {
+      const ln = lines[end];
+      if (isBlank(ln)) {
+        end++;
+        break; // пустая строка закрывает заголовок
+      }
+      // Явные признаки начала ответа.
+      if (ANSWER_RE.test(ln) || ANSWER_ONLY_RE.test(ln)) break;
+      if (/^#{1,4}\s/.test(ln) || /^>/.test(ln) || /^[-*•]\s/.test(ln)) break;
+      const cur = ln.trim();
+      const prev = qParts[qParts.length - 1];
+
+      // Явные признаки начала ответа (заголовок раздела, цитата, перечень,
+      // «Ответ:») — заголовок вопроса точно кончился.
+      if (/^#/.test(cur) || /^>/.test(cur) || /^[-*•]\s/.test(cur) || /^\*\*/.test(cur)) break;
+      if (ANSWER_RE.test(cur) || ANSWER_ONLY_RE.test(cur)) break;
+
+      // Главный признак: длинная повествовательная строка — это ответ, а не
+      // продолжение заголовка. Заголовки бывают многострочными, но каждая их
+      // строка короткая.
+      if (cur.length > 130) break;
+
+      // Предыдущая строка закончилась точкой/вопросом/восклицанием — фраза
+      // закрыта. Двоеточие и точка с запятой наоборот обещают продолжение
+      // («Неправовые формы административной деятельности полиции:» /
+      // «организационные действия и материально-технические операции.»).
+      if (/[.?!]$/.test(prev) && cur.length >= 40) break;
+
+      // Продолжение заголовка: короткая строчная строка, не новое предложение
+      // с заглавной буквы и не служебный заголовок раздела.
+      const continues =
+        qParts.length < 4 &&
+        cur.length < 120 &&
+        (/^[а-яёa-z(«"\d—–-]/.test(cur) || !/[А-ЯЁ]/.test(cur));
+      if (continues) {
+        qParts.push(cur);
+        end++;
+        continue;
+      }
+      break;
+    }
+
+    const question = qParts.join(" ").replace(/[ \t]+/g, " ").trim();
+    const answer = lines.slice(end).join("\n").replace(/[ \t]+/g, " ").trim();
+
+    // Если ответа не осталось — возможно, мы забрали ответ в вопрос. Тогда
+    // вопрос — только первая строка, остальное — ответ. Но только когда
+    // продолжений не было: иначе это заголовок в несколько строк, и ответа
+    // в файле просто нет (перечень вопросов без ответов).
+    if (!answer && lines.length > 0 && qParts.length === 1) {
+      return { question: first, answer: lines.join("\n").trim() };
+    }
+    return { question: question, answer: answer };
+  }
+
+  /**
+   * Похож ли блок под заголовком на ответ: есть разметка (заголовок раздела,
+   * цитата, перечень) или он начинается длинной повествовательной строкой.
+   * Короткие строки-продолжения заголовка и продолжение перечня вопросов
+   * ответом не считаются.
+   */
+  function bodyLooksLikeAnswer(lines) {
+    let total = 0;
+    let firstText = null;
+    for (const ln of lines) {
+      if (isBlank(ln)) continue;
+      total += ln.trim().length;
+      if (firstText === null) firstText = ln.trim();
+      if (/^#{1,4}\s|^>|^[-*•]\s|^\*\*/.test(ln.trim())) return total >= 60;
+    }
+    if (total < 200) return false;
+    return (firstText || "").length >= 90;
+  }
+
+  /**
+   * Похожа ли строка на заголовок вопроса: короткая, без точки в конце,
+   * не перечисление, не цитата, не начало длинного абзаца.
+   */
+  function looksLikeHeadingLine(s) {
+    const t = String(s || "").trim();
+    if (!t) return false;
+    if (t.length > 200) return false;
+    if (/^#{1,4}\s/.test(t) || /^>/.test(t) || /^[-*•]\s/.test(t)) return false;
+    if (/[.!?;]$/.test(t) && t.length > 90) return false;
+    // Больше двух предложений — это уже текст ответа.
+    const sentences = (t.match(/[.!?](\s|$)/g) || []).length;
+    if (sentences >= 2) return false;
+    // Вопрос часто заканчивается на «?» — это точно заголовок.
+    if (/\?$/.test(t)) return true;
+    return t.length <= 150;
+  }
+
+  /**
+   * «1. Понятие … Административным правонарушением признаётся …» — заголовок
+   * слипся с ответом в одной строке. Отделяем первое предложение-заголовок.
+   */
+  function splitHeadingFromRest(s) {
+    const t = String(s || "").trim();
+    if (t.length < 60) return null;
+    // Ищем конец первого предложения, после которого начинается объяснение.
+    const m = t.match(/^(.{10,140}?[.?!])\s+(.{40,})$/);
+    if (!m) return null;
+    const head = m[1].trim();
+    const tail = m[2].trim();
+    // Заголовок не должен сам быть длинным текстом с двумя предложениями.
+    if (!looksLikeHeadingLine(head)) return null;
+    // Ответ должен быть заметно длиннее заголовка.
+    if (tail.length < head.length * 0.6) return null;
+    return { question: head, answer: tail };
   }
 
   /**
@@ -304,8 +491,42 @@
     });
   }
 
+  /**
+   * Похож ли документ на перечень вопросов без ответов: под большинством
+   * заголовков лежит не ответ, а продолжение самого заголовка.
+   */
+  function looksLikeQuestionOnlyList(lines, starts, opts) {
+    if (opts.split !== "shape" || opts.useAnswerMarker) return false;
+    if (!starts.length) return false;
+    // Считаем «продолжением заголовка» короткие обрывочные строки: они не
+    // начинаются с заглавной и заканчиваются точкой/без знака — так выглядит
+    // вторая половина вопроса, разбитого переносом. Ответ же начинается как
+    // самостоятельное предложение.
+    let tails = 0;
+    let answered = 0;
+    const probe = starts.slice(0, 40);
+    for (let s = 0; s < probe.length; s++) {
+      const cur = probe[s];
+      const nextLine = s + 1 < probe.length ? probe[s + 1].line : lines.length;
+      const from = cur.bodyStart && cur.bodyStart > 0 ? cur.bodyStart : cur.line + 1;
+      const block = lines.slice(from, Math.min(nextLine, lines.length)).filter((ln) => !isBlank(ln));
+      if (!block.length) continue;
+      if (bodyLooksLikeAnswer(block)) {
+        answered++;
+        continue;
+      }
+      const head = block[0].trim();
+      // Обрывок: начинается со строчной или продолжает предлог/союз.
+      if (/^[а-яё]/.test(head) || head.length < 60) tails++;
+    }
+    return tails >= answered && tails >= probe.length * 0.5;
+  }
+
   /** Собирает вопросы из найденных начал. */
   function buildFromStarts(lines, starts, opts) {
+    if (looksLikeQuestionOnlyList(lines, starts, opts)) {
+      opts = Object.assign({}, opts, { split: "question-only" });
+    }
     const questions = [];
     let listNo = 1;
     let prevNum = 0;
@@ -316,11 +537,17 @@
       if (s > 0 && cur.number <= prevNum && cur.number <= 2) listNo++;
       prevNum = cur.number;
 
-      const block = lines.slice(cur.line + 1, nextLine);
-      const pair =
-        opts.split === "first-paragraph"
-          ? splitFirstParagraph(cur.rest, block)
-          : splitQuestionAnswer(cur.rest, block, opts.useAnswerMarker);
+      const from = cur.bodyStart && cur.bodyStart > 0 ? cur.bodyStart : cur.line + 1;
+      const block = lines.slice(from, nextLine);
+      let pair;
+      if (opts.split === "question-only") {
+        // Перечень вопросов без ответов: каждая строка блока — продолжение
+        // заголовка, делить не на что.
+        const tail = block.filter((ln) => !isBlank(ln)).map((ln) => ln.trim());
+        pair = { question: [cur.rest, ...tail].join(" ").replace(/[ \t]+/g, " ").trim(), answer: "" };
+      } else if (opts.split === "shape") pair = splitByQuestionShape(cur.rest, block);
+      else if (opts.split === "first-paragraph") pair = splitFirstParagraph(cur.rest, block);
+      else pair = splitQuestionAnswer(cur.rest, block, opts.useAnswerMarker);
       questions.push(makeQuestion(cur.number, pair.question, pair.answer, listNo));
       if (questions.length >= MAX_QUESTIONS) break;
     }
@@ -334,22 +561,13 @@
    */
   function buildSingle(lines, start) {
     if (!start) return [];
-    // Заголовок вида «# Вопрос 45. …» — номер и текст берём из него.
+    // Файл = один вопрос: «# Вопрос 45. Текст» и следом ответ. Делим тем же
+    // правилом, что и остальные форматы — иначе заголовок съедал ответ.
     const num = start.number || 1;
-    let question = start.rest || "";
-    let bodyStart = start.line + 1;
-
-    // Вопрос может занимать несколько строк до первой пустой строки.
-    let i = bodyStart;
-    while (i < lines.length) {
-      const ln = lines[i];
-      if (isBlank(ln) || /^#{1,4}\s/.test(ln) || /^>/.test(ln) || /^[-*•]\s/.test(ln)) break;
-      if (question.length > 400) break;
-      question += " " + ln.trim();
-      i++;
-    }
-    const answer = lines.slice(i).join("\n").replace(/[ \t]+/g, " ").trim();
-    return [makeQuestion(num, question, answer, 1)];
+    const body = lines.slice(start.line + 1);
+    const split = splitByQuestionShape(start.rest || "", body);
+    const question = (split.question || "").trim() || "Вопрос " + num;
+    return [makeQuestion(num, question, (split.answer || "").trim(), 1)];
   }
 
   /**
@@ -584,7 +802,7 @@
         const chosen = seq.length >= 3 && seq.length > numStarts.length * 0.6 ? seq : numStarts;
         questions = buildFromStarts(lines, chosen, {
           useAnswerMarker: answerMarkers,
-          split: answerMarkers ? "answer-marker" : "first-paragraph"
+          split: answerMarkers ? "answer-marker" : "shape"
         });
         if (questions.length >= 2) {
           strategy = answerMarkers ? "numbered-with-answers" : "numbered-list";
