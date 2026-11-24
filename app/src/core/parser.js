@@ -39,11 +39,17 @@
   // «Вопрос 12. Текст» (без решётки)
   const PLAIN_Q_RE = /^(вопрос|билет|задача|задание|question|problem)\s*№?\s*(\d{1,4})\s*[.):\-—]?\s+(.*)$/i;
   // «12. Текст» / «12) Текст» / «12 — Текст»
-  const NUM_Q_RE = /^\s*(\d{1,4})\s*[.)]\s*(?=\S)(.{2,}?)\s*$/;
+  // «12. Текст» / «12) Текст». Не путать с подпунктами «1.1», «2.3.1» —
+  // они относятся к структуре ответа, а не к нумерации вопросов.
+  const NUM_Q_RE = /^\s*(\d{1,4})\s*[.)]\s*(?=\S)(?!\d+[.)])(.{2,}?)\s*$/;
   // «12.» отдельной строкой — так бывает, когда номер в своём абзаце.
   const NUM_ALONE_RE = /^\s*(\d{1,4})\s*[.)]?\s*$/;
   // Явный маркер ответа: «Ответ:», «Ответ.», «ОТВЕТ», «Answer:», «Решение:»
   const ANSWER_RE = /^\s*[*_>#\s]*(ответ|answer|решение|разбор)\s*[*_]*\s*[:.\-—]\s*(.*)$/i;
+  // Заголовок раздела ответов: «ОТВЕТЫ», «Ответы на вопросы», «РАЗДЕЛ 2. ОТВЕТЫ».
+  // \b после кириллицы в JS не работает, поэтому конец слова проверяем вручную.
+  const ANSWERS_SECTION_RE =
+    /^[\s*_#>\-—]*(раздел\s*\d+[.):]?\s*)?(ответы|answers)([\s*_#:.,]|$)[\s*_#:.,]*(на\s+вопросы|к\s+вопросам|на\s+экзамен)?[\s*_#:.,]*$/i;
   // «Ответ 12. Текст» / «Ответ № 12:» — блок ответов с собственной нумерацией.
   const ANSWER_NUM_RE = /^\s*[*_>#\s]*(ответ|answer)\s*№?\s*(\d{1,4})\s*[.):\-—]?\s*(.*)$/i;
   // Явный маркер конца ответа/начала примечания: «Литература», «Источник»
@@ -93,6 +99,16 @@
    * Находит начала вопросов по заданному правилу.
    * Возвращает массив { line, number, rest } — номер строки, номер вопроса и остаток строки.
    */
+  /** «**1. Вопрос**» → «1. Вопрос»: снимаем обёртку жирного/курсива. */
+  function unwrapMarkup(s) {
+    let t = String(s || "").trim();
+    t = t.replace(/^\*\*(.+)\*\*$/, "$1").trim();
+    t = t.replace(/^__(.+)__$/, "$1").trim();
+    t = t.replace(/^\*(.+)\*$/, "$1").trim();
+    t = t.replace(/^_(.+)_$/, "$1").trim();
+    return t;
+  }
+
   function findStarts(lines, rule) {
     const out = [];
     const RES = {
@@ -110,7 +126,9 @@
     let gaps = 0;
     let skipQuestionLine = -1;
     for (let i = 0; i < lines.length; i++) {
-      const line = lines[i];
+      const rawLine = lines[i];
+      // Строка без markdown-обёртки: «**1. Вопрос**» — это тоже нумерация.
+      const line = unwrapMarkup(rawLine);
       if (line.length > 600 && rule === "num") continue; // не маркер, а длинная строка
       let m = line.match(re);
       if (!m && rule === "num") {
@@ -367,6 +385,20 @@
       if (split) {
         const answer = [split.answer, ...lines].filter((x) => x && x.trim()).join("\n").trim();
         return { question: split.question, answer: answer };
+      }
+    }
+
+    // 3.5. Вопрос и ответ слиты в одну строку через тире:
+    //      «1. Понятие правонарушения — противоправное деяние, за которое…».
+    //      Заголовок короткий и без точки, после «—» идёт длинный текст.
+    const dash = first.match(/^(.{8,150}?)\s+[—–-]\s+(.{25,})$/);
+    if (dash) {
+      const head = dash[1].trim();
+      const tail = dash[2].trim();
+      // Заголовок не должен сам быть длинным текстом с точкой в конце.
+      if (!/[.!?]$/.test(head) || head.length < 60) {
+        const rest2 = [tail].concat(lines).filter((x) => x && x.trim()).join("\n").trim();
+        return { question: head, answer: rest2 };
       }
     }
 
@@ -651,8 +683,10 @@
     // Слова-разделы, которые не являются ни вопросом, ни ответом:
     // «ОТВЕТЫ», «ВОПРОСЫ», «ПЕРЕЧЕНЬ», «СОДЕРЖАНИЕ», «ПРИЛОЖЕНИЕ».
     function isSectionWord(s) {
-      return /^[\s*_#>]*(ответы|вопросы|перечень\s+вопросов|содержание|оглавление|приложение|раздел)[\s*_#:.]*$/i.test(
-        String(s || "")
+      const t = String(s || "").trim();
+      return (
+        /^[\s*_#>]*(ответы|вопросы|перечень|содержание|оглавление|приложение|раздел)(\s|$)/i.test(t) &&
+        t.length <= 60
       );
     }
 
@@ -778,6 +812,7 @@
         const tailOk =
           qBlock.length === 1 &&
           qBlock[0].length < 90 &&
+          !isSectionWord(qBlock[0]) &&
           !/[.!?]$/.test(question) &&
           /^[а-яё(«"]/.test(qBlock[0]) &&
           !ANSWER_RE.test(qBlock[0]) &&
@@ -828,6 +863,96 @@
       }
     }
     return questions.length >= 2 ? questions : null;
+  }
+
+  /**
+   * Схема без номеров у ответов: сверху список вопросов «1. …», ниже заголовок
+   * «ОТВЕТЫ» или «Ответы на вопросы», под ним — ответы обычными абзацами
+   * в том же порядке. Номеров у ответов нет, поэтому связываем по порядку.
+   *
+   * Так устроены выгрузки из Word и PDF: вопросы нумеруются, ответы — просто
+   * абзацы под заголовком раздела.
+   */
+  function pairListWithPlainAnswers(lines, questionStarts) {
+    if (!questionStarts || questionStarts.length < 2) return null;
+
+    // Где начинается раздел ответов.
+    let sectionAt = -1;
+    for (let i = 0; i < lines.length; i++) {
+      const ln = lines[i].trim();
+      if (!ln || ln.length > 80) continue;
+      if (ANSWERS_SECTION_RE.test(ln)) {
+        // Заголовок раздела должен стоять после вопросов.
+        if (i > questionStarts[0].line) {
+          sectionAt = i;
+          break;
+        }
+      }
+    }
+    if (sectionAt < 0) return null;
+
+    // Вопросы — только те, что стоят выше раздела ответов.
+    const qs = questionStarts.filter((q) => q.line < sectionAt);
+    if (qs.length < 2) return null;
+
+    // Абзацы после раздела — ответы. Пустая строка закрывает абзац, но её
+    // может и не быть: в Word ответы часто идут подряд, каждый с новой строки.
+    // Поэтому новый абзац начинается и там, где строка похожа на начало
+    // ответа: с большой буквы, а предыдущая закончилась точкой.
+    const paras = [];
+    let cur = [];
+    let prevText = "";
+    for (let i = sectionAt + 1; i < lines.length; i++) {
+      const ln = lines[i];
+      if (!ln.trim()) {
+        if (cur.length) {
+          paras.push(cur.join("\n").trim());
+          cur = [];
+          prevText = "";
+        }
+        continue;
+      }
+      const text = ln.trim();
+      // Следующий перечень вопросов или новый раздел обрывает ответы.
+      // «Вопрос 3. …» внутри блока — это начало ответа, а не новый вопрос.
+      if (PLAIN_Q_RE.test(text) || MD_Q_RE.test(text)) {
+        // заголовок вопроса в блоке ответов — оставляем как текст ответа
+      } else if (NUM_ALONE_RE.test(ln) || /^\s*\d{1,4}\s*[.)]\s/.test(ln)) {
+        break;
+      }
+      if (ANSWERS_SECTION_RE.test(text)) break;
+      const startsNew =
+        cur.length > 0 &&
+        /^[А-ЯЁA-Z«"]/.test(text) &&
+        /[.!?;]$/.test(prevText) &&
+        text.length >= 30;
+      if (startsNew) {
+        paras.push(cur.join("\n").trim());
+        cur = [];
+      }
+      cur.push(ln);
+      prevText = text;
+    }
+    if (cur.length) paras.push(cur.join("\n").trim());
+
+    // Строки-подзаголовки («1. Общая характеристика») ответом не считаем.
+    const usable = paras.filter((p) => p.length >= 40);
+    if (usable.length < 2) return null;
+
+    // Ответов должно быть примерно столько же, сколько вопросов. Если их
+    // заметно меньше, доверять такой схеме нельзя — вернём null и пусть
+    // сработает обычный разбор с честной оценкой объёма.
+    if (usable.length < qs.length * 0.75) return null;
+
+    const out = [];
+    for (let k = 0; k < qs.length; k++) {
+      const q = qs[k];
+      const answer = usable[k] || "";
+      out.push(makeQuestion(q.number, q.rest, answer, 1));
+      if (out.length >= MAX_QUESTIONS) break;
+    }
+    const withAnswer = out.filter((x) => x.hasAnswer).length;
+    return withAnswer >= Math.max(2, out.length * 0.75) ? out : null;
   }
 
   /**
@@ -1003,6 +1128,23 @@
     let questions = [];
     let strategy = "";
 
+    // --- 0. Ответы без номеров под заголовком «ОТВЕТЫ» или «Ответы на вопросы».
+    // Частая выгрузка из Word: сверху нумерованный перечень, ниже раздел
+    // «ОТВЕТЫ», под ним ответы обычными абзацами в том же порядке.
+    // Проверяем раньше заголовков: в блоке ответов тоже бывает «Вопрос 3.»,
+    // и общий разбор принял бы его за новый вопрос.
+    {
+      // Только когда сверху действительно перечень: два и больше начала.
+      // Файл на один вопрос («# Вопрос 45.» + ответ) сюда попадать не должен —
+      // у него заголовок один, и разбирается он отдельным правилом.
+      const partsStarts = numStarts.length >= 2 ? numStarts : plainStarts.length >= 2 ? plainStarts : [];
+      const plainAnswers = pairListWithPlainAnswers(lines, partsStarts);
+      if (plainAnswers && plainAnswers.length >= 2) {
+        questions = plainAnswers;
+        strategy = "list-and-plain-answers";
+      }
+    }
+
     // --- 1. Явные заголовки вопросов: «# Вопрос 12.» / «Вопрос 12.»
     const headingStarts = mdStarts.length >= 2 ? mdStarts : plainStarts.length >= 2 ? plainStarts : [];
 
@@ -1037,11 +1179,12 @@
       }
     }
 
+    // Файл на один вопрос разобран целиком — общий разбор к нему не применяем.
     const keepSingle = strategy === "single-question-file";
 
     // --- 2. Перечень вопросов + ответы (двойная нумерация) либо просто список.
-    if (!keepSingle && questions.length < 2 && numStarts.length >= 2) {
-      const runs = splitRuns(numStarts);
+    if (!keepSingle && questions.length < 2 && (numStarts.length >= 2 || plainStarts.length >= 2)) {
+      const runs = questions.length >= 2 ? [] : splitRuns(numStarts);
       // Двойная нумерация: перечень вопросов и блок ответов. Ограничения «не
       // меньше трёх пунктов» нет — хватает и двух, а решение принимает
       // pairListWithAnswers по совпадению номеров и виду блоков.
