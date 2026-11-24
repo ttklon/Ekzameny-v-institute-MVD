@@ -130,6 +130,10 @@ function makeDom() {
   return { dom, win, getSaved: () => saved };
 }
 
+function readFixture(name) {
+  return fs.readFileSync(path.join(SANDBOX, name), "utf-8");
+}
+
 function loadScripts(win) {
   const files = [
     "src/core/text.js",
@@ -254,6 +258,32 @@ async function run() {
     win.Store.setRead(disc.id, 0, today, false);
     const back = win.Views.plan().perDisc[disc.id].stats.minutesLeft;
     if (Math.abs(back - before) > 0.01) throw new Error("при снятии отметки остаток не вернулся: " + before + " vs " + back);
+  });
+
+  // Оценка объёма для вопросов без ответов: пересчёт меняет время, но не отметки.
+  check("оценка объёма пересчитывается и план обновляется", () => {
+    const r = require(path.join(ROOT, "src", "core", "parser.js")).parseDocument(
+      readFixture("sample-question-list.txt"),
+      { assumeAnswerWords: 250 }
+    );
+    win.Store.addDiscipline({ id: "est", name: "Перечень", questions: r.questions, assumeAnswerWords: 250 });
+    const before = win.Views.plan().perDisc["est"].stats.minutesTotal;
+    const disc2 = win.Store.getDiscipline("est");
+    // Ставим оценку 500 слов — время должно вырасти примерно вдвое.
+    disc2.assumeAnswerWords = 500;
+    const t = win.ExamCore.text;
+    for (const q of disc2.questions) {
+      if (!q.estimated) continue;
+      const sample = new Array(501).join("слово ");
+      const aStat = t.analyze(sample.trim(), "wpm", 1);
+      q.aWords = aStat.words;
+      q.aChars = aStat.chars;
+      q.words = q.qWords + aStat.words;
+      q.chars = q.qChars + aStat.chars;
+    }
+    const after = win.Views.plan().perDisc["est"].stats.minutesTotal;
+    if (!(after > before * 1.6)) throw new Error("время не выросло: " + before + " → " + after);
+    win.Store.removeDiscipline("est");
   });
 
   // Экран дня с задачами.

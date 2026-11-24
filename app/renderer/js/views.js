@@ -40,12 +40,27 @@
   let cacheKey = "";
   function plan() {
     const s = state();
+    // Ключ кэша должен учитывать всё, что влияет на расчёт: и план, и отметки,
+    // и объём вопросов (оценку можно поменять в параметрах дисциплины).
     const key =
       String(s.disciplines.length) +
       "|" +
       JSON.stringify(s.settings) +
       "|" +
-      s.disciplines.map((d) => d.id + ":" + JSON.stringify(d.plan) + ":" + JSON.stringify(d.reads)).join(";");
+      s.disciplines
+        .map(
+          (d) =>
+            d.id +
+            ":" +
+            JSON.stringify(d.plan) +
+            ":" +
+            JSON.stringify(d.reads) +
+            ":" +
+            (d.questions ? d.questions.length : 0) +
+            ":" +
+            volumeStamp(d)
+        )
+        .join(";");
     if (cache && cacheKey === key) return cache;
     cache = P.computeAll({ settings: s.settings, disciplines: s.disciplines }, today());
     cacheKey = key;
@@ -54,6 +69,18 @@
 
   function discQuestions(d) {
     return d.questions || [];
+  }
+
+  /** Быстрый отпечаток объёма: сумма слов и знаков по вопросам. */
+  function volumeStamp(d) {
+    let w = 0;
+    let c = 0;
+    const qs = d.questions || [];
+    for (let i = 0; i < qs.length; i++) {
+      w += qs[i].words || 0;
+      c += qs[i].chars || 0;
+    }
+    return w + "." + c;
   }
 
   /** Минуты вопроса при первом прогоне — для показа объёма. */
@@ -1152,6 +1179,27 @@
         ? "вопросы перемешаны — помогает не привязываться к порядку файла"
         : "как в файле — проще находить ответ"));
 
+    // Оценка объёма: нужна, когда в файле только вопросы без ответов.
+    const estimatedCount = d.questions.filter((q) => q.estimated).length;
+    if (estimatedCount > 0) {
+      grid.appendChild(
+        planField(
+          "Объём ответа (оценка)",
+          UI.stepper(d.assumeAnswerWords || 250, {
+            min: 30,
+            max: 1500,
+            step: 10,
+            onChange: (v) => {
+              d.assumeAnswerWords = v;
+              reestimateAnswers(d, v);
+            }
+          }),
+          "для " + estimatedCount + " " + UI.plural(estimatedCount, "вопроса", "вопросов", "вопросов") +
+            " без ответа — столько слов считается на каждый"
+        )
+      );
+    }
+
     box.appendChild(grid);
 
     // Предпросмотр результата
@@ -1189,6 +1237,28 @@
     );
 
     return box;
+  }
+
+  /**
+   * Меняет оценку объёма для вопросов без ответа и пересчитывает статистику.
+   * Вопросы с настоящим ответом не трогаем.
+   */
+  function reestimateAnswers(d, words) {
+    const t = root.ExamCore.text;
+    for (const q of d.questions) {
+      if (!q.estimated) continue;
+      const sample = new Array(words + 1).join("слово ");
+      const aStat = t.analyze(sample.trim(), "wpm", 1);
+      q.aWords = aStat.words;
+      q.aChars = aStat.chars;
+      q.charsWithSpaces = q.qChars + aStat.charsWithSpaces;
+      q.words = q.qWords + aStat.words;
+      q.chars = q.qChars + aStat.chars;
+      q.difficulty = t.difficultyIndex(q.question + " " + sample);
+    }
+    root.Store.save();
+    root.Sound.play("tap");
+    root.App.refresh();
   }
 
   function planField(label, control, hint) {

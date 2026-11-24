@@ -78,6 +78,11 @@
     },
     "portable": {
       "artifactName": "CloudExamPlanner-${version}-portable.${ext}"
+    },
+    "npmRebuild": false,
+    "electronDownload": {
+      "cache": "${{ github.workspace }}/.cache/electron",
+      "mirror": "https://github.com/electron/electron/releases/download/v"
     }
   }
 }

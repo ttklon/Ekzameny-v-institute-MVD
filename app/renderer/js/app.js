@@ -555,6 +555,7 @@
             filePath: chosen.length === 1 ? chosen[0].path : "",
             textFile,
             questions: merged,
+            assumeAnswerWords: 250,
             parsing: {
               strategy: "merged",
               files: chosen.map((r) => r.name),
@@ -597,6 +598,7 @@
             filePath: r.path,
             textFile,
             questions: r.parsed.questions,
+            assumeAnswerWords: 250,
             parsing: {
               strategy: r.parsed.strategy,
               count: r.parsed.count,

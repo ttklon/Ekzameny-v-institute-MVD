@@ -59,7 +59,28 @@ jobs:
         run: npm install --no-audit --no-fund
 
       - name: Сборка установщика и portable-версии
-        run: npm run dist:win
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Continue"
+          $ok = $false
+          for ($attempt = 1; $attempt -le 2; $attempt++) {
+            Write-Host "=== Попытка $attempt ==="
+            npm run dist:win 2>&1 | Tee-Object -FilePath build.log
+            if ($LASTEXITCODE -eq 0) { $ok = $true; break }
+            Write-Host "Сборка не удалась, код $LASTEXITCODE"
+            # Частая причина — обрыв загрузки electron/NSIS. Повтор помогает.
+            Start-Sleep -Seconds 10
+          }
+          if (-not $ok) {
+            # Пишем хвост лога в сводку запуска: так причина видна без скачивания.
+            "### Сборка не удалась" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+            "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+            "``````" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+            Get-Content build.log -Tail 120 | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+            "``````" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+            Write-Host "::error::Сборка не удалась, см. сводку запуска"
+            exit 1
+          }
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CSC_IDENTITY_AUTO_DISCOVERY: "false"
@@ -93,5 +114,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: windows-build
-          path: app/dist/*.exe
+          path: |
+            app/dist/*.exe
+            app/build.log
           retention-days: 14
