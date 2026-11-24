@@ -44,6 +44,8 @@
   const NUM_ALONE_RE = /^\s*(\d{1,4})\s*[.)]?\s*$/;
   // Явный маркер ответа: «Ответ:», «Ответ.», «ОТВЕТ», «Answer:», «Решение:»
   const ANSWER_RE = /^\s*[*_>#\s]*(ответ|answer|решение|разбор)\s*[*_]*\s*[:.\-—]\s*(.*)$/i;
+  // «Ответ 12. Текст» / «Ответ № 12:» — блок ответов с собственной нумерацией.
+  const ANSWER_NUM_RE = /^\s*[*_>#\s]*(ответ|answer)\s*№?\s*(\d{1,4})\s*[.):\-—]?\s*(.*)$/i;
   // Явный маркер конца ответа/начала примечания: «Литература», «Источник»
   const ANSWER_ONLY_RE = /^\s*[*_>#\s]*(ответ|answer|решение|разбор)\s*[*_]*\s*$/i;
   const NOISE_LINE_RE = /^\s*(стр\.?\s*\d+|\d+\s*из\s*\d+|page\s*\d+(\s*of\s*\d+)?|\d{1,4})\s*$/i;
@@ -121,7 +123,9 @@
             const next = lines[j].trim();
             if (hasLetter(next) && next.length >= 3 && next.length <= 250) {
               m = [line, alone[1], next];
-              // Вопрос занял строку j — блок ответа начнётся после неё.
+              // bodyStart — строка j, где начинается ТЕКСТ под номером.
+              // Отдельная пометка: текст не в остатке строки, а ниже. Иначе
+              // пары «перечень + ответы» дублировали бы первую строку ответа.
               skipQuestionLine = j;
             }
           }
@@ -142,17 +146,33 @@
         let before = i - 1;
         while (before >= 0 && !lines[before].trim()) before--;
         const blankBefore = before !== i - 1;
-        const isNext = out.length > 0 && num === lastNum + 1;
+        // Сравниваем с последним ПРИНЯТЫМ номером, а не с любым встреченным:
+        // иначе блок ответов (1, 2, 3…) съедает нумерацию перечня и всё
+        // после «1.» отбрасывается как «не по порядку».
+        const lastAccepted = out.length ? out[out.length - 1].number : 0;
+        const isNext = out.length > 0 && num === lastAccepted + 1;
         const isRestart = out.length > 0 && num === 1 && blankBefore;
         // Файл начинается не с «1.» — первый пункт принимаем всегда.
-        if (out.length > 0 && !isNext && !isRestart) {
-          if (!(num === lastNum && blankBefore)) continue;
+        // Разрыв нумерации назад (было 3, стало 1) — это новый перечень:
+        // так начинается блок ответов с теми же номерами, и его нельзя терять.
+        const isBackwards = out.length > 0 && num < lastAccepted;
+        if (out.length > 0 && !isNext && !isRestart && !isBackwards) {
+          if (!(num === lastAccepted && blankBefore)) continue;
         }
         // Совсем мелкие номера в середине текста — точно не вопрос.
-        if (out.length > 0 && num < 2 && !blankBefore) continue;
+        if (out.length > 0 && num < 2 && !blankBefore && isNext) continue;
       }
       lastNum = num;
-      out.push({ line: i, number: num, rest, bodyStart: skipQuestionLine > i ? skipQuestionLine + 1 : -1 });
+      // bodyStart — точная строка начала текста (без «+1»: раньше из-за него
+      // терялась первая строка ответа при номере отдельной строкой).
+      out.push({
+        line: i,
+        number: num,
+        rest,
+        // true — текст под номером, а не в самой строке номера
+        restIsNextLine: skipQuestionLine > i,
+        bodyStart: skipQuestionLine > i ? skipQuestionLine : -1
+      });
       skipQuestionLine = -1;
       if (out.length > MAX_QUESTIONS * 2) break;
     }
@@ -616,6 +636,169 @@
    * Правило «перечень + ответы»: сначала перечень вопросов (1…N), затем те же
    * номера с ответами. Разделяем, когда нумерация начинается заново.
    */
+  /**
+   * Самая частая структура настоящих файлов: СВЕРХУ перечень вопросов
+   * («1. Понятие…», «2. Признаки…»), СНИЗУ — ответы с теми же номерами
+   * (часто «1.» отдельной строкой, дальше текст).
+   *
+   * Отличаем перечень от ответов по виду: пункт перечня — одна короткая строка
+   * без текста под ней; пункт ответа — либо номер отдельной строкой, либо
+   * строка, под которой идёт абзац.
+   */
+  function pairListWithAnswers(lines, runs) {
+    if (!runs || runs.length < 2) return null;
+
+    // Слова-разделы, которые не являются ни вопросом, ни ответом:
+    // «ОТВЕТЫ», «ВОПРОСЫ», «ПЕРЕЧЕНЬ», «СОДЕРЖАНИЕ», «ПРИЛОЖЕНИЕ».
+    function isSectionWord(s) {
+      return /^[\s*_#>]*(ответы|вопросы|перечень\s+вопросов|содержание|оглавление|приложение|раздел)[\s*_#:.]*$/i.test(
+        String(s || "")
+      );
+    }
+
+    // Что идёт под каждым пунктом прогона: пусто, «продолжение» или «текст».
+    // inAnswerBlock — смотрим ли мы блок ответов (там текст может быть приклеен
+    // к номеру, и это надо отличать от длинного заголовка вопроса).
+    function natureOf(run, idx, inAnswerBlock) {
+      const c = run[idx];
+      const nextLine = idx + 1 < run.length ? run[idx + 1].line : lines.length;
+      const from = c.bodyStart && c.bodyStart > 0 ? c.bodyStart : c.line + 1;
+      // Под пунктом перечня может лежать сразу и «ОТВЕТЫ», и блок ответов.
+      // Смотрим только до первого признака ответа — иначе перечень никогда
+      // не выглядел бы перечнем.
+      const block = [];
+      for (let i = from; i < nextLine; i++) {
+        const ln = lines[i];
+        if (!ln.trim()) continue;
+        if (isSectionWord(ln)) continue;
+        if (NUM_ALONE_RE.test(ln) || /^\s*\d{1,4}\s*[.)]\s/.test(ln)) break;
+        if (ANSWER_NUM_RE.test(ln) || ANSWER_RE.test(ln) || ANSWER_ONLY_RE.test(ln)) break;
+        block.push(ln);
+      }
+      // Текст может быть приклеен прямо к номеру: «1. Административным …».
+      // Это тоже ответ, и по нему отличаем блок ответов от второго перечня.
+      if (inAnswerBlock && !c.restIsNextLine && (c.rest || "").trim().length >= 40) return "body";
+      if (!block.length) return "empty";
+      const first = block[0].trim();
+      // Номер отдельной строкой — под ним всегда текст ответа.
+      if (c.bodyStart && c.bodyStart > 0) return "body";
+      // Длинный абзац под короткой строкой — это ответ.
+      if (first.length >= 90) return "body";
+      if (block.length >= 2) return "body";
+      // Короткая строчная строка — продолжение заголовка вопроса.
+      if (/^[а-яё]/.test(first) && first.length < 90) return "tail";
+      return "body";
+    }
+
+    // Прогон-перечень: пункты короткие, под ними в основном пусто.
+    function looksLikeList(run) {
+      let empty = 0;
+      let body = 0;
+      run.forEach((c, i) => {
+        const n = natureOf(run, i);
+        if (n === "empty" || n === "tail") empty++;
+        else body++;
+      });
+      return empty > body;
+    }
+
+    // Ищем перечень, за которым идёт блок ответов с теми же номерами.
+    for (let li = 0; li < runs.length - 1; li++) {
+      const list = runs[li];
+      if (list.length < 2 || !looksLikeList(list)) continue;
+
+      // Собираем ответы из всех следующих прогонов: номера должны совпадать
+      // с номерами перечня, иначе это не ответы к нему.
+      const byNumber = new Map();
+      for (let ri = li + 1; ri < runs.length; ri++) {
+        for (const c of runs[ri]) {
+          if (!byNumber.has(c.number)) byNumber.set(c.number, []);
+          byNumber.get(c.number).push(c);
+        }
+      }
+
+      const matched = list.filter((c) => byNumber.has(c.number)).length;
+      if (matched < 2 || matched < list.length * 0.7) continue;
+
+      // Проверка «это правда ответы»: у блока ответов под номером есть текст.
+      // Два перечня вопросов подряд тоже совпадают по номерам, но текста под
+      // номерами нет — такой файл надо разбирать как два перечня.
+      let answerBodies = 0;
+      let answerItems = 0;
+      for (let ri = li + 1; ri < runs.length; ri++) {
+        for (let k = 0; k < runs[ri].length; k++) {
+          answerItems++;
+          if (natureOf(runs[ri], k, true) === "body") answerBodies++;
+        }
+      }
+      if (!answerItems || answerBodies < answerItems * 0.5) continue;
+
+      // Порядок ответов: собираем по строкам, а не по номерам, чтобы не
+      // перепутать, если файл идёт не по порядку.
+      const answerStarts = [];
+      for (let ri = li + 1; ri < runs.length; ri++) {
+        for (const c of runs[ri]) if (byNumber.has(c.number)) answerStarts.push(c);
+      }
+      answerStarts.sort((a, b) => a.line - b.line);
+
+      const out = [];
+      for (let k = 0; k < list.length; k++) {
+        const q = list[k];
+        let answer = "";
+        const cand = byNumber.get(q.number);
+        if (cand && cand.length) {
+          const c = cand[0];
+          const nextLine = nextLineOf(c, answerStarts);
+          // Два вида ответа:
+          //   • «1.» отдельной строкой → текст начинается со следующей строки;
+          //   • «1. текст ответа» → текст уже в остатке строки, а следующие
+          //     строки — продолжение ответа.
+          // «1. текст» — текст в остатке строки; «1.» — текст ниже строки номера.
+          const inline = !c.restIsNextLine;
+          const head = inline ? (c.rest || "").trim() : "";
+          let from = inline ? c.line + 1 : (c.bodyStart && c.bodyStart > 0 ? c.bodyStart : c.line + 1);
+          while (from < nextLine && !lines[from].trim()) from++;
+          const tail = lines
+            .slice(from, nextLine)
+            .join("\n")
+            .replace(/[ \t]+/g, " ")
+            .trim();
+          answer = (inline ? head + (tail ? "\n" + tail : "") : tail).trim();
+        }
+        // У вопроса из перечня под ним может быть продолжение заголовка.
+        // Но только если это правда продолжение: короткая строчная строка без
+        // признаков ответа. Иначе в вопрос попадал заголовок «ОТВЕТЫ» и начало
+        // первого ответа.
+        let question = q.rest;
+        const qNext = k + 1 < list.length ? list[k + 1].line : answerStarts.length ? answerStarts[0].line : lines.length;
+        const qBlock = lines
+          .slice(q.line + 1, Math.max(q.line + 1, qNext))
+          .filter((l) => l.trim())
+          .map((l) => l.trim());
+        const tailOk =
+          qBlock.length === 1 &&
+          qBlock[0].length < 90 &&
+          !/[.!?]$/.test(question) &&
+          /^[а-яё(«"]/.test(qBlock[0]) &&
+          !ANSWER_RE.test(qBlock[0]) &&
+          !ANSWER_ONLY_RE.test(qBlock[0]);
+        if (tailOk) question = (question + " " + qBlock[0]).replace(/\s+/g, " ").trim();
+        out.push(makeQuestion(q.number, question, answer, 1));
+        if (out.length >= MAX_QUESTIONS) break;
+      }
+
+      const withAnswer = out.filter((x) => x.hasAnswer).length;
+      if (out.length >= 2 && withAnswer >= Math.max(2, out.length * 0.5)) return out;
+    }
+    return null;
+
+    /** Строка, где начинается следующий ответ (или конец файла). */
+    function nextLineOf(c, sorted) {
+      for (const other of sorted) if (other.line > c.line) return other.line;
+      return lines.length;
+    }
+  }
+
   function buildFromNumberedRuns(lines, starts) {
     const runs = [];
     let cur = [starts[0]];
@@ -645,6 +828,63 @@
       }
     }
     return questions.length >= 2 ? questions : null;
+  }
+
+  /**
+   * Схема «Вопрос 1.» … сверху, «Ответ 1.» … снизу: номера связывают
+   * вопрос с ответом, порядок в файле может быть любым.
+   */
+  function pairHeadingsWithNumberedAnswers(lines, questionStarts) {
+    const answers = [];
+    for (let i = 0; i < lines.length; i++) {
+      const m = lines[i].match(ANSWER_NUM_RE);
+      if (!m) continue;
+      const num = parseInt(m[2], 10);
+      if (!isFinite(num) || num < 1) continue;
+      const rest = (m[3] || "").trim();
+      if (!hasLetter(rest) || rest.length < 3) {
+        let j = i + 1;
+        while (j < lines.length && !lines[j].trim()) j++;
+        if (j >= lines.length) continue;
+        answers.push({ num: num, line: i, rest: "", textFrom: j });
+      } else {
+        answers.push({ num: num, line: i, rest: rest, textFrom: i });
+      }
+    }
+    if (answers.length < 2) return null;
+
+    const byNum = new Map();
+    for (const a of answers) if (!byNum.has(a.num)) byNum.set(a.num, a);
+
+    const matched = questionStarts.filter((q) => byNum.has(q.number)).length;
+    if (matched < 2 || matched < questionStarts.length * 0.7) return null;
+
+    const answerLines = answers.map((a) => a.line).sort((x, y) => x - y);
+    const out = [];
+    for (const q of questionStarts) {
+      const a = byNum.get(q.number);
+      let answer = "";
+      if (a) {
+        let next = lines.length;
+        for (const ln of answerLines) {
+          if (ln > a.line) {
+            next = ln;
+            break;
+          }
+        }
+        let from = a.textFrom;
+        while (from < next && !lines[from].trim()) from++;
+        const tail = lines
+          .slice(a.rest ? a.textFrom + 1 : from, next)
+          .join("\n")
+          .replace(/[ \t]+/g, " ")
+          .trim();
+        answer = (a.rest ? a.rest + (tail ? "\n" + tail : "") : tail).trim();
+      }
+      out.push(makeQuestion(q.number, q.rest, answer, 1));
+      if (out.length >= MAX_QUESTIONS) break;
+    }
+    return out.filter((x) => x.hasAnswer).length >= 2 ? out : null;
   }
 
   /** Правило 6: абзацы. Чётные — вопрос (обычно с «?»), нечётные — ответ. */
@@ -719,7 +959,10 @@
       const cur = starts[i];
       const run = runs[runs.length - 1];
       const prev = run[run.length - 1];
-      if (cur.number <= prev.number && cur.number <= 2) runs.push([cur]);
+      // Новый перечень начинается там, где нумерация обрывается: номер
+      // уменьшился или пропустил вперёд. Раньше проверялось «≤ 2», из-за чего
+      // перечень вопросов и блок ответов с теми же номерами сливались в один.
+      if (cur.number <= prev.number) runs.push([cur]);
       else run.push(cur);
     }
     return runs;
@@ -762,7 +1005,20 @@
 
     // --- 1. Явные заголовки вопросов: «# Вопрос 12.» / «Вопрос 12.»
     const headingStarts = mdStarts.length >= 2 ? mdStarts : plainStarts.length >= 2 ? plainStarts : [];
+
+    // «Вопрос N.» сверху + «Ответ N.» снизу — проверяем ДО общего разбора
+    // заголовков, иначе ответы прилипали бы к последнему вопросу.
     if (headingStarts.length >= 2) {
+      const pairedHeadings = pairHeadingsWithNumberedAnswers(lines, headingStarts);
+      if (pairedHeadings && pairedHeadings.length >= 2) {
+        questions = pairedHeadings;
+        strategy = "questions-and-answers";
+      }
+    }
+
+    if (strategy) {
+      // уже разобрано по схеме «вопросы + ответы»
+    } else if (headingStarts.length >= 2) {
       questions = buildFromStarts(lines, headingStarts, {
         useAnswerMarker: answerMarkers,
         split: answerMarkers ? "answer-marker" : "first-paragraph"
@@ -786,9 +1042,11 @@
     // --- 2. Перечень вопросов + ответы (двойная нумерация) либо просто список.
     if (!keepSingle && questions.length < 2 && numStarts.length >= 2) {
       const runs = splitRuns(numStarts);
-      const biggest = runs.reduce((a, b) => (b.length > a.length ? b : a), runs[0]);
-      if (runs.length >= 2 && biggest.length >= 3) {
-        const paired = buildFromNumberedRuns(lines, numStarts);
+      // Двойная нумерация: перечень вопросов и блок ответов. Ограничения «не
+      // меньше трёх пунктов» нет — хватает и двух, а решение принимает
+      // pairListWithAnswers по совпадению номеров и виду блоков.
+      if (runs.length >= 2) {
+        const paired = pairListWithAnswers(lines, runs);
         if (paired && paired.length >= 2) {
           questions = paired;
           strategy = "list-and-answers";
