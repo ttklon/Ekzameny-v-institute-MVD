@@ -79,7 +79,7 @@ def short(a):
 
 KIND = re.compile(r'[Зз]акон|[Пп]равил|[Пп]оложени|[Пп]орядк|[Пп]орядо|[Нн]аставлени|[Ии]нструкци|[Рр]уководств|[Уу]став|[Рр]егламент|Пленум|[Оо]бзор|[Уу]каз|[Кк]онцепци|[Сс]тратеги|[Кк]онвенци|[Оо]снов|[Кк]одекс|[Пп]еречн|[Дд]октрин|[Пп]остановлени|[Пп]риказ|[Дд]екларац|[Пп]акт|[Тт]ипов')
 SAME = re.compile(r'(того же|этого|этой|названн|указанн|данн|настоящ|той же|этих)', re.I)
-GENERIC = {'росси', 'федер', 'закон', 'утвер', 'прика', 'поста', 'далее', 'прави', 'указа', 'плену', 'верхо', 'прези', 'мвд', 'минис'}
+GENERIC = {'росси', 'федер', 'закон', 'утвер', 'прика', 'поста', 'далее', 'прави', 'указа', 'плену', 'верхо', 'прези', 'мвд', 'минис', 'кодек'}
 ABR = re.compile(r'(?<![А-ЯЁа-яё])[А-ЯЁ]{2,}(?![а-яё])')
 def hstems(s): return L.stems(s) | (set(ABR.findall(s)) - {'РФ', 'РСФСР', 'СССР'})
 def resolve(h, named):
@@ -140,7 +140,7 @@ def resolve(h, named):
 
 # ---------- разбор ссылки ----------
 VAL = r'(?:«[а-яё]»|\d+(?:\.\d+)*(?:\(\d+\))?)'
-LVL = re.compile(r'(?<![А-ЯЁа-яё])(?P<k>подп\.|пп\.|п\.|ч\.|ст\.|абз\.)\s*(?P<v>%s(?:\s*(?:,|–|—|-| и )\s*%s)*)' % (VAL, VAL), re.I)
+LVL = re.compile(r'(?<![А-ЯЁа-яё])(?P<k>подп\.|подпункт[а-я]*|пп\.|п\.|пункт[а-я]*|ч\.|част[ьию]|частями|ст\.|стать[яиеюй]|статьями|статьях|абз\.)\s*(?P<v>%s(?:\s*(?:,|–|—|-| и )\s*%s)*)' % (VAL, VAL), re.I)
 ORDER = {'абз.': -1, 'подп.': 0, 'пп.': 0, 'п.': 1, 'ч.': 2, 'ст.': 3}
 def vlist(v):
     out = []
@@ -153,7 +153,7 @@ def items(chunk):
     """ссылка → [(уровни {ст, ч, п, подп}, хвост — название акта), …], текст до первой нормы"""
     ms = list(LVL.finditer(chunk)); out = []; cur = None; prev = None
     for i, m in enumerate(ms):
-        k = m.group('k').lower(); o = ORDER[k]
+        k = m.group('k').lower(); k = 'подп.' if k.startswith('подп') else 'п.' if k.startswith(('п.', 'пп', 'пункт')) else 'ч.' if k.startswith('ч') else 'ст.' if k.startswith('ст') else k; o = ORDER[k]
         if cur is None or o <= prev or chunk[ms[i - 1].end():m.start()].strip(' ,'):
             cur = {'s': m.start(), 'e': m.end(), 'lv': {}}; out.append(cur)
         cur['lv'].setdefault({-1: 'абз', 0: 'подп', 1: 'п', 2: 'ч', 3: 'ст'}[o], []).extend(vlist(m.group('v'))); cur['e'] = m.end(); prev = o
@@ -223,6 +223,7 @@ def get_units1(act, lv, ctxart, st, ctxpt=None):
                         l3.append(su)
                 level1 = l3
             us += level1
+            if 'прим' in P and len(P['прим']) < 6000: us.append(P['прим'])     # размеры и сроки часто раскрыты в примечаниях к статье
         return us
     if arts or cs: return None
     us = []
@@ -281,7 +282,7 @@ for f in files:
     fid = os.path.basename(ANS.rstrip('/')) + '/' + os.path.basename(f)[:-4]
     named = []                         # [(акт, основы слов названия и сокращения)]
     RAWN.clear(); ALIAS.clear(); PTMEM = {}
-    secart = None; leadart = None; lastkind = None
+    secart = None; leadart = None; lastkind = None; FIRST = []   # FIRST: акты в порядке первого упоминания
     ctx = None; ctxart = None; lead = None; ARTMEM = []   # ARTMEM: [(акт, последняя названная статья)]
     def note(act, txt):
         st = hstems(txt) | {x.upper() for x in re.findall(r'№ ?([\w./-]+)', txt)}
@@ -292,6 +293,7 @@ for f in files:
         for i, (a, s_) in enumerate(named):
             if a is act or (isinstance(a, str) and a == act): st |= s_; named.pop(i); break
         named.append((act, st))
+        if not isinstance(act, str) and all(act is not f_ for f_ in FIRST): FIRST.append(act)
     for ln, line in enumerate(open(f, encoding='utf-8').read().split('\n'), 1):
         raw = line.strip()
         if not raw: continue
@@ -389,7 +391,9 @@ for f in files:
                     ex = [(c, us) for c, us in tried if us]; prim = None
                     if ex:
                         prim = ex[0]
-                        if not explicit and len(ex) > 1 and score(ex[1][1]) >= 2 * score(ex[0][1]) + 2: prim = ex[1]
+                        if not explicit:                                       # из первых трёх подходящих — та, где слов предложения заметно больше
+                            for cand_ in ex[1:3]:
+                                if score(cand_[1]) >= score(prim[1]) + 2: prim = cand_
                     if prim is None:
                         if any(us == [] for c, us in tried[:1]): bad = True; refs.append(label + ' ← ? (нет статьи для части или пункта)'); stat['без привязки'] += 1
                         else: missing.append(label + ' ← ' + short(tried[0][0] if tried else None)); refs.append(label + ' ← ' + short(tried[0][0] if tried else None))
@@ -437,7 +441,19 @@ for f in files:
                     if cov < THR: flags.append('СЛОВА %d%%' % round(cov * 100))
             if flags: stat['предложений с пометкой'] += 1
             if flags or ALL: blocks.append((fid, ln, ' | '.join(flags) or 'ок', '; '.join(refs), full, sunits, st))
-        if ishead: secart = ARTMEM[-1] if len(ARTMEM) > n0 else None; continue
+        if ishead:                                                     # статья в заголовке раздела — основная для «ч. N» без статьи в этом разделе
+            hits_ = []
+            for lv_, tail_ in items(raw.replace('//', ''))[0]:
+                if 'ст' in lv_:
+                    a_ = resolve(tail_, named)
+                    cs_ = [a_] if (a_ is not None and not isinstance(a_, str)) else [ctx, CODE.get(DEF)] + FIRST
+                    for s_ in lv_['ст']:
+                        for c_ in cs_:
+                            if c_ is not None and not isinstance(c_, str) and get_units(c_, {'ст': [s_]}, None, set()):
+                                hits_.append((c_, s_, lv_['ч'][0] if len(lv_.get('ч', [])) == 1 else None)); break
+            secart = hits_[0] if len(hits_) == 1 else None
+            if secart: ARTMEM.append(secart); ctx = secart[0]; ctxart = secart[1]; lastkind = 'art'
+            continue
         if raw.endswith(':') and linerefs:
             lead = (lineunits, 'под строкой %d' % ln)
             if len(ARTMEM) > n0: leadart = ARTMEM[-1]

@@ -66,8 +66,10 @@ def point(u, p):
     """пункт «3)», «3.1)», «а)» внутри части или статьи"""
     p = p.strip('«»"'); m = None
     for f in [p] + ([p.replace('.', ' '), p.replace('.', '')] if '.' in p else []):      # «19.1)» в тексте бывает «19 1 )» и «191)»
-        m = re.search(r'(?<= )%s ?\) ' % re.escape(f), ' ' + u)
-        if m: break
+        ms = list(re.finditer(r'(?<= )%s ?\) ' % re.escape(f), ' ' + u))
+        if ms:
+            m = ms[-1] if (f == p and len(p) > 1 and p.isdigit()) else ms[0]          # «31)» встречается дважды: сначала это «3.1)» с надстрочной единицей, затем настоящий п. 31
+            break
     if not m: return None
     kind = r'\d+(?:\.\d+)?' if p[0].isdigit() else r'[а-яё]'
     rest = (' ' + u)[m.end():]; m2 = re.search(r'(?<= )%s\) ' % kind, rest)
