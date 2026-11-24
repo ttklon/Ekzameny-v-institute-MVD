@@ -62,6 +62,20 @@ const api = {
     return () => ipcRenderer.removeListener("app:files-dropped", fn);
   },
 
+  // Обновления: проверка, скачивание и установка — только с подтверждением.
+  update: {
+    check: () => ipcRenderer.invoke("update:check"),
+    state: () => ipcRenderer.invoke("update:state"),
+    download: () => ipcRenderer.invoke("update:download"),
+    install: () => ipcRenderer.invoke("update:install"),
+    openReleasePage: () => ipcRenderer.invoke("update:openReleasePage"),
+    onChange: (handler) => {
+      const fn = (_e, info) => handler(info);
+      ipcRenderer.on("update:state", fn);
+      return () => ipcRenderer.removeListener("update:state", fn);
+    }
+  },
+
   // Сведения о среде: интерфейсу полезно знать, Electron это или браузер.
   isElectron: true,
   platform: process.platform

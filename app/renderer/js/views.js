@@ -2233,7 +2233,33 @@
             UI.button("Открыть папку", { size: "sm", kind: "ghost", icon: "folder", onClick: () => root.App.openDataDir() })
           ])),
         settingsRow("Занято на диске", "Библиотека и копии добавленных файлов.", h("span.mono", { id: "storageInfo" }, "…")),
-        settingsRow("Версия и сборка", "По дате сборки видно, свежая ли у вас версия.", h("span.mono", { id: "versionInfo" }, "…"))
+        settingsRow(
+          "Версия и сборка",
+          "Приложение само проверяет обновления раз в минуту и спросит перед установкой.",
+          h("div.row", [
+            h("span.mono", { id: "versionInfo" }, "…"),
+            UI.button("Проверить обновление", {
+              size: "sm",
+              kind: "ghost",
+              icon: "reset",
+              onClick: async () => {
+                if (!root.api || !root.api.update) {
+                  UI.toast({ kind: "info", title: "Проверка недоступна", text: "Обновления проверяются только в установленной программе." });
+                  return;
+                }
+                UI.toast({ kind: "info", title: "Проверяем…", text: "Спрашиваем GitHub о новой сборке." });
+                const st = await root.api.update.check();
+                if (!st || !st.available) {
+                  UI.toast({
+                    kind: "ok",
+                    title: "У вас последняя версия",
+                    text: st && st.error ? "GitHub не ответил: " + st.error : "Новых сборок нет."
+                  });
+                }
+              }
+            })
+          ])
+        )
       ])
     );
     wrap.appendChild(data);

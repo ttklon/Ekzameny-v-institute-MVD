@@ -43,6 +43,50 @@ const library = {
   ui: { view: "today" }
 };
 
+console.log("\nОбновления");
+
+test("сравнение версий идёт по числам, а не по строкам", () => {
+  const { compareVersions } = require("../src/main/update");
+  assert.strictEqual(compareVersions("1.2.10", "1.2.9"), 1, "1.2.10 должно быть новее 1.2.9");
+  assert.strictEqual(compareVersions("1.0.0", "1.0.0"), 0);
+  assert.strictEqual(compareVersions("0.9.9", "1.0.0"), -1);
+});
+
+test("новое обновление определяется по дате сборки", () => {
+  const { createUpdater } = require("../src/main/update");
+  const u = createUpdater({ currentVersion: "1.0.0", currentBuild: "2026-11-24 / bd98dd1" });
+  // Та же сборка — не обновление.
+  assert.strictEqual(u.isNewer({ remoteBuild: "2026-11-24 / bd98dd1", remoteAt: Date.now() }), false);
+  // Сборка позже — обновление.
+  assert.strictEqual(u.isNewer({ remoteBuild: "2026-11-25 / aaa1111", remoteAt: Date.now() }), true);
+  // Сборка раньше — не обновление.
+  assert.strictEqual(u.isNewer({ remoteBuild: "2026-11-20 / bbb2222", remoteAt: Date.now() }), false);
+  // Тот же день, другой коммит — обновление.
+  assert.strictEqual(u.isNewer({ remoteBuild: "2026-11-24 / ccc3333", remoteAt: Date.now() }), true);
+});
+
+test("без своего номера сборки обновление не предлагается", () => {
+  const { createUpdater } = require("../src/main/update");
+  // Если штамп потерялся, приложение не должно зацикленно предлагать обновиться.
+  const u = createUpdater({ currentVersion: "1.0.0", currentBuild: "" });
+  assert.strictEqual(u.isNewer({ remoteBuild: "", remoteAt: Date.now() + 86400000 }), false);
+});
+
+test("состояние обновления отдаётся интерфейсу целиком", () => {
+  const { createUpdater } = require("../src/main/update");
+  const u = createUpdater({ currentVersion: "1.0.0", currentBuild: "2026-11-24 / bd98dd1" });
+  const st = u.state();
+  assert.strictEqual(st.available, false);
+  assert.strictEqual(st.state, "idle");
+  assert.strictEqual(st.currentBuild, "2026-11-24 / bd98dd1");
+  assert.ok(st.checkEveryMs > 0, "нет периода проверки");
+});
+
+test("проверка идёт раз в минуту", () => {
+  const { CHECK_EVERY_MS } = require("../src/main/update");
+  assert.strictEqual(CHECK_EVERY_MS, 60 * 1000);
+});
+
 console.log("\nСборка и версия");
 
 test("номер сборки попадает в package.json и читается приложением", () => {

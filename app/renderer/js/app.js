@@ -1036,6 +1036,79 @@
 
   // ---------- Запуск ----------
 
+  /**
+   * Плашка обновления. Ничего не скачивается и не ставится без нажатия:
+   * приложение может работать посреди подготовки, обновление не должно мешать.
+   */
+  let updateCard = null;
+  function showUpdate(info) {
+    if (!info) return;
+    // Нет обновления — убираем плашку.
+    if (!info.update && info.state !== "downloading" && info.state !== "installing") {
+      if (updateCard && updateCard.parentNode) updateCard.parentNode.removeChild(updateCard);
+      updateCard = null;
+      return;
+    }
+    if (!updateCard) {
+      updateCard = h("div.update-card");
+      document.body.appendChild(updateCard);
+    }
+    UI.clear(updateCard);
+
+    const u = info.update || {};
+    const title = h("div.update-title", info.state === "installing" ? "Обновляем…" : "Вышло обновление");
+    updateCard.appendChild(title);
+
+    const when = u.publishedAt ? " от " + UI.dateShort(new Date(u.publishedAt).toISOString().slice(0, 10)) : "";
+    const size = u.size ? " · " + (u.size / 1048576).toFixed(1) + " МБ" : "";
+    updateCard.appendChild(
+      h("div.update-text", "Новая сборка" + when + size + ". Ваши вопросы, ответы и отметки сохранятся — обновление их не трогает.")
+    );
+
+    if (info.state === "downloading") {
+      const p = info.progress || {};
+      const pct = p.total ? Math.round((p.received / p.total) * 100) : 0;
+      updateCard.appendChild(h("div.update-bar", [h("div.update-bar-fill", { style: { width: pct + "%" } })]));
+      updateCard.appendChild(h("div.update-hint", "Скачиваем… " + pct + "%"));
+      return;
+    }
+    if (info.state === "installing") {
+      updateCard.appendChild(h("div.update-hint", "Сейчас приложение закроется, установщик доделает остальное."));
+      return;
+    }
+
+    const row = h("div.row", { style: { marginTop: "10px" } });
+    row.appendChild(
+      UI.button("Обновить", {
+        kind: "primary",
+        icon: "import",
+        onClick: async () => {
+          root.Sound.play("tap");
+          try {
+            await root.api.update.download();
+            await root.api.update.install();
+          } catch (e) {
+            UI.toast({ kind: "warn", title: "Не удалось скачать", text: String((e && e.message) || e) });
+          }
+        }
+      })
+    );
+    row.appendChild(
+      UI.button("Позже", {
+        kind: "ghost",
+        onClick: () => {
+          updateCard.style.display = "none";
+        }
+      })
+    );
+    row.appendChild(
+      h("button.link-btn", {
+        onclick: () => root.api.update.openReleasePage()
+      }, "страница загрузки")
+    );
+    updateCard.appendChild(row);
+  }
+
   async function boot() {
     // Небо — первым, чтобы не было пустого фона.
     try {
@@ -1094,6 +1167,12 @@
         if (action === "backup") exportBackup();
         if (action === "help") go("tips");
       });
+    }
+
+    // Обновления: пришло из главного процесса — показываем плашку.
+    if (root.api && root.api.update && root.api.update.onChange) {
+      root.api.update.onChange(showUpdate);
+      root.api.update.state().then((st) => st && showUpdate(st)).catch(() => {});
     }
 
     // Файлы из второго запуска (двойной щелчок по файлу в проводнике).

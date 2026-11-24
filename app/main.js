@@ -12,6 +12,7 @@ const fs = require("fs");
 const path = require("path");
 
 const { createStore } = require("./src/main/store");
+const { createUpdater } = require("./src/main/update");
 const loader = require("./src/main/loader");
 const parser = require("./src/core/parser");
 const planner = require("./src/core/planner");
@@ -19,6 +20,7 @@ const planner = require("./src/core/planner");
 const APP_TITLE = "Облачный планировщик экзаменов";
 let mainWindow = null;
 let store = null;
+let updater = null;
 let pendingFiles = []; // файлы, открытые через «Открыть с помощью» / перетаскиванием в ярлык
 
 // Один экземпляр приложения: второй запуск открывает файл в уже работающем окне.
@@ -378,10 +380,65 @@ function registerIpc() {
 
 // ---------- Запуск ----------
 
+/** Номер сборки: «2026-11-24 / bd98dd1». Дописывается сборкой в package.json. */
+function buildStamp() {
+  try {
+    return require("./package.json").buildStamp || "";
+  } catch (e) {
+    return "";
+  }
+}
+
+/** Показать в окне, что нашлось обновление. */
+function sendUpdate(info) {
+  if (!mainWindow || mainWindow.isDestroyed()) return;
+  try {
+    mainWindow.webContents.send("update:state", info);
+  } catch (e) {
+    /* окно могло закрыться */
+  }
+}
+
+/**
+ * Автообновление: раз в минуту спрашиваем GitHub. Ничего не скачивается без
+ * подтверждения — сначала в окне появляется вопрос.
+ */
+function startUpdater() {
+  updater = createUpdater({
+    currentVersion: app.getVersion(),
+    currentBuild: buildStamp(),
+    dataDir: store.paths.baseDir,
+    log: (msg) => console.log("[обновление] " + msg)
+  });
+  updater.onEvent(sendUpdate);
+  updater.start();
+
+  ipcMain.handle("update:check", async () => {
+    await updater.checkOnce(true);
+    return updater.state();
+  });
+  ipcMain.handle("update:state", async () => updater.state());
+  ipcMain.handle("update:download", async () => {
+    const r = await updater.downloadUpdate();
+    return { ok: true, path: r.path, bytes: r.bytes };
+  });
+  ipcMain.handle("update:install", async () => {
+    const st = updater.state();
+    const file = st.downloadedPath || (st.update ? "" : "");
+    updater.install(file, () => app.quit());
+    return { ok: true };
+  });
+  ipcMain.handle("update:openReleasePage", async () => {
+    shell.openExternal("https://github.com/" + "ttklon/Ekzameny-v-institute-MVD/releases/tag/app-latest");
+    return { ok: true };
+  });
+}
+
 app.whenReady().then(() => {
   store = createStore(app.getPath("userData"));
   registerIpc();
   createWindow();
+  startUpdater();
 
   const initial = collectFilesFromArgv(process.argv.slice(1));
   if (initial.length) pendingFiles.push(...initial);
