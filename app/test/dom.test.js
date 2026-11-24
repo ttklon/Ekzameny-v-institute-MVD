@@ -30,6 +30,8 @@ function check(name, fn) {
   }
 }
 
+const autostartCalls = [];
+
 function makeDom() {
   const html = fs.readFileSync(path.join(ROOT, "renderer", "index.html"), "utf-8");
   // Скрипты подключаем сами — jsdom не должен ходить по file:// путям.
@@ -121,6 +123,19 @@ function makeDom() {
     openDataDir: async () => ({ ok: true }),
     openExternal: async () => ({ ok: true }),
     takePendingFiles: async () => [],
+    remind: {
+      refresh: async () => ({ ok: true }),
+      test: async () => ({ ok: true }),
+      info: async () => ({ tasks: 3, minutes: 12 })
+    },
+    autostart: {
+      set: async (on) => {
+        autostartCalls.push(on);
+        return { ok: true, enabled: !!on };
+      },
+      state: async () => ({ enabled: false })
+    },
+    onGo: () => () => {},
     onMenu: () => () => {},
     onFilesDropped: () => () => {},
     isElectron: true,
@@ -260,6 +275,34 @@ async function run() {
     box.dispatchEvent(new win.Event("change", { bubbles: true }));
     if (win.Store.state.settings.remind.enabled === before) throw new Error("настройка не изменилась");
     win.Store.state.settings.remind.enabled = before;
+  });
+
+  check("автозапуск передаётся системе, а не просто сохраняется", async () => {
+    // Настройка бесполезна, если она лежит в файле и не доходит до Windows.
+    const boxes = [...win.document.querySelectorAll("#view input[type=checkbox]")];
+    const box = boxes.find((b) => {
+      const row = b.closest(".settings-row");
+      return row && row.textContent.indexOf("Запускать с Windows") !== -1;
+    });
+    if (!box) throw new Error("не нашёл переключатель автозапуска");
+    autostartCalls.length = 0;
+    box.checked = true;
+    box.dispatchEvent(new win.Event("change", { bubbles: true }));
+    if (!autostartCalls.length) throw new Error("система не получила запрос на автозапуск");
+    if (autostartCalls[0] !== true) throw new Error("передан не тот флаг: " + autostartCalls[0]);
+  });
+
+  check("время напоминания меняется полем времени", () => {
+    const inputs = [...win.document.querySelectorAll('#view input[type="time"]')];
+    if (!inputs.length) throw new Error("нет поля времени");
+    const input = inputs[0];
+    input.value = "20:30";
+    input.dispatchEvent(new win.Event("change", { bubbles: true }));
+    if (win.Store.state.settings.remind.at !== "20:30") {
+      throw new Error("время не сохранилось: " + win.Store.state.settings.remind.at);
+    }
+    input.value = "19:00";
+    input.dispatchEvent(new win.Event("change", { bubbles: true }));
   });
 
   check("сворачивание в трей и автозапуск сохраняются как настройки", () => {
