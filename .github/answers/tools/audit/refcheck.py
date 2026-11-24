@@ -14,6 +14,7 @@
 для статьи без акта — ещё и кодекс по умолчанию (-d: koap, uk, upk, gpk, tk, kas, gk). Акты, которых нет среди текстов,
 перечисляются в конце; предложения с такими ссылками не сверяются.
   -q РЕГ   только файлы ответов, имя которых подходит под выражение;   -a   печатать все сверенные предложения;
+  -c       в заголовке блока печатать долю значимых слов предложения, найденных в норме («{57%}»);
   -w N     длина печатаемого отрывка нормы (300);   -s N   длина печатаемого предложения (400);   -o   только блоки с этой пометкой.
 Пометка — повод прочитать норму, а не ошибка: предложение может опираться на учебник или на другую норму.
 """
@@ -27,7 +28,7 @@ def opt(k, d=None, flag=False):
         if flag: sys.argv.pop(i); return True
         v = sys.argv[i + 1]; del sys.argv[i:i + 2]; return v
     return False if flag else d
-DEF = opt('-d'); QRE = opt('-q'); ALL = opt('-a', flag=True); WIN = int(opt('-w', 300)); SLEN = int(opt('-s', 400)); THR = float(opt('-t', 0.2)); ONLY = opt('-o')
+DEF = opt('-d'); QRE = opt('-q'); ALL = opt('-a', flag=True); WIN = int(opt('-w', 300)); SLEN = int(opt('-s', 400)); THR = float(opt('-t', 0.2)); ONLY = opt('-o'); COVP = opt('-c', flag=True)
 ANS, SRC = sys.argv[1], sys.argv[2]
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -435,7 +436,7 @@ for f in files:
             linerefs = True; lineunits += sunits
             if bad and not sunits: stat['не сверено: акт не найден'] += 1; continue
             stat['предложений'] += 1
-            flags = []
+            flags = []; covs = ''
             if missing: flags.append('НЕТ ' + '; '.join(missing))
             if sunits and not bad:
                 an = L.nums(clean(full), True) - {1}
@@ -452,8 +453,9 @@ for f in files:
                 if len(st) >= 6:
                     us_ = set().union(*[L.stems(u) for u in sunits]); cov = len(st & us_) / len(st)
                     if cov < THR: flags.append('СЛОВА %d%%' % round(cov * 100))
+                    covs = ' {%d%%}' % round(cov * 100)
             if flags: stat['предложений с пометкой'] += 1
-            if flags or ALL: blocks.append((fid, ln, ' | '.join(flags) or 'ок', '; '.join(refs), full, sunits, st))
+            if flags or ALL: blocks.append((fid, ln, (' | '.join(flags) or 'ок') + (covs if COVP else ''), '; '.join(refs), full, sunits, st))
         if ishead:                                                     # статья в заголовке раздела — основная для «ч. N» без статьи в этом разделе
             hits_ = []
             for lv_, tail_ in items(raw.replace('//', ''))[0]:
