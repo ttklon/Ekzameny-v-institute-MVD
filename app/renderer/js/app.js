@@ -1059,7 +1059,15 @@
     const title = h("div.update-title", info.state === "installing" ? "Обновляем…" : "Вышло обновление");
     updateCard.appendChild(title);
 
-    const when = u.publishedAt ? " от " + UI.dateShort(new Date(u.publishedAt).toISOString().slice(0, 10)) : "";
+    // publishedAt — число (метка времени), поэтому сначала в дату.
+    let when = "";
+    if (u.publishedAt) {
+      const d = new Date(Number(u.publishedAt));
+      if (!isNaN(d.getTime())) {
+        const iso = d.toISOString().slice(0, 10);
+        when = " от " + UI.dateShort(iso);
+      }
+    }
     const size = u.size ? " · " + (u.size / 1048576).toFixed(1) + " МБ" : "";
     updateCard.appendChild(
       h("div.update-text", "Новая сборка" + when + size + ". Ваши вопросы, ответы и отметки сохранятся — обновление их не трогает.")
