@@ -258,6 +258,19 @@ def window(u, st, w):
 
 CH = re.compile(r'//(.+?)//')
 PLAIN = re.compile(r'от \d{2}\.\d{2}\.\d{4}(?: г\.)? № ?[\w./-]+')
+MONTHS = {'января': '01', 'февраля': '02', 'марта': '03', 'апреля': '04', 'мая': '05', 'июня': '06', 'июля': '07', 'августа': '08', 'сентября': '09', 'октября': '10', 'ноября': '11', 'декабря': '12'}
+ORDW = {'перв': 1, 'втор': 2, 'трет': 3, 'четв': 4, 'пят': 5, 'шест': 6, 'седьм': 7, 'восьм': 8, 'девят': 9, 'десят': 10, 'одиннадцат': 11, 'двенадцат': 12, 'тринадцат': 13, 'четырнадцат': 14, 'пятнадцат': 15}
+def wordform(s):
+    """словесная запись → краткая: «17 марта 2004 года» → «17.03.2004», «части первой» → «ч. 1» (число строк не меняется)"""
+    s = re.sub(r'(?<!\d)(\d{1,2}) (%s) (\d{4}) года' % '|'.join(MONTHS), lambda m: '%02d.%s.%s' % (int(m.group(1)), MONTHS[m.group(2)], m.group(3)), s)
+    def o(m):
+        w = m.group(2).lower()
+        for k in sorted(ORDW, key=len, reverse=True):
+            if w.startswith(k): return 'ч. %d' % ORDW[k]
+        return m.group(0)
+    return re.sub(r'(?<![А-ЯЁа-яё])(част[ьию]|частью|частями) ((?:перв|втор|трет|четв[её]рт|пят|шест|седьм|восьм|девят|десят|одиннадцат|двенадцат|тринадцат|четырнадцат|пятнадцат)[а-яё]{2,3})(?![а-яё])', o, s)
+
+
 PLAIN2 = re.compile(r'Конституци\w+|КоАП РФ|УПК РФ|(?<![А-ЯЁа-яё])УК РФ|ГПК РФ|(?<![А-ЯЁа-яё])ТК РФ|КАС РФ|(?<![А-ЯЁа-яё])ГК РФ|Закон\w* о полиции|(?:[Зз]акон|[Пп]равил|[Нн]аставлени|[Ии]нструкци|[Пп]орядк|[Пп]оложени|[Пп]риказ|[Уу]каз|[Пп]остановлени|[Рр]егламент|[Уу]став)\w*\s(?:[^.;()№]{0,60}?)№ ?\d[\w./-]*')
 ABBR = re.compile(r'(?:^|[\s(«])(?:ст|п|ч|т|д|г|гг|руб|подп|утв|см|др|пр|абз|рис|им|ред|тыс|млн|стр|с|ср|напр)\.$')
 def sentences(line):
@@ -294,7 +307,7 @@ for f in files:
             if a is act or (isinstance(a, str) and a == act): st |= s_; named.pop(i); break
         named.append((act, st))
         if not isinstance(act, str) and all(act is not f_ for f_ in FIRST): FIRST.append(act)
-    for ln, line in enumerate(open(f, encoding='utf-8').read().split('\n'), 1):
+    for ln, line in enumerate(wordform(open(f, encoding='utf-8').read()).split('\n'), 1):
         raw = line.strip()
         if not raw: continue
         ishead = raw.startswith('#'); n0 = len(ARTMEM)

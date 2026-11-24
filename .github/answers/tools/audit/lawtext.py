@@ -56,6 +56,8 @@ def parts(body):
         raw = m.group(1); cands = [raw]
         if '.' not in raw and len(raw) >= 2: cands += [raw[:i] + '.' + raw[i:] for i in range(1, len(raw)) if raw[i] != '0']
         pk = _key(prev); ok = [c for c in cands if _key(c) > pk and _key(c)[0] <= pk[0] + 1]
+        if prev == '0': ok = [c for c in ok if '.' not in c or c in cands[:1]]          # первая метка статьи не бывает склеенной («12. ИЗМЕНЕНИЕ…» — заголовок главы, а не ч. 1.2)
+        if prev == '0' and ok and _key(min(ok, key=_key))[0] != 1: continue                  # нумерация частей начинается с 1
         if not ok: continue
         n = min(ok, key=_key); marks.append((n, m.start())); prev = n
     for i, (n, s) in enumerate(marks): out[n] = main[s:marks[i + 1][1] if i + 1 < len(marks) else len(main)]
