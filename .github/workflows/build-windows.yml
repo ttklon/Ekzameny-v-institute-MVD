@@ -61,29 +61,32 @@ jobs:
       - name: Сборка установщика и portable-версии
         shell: pwsh
         run: |
-          $ErrorActionPreference = "Continue"
+          $attempts = 2
           $ok = $false
-          for ($attempt = 1; $attempt -le 2; $attempt++) {
-            Write-Host "=== Попытка $attempt ==="
-            npm run dist:win 2>&1 | Tee-Object -FilePath build.log
+          for ($attempt = 1; $attempt -le $attempts; $attempt++) {
+            Write-Host "=== Попытка $attempt из $attempts ==="
+            $env:DEBUG = "electron-builder"
+            npx electron-builder --win --x64 --publish never 2>&1 | Tee-Object -FilePath build.log
             if ($LASTEXITCODE -eq 0) { $ok = $true; break }
             Write-Host "Сборка не удалась, код $LASTEXITCODE"
-            # Частая причина — обрыв загрузки electron/NSIS. Повтор помогает.
             Start-Sleep -Seconds 10
           }
           if (-not $ok) {
-            # Пишем хвост лога в сводку запуска: так причина видна без скачивания.
-            "### Сборка не удалась" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-            "" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-            "``````" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-            Get-Content build.log -Tail 120 | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-            "``````" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
-            Write-Host "::error::Сборка не удалась, см. сводку запуска"
+            # Причина должна быть видна прямо в аннотациях запуска.
+            $lines = Get-Content build.log -ErrorAction SilentlyContinue
+            Write-Host "Строк в логе: $($lines.Count)"
+            $tail = $lines | Select-Object -Last 60
+            foreach ($line in $tail) {
+              $clean = $line -replace "%", "%25" -replace "\r", "" -replace "\n", " "
+              if ($clean.Trim().Length -gt 0) { Write-Host "::error::$clean" }
+            }
+            Get-ChildItem dist -ErrorAction SilentlyContinue | Select-Object Name, Length
             exit 1
           }
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CSC_IDENTITY_AUTO_DISCOVERY: "false"
+          ELECTRON_BUILDER_CACHE: ${{ github.workspace }}/.cache/electron-builder
 
       - name: Список собранных файлов
         shell: pwsh

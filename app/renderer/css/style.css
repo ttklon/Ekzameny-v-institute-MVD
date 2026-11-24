@@ -1961,18 +1961,26 @@ body.theme-dusk .preview-item {
   font-size: 15px;
   line-height: 1.72;
   color: var(--ink-soft);
-  white-space: pre-wrap;
   word-break: break-word;
   max-height: 46vh;
   overflow-y: auto;
-  padding-right: 8px;
+  padding-right: 10px;
 }
 
 .qv-text h4 {
   font-family: var(--font-display);
   font-size: 19px;
   color: var(--ink);
-  margin: 18px 0 6px;
+  margin: 20px 0 6px;
+}
+
+.qv-text h4:first-child {
+  margin-top: 0;
+}
+
+.qv-text b {
+  color: var(--ink);
+  font-weight: 700;
 }
 
 .qv-stats {
@@ -2505,22 +2513,41 @@ body.theme-dusk .tag.warn {
   background: rgba(255, 190, 110, 0.16);
 }
 
-.qv-text {
-  font-size: 14.5px;
-  line-height: 1.62;
-  max-height: min(52vh, 620px);
-  overflow: auto;
-  padding-right: 8px;
-  margin-top: 4px;
-}
-
-.qv-text h4 {
-  font-size: 14px;
-  margin: 14px 0 4px;
-  color: var(--ink-soft);
-  letter-spacing: 0.01em;
-}
-
 .qv-text p {
-  margin: 7px 0;
+  margin: 8px 0;
+}
+
+/* «Главное для запоминания» — выноска внутри ответа */
+.callout {
+  display: grid;
+  gap: 5px;
+  margin: 12px 0;
+  padding: 12px 14px;
+  border-radius: 13px;
+  background: linear-gradient(120deg, rgba(255, 226, 168, 0.55), rgba(255, 244, 214, 0.35));
+  border: 1px solid rgba(233, 186, 96, 0.45);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+body.theme-dusk .callout {
+  background: linear-gradient(120deg, rgba(120, 96, 48, 0.34), rgba(90, 80, 60, 0.2));
+  border-color: rgba(233, 186, 96, 0.28);
+}
+
+.callout .callout-mark {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a5a12;
+}
+
+body.theme-dusk .callout .callout-mark {
+  color: #f0c684;
+}
+
+.qv-text u {
+  text-decoration-color: rgba(58, 120, 200, 0.55);
+  text-underline-offset: 3px;
 }

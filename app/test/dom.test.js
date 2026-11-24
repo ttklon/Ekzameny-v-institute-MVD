@@ -306,6 +306,24 @@ async function run() {
     if (text.trim().length < 100) throw new Error("мало текста в окне: " + text.slice(0, 200));
     if (!modal.querySelector(".qv-title")) throw new Error("нет заголовка вопроса");
   });
+  check("ответ размечен: выноска «Главное», жирный, курсив", () => {
+    const modal = win.document.querySelector("#modal-root .modal");
+    if (!modal) throw new Error("окно не открылось");
+    if (!modal.querySelector(".callout")) throw new Error("нет выноски «Главное»");
+    const text = modal.querySelector(".qv-text");
+    if (!text) throw new Error("нет текста ответа");
+    if (!text.querySelector("b")) throw new Error("нет жирного");
+    if (!text.querySelector("i")) throw new Error("нет курсива");
+    if (/\*\*|\/\/(?![^<]*>)/.test(text.textContent)) throw new Error("разметка не убрана из текста");
+    // Подчёркивания в этом файле нет — проверяем отдельным образцом.
+    const probe = win.document.createElement("div");
+    probe.appendChild(win.App.__inlineForTest("__подчёркнуто__ и **жирно** и //курсив//"));
+    if (!probe.querySelector("u")) throw new Error("не разбирается __подчёркивание__");
+    if (!probe.querySelector("b")) throw new Error("не разбирается **жирный**");
+    if (!probe.querySelector("i")) throw new Error("не разбирается //курсив//");
+    if (/__|\*\*|\/\//.test(probe.textContent)) throw new Error("разметка осталась: " + probe.textContent);
+  });
+
   win.UI.closeAllModals();
   await tick(320);
 

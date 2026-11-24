@@ -826,6 +826,17 @@
         list = null;
         continue;
       }
+      // «!! …» — главное для запоминания, так размечены ответы в файлах.
+      if (/^!!\s*/.test(trimmed)) {
+        list = null;
+        wrap.appendChild(
+          h("div.callout", [
+            h("span.callout-mark", "Главное"),
+            h("div", inline(trimmed.replace(/^!!\s*/, "")))
+          ])
+        );
+        continue;
+      }
       if (/^#{1,4}\s/.test(trimmed)) {
         list = null;
         wrap.appendChild(h("h4", inline(trimmed.replace(/^#{1,4}\s*/, ""))));
@@ -862,27 +873,29 @@
   /** Выделения **жирный** и //курсив// внутри строки. */
   function inline(text) {
     const frag = document.createDocumentFragment();
-    const re = /(\*\*|__)(.+?)\1|\/\/(.+?)\/\//g;
+    // **жирный**, __подчёркнутый__, //курсив//
+    const re = /\*\*(.+?)\*\*|__(.+?)__|\/\/(.+?)\/\//g;
     let last = 0;
     let m;
     while ((m = re.exec(text)) !== null) {
       if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
-      if (m[2] !== undefined) {
+      if (m[1] !== undefined) {
         const b = document.createElement("b");
-        b.textContent = m[2];
+        b.textContent = m[1];
         frag.appendChild(b);
+      } else if (m[2] !== undefined) {
+        const u = document.createElement("u");
+        u.textContent = m[2];
+        frag.appendChild(u);
       } else {
         const i = document.createElement("i");
         i.textContent = m[3];
         frag.appendChild(i);
       }
-      last = regexEnd(m);
+      last = m.index + m[0].length;
     }
     if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
     return frag;
-  }
-  function regexEnd(m) {
-    return m.index + m[0].length;
   }
 
   // ---------- Экспорт ----------
@@ -1136,7 +1149,9 @@
     exportCsv,
     exportBackup,
     openDataDir,
-    openExternal
+    openExternal,
+    // Только для проверок: разбор разметки ответа.
+    __inlineForTest: inline
   };
 
   document.addEventListener("DOMContentLoaded", boot);
