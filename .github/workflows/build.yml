@@ -42,9 +42,6 @@ jobs:
             exit 1
           }
 
-      - name: Build portable exe (ExamPlanner-Portable.exe)
-        run: npx electron-builder --win portable -c.artifactName="ExamPlanner-Portable.${ext}"
-
       - name: Publish to GitHub Release (app-latest)
         uses: ncipollo/release-action@v1
         with:
@@ -53,4 +50,4 @@ jobs:
           allowUpdates: true
           replacesArtifacts: true
           prerelease: false
-          artifacts: "app/dist/ExamPlanner-Setup.exe,app/dist/ExamPlanner-Portable.exe"
+          artifacts: "app/dist/ExamPlanner-Setup.exe"
