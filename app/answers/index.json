@@ -7,48 +7,67 @@
     "words": 316527,
     "alt": "adp2",
     "altWords": 148181,
-    "altLabel": "кратко"
+    "altLabel": "кратко",
+    "examDate": "2027-01-19",
+    "examKind": "экзамен",
+    "bigFirst": {
+      "big": 1,
+      "small": 2
+    },
+    "studyHint": "Сначала большой файл целиком один раз, потом краткий; второй раз по краткому — если останется время."
   },
   {
     "code": "ugp",
     "name": "Уголовное право",
     "count": 117,
     "bytes": 2130971,
-    "words": 160432
+    "words": 160432,
+    "examDate": "2027-01-15",
+    "examKind": "экзамен"
   },
   {
     "code": "upp",
     "name": "Уголовно-процессуальное право",
     "count": 108,
     "bytes": 1115857,
-    "words": 82924
+    "words": 82924,
+    "examDate": "2027-01-12",
+    "examKind": "экзамен"
   },
   {
     "code": "tsp",
     "name": "Тактико-специальная подготовка",
     "count": 87,
     "bytes": 744236,
-    "words": 54409
+    "words": 54409,
+    "examDate": "2026-12-30",
+    "examKind": "зачёт"
   },
   {
     "code": "tp",
     "name": "Трудовое право",
     "count": 70,
     "bytes": 780150,
-    "words": 57299
+    "words": 57299,
+    "examDate": "2026-12-18",
+    "examKind": "зачёт"
   },
   {
     "code": "gpp",
     "name": "Гражданское процессуальное право",
     "count": 52,
     "bytes": 534574,
-    "words": 39852
+    "words": 39852,
+    "examDate": "2026-12-24",
+    "examKind": "зачёт"
   },
   {
     "code": "krim",
     "name": "Криминалистика",
     "count": 44,
     "bytes": 676369,
-    "words": 49309
+    "words": 49309,
+    "examDate": "2026-12-26",
+    "examKind": "зачёт"
   }
 ]

@@ -1028,6 +1028,45 @@
 
       grid.appendChild(dayLoadField(d));
 
+      // Схема «сначала большой файл, потом маленький»: подробный ответ один
+      // раз целиком, краткий — после него, и второй раз по краткому только
+      // если останется время.
+      if (d.hasShortAnswers) {
+        const bf = (d.plan && d.plan.bigFirst) || null;
+        const mode = !bf ? "usual" : (bf.small > 1 ? "twice" : "once");
+        // Режим берём из самой дисциплины в момент нажатия: экран мог быть
+        // нарисован раньше, а выбор уже изменился.
+        const modeNow = () => {
+          const live = root.Store.getDiscipline(d.id) || d;
+          const cur = live.plan && live.plan.bigFirst;
+          if (!cur) return "usual";
+          return (Number(cur.small) || 1) > 1 ? "twice" : "once";
+        };
+        const modeSeg = h("div.segmented");
+        [
+          ["usual", "как обычно"],
+          ["once", "большой → маленький"],
+          ["twice", "и ещё раз маленький"]
+        ].forEach(([key, label]) => {
+          modeSeg.appendChild(h("button" + (mode === key ? ".on" : ""), {
+            onclick: () => {
+              if (modeNow() === key) return;
+              if (key === "usual") d.plan.bigFirst = null;
+              else d.plan.bigFirst = { big: 1, small: key === "twice" ? 2 : 1 };
+              root.Store.save();
+              root.Sound.play("tap");
+              root.App.refresh();
+            }
+          }, label));
+        });
+        grid.appendChild(planField("Два файла: подробный и краткий", modeSeg,
+          mode === "twice"
+            ? "подробный один раз, краткий один раз, и второй раз по краткому — только если останется время"
+            : mode === "once"
+              ? "подробный один раз, потом краткий один раз"
+              : "выберите, если ответы лежат двумя файлами — большим и маленьким"));
+      }
+
       // Вариант ответа: подробный или краткий
       if (d.hasShortAnswers) {
         const seg = h("div.segmented");

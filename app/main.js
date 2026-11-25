@@ -523,6 +523,23 @@ function buildStamp() {
   }
 }
 
+/**
+ * Нашлось обновление — сразу тихо качаем его в фоне.
+ *
+ * Без этого «обновление не приходило»: плашка висела и ждала, пока человек
+ * сам нажмёт «Обновить», а он просто закрывал программу. Теперь установщик
+ * к этому моменту уже лежит на диске.
+ */
+function autoFetchUpdate(info) {
+  if (!info || !info.available || info.state !== "ready" || info.downloadedPath) return;
+  if (!updater || typeof updater.prefetch !== "function") return;
+  try {
+    Promise.resolve(updater.prefetch()).catch(() => {});
+  } catch (e) {
+    /* тихое скачивание не должно ничего ронять */
+  }
+}
+
 /** Показать в окне, что нашлось обновление. */
 function sendUpdate(info) {
   if (!mainWindow || mainWindow.isDestroyed()) return;
@@ -531,6 +548,7 @@ function sendUpdate(info) {
   } catch (e) {
     /* окно могло закрыться */
   }
+  autoFetchUpdate(info);
 }
 
 /** Что осталось на сегодня — для трея и напоминания. */

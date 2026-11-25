@@ -132,6 +132,17 @@
     plan.perDayMinutes = Math.max(5, Number(plan.perDayMinutes) || 45);
     plan.restDays = Array.isArray(plan.restDays) ? plan.restDays : [0];
     plan.order = plan.order === "mixed" ? "mixed" : "inOrder";
+    plan.examStrict = plan.examStrict !== false;
+    // Двухфайловая схема: { big, small } — сколько раз читать подробный и
+    // краткий файл. null — обычные passes прогонов.
+    if (plan.bigFirst && typeof plan.bigFirst === "object") {
+      plan.bigFirst = {
+        big: Math.max(1, Math.min(12, Math.round(Number(plan.bigFirst.big) || 1))),
+        small: Math.max(1, Math.min(12, Math.round(Number(plan.bigFirst.small) || 1)))
+      };
+    } else {
+      plan.bigFirst = null;
+    }
     const variant = ["auto", "full", "short"].indexOf(d.answerVariant) === -1 ? "auto" : d.answerVariant;
     return Object.assign(
       {
@@ -308,6 +319,23 @@
     if (typeof payload.rank === "number") d.builtinRank = payload.rank;
     if (payload.hasAlt) d.hasShortAnswers = true;
     d.fileName = payload.name + ".txt";
+    // Дата экзамена из комплекта: у каждой дисциплины свой день (18.12 ТП,
+    // 24.12 ГПП, 26.12 крим, 30.12 ТСП, 12.01 УПП, 15.01 УП, 19.01 АДП).
+    // Это лишь значение по умолчанию — человек может поставить другое.
+    if (payload.examDate && root.ExamCore && root.ExamCore.planner &&
+        root.ExamCore.planner.isValidDate(payload.examDate)) {
+      d.plan.examDate = payload.examDate;
+      // Зачёт на последнем занятии: этот день тоже учебный. Экзамен — нет.
+      d.plan.examStrict = payload.examKind !== "зачёт";
+      d.examKind = payload.examKind || "";
+    }
+    // Схема чтения из комплекта: сначала большой файл, потом маленький.
+    if (payload.bigFirst && typeof payload.bigFirst === "object") {
+      d.plan.bigFirst = {
+        big: Math.max(1, Math.min(12, Math.round(Number(payload.bigFirst.big) || 1))),
+        small: Math.max(1, Math.min(12, Math.round(Number(payload.bigFirst.small) || 1)))
+      };
+    }
     save(true);
     return d;
   }

@@ -800,6 +800,73 @@ async function run() {
     win.App.go("discipline", { id: disc.id });
   });
 
+  check("у дисциплины с двумя файлами есть схема «большой, потом маленький»", () => {
+    // По административной деятельности: подробный файл читается один раз
+    // целиком, краткий — после, и второй раз по краткому только если время
+    // останется. Включение схемы должно менять и порядок, и объём времени.
+    const target = win.Store.getDiscipline(disc.id);
+    target.hasShortAnswers = true;
+    target.questions.forEach((q) => {
+      q.altWords = Math.round((q.words || 0) / 2);
+      q.altChars = Math.round((q.chars || 0) / 2);
+    });
+    win.Store.save();
+    openDetails(win, target.id);
+    const view = win.document.getElementById("view");
+    const chips = Array.from(view.querySelectorAll(".segmented button"))
+      .filter((b) => /большой|маленький|как обычно/.test(b.textContent));
+    if (chips.length !== 3) {
+      throw new Error("вариантов схемы: " + chips.length + " — " + chips.map((b) => b.textContent).join(","));
+    }
+    const before = win.Views.plan().perDisc[target.id].stats.minutesTotal;
+    const twice = chips.find((b) => /ещё раз маленький/.test(b.textContent));
+    twice.dispatchEvent(new win.Event("click", { bubbles: true }));
+    const saved = win.Store.getDiscipline(target.id).plan.bigFirst;
+    if (!saved || saved.big !== 1 || saved.small !== 2) {
+      throw new Error("схема не сохранилась: " + JSON.stringify(saved));
+    }
+    const after = win.Views.plan().perDisc[target.id].stats.minutesTotal;
+    // 1 большой + 2 маленьких — это те же три прогона, что «сначала подробно,
+    // потом кратко», поэтому объём не меняется. А вот без второго раза по
+    // краткому времени должно стать меньше: этот проход необязательный.
+    if (Math.abs(after - before) > 1) {
+      throw new Error("объём должен совпасть с обычным планом: " + before.toFixed(0) + " vs " + after.toFixed(0));
+    }
+    // В плане обязательное идёт раньше необязательного.
+    const combined = win.Views.plan().combined;
+    let optionalSeen = 0;
+    for (const date of Object.keys(combined)) {
+      const items = combined[date];
+      const firstOptional = items.findIndex((it) => it.optional);
+      if (firstOptional < 0) continue;
+      optionalSeen += items.length - firstOptional;
+      if (!items.slice(firstOptional).every((it) => it.optional)) {
+        throw new Error("необязательный проход стоит не последним: " + date);
+      }
+    }
+    if (!optionalSeen) throw new Error("второй раз по краткому не попал в план как необязательный");
+    // Возврат к обычному виду.
+    const usual = chips.find((b) => /как обычно/.test(b.textContent));
+    usual.dispatchEvent(new win.Event("click", { bubbles: true }));
+    if (win.Store.getDiscipline(target.id).plan.bigFirst) {
+      throw new Error("схема не отключилась");
+    }
+    // Один раз большой и один раз маленький — меньше времени, чем три прогона.
+    const once = chips.find((b) => /большой → маленький/.test(b.textContent));
+    once.dispatchEvent(new win.Event("click", { bubbles: true }));
+    const light = win.Views.plan().perDisc[target.id].stats.minutesTotal;
+    if (!(light < after * 0.95)) {
+      throw new Error("без второго прохода по краткому время не уменьшилось: " + light.toFixed(0) + " vs " + after.toFixed(0));
+    }
+    usual.dispatchEvent(new win.Event("click", { bubbles: true }));
+    if (win.Store.getDiscipline(target.id).plan.bigFirst) {
+      throw new Error("схема не отключилась после второго нажатия");
+    }
+    delete win.Store.getDiscipline(target.id).hasShortAnswers;
+    win.Store.save();
+    win.App.go("discipline", { id: disc.id });
+  });
+
   // Импорт через окно (диалог подменён на пустой список).
   win.App.openImport();
   await tick(60);

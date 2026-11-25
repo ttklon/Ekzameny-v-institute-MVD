@@ -1296,7 +1296,12 @@
           strategy: p.strategy,
           answeredCount: p.answeredCount,
           totalWords: p.totalWords,
-          totalChars: p.totalChars
+          totalChars: p.totalChars,
+          examDate: item.examDate,
+          examKind: item.examKind,
+          // «Сначала большой файл, потом маленький» — для дисциплин, где
+          // подробный и краткий ответы лежат отдельными файлами.
+          bigFirst: item.bigFirst
         });
         added++;
       } catch (e) {

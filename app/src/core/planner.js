@@ -125,6 +125,48 @@
    * Минуты на один вопрос при прогоне pass.
    * Первый прогон — полное время; повторные — быстрее (параметр reviewSpeedFactor).
    */
+  /**
+   * Двухфайловая схема: «сначала большой файл, потом маленький».
+   *
+   * Так устроена административная деятельность: подробные ответы — 316 тыс.
+   * слов, их хватает на одно честное прочтение; краткие (148 тыс.) читаются
+   * после, и второй раз по краткому — уже «если время будет».
+   *
+   * plan.bigFirst = { big: 1, small: 2 }: сколько раз читать каждый файл.
+   * Если схема не задана — обычные plan.passes прогонов.
+   */
+  function stageCounts(disc) {
+    const bf = disc && disc.plan && disc.plan.bigFirst;
+    if (!bf || typeof bf !== "object") return null;
+    const big = Math.max(1, Math.min(12, Math.round(Number(bf.big) || 1)));
+    const small = Math.max(1, Math.min(12, Math.round(Number(bf.small) || 1)));
+    return { big: big, small: small, total: big + small };
+  }
+
+  /** Сколько прогонов у вопроса: обычных или по двухфайловой схеме. */
+  function passCount(disc) {
+    const stages = stageCounts(disc);
+    if (stages) return stages.total;
+    return Math.max(1, (disc.plan && disc.plan.passes) || 1);
+  }
+
+  /**
+   * Какой файл читается на прогоне: "big" (подробный ответ) или "small"
+   * (краткий). В обычной схеме первый раз всегда подробный, дальше краткий.
+   */
+  function stageOfPass(disc, pass) {
+    const stages = stageCounts(disc);
+    if (!stages) return pass <= 1 ? "big" : "small";
+    return pass <= stages.big ? "big" : "small";
+  }
+
+  /** Этот прогон — «если время будет» (необязательный)? */
+  function optionalPass(disc, pass) {
+    const stages = stageCounts(disc);
+    if (!stages) return false;
+    return stages.small > 1 && pass > stages.big + 1;
+  }
+
   function questionMinutes(disc, q, pass, globalSettings) {
     const settings = discSettings(disc, globalSettings);
     const unit = settings.unit === "cpm" ? "cpm" : "wpm";
@@ -137,7 +179,11 @@
     // Выбор человека главнее: «только подробно» — кратким не пользуемся
     // никогда, «только кратко» — наоборот, читаем краткий с первого раза.
     const variant = (disc && disc.answerVariant) || "auto";
-    const altFits = variant === "short" ? true : variant === "full" ? false : pass > 1;
+    // Схема «большой, потом маленький» важнее общей настройки: там сам номер
+    // прогона говорит, какой файл читается.
+    const altFits = stageCounts(disc)
+      ? stageOfPass(disc, pass) === "small"
+      : variant === "short" ? true : variant === "full" ? false : pass > 1;
     const useAlt =
       altFits && (unit === "cpm" ? q.altChars > 0 : q.altWords > 0);
     const raw = unit === "cpm" ? (useAlt ? q.altChars : q.chars) : (useAlt ? q.altWords : q.words);
@@ -166,7 +212,7 @@
 
   /** Полное время вопроса со всеми прогонами. */
   function questionTotalMinutes(disc, q, settings) {
-    const passes = Math.max(1, disc.plan.passes || 1);
+    const passes = passCount(disc);
     let sum = 0;
     for (let p = 1; p <= passes; p++) sum += questionMinutes(disc, q, p, settings);
     return sum;
@@ -185,7 +231,7 @@
    */
   function questionState(disc, qIndex, settings) {
     const reads = readsOf(disc, qIndex).slice().sort();
-    const passes = Math.max(1, disc.plan.passes || 1);
+    const passes = passCount(disc);
     const done = Math.min(reads.length, passes);
     const last = reads.length ? reads[reads.length - 1] : null;
     const exam = disc.plan.examDate;
@@ -220,7 +266,7 @@
   function remainingMinutes(disc, globalSettings) {
     const settings = discSettings(disc, globalSettings);
     let sum = 0;
-    const passes = Math.max(1, disc.plan.passes || 1);
+    const passes = passCount(disc);
     disc.questions.forEach((q, i) => {
       const s = questionState(disc, i, settings);
       for (let p = s.done + 1; p <= passes; p++) sum += questionMinutes(disc, q, p, settings);
@@ -232,7 +278,7 @@
   function totalMinutes(disc, globalSettings) {
     const settings = discSettings(disc, globalSettings);
     let sum = 0;
-    const passes = Math.max(1, disc.plan.passes || 1);
+    const passes = passCount(disc);
     disc.questions.forEach((q) => {
       for (let p = 1; p <= passes; p++) sum += questionMinutes(disc, q, p, settings);
     });
@@ -346,7 +392,7 @@
     today = today || todayStr();
     const plan = disc.plan || {};
     const warnings = [];
-    const passes = Math.max(1, plan.passes || 1);
+    const passes = passCount(disc);
     const questions = disc.questions || [];
 
     const emptyStats = {
@@ -434,7 +480,11 @@
       };
     }
 
-    const days = listActiveDays(start, exam, plan.restDays || [], plan);
+    // Экзамен — не учебный день: в день экзамена уже не читают, читают до него.
+    // Зачёт — обычное занятие, поэтому для зачёта последний день включается
+    // (examStrict: false).
+    const lastDay = plan.examStrict === false ? exam : addDays(exam, -1);
+    const days = listActiveDays(start, lastDay, plan.restDays || [], plan);
     if (!days.length) {
       return {
         days: {},
@@ -516,7 +566,14 @@
         // меньше двух дней.
         if (when < addDays(anchor, 2)) when = addDays(anchor, 2);
         if (when > exam) when = exam;
-        due.push({ idx: idx, pass: p, due: when, minutes: questionMinutes(disc, questions[idx], p, settings) });
+        due.push({
+          idx: idx,
+          pass: p,
+          due: when,
+          minutes: questionMinutes(disc, questions[idx], p, settings),
+          // Повторный проход по краткому файлу — «если время будет».
+          optional: optionalPass(disc, p)
+        });
         anchor = when;
       }
     }
@@ -544,7 +601,9 @@
      * с третьим, и порядок «сначала — потом» всегда соблюдается.
      */
     function placeReview(it, di) {
-      put(di, { qIndex: it.idx, pass: it.pass, kind: "review", minutes: it.minutes });
+      const item = { qIndex: it.idx, pass: it.pass, kind: "review", minutes: it.minutes };
+      if (it.optional) item.optional = true;
+      put(di, item);
       for (let k = due.length - 1; k >= 0; k--) {
         if (due[k].idx === it.idx) due.splice(k, 1);
       }
@@ -853,7 +912,16 @@
       for (const date of Object.keys(r.days)) {
         if (!combined[date]) combined[date] = [];
         for (const it of r.days[date]) {
-          combined[date].push({ discId: d.id, discName: d.name, ...it });
+          // Необязательный проход стоит вдвое дороже при подсчёте дня: он не
+          // должен вытеснять обязательное у других дисциплин.
+          const weight = it.optional ? 2 : 1;
+          combined[date].push({
+            discId: d.id,
+            discName: d.name,
+            discWeight: weight,
+            examDate: d.plan && d.plan.examDate,
+            ...it
+          });
         }
       }
       for (const w of r.warnings) warnings.push(Object.assign({ disciplineId: d.id, disciplineName: d.name }, w));
@@ -865,7 +933,11 @@
     for (const date of Object.keys(combined)) {
       combined[date].sort(
         (a, b) =>
+          // «Если время будет» — всегда в конце дня.
+          (a.optional ? 1 : 0) - (b.optional ? 1 : 0) ||
           (a.pass > 1 ? 1 : 0) - (b.pass > 1 ? 1 : 0) ||
+          // Ближний экзамен — первым.
+          String(a.examDate || "9999").localeCompare(String(b.examDate || "9999")) ||
           a.qIndex - b.qIndex ||
           a.pass - b.pass
       );
@@ -878,12 +950,21 @@
       }
     }
 
-    // Дневная нагрузка по календарю.
+    // Дневная нагрузка по календарю. Необязательное считается с весом 2 —
+    // чтобы день с «догоняющим» проходом не выглядел легче, чем он есть.
     const dayTotals = {};
+    const optionalTotals = {};
     for (const date of Object.keys(combined)) {
       let m = 0;
-      for (const it of combined[date]) m += it.minutes;
-      if (m > 0.005) dayTotals[date] = m;
+      let mandatory = 0;
+      for (const it of combined[date]) {
+        m += it.minutes * (it.discWeight || 1);
+        if (!it.optional) mandatory += it.minutes;
+      }
+      if (m > 0.005) {
+        dayTotals[date] = m;
+        optionalTotals[date] = Math.max(0, m - mandatory);
+      }
     }
     const totals = {
       disciplines: discs.length,
@@ -923,12 +1004,47 @@
       }
     }
 
+    // «Если время будет» не должно превращаться в «ещё два часа сверху»:
+    // если обязательного на сегодня и так больше, чем человек рассчитывал,
+    // необязательный проход снимаем с сегодняшнего дня.
+    // Потолок «сколько я готов сегодня» задаётся у дисциплины (plan.comfortMinutes);
+    // из нескольких берём самый большой — так никто не решает за другого.
+    let capToday = 0;
+    for (const id of Object.keys(perDisc)) {
+      const c = Number(perDisc[id].plan && perDisc[id].plan.comfortMinutes) || 0;
+      if (c > capToday) capToday = c;
+    }
+    capToday = capToday || Number(settings.comfortMinutes) || 0;
+    if (combined[today] && capToday > 0) {
+      const mandatoryToday = combined[today]
+        .filter((it) => !it.optional)
+        .reduce((a, it) => a + it.minutes, 0);
+      if (mandatoryToday > capToday * 1.1) {
+        const before = combined[today].length;
+        combined[today] = combined[today].filter((it) => !it.optional);
+        if (combined[today].length !== before) {
+          let m = 0;
+          for (const it of combined[today]) m += it.minutes * (it.discWeight || 1);
+          dayTotals[today] = m;
+          optionalTotals[today] = 0;
+          warnings.push({
+            type: "optional-today",
+            text:
+              "Сегодня обязательного больше, чем вы рассчитывали, поэтому необязательный " +
+              "проход по краткому файлу убран с сегодняшнего дня."
+          });
+        }
+      }
+    }
+
     return {
       today: today,
       settings: settings,
       perDisc: perDisc,
       combined: combined,
       dayTotals: dayTotals,
+      // Сколько из дневной нагрузки — «сверх программы».
+      optionalTotals: optionalTotals,
       todayTasks: todayTasks,
       todayMinutes: dayTotals[today] || 0,
       upcoming: upcoming,
@@ -981,7 +1097,10 @@
       // Сколько человек реально готов читать в обычный день, минут.
       // 0 — не задано, тогда потолок считается по объёму работы.
       comfortMinutes: 0,
-      order: "inOrder"
+      order: "inOrder",
+      // true — экзамен (последний учебный день накануне), false — зачёт
+      // (заниматься можно и в день зачёта).
+      examStrict: true
     };
   }
 
@@ -1006,7 +1125,7 @@
 
   /** Готовность дисциплины в процентах (0..100) по всем прогонам. */
   function completion(disc, settings) {
-    const passes = Math.max(1, disc.plan.passes || 1);
+    const passes = passCount(disc);
     const total = disc.questions.length * passes;
     if (!total) return 0;
     let done = 0;
@@ -1038,6 +1157,10 @@
     computeAll,
     normalizeSettings,
     defaultPlan,
+    stageCounts,
+    stageOfPass,
+    passCount,
+    optionalPass,
     dayItems,
     forecast,
     completion,

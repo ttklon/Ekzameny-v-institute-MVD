@@ -196,6 +196,10 @@ function createUpdater(opts) {
   let downloadedPath = "";
   let downloadedBytes = 0;
   let state = "idle"; // idle | checking | downloading | ready | installing | error
+  // Сколько раз подряд новый установщик оказывался ровно того же размера, что
+  // и лежащий в папке временных файлов. Один раз это нормально (совпадение),
+  // несколько — значит лежит свой же старый файл, и его надо выбросить.
+  let sizeClashes = 0;
   let errorText = "";
   let timer = null;
   let interval = CHECK_EVERY_MS;
@@ -227,6 +231,31 @@ function createUpdater(opts) {
       }
     }
     return info;
+  }
+
+  /**
+   * Похоже ли, что в папке обновлений лежит наш собственный установщик,
+   * а не новая сборка.
+   *
+   * У всех сборок одинаковое имя файла (`CloudExamPlanner-1.0.0-x64.exe`), и
+   * размер почти не меняется. Поэтому размер — плохой признак «свежести»:
+   * старая заготовка совпадала по размеру с новой, и приложение решало, что
+   * «уже скачано», хотя это был прошлый установщик.
+   */
+  function looksLikeOwnInstaller(size, stamp) {
+    if (!size) return false;
+    // Размер текущего exe: у установленной копии это сам application.exe,
+    // но он заметно меньше установщика, поэтому сравнение безопасно.
+    let mine = 0;
+    try {
+      mine = fs.statSync(process.execPath).size;
+    } catch (e) {
+      mine = 0;
+    }
+    if (mine && Math.abs(size - mine) <= 1024) return true;
+    // И совсем явный случай: установщик той же сборки, что запущена.
+    if (stamp && currentBuild && String(stamp).trim() === currentBuild) return true;
+    return false;
   }
 
   /** Спросить у GitHub последний релиз и сравнить с текущей сборкой. */
@@ -282,6 +311,18 @@ function createUpdater(opts) {
 
       lastCheckAt = Date.now();
       if (newer && setup) {
+        // Тот же размер, что у лежащего установщика, — ещё не повод считать
+        // обновление скачанным. Запоминаем, чтобы downloadUpdate проверил
+        // файл и, если сомнения подтвердились, скачал заново.
+        let reusable = false;
+        try {
+          const dir = path.join(os.tmpdir(), "cloud-exam-planner-update");
+          const dest = path.join(dir, setup.name || "setup.exe");
+          if (fs.existsSync(dest) && fs.statSync(dest).size === (setup.size || 0)) reusable = true;
+        } catch (e) {
+          reusable = false;
+        }
+        const suspicious = reusable && (looksLikeOwnInstaller(setup.size || 0, remoteBuild) || sizeClashes > 0);
         found = {
           version: currentVersion,
           build: remoteBuild || "",
@@ -289,7 +330,10 @@ function createUpdater(opts) {
           assetName: setup.name,
           url: setup.browser_download_url || setup.url,
           publishedAt: assetAt || publishedAt,
-          notes: String(rel.body || "").split("\n").filter((x) => x.trim().startsWith("•")).join("\n")
+          notes: String(rel.body || "").split("\n").filter((x) => x.trim().startsWith("•")).join("\n"),
+          // «Скачано» — только если файл заведомо от этой сборки. При
+          // сомнении качаем заново: 84 МБ дешевле, чем «обновлений нет».
+          stale: suspicious
         };
         state = "ready";
       } else {
@@ -355,13 +399,21 @@ function createUpdater(opts) {
     // Уже скачали раньше (например, установщик не запустился) — не тянем
     // те же 83 МБ по новой, а просто проверяем размер и продолжаем.
     try {
-      if (fs.existsSync(dest) && (!found.size || fs.statSync(dest).size === found.size)) {
+      const same =
+        !found.size || fs.statSync(dest).size === found.size;
+      if (fs.existsSync(dest) && same && !found.stale) {
         downloadedPath = dest;
         downloadedBytes = fs.statSync(dest).size;
         state = "ready";
         emit();
         log("использую уже скачанный файл: " + downloadedBytes + " байт");
         return { path: dest, bytes: downloadedBytes, sha256: "", reused: true };
+      }
+      // Сомнительный файл — выбрасываем, иначе «обновление» не изменит ничего.
+      if (fs.existsSync(dest)) {
+        fs.unlinkSync(dest);
+        log("старый установщик того же размера удалён, качаем заново");
+        sizeClashes++;
       }
     } catch (e) {
       /* проверка не удалась — качаем заново */
@@ -439,6 +491,23 @@ function createUpdater(opts) {
     if (timer.unref) timer.unref();
   }
 
+  /**
+   * Качать сразу, как только обновление нашлось.
+   *
+   * Иначе плашка «Вышло обновление» висит и ждёт, пока человек сам нажмёт
+   * «Обновить». Он закрывает программу — и обновление не приходит никогда.
+   * Теперь файл тихо скачивается в фоне, а к моменту закрытия уже готов.
+   */
+  async function prefetch() {
+    if (!found || found.stale === undefined) return;
+    if (state !== "ready" || downloadedPath) return;
+    try {
+      await downloadUpdate();
+    } catch (e) {
+      log("тихое скачивание не удалось: " + ((e && e.message) || e));
+    }
+  }
+
   function start() {
     schedule();
     // Первая проверка — почти сразу, но не в момент запуска: окно должно
@@ -462,6 +531,7 @@ function createUpdater(opts) {
     start,
     stop,
     checkOnce,
+    prefetch,
     downloadUpdate,
     install,
     onEvent,

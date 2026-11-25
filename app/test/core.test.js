@@ -977,6 +977,77 @@ test("сущности XML раскодируются", () => {
 });
 
 // =====================================================================
+//  Два файла: сначала большой, потом маленький
+// =====================================================================
+
+test("схема «большой, потом маленький»: прогоны идут по файлам", () => {
+  const d = makeDisc(5);
+  d.plan = Object.assign(planner.defaultPlan("2026-11-24", "2027-01-19"), {
+    bigFirst: { big: 1, small: 2 }
+  });
+  assert.strictEqual(planner.passCount(d), 3, "прогонов должно быть 1 + 2");
+  assert.strictEqual(planner.stageOfPass(d, 1), "big", "первый прогон — большой файл");
+  assert.strictEqual(planner.stageOfPass(d, 2), "small", "второй — маленький");
+  assert.strictEqual(planner.optionalPass(d, 2), false, "первый раз по краткому обязателен");
+  assert.strictEqual(planner.optionalPass(d, 3), true, "второй раз по краткому — если время будет");
+});
+
+test("большой файл читается по объёму подробного ответа", () => {
+  const d = makeDisc(5, { words: 600 });
+  d.questions.forEach((q) => {
+    q.altWords = 300;
+    q.altChars = 1800;
+  });
+  d.plan = Object.assign(planner.defaultPlan("2026-11-24", "2027-01-19"), {
+    bigFirst: { big: 1, small: 2 }
+  });
+  const big = planner.questionMinutes(d, d.questions[0], 1, settings);
+  const small = planner.questionMinutes(d, d.questions[0], 2, settings);
+  assert.ok(big > small * 2, "подробный ответ должен быть заметно дольше краткого");
+});
+
+test("необязательный проход не идёт первым в дне", () => {
+  const d = makeDisc(30);
+  d.questions.forEach((q) => {
+    q.altWords = 300;
+    q.altChars = 1800;
+  });
+  d.plan = Object.assign(planner.defaultPlan("2026-11-24", "2027-01-19"), {
+    bigFirst: { big: 1, small: 2 }
+  });
+  const r = planner.computeAll({ settings: settings, disciplines: [d] }, "2026-11-24");
+  let seen = 0;
+  for (const date of Object.keys(r.combined)) {
+    const items = r.combined[date];
+    let firstOptional = -1;
+    items.forEach((it, i) => {
+      if (it.optional && firstOptional < 0) firstOptional = i;
+    });
+    if (firstOptional < 0) continue;
+    seen++;
+    assert.ok(
+      items.slice(firstOptional).every((it) => it.optional),
+      "обязательные пункты стоят после необязательных в " + date
+    );
+  }
+  assert.ok(seen > 0, "необязательный проход вообще не попал в план");
+});
+
+test("экзамен — не учебный день, зачёт — учебный", () => {
+  const exam = makeDisc(4);
+  exam.plan = planner.defaultPlan("2026-11-24", "2026-12-24");
+  exam.plan.examStrict = true;
+  const r1 = planner.buildDisciplinePlan(exam, settings, "2026-11-24");
+  assert.ok(!r1.days["2026-12-24"], "в день экзамена остались занятия");
+
+  const credit = makeDisc(4);
+  credit.plan = planner.defaultPlan("2026-11-24", "2026-12-24");
+  credit.plan.examStrict = false;
+  const r2 = planner.buildDisciplinePlan(credit, settings, "2026-11-24");
+  assert.ok(r2.days["2026-12-24"], "в день зачёта занятий не осталось");
+});
+
+// =====================================================================
 //  Итог
 // =====================================================================
 
