@@ -319,6 +319,23 @@ async function run() {
     if (!Object.keys(p.combined).length) throw new Error("календарь пуст");
   });
 
+  // По умолчанию никакой «нормы в 60 минут» быть не должно: иначе программа
+  // молча занижает план человеку, который не трогал настройки.
+  check("без настройки нет скрытого потолка в час", () => {
+    if (win.Store.state.settings.globalDailyMinutes) {
+      throw new Error("скрытый дневной предел: " + win.Store.state.settings.globalDailyMinutes);
+    }
+    for (const d of win.Store.activeDisciplines()) {
+      const st = (win.Views.plan().perDisc[d.id] || {}).stats || {};
+      const allowed = st.capMinutes || 0;
+      const perDay = st.perDayMinutes || 0;
+      if (allowed + 0.5 < perDay) {
+        throw new Error("«" + d.name + "» урезана без спроса: норма " +
+          allowed.toFixed(0) + " при нужных " + perDay.toFixed(0));
+      }
+    }
+  });
+
   // Проходим по всем экранам.
   // «tips» убран из меню — экран проверяем напрямую, он остался в коде.
   // Экранов ровно три. Остальные (обзор, дисциплина) — части этих трёх.

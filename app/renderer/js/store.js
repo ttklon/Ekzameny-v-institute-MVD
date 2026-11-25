@@ -53,7 +53,7 @@
         unit: "wpm",
         reviewSpeedFactor: 1.5,
         gapRatio: 0.15,
-        globalDailyMinutes: 60,
+        globalDailyMinutes: 0,
         dailyCapMinutes: 0,
         defaultPasses: 3,
         defaultMode: "even",
