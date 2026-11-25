@@ -809,11 +809,15 @@
     head.appendChild(
       h("div.dates-row", { style: { marginTop: "16px" } }, [
         h("label.date-box" + (P.isValidDate(d.plan.examDate) && P.daysBetween(today(), d.plan.examDate) < 0 ? ".bad" : ""), [
-          h("span.date-label", "Экзамен"),
+          h("span.date-label", d.examKind === "зачёт" ? "Зачёт" : "Экзамен"),
           h("input.input", {
             type: "date",
             value: d.plan.examDate,
-            onchange: (e) => updatePlan(d, { examDate: e.target.value })
+            onchange: (e) => {
+              // Дату выбрал человек — из комплекта её больше не переставляем.
+              d.examFromPack = false;
+              updatePlan(d, { examDate: e.target.value });
+            }
           }),
           h("span.date-hint", examHint(d))
         ])

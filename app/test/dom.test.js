@@ -867,6 +867,50 @@ async function run() {
     win.App.go("discipline", { id: disc.id });
   });
 
+  check("даты экзаменов доезжают до уже добавленных дисциплин", () => {
+    // У тех, кто пользуется программой давно, дисциплины созданы раньше
+    // комплекта с датами. Синхронизация не должна ни переносить прошедший
+    // экзамен вперёд, ни перебивать свой выбор схемы чтения.
+    const target = win.Store.getDiscipline(disc.id);
+    target.builtin = "krim";
+    delete target.plan.examDate;
+    win.Store.save();
+    const changed = win.Store.syncBuiltinPlan("krim", {
+      code: "krim", name: target.name, examDate: "2026-12-26", examKind: "зачёт"
+    });
+    if (!changed) throw new Error("дата экзамена не проставилась");
+    const after = win.Store.getDiscipline(disc.id).plan;
+    if (after.examDate !== "2026-12-26") throw new Error("дата: " + after.examDate);
+    if (after.examStrict !== false) throw new Error("зачёт должен быть учебным днём");
+    if (win.Store.getDiscipline(disc.id).examKind !== "зачёт") throw new Error("вид испытания не сохранился");
+
+    // Прошедший экзамен не переносим: сдал — значит сдал.
+    win.Store.getDiscipline(disc.id).plan.examDate = "2026-01-05";
+    win.Store.save();
+    win.Store.syncBuiltinPlan("krim", { code: "krim", examDate: "2026-12-26", examKind: "зачёт" });
+    if (win.Store.getDiscipline(disc.id).plan.examDate !== "2026-01-05") {
+      throw new Error("прошедшая дата переписалась: " + win.Store.getDiscipline(disc.id).plan.examDate);
+    }
+
+    // Схема чтения ставится, если её нет, и не перебивает выбранную.
+    win.Store.syncBuiltinPlan("krim", { code: "krim", bigFirst: { big: 1, small: 2 } });
+    if (!win.Store.getDiscipline(disc.id).plan.bigFirst) throw new Error("схема не поставилась");
+    win.Store.getDiscipline(disc.id).plan.bigFirst = { big: 1, small: 1 };
+    win.Store.save();
+    win.Store.syncBuiltinPlan("krim", { code: "krim", bigFirst: { big: 1, small: 2 } });
+    if (win.Store.getDiscipline(disc.id).plan.bigFirst.small !== 1) throw new Error("свой выбор схемы перебит");
+
+    // Возврат к обычному виду.
+    const back = win.Store.getDiscipline(disc.id);
+    delete back.builtin;
+    back.plan.bigFirst = null;
+    back.plan.examDate = "2026-12-24";
+    back.plan.examStrict = true;
+    delete back.examKind;
+    win.Store.save();
+    win.App.go("discipline", { id: disc.id });
+  });
+
   // Импорт через окно (диалог подменён на пустой список).
   win.App.openImport();
   await tick(60);

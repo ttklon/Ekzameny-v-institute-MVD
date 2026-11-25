@@ -373,6 +373,58 @@
   }
 
   /**
+   * Донести до уже добавленной дисциплины данные комплекта: дату экзамена,
+   * что это зачёт или экзамен, и схему «сначала большой файл, потом маленький».
+   *
+   * Нужно тем, кто пользуется программой давно: дисциплины у них созданы
+   * раньше, и без этого даты экзаменов и порядок чтения по административной
+   * деятельности не появились бы сами.
+   *
+   * Экзамен, у которого дата уже прошла, не переносим вперёд: если человек
+   * сдал и не удалил дисциплину, она не должна «оживать» каждый год.
+   */
+  function syncBuiltinPlan(code, item) {
+    const d = store.state.disciplines.find((x) => x.builtin === code);
+    if (!d || !item) return false;
+    const planner = root.ExamCore.planner;
+    let changed = false;
+    if (item.examDate && planner && planner.isValidDate(item.examDate)) {
+      const kind = item.examKind || "";
+      if (d.examKind !== kind) {
+        d.examKind = kind;
+        changed = true;
+      }
+      const today = planner ? planner.todayStr() : "";
+      const empty = !d.plan.examDate || typeof d.plan.examDate !== "string";
+      // Экзамен уже прошёл — не трогаем: сдал, значит сдал.
+      const alreadyPassed = !empty && today && d.plan.examDate < today;
+      // Дату из комплекта ставим один раз (examFromPack): дальше это уже
+      // выбор человека, и переписывать его при каждом запуске нельзя.
+      const fromOwnChoice = d.examFromPack === true && !empty;
+      if (!alreadyPassed && !fromOwnChoice && d.plan.examDate !== item.examDate) {
+        d.plan.examDate = item.examDate;
+        d.plan.examStrict = kind !== "зачёт";
+        d.examFromPack = true;
+        changed = true;
+      }
+    }
+    if (item.bigFirst && typeof item.bigFirst === "object") {
+      const want = {
+        big: Math.max(1, Math.min(12, Math.round(Number(item.bigFirst.big) || 1))),
+        small: Math.max(1, Math.min(12, Math.round(Number(item.bigFirst.small) || 1)))
+      };
+      const cur = d.plan.bigFirst || null;
+      // Свой выбор человека не перебиваем: ставим схему только если её нет.
+      if (!cur) {
+        d.plan.bigFirst = want;
+        changed = true;
+      }
+    }
+    if (changed) save(true);
+    return changed;
+  }
+
+  /**
    * Какие готовые дисциплины ещё не добавлены.
    *
    * Смотрим не только на код комплекта, но и на название: если человек уже
@@ -586,6 +638,7 @@
     addDiscipline,
     addBuiltin,
     refreshBuiltinVolumes,
+    syncBuiltinPlan,
     missingBuiltin,
     removeDiscipline,
     setRead,
