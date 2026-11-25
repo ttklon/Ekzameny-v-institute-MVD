@@ -660,6 +660,48 @@ async function run() {
     win.Views.setDiscTab("plan");
   });
 
+  check("у дисциплины с двумя вариантами ответов есть переключатель", () => {
+    // Так выглядит административная деятельность: подробный ответ на первое
+    // чтение, краткий на повторения. Переключатель — в «Параметрах», и выбор
+    // сохраняется в дисциплине (по нему считается время).
+    const target = win.Store.getDiscipline(disc.id);
+    target.hasShortAnswers = true;
+    // Краткий вариант вдвое короче подробного — так у административной
+    // деятельности: 148 тыс. слов против 316 тыс.
+    target.questions.forEach((q) => {
+      q.altWords = Math.round((q.words || 0) / 2);
+      q.altChars = Math.round((q.chars || 0) / 2);
+    });
+    win.Store.save();
+    win.App.go("discipline", { id: target.id });
+    win.Views.setDiscTab("settings");
+    win.App.refresh();
+    const view = win.document.getElementById("view");
+    if (!/Какой ответ читать/.test(view.textContent)) {
+      throw new Error("нет блока «Какой ответ читать»");
+    }
+    const buttons = Array.from(view.querySelectorAll(".segmented button"))
+      .filter((b) => /подробно|кратко/.test(b.textContent));
+    if (buttons.length !== 3) throw new Error("вариантов: " + buttons.length);
+    const shortBtn = buttons.find((b) => /всегда кратко/.test(b.textContent));
+    shortBtn.dispatchEvent(new win.Event("click", { bubbles: true }));
+    if (win.Store.getDiscipline(target.id).answerVariant !== "short") {
+      throw new Error("выбор не сохранился: " + win.Store.getDiscipline(target.id).answerVariant);
+    }
+    // Время должно пересчитаться: краткий вариант короче.
+    const after = win.Views.plan().perDisc[target.id].stats.minutesTotal;
+    win.Store.getDiscipline(target.id).answerVariant = "full";
+    win.Store.save();
+    win.App.refresh();
+    const full = win.Views.plan().perDisc[target.id].stats.minutesTotal;
+    if (!(full > after)) throw new Error("время не зависит от варианта: " + after.toFixed(0) + " vs " + full.toFixed(0));
+    // Возврат к обычному виду дисциплины.
+    delete win.Store.getDiscipline(target.id).hasShortAnswers;
+    win.Store.getDiscipline(target.id).answerVariant = "auto";
+    win.Store.save();
+    win.Views.setDiscTab("plan");
+  });
+
   // Импорт через окно (диалог подменён на пустой список).
   win.App.openImport();
   await tick(60);
