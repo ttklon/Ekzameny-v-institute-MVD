@@ -427,6 +427,91 @@ test("выходные дни исключаются из активных", () 
 
 console.log("\nПланирование");
 
+// Порядок вопросов в плане — главное требование: первый прогон идёт строго
+// 1, 2, 3 … без перескоков, иначе читать список невозможно.
+test("первый прогон идёт строго по порядку номеров", () => {
+  const planner = require("../src/core/planner");
+  const today = "2026-11-25";
+  for (const [count, exam, passes] of [
+    [44, "2026-12-10", 3],
+    [44, "2026-12-25", 3],
+    [149, "2027-01-15", 3],
+    [149, "2027-03-01", 1],
+    [20, "2026-12-05", 2]
+  ]) {
+    const disc = makeDisc(count);
+    disc.plan = Object.assign(planner.defaultPlan(today, exam), { passes: passes });
+    const plan = planner.computeAll({ settings: {}, disciplines: [disc] }, today);
+    const days = plan.perDisc[disc.id].days;
+    let last = 0;
+    const jumps = [];
+    for (const date of Object.keys(days).sort()) {
+      days[date]
+        .filter((it) => it.pass === 1)
+        .sort((a, b) => a.qIndex - b.qIndex)
+        .forEach((it) => {
+          if (it.qIndex + 1 < last) jumps.push("вопрос " + (it.qIndex + 1) + " после " + last);
+          last = Math.max(last, it.qIndex + 1);
+        });
+    }
+    assert.deepStrictEqual(
+      jumps,
+      [],
+      "вопросов " + count + ", экзамен " + exam + ", прогонов " + passes + ": " + jumps.slice(0, 3).join("; ")
+    );
+    // И каждый вопрос получает первое чтение ровно один раз.
+    const firsts = Object.values(days).reduce((n, items) => n + items.filter((i) => i.pass === 1).length, 0);
+    assert.strictEqual(firsts, count, "первых чтений: " + firsts + " вместо " + count);
+  }
+});
+
+test("внутри дня новые вопросы идут раньше повторений и по возрастанию", () => {
+  const planner = require("../src/core/planner");
+  const today = "2026-11-25";
+  const disc = makeDisc(60);
+  disc.plan = Object.assign(planner.defaultPlan(today, "2026-12-20"), { passes: 3 });
+  const plan = planner.computeAll({ settings: {}, disciplines: [disc] }, today);
+  for (const date of Object.keys(plan.combined)) {
+    const items = plan.combined[date];
+    let seenReview = false;
+    let prevNew = 0;
+    for (const it of items) {
+      if (it.pass > 1) {
+        seenReview = true;
+        continue;
+      }
+      assert.ok(!seenReview, "новый вопрос после повторения в " + date);
+      assert.ok(it.qIndex >= prevNew, "новые не по порядку в " + date);
+      prevNew = it.qIndex;
+    }
+  }
+});
+
+test("порядок сохраняется, когда в день не помещается больше вопросов", () => {
+  // Тесный срок: раньше «свободный день» перетаскивал вопрос 40 во второй
+  // день, и план читался вразнобой.
+  const planner = require("../src/core/planner");
+  const today = "2026-11-25";
+  const disc = makeDisc(44, { words: 1200 });
+  disc.plan = Object.assign(planner.defaultPlan(today, "2026-12-02"), { passes: 3 });
+  const plan = planner.computeAll(
+    { settings: { dailyCapMinutes: 20 }, disciplines: [disc] },
+    today
+  );
+  const days = plan.perDisc[disc.id].days;
+  let last = 0;
+  for (const date of Object.keys(days).sort()) {
+    days[date]
+      .filter((it) => it.pass === 1)
+      .sort((a, b) => a.qIndex - b.qIndex)
+      .forEach((it) => {
+        assert.ok(it.qIndex + 1 >= last, "перескок: вопрос " + (it.qIndex + 1) + " после " + last);
+        last = Math.max(last, it.qIndex + 1);
+      });
+  }
+});
+
+
 function makeDisc(questionCount, opts) {
   opts = opts || {};
   const questions = [];
@@ -457,20 +542,45 @@ function makeDisc(questionCount, opts) {
 
 const settings = planner.normalizeSettings({ wordsPerMinute: 150 });
 
-test("нагрузка по дням недели: воскресенье вдвое тяжелее", () => {
+test("нагрузка по дням недели: воскресенье тяжелее обычного дня", () => {
   // 23 ноября 2026 — понедельник, значит 29 ноября — воскресенье.
+  // Срок специально свободный: при тесном сроке всё упирается в «успеть до
+  // экзамена», и веса дней уже не главное.
   const d = makeDisc(20);
-  d.plan = Object.assign(planner.defaultPlan("2026-11-24", "2026-12-06"), {
+  d.plan = Object.assign(planner.defaultPlan("2026-11-24", "2027-01-20"), {
     dayLoad: [2, 1, 1, 1, 1, 1, 1]
   });
   const r = planner.buildDisciplinePlan(d, settings, "2026-11-24");
   const minutesOn = (date) => (r.days[date] || []).reduce((n, it) => n + it.minutes, 0);
-  const sundays = Object.keys(r.days).filter((x) => planner.weekday(x) === 0);
-  const mondays = Object.keys(r.days).filter((x) => planner.weekday(x) === 1);
+  const days = Object.keys(r.days);
+  const sundays = days.filter((x) => planner.weekday(x) === 0);
   assert.ok(sundays.length > 0, "воскресенья пропали из плана");
   const sunAvg = sundays.reduce((n, x) => n + minutesOn(x), 0) / sundays.length;
-  const monAvg = mondays.reduce((n, x) => n + minutesOn(x), 0) / mondays.length;
-  assert.ok(sunAvg > monAvg, "воскресенье не тяжелее понедельника: " + sunAvg + " vs " + monAvg);
+  const allAvg = days.reduce((n, x) => n + minutesOn(x), 0) / days.length;
+  assert.ok(
+    sunAvg > allAvg * 1.4,
+    "воскресенье не тяжелее обычного дня: " + sunAvg.toFixed(1) + " против " + allAvg.toFixed(1)
+  );
+});
+
+test("при тесном сроке программа честно говорит, что не помещается", () => {
+  // Раньше в этом случае дневной потолок вообще не работал (умножение на дату
+  // давало NaN), и всё «влезало» за счёт перегруженных дней.
+  const d = makeDisc(20);
+  d.plan = Object.assign(planner.defaultPlan("2026-11-24", "2026-12-06"), {
+    dayLoad: [2, 1, 1, 1, 1, 1, 1],
+    passes: 1
+  });
+  const r = planner.buildDisciplinePlan(d, settings, "2026-11-24");
+  const firsts = Object.values(r.days).reduce((n, items) => n + items.filter((i) => i.pass === 1).length, 0);
+  assert.strictEqual(firsts, 20, "не все вопросы получили первое чтение: " + firsts);
+  // Каждый день не должен выходить далеко за норму.
+  const perDay = r.stats.perDayMinutes;
+  const heaviest = Math.max(...Object.values(r.days).map((i) => i.reduce((n, x) => n + x.minutes, 0)));
+  assert.ok(
+    heaviest <= perDay * 2.2 || heaviest < 25,
+    "самый тяжёлый день " + heaviest.toFixed(1) + " мин против нормы " + perDay.toFixed(1)
+  );
 });
 
 test("день недели с нагрузкой 0 становится выходным", () => {

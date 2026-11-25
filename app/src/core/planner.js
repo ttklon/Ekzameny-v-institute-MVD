@@ -275,7 +275,12 @@
 
     for (let di = 0; di < days.length; di++) {
       if (load[di] <= hard) continue;
-      const items = bucket[di].slice().sort((a, b) => b.minutes - a.minutes);
+      // Первое чтение не переносим: порядок вопросов 1, 2, 3 … важнее ровной
+      // загрузки, иначе план читается «вразнобой». Выравниваем только повторения.
+      const items = bucket[di]
+        .filter((it) => it.pass > 1)
+        .slice()
+        .sort((a, b) => b.minutes - a.minutes);
       for (const it of items) {
         if (load[di] <= hard) break;
         // Ищем самый свободный день: для повторений — позже срока, для новых — рядом.
@@ -432,6 +437,9 @@
     days.forEach((d, i) => (dayIndex[d] = i));
     const load = days.map(() => 0);
     const bucket = days.map(() => []);
+    // Последний день, куда поставлен новый вопрос: держит первый прогон
+    // строго по возрастанию номеров (1, 2, 3 … без перескоков).
+    let lastNewDay = 0;
 
     // Мягкий дневной потолок: столько минут в день стараемся не превышать.
     const target = minLeft / Math.max(1, days.length);
@@ -439,7 +447,16 @@
     let softCap = Math.max(10, target * 1.15);
     if (mode === "minutes") softCap = Math.max(5, plan.perDayMinutes || 45);
     if (settings.dailyCapMinutes > 0) softCap = Math.min(softCap, Math.max(10, settings.dailyCapMinutes));
-    if (mode === "questions") softCap = Infinity;
+    // «По вопросам»: норма задана штуками, а не минутами. Потолок по времени
+    // снимаем, но пересчитываем в минуты эквивалент нормы — иначе последний
+    // день собирал все остатки и в нём оказывалось втрое больше вопросов.
+    if (mode === "questions") {
+      const perDayQ = Math.max(1, Number(plan.perDayQuestions) || 10);
+      const avgMin = questions.length ? minLeft / questions.length : 0;
+      // Небольшой запас: ровно N вопросов должно влезать, а не «N минус
+      // округление» — иначе часть вопросов сваливалась в последний день.
+      softCap = Math.max(5, avgMin * perDayQ * 1.1);
+    }
     if (options.softCapMinutes && options.softCapMinutes > 0) {
       softCap = Math.min(softCap, Math.max(5, options.softCapMinutes));
     }
@@ -447,7 +464,10 @@
     // Дневная ёмкость с учётом весов дней недели: в «тяжёлый» день влезает
     // больше, в лёгкий — меньше. Дни с нулевым весом в days уже не попали.
     const dayFactor = days.map((d) => Math.max(0.25, weekdayFactor(plan, d)));
-    const cap = days.map((f) => softCap * f);
+    // Внимание: здесь именно вес дня, а не сам день. Раньше сюда попадала
+    // строка с датой, умножение давало NaN — и дневного потолка не было
+    // вообще: последний день собирал все остатки, а порядок вопросов ломался.
+    const cap = dayFactor.map((f) => softCap * f);
 
     /** Первый учебный день не раньше даты, либо -1. */
     function dayOnOrAfter(dateStr) {
@@ -455,19 +475,49 @@
       return -1;
     }
 
+    // Норма «сколько вопросов в день» в штуках. Считаем её один раз и уже по
+    // ней ограничиваем новые вопросы — иначе последний день собирал остатки
+    // (в нём оказывалось втрое больше нормы, а порядок читался как попало).
+    const perDayQuestions =
+      mode === "questions" ? Math.max(1, Number(plan.perDayQuestions) || 10) : 0;
+    const avgQuestionMinutes = questions.length ? minLeft / questions.length : 0;
+    const newCountOnDay = days.map(() => 0);
+
     /** Куда поставить единицу работы: ближайший день после срока с наименьшей загрузкой. */
     function place(idx, pass, prefIdx, kind) {
       if (prefIdx < 0) return -1;
       if (prefIdx >= days.length) prefIdx = days.length - 1;
+      // Порядок важнее ровной загрузки: новые вопросы идут строго по номерам,
+      // поэтому очередной вопрос не может встать раньше предыдущего. Без этого
+      // «свободный день» перетаскивал вопрос 40 во второй день плана.
+      if (pass === 1 && prefIdx < lastNewDay) prefIdx = lastNewDay;
+      if (pass === 1 && prefIdx >= days.length) prefIdx = days.length - 1;
       const minutes = questionMinutes(disc, questions[idx], pass, settings);
       // Разброс по окну: ищем день, где загрузка не превышает мягкий потолок.
       const window = Math.max(1, Math.round(days.length * 0.1));
+      // Помещается ли ещё один вопрос в этот день: по минутам и, если норма
+      // задана штуками, по количеству.
+      const fits = (di) => {
+        if (pass === 1 && perDayQuestions > 0 && newCountOnDay[di] >= perDayQuestions) return false;
+        return load[di] + minutes <= Math.max(cap[di], minutes);
+      };
       let best = -1;
       for (let k = 0; k <= window && prefIdx + k < days.length; k++) {
         const di = prefIdx + k;
-        if (load[di] + minutes <= Math.max(cap[di], minutes)) {
+        if (fits(di)) {
           best = di;
           break;
+        }
+      }
+      // Новый вопрос: если в этот день уже не помещается, ставим в следующий
+      // свободный, а не в самый свободный из окна. Иначе, когда норма в день —
+      // «N вопросов», в один день сбивалось больше N, а порядок ломался.
+      if (best === -1 && pass === 1) {
+        for (let di = prefIdx; di < days.length; di++) {
+          if (fits(di)) {
+            best = di;
+            break;
+          }
         }
       }
       if (best === -1) {
@@ -484,6 +534,10 @@
       }
       bucket[best].push({ qIndex: idx, pass: pass, kind: kind, minutes: minutes });
       load[best] += minutes;
+      if (pass === 1) {
+        newCountOnDay[best]++;
+        if (best > lastNewDay) lastNewDay = best;
+      }
       return best;
     }
 
@@ -716,6 +770,25 @@
         }
       }
       for (const w of r.warnings) warnings.push(Object.assign({ disciplineId: d.id, disciplineName: d.name }, w));
+    }
+
+    // Порядок внутри дня: сначала новые вопросы по возрастанию номера, потом
+    // повторения. Так список на экране всегда читается как «1, 2, 3 …», даже
+    // если в план попали правки из прошлых версий.
+    for (const date of Object.keys(combined)) {
+      combined[date].sort(
+        (a, b) =>
+          (a.pass > 1 ? 1 : 0) - (b.pass > 1 ? 1 : 0) ||
+          a.qIndex - b.qIndex ||
+          a.pass - b.pass
+      );
+      for (const it of combined[date]) {
+        if (perDisc[it.discId] && perDisc[it.discId].days[date]) {
+          perDisc[it.discId].days[date].sort(
+            (a, b) => (a.pass > 1 ? 1 : 0) - (b.pass > 1 ? 1 : 0) || a.qIndex - b.qIndex || a.pass - b.pass
+          );
+        }
+      }
     }
 
     // Дневная нагрузка по календарю.
