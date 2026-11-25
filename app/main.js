@@ -328,8 +328,9 @@ function registerIpc() {
     try {
       const parsed = parsedBuiltin(String(code || ""));
       if (!parsed) return { ok: false, error: "файл не найден" };
-      // Краткий вариант ответов (если он есть) — только объёмы: по ним
-      // считается время на повторные чтения, когда человек читает кратко.
+      // Краткий вариант — теперь отдельная дисциплина (adp2), и читается он
+      // как обычный файл. Объёмы второго варианта нужны только старым сборкам,
+      // где подробный и краткий лежали в одной дисциплине.
       const item = builtin.list().find((x) => x.code === String(code || ""));
       const altParsed = item && item.alt ? parsedBuiltin(item.alt) : null;
       const altByNum = {};

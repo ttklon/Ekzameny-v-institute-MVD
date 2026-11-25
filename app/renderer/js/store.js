@@ -25,7 +25,7 @@
 
   const STORAGE_VERSION = 2;
   /** Порядок готовых дисциплин в комплекте. */
-  const BUILTIN_ORDER = ["adp", "ugp", "upp", "tsp", "tp", "gpp", "krim"];
+  const BUILTIN_ORDER = ["adp", "adp2", "ugp", "upp", "tsp", "tp", "gpp", "krim"];
 
   const SAVE_DELAY = 450;
 
@@ -109,13 +109,11 @@
         d.builtinRank = i === -1 ? 900 : i;
       }
       // Раньше административная деятельность была одним файлом с краткими
-      // ответами. Теперь ответов два: подробный — для первого чтения,
-      // краткий — для повторений. Отметки и план при этом остаются: вопрос
-      // один и тот же, меняется только текст ответа.
-      if (d.builtin === "adp2") {
-        d.builtin = "adp";
-        d.builtinRank = 0;
-        if (/кратк/i.test(d.name)) d.name = "Административная деятельность полиции";
+      // ответами, и код «adp2» означал «то же самое, только кратко». Теперь
+      // это две разные дисциплины: подробную читают один раз в свои сроки,
+      // краткую — два раза в свои. Склеивать их больше нельзя.
+      if (d.builtin === "adp2" && !/кратк/i.test(d.name)) {
+        d.name = "Административная деятельность полиции — кратко";
       }
     });
     return out;
@@ -133,16 +131,14 @@
     plan.restDays = Array.isArray(plan.restDays) ? plan.restDays : [0];
     plan.order = plan.order === "mixed" ? "mixed" : "inOrder";
     plan.examStrict = plan.examStrict !== false;
-    // Двухфайловая схема: { big, small } — сколько раз читать подробный и
-    // краткий файл. null — обычные passes прогонов.
-    if (plan.bigFirst && typeof plan.bigFirst === "object") {
-      plan.bigFirst = {
-        big: Math.max(1, Math.min(12, Math.round(Number(plan.bigFirst.big) || 1))),
-        small: Math.max(1, Math.min(12, Math.round(Number(plan.bigFirst.small) || 1)))
-      };
-    } else {
-      plan.bigFirst = null;
-    }
+    // Серия: «подробно» и «кратко» одной дисциплины. Параметр общий для
+    // обоих файлов, поэтому хранится в плане (и попадает в ключ кэша плана).
+    plan.group = typeof plan.group === "string" && plan.group ? plan.group : null;
+    plan.groupPart = plan.group ? Math.max(1, Math.round(Number(plan.groupPart) || 1)) : null;
+    // К какому числу всё прочитать: за N дней до зачёта/экзамена. Раньше —
+    // только «дата экзамена», и план стартовал сразу, хотя человек собирался
+    // сесть за пару дней до.
+    plan.startDaysBefore = Math.max(0, Math.round(Number(plan.startDaysBefore) || 0));
     const variant = ["auto", "full", "short"].indexOf(d.answerVariant) === -1 ? "auto" : d.answerVariant;
     return Object.assign(
       {
@@ -329,12 +325,16 @@
       d.plan.examStrict = payload.examKind !== "зачёт";
       d.examKind = payload.examKind || "";
     }
-    // Схема чтения из комплекта: сначала большой файл, потом маленький.
-    if (payload.bigFirst && typeof payload.bigFirst === "object") {
-      d.plan.bigFirst = {
-        big: Math.max(1, Math.min(12, Math.round(Number(payload.bigFirst.big) || 1))),
-        small: Math.max(1, Math.min(12, Math.round(Number(payload.bigFirst.small) || 1)))
-      };
+    // Сколько раз читать этот файл: подробный — один, краткий — два.
+    if (payload.passes) d.plan.passes = Math.max(1, Math.min(12, Math.round(Number(payload.passes) || 1)));
+    // Серия: подробный и краткий идут по очереди, в свои сроки.
+    if (payload.group) {
+      d.plan.group = String(payload.group);
+      d.plan.groupPart = Math.max(1, Math.round(Number(payload.groupPart) || 1));
+    }
+    // «Сяду за два дня до зачёта» — из комплекта; поменять можно в «Дисциплине».
+    if (payload.startDaysBefore) {
+      d.plan.startDaysBefore = Math.max(0, Math.round(Number(payload.startDaysBefore) || 0));
     }
     save(true);
     return d;
@@ -408,17 +408,20 @@
         changed = true;
       }
     }
-    if (item.bigFirst && typeof item.bigFirst === "object") {
-      const want = {
-        big: Math.max(1, Math.min(12, Math.round(Number(item.bigFirst.big) || 1))),
-        small: Math.max(1, Math.min(12, Math.round(Number(item.bigFirst.small) || 1)))
-      };
-      const cur = d.plan.bigFirst || null;
-      // Свой выбор человека не перебиваем: ставим схему только если её нет.
-      if (!cur) {
-        d.plan.bigFirst = want;
-        changed = true;
-      }
+    if (item.group && !d.plan.group) {
+      d.plan.group = String(item.group);
+      d.plan.groupPart = Math.max(1, Math.round(Number(item.groupPart) || 1));
+      changed = true;
+    }
+    if (item.passes && !d.plan.passesSet) {
+      d.plan.passes = Math.max(1, Math.min(12, Math.round(Number(item.passes) || 1)));
+      d.plan.passesSet = true;
+      changed = true;
+    }
+    // «За N дней до зачёта» — срок из комплекта; свой выбор не перебиваем.
+    if (item.startDaysBefore && !d.plan.startDaysBefore) {
+      d.plan.startDaysBefore = Math.max(0, Math.round(Number(item.startDaysBefore) || 0));
+      changed = true;
     }
     if (changed) save(true);
     return changed;

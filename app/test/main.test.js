@@ -334,9 +334,11 @@ console.log("\nГотовые ответы в комплекте");
 test("все дисциплины на месте и с полным числом вопросов", () => {
   const builtin = require("../src/main/builtin");
   const items = builtin.list();
-  assert.strictEqual(items.length, 7, "дисциплин в комплекте: " + items.length);
+  // Семь предметов; по административной деятельности два файла — значит 8.
+  assert.strictEqual(items.length, 8, "дисциплин в комплекте: " + items.length);
   const expected = {
     adp: 149,
+    adp2: 149,
     ugp: 117,
     upp: 108,
     tsp: 87,
@@ -350,29 +352,38 @@ test("все дисциплины на месте и с полным число�
     assert.ok(it.name && it.name.length > 5, it.code + ": нет названия");
     total += it.count;
   }
-  assert.strictEqual(total, 627, "всего вопросов: " + total);
-  // По административной деятельности ответов два: подробный (первое чтение)
-  // и краткий (повторения). Второй файл не отдельная дисциплина, а вариант
-  // ответа у той же самой.
-  assert.strictEqual(items[0].code, "adp", "первой должна идти административная деятельность");
-  assert.strictEqual(items[0].alt, "adp2", "у административной деятельности нет краткого варианта");
-  assert.strictEqual(items.filter((i) => i.alt).length, 1, "краткий вариант должен быть только один");
+  // 627 — это уникальные вопросы. Краткий файл по административной
+  // деятельности — отдельная дисциплина с теми же 149 вопросами, поэтому
+  // в списке 8 строк и 776 «вопросов» вместе с ней.
+  assert.strictEqual(total, 627 + 149, "всего вопросов в комплекте: " + total);
+  // По административной деятельности человек читает два разных файла:
+  // подробный один раз, краткий два раза и в другие сроки. Значит это две
+  // дисциплины, а не «варианты ответа» одной.
+  assert.strictEqual(items[0].code, "adp", "первой идёт подробная административная деятельность");
+  assert.strictEqual(items[1].code, "adp2", "второй — краткая административная деятельность");
+  assert.strictEqual(items[0].group, "adp", "нет серии у подробной");
+  assert.strictEqual(items[1].group, "adp", "нет серии у краткой");
+  assert.strictEqual(items[0].passes, 1, "подробный файл читается один раз");
+  assert.strictEqual(items[1].passes, 2, "краткий файл читается два раза");
+  assert.strictEqual(items.filter((i) => i.alt).length, 0, "вариант ответа больше не нужен");
+  // Зачёты, к которым человек готовится за пару дней: у них свой срок старта.
+  const startDays = {};
+  for (const it of items) if (it.startDaysBefore) startDays[it.code] = it.startDaysBefore;
+  assert.deepStrictEqual(startDays, { tsp: 2, tp: 2, gpp: 2, krim: 5 }, "сроки старта: " + JSON.stringify(startDays));
 });
 
-test("краткий вариант ответов разбирается и подходит к тем же вопросам", () => {
+test("краткая административная деятельность — те же вопросы и короче", () => {
   const builtin = require("../src/main/builtin");
   const parser = require("../src/core/parser");
-  const item = builtin.list().find((i) => i.alt);
-  assert.ok(item, "нет дисциплины с кратким вариантом");
-  const full = parser.parseDocument(builtin.read(item.code), { assumeAnswerWords: 0 });
-  const short = parser.parseDocument(builtin.readAlt(item.code), { assumeAnswerWords: 0 });
-  assert.strictEqual(short.questions.length, full.questions.length, "в кратком варианте другое число вопросов");
+  const full = parser.parseDocument(builtin.read("adp"), { assumeAnswerWords: 0 });
+  const short = parser.parseDocument(builtin.read("adp2"), { assumeAnswerWords: 0 });
+  assert.strictEqual(short.questions.length, full.questions.length, "в кратком файле другое число вопросов");
   const byNum = {};
   for (const q of short.questions) byNum[q.num] = q;
   const missing = full.questions.filter((q) => !byNum[q.num]).map((q) => q.num);
-  assert.deepStrictEqual(missing, [], "в кратком варианте нет ответов на вопросы: " + missing.slice(0, 5));
+  assert.deepStrictEqual(missing, [], "в кратком файле нет ответов на вопросы: " + missing.slice(0, 5));
   // Краткое действительно короче: иначе второй файл не нужен.
-  assert.ok(short.totalWords < full.totalWords * 0.7, "краткий вариант не короче подробного");
+  assert.ok(short.totalWords < full.totalWords * 0.7, "краткий файл не короче подробного");
 });
 
 test("каждый файл комплекта разбирается в вопросы с ответами", () => {

@@ -1,20 +1,29 @@
 [
   {
     "code": "adp",
-    "name": "Административная деятельность полиции",
+    "name": "Административная деятельность полиции — подробно",
     "count": 149,
     "bytes": 4203572,
     "words": 316527,
-    "alt": "adp2",
-    "altWords": 148181,
-    "altLabel": "кратко",
     "examDate": "2027-01-19",
     "examKind": "экзамен",
-    "bigFirst": {
-      "big": 1,
-      "small": 2
-    },
-    "studyHint": "Сначала большой файл целиком один раз, потом краткий; второй раз по краткому — если останется время."
+    "passes": 1,
+    "group": "adp",
+    "groupPart": 1,
+    "label": "подробно"
+  },
+  {
+    "code": "adp2",
+    "name": "Административная деятельность полиции — кратко",
+    "count": 149,
+    "bytes": 1947770,
+    "words": 148181,
+    "examDate": "2027-01-19",
+    "examKind": "экзамен",
+    "passes": 2,
+    "group": "adp",
+    "groupPart": 2,
+    "label": "кратко"
   },
   {
     "code": "ugp",
@@ -41,7 +50,8 @@
     "bytes": 744236,
     "words": 54409,
     "examDate": "2026-12-30",
-    "examKind": "зачёт"
+    "examKind": "зачёт",
+    "startDaysBefore": 2
   },
   {
     "code": "tp",
@@ -50,7 +60,8 @@
     "bytes": 780150,
     "words": 57299,
     "examDate": "2026-12-18",
-    "examKind": "зачёт"
+    "examKind": "зачёт",
+    "startDaysBefore": 2
   },
   {
     "code": "gpp",
@@ -59,7 +70,8 @@
     "bytes": 534574,
     "words": 39852,
     "examDate": "2026-12-24",
-    "examKind": "зачёт"
+    "examKind": "зачёт",
+    "startDaysBefore": 2
   },
   {
     "code": "krim",
@@ -68,6 +80,7 @@
     "bytes": 676369,
     "words": 49309,
     "examDate": "2026-12-26",
-    "examKind": "зачёт"
+    "examKind": "зачёт",
+    "startDaysBefore": 5
   }
 ]

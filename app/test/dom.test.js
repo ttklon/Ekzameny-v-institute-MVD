@@ -760,153 +760,35 @@ async function run() {
     win.App.go("discipline", { id: disc.id });
   });
 
-  check("у дисциплины с двумя вариантами ответов есть переключатель", () => {
-    // Так выглядит административная деятельность: подробный ответ на первое
-    // чтение, краткий на повторения. Переключатель — в «Параметрах», и выбор
-    // сохраняется в дисциплине (по нему считается время).
+  check("срок «начать за N дней» откладывает план", () => {
+    // Трудовое право человек будет читать за два дня до зачёта. До этого дня
+    // в плане должно быть пусто, а не «начните сейчас, а то не успеете».
     const target = win.Store.getDiscipline(disc.id);
-    target.hasShortAnswers = true;
-    // Краткий вариант вдвое короче подробного — так у административной
-    // деятельности: 148 тыс. слов против 316 тыс.
-    target.questions.forEach((q) => {
-      q.altWords = Math.round((q.words || 0) / 2);
-      q.altChars = Math.round((q.chars || 0) / 2);
-    });
+    const before = JSON.stringify(target.plan);
+    target.plan.examDate = "2026-12-18";
+    target.plan.examStrict = false;
+    target.plan.startDaysBefore = 2;
     win.Store.save();
+    const pd = win.Views.plan().perDisc[target.id];
+    const days = Object.keys(pd.days).filter((x) => pd.days[x].length).sort();
+    if (!days.length) throw new Error("план пустой совсем");
+    if (days[0] < "2026-12-16") {
+      throw new Error("начал раньше срока: " + days[0] + " (надо 16.12)");
+    }
+    if (days[days.length - 1] > "2026-12-18") throw new Error("план зашёл за зачёт: " + days[days.length - 1]);
+    // В «Дисциплине» это видно и можно поменять.
     openDetails(win, target.id);
     const view = win.document.getElementById("view");
-    if (!/Какой ответ читать/.test(view.textContent)) {
-      throw new Error("нет блока «Какой ответ читать»");
+    if (!/Начать за/.test(view.textContent)) throw new Error("нет поля «Начать за»");
+    if (!/начать за 2 дн/.test(view.textContent)) {
+      // Пометка живёт в списке дисциплин, а не на открытой карточке.
+      win.App.go("disciplines");
+      const list = win.document.getElementById("view");
+      if (!/начать за 2 дн/.test(list.textContent)) throw new Error("нет пометки «начать за 2 дн.» в списке");
+      win.App.go("discipline", { id: target.id });
     }
-    const buttons = Array.from(view.querySelectorAll(".segmented button"))
-      .filter((b) => /подробно|кратко/.test(b.textContent));
-    if (buttons.length !== 3) throw new Error("вариантов: " + buttons.length);
-    const shortBtn = buttons.find((b) => /всегда кратко/.test(b.textContent));
-    shortBtn.dispatchEvent(new win.Event("click", { bubbles: true }));
-    if (win.Store.getDiscipline(target.id).answerVariant !== "short") {
-      throw new Error("выбор не сохранился: " + win.Store.getDiscipline(target.id).answerVariant);
-    }
-    // Время должно пересчитаться: краткий вариант короче.
-    const after = win.Views.plan().perDisc[target.id].stats.minutesTotal;
-    win.Store.getDiscipline(target.id).answerVariant = "full";
-    win.Store.save();
-    win.App.refresh();
-    const full = win.Views.plan().perDisc[target.id].stats.minutesTotal;
-    if (!(full > after)) throw new Error("время не зависит от варианта: " + after.toFixed(0) + " vs " + full.toFixed(0));
-    // Возврат к обычному виду дисциплины.
-    delete win.Store.getDiscipline(target.id).hasShortAnswers;
-    win.Store.getDiscipline(target.id).answerVariant = "auto";
-    win.Store.save();
-    win.App.go("discipline", { id: disc.id });
-  });
-
-  check("у дисциплины с двумя файлами есть схема «большой, потом маленький»", () => {
-    // По административной деятельности: подробный файл читается один раз
-    // целиком, краткий — после, и второй раз по краткому только если время
-    // останется. Включение схемы должно менять и порядок, и объём времени.
-    const target = win.Store.getDiscipline(disc.id);
-    target.hasShortAnswers = true;
-    target.questions.forEach((q) => {
-      q.altWords = Math.round((q.words || 0) / 2);
-      q.altChars = Math.round((q.chars || 0) / 2);
-    });
-    win.Store.save();
-    openDetails(win, target.id);
-    const view = win.document.getElementById("view");
-    const chips = Array.from(view.querySelectorAll(".segmented button"))
-      .filter((b) => /большой|маленький|как обычно/.test(b.textContent));
-    if (chips.length !== 3) {
-      throw new Error("вариантов схемы: " + chips.length + " — " + chips.map((b) => b.textContent).join(","));
-    }
-    const before = win.Views.plan().perDisc[target.id].stats.minutesTotal;
-    const twice = chips.find((b) => /ещё раз маленький/.test(b.textContent));
-    twice.dispatchEvent(new win.Event("click", { bubbles: true }));
-    const saved = win.Store.getDiscipline(target.id).plan.bigFirst;
-    if (!saved || saved.big !== 1 || saved.small !== 2) {
-      throw new Error("схема не сохранилась: " + JSON.stringify(saved));
-    }
-    const after = win.Views.plan().perDisc[target.id].stats.minutesTotal;
-    // 1 большой + 2 маленьких — это те же три прогона, что «сначала подробно,
-    // потом кратко», поэтому объём не меняется. А вот без второго раза по
-    // краткому времени должно стать меньше: этот проход необязательный.
-    if (Math.abs(after - before) > 1) {
-      throw new Error("объём должен совпасть с обычным планом: " + before.toFixed(0) + " vs " + after.toFixed(0));
-    }
-    // В плане обязательное идёт раньше необязательного.
-    const combined = win.Views.plan().combined;
-    let optionalSeen = 0;
-    for (const date of Object.keys(combined)) {
-      const items = combined[date];
-      const firstOptional = items.findIndex((it) => it.optional);
-      if (firstOptional < 0) continue;
-      optionalSeen += items.length - firstOptional;
-      if (!items.slice(firstOptional).every((it) => it.optional)) {
-        throw new Error("необязательный проход стоит не последним: " + date);
-      }
-    }
-    if (!optionalSeen) throw new Error("второй раз по краткому не попал в план как необязательный");
-    // Возврат к обычному виду.
-    const usual = chips.find((b) => /как обычно/.test(b.textContent));
-    usual.dispatchEvent(new win.Event("click", { bubbles: true }));
-    if (win.Store.getDiscipline(target.id).plan.bigFirst) {
-      throw new Error("схема не отключилась");
-    }
-    // Один раз большой и один раз маленький — меньше времени, чем три прогона.
-    const once = chips.find((b) => /большой → маленький/.test(b.textContent));
-    once.dispatchEvent(new win.Event("click", { bubbles: true }));
-    const light = win.Views.plan().perDisc[target.id].stats.minutesTotal;
-    if (!(light < after * 0.95)) {
-      throw new Error("без второго прохода по краткому время не уменьшилось: " + light.toFixed(0) + " vs " + after.toFixed(0));
-    }
-    usual.dispatchEvent(new win.Event("click", { bubbles: true }));
-    if (win.Store.getDiscipline(target.id).plan.bigFirst) {
-      throw new Error("схема не отключилась после второго нажатия");
-    }
-    delete win.Store.getDiscipline(target.id).hasShortAnswers;
-    win.Store.save();
-    win.App.go("discipline", { id: disc.id });
-  });
-
-  check("даты экзаменов доезжают до уже добавленных дисциплин", () => {
-    // У тех, кто пользуется программой давно, дисциплины созданы раньше
-    // комплекта с датами. Синхронизация не должна ни переносить прошедший
-    // экзамен вперёд, ни перебивать свой выбор схемы чтения.
-    const target = win.Store.getDiscipline(disc.id);
-    target.builtin = "krim";
-    delete target.plan.examDate;
-    win.Store.save();
-    const changed = win.Store.syncBuiltinPlan("krim", {
-      code: "krim", name: target.name, examDate: "2026-12-26", examKind: "зачёт"
-    });
-    if (!changed) throw new Error("дата экзамена не проставилась");
-    const after = win.Store.getDiscipline(disc.id).plan;
-    if (after.examDate !== "2026-12-26") throw new Error("дата: " + after.examDate);
-    if (after.examStrict !== false) throw new Error("зачёт должен быть учебным днём");
-    if (win.Store.getDiscipline(disc.id).examKind !== "зачёт") throw new Error("вид испытания не сохранился");
-
-    // Прошедший экзамен не переносим: сдал — значит сдал.
-    win.Store.getDiscipline(disc.id).plan.examDate = "2026-01-05";
-    win.Store.save();
-    win.Store.syncBuiltinPlan("krim", { code: "krim", examDate: "2026-12-26", examKind: "зачёт" });
-    if (win.Store.getDiscipline(disc.id).plan.examDate !== "2026-01-05") {
-      throw new Error("прошедшая дата переписалась: " + win.Store.getDiscipline(disc.id).plan.examDate);
-    }
-
-    // Схема чтения ставится, если её нет, и не перебивает выбранную.
-    win.Store.syncBuiltinPlan("krim", { code: "krim", bigFirst: { big: 1, small: 2 } });
-    if (!win.Store.getDiscipline(disc.id).plan.bigFirst) throw new Error("схема не поставилась");
-    win.Store.getDiscipline(disc.id).plan.bigFirst = { big: 1, small: 1 };
-    win.Store.save();
-    win.Store.syncBuiltinPlan("krim", { code: "krim", bigFirst: { big: 1, small: 2 } });
-    if (win.Store.getDiscipline(disc.id).plan.bigFirst.small !== 1) throw new Error("свой выбор схемы перебит");
-
-    // Возврат к обычному виду.
     const back = win.Store.getDiscipline(disc.id);
-    delete back.builtin;
-    back.plan.bigFirst = null;
-    back.plan.examDate = "2026-12-24";
-    back.plan.examStrict = true;
-    delete back.examKind;
+    Object.assign(back.plan, JSON.parse(before));
     win.Store.save();
     win.App.go("discipline", { id: disc.id });
   });
@@ -1028,17 +910,22 @@ async function run() {
     if (words < 20000) throw new Error("слов в ответах слишком мало: " + words);
   });
 
-  check("у административной деятельности два варианта ответов в одной дисциплине", () => {
-    // Отдельного «adp2» в списке быть не должно: это вариант ответа, а не
-    // второй предмет. Отметки и план у вопроса одни и те же.
+  check("административная деятельность — две отдельные дисциплины", () => {
+    // Человек читает подробный файл один раз и в свои сроки, краткий — два
+    // раза и в другие. Значит это два предмета, а не «варианты ответа».
     const b = require(path.join(ROOT, "src", "main", "builtin.js"));
     const items = b.list({ dir: path.join(ROOT, "answers") });
     const adp = items.find((i) => i.code === "adp");
-    if (!adp) throw new Error("в комплекте нет административной деятельности");
-    if (adp.alt !== "adp2") throw new Error("нет краткого варианта: " + JSON.stringify(adp));
-    if (items.some((i) => i.code === "adp2")) throw new Error("краткий вариант стал отдельной дисциплиной");
+    const adp2 = items.find((i) => i.code === "adp2");
+    if (!adp || !adp2) throw new Error("в комплекте нет двух файлов: " + items.map((i) => i.code).join(","));
+    if (adp.group !== "adp" || adp2.group !== "adp") throw new Error("файлы не связаны в серию");
+    if (adp.passes !== 1) throw new Error("подробный: " + adp.passes + " прогонов вместо одного");
+    if (adp2.passes !== 2) throw new Error("краткий: " + adp2.passes + " прогонов вместо двух");
+    if (items.some((i) => i.alt)) throw new Error("остались «варианты ответа»");
+    if (!/подробно/.test(adp.name) || !/кратко/.test(adp2.name)) {
+      throw new Error("по названиям не понять, где что: " + adp.name + " / " + adp2.name);
+    }
   });
-
   // Открытие вопроса: проверяем по-настоящему дождавшись окна, иначе тест
   // «проходит» на провалившемся промисе и ничего не проверяет.
   {
@@ -1069,6 +956,43 @@ async function run() {
       if (text.length < 3000) throw new Error("ответ не подгрузился, текста всего " + text.length);
     });
   }
+
+  check("серия «подробно + кратко» доезжает до уже добавленной дисциплины", () => {
+    // У тех, кто пользуется программой давно, дисциплина по административной
+    // деятельности создана одной. Теперь файлов два: подробный читается один
+    // раз, краткий — два, и они идут по очереди.
+    const target = bwin.Store.activeDisciplines()[0];
+    if (!target) throw new Error("нет ни одной дисциплины");
+    target.builtin = "adp";
+    delete target.plan.group;
+    delete target.plan.groupPart;
+    target.plan.passes = 3;
+    bwin.Store.save();
+    const ok = bwin.Store.syncBuiltinPlan("adp", {
+      code: "adp", group: "adp", groupPart: 1, passes: 1
+    });
+    if (!ok) throw new Error("серия не проставилась");
+    const p1 = bwin.Store.getDiscipline(target.id).plan;
+    if (p1.group !== "adp" || p1.groupPart !== 1) throw new Error("серия: " + JSON.stringify(p1.group) + "/" + p1.groupPart);
+    if (p1.passes !== 1) throw new Error("прогонов у подробного файла: " + p1.passes);
+
+    // Свой выбор количества прочтений не перебиваем: флаг passesSet.
+    bwin.Store.getDiscipline(target.id).plan.passes = 3;
+    bwin.Store.save();
+    bwin.Store.syncBuiltinPlan("adp", { code: "adp", passes: 1 });
+    if (bwin.Store.getDiscipline(target.id).plan.passes !== 3) {
+      throw new Error("выбор «сколько раз прочитать» перебит: " + bwin.Store.getDiscipline(target.id).plan.passes);
+    }
+
+    // Возврат к обычному виду.
+    const back = bwin.Store.getDiscipline(target.id);
+    delete back.builtin;
+    back.plan.passes = 3;
+    delete back.plan.group;
+    delete back.plan.groupPart;
+    delete back.plan.passesSet;
+    bwin.Store.save();
+  });
 
   check("своя дисциплина с тем же названием не дублируется", () => {
     // Человек уже добавил свой файл «Криминалистика» — второй такой же из

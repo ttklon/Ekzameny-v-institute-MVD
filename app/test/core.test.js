@@ -977,60 +977,44 @@ test("сущности XML раскодируются", () => {
 });
 
 // =====================================================================
-//  Два файла: сначала большой, потом маленький
+//  Серия: «подробно» и «кратко» — две дисциплины
 // =====================================================================
 
-test("схема «большой, потом маленький»: прогоны идут по файлам", () => {
-  const d = makeDisc(5);
-  d.plan = Object.assign(planner.defaultPlan("2026-11-24", "2027-01-19"), {
-    bigFirst: { big: 1, small: 2 }
+test("серия идёт по очереди: сначала подробный файл, потом краткий", () => {
+  const full = makeDisc(10, { exam: "2027-01-19" });
+  full.id = "adp";
+  full.plan = Object.assign(planner.defaultPlan("2026-11-24", "2027-01-19"), {
+    group: "adp", groupPart: 1, examStrict: true
   });
-  assert.strictEqual(planner.passCount(d), 3, "прогонов должно быть 1 + 2");
-  assert.strictEqual(planner.stageOfPass(d, 1), "big", "первый прогон — большой файл");
-  assert.strictEqual(planner.stageOfPass(d, 2), "small", "второй — маленький");
-  assert.strictEqual(planner.optionalPass(d, 2), false, "первый раз по краткому обязателен");
-  assert.strictEqual(planner.optionalPass(d, 3), true, "второй раз по краткому — если время будет");
-});
-
-test("большой файл читается по объёму подробного ответа", () => {
-  const d = makeDisc(5, { words: 600 });
-  d.questions.forEach((q) => {
-    q.altWords = 300;
-    q.altChars = 1800;
+  const short = makeDisc(10, { exam: "2027-01-19" });
+  short.id = "adp2";
+  short.plan = Object.assign(planner.defaultPlan("2026-11-24", "2027-01-19"), {
+    group: "adp", groupPart: 2, examStrict: true
   });
-  d.plan = Object.assign(planner.defaultPlan("2026-11-24", "2027-01-19"), {
-    bigFirst: { big: 1, small: 2 }
-  });
-  const big = planner.questionMinutes(d, d.questions[0], 1, settings);
-  const small = planner.questionMinutes(d, d.questions[0], 2, settings);
-  assert.ok(big > small * 2, "подробный ответ должен быть заметно дольше краткого");
-});
-
-test("необязательный проход не идёт первым в дне", () => {
-  const d = makeDisc(30);
-  d.questions.forEach((q) => {
-    q.altWords = 300;
-    q.altChars = 1800;
-  });
-  d.plan = Object.assign(planner.defaultPlan("2026-11-24", "2027-01-19"), {
-    bigFirst: { big: 1, small: 2 }
-  });
-  const r = planner.computeAll({ settings: settings, disciplines: [d] }, "2026-11-24");
-  let seen = 0;
+  const r = planner.computeAll({ settings: {}, disciplines: [full, short] }, "2026-11-24");
+  const daysOf = (id) =>
+    Object.keys(r.perDisc[id].days).filter((x) => r.perDisc[id].days[x].length).sort();
+  const dFull = daysOf("adp");
+  const dShort = daysOf("adp2");
+  assert.ok(dFull.length > 0 && dShort.length > 0, "одна из дисциплин пустая");
+  assert.ok(
+    dShort[0] > dFull[dFull.length - 1],
+    "краткий начался раньше, чем закончился подробный: " + dShort[0] + " vs " + dFull[dFull.length - 1]
+  );
+  // И в один день оба не висят: именно это и было «сложил два файла».
   for (const date of Object.keys(r.combined)) {
-    const items = r.combined[date];
-    let firstOptional = -1;
-    items.forEach((it, i) => {
-      if (it.optional && firstOptional < 0) firstOptional = i;
-    });
-    if (firstOptional < 0) continue;
-    seen++;
-    assert.ok(
-      items.slice(firstOptional).every((it) => it.optional),
-      "обязательные пункты стоят после необязательных в " + date
-    );
+    const ids = new Set(r.combined[date].map((it) => it.discId));
+    assert.ok(!(ids.has("adp") && ids.has("adp2")), "в день " + date + " обе дисциплины сразу");
   }
-  assert.ok(seen > 0, "необязательный проход вообще не попал в план");
+});
+
+test("без серии дисциплины друг на друга не влияют", () => {
+  const a = makeDisc(6);
+  const b = makeDisc(6);
+  b.id = "d2";
+  const r = planner.computeAll({ settings: {}, disciplines: [a, b] }, "2026-11-24");
+  assert.ok(Object.keys(r.perDisc.d1.days).length > 0);
+  assert.ok(Object.keys(r.perDisc.d2.days).length > 0);
 });
 
 test("экзамен — не учебный день, зачёт — учебный", () => {

@@ -720,7 +720,12 @@
               ? h("span", "экзамен " + UI.dateShort(d.plan.examDate) + " (" + UI.relativeDay(d.plan.examDate) + ")")
               : h("span", "дата экзамена не задана"),
             d.builtin
-              ? h("span.tag.ok", d.hasShortAnswers ? "ответы: подробно + кратко" : "ответы внутри")
+              ? h("span.tag.ok", "ответы внутри")
+              : null,
+            // Когда человек собирается сесть за этот предмет: видно сразу,
+            // без раскрытия «Деталей».
+            d.plan && (Number(d.plan.startDaysBefore) || 0) > 0
+              ? h("span.tag", "начать за " + d.plan.startDaysBefore + " дн.")
               : null
           ])
         ]),
@@ -1032,63 +1037,29 @@
 
       grid.appendChild(dayLoadField(d));
 
-      // Схема «сначала большой файл, потом маленький»: подробный ответ один
-      // раз целиком, краткий — после него, и второй раз по краткому только
-      // если останется время.
-      if (d.hasShortAnswers) {
-        const bf = (d.plan && d.plan.bigFirst) || null;
-        const mode = !bf ? "usual" : (bf.small > 1 ? "twice" : "once");
-        // Режим берём из самой дисциплины в момент нажатия: экран мог быть
-        // нарисован раньше, а выбор уже изменился.
-        const modeNow = () => {
-          const live = root.Store.getDiscipline(d.id) || d;
-          const cur = live.plan && live.plan.bigFirst;
-          if (!cur) return "usual";
-          return (Number(cur.small) || 1) > 1 ? "twice" : "once";
-        };
-        const modeSeg = h("div.segmented");
-        [
-          ["usual", "как обычно"],
-          ["once", "большой → маленький"],
-          ["twice", "и ещё раз маленький"]
-        ].forEach(([key, label]) => {
-          modeSeg.appendChild(h("button" + (mode === key ? ".on" : ""), {
-            onclick: () => {
-              if (modeNow() === key) return;
-              if (key === "usual") d.plan.bigFirst = null;
-              else d.plan.bigFirst = { big: 1, small: key === "twice" ? 2 : 1 };
-              root.Store.save();
-              root.Sound.play("tap");
-              root.App.refresh();
-            }
-          }, label));
-        });
-        grid.appendChild(planField("Два файла: подробный и краткий", modeSeg,
-          mode === "twice"
-            ? "подробный один раз, краткий один раз, и второй раз по краткому — только если останется время"
-            : mode === "once"
-              ? "подробный один раз, потом краткий один раз"
-              : "выберите, если ответы лежат двумя файлами — большим и маленьким"));
-      }
+      // Сколько раз читать этот файл: подробный — один, краткий — два.
+      grid.appendChild(planField("Сколько раз прочитать", UI.stepper(d.plan.passes || 1, {
+        min: 1, max: 6, step: 1,
+        onChange: (v) => {
+          d.plan.passes = Math.max(1, Math.round(v));
+          root.Store.save();
+          root.App.refresh();
+        }
+      }), d.plan.group
+        ? "файлы «подробно» и «кратко» читаются по очереди, каждый в свои сроки"
+        : "первый раз — целиком, дальше — повторения"));
 
-      // Вариант ответа: подробный или краткий
-      if (d.hasShortAnswers) {
-        const seg = h("div.segmented");
-        [["auto", "сначала подробно, потом кратко"], ["full", "всегда подробно"], ["short", "всегда кратко"]]
-          .forEach(([key, label]) => {
-            seg.appendChild(h("button" + ((d.answerVariant || "auto") === key ? ".on" : ""), {
-              onclick: () => {
-                if ((d.answerVariant || "auto") === key) return;
-                d.answerVariant = key;
-                root.Store.save();
-                root.Sound.play("tap");
-                root.App.refresh();
-              }
-            }, label));
-          });
-        grid.appendChild(planField("Какой ответ читать", seg,
-          "по этой дисциплине ответы есть в двух вариантах — время считается по тому, который читаете"));
-      }
+      // Когда начинать: «сяду за два дня до зачёта».
+      grid.appendChild(planField("Начать за", UI.stepper(d.plan.startDaysBefore || 0, {
+        min: 0, max: 60, step: 1,
+        onChange: (v) => {
+          d.plan.startDaysBefore = Math.max(0, Math.round(v));
+          root.Store.save();
+          root.App.refresh();
+        }
+      }), (d.plan.startDaysBefore || 0) > 0
+        ? "дней до зачёта: до этого дня в плане пусто"
+        : "дней до зачёта: 0 — начинать сразу"));
 
       const estimatedCount = d.questions.filter((q) => q.estimated).length;
       if (estimatedCount > 0) {
