@@ -1183,12 +1183,18 @@
     // Уже отказывались от комплекта — второй раз не навязываем.
     if (root.Store.state.settings.noBuiltin) return;
 
-    UI.toast({
-      kind: "info",
-      title: "Подключаем готовые ответы",
-      text: items.length + " " + UI.plural(items.length, "дисциплина", "дисциплины", "дисциплин") + ": весь перечень вопросов с ответами.",
-      duration: 4000
-    });
+    // Первый запуск — пустая библиотека: подключаем молча, без лишних окон.
+    // Обновление поверх старых данных — коротко предупреждаем, чтобы человек
+    // понял, откуда взялись новые дисциплины.
+    const firstRun = !root.Store.state.disciplines.length;
+    if (!firstRun) {
+      UI.toast({
+        kind: "info",
+        title: "Добавляем готовые ответы",
+        text: missing.length + " " + UI.plural(missing.length, "дисциплина", "дисциплины", "дисциплин") + " с вопросами и ответами — из комплекта.",
+        duration: 4000
+      });
+    }
 
     let added = 0;
     for (const item of missing) {
@@ -1214,8 +1220,9 @@
       render();
       UI.toast({
         kind: "ok",
-        title: "Готово",
-        text: "Добавлено " + added + ". Можно сразу составлять план — нажмите на дисциплину.",
+        title: "Ответы готовы",
+        text: added + " " + UI.plural(added, "дисциплина", "дисциплины", "дисциплин") + ", " +
+          root.Store.activeDisciplines().length + " всего. Откройте «Дисциплины» и нажмите на предмет.",
         duration: 6000
       });
     }

@@ -746,6 +746,23 @@ async function run() {
     if (text.length < 3000) throw new Error("ответ не подгрузился, текста всего " + text.length);
   });
 
+  check("своя дисциплина с тем же названием не дублируется", () => {
+    // Человек уже добавил свой файл «Криминалистика» — второй такой же из
+    // комплекта ему не нужен.
+    const b = bwin.Store;
+    const items = [{ code: "krim", name: "Криминалистика" }, { code: "ugp", name: "Уголовное право" }];
+    const missing = b.missingBuiltin(items).map((x) => x.code);
+    if (missing.indexOf("krim") !== -1) throw new Error("своя «Криминалистика» не учтена");
+    if (missing.indexOf("ugp") === -1) throw new Error("недостающая дисциплина потерялась");
+  });
+
+  check("названия сравниваются без учёта регистра и «ё»", () => {
+    const b = bwin.Store;
+    b.activeDisciplines()[0].name = "КРИМИНАЛИСТИКА";
+    const missing = b.missingBuiltin([{ code: "krim", name: "Криминалистика" }]);
+    if (missing.length) throw new Error("регистр не учтён");
+  });
+
   check("повторный запуск не добавляет дисциплину второй раз", async () => {
     const before = bwin.Store.activeDisciplines().length;
     await bwin.App.setupBuiltin ? bwin.App.setupBuiltin() : null;

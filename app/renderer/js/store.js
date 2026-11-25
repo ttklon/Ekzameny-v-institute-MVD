@@ -274,10 +274,29 @@
     return d;
   }
 
-  /** Сколько готовых дисциплин ещё не добавлено. */
+  /**
+   * Какие готовые дисциплины ещё не добавлены.
+   *
+   * Смотрим не только на код комплекта, но и на название: если человек уже
+   * добавил свой файл «Уголовное право», второй такой же ему не нужен.
+   */
   function missingBuiltin(items) {
-    const have = new Set(store.state.disciplines.map((d) => d.builtin).filter(Boolean));
-    return (items || []).filter((it) => !have.has(it.code));
+    const codes = new Set(store.state.disciplines.map((d) => d.builtin).filter(Boolean));
+    const names = new Set(
+      store.state.disciplines.map((d) => normalizeName(d.name))
+    );
+    return (items || []).filter(
+      (it) => !codes.has(it.code) && !names.has(normalizeName(it.name))
+    );
+  }
+
+  /** Название для сравнения: без регистра, лишних пробелов и знаков. */
+  function normalizeName(name) {
+    return String(name || "")
+      .toLowerCase()
+      .replace(/[ё]/g, "е")
+      .replace(/[^а-яa-z0-9]+/g, " ")
+      .trim();
   }
 
   function removeDiscipline(id) {
