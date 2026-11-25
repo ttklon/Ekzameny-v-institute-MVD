@@ -24,6 +24,9 @@
   "use strict";
 
   const STORAGE_VERSION = 2;
+  /** Порядок готовых дисциплин в комплекте. */
+  const BUILTIN_ORDER = ["adp", "ugp", "upp", "tsp", "tp", "gpp", "krim"];
+
   const SAVE_DELAY = 450;
 
   const store = {
@@ -94,6 +97,27 @@
     out.disciplines = Array.isArray(state.disciplines) ? state.disciplines : [];
     out.version = STORAGE_VERSION;
     out.disciplines = out.disciplines.map((d) => normalizeDiscipline(d));
+    // Порядок готовых дисциплин из прошлых версий: раньше у них не было
+    // номера в комплекте, и после добавления подробных ответов по
+    // административной деятельности они вставали в конец списка. Расставляем
+    // по порядку комплекта, чтобы «сначала подробный, потом краткий» работало
+    // и у тех, кто уже пользуется программой.
+    out.disciplines.forEach((d) => {
+      if (!d.builtin) return;
+      if (typeof d.builtinRank !== "number") {
+        const i = BUILTIN_ORDER.indexOf(d.builtin);
+        d.builtinRank = i === -1 ? 900 : i;
+      }
+      // Раньше административная деятельность была одним файлом с краткими
+      // ответами. Теперь ответов два: подробный — для первого чтения,
+      // краткий — для повторений. Отметки и план при этом остаются: вопрос
+      // один и тот же, меняется только текст ответа.
+      if (d.builtin === "adp2") {
+        d.builtin = "adp";
+        d.builtinRank = 0;
+        if (/кратк/i.test(d.name)) d.name = "Административная деятельность полиции";
+      }
+    });
     return out;
   }
 
@@ -108,10 +132,13 @@
     plan.perDayMinutes = Math.max(5, Number(plan.perDayMinutes) || 45);
     plan.restDays = Array.isArray(plan.restDays) ? plan.restDays : [0];
     plan.order = plan.order === "mixed" ? "mixed" : "inOrder";
+    const variant = ["auto", "full", "short"].indexOf(d.answerVariant) === -1 ? "auto" : d.answerVariant;
     return Object.assign(
       {
         id: uid(),
         name: "Без названия",
+        answerVariant: variant,
+        hasShortAnswers: !!d.hasShortAnswers,
         fileName: "",
         filePath: "",
         textFile: "",
@@ -216,7 +243,14 @@
   }
 
   function activeDisciplines() {
-    return (store.state.disciplines || []).filter((d) => !d.archived);
+    // Порядок в списке — не случайный: готовые дисциплины идут в том порядке,
+    // в каком они лежат в комплекте. Свои файлы — после них, как добавлены.
+    const list = (store.state.disciplines || []).filter((d) => !d.archived);
+    const key = (d, i) => (typeof d.builtinRank === "number" ? d.builtinRank : 1000 + i);
+    return list
+      .map((d, i) => ({ d: d, k: key(d, i) }))
+      .sort((a, b) => a.k - b.k)
+      .map((x) => x.d);
   }
 
   /** Добавляет дисциплину из разобранного файла. */
@@ -269,9 +303,45 @@
       }
     });
     d.builtin = payload.code;
+    // Место в комплекте: по нему список дисциплин держит порядок «сначала
+    // подробный вариант, потом краткий», даже если человек добавил их вразнобой.
+    if (typeof payload.rank === "number") d.builtinRank = payload.rank;
+    if (payload.hasAlt) d.hasShortAnswers = true;
     d.fileName = payload.name + ".txt";
     save(true);
     return d;
+  }
+
+  /**
+   * Обновляет объёмы вопросов готовой дисциплины по свежему разбору файла.
+   *
+   * Нужно, когда вариантов ответа стало два: у тех, кто пользуется программой
+   * давно, объёмы записаны по краткому ответу, а первое чтение идёт по
+   * подробному. Отметки, заметки и план при этом не трогаются — меняются
+   * только числа объёма, по которым считается время.
+   */
+  function refreshBuiltinVolumes(code, questions) {
+    const d = store.state.disciplines.find((x) => x.builtin === code);
+    if (!d || !Array.isArray(questions) || !questions.length) return false;
+    const byNum = {};
+    for (const q of questions) byNum[q.num] = q;
+    let changed = false;
+    d.questions.forEach((q, i) => {
+      const src = byNum[q.num] || questions[i];
+      if (!src) return;
+      for (const key of ["words", "chars", "aWords", "aChars", "qWords", "qChars", "charsWithSpaces", "altWords", "altChars"]) {
+        if (src[key] != null && q[key] !== src[key]) {
+          q[key] = src[key];
+          changed = true;
+        }
+      }
+    });
+    if (d.parsing) {
+      d.parsing.totalWords = questions.reduce((a, q) => a + (q.words || 0), 0);
+      d.parsing.totalChars = questions.reduce((a, q) => a + (q.chars || 0), 0);
+    }
+    if (changed) save(true);
+    return changed;
   }
 
   /**
@@ -429,6 +499,7 @@
     activeDisciplines,
     addDiscipline,
     addBuiltin,
+    refreshBuiltinVolumes,
     missingBuiltin,
     removeDiscipline,
     setRead,

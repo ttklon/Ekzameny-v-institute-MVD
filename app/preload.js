@@ -80,7 +80,8 @@ const api = {
   builtin: {
     list: () => ipcRenderer.invoke("builtin:list"),
     parse: (code) => ipcRenderer.invoke("builtin:parse", code),
-    answer: (code, num, index) => ipcRenderer.invoke("builtin:answer", { code, num, index })
+    answer: (code, num, index, short) =>
+      ipcRenderer.invoke("builtin:answer", { code, num, index, short: !!short })
   },
 
   // Напоминания и запуск вместе с Windows.

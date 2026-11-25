@@ -331,12 +331,12 @@ test("недокачанный файл не выдаётся за готовы�
 
 console.log("\nГотовые ответы в комплекте");
 
-test("все семь дисциплин на месте и с полным числом вопросов", () => {
+test("все дисциплины на месте и с полным числом вопросов", () => {
   const builtin = require("../src/main/builtin");
   const items = builtin.list();
   assert.strictEqual(items.length, 7, "дисциплин в комплекте: " + items.length);
   const expected = {
-    adp2: 149,
+    adp: 149,
     ugp: 117,
     upp: 108,
     tsp: 87,
@@ -351,6 +351,28 @@ test("все семь дисциплин на месте и с полным чи
     total += it.count;
   }
   assert.strictEqual(total, 627, "всего вопросов: " + total);
+  // По административной деятельности ответов два: подробный (первое чтение)
+  // и краткий (повторения). Второй файл не отдельная дисциплина, а вариант
+  // ответа у той же самой.
+  assert.strictEqual(items[0].code, "adp", "первой должна идти административная деятельность");
+  assert.strictEqual(items[0].alt, "adp2", "у административной деятельности нет краткого варианта");
+  assert.strictEqual(items.filter((i) => i.alt).length, 1, "краткий вариант должен быть только один");
+});
+
+test("краткий вариант ответов разбирается и подходит к тем же вопросам", () => {
+  const builtin = require("../src/main/builtin");
+  const parser = require("../src/core/parser");
+  const item = builtin.list().find((i) => i.alt);
+  assert.ok(item, "нет дисциплины с кратким вариантом");
+  const full = parser.parseDocument(builtin.read(item.code), { assumeAnswerWords: 0 });
+  const short = parser.parseDocument(builtin.readAlt(item.code), { assumeAnswerWords: 0 });
+  assert.strictEqual(short.questions.length, full.questions.length, "в кратком варианте другое число вопросов");
+  const byNum = {};
+  for (const q of short.questions) byNum[q.num] = q;
+  const missing = full.questions.filter((q) => !byNum[q.num]).map((q) => q.num);
+  assert.deepStrictEqual(missing, [], "в кратком варианте нет ответов на вопросы: " + missing.slice(0, 5));
+  // Краткое действительно короче: иначе второй файл не нужен.
+  assert.ok(short.totalWords < full.totalWords * 0.7, "краткий вариант не короче подробного");
 });
 
 test("каждый файл комплекта разбирается в вопросы с ответами", () => {

@@ -512,6 +512,138 @@ test("порядок сохраняется, когда в день не пом�
 });
 
 
+// Адаптация под человека: объём дня задаёт он сам, а не программа.
+test("сколько человек готов читать — столько программа и планирует", () => {
+  const planner = require("../src/core/planner");
+  const today = "2026-11-25";
+  // Объём такой, что в день выходит около четырёх часов: для одного это
+  // перегрузка, для другого — обычный вечер.
+  const mk = (comfort) => {
+    const disc = makeDisc(80, { words: 4000 });
+    disc.plan = Object.assign(planner.defaultPlan(today, "2026-12-08"), {
+      passes: 2,
+      comfortMinutes: comfort,
+      dayLoad: [1, 1, 1, 1, 1, 1, 1]
+    });
+    return planner.computeAll({ settings: {}, disciplines: [disc] }, today).perDisc[disc.id];
+  };
+  const tight = mk(120);
+  assert.ok(
+    tight.warnings.some((w) => w.type === "overload"),
+    "при своём пределе 2 часа программа должна сказать о перегрузке"
+  );
+  const free = mk(360);
+  assert.ok(
+    !free.warnings.some((w) => w.type === "overload"),
+    "при своём пределе 6 часов перегрузки нет: " + JSON.stringify(free.warnings.map((w) => w.type))
+  );
+  // И в обоих случаях работа размещена, а не выброшена.
+  assert.strictEqual(tight.stats.behind, false, "работа не поместилась при пределе 2 часа");
+  assert.strictEqual(free.stats.behind, false, "работа не поместилась при пределе 6 часов");
+});
+
+test("в тесный срок тяжёлый день всё равно тяжелее", () => {
+  const planner = require("../src/core/planner");
+  const today = "2026-11-25";
+  const disc = makeDisc(60, { words: 3000 });
+  disc.plan = Object.assign(planner.defaultPlan(today, "2026-12-20"), {
+    passes: 3,
+    comfortMinutes: 60,
+    dayLoad: [0, 1, 1, 1, 1, 1, 3]
+  });
+  const r = planner.computeAll({ settings: {}, disciplines: [disc] }, today).perDisc[disc.id];
+  const sum = {};
+  for (const date of Object.keys(r.days)) {
+    const wd = new Date(date + "T00:00:00").getDay();
+    const m = r.days[date].reduce((a, it) => a + it.minutes, 0);
+    if (wd === 6) sum.sat = (sum.sat || 0) + m;
+    if (wd === 1) sum.mon = (sum.mon || 0) + m;
+  }
+  // Суббота «×3» должна получать заметно больше понедельника, даже когда
+  // объём не влезает в дневной потолок.
+  assert.ok(sum.sat > sum.mon * 1.3, "суббота " + Math.round(sum.sat) + " vs понедельник " + Math.round(sum.mon));
+});
+
+test("повторение считается по краткому ответу, если он есть", () => {
+  const planner = require("../src/core/planner");
+  const disc = makeDisc(3, { words: 3000 });
+  // Подробный ответ — 3000 слов, краткий — 900. Первое чтение идёт по
+  // подробному, повторные — по краткому, и время должно быть меньше.
+  disc.questions.forEach((q) => {
+    q.altWords = 900;
+    q.altChars = 5400;
+  });
+  const s = { wordsPerMinute: 150, reviewSpeedFactor: 1 };
+  const full = planner.questionMinutes(disc, disc.questions[0], 1, s);
+  const short = planner.questionMinutes(disc, disc.questions[0], 2, s);
+  assert.ok(Math.abs(full - 20) < 1, "первое чтение: " + full.toFixed(1) + " мин");
+  assert.ok(Math.abs(short - 6) < 1, "повторение по краткому: " + short.toFixed(1) + " мин");
+  // Без краткого варианта повторение считается по полному тексту.
+  delete disc.questions[1].altWords;
+  delete disc.questions[1].altChars;
+  const plain = planner.questionMinutes(disc, disc.questions[1], 2, s);
+  assert.ok(Math.abs(plain - 20) < 1, "без краткого варианта: " + plain.toFixed(1) + " мин");
+});
+
+test("вариант ответа «только подробно» считается по подробному тексту", () => {
+  const planner = require("../src/core/planner");
+  const mk = (variant) => {
+    const disc = makeDisc(3, { words: 3000 });
+    disc.questions.forEach((q) => {
+      q.altWords = 900;
+      q.altChars = 5400;
+    });
+    disc.answerVariant = variant;
+    return disc;
+  };
+  const s = { wordsPerMinute: 150, reviewSpeedFactor: 1 };
+  const auto = mk("auto");
+  const full = mk("full");
+  const short = mk("short");
+  // «Всегда подробно»: и первое чтение, и повторение — 20 минут.
+  assert.ok(Math.abs(planner.questionMinutes(full, full.questions[0], 2, s) - 20) < 1);
+  // «Всегда кратко»: даже первое чтение идёт по краткому — 6 минут.
+  assert.ok(Math.abs(planner.questionMinutes(short, short.questions[0], 1, s) - 6) < 1);
+  // По умолчанию — как раньше: первое подробно, повторение кратко.
+  assert.ok(Math.abs(planner.questionMinutes(auto, auto.questions[0], 1, s) - 20) < 1);
+  assert.ok(Math.abs(planner.questionMinutes(auto, auto.questions[0], 2, s) - 6) < 1);
+});
+
+test("жёсткий потолок дисциплины сильнее личного объёма", () => {
+  const planner = require("../src/core/planner");
+  const today = "2026-11-25";
+  const disc = makeDisc(40, { words: 3000 });
+  disc.plan = Object.assign(planner.defaultPlan(today, "2027-01-20"), {
+    passes: 2,
+    comfortMinutes: 360,
+    dayLoad: [1, 1, 1, 1, 1, 1, 1]
+  });
+  // Человек сказал «могу 6 часов», но ещё и поставил потолок дисциплины
+  // в 45 минут — побеждает меньшее, иначе потолок перестал бы работать.
+  const r = planner.computeAll(
+    { settings: { dailyCapMinutes: 45 }, disciplines: [disc] },
+    today
+  ).perDisc[disc.id];
+  const peak = r.stats.peakMinutes;
+  assert.ok(peak <= 60, "день разросся до " + Math.round(peak) + " мин при потолке 45");
+});
+
+test("вес дня можно задать точным числом минут", () => {
+  const planner = require("../src/core/planner");
+  const today = "2026-11-25";
+  const disc = makeDisc(30, { words: 2000 });
+  // Человек вписал в настройках: суббота 240 минут при обычных 60 — это вес 4.
+  disc.plan = Object.assign(planner.defaultPlan(today, "2027-01-20"), {
+    passes: 2,
+    comfortMinutes: 60,
+    dayLoad: [0, 1, 1, 1, 1, 1, 4]
+  });
+  const r = planner.computeAll({ settings: {}, disciplines: [disc] }, today).perDisc[disc.id];
+  assert.strictEqual(planner.weekdayFactor(disc.plan, "2026-11-28"), 4, "суббота не стала вчетверо тяжелее");
+  assert.strictEqual(planner.weekdayFactor(disc.plan, "2026-11-29"), 0, "воскресенье не стало выходным");
+  assert.ok(r.stats.daysAvailable > 0);
+});
+
 function makeDisc(questionCount, opts) {
   opts = opts || {};
   const questions = [];

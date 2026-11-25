@@ -2851,7 +2851,8 @@ body.theme-dusk .date-box {
 .day-load-head,
 .day-load-row {
   display: grid;
-  grid-template-columns: 34px repeat(3, 64px);
+  /* Семь столбцов: день недели и шесть ступеней от «отдых» до «×4». */
+  grid-template-columns: 34px repeat(6, 58px);
   align-items: center;
   gap: 4px;
 }
@@ -2890,6 +2891,18 @@ body.theme-dusk .date-box {
   background: var(--line-strong);
   border-color: var(--ink-faint);
   color: var(--ink-soft);
+}
+
+/* Свои минуты по дням недели: точное число вместо ступени. */
+.day-exact {
+  display: grid;
+  gap: 6px;
+}
+.day-exact-row {
+  display: grid;
+  grid-template-columns: 34px auto auto;
+  align-items: center;
+  gap: 10px;
 }
 
 /* Плашка обновления: снизу справа, не мешает чтению и закрывается «Позже». */

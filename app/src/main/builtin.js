@@ -1,8 +1,9 @@
 /*
  * builtin.js — готовые ответы, которые идут вместе с приложением.
  *
- * В комплекте семь файлов: по одному на дисциплину, в каждом весь перечень
- * вопросов экзамена с ответами (всего 627 вопросов). Формат простой: заголовок
+ * В комплекте семь дисциплин и 627 вопросов. По административной деятельности
+ * ответов два: подробный (adp.txt) и краткий (adp2.txt) — первый читается
+ * впервые, второй на повторениях. Формат простой: заголовок
  * «# Вопрос 12. …», под ним ответ — так же, как в файлах, которые человек
  * добавляет сам, поэтому разбор общий.
  *
@@ -63,6 +64,23 @@ function list(opts) {
   }
 }
 
+/**
+ * Файл второго варианта ответов (краткий) для дисциплины.
+ * null — если у дисциплины только один вариант.
+ */
+function altFile(code, opts) {
+  const item = list(opts).find((x) => x.code === code);
+  if (!item || !item.alt) return null;
+  const dir = answersDir(opts);
+  if (!dir) return null;
+  const file = path.join(dir, item.alt + ".txt");
+  try {
+    return fs.existsSync(file) ? file : null;
+  } catch (e) {
+    return null;
+  }
+}
+
 /** Текст одной дисциплины целиком. null — если файла нет. */
 function read(code, opts) {
   const item = list(opts).find((x) => x.code === code);
@@ -74,4 +92,15 @@ function read(code, opts) {
   }
 }
 
-module.exports = { list, read, answersDir };
+/** Текст краткого варианта. null — если его нет. */
+function readAlt(code, opts) {
+  const file = altFile(code, opts);
+  if (!file) return null;
+  try {
+    return fs.readFileSync(file, "utf-8");
+  } catch (e) {
+    return null;
+  }
+}
+
+module.exports = { list, read, readAlt, altFile, answersDir };

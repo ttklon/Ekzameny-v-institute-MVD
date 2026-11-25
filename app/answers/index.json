@@ -1,10 +1,13 @@
 [
   {
-    "code": "adp2",
+    "code": "adp",
     "name": "Административная деятельность полиции",
     "count": 149,
-    "bytes": 1947770,
-    "words": 148181
+    "bytes": 4203572,
+    "words": 316527,
+    "alt": "adp2",
+    "altWords": 148181,
+    "altLabel": "кратко"
   },
   {
     "code": "ugp",

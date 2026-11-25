@@ -101,11 +101,14 @@
    */
   function weekdayFactor(plan, dateStr) {
     // weekday() уже отдаёт 0 = воскресенье … 6 = суббота, как и dayLoad.
+    // Вес дня — любое неотрицательное число: 0 (отдых), 1 (обычно),
+    // 1.5, 3, 5 — «в этот день могу читать втрое больше». Верхней границы нет:
+    // ограничивать человека нечем, он сам знает свой день.
     const wd = weekday(dateStr);
     const table = plan && plan.dayLoad;
     if (Array.isArray(table) && table.length === 7) {
       const v = Number(table[wd]);
-      return isFinite(v) && v >= 0 ? v : 1;
+      return isFinite(v) && v >= 0 ? Math.min(20, v) : 1;
     }
     const rest = (plan && plan.restDays) || [];
     return rest.indexOf(weekday(dateStr)) === -1 ? 1 : 0;
@@ -127,7 +130,17 @@
     const unit = settings.unit === "cpm" ? "cpm" : "wpm";
     const rate = unit === "cpm" ? settings.charsPerMinute || 900 : settings.wordsPerMinute || 150;
     const factor = pass <= 1 ? 1 : Math.max(0.5, settings.reviewSpeedFactor || 1.5);
-    const raw = unit === "cpm" ? q.chars : q.words;
+    // Повторное чтение идёт по краткому варианту ответа, если он есть:
+    // по административной деятельности к каждому вопросу есть и подробный
+    // ответ (первое чтение), и краткий (повторения). Считать повторение
+    // по объёму подробного — значит завышать время вдвое.
+    // Выбор человека главнее: «только подробно» — кратким не пользуемся
+    // никогда, «только кратко» — наоборот, читаем краткий с первого раза.
+    const variant = (disc && disc.answerVariant) || "auto";
+    const altFits = variant === "short" ? true : variant === "full" ? false : pass > 1;
+    const useAlt =
+      altFits && (unit === "cpm" ? q.altChars > 0 : q.altWords > 0);
+    const raw = unit === "cpm" ? (useAlt ? q.altChars : q.chars) : (useAlt ? q.altWords : q.words);
     const base = raw / Math.max(1, rate);
     return (base * (q.difficulty || 1)) / factor;
   }
@@ -463,6 +476,17 @@
 
     // Дневная ёмкость с учётом весов дней недели: в «тяжёлый» день влезает
     // больше, в лёгкий — меньше. Дни с нулевым весом в days уже не попали.
+    // Личный предел чтения: если человек сказал «в обычный день 90 минут»,
+    // план старается в это укладываться и переносит остаток на дни с большим
+    // весом. Это ориентир, а не запрет: важнее успеть к экзамену.
+    const comfort = Number(plan.comfortMinutes) || Number(settings.comfortMinutes) || 0;
+    if (comfort > 0) {
+      // Личный объём — это предел, а не приказ: если человек задал ещё и
+      // общий предел на день (или потолок дисциплины), побеждает меньшее.
+      // Раньше здесь стояло «= comfort», и общий предел на день молча
+      // отключался, стоило задать свой объём.
+      softCap = Math.min(softCap, Math.max(5, comfort));
+    }
     const dayFactor = days.map((d) => Math.max(0.25, weekdayFactor(plan, d)));
     // Внимание: здесь именно вес дня, а не сам день. Раньше сюда попадала
     // строка с датой, умножение давало NaN — и дневного потолка не было
@@ -522,11 +546,16 @@
       }
       if (best === -1) {
         // Ничего не подошло — берём самый свободный день в окне (или срок).
-        let minLoad = Infinity;
+        // Свободный считаем не в минутах, а в долях от ёмкости этого дня:
+        // в день «×3» ёмкость втрое больше, и при перегрузке (объём больше,
+        // чем влезает) он всё равно должен получать втрое больше остальных.
+        // Иначе при тесном сроке веса дней пропадали и все дни уравнивались.
+        let minShare = Infinity;
         for (let k = 0; k <= window && prefIdx + k < days.length; k++) {
           const di = prefIdx + k;
-          if (load[di] < minLoad) {
-            minLoad = load[di];
+          const share = load[di] / Math.max(1, cap[di]);
+          if (share < minShare) {
+            minShare = share;
             best = di;
           }
         }
@@ -704,15 +733,19 @@
           " мин (в среднем " + Math.round(perDay) + " мин). Так бывает, когда повторения совпадают."
       });
     }
-    // Перегрузка: в день выходит больше двух часов, а человек так не выдержит
-    // много дней подряд. Это не «ошибка», но предупредить надо.
-    const OVERLOAD_MINUTES = 150;
-    if (perDay > OVERLOAD_MINUTES) {
+    // Перегрузка. Порог не выдумываем за человека: если он указал, сколько
+    // готов читать в обычный день, сравниваем именно с этой цифрой. Без
+    // настройки предупреждаем только о совсем тяжёлом режиме (4 часа в день),
+    // потому что «2 часа» для одного нормa, а для другого много.
+    const limit = comfort > 0 ? comfort : 240;
+    if (perDay > limit) {
       warnings.push({
         type: "overload",
         text:
-          "В среднем выходит " + text.humanDurationShort(perDay) + " в день — это тяжело держать. " +
-          "Помогает уменьшить число прогонов, сдвинуть экзамен или добавить дни недели."
+          "В среднем выходит " + text.humanDurationShort(perDay) + " в день" +
+          (comfort > 0 ? ", а вы рассчитывали на " + text.humanDurationShort(comfort) : "") +
+          ". Помогает уменьшить число прогонов, сдвинуть экзамен, добавить дни недели " +
+          "или разрешить в отдельные дни читать больше."
       });
     }
     if (passes > 1 && days.length < 3) {
@@ -887,9 +920,13 @@
       perDayMinutes: 45,
       restDays: [],
       // Нагрузка по дням недели, от воскресенья к субботе (как weekday()):
-      // 1 — как обычно, 0 — выходной, 2 — вдвое больше. Так «в воскресенье
-      // читать больше» становится обычной настройкой, а не отдельным режимом.
+      // 0 — отдых, 1 — как обычно, 2 — вдвое больше, 3 — втрое и так далее.
+      // Вес может быть дробным (1.5) и любым большим: если в субботу человек
+      // готов читать 3 часа, а в будни 40 минут — это просто «6» в субботу.
       dayLoad: [0, 1, 1, 1, 1, 1, 1],
+      // Сколько человек реально готов читать в обычный день, минут.
+      // 0 — не задано, тогда потолок считается по объёму работы.
+      comfortMinutes: 0,
       order: "inOrder"
     };
   }
@@ -934,6 +971,8 @@
     weekday,
     isValidDate,
     listActiveDays,
+    weekdayFactor,
+    isDayOff,
     questionMinutes,
     discSettings,
     questionTotalMinutes,

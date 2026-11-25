@@ -58,6 +58,8 @@
             ":" +
             JSON.stringify(d.reading || null) +
             ":" +
+            (d.answerVariant || "auto") +
+            ":" +
             (d.questions ? d.questions.length : 0) +
             ":" +
             volumeStamp(d)
@@ -77,12 +79,18 @@
   function volumeStamp(d) {
     let w = 0;
     let c = 0;
+    // Объём краткого варианта тоже входит в отпечаток: без него кэш плана
+    // остался бы старым, когда библиотека догрузит краткие ответы.
+    let aw = 0;
+    let ac = 0;
     const qs = d.questions || [];
     for (let i = 0; i < qs.length; i++) {
       w += qs[i].words || 0;
       c += qs[i].chars || 0;
+      aw += qs[i].altWords || 0;
+      ac += qs[i].altChars || 0;
     }
-    return w + "." + c;
+    return w + "." + c + "." + aw + "." + ac;
   }
 
   /** Минуты вопроса при первом прогоне — для показа объёма. */
@@ -576,7 +584,7 @@
     about.appendChild(h("div.card-title", [h("h2", "Что внутри")]));
     about.appendChild(
       h("div.about-grid", [
-        aboutItem("file", "Готовые ответы внутри", "627 вопросов по семи дисциплинам уже в программе. Свои файлы тоже читаются: TXT, DOCX, PDF, ODT, RTF."),
+        aboutItem("file", "Готовые ответы внутри", "627 вопросов по семи дисциплинам уже в программе. По административной деятельности ответов два: подробный — на первое чтение, краткий — на повторения. Свои файлы тоже читаются: TXT, DOCX, PDF, ODT, RTF."),
         aboutItem("stats", "Точный объём", "Слова, знаки и время чтения по каждому вопросу — видно, что читается дольше."),
         aboutItem("calendar", "План до экзамена", "Вся работа раскладывается по дням с повторениями. Не успеваете — программа скажет."),
         aboutItem("check", "Отметки и пересчёт", "Отмечаете прочитанное — норма на остаток дней пересчитывается сама.")
@@ -774,7 +782,9 @@
             d.plan && P.isValidDate(d.plan.examDate)
               ? h("span", "экзамен " + UI.dateShort(d.plan.examDate) + " (" + UI.relativeDay(d.plan.examDate) + ")")
               : h("span", "дата экзамена не задана"),
-            d.builtin ? h("span.tag.ok", "ответы внутри") : null
+            d.builtin
+              ? h("span.tag.ok", d.hasShortAnswers ? "ответы: подробно + кратко" : "ответы внутри")
+              : null
           ])
         ]),
         h("div.disc-progress", [
@@ -1092,16 +1102,29 @@
    */
   const DAY_NAMES = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
   const DAY_ORDER = [1, 2, 3, 4, 5, 6, 0]; // weekday(): 0 — воскресенье
+  // Нагрузка по дням недели: не «три кнопки», а шкала от «отдых» до «втрое
+  // больше». У человека разные дни, и загонять его в «вдвое» нельзя.
   const DAY_LEVELS = [
     { v: 0, label: "отдых", title: "в этот день не читаем" },
     { v: 1, label: "обычно", title: "как все дни" },
-    { v: 2, label: "больше", title: "вдвое больше, чем в обычный день" }
+    { v: 1.5, label: "×1,5", title: "в полтора раза больше обычного" },
+    { v: 2, label: "×2", title: "вдвое больше обычного" },
+    { v: 3, label: "×3", title: "втрое больше обычного" },
+    { v: 4, label: "×4", title: "вчетверо больше обычного" }
   ];
 
   /** Таблица нагрузки по дням недели: [вс, пн, вт, ср, чт, пт, сб]. */
   function dayLoadTable(plan) {
     const t = plan && plan.dayLoad;
-    if (Array.isArray(t) && t.length === 7) return t.map((x) => (Number(x) === 0 ? 0 : Number(x) >= 2 ? 2 : 1));
+    if (Array.isArray(t) && t.length === 7) {
+      // Вес храним как есть: человек мог вписать «240 минут при обычных 180» —
+      // это 1,33, и округлять его до 1,5 значит терять его же настройку.
+      return t.map((x) => {
+        const v = Number(x);
+        if (!isFinite(v) || v <= 0) return 0;
+        return Math.min(20, v);
+      });
+    }
     const rest = (plan && plan.restDays) || [];
     return [0, 1, 2, 3, 4, 5, 6].map((wd) => (rest.indexOf(wd) !== -1 ? 0 : 1));
   }
@@ -1117,8 +1140,14 @@
     DAY_ORDER.forEach((wd, i) => {
       const row = h("div.day-load-row");
       row.appendChild(h("span.day-load-day", DAY_NAMES[i]));
+      // Подсвечиваем ближайшую ступень: вес мог быть задан точным числом
+      // минут (1,33), и тогда ни одна клетка не совпала бы ровно.
+      let nearest = DAY_LEVELS[0];
       for (const lv of DAY_LEVELS) {
-        const on = table[wd] === lv.v;
+        if (Math.abs(lv.v - table[wd]) < Math.abs(nearest.v - table[wd])) nearest = lv;
+      }
+      for (const lv of DAY_LEVELS) {
+        const on = nearest === lv;
         row.appendChild(
           h("button.day-load-cell" + (on ? ".on" : "") + (lv.v === 0 ? ".off" : ""), {
             title: DAY_NAMES[i] + " — " + lv.title,
@@ -1134,13 +1163,57 @@
       wrap.appendChild(row);
     });
 
-    const sun = table[0];
+    // Сколько это в минутах: человек видит не «×2», а «суббота — около 2 ч».
+    const comfort = Number(d.plan.comfortMinutes) || 0;
+    const heavy = DAY_ORDER.map((wd, i) => ({ name: DAY_NAMES[i], w: table[wd] })).filter((x) => x.w > 1);
     const restCount = table.filter((x) => x === 0).length;
     let hint;
     if (restCount === 7) hint = "Все дни отмечены как отдых — плану некуда ставить вопросы.";
-    else if (sun === 2) hint = "В воскресенье читаете вдвое больше — так и посчитается.";
-    else if (sun === 0) hint = "Воскресенье — выходной.";
-    else hint = "Можно сделать выходной или наоборот более тяжёлый день.";
+    else if (comfort > 0 && heavy.length) {
+      hint =
+        "В обычный день " + UI.dur(comfort) + ", а " +
+        heavy.map((x) => x.name.toLowerCase() + " — около " + UI.dur(comfort * x.w)).join(", ") + ".";
+    } else if (heavy.length) {
+      hint = "Дни с ×1,5, ×2 и ×3 получат больше вопросов — так и посчитается.";
+    } else if (restCount) {
+      hint = "Есть выходные. Если в какой-то день читаете больше — поставьте ×2 или ×3.";
+    } else {
+      hint = "Все дни одинаковые. Если в субботу можете больше — поставьте ×2 или ×3.";
+    }
+
+    // Точные минуты по дням: ступени «×2» мало, если в субботу человек может
+    // читать четыре часа, а в воскресенье — шесть. Здесь можно вписать своё
+    // число минут для каждого дня недели, и вес посчитается из него.
+    if (comfort > 0) {
+      const exact = h("div.day-exact");
+      DAY_ORDER.forEach((wd, i) => {
+        const minutes = Math.round(comfort * table[wd]);
+        const row = h("div.day-exact-row", [
+          h("span.day-load-day", DAY_NAMES[i]),
+          UI.stepper(minutes, {
+            min: 0,
+            max: 960,
+            step: 15,
+            onChange: (v) => {
+              const next = table.slice();
+              // 0 минут — выходной, иначе вес = сколько минут делить на обычный день.
+              next[wd] = v <= 0 ? 0 : Math.min(20, Math.max(0.25, v / comfort));
+              updatePlan(d, { dayLoad: next, restDays: [] });
+            }
+          }),
+          h("span.muted", { style: { fontSize: "12px" } }, minutes > 0 ? UI.dur(minutes) : "не читаю")
+        ]);
+        exact.appendChild(row);
+      });
+      wrap.appendChild(
+        h("div", { style: { marginTop: "12px" } }, [
+          h("div.field-label", { style: { marginBottom: "6px" } }, "Свои минуты по дням"),
+          exact,
+          h("div.muted", { style: { fontSize: "11.5px", marginTop: "4px" } },
+            "Если в какой-то день можете 4 или 6 часов — впишите это число, шкала подстроится сама.")
+        ])
+      );
+    }
 
     return planField("Нагрузка по дням недели", wrap, hint);
   }
@@ -1293,6 +1366,55 @@
     box.appendChild(speed);
 
     // =================================================================
+    //  2-б. Сколько я готов читать в обычный день
+    // =================================================================
+    // Это главная настройка «под себя»: раньше потолок был жёсткий (150 минут
+    // в день считались перегрузкой), и человек, который может больше, не мог
+    // этого сказать. Теперь он задаёт своё время, а вес дня (×2, ×3) умножает
+    // именно его.
+    const comfortCard = h("div.card");
+    comfortCard.appendChild(h("div.card-title", [h("h2", "Сколько вы готовы читать")]));
+
+    const comfort = Number(d.plan.comfortMinutes) || 0;
+    // Быстрые кнопки — чтобы не считать минуты в уме, а ниже — точное поле
+    // для любого значения: ни 5 часов, ни 7 не должны упираться в потолок.
+    const comfortRow = h("div.chips");
+    [60, 90, 120, 180, 240, 360].forEach((m) => {
+      comfortRow.appendChild(
+        h("button.chip" + (comfort === m ? ".on" : ""), {
+          onclick: () => {
+            updatePlan(d, { comfortMinutes: comfort === m ? 0 : m });
+            root.Sound.play("tap");
+          }
+        }, UI.dur(m))
+      );
+    });
+    comfortCard.appendChild(comfortRow);
+    comfortCard.appendChild(
+      h("div", { style: { marginTop: "12px" } },
+        planField("Своё значение", UI.stepper(comfort, {
+            min: 0,
+            max: 960,
+            step: 15,
+            onChange: (v) => updatePlan(d, { comfortMinutes: v })
+          }),
+          "0 — не задавать: программа посчитает потолок сама. Можно поставить и 5 и 8 часов — предела нет.")
+      )
+    );
+
+    const perDayNow = pd.stats && pd.stats.perDayMinutes ? pd.stats.perDayMinutes : 0;
+    comfortCard.appendChild(
+      h("div.muted", { style: { fontSize: "12.5px", lineHeight: "1.5", marginTop: "10px" } },
+        comfort > 0
+          ? "В обычный день — " + UI.dur(comfort) + ". Дни с ×2 и ×3 получат вдвое и втрое больше (" +
+            UI.dur(comfort * 2) + " и " + UI.dur(comfort * 3) + "). Сейчас по плану выходит около " +
+            UI.dur(perDayNow) + " в день."
+          : "Пока не задано — программа считает потолок по объёму работы (около " +
+            UI.dur(perDayNow) + " в день). Выберите своё время, чтобы план подстроился.")
+    );
+    box.appendChild(comfortCard);
+
+    // =================================================================
     //  3. Как распределять — под свёрнутым блоком
     // =================================================================
     const advOpen = d.advOpen === true;
@@ -1343,7 +1465,7 @@
         grid.appendChild(
           planField("Минут в день", UI.stepper(d.plan.perDayMinutes, {
             min: 5,
-            max: 600,
+            max: 960,
             step: 5,
             onChange: (v) => updatePlan(d, { perDayMinutes: v })
           }), "включая повторения")
@@ -1388,6 +1510,50 @@
       adv.appendChild(grid);
     }
     box.appendChild(adv);
+
+    // =================================================================
+    //  3-б. Какой вариант ответа читать
+    // =================================================================
+    // По административной деятельности ответов два: подробный и краткий.
+    // Первое чтение идёт по подробному, повторения — по краткому, и время
+    // считается по тому, который человек реально читает.
+    if (d.hasShortAnswers) {
+      const card = h("div.card");
+      card.appendChild(
+        h("div.card-title", [
+          h("div", [
+            h("h2", "Какой ответ читать"),
+            h("div.muted", { style: { fontSize: "12.5px", marginTop: "3px" } },
+              "У этой дисциплины ответы в двух вариантах: подробные и краткие.")
+          ])
+        ])
+      );
+      const seg = h("div.segmented");
+      [
+        ["auto", "сначала подробно, потом кратко"],
+        ["full", "всегда подробно"],
+        ["short", "всегда кратко"]
+      ].forEach(([key, label]) => {
+        seg.appendChild(
+          h("button" + ((d.answerVariant || "auto") === key ? ".on" : ""), {
+            onclick: () => {
+              if ((d.answerVariant || "auto") === key) return;
+              d.answerVariant = key;
+              root.Store.save();
+              root.Sound.play("tap");
+              root.App.refresh();
+            }
+          }, label)
+        );
+      });
+      card.appendChild(planField("Вариант ответа", seg,
+        (d.answerVariant || "auto") === "short"
+          ? "время считается по краткому ответу — его и покажем"
+          : (d.answerVariant === "full"
+              ? "время считается по подробному ответу — краткий не используем"
+              : "первое чтение подробное, повторения краткие — так время и посчитано")));
+      box.appendChild(card);
+    }
 
     // =================================================================
     //  4. Название и удаление — в конце, чтобы не мешать
@@ -2080,7 +2246,10 @@
       [45, "45 минут"],
       [60, "1 час"],
       [90, "1,5 часа"],
-      [120, "2 часа"]
+      [120, "2 часа"],
+      [180, "3 часа"],
+      [240, "4 часа"],
+      [360, "6 часов"]
     ].forEach(([v, label]) => {
       const on = (s.globalDailyMinutes || 0) === v;
       limitChips.appendChild(
@@ -2100,6 +2269,26 @@
           h("div.desc", "Считается по всем дисциплинам вместе — столько вы готовы читать за день.")
         ]),
         limitChips
+      ])
+    );
+    // Своё значение: 3 часа — не предел. Раньше выбор заканчивался на «2 часа»,
+    // и человек, который может читать больше, не мог этого сказать.
+    time.appendChild(
+      h("div.settings-row", [
+        h("div", [
+          h("div.title", "Или своё число"),
+          h("div.desc", "Любое значение до 16 часов. 0 — без ограничения.")
+        ]),
+        UI.stepper(s.globalDailyMinutes || 0, {
+          min: 0,
+          max: 960,
+          step: 15,
+          onChange: (v) => {
+            state().settings.globalDailyMinutes = v;
+            root.Store.save();
+            root.App.refresh();
+          }
+        })
       ])
     );
 
@@ -2263,7 +2452,7 @@
           settingsRow(
             "Потолок дня на дисциплину",
             "Жёсткий предел минут в день на одну дисциплину. 0 — без предела. Нужен редко; обычно достаточно предела на день выше.",
-            UI.stepper(s.dailyCapMinutes, { min: 0, max: 600, step: 10, onChange: (v) => setSetting("dailyCapMinutes", v) })
+            UI.stepper(s.dailyCapMinutes, { min: 0, max: 960, step: 10, onChange: (v) => setSetting("dailyCapMinutes", v) })
           )
         ])
       );

@@ -720,13 +720,16 @@
 
   // ---------- Просмотр вопроса ----------
 
-  async function openQuestion(discId, qIndex, date) {
+  async function openQuestion(discId, qIndex, date, variantPref) {
     const d = root.Store.getDiscipline(discId);
     if (!d) return;
     const q = d.questions[qIndex];
     if (!q) return;
     const stq = P.questionState(d, qIndex, root.Store.state.settings);
     const day = date || P.todayStr();
+    // Закрытие окна нужно и до его создания: переключатель «кратко / подробно»
+    // внутри тела окна перерисовывает его тем же вызовом.
+    const modalRef = { close: () => {} };
 
     const body = h("div.question-view");
     body.appendChild(
@@ -754,10 +757,22 @@
     let answerText = q.answer;
     // Готовая дисциплина: текст ответа лежит в файле комплекта, а не в
     // библиотеке — читаем его только сейчас, для этого одного вопроса.
+    // Если человек уже прочитал вопрос, повторное открытие показывает краткий
+    // вариант ответа (он есть у административной деятельности) — так проще
+    // повторять. Первое чтение всегда подробное.
+    // variantPref: человек сам попросил «кратко» или «подробно» — тогда его
+    // выбор важнее всего. Без него: первый раз подробно, дальше кратко.
+    const alreadyRead = stq.done > 0;
+    const pref = variantPref || d.answerVariant || "auto";
+    const short = pref === "short" ? true : pref === "full" ? false : alreadyRead;
+    let variant = "";
     if (!answerText && d.builtin && root.api && root.api.builtin) {
       try {
-        const r = await root.api.builtin.answer(d.builtin, q.num, qIndex);
-        if (r && r.ok) answerText = r.answer;
+        const r = await root.api.builtin.answer(d.builtin, q.num, qIndex, !!short);
+        if (r && r.ok) {
+          answerText = r.answer;
+          variant = r.variant || "";
+        }
       } catch (e) {
         /* покажем пояснение ниже */
       }
@@ -781,6 +796,27 @@
         ? markdownish(answerText)
         : "Ответ не найден в файле — возможно, в нём только перечень вопросов.")
     );
+
+    // Видно, какой вариант ответа открыт, и одним кликом можно взять другой.
+    // Первое чтение — подробно, повторение — кратко; решает человек.
+    if (d.hasShortAnswers) {
+      const isFull = variant !== "short";
+      body.appendChild(
+        h("div.row", { style: { gap: "8px", marginTop: "-6px", flexWrap: "wrap" } }, [
+          h("span.tag" + (isFull ? "" : ".ok"),
+            isFull ? "подробный ответ" : "кратко — для повторения"),
+          UI.button(isFull ? "Показать кратко" : "Показать подробно", {
+            size: "sm",
+            kind: "ghost",
+            icon: "reset",
+            onClick: () => {
+              modalRef.close();
+              openQuestion(discId, qIndex, date, isFull ? "short" : "full");
+            }
+          })
+        ])
+      );
+    }
 
     // Служебная информация о парсинге
     if (d.parsing) {
@@ -830,6 +866,7 @@
         UI.button("Закрыть", { kind: "ghost", onClick: () => m.close() })
       ]
     });
+    modalRef.close = () => m.close();
   }
 
   /** Простая разметка ответа: абзацы, определения, перечни, выделения. */
@@ -1185,6 +1222,52 @@
     }
     if (!items.length) return;
 
+    // Дисциплина, у которой есть второй вариант ответов, «не добавлена» и
+    // тогда, когда добавлен только краткий: так обновившиеся получают
+    // подробные ответы сами, а отметки и план остаются на месте.
+    const withAlt = items.map((it) => it.code);
+    root.Store.state.disciplines.forEach((d) => {
+      if (d.builtin === "adp2" && withAlt.indexOf("adp") !== -1) d.builtin = "adp";
+    });
+    // Уже добавленные дисциплины: обновляем объёмы (появился подробный вариант
+    // ответов) и запоминаем, что краткий вариант у них есть. Иначе у тех, кто
+    // пользуется программой давно, время считалось бы по краткому ответу.
+    for (const item of items) {
+      const d = root.Store.state.disciplines.find((x) => x.builtin === item.code);
+      if (!d) continue;
+      // Разбирать файл заново при каждом запуске незачем: смотрим, чего
+      // не хватает в библиотеке, и только тогда читаем файл комплекта.
+      // По административной деятельности это «объёмы краткого ответа» —
+      // без них повторения считались бы по подробному тексту.
+      const needsAlt = !!item.alt && d.questions.some((q) => q.altWords == null);
+      const needsFull = d.questions.some((q) => !q.words);
+      // Краткого варианта нет — и переключателя быть не должно.
+      if (!item.alt && d.hasShortAnswers) {
+        d.hasShortAnswers = false;
+        root.Store.save();
+      }
+      if (!needsAlt && !needsFull) {
+        // Флаг мог не сохраниться в старой версии — восстановим его по комплекту.
+        if (item.alt && !d.hasShortAnswers) {
+          d.hasShortAnswers = true;
+          root.Store.save();
+        }
+        continue;
+      }
+      try {
+        const p = await api.builtin.parse(item.code);
+        if (p && p.ok) {
+          root.Store.refreshBuiltinVolumes(item.code, p.questions);
+          if (item.alt) {
+            d.hasShortAnswers = true;
+            root.Store.save();
+          }
+        }
+      } catch (e) {
+        /* объёмы обновятся в следующий раз */
+      }
+    }
+
     const missing = root.Store.missingBuiltin(items);
     if (!missing.length) return;
     // Уже отказывались от комплекта — второй раз не навязываем.
@@ -1204,6 +1287,8 @@
     }
 
     let added = 0;
+    // Место в комплекте передаём дальше: список дисциплин сортируется по нему.
+    const rankOf = (code) => items.map((x) => x.code).indexOf(code);
     for (const item of missing) {
       try {
         const p = await api.builtin.parse(item.code);
@@ -1211,6 +1296,8 @@
         root.Store.addBuiltin({
           code: item.code,
           name: item.name,
+          rank: rankOf(item.code),
+          hasAlt: !!p.hasAlt,
           questions: p.questions,
           strategy: p.strategy,
           answeredCount: p.answeredCount,

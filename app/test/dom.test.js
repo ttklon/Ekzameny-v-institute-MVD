@@ -154,13 +154,23 @@ function makeDom(opts) {
           totalWords: parsed.totalWords, totalChars: parsed.totalChars
         };
       },
-      answer: async (code, num, index) => {
+      answer: async (code, num, index, short) => {
         const b = require(path.join(ROOT, "src", "main", "builtin.js"));
         const parser = require(path.join(ROOT, "src", "core", "parser.js"));
-        const text = b.read(code, { dir: path.join(ROOT, "answers") });
-        const parsed = parser.parseDocument(text, { assumeAnswerWords: 0 });
+        const dir = { dir: path.join(ROOT, "answers") };
+        const parsed = parser.parseDocument(b.read(code, dir), { assumeAnswerWords: 0 });
         const q = parsed.questions.find((x) => x.num === num);
-        return { ok: true, question: q && q.question, answer: (q && q.answer) || "" };
+        if (short) {
+          const item = b.list(dir).find((i) => i.code === code);
+          if (item && item.alt) {
+            const alt = parser.parseDocument(b.readAlt(code, dir), { assumeAnswerWords: 0 });
+            const aq = alt.questions.find((x) => x.num === num);
+            if (aq && aq.answer) {
+              return { ok: true, question: q && q.question, answer: aq.answer, variant: "short" };
+            }
+          }
+        }
+        return { ok: true, question: q && q.question, answer: (q && q.answer) || "", variant: "full" };
       }
     },
     remind: {
@@ -590,7 +600,8 @@ async function run() {
     const cells = sunRow.querySelectorAll(".day-load-cell");
     cells[cells.length - 1].dispatchEvent(new win.Event("click", { bubbles: true }));
     const saved = win.Store.getDiscipline(disc.id).plan.dayLoad;
-    if (!Array.isArray(saved) || saved[0] !== 2) {
+    // Последняя ступень шкалы — «×3»; главное, что день стал тяжелее обычного.
+    if (!Array.isArray(saved) || !(saved[0] > 1)) {
       throw new Error("воскресенье не стало тяжёлым: " + JSON.stringify(saved));
     }
     // И план должен реально дать воскресеньям больше минут.
@@ -617,6 +628,35 @@ async function run() {
     win.Store.getDiscipline(disc.id).plan.dayLoad = back;
     win.Store.save();
     win.Views.plan();
+    win.Views.setDiscTab("plan");
+  });
+
+  check("свой объём дня задаётся и план его слушается", () => {
+    win.App.go("discipline", { id: disc.id });
+    win.Views.setDiscTab("settings");
+    win.App.refresh();
+    const view = win.document.getElementById("view");
+    if (!/Сколько вы готовы читать/.test(view.textContent)) {
+      throw new Error("нет блока «Сколько вы готовы читать»");
+    }
+    // Кнопка «3 ч» — это уже больше двух часов, раньше такого варианта не было.
+    const chips = Array.from(view.querySelectorAll(".chips .chip"));
+    const three = chips.find((c) => /3 ч/.test(c.textContent));
+    if (!three) throw new Error("нет варианта «3 ч»: " + chips.map((c) => c.textContent).join(","));
+    three.dispatchEvent(new win.Event("click", { bubbles: true }));
+    const plan = win.Store.getDiscipline(disc.id).plan;
+    if (plan.comfortMinutes !== 180) {
+      throw new Error("объём дня не сохранился: " + JSON.stringify(plan.comfortMinutes));
+    }
+    // В плане это отражается: предупреждения о перегрузке при таком объёме нет.
+    const pd = win.Views.plan().perDisc[disc.id];
+    const overload = (pd.warnings || []).filter((w) => w.type === "overload");
+    if (overload.length) throw new Error("лишняя тревога о перегрузке: " + overload[0].text);
+    // Свои минуты по дням: суббота 240 минут при обычных 180 — вес 4/3.
+    const exact = win.document.getElementById("view").querySelectorAll(".day-exact-row");
+    if (!exact.length) throw new Error("нет полей «свои минуты по дням»");
+    delete win.Store.getDiscipline(disc.id).plan.comfortMinutes;
+    win.Store.save();
     win.Views.setDiscTab("plan");
   });
 
@@ -732,6 +772,17 @@ async function run() {
     if (estimated) throw new Error("объём оценён у " + estimated + " вопросов");
     const words = d.questions.reduce((s2, q) => s2 + (q.aWords || 0), 0);
     if (words < 20000) throw new Error("слов в ответах слишком мало: " + words);
+  });
+
+  check("у административной деятельности два варианта ответов в одной дисциплине", () => {
+    // Отдельного «adp2» в списке быть не должно: это вариант ответа, а не
+    // второй предмет. Отметки и план у вопроса одни и те же.
+    const b = require(path.join(ROOT, "src", "main", "builtin.js"));
+    const items = b.list({ dir: path.join(ROOT, "answers") });
+    const adp = items.find((i) => i.code === "adp");
+    if (!adp) throw new Error("в комплекте нет административной деятельности");
+    if (adp.alt !== "adp2") throw new Error("нет краткого варианта: " + JSON.stringify(adp));
+    if (items.some((i) => i.code === "adp2")) throw new Error("краткий вариант стал отдельной дисциплиной");
   });
 
   // Открытие вопроса: проверяем по-настоящему дождавшись окна, иначе тест

@@ -306,11 +306,34 @@ function registerIpc() {
   });
 
   // Заголовки и объёмы без текста ответов: именно это кладётся в библиотеку.
+  // Разбор файла комплекта — дорогая операция: подробный вариант по
+  // административной деятельности весит четыре мегабайта, и разбирать его
+  // заново при каждом открытии вопроса (и при каждом показе заголовков)
+  // значит ждать полсекунды зря. Держим разобранное в памяти: файл внутри
+  // приложения и за время работы не меняется.
+  const builtinCache = new Map();
+  function parsedBuiltin(code) {
+    const text = builtin.read(code);
+    if (!text) return null;
+    const hit = builtinCache.get(code);
+    if (hit && hit.text === text) return hit.parsed;
+    const parsed = parser.parseDocument(text, { assumeAnswerWords: 0 });
+    // Храним максимум три разобранных файла: больше незачем, память не резиновая.
+    if (builtinCache.size > 3) builtinCache.delete(builtinCache.keys().next().value);
+    builtinCache.set(code, { text: text, parsed: parsed });
+    return parsed;
+  }
+
   ipcMain.handle("builtin:parse", async (_e, code) => {
     try {
-      const text = builtin.read(String(code || ""));
-      if (!text) return { ok: false, error: "файл не найден" };
-      const parsed = parser.parseDocument(text, { assumeAnswerWords: 0 });
+      const parsed = parsedBuiltin(String(code || ""));
+      if (!parsed) return { ok: false, error: "файл не найден" };
+      // Краткий вариант ответов (если он есть) — только объёмы: по ним
+      // считается время на повторные чтения, когда человек читает кратко.
+      const item = builtin.list().find((x) => x.code === String(code || ""));
+      const altParsed = item && item.alt ? parsedBuiltin(item.alt) : null;
+      const altByNum = {};
+      if (altParsed) for (const aq of altParsed.questions) altByNum[aq.num] = aq;
       // Текст ответа не передаём: он большой и здесь не нужен.
       const questions = parsed.questions.map((q) => ({
         num: q.num,
@@ -325,7 +348,10 @@ function registerIpc() {
         charsWithSpaces: q.charsWithSpaces,
         words: q.words,
         chars: q.chars,
-        difficulty: q.difficulty
+        difficulty: q.difficulty,
+        // Объём краткого ответа на тот же вопрос: повторное чтение короче.
+        altWords: altByNum[q.num] ? altByNum[q.num].words : 0,
+        altChars: altByNum[q.num] ? altByNum[q.num].chars : 0
       }));
       return {
         ok: true,
@@ -334,7 +360,9 @@ function registerIpc() {
         count: questions.length,
         answeredCount: questions.filter((q) => q.hasAnswer).length,
         totalWords: parsed.totalWords,
-        totalChars: parsed.totalChars
+        totalChars: parsed.totalChars,
+        hasAlt: !!altParsed,
+        altWords: altParsed ? altParsed.totalWords : 0
       };
     } catch (e) {
       return { ok: false, error: String((e && e.message) || e) };
@@ -346,13 +374,24 @@ function registerIpc() {
     try {
       const code = String((payload && payload.code) || "");
       const num = Number(payload && payload.num);
-      const text = builtin.read(code);
-      if (!text) return { ok: false, error: "файл не найден" };
-      const parsed = parser.parseDocument(text, { assumeAnswerWords: 0 });
+      const parsed = parsedBuiltin(code);
+      if (!parsed) return { ok: false, error: "файл не найден" };
       const q =
         parsed.questions.find((x) => x.num === num) || parsed.questions[Number(payload.index) || 0];
       if (!q) return { ok: false, error: "вопрос не найден" };
-      return { ok: true, question: q.question, answer: q.answer || "" };
+      // Второе чтение — кратко: у дисциплины может быть короткий вариант
+      // ответа (по административной деятельности он есть). Просит его
+      // интерфейс через payload.short, и только если человек уже прочитал
+      // вопрос хотя бы раз.
+      if (payload && payload.short) {
+        const item = builtin.list().find((x) => x.code === code);
+        const alt = item && item.alt ? parsedBuiltin(item.alt) : null;
+        const aq = alt && (alt.questions.find((x) => x.num === q.num) || alt.questions[Number(payload.index) || 0]);
+        if (aq && aq.answer) {
+          return { ok: true, question: q.question, answer: aq.answer, variant: "short" };
+        }
+      }
+      return { ok: true, question: q.question, answer: q.answer || "", variant: "full" };
     } catch (e) {
       return { ok: false, error: String((e && e.message) || e) };
     }
