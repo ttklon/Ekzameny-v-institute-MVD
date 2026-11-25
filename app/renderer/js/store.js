@@ -72,7 +72,7 @@
       },
       disciplines: [],
       ui: {
-        view: "dashboard",
+        view: "today",
         selectedDiscipline: null,
         calendarMonth: null,
         dayView: null

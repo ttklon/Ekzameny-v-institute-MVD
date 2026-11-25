@@ -21,7 +21,7 @@
   ];
 
   const app = {
-    current: "dashboard",
+    current: "today",
     params: {},
     importing: false,
     ready: false
@@ -30,7 +30,7 @@
   // ---------- Навигация ----------
 
   function go(view, params) {
-    if (!root.Views[view]) view = "dashboard";
+    if (!root.Views[view]) view = "today";
     const changed = app.current !== view || JSON.stringify(app.params) !== JSON.stringify(params || {});
     app.current = view;
     app.params = params || {};
@@ -131,14 +131,6 @@
   }
 
   function subFor(v) {
-    if (v.id === "dashboard") {
-      const planData = root.Views.plan();
-      const n = root.Store.activeDisciplines().length;
-      if (!n) return "Добавьте файл с вопросами — программа посчитает объём и распределит подготовку";
-      const left = P.daysBetween(P.todayStr(), nearestExam() || P.todayStr());
-      const examText = nearestExam() ? "до ближайшего экзамена " + left + " " + UI.plural(left, "день", "дня", "дней") : "даты экзаменов не заданы";
-      return n + " " + UI.plural(n, "дисциплина", "дисциплины", "дисциплин") + " · " + examText;
-    }
     if (v.id === "disciplines" || v.id === "discipline") {
       const disc = root.Store.getDiscipline(app.params.id || root.Store.state.ui.selectedDiscipline);
       if (disc) {
@@ -157,15 +149,6 @@
     return v.sub;
   }
 
-  function nearestExam() {
-    let best = null;
-    for (const d of root.Store.activeDisciplines()) {
-      if (d.plan && P.isValidDate(d.plan.examDate)) {
-        if (!best || d.plan.examDate < best) best = d.plan.examDate;
-      }
-    }
-    return best;
-  }
 
   function renderSidefoot() {
     const planData = root.Views.plan();
@@ -1321,7 +1304,7 @@
       }
     }
     if (added) {
-      app.current = root.Store.state.ui.view || "dashboard";
+      app.current = root.Store.state.ui.view || "today";
       render();
       UI.toast({
         kind: "ok",
@@ -1370,7 +1353,7 @@
     });
 
     app.ready = true;
-    app.current = root.Store.state.ui.view || "dashboard";
+    app.current = root.Store.state.ui.view || "today";
     if (app.current === "discipline") app.params = { id: root.Store.state.ui.selectedDiscipline };
 
     render();
