@@ -397,6 +397,36 @@ async function run() {
     if (!s.remind || typeof s.remind.at !== "string") throw new Error("время напоминания не задано");
   });
 
+  // Одна норма дня на всё приложение: «Настройки» и страница дисциплины
+  // должны говорить одно и то же, иначе человек путается в двух цифрах.
+  check("норма дня в «Настройках» доходит до дисциплин", () => {
+    win.App.go("settings");
+    const view = win.document.getElementById("view");
+    if (!/Читаю в день/.test(view.textContent)) throw new Error("нет блока «Читаю в день»");
+    const chips = Array.from(view.querySelectorAll(".chips .chip"));
+    const two = chips.find((c) => /2 часа/.test(c.textContent));
+    if (!two) throw new Error("нет варианта «2 часа»: " + chips.map((c) => c.textContent).join(","));
+    two.dispatchEvent(new win.Event("click", { bubbles: true }));
+    if (win.Store.state.settings.globalDailyMinutes !== 120) {
+      throw new Error("норма не сохранилась: " + win.Store.state.settings.globalDailyMinutes);
+    }
+    const d0 = win.Store.activeDisciplines()[0];
+    if (d0.plan.comfortMinutes !== 120) {
+      throw new Error("до дисциплины норма не дошла: " + JSON.stringify(d0.plan.comfortMinutes));
+    }
+    // И план пересчитался по ней.
+    const pd = win.Views.plan().perDisc[d0.id];
+    if (pd.stats.capMinutes && pd.stats.capMinutes > 400) {
+      throw new Error("план не заметил норму: " + pd.stats.capMinutes);
+    }
+    // Возврат: «по объёму работы».
+    const free = chips.find((c) => /по объёму/.test(c.textContent));
+    free.dispatchEvent(new win.Event("click", { bubbles: true }));
+    if (win.Store.activeDisciplines()[0].plan.comfortMinutes) {
+      throw new Error("норма не снялась с дисциплины");
+    }
+  });
+
   // Экран дисциплины со всеми вкладками.
   const disc = win.Store.activeDisciplines()[0];
   win.App.go("discipline", { id: disc.id });
