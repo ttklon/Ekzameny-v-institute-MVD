@@ -15,6 +15,7 @@ const { createStore } = require("./src/main/store");
 const { createUpdater } = require("./src/main/update");
 const { createReminder } = require("./src/main/remind");
 const loader = require("./src/main/loader");
+const builtin = require("./src/main/builtin");
 const parser = require("./src/core/parser");
 const planner = require("./src/core/planner");
 
@@ -282,6 +283,81 @@ function registerIpc() {
   });
 
   // Повторный разбор уже загруженного текста с другими параметрами.
+  // --- Готовые ответы, которые идут вместе с приложением -------------------
+  // Отдаём список дисциплин и полный текст одной из них. Текст остаётся в
+  // файлах своего предмета и не попадает в библиотеку: разбираются только
+  // заголовки и объёмы, а сам ответ читается при открытии вопроса.
+  ipcMain.handle("builtin:list", async () => {
+    try {
+      return { ok: true, items: builtin.list() };
+    } catch (e) {
+      return { ok: false, error: String((e && e.message) || e), items: [] };
+    }
+  });
+
+  ipcMain.handle("builtin:read", async (_e, code) => {
+    try {
+      const text = builtin.read(String(code || ""));
+      if (!text) return { ok: false, error: "файл не найден" };
+      return { ok: true, text: text };
+    } catch (e) {
+      return { ok: false, error: String((e && e.message) || e) };
+    }
+  });
+
+  // Заголовки и объёмы без текста ответов: именно это кладётся в библиотеку.
+  ipcMain.handle("builtin:parse", async (_e, code) => {
+    try {
+      const text = builtin.read(String(code || ""));
+      if (!text) return { ok: false, error: "файл не найден" };
+      const parsed = parser.parseDocument(text, { assumeAnswerWords: 0 });
+      // Текст ответа не передаём: он большой и здесь не нужен.
+      const questions = parsed.questions.map((q) => ({
+        num: q.num,
+        listNo: q.listNo,
+        question: q.question,
+        title: q.title,
+        hasAnswer: q.aWords > 0 || (q.answer || "").length > 0,
+        qWords: q.qWords,
+        aWords: q.aWords,
+        qChars: q.qChars,
+        aChars: q.aChars,
+        charsWithSpaces: q.charsWithSpaces,
+        words: q.words,
+        chars: q.chars,
+        difficulty: q.difficulty
+      }));
+      return {
+        ok: true,
+        questions: questions,
+        strategy: parsed.strategy,
+        count: questions.length,
+        answeredCount: questions.filter((q) => q.hasAnswer).length,
+        totalWords: parsed.totalWords,
+        totalChars: parsed.totalChars
+      };
+    } catch (e) {
+      return { ok: false, error: String((e && e.message) || e) };
+    }
+  });
+
+  // Ответ на один вопрос: подгружается только при открытии вопроса.
+  ipcMain.handle("builtin:answer", async (_e, payload) => {
+    try {
+      const code = String((payload && payload.code) || "");
+      const num = Number(payload && payload.num);
+      const text = builtin.read(code);
+      if (!text) return { ok: false, error: "файл не найден" };
+      const parsed = parser.parseDocument(text, { assumeAnswerWords: 0 });
+      const q =
+        parsed.questions.find((x) => x.num === num) || parsed.questions[Number(payload.index) || 0];
+      if (!q) return { ok: false, error: "вопрос не найден" };
+      return { ok: true, question: q.question, answer: q.answer || "" };
+    } catch (e) {
+      return { ok: false, error: String((e && e.message) || e) };
+    }
+  });
+
   ipcMain.handle("text:parse", async (_e, payload) => {
     try {
       const parsed = parser.parseDocument(payload.text || "", {

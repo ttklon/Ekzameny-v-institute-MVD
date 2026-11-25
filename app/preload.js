@@ -76,6 +76,13 @@ const api = {
     }
   },
 
+  // Готовые ответы, которые идут с приложением (по файлу на дисциплину).
+  builtin: {
+    list: () => ipcRenderer.invoke("builtin:list"),
+    parse: (code) => ipcRenderer.invoke("builtin:parse", code),
+    answer: (code, num, index) => ipcRenderer.invoke("builtin:answer", { code, num, index })
+  },
+
   // Напоминания и запуск вместе с Windows.
   remind: {
     refresh: () => ipcRenderer.invoke("remind:refresh"),

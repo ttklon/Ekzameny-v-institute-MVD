@@ -18,7 +18,8 @@
     { id: "disciplines", label: "Дисциплины", icon: "library", title: "Дисциплины", sub: "Все загруженные файлы и их планы" },
     { id: "calendar", label: "Календарь", icon: "calendar", title: "Календарь", sub: "Нагрузка по дням до экзаменов" },
     { id: "stats", label: "Статистика", icon: "stats", title: "Статистика", sub: "Объёмы, время и прогресс" },
-    { id: "tips", label: "Как готовиться", icon: "tips", title: "Как готовиться", sub: "Что помогает запоминать — и как это учтено в плане" },
+    // «Как готовиться» убрано из меню: это был длинный текст, который читают
+    // один раз. Советы остались на экране дисциплины — там, где они нужны.
     { id: "settings", label: "Настройки", icon: "settings", title: "Настройки", sub: "Скорость чтения, оформление, данные" }
   ];
 
@@ -744,6 +745,16 @@
     // Текст ответа. Если сохранён полный текст файла — показываем ответ оттуда,
     // иначе — собранный парсером.
     let answerText = q.answer;
+    // Готовая дисциплина: текст ответа лежит в файле комплекта, а не в
+    // библиотеке — читаем его только сейчас, для этого одного вопроса.
+    if (!answerText && d.builtin && root.api && root.api.builtin) {
+      try {
+        const r = await root.api.builtin.answer(d.builtin, q.num, qIndex);
+        if (r && r.ok) answerText = r.answer;
+      } catch (e) {
+        /* покажем пояснение ниже */
+      }
+    }
     if (!answerText && d.textFile) {
       try {
         const r = await root.api.loadText(d.textFile);
@@ -1147,6 +1158,69 @@
     updateCard.appendChild(row);
   }
 
+  /**
+   * Подключение готовых ответов из комплекта.
+   *
+   * При первом запуске все дисциплины добавляются молча. Если библиотека уже
+   * есть, недостающие дисциплины тоже подключаются — но только те, которых
+   * человек ещё не касался, и без повторного добавления удалённых.
+   */
+  async function setupBuiltin() {
+    const api = root.api;
+    if (!api || !api.builtin || !api.builtin.list) return;
+    let items = [];
+    try {
+      const r = await api.builtin.list();
+      if (!r || !r.ok) return;
+      items = r.items || [];
+    } catch (e) {
+      return;
+    }
+    if (!items.length) return;
+
+    const missing = root.Store.missingBuiltin(items);
+    if (!missing.length) return;
+    // Уже отказывались от комплекта — второй раз не навязываем.
+    if (root.Store.state.settings.noBuiltin) return;
+
+    UI.toast({
+      kind: "info",
+      title: "Подключаем готовые ответы",
+      text: items.length + " " + UI.plural(items.length, "дисциплина", "дисциплины", "дисциплин") + ": весь перечень вопросов с ответами.",
+      duration: 4000
+    });
+
+    let added = 0;
+    for (const item of missing) {
+      try {
+        const p = await api.builtin.parse(item.code);
+        if (!p || !p.ok || !p.questions || !p.questions.length) continue;
+        root.Store.addBuiltin({
+          code: item.code,
+          name: item.name,
+          questions: p.questions,
+          strategy: p.strategy,
+          answeredCount: p.answeredCount,
+          totalWords: p.totalWords,
+          totalChars: p.totalChars
+        });
+        added++;
+      } catch (e) {
+        console.error("готовые ответы: " + item.code, e);
+      }
+    }
+    if (added) {
+      app.current = root.Store.state.ui.view || "dashboard";
+      render();
+      UI.toast({
+        kind: "ok",
+        title: "Готово",
+        text: "Добавлено " + added + ". Можно сразу составлять план — нажмите на дисциплину.",
+        duration: 6000
+      });
+    }
+  }
+
   async function boot() {
     // Небо — первым, чтобы не было пустого фона.
     try {
@@ -1230,19 +1304,9 @@
       });
     }
 
-    // Первый запуск: подсказка.
-    if (!root.Store.activeDisciplines().length) {
-      setTimeout(() => {
-        if (!root.Store.activeDisciplines().length && !app.importing) {
-          UI.toast({
-            kind: "info",
-            title: "С чего начать",
-            text: "Нажмите «Добавить файл» или просто перетащите файл с вопросами и ответами в окно.",
-            duration: 8000
-          });
-        }
-      }, 1400);
-    }
+    // Готовые ответы: при первом запуске дисциплины подключаются сами.
+    // Ничего спрашивать не нужно — открывать и читать можно сразу.
+    await setupBuiltin();
 
     // Ночь и вечер: тёмная тема стекла.
     updateTheme();

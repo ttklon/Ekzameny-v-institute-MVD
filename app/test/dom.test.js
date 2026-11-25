@@ -32,7 +32,8 @@ function check(name, fn) {
 
 const autostartCalls = [];
 
-function makeDom() {
+function makeDom(opts) {
+  const o = opts || {};
   const html = fs.readFileSync(path.join(ROOT, "renderer", "index.html"), "utf-8");
   // Скрипты подключаем сами — jsdom не должен ходить по file:// путям.
   const stripped = html.replace(/<script[\s\S]*?<\/script>/g, "");
@@ -123,6 +124,45 @@ function makeDom() {
     openDataDir: async () => ({ ok: true }),
     openExternal: async () => ({ ok: true }),
     takePendingFiles: async () => [],
+    // Готовые ответы: в проверках берём настоящий комплект, но самую
+    // маленькую дисциплину — чтобы тест оставался быстрым.
+    builtin: o.builtin === false ? {
+      list: async () => ({ ok: true, items: [] }),
+      parse: async () => ({ ok: false }),
+      answer: async () => ({ ok: false })
+    } : {
+      list: async () => {
+        const b = require(path.join(ROOT, "src", "main", "builtin.js"));
+        const items = b.list({ dir: path.join(ROOT, "answers") });
+        return { ok: true, items: items.filter((i) => i.code === "krim") };
+      },
+      parse: async (code) => {
+        const b = require(path.join(ROOT, "src", "main", "builtin.js"));
+        const parser = require(path.join(ROOT, "src", "core", "parser.js"));
+        const text = b.read(code, { dir: path.join(ROOT, "answers") });
+        if (!text) return { ok: false };
+        const parsed = parser.parseDocument(text, { assumeAnswerWords: 0 });
+        const questions = parsed.questions.map((q) => ({
+          num: q.num, listNo: q.listNo, question: q.question, title: q.title,
+          hasAnswer: q.aWords > 0, qWords: q.qWords, aWords: q.aWords, qChars: q.qChars,
+          aChars: q.aChars, charsWithSpaces: q.charsWithSpaces, words: q.words,
+          chars: q.chars, difficulty: q.difficulty
+        }));
+        return {
+          ok: true, questions, strategy: parsed.strategy, count: questions.length,
+          answeredCount: questions.filter((q) => q.hasAnswer).length,
+          totalWords: parsed.totalWords, totalChars: parsed.totalChars
+        };
+      },
+      answer: async (code, num, index) => {
+        const b = require(path.join(ROOT, "src", "main", "builtin.js"));
+        const parser = require(path.join(ROOT, "src", "core", "parser.js"));
+        const text = b.read(code, { dir: path.join(ROOT, "answers") });
+        const parsed = parser.parseDocument(text, { assumeAnswerWords: 0 });
+        const q = parsed.questions.find((x) => x.num === num);
+        return { ok: true, question: q && q.question, answer: (q && q.answer) || "" };
+      }
+    },
     remind: {
       refresh: async () => ({ ok: true }),
       test: async () => ({ ok: true }),
@@ -175,7 +215,9 @@ function tick(ms) {
 async function run() {
   console.log("Проверка интерфейса (jsdom)\n");
 
-  const { win, getSaved } = makeDom();
+  // Основной прогон идёт без комплекта ответов: здесь проверяется ручной
+  // путь — добавить файл самому. Комплект проверяется отдельно ниже.
+  const { win, getSaved } = makeDom({ builtin: false });
   loadScripts(win);
 
   // Запуск приложения.
@@ -185,13 +227,15 @@ async function run() {
   check("первый запуск объясняет, что делать", () => {
     const view = win.document.getElementById("view");
     if (!view || !view.children.length) throw new Error("экран пуст");
-    if (!/Начнём с файла/.test(view.textContent)) {
-      throw new Error("нет приглашения добавить файл: " + view.textContent.slice(0, 160));
+    // Библиотека пуста (комплект отключён в этом прогоне) — экран должен
+    // сказать, что ответы уже внутри, и предложить выбор дисциплины.
+    if (!/Ответы уже внутри/.test(view.textContent)) {
+      throw new Error("нет приглашения: " + view.textContent.slice(0, 160));
     }
     if (!view.querySelector(".steps")) throw new Error("нет шагов «что делать»");
     const steps = view.querySelectorAll(".step");
     if (steps.length !== 3) throw new Error("шагов: " + steps.length);
-    if (!/Добавьте файл/.test(steps[0].textContent)) throw new Error("первый шаг не про файл");
+    if (!/Выберите дисциплину/.test(steps[0].textContent)) throw new Error("первый шаг не про дисциплину");
     if (!view.querySelector(".about-grid")) throw new Error("нет блока «что внутри»");
     // Кнопка добавления должна быть на первом экране и работать.
     const btn = Array.from(view.querySelectorAll("button")).find((b) => /Добавить файл/.test(b.textContent));
@@ -237,7 +281,8 @@ async function run() {
   });
 
   // Проходим по всем экранам.
-  const screens = ["dashboard", "today", "disciplines", "calendar", "stats", "tips", "settings"];
+  // «tips» убран из меню — экран проверяем напрямую, он остался в коде.
+  const screens = ["dashboard", "today", "disciplines", "calendar", "stats", "settings"];
   for (const screen of screens) {
     win.App.go(screen);
     await tick(40);
@@ -654,6 +699,59 @@ async function run() {
       if (/Не удалось показать/.test(view.textContent)) throw new Error(view.textContent.slice(0, 300));
     });
   }
+
+  // ---------------------------------------------------------------------
+  //  Готовые ответы из комплекта: новый запуск должен подключить их сам.
+  // ---------------------------------------------------------------------
+  const second = makeDom(); // комплект включён
+  loadScripts(second.win);
+  second.win.document.dispatchEvent(new second.win.Event("DOMContentLoaded"));
+  await tick(900); // разбор файла занимает время
+
+  const bwin = second.win;
+  check("первый запуск сам подключает готовые ответы", () => {
+    const n = bwin.Store.activeDisciplines().length;
+    if (n !== 1) throw new Error("подключено дисциплин: " + n);
+    const d = bwin.Store.activeDisciplines()[0];
+    if (d.builtin !== "krim") throw new Error("не та дисциплина: " + d.builtin);
+    if (d.questions.length !== 44) throw new Error("вопросов: " + d.questions.length);
+  });
+
+  check("в библиотеке только заголовки и объёмы, без текста ответов", () => {
+    const d = bwin.Store.activeDisciplines()[0];
+    const json = JSON.stringify(d.questions);
+    if (json.length > 400 * 1024) throw new Error("вопросы слишком тяжёлые: " + Math.round(json.length / 1024) + " КБ");
+    const withText = d.questions.filter((q) => q.answer && q.answer.length > 200).length;
+    if (withText) throw new Error("текст ответов попал в библиотеку: " + withText);
+    if (!d.questions.every((q) => q.hasAnswer)) throw new Error("есть вопросы без признака ответа");
+  });
+
+  check("время чтения посчитано по готовым ответам, а не оценено", () => {
+    const d = bwin.Store.activeDisciplines()[0];
+    const estimated = d.questions.filter((q) => q.estimated).length;
+    if (estimated) throw new Error("объём оценён у " + estimated + " вопросов");
+    const words = d.questions.reduce((s2, q) => s2 + (q.aWords || 0), 0);
+    if (words < 20000) throw new Error("слов в ответах слишком мало: " + words);
+  });
+
+  check("вопрос открывается с полным ответом из комплекта", async () => {
+    const d = bwin.Store.activeDisciplines()[0];
+    bwin.App.go("discipline", { id: d.id });
+    await tick(60);
+    await bwin.Views.openQuestion(d.id, 0, bwin.Exams ? bwin.Exams.todayStr() : undefined);
+    await tick(300);
+    const modal = bwin.document.querySelector(".modal, .qv, [class*=modal]");
+    const text = (modal || bwin.document.body).textContent;
+    if (!/Вопрос 1/.test(text)) throw new Error("не открылось окно вопроса");
+    if (text.length < 3000) throw new Error("ответ не подгрузился, текста всего " + text.length);
+  });
+
+  check("повторный запуск не добавляет дисциплину второй раз", async () => {
+    const before = bwin.Store.activeDisciplines().length;
+    await bwin.App.setupBuiltin ? bwin.App.setupBuiltin() : null;
+    const after = bwin.Store.activeDisciplines().length;
+    if (after !== before) throw new Error("дубликат: было " + before + ", стало " + after);
+  });
 
   console.log("\n---");
   if (failures) {

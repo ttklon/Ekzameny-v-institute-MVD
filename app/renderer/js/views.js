@@ -542,8 +542,8 @@
     intro.appendChild(
       h("div.empty", { style: { paddingBottom: "10px" } }, [
         h("div.empty-icon", [UI.icon("cloud")]),
-        h("h3", "Начнём с файла"),
-        h("p", "Ничего настраивать заранее не нужно. Добавьте файл с вопросами и ответами — программа сама посчитает объём и покажет, что получилось."),
+        h("h3", "Ответы уже внутри"),
+        h("p", "Все вопросы с ответами идут вместе с программой — добавлять ничего не нужно. Откройте «Дисциплины» и нажмите на предмет. Свои файлы тоже можно добавить, если понадобится."),
         h("div.row", [
           UI.button("Добавить файл", { kind: "primary", icon: "plus", onClick: () => root.App.openImport() }),
           UI.button("Как это работает", { kind: "ghost", icon: "info", onClick: () => root.App.go("tips") })
@@ -554,8 +554,8 @@
     // Три шага — что произойдёт дальше.
     const steps = h("div.steps");
     [
-      ["1", "Добавьте файл", "TXT, DOCX, PDF, ODT или RTF. Можно перетащить в окно или выбрать целую папку — файлы по одному вопросу склеятся в одну дисциплину."],
-      ["2", "Проверьте дату экзамена", "Программа предложит дату через месяц. Поставьте свою — от неё зависит вся нагрузка."],
+      ["1", "Выберите дисциплину", "Семь предметов уже с ответами: от административной деятельности до трудового права. Внутри — весь перечень вопросов к экзамену."],
+      ["2", "Поставьте дату экзамена", "Программа предложит месяц. Поставьте свою — от неё зависит вся нагрузка."],
       ["3", "Читайте по списку", "Каждый день на экране «Сегодня» будет список вопросов. Отметили прочитанное — план пересчитался."]
     ].forEach(([num, title, text]) => {
       steps.appendChild(
@@ -576,7 +576,7 @@
     about.appendChild(h("div.card-title", [h("h2", "Что внутри")]));
     about.appendChild(
       h("div.about-grid", [
-        aboutItem("file", "Файлы не входят в программу", "Вы добавляете свои — программа только читает их и считает. Никуда ничего не отправляется."),
+        aboutItem("file", "Готовые ответы внутри", "627 вопросов по семи дисциплинам уже в программе. Свои файлы тоже читаются: TXT, DOCX, PDF, ODT, RTF."),
         aboutItem("stats", "Точный объём", "Слова, знаки и время чтения по каждому вопросу — видно, что читается дольше."),
         aboutItem("calendar", "План до экзамена", "Вся работа раскладывается по дням с повторениями. Не успеваете — программа скажет."),
         aboutItem("check", "Отметки и пересчёт", "Отмечаете прочитанное — норма на остаток дней пересчитывается сама.")
@@ -736,14 +736,17 @@
     const planData = plan();
     const wrap = h("div.grid", { style: { gap: "14px" } });
 
+    // Главное действие — открыть дисциплину и читать. Добавление своих файлов
+    // стоит рядом, но не первым: ответы уже внутри.
     const head = h("div.row", [
-      UI.button("Добавить файл", { kind: "primary", icon: "plus", onClick: () => root.App.openImport() }),
-      h("div.spacer"),
       h("span.muted", { style: { fontSize: "13px" } },
         discs.length
           ? discs.length + " " + UI.plural(discs.length, "дисциплина", "дисциплины", "дисциплин") +
-            " · " + UI.num(planData.totals.questions) + " " + UI.plural(planData.totals.questions, "вопрос", "вопроса", "вопросов")
-          : "")
+            " · " + UI.num(planData.totals.questions) + " " + UI.plural(planData.totals.questions, "вопрос", "вопроса", "вопросов") +
+            " · ответы внутри"
+          : ""),
+      h("div.spacer"),
+      UI.button("Добавить свой файл", { kind: "ghost", icon: "plus", onClick: () => root.App.openImport() })
     ]);
     wrap.appendChild(head);
 
@@ -764,14 +767,14 @@
         h("div", { style: { width: "46px", height: "46px", borderRadius: "14px", background: accentOf(d) + "22", display: "grid", placeItems: "center", color: accentOf(d) } }, [UI.icon("book")]),
         h("div", { style: { minWidth: 0 } }, [
           h("div.disc-name", d.name),
+          // Только то, по чему принимают решение: сколько читать и когда экзамен.
           h("div.disc-meta", [
             h("span", [h("b", String(d.questions.length)), " " + UI.plural(d.questions.length, "вопрос", "вопроса", "вопросов")]),
-            h("span", [h("b", UI.num(d.questions.reduce((s2, q) => s2 + q.words, 0))), " слов"]),
-            h("span", [h("b", UI.dur(st.minutesLeft || 0)), " осталось"]),
+            h("span", [h("b", UI.dur(st.minutesLeft || 0)), " чтения"]),
             d.plan && P.isValidDate(d.plan.examDate)
               ? h("span", "экзамен " + UI.dateShort(d.plan.examDate) + " (" + UI.relativeDay(d.plan.examDate) + ")")
               : h("span", "дата экзамена не задана"),
-            h("span", (d.plan.passes || 1) + " " + UI.plural(d.plan.passes || 1, "прогон", "прогона", "прогонов"))
+            d.builtin ? h("span.tag.ok", "ответы внутри") : null
           ])
         ]),
         h("div.disc-progress", [

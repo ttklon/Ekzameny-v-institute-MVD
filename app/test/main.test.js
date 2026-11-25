@@ -329,6 +329,96 @@ test("недокачанный файл не выдаётся за готовы�
   })();
 });
 
+console.log("\nГотовые ответы в комплекте");
+
+test("все семь дисциплин на месте и с полным числом вопросов", () => {
+  const builtin = require("../src/main/builtin");
+  const items = builtin.list();
+  assert.strictEqual(items.length, 7, "дисциплин в комплекте: " + items.length);
+  const expected = {
+    adp2: 149,
+    ugp: 117,
+    upp: 108,
+    tsp: 87,
+    tp: 70,
+    gpp: 52,
+    krim: 44
+  };
+  let total = 0;
+  for (const it of items) {
+    assert.strictEqual(it.count, expected[it.code], it.code + ": вопросов " + it.count);
+    assert.ok(it.name && it.name.length > 5, it.code + ": нет названия");
+    total += it.count;
+  }
+  assert.strictEqual(total, 627, "всего вопросов: " + total);
+});
+
+test("каждый файл комплекта разбирается в вопросы с ответами", () => {
+  const builtin = require("../src/main/builtin");
+  const parser = require("../src/core/parser");
+  for (const item of builtin.list()) {
+    const text = builtin.read(item.code);
+    assert.ok(text && text.length > 10000, item.code + ": файл не читается");
+    const parsed = parser.parseDocument(text, { assumeAnswerWords: 0 });
+    assert.strictEqual(parsed.questions.length, item.count, item.code + ": разобрано " + parsed.questions.length);
+    const empty = parsed.questions.filter((q) => (q.answer || "").length < 20);
+    assert.deepStrictEqual(
+      empty.map((q) => q.num),
+      [],
+      item.code + ": без ответа вопросы " + empty.map((q) => q.num).join(", ")
+    );
+    // Заголовки должны быть короткими: иначе в списке нечего показать.
+    const long = parsed.questions.filter((q) => q.question.length > 400);
+    assert.strictEqual(long.length, 0, item.code + ": слишком длинные заголовки: " + long.length);
+  }
+});
+
+test("в библиотеку не попадает текст ответов", () => {
+  const builtin = require("../src/main/builtin");
+  const parser = require("../src/core/parser");
+  const text = builtin.read("krim");
+  const parsed = parser.parseDocument(text, { assumeAnswerWords: 0 });
+  // То, что уходит в состояние, — только заголовки и объёмы.
+  const thin = parsed.questions.map((q) => ({
+    num: q.num,
+    question: q.question,
+    title: q.title,
+    hasAnswer: q.aWords > 0,
+    qWords: q.qWords,
+    aWords: q.aWords,
+    qChars: q.qChars,
+    aChars: q.aChars,
+    charsWithSpaces: q.charsWithSpaces,
+    words: q.words,
+    chars: q.chars,
+    difficulty: q.difficulty
+  }));
+  const size = JSON.stringify(thin).length;
+  assert.ok(size < 200 * 1024, "заголовки занимают " + Math.round(size / 1024) + " КБ");
+  assert.strictEqual(thin.filter((q) => !q.hasAnswer).length, 0, "есть вопросы без объёма ответа");
+});
+
+test("ответ на один вопрос достаётся по номеру и совпадает с файлом", () => {
+  const builtin = require("../src/main/builtin");
+  const parser = require("../src/core/parser");
+  const text = builtin.read("gpp");
+  const parsed = parser.parseDocument(text, { assumeAnswerWords: 0 });
+  const q17 = parsed.questions.find((q) => q.num === 17);
+  assert.ok(q17, "вопрос 17 не найден");
+  assert.ok(q17.answer.length > 500, "ответ на 17 слишком короткий: " + q17.answer.length);
+  assert.ok(/[А-Яа-я]/.test(q17.answer), "ответ без кириллицы");
+});
+
+test("ответы попадают в сборку через extraResources", () => {
+  const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "package.json"), "utf8"));
+  const res = (pkg.build && pkg.build.extraResources) || [];
+  const has = res.some((r) => (typeof r === "string" ? r : r.to || r.from) === "answers");
+  assert.ok(has, "в extraResources нет папки answers — файлы не попадут в .exe");
+  // И не должны дублироваться внутри asar: это лишние 8 МБ.
+  const files = (pkg.build && pkg.build.files) || [];
+  assert.ok(files.indexOf("!answers/**/*") !== -1, "answers не исключены из asar");
+});
+
 console.log("\nСборка и версия");
 
 test("номер сборки попадает в package.json и читается приложением", () => {

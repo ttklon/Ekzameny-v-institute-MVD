@@ -125,11 +125,32 @@ test("шрифты подключены локально, без внешних 
   }
 });
 
-test("в сборке нет файлов с ответами", () => {
-  // Пользователь добавляет свои файлы; корпус ответов не должен попасть в пакет.
+test("в сборке ровно семь готовых дисциплин и ничего лишнего", () => {
+  // Готовые ответы идут вместе с приложением — по файлу на дисциплину.
+  // Но в пакет не должны попадать тестовые образцы и служебные материалы.
   const pkg = JSON.parse(read("package.json"));
   for (const pattern of pkg.build.files) {
-    assert.ok(!/answers|вопросы|fixtures/i.test(pattern), "в сборку попадает " + pattern);
+    const excluded = pattern.startsWith("!");
+    // Исключения наоборот обязательны: «!test/**/*» убирает тесты из пакета.
+    if (excluded) continue;
+    assert.ok(!/fixtures|(^|\/)test\//i.test(pattern), "в сборку попадает " + pattern);
+  }
+  const dir = path.join(ROOT, "answers");
+  const files = fs.readdirSync(dir).filter((f) => f.endsWith(".txt")).sort();
+  assert.deepStrictEqual(files, [
+    "adp2.txt",
+    "gpp.txt",
+    "krim.txt",
+    "tp.txt",
+    "tsp.txt",
+    "ugp.txt",
+    "upp.txt"
+  ]);
+  // Ни в одном файле нет служебных материалов: только вопросы с ответами.
+  for (const f of files) {
+    const text = fs.readFileSync(path.join(dir, f), "utf-8");
+    assert.ok(text.indexOf("# Вопрос 1.") === 0, f + ": файл не начинается с первого вопроса");
+    assert.ok(text.length > 100000, f + ": подозрительно маленький файл");
   }
   const fixtures = fs.readdirSync(path.join(ROOT, "test", "fixtures"));
   assert.ok(fixtures.length > 0, "нет тестовых файлов");

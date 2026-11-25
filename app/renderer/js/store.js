@@ -247,6 +247,39 @@
     return d;
   }
 
+  /**
+   * Добавляет готовую дисциплину из комплекта (файл уже внутри приложения).
+   * В библиотеку кладутся только заголовки и объёмы — сам текст ответа
+   * остаётся в файле комплекта и читается при открытии вопроса.
+   * payload: {code, name, questions, strategy, answeredCount, totalWords, totalChars}
+   */
+  function addBuiltin(payload) {
+    const existing = store.state.disciplines.find((d) => d.builtin === payload.code);
+    if (existing) return existing;
+    const d = addDiscipline({
+      name: payload.name,
+      fileName: payload.name + ".txt",
+      questions: payload.questions,
+      parsing: {
+        strategy: payload.strategy || "markdown-headings",
+        count: payload.questions.length,
+        answeredCount: payload.answeredCount || payload.questions.length,
+        totalWords: payload.totalWords || 0,
+        totalChars: payload.totalChars || 0
+      }
+    });
+    d.builtin = payload.code;
+    d.fileName = payload.name + ".txt";
+    save(true);
+    return d;
+  }
+
+  /** Сколько готовых дисциплин ещё не добавлено. */
+  function missingBuiltin(items) {
+    const have = new Set(store.state.disciplines.map((d) => d.builtin).filter(Boolean));
+    return (items || []).filter((it) => !have.has(it.code));
+  }
+
   function removeDiscipline(id) {
     const i = store.state.disciplines.findIndex((d) => d.id === id);
     if (i < 0) return false;
@@ -376,6 +409,8 @@
     getDiscipline,
     activeDisciplines,
     addDiscipline,
+    addBuiltin,
+    missingBuiltin,
     removeDiscipline,
     setRead,
     setReadMany,
