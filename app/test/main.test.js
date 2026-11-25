@@ -197,6 +197,72 @@ test("скачивание переживает обрыв связи и зав�
   })();
 });
 
+test("повторное «Обновить» не качает файл заново", async () => {
+  // Если установщик не запустился, человек нажмёт «Обновить» ещё раз.
+  // Скачивать те же 83 МБ второй раз незачем — файл уже проверен.
+  const https = require("https");
+  const { PassThrough } = require("stream");
+  const SIZE = 256 * 1024;
+  const payload = Buffer.alloc(SIZE, 4);
+  let downloads = 0;
+  const orig = https.get;
+  https.get = function (url, opts, cb) {
+    if (typeof opts === "function") {
+      cb = opts;
+      opts = {};
+    }
+    const res = new PassThrough();
+    res.statusCode = 200;
+    res.headers = { "content-length": String(SIZE) };
+    const manifest = /api\.github\.com/.test(String(url));
+    process.nextTick(() => {
+      cb(res);
+      if (manifest) {
+        res.complete = true;
+        return res.end(
+          Buffer.from(
+            JSON.stringify({
+              tag_name: "app-latest",
+              published_at: new Date().toISOString(),
+              body: "Сборка: 2026-11-24 / deadbee",
+              assets: [
+                {
+                  name: "x-x64.exe",
+                  size: SIZE,
+                  updated_at: new Date().toISOString(),
+                  browser_download_url: "https://example/x.exe"
+                }
+              ]
+            })
+          )
+        );
+      }
+      downloads++;
+      res.complete = true;
+      res.end(payload);
+    });
+    const req = new PassThrough();
+    req.destroy = () => {};
+    return req;
+  };
+
+  return (async () => {
+    const { createUpdater } = require("../src/main/update");
+    const u = createUpdater({ currentVersion: "1.0.0", currentBuild: "2026-11-23 / aaaaaaa" });
+    try {
+      await u.checkOnce(true);
+      const a = await u.downloadUpdate();
+      const b = await u.downloadUpdate();
+      assert.strictEqual(downloads, 1, "файл скачан повторно: " + downloads + " раз");
+      assert.strictEqual(b.bytes, a.bytes);
+      assert.ok(b.reused, "повторная загрузка не распознана как готовая");
+      fs.unlinkSync(u.state().downloadedPath);
+    } finally {
+      https.get = orig;
+    }
+  })();
+});
+
 test("недокачанный файл не выдаётся за готовый", async () => {
   // Если GitHub сообщает размер, а пришло меньше — установка не начинается.
   const https = require("https");

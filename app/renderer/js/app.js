@@ -1097,16 +1097,20 @@
       );
     }
 
+    // Файл уже скачан (например, в прошлый раз установщик не запустился) —
+    // не качаем 83 МБ заново, сразу ставим.
+    const readyToInstall = info.state === "ready" && !!info.downloadedPath;
+
     const row = h("div.row", { style: { marginTop: "10px" } });
     row.appendChild(
-      UI.button(info.state === "downloading" ? "Скачиваем…" : "Обновить", {
+      UI.button(readyToInstall ? "Установить" : info.state === "downloading" ? "Скачиваем…" : "Обновить", {
         kind: "primary",
         icon: "import",
         onClick: async () => {
           if (info.state === "downloading") return;
           root.Sound.play("tap");
           try {
-            await root.api.update.download();
+            if (!readyToInstall) await root.api.update.download();
             const res = await root.api.update.install();
             if (res && res.ok === false) {
               UI.toast({

@@ -351,6 +351,22 @@ function createUpdater(opts) {
     emit();
     const dir = path.join(os.tmpdir(), "cloud-exam-planner-update");
     const dest = path.join(dir, found.assetName || "setup.exe");
+
+    // Уже скачали раньше (например, установщик не запустился) — не тянем
+    // те же 83 МБ по новой, а просто проверяем размер и продолжаем.
+    try {
+      if (fs.existsSync(dest) && (!found.size || fs.statSync(dest).size === found.size)) {
+        downloadedPath = dest;
+        downloadedBytes = fs.statSync(dest).size;
+        state = "ready";
+        emit();
+        log("использую уже скачанный файл: " + downloadedBytes + " байт");
+        return { path: dest, bytes: downloadedBytes, sha256: "", reused: true };
+      }
+    } catch (e) {
+      /* проверка не удалась — качаем заново */
+    }
+
     let lastError = null;
     for (let attempt = 1; attempt <= 2; attempt++) {
       try {
