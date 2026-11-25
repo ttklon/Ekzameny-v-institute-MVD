@@ -71,9 +71,6 @@
     return cache;
   }
 
-  function discQuestions(d) {
-    return d.questions || [];
-  }
 
   /** Быстрый отпечаток объёма: сумма слов и знаков по вопросам. */
   function volumeStamp(d) {
@@ -93,262 +90,26 @@
     return w + "." + c + "." + aw + "." + ac;
   }
 
-  /** Минуты вопроса при первом прогоне — для показа объёма. */
-  function qMinutes(d, q, pass) {
-    return P.questionMinutes(d, q, pass || 1, settings());
-  }
 
-  function totalMinutesOf(d) {
-    return P.totalMinutes(d, settings());
-  }
 
   // =====================================================================
   //  ОБЗОР
   // =====================================================================
 
+  /**
+   * Обзор как самостоятельный экран больше не нужен: всё, что человеку важно
+   * увидеть утром, — это «что читать сегодня». Поэтому обзор ведёт туда же.
+   */
   function viewDashboard() {
-    const s = state();
-    const planData = plan();
-    const discs = root.Store.activeDisciplines();
-    const wrap = h("div.grid", { style: { gap: "18px" } });
-
-    if (!discs.length) {
-      wrap.appendChild(emptyState());
-      return wrap;
-    }
-
-    const progressPct = planData.totals.progress * 100;
-    const todayMin = planData.todayMinutes;
-
-    // --- Верхний блок: кольцо готовности + главные цифры -------------
-    const hero = h("div.card", { style: { display: "grid", gridTemplateColumns: "auto 1fr", gap: "30px", alignItems: "center" } });
-    const ringEl = UI.ring(progressPct, { size: 172, stroke: 13, label: "готовность" });
-
-    let todaySub;
-    if (todayMin > 0) {
-      todaySub =
-        "около " + UI.dur(todayMin) + " · " +
-        planData.todayTasks.length + " " + UI.plural(planData.todayTasks.length, "вопрос", "вопроса", "вопросов");
-    } else {
-      todaySub = "на сегодня работа не запланирована";
-    }
-
-    const metrics = h("div.grid.cols-3", { style: { gap: "16px" } }, [
-      h("div.metric", [
-        h("div.value", [h("span.num", "0"), h("small", "мин")]),
-        h("div.label", "сегодня"),
-        h("div.sub", todaySub)
-      ]),
-      h("div.metric", [
-        h("div.value", [h("span.num", "0"), h("small", "ч")]),
-        h("div.label", "осталось"),
-        h("div.sub", "по всем дисциплинам")
-      ]),
-      h("div.metric", [
-        h("div.value", [h("span.num", "0")]),
-        h("div.label", "дней до экзамена"),
-        h("div.sub", nearestExamText())
-      ])
-    ]);
-
-    hero.appendChild(ringEl);
-    hero.appendChild(h("div.grid", { style: { gap: "20px" } }, [
-      h("div", [
-        h("div.section-label", "ваша подготовка"),
-        h("h2", {
-          style: {
-            fontFamily: "var(--font-display)",
-            fontSize: "29px",
-            fontWeight: "600",
-            lineHeight: "1.14",
-            marginTop: "4px"
-          }
-        }, greeting()),
-        h("p.soft", { style: { marginTop: "6px", fontSize: "14px", maxWidth: "54ch" } }, heroLine(planData))
-      ]),
-      metrics
-    ]));
-    wrap.appendChild(hero);
-
-    // Анимация цифр после вставки.
-    requestAnimationFrame(() => {
-      const vals = metrics.querySelectorAll(".metric .value .num");
-      if (vals.length < 3) return;
-      UI.animateNumber(vals[0], Math.round(todayMin), { duration: 900 });
-      UI.animateNumber(vals[1], planData.totals.minutesLeft / 60, {
-        duration: 1000,
-        format: (v) => (v >= 10 ? String(Math.round(v)) : v.toFixed(1).replace(".", ","))
-      });
-      const daysLeft = daysToNearestExam();
-      UI.animateNumber(vals[2], daysLeft == null ? 0 : daysLeft, { duration: 900 });
-    });
-
-    // --- Сегодня -----------------------------------------------------
-    const planForToday = h("div.card");
-    planForToday.appendChild(
-      h("div.card-title", [
-        h("div", [
-          h("h2", "Сегодня"),
-          h("div.muted", { style: { fontSize: "12.5px", marginTop: "2px" } }, UI.dateLong(today()))
-        ]),
-        h("div.row", [
-          UI.button("Все дни", { size: "sm", kind: "ghost", icon: "calendar", onClick: () => root.App.go("calendar") })
-        ])
-      ])
-    );
-
-    if (!planData.todayTasks.length) {
-      planForToday.appendChild(
-        h("div", { style: { padding: "18px 0", textAlign: "center" } }, [
-          h("p.soft", "На сегодня по плану ничего нет."),
-          h("p.muted", { style: { fontSize: "12.5px", marginTop: "4px" } },
-            "Можно прочитать что-то заранее — план пересчитается сам.")
-        ])
-      );
-    } else {
-      const list = h("div.task-list");
-      for (const task of groupTodayTasks(planData.todayTasks)) {
-        list.appendChild(taskRow(task, today()));
-      }
-      planForToday.appendChild(list);
-      planForToday.appendChild(
-        h("div.row", { style: { marginTop: "14px" } }, [
-          UI.button("Отметить всё прочитанным", {
-            kind: "primary",
-            icon: "check",
-            onClick: () => markAllToday()
-          }),
-          h("div.spacer"),
-          h("span.muted", { style: { fontSize: "12.5px" } },
-            "Всего " + UI.dur(todayMin) + " — это " + shareText(todayMin))
-        ])
-      );
-    }
-    wrap.appendChild(planForToday);
-
-    // --- Дисциплины и ближайшие дни ---------------------------------
-    const two = h("div.grid.cols-2");
-
-    // Ближайшие дни
-    const upcoming = h("div.card");
-    upcoming.appendChild(h("div.card-title", [h("h2", "Ближайшие дни")]));
-    const upList = h("div", { style: { display: "grid", gap: "8px" } });
-    const nextDays = planData.upcoming.filter((d) => d.date >= today()).slice(0, 6);
-    if (!nextDays.length) {
-      upList.appendChild(h("p.muted", "Пока ничего не запланировано."));
-    }
-    for (const day of nextDays) {
-      const isToday = day.date === today();
-      upList.appendChild(
-        h("div.row", {
-          style: {
-            padding: "9px 12px",
-            borderRadius: "12px",
-            background: isToday ? "var(--accent-soft)" : "rgba(255,255,255,.42)",
-            cursor: "pointer"
-          },
-          onclick: () => root.App.go("today", { date: day.date })
-        }, [
-          h("div", { style: { minWidth: "64px" } }, [
-            h("div", { style: { fontWeight: "700", fontSize: "13px" } }, UI.dateShort(day.date)),
-            h("div.muted", { style: { fontSize: "11px" } }, UI.weekDayShort(day.date))
-          ]),
-          h("div.mini-bar", { style: { flex: "1 1 auto" } }, [
-            h("i", { style: { width: Math.min(100, (day.minutes / Math.max(30, planData.totals.maxDayMinutes || 60)) * 100) + "%" } })
-          ]),
-          h("div", { style: { fontSize: "12.5px", fontWeight: "700", minWidth: "62px", textAlign: "right" } }, UI.dur(day.minutes)),
-          h("div.muted", { style: { fontSize: "11.5px", minWidth: "58px", textAlign: "right" } },
-            day.items + " " + UI.plural(day.items, "вопрос", "вопроса", "вопросов"))
-        ])
-      );
-    }
-    upcoming.appendChild(upList);
-    two.appendChild(upcoming);
-
-    // Дисциплины — компактно
-    const discBox = h("div.card");
-    discBox.appendChild(
-      h("div.card-title", [
-        h("h2", "Дисциплины"),
-        UI.button("Все", { size: "sm", kind: "ghost", icon: "chevronRight", onClick: () => root.App.go("disciplines") })
-      ])
-    );
-    const dlist = h("div", { style: { display: "grid", gap: "9px" } });
-    for (const d of discs.slice(0, 5)) {
-      const pd = planData.perDisc[d.id];
-      const pct = pd && pd.stats ? pd.stats.progress * 100 : 0;
-      dlist.appendChild(
-        h("div", { style: { cursor: "pointer" }, onclick: () => root.App.go("discipline", { id: d.id }) }, [
-          h("div.row", { style: { justifyContent: "space-between", marginBottom: "5px" } }, [
-            h("span", { style: { fontWeight: "600", fontSize: "13.5px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" } },
-              d.name),
-            h("span.mono", { style: { fontSize: "12.5px", fontWeight: "700", color: "var(--ink-soft)" } },
-              Math.round(pct) + "%")
-          ]),
-          h("div.mini-bar", [h("i", { style: { width: pct + "%", background: "linear-gradient(90deg, " + accentOf(d) + ", " + accentOf(d) + "aa)" } })])
-        ])
-      );
-    }
-    discBox.appendChild(dlist);
-    two.appendChild(discBox);
-    wrap.appendChild(two);
-
-    // --- Предупреждения ---------------------------------------------
-    const warns = planData.warnings.filter((w) => w.type !== "peak" && w.type !== "too-few-days");
-    if (warns.length) {
-      const box = h("div.card");
-      box.appendChild(h("div.card-title", [h("h2", "Стоит поправить")]));
-      const list = h("div", { style: { display: "grid", gap: "9px" } });
-      for (const w of warns.slice(0, 4)) {
-        list.appendChild(
-          h("div.warn-box", [
-            UI.icon("warn"),
-            h("div", [
-              w.disciplineName ? h("b", { style: { display: "block", marginBottom: "2px" } }, w.disciplineName) : null,
-              h("span", w.text)
-            ])
-          ])
-        );
-      }
-      box.appendChild(list);
-      wrap.appendChild(box);
-    }
-
-    return wrap;
+    return viewToday();
   }
 
   function text(t) {
     return document.createTextNode(String(t));
   }
 
-  function greeting() {
-    const hr = new Date().getHours();
-    if (hr < 5) return "Тихой ночи";
-    if (hr < 12) return "Доброе утро";
-    if (hr < 18) return "Добрый день";
-    return "Добрый вечер";
-  }
 
-  function heroLine(planData) {
-    const pct = Math.round(planData.totals.progress * 100);
-    const left = planData.totals.minutesLeft;
-    if (!planData.totals.passesTotal) return "Добавьте файл с вопросами — и программа разложит работу по дням.";
-    if (pct >= 99) return "Всё прочитано. Осталось повторить перед экзаменом — отметьте повторные чтения, и план обновится.";
-    if (left <= 0) return "Материал распределён полностью. Отмечайте прочитанное — остальное программа пересчитает сама.";
-    return (
-      "Пройдено " + pct + "% работы. Осталось " + UI.durLong(left) +
-      " чтения — это примерно " + Math.round(left / 60) + " ч в тишине и покое."
-    );
-  }
 
-  function shareText(minutes) {
-    const s = settings();
-    const words = Math.round(minutes * (s.wordsPerMinute || 150));
-    return (
-      "около " + UI.num(words) + " " + UI.plural(words, "слово", "слова", "слов") +
-      " при " + (s.wordsPerMinute || 150) + " " + UI.plural(s.wordsPerMinute || 150, "слове", "словах", "словах") + " в минуту"
-    );
-  }
 
   /** Ближайшая дата экзамена среди дисциплин (или null). */
   function nearestExam() {
@@ -361,25 +122,7 @@
     return best;
   }
 
-  function nearestExamText() {
-    let best = null;
-    for (const d of root.Store.activeDisciplines()) {
-      if (!d.plan || !P.isValidDate(d.plan.examDate)) continue;
-      if (!best || d.plan.examDate < best.date) best = { date: d.plan.examDate, name: d.name };
-    }
-    if (!best) return "дата экзамена не задана";
-    return best.name + " · " + UI.dateShort(best.date);
-  }
 
-  function daysToNearestExam() {
-    let best = null;
-    for (const d of root.Store.activeDisciplines()) {
-      if (!d.plan || !P.isValidDate(d.plan.examDate)) continue;
-      if (!best || d.plan.examDate < best) best = d.plan.examDate;
-    }
-    if (!best) return null;
-    return P.daysBetween(today(), best);
-  }
 
   function accentOf(d) {
     return ACCENTS[(d.accent || 0) % ACCENTS.length];
@@ -585,7 +328,7 @@
         h("p", "Все вопросы с ответами идут вместе с программой — добавлять ничего не нужно. Откройте «Дисциплины» и нажмите на предмет. Свои файлы тоже можно добавить, если понадобится."),
         h("div.row", [
           UI.button("Добавить файл", { kind: "primary", icon: "plus", onClick: () => root.App.openImport() }),
-          UI.button("Как это работает", { kind: "ghost", icon: "info", onClick: () => root.App.go("tips") })
+          UI.button("Как это работает", { kind: "ghost", icon: "info", onClick: () => root.App.go("settings") })
         ])
       ])
     );
@@ -647,6 +390,12 @@
     currentDay = date;
     const planData = plan();
     const wrap = h("div.grid", { style: { gap: "16px" } });
+
+    // Библиотека пуста — вместо календаря показываем, с чего начать.
+    if (!root.Store.activeDisciplines().length) {
+      wrap.appendChild(emptyState());
+      return wrap;
+    }
 
     // Переключатель дня
     const head = h("div.card.tight");
@@ -741,6 +490,14 @@
       card.appendChild(
         h("div.row", { style: { marginTop: "6px", gap: "8px" } }, [
           UI.button("Отметить всё", { kind: "primary", icon: "check", onClick: () => markAllOn(date) }),
+          // «Взять вперёд»: взял больше сегодня — следующие дни станут легче.
+          // Отдельного места в плане для этого не нужно, поэтому просто
+          // открываем первый вопрос из ближайшего дня.
+          UI.button("Взять вперёд", {
+            kind: "ghost",
+            icon: "chevronRight",
+            onClick: () => takeAhead(date)
+          }),
           doneCount
             ? UI.button("Снять всё", { kind: "ghost", icon: "reset", onClick: () => clearAllOn(date) })
             : null,
@@ -758,6 +515,28 @@
     if (marked.length) wrap.appendChild(markedCard(date, marked));
 
     return wrap;
+  }
+
+  /**
+   * Чтение вперёд: берём первый вопрос из следующего дня, где есть работа.
+   *
+   * Обычная отметка «прочитано» на чужой день и есть «вперёд»: программа
+   * видит, что сегодня человек прочёл больше нормы, и снимает этот объём с
+   * будущих дней. Кнопка просто избавляет от поиска такого вопроса вручную.
+   */
+  function takeAhead(date) {
+    const planData = plan();
+    const days = Object.keys(planData.combined || {}).sort();
+    for (const day of days) {
+      if (day <= date) continue;
+      const items = planData.combined[day] || [];
+      if (!items.length) continue;
+      const t = items[0];
+      root.Sound.play("page");
+      root.App.openQuestion(t.discId, t.qIndex, day);
+      return;
+    }
+    UI.toast({ kind: "info", title: "Впереди пусто", text: "Всё, что было запланировано, уже разложено." });
   }
 
   /** Вопросы, отмеченные прочитанными за день: [{discId, qIndex, rows}]. */
@@ -963,9 +742,15 @@
   //  ОДНА ДИСЦИПЛИНА
   // =====================================================================
 
-  let discTab = "plan";
   let discFilter = "";
 
+  /**
+   * Экран дисциплины — одна страница вместо трёх вкладок.
+   *
+   * Сверху только то, что человек действительно меняет: сколько часов в день
+   * он готов читать и когда экзамен. Всё остальное — свёрнутые «детали»:
+   * их открывают один раз и больше не трогают.
+   */
   function viewDiscipline(params) {
     const id = (params && params.id) || state().ui.selectedDiscipline;
     const d = id ? root.Store.getDiscipline(id) : null;
@@ -983,9 +768,13 @@
     const planData = plan();
     const pd = planData.perDisc[d.id] || { stats: {}, days: {}, warnings: [] };
     const st = pd.stats || {};
+    const g = settings();
     const wrap = h("div.grid", { style: { gap: "16px" } });
+    // Пример времени в «Деталях»: объявляем заранее, рисуем только когда блок
+    // раскрыт. Пустая функция — чтобы вызов в конце не падал.
+    let paintPreview = () => {};
 
-    // --- Шапка --------------------------------------------------------
+    // ---------- Шапка: название и «сколько читать» ---------------------
     const head = h("div.card");
     head.appendChild(
       h("div.disc-head", [
@@ -993,19 +782,15 @@
           h("div.row", { style: { gap: "8px", marginBottom: "6px" } }, [
             h("span.tag", { style: { background: accentOf(d) + "22", color: accentOf(d) } },
               (d.parsing && strategyName(d.parsing.strategy)) || "файл"),
-            d.fileName ? h("span.muted", { style: { fontSize: "11.5px" } }, d.fileName) : null
+            h("span.muted", { style: { fontSize: "11.5px" } },
+              d.questions.length + " " + UI.plural(d.questions.length, "вопрос", "вопроса", "вопросов"))
           ]),
           h("h2", d.name),
-          h("div.disc-meta", { style: { marginTop: "8px" } }, [
-            h("span", [h("b", String(d.questions.length)), " " + UI.plural(d.questions.length, "вопрос", "вопроса", "вопросов")]),
-            h("span", [h("b", UI.num(d.questions.reduce((s2, q) => s2 + q.words, 0))), " слов"]),
-            h("span", [h("b", UI.num(d.questions.reduce((s2, q) => s2 + q.chars, 0))), " знаков"]),
-            h("span", [h("b", UI.dur(P.totalMinutes(d, settings()))), " всего на " + (d.plan.passes || 1) + " " + UI.plural(d.plan.passes || 1, "прогон", "прогона", "прогонов")]),
-            h("span", [h("b", UI.dur(st.minutesLeft || 0)), " осталось"])
-          ])
+          h("div.muted", { style: { fontSize: "12.5px", marginTop: "6px" } },
+            "Всего " + UI.durLong(P.totalMinutes(d, g)) + " чтения · осталось " + UI.dur(st.minutesLeft || 0))
         ]),
         h("div.row", { style: { gap: "8px" } }, [
-          UI.button("Читать сегодняшнее", {
+          UI.button("Читать", {
             kind: "primary",
             icon: "play",
             onClick: () => {
@@ -1020,23 +805,50 @@
       ])
     );
 
-    // Полоса прогресса + кольцо
-    const ringEl = UI.ring((st.progress || 0) * 100, { size: 108, stroke: 10, label: "пройдено" });
+    // Главная настройка: дата экзамена и число часов в день.
     head.appendChild(
-      h("div", { style: { display: "grid", gridTemplateColumns: "auto 1fr", gap: "22px", alignItems: "center", marginTop: "18px" } }, [
-        ringEl,
-        h("div.grid.cols-4", { style: { gap: "12px" } }, [
-          metricTile("прочитано", Math.round((st.passesDone / Math.max(1, st.passesTotal)) * 100) + "%",
-            (st.passesDone || 0) + " из " + (st.passesTotal || 0) + " " + UI.plural(st.passesTotal || 0, "прочтения", "прочтений", "прочтений")),
-          metricTile("в день", UI.dur(st.perDayMinutes || 0), daysWord(st.daysAvailable || 0)),
-          metricTile("пик", UI.dur(st.peakMinutes || 0), st.peakDay ? UI.dateShort(st.peakDay) : "—"),
-          metricTile("финиш", st.finishDate ? UI.dateShort(st.finishDate) : "—",
-            st.finishDate ? UI.relativeDay(st.finishDate) : "нет плана")
+      h("div.dates-row", { style: { marginTop: "16px" } }, [
+        h("label.date-box" + (P.isValidDate(d.plan.examDate) && P.daysBetween(today(), d.plan.examDate) < 0 ? ".bad" : ""), [
+          h("span.date-label", "Экзамен"),
+          h("input.input", {
+            type: "date",
+            value: d.plan.examDate,
+            onchange: (e) => updatePlan(d, { examDate: e.target.value })
+          }),
+          h("span.date-hint", examHint(d))
         ])
       ])
     );
 
-    // Предупреждения дисциплины
+    // «Сколько часов в день» — одно число вместо режимов и весов.
+    const comfortCard = h("div", { style: { marginTop: "14px" } });
+    const comfort = Number(d.plan.comfortMinutes) || 0;
+    const hoursNow = comfort > 0 ? comfort / 60 : 0;
+    const chips = h("div.chips");
+    [0.5, 1, 1.5, 2, 3, 4].forEach((hr) => {
+      chips.appendChild(
+        h("button.chip" + (Math.abs(hoursNow - hr) < 0.01 ? ".on" : ""), {
+          onclick: () => {
+            updatePlan(d, { comfortMinutes: Math.abs(hoursNow - hr) < 0.01 ? 0 : Math.round(hr * 60) });
+            root.Sound.play("tap");
+          }
+        }, UI.dur(Math.round(hr * 60)))
+      );
+    });
+    comfortCard.appendChild(
+      h("div.field-label", { style: { marginBottom: "6px" } }, "Сколько часов в день вы готовы читать")
+    );
+    comfortCard.appendChild(chips);
+    comfortCard.appendChild(
+      h("div.muted", { style: { fontSize: "12.5px", lineHeight: "1.5", marginTop: "8px" } },
+        comfort > 0
+          ? "План построен по " + UI.dur(comfort) + " в обычный день — сейчас выходит около " +
+            UI.dur(st.perDayMinutes || 0) + ". Если прочитаете больше, следующие дни станут легче."
+          : "Пока не выбрано: считаю по " + UI.dur(st.perDayMinutes || 0) + " в день (ровно, чтобы успеть). " +
+            "Поставьте своё время — план подстроится.")
+    );
+    head.appendChild(comfortCard);
+
     if (pd.warnings && pd.warnings.length) {
       const w = h("div", { style: { display: "grid", gap: "8px", marginTop: "14px" } });
       for (const warn of pd.warnings) {
@@ -1049,44 +861,228 @@
     }
     wrap.appendChild(head);
 
-    // --- Вкладки ------------------------------------------------------
-    const tabs = [
-      ["plan", "План"],
-      ["questions", "Вопросы"],
-      ["settings", "Параметры"]
-    ];
-    const tabsEl = h("div.tabs");
-    for (const [key, label] of tabs) {
-      tabsEl.appendChild(
-        h("button.tab" + (discTab === key ? ".on" : ""), {
-          onclick: () => {
-            discTab = key;
-            root.Sound.play("page");
+    // ---------- Ближайшие дни: что и когда читать ----------------------
+    const days = Object.keys(pd.days || {}).sort();
+    const future = days.filter((day) => day >= today() && (pd.days[day] || []).length).slice(0, 5);
+    if (future.length) {
+      const card = h("div.card");
+      card.appendChild(h("div.card-title", [h("h2", "Ближайшие дни")]));
+      const rows = h("div", { style: { display: "grid", gap: "7px" } });
+      for (const day of future) {
+        const items = pd.days[day];
+        const minutes = items.reduce((a, it) => a + it.minutes, 0);
+        rows.appendChild(
+          h("div.row", {
+            style: { padding: "9px 12px", borderRadius: "12px", background: "rgba(255,255,255,.42)", cursor: "pointer" },
+            onclick: () => root.App.go("today", { date: day })
+          }, [
+            h("div", { style: { minWidth: "100px" } }, [
+              h("div", { style: { fontWeight: "700", fontSize: "13px" } }, UI.dateShort(day)),
+              h("div.muted", { style: { fontSize: "11px" } }, UI.weekDayShort(day))
+            ]),
+            h("div", { style: { flex: "1 1 auto", fontSize: "12.5px" } },
+              items.slice(0, 6).map((it) => "№" + (d.questions[it.qIndex] ? d.questions[it.qIndex].num : it.qIndex + 1)).join(" · ") +
+              (items.length > 6 ? " +" + (items.length - 6) : "")),
+            h("div", { style: { fontWeight: "700", fontSize: "13px", minWidth: "64px", textAlign: "right" } },
+              UI.dur(minutes))
+          ])
+        );
+      }
+      card.appendChild(rows);
+      wrap.appendChild(card);
+    }
+
+    // ---------- Вопросы -------------------------------------------------
+    const qCard = h("div.card");
+    const search = h("input.input", {
+      type: "search",
+      placeholder: "Поиск по вопросам…",
+      value: discFilter,
+      style: { maxWidth: "300px" },
+      oninput: (e) => {
+        discFilter = e.target.value;
+        paintQuestions();
+      }
+    });
+    qCard.appendChild(
+      h("div.card-title", [
+        h("div", [
+          h("h2", "Вопросы"),
+          h("div.muted", { style: { fontSize: "12px", marginTop: "2px" } },
+            "Щёлкните, чтобы прочитать ответ и отметить прочтение")
+        ]),
+        search
+      ])
+    );
+
+    const table = h("div.q-table");
+    function paintQuestions() {
+      UI.clear(table);
+      const needle = discFilter.trim().toLowerCase();
+      let shown = 0;
+      d.questions.forEach((question, idx) => {
+        if (needle && question.title.toLowerCase().indexOf(needle) === -1 &&
+            String(question.num).indexOf(needle) === -1) return;
+        shown++;
+        const stq = P.questionState(d, idx, g);
+        const complete = stq.done >= stq.passes;
+        table.appendChild(
+          h("div.q-row" + (complete ? ".complete" : ""), {
+            onclick: () => root.App.openQuestion(d.id, idx, today())
+          }, [
+            h("div.q-num", String(question.num)),
+            h("div.q-name", { title: question.title }, question.title),
+            h("div.q-vol", UI.dur(P.questionTotalMinutes(d, question, g))),
+            h("div.pips", Array.from({ length: stq.passes }, (_, i) =>
+              h("i.pip" + (i < stq.done ? ".on" : ""), {
+                title: "прочтение " + (i + 1) + (stq.reads[i] ? ": " + UI.dateShort(stq.reads[i]) : "")
+              })
+            ))
+          ])
+        );
+      });
+      if (!shown) table.appendChild(h("p.muted", { style: { padding: "16px" } }, "Ничего не найдено."));
+    }
+    paintQuestions();
+    qCard.appendChild(table);
+    wrap.appendChild(qCard);
+
+    // ---------- Детали: всё, что нужно редко ---------------------------
+    const advOpen = d.advOpen === true;
+    const adv = h("div.card");
+    adv.appendChild(
+      h("button.adv-toggle", {
+        onclick: () => {
+          d.advOpen = !advOpen;
+          root.Store.save();
+          root.App.refresh();
+        }
+      }, [
+        UI.icon(advOpen ? "chevronDown" : "chevronRight"),
+        h("span", "Детали"),
+        h("span.muted", { style: { fontSize: "12px", fontWeight: "400" } },
+          advOpen ? "" : "скорость, прогоны, выходные, вариант ответа")
+      ])
+    );
+
+    if (advOpen) {
+      const grid = h("div.plan-grid");
+
+      // Число прогонов
+      grid.appendChild(
+        planField("Прочитать полностью", UI.stepper(d.plan.passes, {
+          min: 1, max: 12,
+          onChange: (v) => updatePlan(d, { passes: v })
+        }), "сколько раз пройти все вопросы до экзамена. 3 — разумный минимум")
+      );
+
+      // Своя скорость чтения
+      const own = d.reading || null;
+      const wpm = own && own.wordsPerMinute ? own.wordsPerMinute : g.wordsPerMinute || 150;
+      const slider = h("input.speed-slider", {
+        type: "range", min: "60", max: "400", step: "5", value: String(wpm),
+        oninput: (e) => {
+          d.reading = Object.assign({}, d.reading || {}, { wordsPerMinute: Number(e.target.value) });
+          root.Store.save();
+          const out = adv.querySelector(".speed-value");
+          if (out) out.textContent = e.target.value + " слов/мин";
+          paintPreview();
+        },
+        onchange: () => {
+          root.Sound.play("tap");
+          root.App.refresh();
+        }
+      });
+      let avgWords = 0;
+      let answered = 0;
+      for (const q of d.questions) {
+        if (q.aWords > 0) { avgWords += q.words; answered++; }
+      }
+      avgWords = answered ? Math.round(avgWords / answered) : 600;
+      const preview = h("div.read-example");
+      paintPreview = function () {
+        UI.clear(preview);
+        const rate = (d.reading && d.reading.wordsPerMinute) || g.wordsPerMinute || 150;
+        preview.appendChild(h("div", [
+          h("div.section-label", "средний ответ — " + UI.num(avgWords) + " слов"),
+          h("div.read-big", [UI.dur(avgWords / rate), h("span.read-unit", " на один вопрос")])
+        ]));
+        preview.appendChild(h("div", [
+          h("div.section-label", "вся дисциплина, " + d.plan.passes + " " +
+            UI.plural(d.plan.passes, "прогон", "прогона", "прогонов")),
+          h("div.read-big", UI.durLong(P.totalMinutes(d, g)))
+        ]));
+      };
+      grid.appendChild(planField("Скорость чтения", h("div", [
+        h("div.speed-line", [h("span.speed-value", wpm + " слов/мин"), slider]),
+        own ? UI.button("Как у всех", {
+          kind: "ghost", size: "sm", icon: "reset",
+          onClick: () => {
+            delete d.reading;
+            root.Store.save();
             root.App.refresh();
           }
-        }, label)
+        }) : null,
+        preview
+      ]), "у разных предметов разный язык; общая — в «Настройках»"));
+
+      grid.appendChild(dayLoadField(d));
+
+      // Вариант ответа: подробный или краткий
+      if (d.hasShortAnswers) {
+        const seg = h("div.segmented");
+        [["auto", "сначала подробно, потом кратко"], ["full", "всегда подробно"], ["short", "всегда кратко"]]
+          .forEach(([key, label]) => {
+            seg.appendChild(h("button" + ((d.answerVariant || "auto") === key ? ".on" : ""), {
+              onclick: () => {
+                if ((d.answerVariant || "auto") === key) return;
+                d.answerVariant = key;
+                root.Store.save();
+                root.Sound.play("tap");
+                root.App.refresh();
+              }
+            }, label));
+          });
+        grid.appendChild(planField("Какой ответ читать", seg,
+          "по этой дисциплине ответы есть в двух вариантах — время считается по тому, который читаете"));
+      }
+
+      const estimatedCount = d.questions.filter((q) => q.estimated).length;
+      if (estimatedCount > 0) {
+        grid.appendChild(planField("Объём ответа (оценка)",
+          UI.stepper(d.assumeAnswerWords || 250, {
+            min: 30, max: 1500, step: 10,
+            onChange: (v) => { d.assumeAnswerWords = v; reestimateAnswers(d, v); }
+          }),
+          "для " + estimatedCount + " " + UI.plural(estimatedCount, "вопроса", "вопросов", "вопросов") + " без ответа"));
+      }
+
+      adv.appendChild(grid);
+
+      // Опасные кнопки — в самом низу, чтобы не бросались в глаза.
+      adv.appendChild(
+        h("div.row", { style: { marginTop: "16px", gap: "8px" } }, [
+          UI.button("Сбросить отметки", {
+            kind: "ghost",
+            onClick: () => {
+              if (!confirm("Снять все отметки о прочтении по дисциплине «" + d.name + "»? Настройки плана сохранятся.")) return;
+              d.reads = {};
+              root.Store.save();
+              root.Sound.play("uncheck");
+              root.App.refresh();
+            }
+          }),
+          UI.button("Удалить дисциплину", { kind: "ghost", onClick: () => confirmDelete(d) })
+        ])
       );
     }
-    wrap.appendChild(tabsEl);
+    wrap.appendChild(adv);
 
-    if (discTab === "plan") wrap.appendChild(discPlanTab(d, pd));
-    else if (discTab === "questions") wrap.appendChild(discQuestionsTab(d, pd));
-    else wrap.appendChild(discSettingsTab(d, pd));
-
+    requestAnimationFrame(() => paintPreview());
     return wrap;
   }
 
-  function metricTile(label, value, sub) {
-    return h("div.stat-tile", [
-      h("div.section-label", label),
-      h("div", { style: { fontFamily: "var(--font-display)", fontSize: "24px", fontWeight: "600", lineHeight: "1.15", marginTop: "3px" } }, value),
-      h("div.muted", { style: { fontSize: "11.5px" } }, sub)
-    ]);
-  }
 
-  function daysWord(n) {
-    return n + " " + UI.plural(n, "день", "дня", "дней") + " до экзамена";
-  }
 
   function strategyName(s) {
     const map = {
@@ -1104,156 +1100,6 @@
     return map[s] || "распознано";
   }
 
-  /** Вкладка «План»: что читать в ближайшие дни + нагрузка. */
-  function discPlanTab(d, pd) {
-    const box = h("div.grid", { style: { gap: "16px" } });
-
-    // Гистограмма нагрузки
-    const loadCard = h("div.card");
-    loadCard.appendChild(
-      h("div.card-title", [
-        h("h2", "Нагрузка по дням"),
-        h("div.row", [
-          h("span.tag.new", "новое"),
-          h("span.tag.repeat", "повтор"),
-          UI.button("Весь календарь", {
-            size: "sm",
-            kind: "ghost",
-            icon: "calendar",
-            onClick: () => root.App.go("calendar")
-          })
-        ])
-      ])
-    );
-    const days = Object.keys(pd.days || {}).sort();
-    const vals = days.map((day) => (pd.days[day] || []).reduce((s2, it) => s2 + it.minutes, 0));
-    if (vals.length) {
-      const avg = vals.reduce((a, b) => a + b, 0) / vals.length;
-      loadCard.appendChild(
-        UI.sparkline(vals, {
-          labels: days.map((x) => UI.dateShort(x)),
-          todayIndex: days.indexOf(today()),
-          over: avg * 1.6,
-          title: "Средняя нагрузка " + UI.dur(avg) + " в день"
-        })
-      );
-      loadCard.appendChild(
-        h("div.row", { style: { marginTop: "10px", justifyContent: "space-between" } }, [
-          h("span.muted", { style: { fontSize: "11.5px" } }, UI.dateShort(days[0])),
-          h("span.muted", { style: { fontSize: "11.5px" } }, "в среднем " + UI.dur(avg)),
-          h("span.muted", { style: { fontSize: "11.5px" } }, UI.dateShort(days[days.length - 1]))
-        ])
-      );
-    } else {
-      loadCard.appendChild(h("p.muted", "План не построен — проверьте даты и число прогонов."));
-    }
-    box.appendChild(loadCard);
-
-    // Ближайшие дни этой дисциплины
-    const upcoming = h("div.card");
-    upcoming.appendChild(h("div.card-title", [h("h2", "Ближайшие дни")]));
-    const rows = h("div", { style: { display: "grid", gap: "8px" } });
-    const future = days.filter((day) => day >= today() && (pd.days[day] || []).length).slice(0, 7);
-    if (!future.length) rows.appendChild(h("p.muted", "Работа не запланирована."));
-    for (const day of future) {
-      const items = pd.days[day];
-      const minutes = items.reduce((s2, it) => s2 + it.minutes, 0);
-      const news = items.filter((i) => i.kind === "new").length;
-      rows.appendChild(
-        h("div.row", {
-          style: { padding: "10px 12px", borderRadius: "12px", background: "rgba(255,255,255,.4)", cursor: "pointer" },
-          onclick: () => root.App.go("today", { date: day })
-        }, [
-          h("div", { style: { minWidth: "96px" } }, [
-            h("div", { style: { fontWeight: "700", fontSize: "13px" } }, UI.dateShort(day)),
-            h("div.muted", { style: { fontSize: "11px" } }, UI.weekDayShort(day) + " · " + UI.relativeDay(day))
-          ]),
-          h("div", { style: { display: "flex", gap: "5px", flexWrap: "wrap", flex: "1 1 auto" } },
-            items.slice(0, 8).map((it) =>
-              h("span.tag" + (it.kind === "new" ? ".new" : ".repeat"), "№" + (d.questions[it.qIndex] ? d.questions[it.qIndex].num : it.qIndex + 1))
-            ).concat(items.length > 8 ? [h("span.tag", "+" + (items.length - 8))] : [])
-          ),
-          h("div", { style: { textAlign: "right", minWidth: "78px" } }, [
-            h("div", { style: { fontWeight: "700", fontSize: "13px" } }, UI.dur(minutes)),
-            h("div.muted", { style: { fontSize: "11px" } }, news ? news + " новых" : "повторение")
-          ])
-        ])
-      );
-    }
-    upcoming.appendChild(rows);
-    box.appendChild(upcoming);
-
-    return box;
-  }
-
-  /** Вкладка «Вопросы»: таблица с прогрессом, поиском и открытием ответа. */
-  function discQuestionsTab(d, pd) {
-    const box = h("div.card");
-
-    const search = h("input.input", {
-      type: "search",
-      placeholder: "Поиск по вопросам…",
-      value: discFilter,
-      style: { maxWidth: "320px" },
-      oninput: (e) => {
-        discFilter = e.target.value;
-        renderRows();
-      }
-    });
-
-    box.appendChild(
-      h("div.card-title", [
-        h("h2", "Вопросы"),
-        h("div.row", [search, UI.button("Отметки за сегодня", {
-          size: "sm",
-          kind: "ghost",
-          icon: "check",
-          onClick: () => {
-            root.App.go("today");
-          }
-        })])
-      ])
-    );
-
-    const table = h("div.q-table");
-    const settingsNow = settings();
-
-    function renderRows() {
-      UI.clear(table);
-      const q = discFilter.trim().toLowerCase();
-      let shown = 0;
-      d.questions.forEach((question, idx) => {
-        if (q && question.title.toLowerCase().indexOf(q) === -1 &&
-            String(question.num).indexOf(q) === -1) return;
-        shown++;
-        const stq = P.questionState(d, idx, settingsNow);
-        const complete = stq.done >= stq.passes;
-        const row = h("div.q-row" + (complete ? ".complete" : ""), {
-          onclick: () => root.App.openQuestion(d.id, idx, today())
-        }, [
-          h("div.q-num", String(question.num)),
-          h("div.q-name", { title: question.title }, question.title),
-          h("div.q-vol", UI.dur(P.questionTotalMinutes(d, question, settingsNow))),
-          h("div.pips", Array.from({ length: stq.passes }, (_, i) =>
-            h("i.pip" + (i < stq.done ? ".on" : ""), { title: "прочтение " + (i + 1) + (stq.reads[i] ? ": " + UI.dateShort(stq.reads[i]) : "") })
-          ))
-        ]);
-        table.appendChild(row);
-      });
-      if (!shown) table.appendChild(h("p.muted", { style: { padding: "16px" } }, "Ничего не найдено."));
-    }
-    renderRows();
-    box.appendChild(table);
-    box.appendChild(
-      h("div.row", { style: { marginTop: "10px" } }, [
-        h("span.muted", { style: { fontSize: "11.5px" } }, "Щёлкните по вопросу, чтобы прочитать ответ и отметить прочтение.")
-      ])
-    );
-    return box;
-  }
-
-  /** Вкладка «Расписание»: календарь этой дисциплины. */
-  /** Вкладка «Параметры»: сроки, прогоны, скорость — по порядку вопросов. */
   /**
    * Нагрузка по дням недели. Три уровня вместо ползунков: понять за секунду,
    * изменить в один клик. «В воскресенье больше» — это один клик по «Больше».
@@ -1376,387 +1222,6 @@
     return planField("Нагрузка по дням недели", wrap, hint);
   }
 
-  function discSettingsTab(d, pd) {
-    const box = h("div.grid", { style: { gap: "16px" } });
-    const g = settings();
-
-    // =================================================================
-    //  1. Сроки — то, что нужно в первую очередь
-    // =================================================================
-    const dates = h("div.card");
-    dates.appendChild(
-      h("div.card-title", [
-        h("div", [
-          h("h2", "Сроки"),
-          h("div.muted", { style: { fontSize: "12.5px", marginTop: "3px" } },
-            "Экзамен — это главное: от него считается вся нагрузка.")
-        ])
-      ])
-    );
-
-    const examDays = P.isValidDate(d.plan.examDate) ? P.daysBetween(today(), d.plan.examDate) : null;
-    dates.appendChild(
-      h("div.dates-row", [
-        h("label.date-box" + (examDays != null && examDays < 0 ? ".bad" : ""), [
-          h("span.date-label", "Экзамен или зачёт"),
-          h("input.input", {
-            type: "date",
-            value: d.plan.examDate,
-            onchange: (e) => updatePlan(d, { examDate: e.target.value })
-          }),
-          h("span.date-hint", examHint(d))
-        ]),
-        h("label.date-box", [
-          h("span.date-label", "Начать не раньше"),
-          h("input.input", {
-            type: "date",
-            value: d.plan.startDate,
-            onchange: (e) => updatePlan(d, { startDate: e.target.value })
-          }),
-          h("span.date-hint", "можно поставить будущую дату")
-        ])
-      ])
-    );
-
-    dates.appendChild(
-      h("div.settings-row", { style: { marginTop: "6px" } }, [
-        h("div", [
-          h("div.title", "Прочитать полностью"),
-          h("div.desc", "Сколько раз пройти все вопросы до экзамена. 3 — разумный минимум: первый раз понять, второй закрепить, третий проверить себя.")
-        ]),
-        h("div.row", [
-          UI.stepper(d.plan.passes, { min: 1, max: 12, onChange: (v) => updatePlan(d, { passes: v }) }),
-          h("span.muted", { style: { fontSize: "12.5px" } }, "раз")
-        ])
-      ])
-    );
-    box.appendChild(dates);
-
-    // =================================================================
-    //  2. Скорость чтения — своя для этой дисциплины
-    // =================================================================
-    const speed = h("div.card");
-    const own = d.reading || null;
-    speed.appendChild(
-      h("div.card-title", [
-        h("div", [
-          h("h2", "Скорость чтения"),
-          h("div.muted", { style: { fontSize: "12.5px", marginTop: "3px", maxWidth: "62ch" } },
-            "У разных предметов разный язык: устав читается медленнее конспекта. Здесь можно задать свою скорость — общая останется для остальных.")
-        ]),
-        own ? h("span.tag.ok", "своя") : h("span.tag", "как везде")
-      ])
-    );
-
-    const wpm = own && own.wordsPerMinute ? own.wordsPerMinute : g.wordsPerMinute || 150;
-    let avgWords = 0;
-    let answered = 0;
-    for (const q of d.questions) {
-      if (q.aWords > 0) {
-        avgWords += q.words;
-        answered++;
-      }
-    }
-    avgWords = answered ? Math.round(avgWords / answered) : 600;
-
-    const preview = h("div.read-example");
-    function paintPreview() {
-      UI.clear(preview);
-      const rate = d.reading && d.reading.wordsPerMinute ? d.reading.wordsPerMinute : (settings().wordsPerMinute || 150);
-      preview.appendChild(
-        h("div", [
-          h("div.section-label", "средний ответ — " + UI.num(avgWords) + " слов"),
-          h("div.read-big", [UI.dur(avgWords / rate), h("span.read-unit", " на один вопрос")])
-        ])
-      );
-      preview.appendChild(
-        h("div", [
-          h("div.section-label", "вся дисциплина, " + d.plan.passes + " " + UI.plural(d.plan.passes, "прогон", "прогона", "прогонов")),
-          h("div.read-big", UI.durLong(P.totalMinutes(d, settings())))
-        ])
-      );
-      const out = speed.querySelector(".speed-value");
-      if (out) out.textContent = rate + " слов/мин";
-    }
-
-    const slider = h("input.speed-slider", {
-      type: "range",
-      min: "60",
-      max: "400",
-      step: "5",
-      value: String(wpm),
-      oninput: (e) => {
-        const v = Number(e.target.value);
-        d.reading = Object.assign({}, d.reading || {}, { wordsPerMinute: v });
-        root.Store.save();
-        paintPreview();
-      },
-      onchange: () => {
-        root.Sound.play("tap");
-        root.App.refresh();
-      }
-    });
-
-    speed.appendChild(h("div.speed-line", [h("span.speed-value", wpm + " слов/мин"), slider]));
-    speed.appendChild(preview);
-
-    const speedActions = h("div.row", { style: { marginTop: "4px" } });
-    if (own) {
-      speedActions.appendChild(
-        UI.button("Как у всех", {
-          kind: "ghost",
-          size: "sm",
-          icon: "reset",
-          onClick: () => {
-            delete d.reading;
-            root.Store.save();
-            root.Sound.play("tap");
-            root.App.refresh();
-          }
-        })
-      );
-    }
-    speedActions.appendChild(
-      h("span.muted", { style: { fontSize: "12px" } },
-        "Общая скорость сейчас — " + (g.wordsPerMinute || 150) + " слов/мин. Меняется в «Настройках».")
-    );
-    speed.appendChild(speedActions);
-    box.appendChild(speed);
-
-    // =================================================================
-    //  2-б. Сколько я готов читать в обычный день
-    // =================================================================
-    // Это главная настройка «под себя»: раньше потолок был жёсткий (150 минут
-    // в день считались перегрузкой), и человек, который может больше, не мог
-    // этого сказать. Теперь он задаёт своё время, а вес дня (×2, ×3) умножает
-    // именно его.
-    const comfortCard = h("div.card");
-    comfortCard.appendChild(h("div.card-title", [h("h2", "Сколько вы готовы читать")]));
-
-    const comfort = Number(d.plan.comfortMinutes) || 0;
-    // Быстрые кнопки — чтобы не считать минуты в уме, а ниже — точное поле
-    // для любого значения: ни 5 часов, ни 7 не должны упираться в потолок.
-    const comfortRow = h("div.chips");
-    [60, 90, 120, 180, 240, 360].forEach((m) => {
-      comfortRow.appendChild(
-        h("button.chip" + (comfort === m ? ".on" : ""), {
-          onclick: () => {
-            updatePlan(d, { comfortMinutes: comfort === m ? 0 : m });
-            root.Sound.play("tap");
-          }
-        }, UI.dur(m))
-      );
-    });
-    comfortCard.appendChild(comfortRow);
-    comfortCard.appendChild(
-      h("div", { style: { marginTop: "12px" } },
-        planField("Своё значение", UI.stepper(comfort, {
-            min: 0,
-            max: 960,
-            step: 15,
-            onChange: (v) => updatePlan(d, { comfortMinutes: v })
-          }),
-          "0 — не задавать: программа посчитает потолок сама. Можно поставить и 5 и 8 часов — предела нет.")
-      )
-    );
-
-    const perDayNow = pd.stats && pd.stats.perDayMinutes ? pd.stats.perDayMinutes : 0;
-    comfortCard.appendChild(
-      h("div.muted", { style: { fontSize: "12.5px", lineHeight: "1.5", marginTop: "10px" } },
-        comfort > 0
-          ? "В обычный день — " + UI.dur(comfort) + ". Дни с ×2 и ×3 получат вдвое и втрое больше (" +
-            UI.dur(comfort * 2) + " и " + UI.dur(comfort * 3) + "). Сейчас по плану выходит около " +
-            UI.dur(perDayNow) + " в день."
-          : "Пока не задано — программа считает потолок по объёму работы (около " +
-            UI.dur(perDayNow) + " в день). Выберите своё время, чтобы план подстроился.")
-    );
-    box.appendChild(comfortCard);
-
-    // =================================================================
-    //  3. Как распределять — под свёрнутым блоком
-    // =================================================================
-    const advOpen = d.advOpen === true;
-    const adv = h("div.card");
-    adv.appendChild(
-      h("button.adv-toggle", {
-        onclick: () => {
-          d.advOpen = !advOpen;
-          root.Store.save();
-          root.App.refresh();
-        }
-      }, [
-        UI.icon(advOpen ? "chevronDown" : "chevronRight"),
-        h("span", "Как именно распределять"),
-        h("span.muted", { style: { fontSize: "12px", fontWeight: "400" } },
-          advOpen ? "" : "выходные, порядок, режим")
-      ])
-    );
-
-    if (advOpen) {
-      const grid = h("div.plan-grid");
-
-      const modeSeg = h("div.segmented");
-      [["even", "равномерно"], ["questions", "по вопросам"], ["minutes", "по минутам"]].forEach(([key, label]) => {
-        modeSeg.appendChild(
-          h("button" + (d.plan.mode === key ? ".on" : ""), {
-            onclick: () => updatePlan(d, { mode: key })
-          }, label)
-        );
-      });
-      grid.appendChild(planField("Как распределять", modeSeg,
-        d.plan.mode === "even"
-          ? "весь остаток делится на оставшиеся дни — нагрузка ровная"
-          : d.plan.mode === "questions"
-            ? "фиксированное число новых вопросов в день"
-            : "фиксированное число минут в день"));
-
-      if (d.plan.mode === "questions") {
-        grid.appendChild(
-          planField("Вопросов в день", UI.stepper(d.plan.perDayQuestions, {
-            min: 1,
-            max: 200,
-            onChange: (v) => updatePlan(d, { perDayQuestions: v })
-          }), "новых вопросов, повторения добавляются сами")
-        );
-      }
-      if (d.plan.mode === "minutes") {
-        grid.appendChild(
-          planField("Минут в день", UI.stepper(d.plan.perDayMinutes, {
-            min: 5,
-            max: 960,
-            step: 5,
-            onChange: (v) => updatePlan(d, { perDayMinutes: v })
-          }), "включая повторения")
-        );
-      }
-
-      grid.appendChild(dayLoadField(d));
-
-      const orderSeg = h("div.segmented");
-      [["inOrder", "по порядку"], ["mixed", "вперемешку"]].forEach(([key, label]) => {
-        orderSeg.appendChild(
-          h("button" + (d.plan.order === key ? ".on" : ""), {
-            onclick: () => updatePlan(d, { order: key })
-          }, label)
-        );
-      });
-      grid.appendChild(planField("Порядок вопросов", orderSeg,
-        d.plan.order === "mixed"
-          ? "вопросы перемешаны — помогает не привязываться к порядку файла"
-          : "как в файле — проще находить ответ"));
-
-      const estimatedCount = d.questions.filter((q) => q.estimated).length;
-      if (estimatedCount > 0) {
-        grid.appendChild(
-          planField(
-            "Объём ответа (оценка)",
-            UI.stepper(d.assumeAnswerWords || 250, {
-              min: 30,
-              max: 1500,
-              step: 10,
-              onChange: (v) => {
-                d.assumeAnswerWords = v;
-                reestimateAnswers(d, v);
-              }
-            }),
-            "для " + estimatedCount + " " + UI.plural(estimatedCount, "вопроса", "вопросов", "вопросов") +
-              " без ответа — столько слов считается на каждый"
-          )
-        );
-      }
-
-      adv.appendChild(grid);
-    }
-    box.appendChild(adv);
-
-    // =================================================================
-    //  3-б. Какой вариант ответа читать
-    // =================================================================
-    // По административной деятельности ответов два: подробный и краткий.
-    // Первое чтение идёт по подробному, повторения — по краткому, и время
-    // считается по тому, который человек реально читает.
-    if (d.hasShortAnswers) {
-      const card = h("div.card");
-      card.appendChild(
-        h("div.card-title", [
-          h("div", [
-            h("h2", "Какой ответ читать"),
-            h("div.muted", { style: { fontSize: "12.5px", marginTop: "3px" } },
-              "У этой дисциплины ответы в двух вариантах: подробные и краткие.")
-          ])
-        ])
-      );
-      const seg = h("div.segmented");
-      [
-        ["auto", "сначала подробно, потом кратко"],
-        ["full", "всегда подробно"],
-        ["short", "всегда кратко"]
-      ].forEach(([key, label]) => {
-        seg.appendChild(
-          h("button" + ((d.answerVariant || "auto") === key ? ".on" : ""), {
-            onclick: () => {
-              if ((d.answerVariant || "auto") === key) return;
-              d.answerVariant = key;
-              root.Store.save();
-              root.Sound.play("tap");
-              root.App.refresh();
-            }
-          }, label)
-        );
-      });
-      card.appendChild(planField("Вариант ответа", seg,
-        (d.answerVariant || "auto") === "short"
-          ? "время считается по краткому ответу — его и покажем"
-          : (d.answerVariant === "full"
-              ? "время считается по подробному ответу — краткий не используем"
-              : "первое чтение подробное, повторения краткие — так время и посчитано")));
-      box.appendChild(card);
-    }
-
-    // =================================================================
-    //  4. Название и удаление — в конце, чтобы не мешать
-    // =================================================================
-    const misc = h("div.card");
-    misc.appendChild(h("div.card-title", [h("h2", "Название и прочее")]));
-    misc.appendChild(
-      h("div.settings-row", [
-        h("div", [h("div.title", "Название дисциплины"), h("div.desc", "Как она называется в списке и на экранах.")]),
-        h("input.input", {
-          value: d.name,
-          style: { width: "280px" },
-          onchange: (e) => {
-            d.name = e.target.value.trim() || d.name;
-            root.Store.save();
-            root.App.refresh();
-          }
-        })
-      ])
-    );
-    misc.appendChild(
-      h("div.row", { style: { marginTop: "16px" } }, [
-        UI.button("Сбросить отметки", {
-          kind: "ghost",
-          onClick: () => {
-            if (!confirm("Снять все отметки о прочтении по дисциплине «" + d.name + "»? Настройки плана сохранятся.")) return;
-            d.reads = {};
-            root.Store.save();
-            root.Sound.play("uncheck");
-            root.App.refresh();
-          }
-        }),
-        h("div.spacer"),
-        UI.button("Удалить дисциплину", {
-          kind: "ghost",
-          onClick: () => confirmDelete(d)
-        })
-      ])
-    );
-    box.appendChild(misc);
-
-    requestAnimationFrame(paintPreview);
-    return box;
-  }
-
   /**
    * Меняет оценку объёма для вопросов без ответа и пересчитывает статистику.
    * Вопросы с настоящим ответом не трогаем.
@@ -1787,12 +1252,6 @@
     ]);
   }
 
-  function rowKV(k, v) {
-    return h("div.row", { style: { justifyContent: "space-between" } }, [
-      h("span.muted", k),
-      h("b", v)
-    ]);
-  }
 
   function examHint(d) {
     if (!P.isValidDate(d.plan.examDate)) return "укажите дату";
@@ -1811,463 +1270,6 @@
   // =====================================================================
   //  КАЛЕНДАРЬ
   // =====================================================================
-
-  function viewCalendar() {
-    const planData = plan();
-    const month = state().ui.calendarMonth || today().slice(0, 7);
-    const wrap = h("div.grid", { style: { gap: "16px" } });
-    const card = h("div.card");
-    card.appendChild(
-      h("div.card-title", [
-        h("div", [
-          h("h2", monthName(month)),
-          h("div.muted", { style: { fontSize: "12px" } }, calendarSummary(planData, month))
-        ]),
-        h("div.row", [
-          h("button.icon-btn", {
-            title: "Предыдущий месяц",
-            onclick: () => {
-              state().ui.calendarMonth = shiftMonth(month, -1);
-              root.App.refresh();
-            }
-          }, [UI.icon("chevronLeft")]),
-          UI.button("Сегодня", {
-            size: "sm",
-            kind: "ghost",
-            onClick: () => {
-              state().ui.calendarMonth = today().slice(0, 7);
-              root.App.go("today");
-            }
-          }),
-          h("button.icon-btn", {
-            title: "Следующий месяц",
-            onclick: () => {
-              state().ui.calendarMonth = shiftMonth(month, 1);
-              root.App.refresh();
-            }
-          }, [UI.icon("chevronRight")])
-        ])
-      ])
-    );
-
-    const examDays = new Set();
-    for (const d of root.Store.activeDisciplines()) {
-      if (P.isValidDate(d.plan.examDate)) examDays.add(d.plan.examDate);
-    }
-    card.appendChild(
-      monthGrid(month, (day) => {
-        const minutes = planData.dayTotals[day] || 0;
-        const done = isDayFullyDone(day);
-        return {
-          minutes: minutes,
-          count: (planData.combined[day] || []).length,
-          isExam: examDays.has(day),
-          done: done,
-          onClick: () => root.App.go("today", { date: day })
-        };
-      })
-    );
-    wrap.appendChild(card);
-
-    // Легенда
-    wrap.appendChild(
-      h("div.card.tight", [
-        h("div.row.wrap", { style: { gap: "18px" } }, [
-          legendItem("var(--accent)", "нагрузка"),
-          legendItem("var(--mint)", "всё отмечено"),
-          legendItem("var(--rose)", "экзамен"),
-          h("span.muted", { style: { fontSize: "12px" } }, "Высота полоски — доля от самого тяжёлого дня месяца")
-        ])
-      ])
-    );
-    return wrap;
-  }
-
-  function legendItem(color, label) {
-    return h("div.row", { style: { gap: "6px" } }, [
-      h("span", { style: { width: "9px", height: "9px", borderRadius: "50%", background: color } }),
-      h("span", { style: { fontSize: "12.5px", color: "var(--ink-soft)" } }, label)
-    ]);
-  }
-
-  function isDayFullyDone(day) {
-    if (day > today()) return false;
-    const planData = plan();
-    const items = planData.combined[day] || [];
-    if (!items.length) return false;
-    const seen = new Set();
-    for (const t of items) {
-      const key = t.discId + ":" + t.qIndex;
-      if (seen.has(key)) continue;
-      seen.add(key);
-      const d = root.Store.getDiscipline(t.discId);
-      const reads = (d && d.reads && d.reads[String(t.qIndex)]) || [];
-      if (reads.indexOf(day) === -1) return false;
-    }
-    return true;
-  }
-
-  function monthName(month) {
-    const [y, m] = month.split("-").map(Number);
-    return UI.MONTHS_NOM[m - 1] + " " + y;
-  }
-
-  function shiftMonth(month, delta) {
-    const [y, m] = month.split("-").map(Number);
-    const d = new Date(y, m - 1 + delta, 1);
-    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
-  }
-
-  /** Сетка месяца: 7 колонок, первая — понедельник. */
-  function monthGrid(month, describe) {
-    const [y, m] = month.split("-").map(Number);
-    const first = new Date(y, m - 1, 1);
-    const daysInMonth = new Date(y, m, 0).getDate();
-    const startOffset = (first.getDay() + 6) % 7;
-
-    const grid = h("div.calendar");
-    for (const wd of ["пн", "вт", "ср", "чт", "пт", "сб", "вс"]) {
-      grid.appendChild(h("div.cal-head", wd));
-    }
-    for (let i = 0; i < startOffset; i++) grid.appendChild(h("div.cal-day.empty"));
-
-    // Максимум месяца — для относительной высоты полоски.
-    let maxMin = 1;
-    for (let day = 1; day <= daysInMonth; day++) {
-      const iso = y + "-" + String(m).padStart(2, "0") + "-" + String(day).padStart(2, "0");
-      const info = describe(iso);
-      if (info.minutes > maxMin) maxMin = info.minutes;
-    }
-
-    for (let day = 1; day <= daysInMonth; day++) {
-      const iso = y + "-" + String(m).padStart(2, "0") + "-" + String(day).padStart(2, "0");
-      const info = describe(iso);
-      const classes = ["cal-day"];
-      if (iso === today()) classes.push("today");
-      if (iso < today()) classes.push("past");
-      if (info.isExam) classes.push("exam");
-      const cell = h("div", { class: classes.join(" "), title: UI.dateLong(iso) + (info.minutes ? " · " + UI.dur(info.minutes) : "") });
-      cell.appendChild(h("div.cal-num", String(day)));
-      if (info.done) cell.appendChild(h("i.cal-dot"));
-      if (info.minutes > 0) {
-        cell.appendChild(
-          h("div.cal-load", [
-            h("div.cal-bar", [h("i", { style: { width: Math.max(8, (info.minutes / maxMin) * 100) + "%" } })]),
-            h("div.cal-min", UI.dur(info.minutes))
-          ])
-        );
-      }
-      if (info.onClick) cell.addEventListener("click", info.onClick);
-      grid.appendChild(cell);
-    }
-    return grid;
-  }
-
-  function calendarSummary(planData, month) {
-    let total = 0;
-    let days = 0;
-    for (const [date, min] of Object.entries(planData.dayTotals)) {
-      if (date.slice(0, 7) === month) {
-        total += min;
-        if (min > 0) days++;
-      }
-    }
-    if (!days) return "в этом месяце работы нет";
-    return days + " " + UI.plural(days, "день", "дня", "дней") + " с чтением · " + UI.dur(total) + " всего · " + UI.dur(total / days) + " в среднем";
-  }
-
-  // =====================================================================
-  //  СТАТИСТИКА
-  // =====================================================================
-
-  function viewStats() {
-    const planData = plan();
-    const discs = root.Store.activeDisciplines();
-    const wrap = h("div.grid", { style: { gap: "16px" } });
-
-    if (!discs.length) {
-      wrap.appendChild(emptyState());
-      return wrap;
-    }
-
-    const totals = planData.totals;
-    const words = totals.words;
-    const chars = totals.chars;
-    const spm = settings().wordsPerMinute || 150;
-
-    // Верхние метрики
-    const tiles = h("div.grid.cols-4");
-    tiles.appendChild(statTile("вопросов", UI.num(totals.questions), discs.length + " " + UI.plural(discs.length, "дисциплина", "дисциплины", "дисциплин")));
-    tiles.appendChild(statTile("слов", UI.num(words), "≈ " + UI.num(Math.round(words / Math.max(1, totals.questions))) + " на вопрос"));
-    tiles.appendChild(statTile("знаков", UI.num(chars), "без пробелов"));
-    tiles.appendChild(statTile("время", UI.durLong(totals.minutesTotal), Math.round(totals.minutesTotal / 60) + " " + UI.plural(Math.round(totals.minutesTotal / 60), "час", "часа", "часов") + " чтения"));
-    wrap.appendChild(tiles);
-
-    // Прогресс по дисциплинам
-    const card = h("div.card");
-    card.appendChild(h("div.card-title", [h("h2", "Прогресс по дисциплинам")]));
-    const list = h("div", { style: { display: "grid", gap: "13px" } });
-    for (const d of discs) {
-      const pd = planData.perDisc[d.id] || { stats: {} };
-      const st = pd.stats || {};
-      const pct = (st.progress || 0) * 100;
-      list.appendChild(
-        h("div", [
-          h("div.row", { style: { justifyContent: "space-between", marginBottom: "5px" } }, [
-            h("span", { style: { fontWeight: "600", fontSize: "13.5px" } }, d.name),
-            h("span.mono", { style: { fontSize: "12px", color: "var(--ink-faint)" } },
-              UI.dur(st.minutesDone || 0) + " / " + UI.dur(st.minutesTotal || 0))
-          ]),
-          h("div.mini-bar", [h("i", { style: { width: pct + "%", background: "linear-gradient(90deg," + accentOf(d) + "," + accentOf(d) + "aa)" } })])
-        ])
-      );
-    }
-    card.appendChild(list);
-    wrap.appendChild(card);
-
-    // Активность: последние 30 дней
-    const activity = h("div.card");
-    const streak = state().stats.streak || 0;
-    activity.appendChild(
-      h("div.card-title", [
-        h("h2", "Активность"),
-        h("div.row", [
-          UI.icon("flame"),
-          h("b", { style: { fontSize: "14px" } }, streak + " " + UI.plural(streak, "день", "дня", "дней") + " подряд")
-        ])
-      ])
-    );
-    activity.appendChild(activityGrid());
-    wrap.appendChild(activity);
-
-    // Скорость чтения — что это значит
-    const speed = h("div.card");
-    speed.appendChild(h("div.card-title", [h("h2", "Что значит ваша скорость")]));
-    speed.appendChild(
-      h("div.grid.cols-3", { style: { gap: "12px" } }, [
-        metricTile("скорость", spm + " слов/мин", settings().unit === "cpm" ? "сейчас в знаках/мин" : "текущая настройка"),
-        metricTile("на один ответ", UI.dur(medianAnswerMinutes(discs)), "средний вопрос"),
-        metricTile("прогонов", String(totals.passesTotal), "с учётом повторений")
-      ])
-    );
-    speed.appendChild(
-      h("p.muted", { style: { fontSize: "12.5px", marginTop: "12px" } },
-        "Для учебного юридического текста обычная скорость — 120–180 слов в минуту; вслух — 100–130. " +
-        "Если на деле выходит медленнее, поставьте меньшее число в настройках: план станет точнее.")
-    );
-    wrap.appendChild(speed);
-
-    // Распределение нагрузки
-    const dist = h("div.card");
-    dist.appendChild(h("div.card-title", [h("h2", "Распределение нагрузки")]));
-    const dayVals = Object.keys(planData.dayTotals).sort().map((d) => planData.dayTotals[d]);
-    if (dayVals.length) {
-      dist.appendChild(UI.sparkline(dayVals, { todayIndex: -1, over: average(dayVals) * 1.6 }));
-      dist.appendChild(
-        h("div.row", { style: { justifyContent: "space-between", marginTop: "8px" } }, [
-          h("span.muted", { style: { fontSize: "11.5px" } }, "самый лёгкий: " + UI.dur(Math.min.apply(null, dayVals))),
-          h("span.muted", { style: { fontSize: "11.5px" } }, "в среднем: " + UI.dur(average(dayVals))),
-          h("span.muted", { style: { fontSize: "11.5px" } }, "самый тяжёлый: " + UI.dur(Math.max.apply(null, dayVals)))
-        ])
-      );
-    } else {
-      dist.appendChild(h("p.muted", "Пока нет запланированных дней."));
-    }
-    wrap.appendChild(dist);
-
-    return wrap;
-  }
-
-  function statTile(label, value, sub) {
-    return h("div.card.tight", [
-      h("div.section-label", label),
-      h("div", { style: { fontFamily: "var(--font-display)", fontSize: "31px", fontWeight: "600", lineHeight: "1.1", marginTop: "3px" } }, value),
-      h("div.muted", { style: { fontSize: "11.5px" } }, sub)
-    ]);
-  }
-
-  function average(arr) {
-    if (!arr.length) return 0;
-    return arr.reduce((a, b) => a + b, 0) / arr.length;
-  }
-
-  function medianAnswerMinutes(discs) {
-    const all = [];
-    for (const d of discs) {
-      for (const q of d.questions || []) all.push(P.questionTotalMinutes(d, q, settings()));
-    }
-    if (!all.length) return 0;
-    all.sort((a, b) => a - b);
-    return all[Math.floor(all.length / 2)];
-  }
-
-  /** Сетка «тепловая карта» активности за 8 недель. */
-  function activityGrid() {
-    const days = new Set(state().stats.daysActive || []);
-    const wrap = h("div", { style: { display: "grid", gridTemplateColumns: "repeat(8, 1fr)", gap: "9px" } });
-    const end = today();
-    for (let w = 7; w >= 0; w--) {
-      const col = h("div", { style: { display: "grid", gap: "3px" } });
-      col.appendChild(h("div.muted", { style: { fontSize: "9.5px", textAlign: "center", marginBottom: "2px" } },
-        UI.dateShort(P.addDays(end, -w * 7 - 6)).split(" ")[1]));
-      for (let i = 0; i < 7; i++) {
-        const day = P.addDays(end, -(w * 7 + (6 - i)));
-        const isToday = day === end;
-        const active = days.has(day);
-        col.appendChild(
-          h("div", {
-            title: UI.dateLong(day) + (active ? " · есть отметки" : ""),
-            style: {
-              height: "13px",
-              borderRadius: "3.5px",
-              background: active ? "linear-gradient(140deg, var(--mint), #2f9578)" : "rgba(24,58,92,.1)",
-              outline: isToday ? "1.5px solid var(--accent)" : "none",
-              outlineOffset: "1px",
-              transition: "background .3s"
-            }
-          })
-        );
-      }
-      wrap.appendChild(col);
-    }
-    return h("div", { style: { display: "grid", gap: "8px" } }, [
-      wrap,
-      h("div.row", { style: { justifyContent: "space-between" } }, [
-        h("span.muted", { style: { fontSize: "11px" } }, "8 недель назад"),
-        h("span.muted", { style: { fontSize: "11px" } }, "сегодня")
-      ])
-    ]);
-  }
-
-  // =====================================================================
-  //  СОВЕТЫ
-  // =====================================================================
-
-  function viewTips() {
-    const wrap = h("div.grid", { style: { gap: "16px" } });
-    const intro = h("div.card");
-    intro.appendChild(
-      h("div", [
-        h("h2", { style: { fontFamily: "var(--font-display)", fontSize: "27px", fontWeight: "600", marginBottom: "8px" } },
-          "Как готовиться, чтобы действительно запомнить"),
-        h("p.soft", { style: { fontSize: "14.5px", lineHeight: "1.65", maxWidth: "78ch" } },
-          "Программа считает время и раскладывает работу — но запоминание зависит от того, что вы делаете " +
-          "с текстом. Ниже — приёмы, которые в исследованиях дают наибольший эффект, и то, как они уже учтены в плане.")
-      ])
-    );
-    wrap.appendChild(intro);
-
-    const tips = [
-      {
-        title: "Повторять, а не перечитывать",
-        text:
-          "После первого чтения закройте ответ и попробуйте пересказать его вслух или записать ключевые пункты. " +
-          "Проверка себя даёт заметно больше, чем повторное чтение того же текста: в опытах Рёдигера и Карпике " +
-          "через неделю вспоминалось 61 % материала против 40 % у тех, кто читал четыре раза.",
-        src: "Roediger & Karpicke, Psychological Science, 2006",
-        link: "https://doi.org/10.1111/j.1467-9280.2006.01693.x",
-        used: "Поэтому план ставит повторные чтения отдельными пунктами через дни, а не подряд."
-      },
-      {
-        title: "Распределять по дням, а не учить за ночь",
-        text:
-          "Распределённая практика — один из двух приёмов, которые обзор десяти популярных стратегий признал " +
-          "высокоэффективными. Один и тот же объём, разложенный на много дней, запоминается прочнее, чем собранный в один блок.",
-        src: "Dunlosky et al., Psychological Science in the Public Interest, 2013",
-        link: "https://doi.org/10.1177/1529100612453266",
-        used: "Отсюда само устройство плана: работа делится на дни до экзамена, а не копится к концу."
-      },
-      {
-        title: "Промежутки между повторениями растут",
-        text:
-          "Оптимальный первый промежуток — примерно 10–20 % от срока до контроля; дальше интервалы расширяются. " +
-          "Для экзамена через месяц это значит: первое повторение через 3–6 дней, затем реже.",
-        src: "Cepeda et al., Psychological Bulletin, 2006; Psychological Science, 2008",
-        link: "https://doi.org/10.1037/0033-2909.132.3.354",
-        used: "Параметр «интервал повторений» в настройках задаёт эту долю; по умолчанию 15 %."
-      },
-      {
-        title: "Чередовать дисциплины",
-        text:
-          "Смена предмета в течение дня даёт умеренный, но устойчивый выигрыш по сравнению с блоками " +
-          "«один предмет за один день»: мозг каждый раз заново поднимает нужный контекст.",
-        src: "Brunmair & Richter, Psychological Bulletin, 2019",
-        link: "https://doi.org/10.1037/bul0000198",
-        used: "Поэтому в обзоре видно работу по всем дисциплинам каждый день, а не по одной подряд."
-      },
-      {
-        title: "Сначала понять, потом зубрить",
-        text:
-          "Юридический ответ держится на структуре: определение, правовая основа, состав, порядок действий. " +
-          "Если сначала разобрать схему ответа, детали ложатся на неё, и пересказ получается связным.",
-        src: "практика подготовки к экзаменам по праву",
-        used: "При просмотре вопроса видно объём ответа и число прочтений — планируйте на сложные больше времени."
-      },
-      {
-        title: "Проверять себя по номерам вопросов",
-        text:
-          "Полезно не только читать, но и проверять: по номеру вопроса вспомнить, о чём он. " +
-          "Если не выходит — этот вопрос и есть слабое место, его стоит перечитать раньше остальных.",
-        src: "практика активного припоминания",
-        used: "На вкладке «Вопросы» видно, сколько раз прочитан каждый вопрос; слабые места — где отметок меньше."
-      },
-      {
-        title: "Не перегружать день",
-        text:
-          "Часы подряд с одним текстом дают мало: внимание падает через 30–45 минут. " +
-          "Лучше два коротких подхода, чем один длинный.",
-        src: "исследования устойчивости внимания",
-        used: "В настройках можно ограничить день по минутам — план подстроится и растянет остаток."
-      }
-    ];
-
-    const list = h("div.tips");
-    for (const tip of tips) {
-      list.appendChild(
-        h("div.tip", [
-          h("h4", tip.title),
-          h("p", tip.text),
-          h("div.src", [
-            "Источник: ",
-            tip.link
-              ? h("a", { href: tip.link, onclick: (e) => { e.preventDefault(); root.App.openExternal(tip.link); } }, tip.src)
-              : tip.src
-          ]),
-          h("div.warn-box.info", [
-            UI.icon("spark"),
-            h("span", [h("b", "В программе: "), tip.used])
-          ])
-        ])
-      );
-    }
-    wrap.appendChild(list);
-
-    // Как программа считает
-    const how = h("div.card");
-    how.appendChild(h("div.card-title", [h("h2", "Как считается время")]));
-    how.appendChild(
-      h("div", { style: { display: "grid", gap: "10px", fontSize: "14px", lineHeight: "1.6", color: "var(--ink-soft)" } }, [
-        h("p", [
-          h("b", "Слова и знаки. "), "Слово — последовательность букв и цифр; дефис внутри слова его не разрывает " +
-          "(«административно-правовой» — одно слово), как считает Word. Знаки — без пробелов."
-        ]),
-        h("p", [
-          h("b", "Сложность. "), "К длинным нормам с перечнями и множеством знаков препинания применяется поправка " +
-          "до 2 раз: такой текст читается медленнее, чем сплошной."
-        ]),
-        h("p", [
-          h("b", "Повторения. "), "Первое чтение — полное время, повторные — быстрее (по умолчанию в 1,5 раза). " +
-          "Коэффициент можно изменить в настройках."
-        ]),
-        h("p", [
-          h("b", "Пересчёт. "), "Как только вы отмечаете вопрос прочитанным, остаток делится на оставшиеся дни заново. " +
-          "Поэтому отставание не «копится»: план сразу показывает новую норму."
-        ])
-      ])
-    );
-    wrap.appendChild(how);
-    return wrap;
-  }
 
   // =====================================================================
   //  НАСТРОЙКИ
@@ -2859,21 +1861,17 @@
   }
 
   root.Views = {
+    // Три экрана: что читать сегодня, дисциплины и настройки. Обзор и
+    // дисциплина — это части двух первых, отдельных пунктов меню им не нужно.
     dashboard: viewDashboard,
     today: viewToday,
     disciplines: viewDisciplines,
     discipline: viewDiscipline,
-    calendar: viewCalendar,
-    stats: viewStats,
-    tips: viewTips,
     settings: viewSettings,
     plan,
     accentOf,
     groupTodayTasks,
     taskRow,
     sparkleBurst,
-    setDiscTab: (t) => {
-      discTab = t;
-    }
   };
 })(typeof window !== "undefined" ? window : globalThis);

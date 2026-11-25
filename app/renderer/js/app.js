@@ -13,13 +13,10 @@
   const P = root.ExamCore.planner;
 
   const VIEWS = [
-    { id: "dashboard", label: "Обзор", icon: "dashboard", title: "Обзор", sub: "Готовность, работа на сегодня и ближайшие дни" },
-    { id: "today", label: "Сегодня", icon: "today", title: "Сегодня", sub: "Что читать и что уже отмечено" },
-    { id: "disciplines", label: "Дисциплины", icon: "library", title: "Дисциплины", sub: "Все загруженные файлы и их планы" },
-    { id: "calendar", label: "Календарь", icon: "calendar", title: "Календарь", sub: "Нагрузка по дням до экзаменов" },
-    { id: "stats", label: "Статистика", icon: "stats", title: "Статистика", sub: "Объёмы, время и прогресс" },
-    // «Как готовиться» убрано из меню: это был длинный текст, который читают
-    // один раз. Советы остались на экране дисциплины — там, где они нужны.
+    // Три пункта и всё. Календарь, статистика и «как готовиться» убраны:
+    // нагрузка по дням видна на экране «Сегодня», прогресс — в «Дисциплинах».
+    { id: "today", label: "Сегодня", icon: "today", title: "Сегодня", sub: "Что читать сегодня и что уже отмечено" },
+    { id: "disciplines", label: "Дисциплины", icon: "library", title: "Дисциплины", sub: "Сколько часов в день и когда экзамен" },
     { id: "settings", label: "Настройки", icon: "settings", title: "Настройки", sub: "Скорость чтения, оформление, данные" }
   ];
 
@@ -1066,11 +1063,9 @@
         return;
       }
       if (inField) return;
-      if (e.key === "1") go("dashboard");
-      if (e.key === "2") go("today");
-      if (e.key === "3") go("disciplines");
-      if (e.key === "4") go("calendar");
-      if (e.key === "5") go("stats");
+      if (e.key === "1") go("today");
+      if (e.key === "2") go("disciplines");
+      if (e.key === "3") go("settings");
     });
   }
 
@@ -1402,7 +1397,7 @@
           }, 200);
         }
         if (action === "backup") exportBackup();
-        if (action === "help") go("tips");
+        if (action === "help") go("settings");
       });
     }
 

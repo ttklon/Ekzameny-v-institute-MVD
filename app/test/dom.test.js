@@ -222,6 +222,28 @@ function tick(ms) {
   return new Promise((r) => setTimeout(r, ms || 30));
 }
 
+
+/**
+ * Открыть «Детали» на странице дисциплины: скорость, прогоны, выходные.
+ * Вкладок больше нет — всё, что нужно редко, живёт под одним переключателем.
+ */
+function openDetails(win, discId) {
+  win.App.go("discipline", { id: discId });
+  const view = win.document.getElementById("view");
+  const d = win.Store.getDiscipline(discId);
+  if (d && d.advOpen !== true) {
+    d.advOpen = true;
+    win.Store.save();
+  }
+  win.App.refresh();
+  const adv = win.document.getElementById("view").querySelector(".adv-toggle");
+  if (!adv) throw new Error("нет блока «Детали»");
+  if (!win.document.getElementById("view").querySelector(".day-load, .speed-slider")) {
+    adv.dispatchEvent(new win.Event("click", { bubbles: true }));
+  }
+  return win.document.getElementById("view");
+}
+
 async function run() {
   console.log("Проверка интерфейса (jsdom)\n");
 
@@ -252,9 +274,16 @@ async function run() {
     if (!btn) throw new Error("нет кнопки добавления файла");
   });
 
-  check("навигация построена", () => {
+  check("навигация построена: три пункта, без лишнего", () => {
     const nav = win.document.getElementById("nav");
-    if (nav.children.length < 6) throw new Error("пунктов меню: " + nav.children.length);
+    const labels = Array.from(nav.children).map((b) => b.textContent.trim());
+    if (labels.length !== 3) throw new Error("пунктов меню: " + labels.length + " (" + labels.join(", ") + ")");
+    for (const need of ["Сегодня", "Дисциплины", "Настройки"]) {
+      if (!labels.some((t) => t.indexOf(need) !== -1)) throw new Error("нет пункта «" + need + "»");
+    }
+    for (const gone of ["Календарь", "Статистика", "Обзор"]) {
+      if (labels.some((t) => t.indexOf(gone) !== -1)) throw new Error("лишний пункт «" + gone + "»");
+    }
   });
 
   // Импорт одного файла через API и добавление дисциплины.
@@ -292,7 +321,8 @@ async function run() {
 
   // Проходим по всем экранам.
   // «tips» убран из меню — экран проверяем напрямую, он остался в коде.
-  const screens = ["dashboard", "today", "disciplines", "calendar", "stats", "settings"];
+  // Экранов ровно три. Остальные (обзор, дисциплина) — части этих трёх.
+  const screens = ["today", "disciplines", "settings"];
   for (const screen of screens) {
     win.App.go(screen);
     await tick(40);
@@ -377,16 +407,15 @@ async function run() {
     if (/Не удалось показать/.test(view.textContent)) throw new Error(view.textContent.slice(0, 300));
   });
 
-  for (const tab of ["questions", "settings", "plan"]) {
-    win.Views.setDiscTab(tab);
-    win.App.refresh();
-    await tick(35);
-    check("вкладка дисциплины «" + tab + "»", () => {
-      const view = win.document.getElementById("view");
-      if (/Не удалось показать/.test(view.textContent)) throw new Error(view.textContent.slice(0, 300));
-      if (view.textContent.trim().length < 30) throw new Error("пусто");
-    });
-  }
+  // Одна страница вместо вкладок: всё важное — сразу на виду.
+  check("страница дисциплины: часы в день, экзамен и вопросы — сразу", () => {
+    const view = win.document.getElementById("view");
+    if (/Не удалось показать/.test(view.textContent)) throw new Error(view.textContent.slice(0, 300));
+    for (const label of ["Сколько часов в день", "Экзамен", "Вопросы"]) {
+      if (view.textContent.indexOf(label) === -1) throw new Error("нет блока «" + label + "»");
+    }
+    if (!view.querySelector(".q-row")) throw new Error("нет списка вопросов");
+  });
 
   // Отметка прочтения и пересчёт.
   check("отметка прочтения сохраняется и план пересчитывается", () => {
@@ -436,6 +465,33 @@ async function run() {
     const tasks = view.querySelectorAll(".task");
     if (!tasks.length) throw new Error("нет ни одной задачи");
     if (!view.querySelector(".task-check")) throw new Error("нет чекбоксов");
+  });
+
+  // Чтение вперёд и отмена отметок: человек должен уметь и то, и другое.
+  check("отметку можно снять, и вернуть одним нажатием", () => {
+    const today = win.ExamCore.planner.todayStr();
+    const target = win.Store.activeDisciplines()[0];
+    win.Store.setRead(target.id, 0, today, true);
+    const marked = win.Store.readsOn(today);
+    if (!marked.length) throw new Error("отметка не записалась");
+    // «Снять всё за сегодня» — и сразу вернуть.
+    const removed = win.Store.clearReadsOn(null, today);
+    if (!removed.length) throw new Error("снять нечего");
+    if (win.Store.readsOn(today).length) throw new Error("отметки остались после снятия");
+    win.Store.restoreReads(removed, today);
+    if (!win.Store.readsOn(today).length) throw new Error("отметки не вернулись");
+    win.Store.clearReadsOn(null, today);
+  });
+
+  check("на экране дня видно, что уже отмечено, и есть «взять вперёд»", () => {
+    const today = win.ExamCore.planner.todayStr();
+    const target = win.Store.activeDisciplines()[0];
+    win.Store.setRead(target.id, 0, today, true);
+    win.App.go("today");
+    const view = win.document.getElementById("view");
+    if (!/Уже отмечено/.test(view.textContent)) throw new Error("нет списка отмеченного");
+    if (!/Взять вперёд/.test(view.textContent)) throw new Error("нет кнопки «взять вперёд»");
+    win.Store.clearReadsOn(null, today);
   });
 
   // Модальное окно вопроса.
@@ -554,9 +610,7 @@ async function run() {
   });
 
   check("своя скорость дисциплины меняет время сразу после ползунка", () => {
-    win.App.go("discipline", { id: disc.id });
-    win.Views.setDiscTab("settings");
-    win.App.refresh();
+    openDetails(win, disc.id);
     const view = win.document.getElementById("view");
     const slider = view.querySelector(".speed-slider");
     if (!slider) throw new Error("нет ползунка скорости на вкладке дисциплины");
@@ -580,13 +634,11 @@ async function run() {
     if (Math.abs(back - before) > 0.5) {
       throw new Error("после возврата к общей скорость время не вернулось: " + back.toFixed(1) + " vs " + before.toFixed(1));
     }
-    win.Views.setDiscTab("plan");
+    win.App.go("discipline", { id: disc.id });
   });
 
   check("воскресенье можно сделать тяжелее одним кликом", () => {
-    win.App.go("discipline", { id: disc.id });
-    win.Views.setDiscTab("settings");
-    win.App.refresh();
+    openDetails(win, disc.id);
     const view = win.document.getElementById("view");
     const adv = view.querySelector(".adv-toggle");
     if (!adv) throw new Error("нет блока «Как именно распределять»");
@@ -629,16 +681,15 @@ async function run() {
     win.Store.getDiscipline(disc.id).plan.dayLoad = back;
     win.Store.save();
     win.Views.plan();
-    win.Views.setDiscTab("plan");
+    win.App.go("discipline", { id: disc.id });
   });
 
   check("свой объём дня задаётся и план его слушается", () => {
+    // Теперь это главная настройка страницы — одно число «сколько часов в день».
     win.App.go("discipline", { id: disc.id });
-    win.Views.setDiscTab("settings");
-    win.App.refresh();
     const view = win.document.getElementById("view");
-    if (!/Сколько вы готовы читать/.test(view.textContent)) {
-      throw new Error("нет блока «Сколько вы готовы читать»");
+    if (!/Сколько часов в день/.test(view.textContent)) {
+      throw new Error("нет блока «Сколько часов в день»");
     }
     // Кнопка «3 ч» — это уже больше двух часов, раньше такого варианта не было.
     const chips = Array.from(view.querySelectorAll(".chips .chip"));
@@ -653,12 +704,13 @@ async function run() {
     const pd = win.Views.plan().perDisc[disc.id];
     const overload = (pd.warnings || []).filter((w) => w.type === "overload");
     if (overload.length) throw new Error("лишняя тревога о перегрузке: " + overload[0].text);
-    // Свои минуты по дням: суббота 240 минут при обычных 180 — вес 4/3.
+    // Свои минуты по дням — в «Деталях»: суббота 240 при обычных 180 это вес 4/3.
+    openDetails(win, disc.id);
     const exact = win.document.getElementById("view").querySelectorAll(".day-exact-row");
     if (!exact.length) throw new Error("нет полей «свои минуты по дням»");
     delete win.Store.getDiscipline(disc.id).plan.comfortMinutes;
     win.Store.save();
-    win.Views.setDiscTab("plan");
+    win.App.go("discipline", { id: disc.id });
   });
 
   check("у дисциплины с двумя вариантами ответов есть переключатель", () => {
@@ -674,9 +726,7 @@ async function run() {
       q.altChars = Math.round((q.chars || 0) / 2);
     });
     win.Store.save();
-    win.App.go("discipline", { id: target.id });
-    win.Views.setDiscTab("settings");
-    win.App.refresh();
+    openDetails(win, target.id);
     const view = win.document.getElementById("view");
     if (!/Какой ответ читать/.test(view.textContent)) {
       throw new Error("нет блока «Какой ответ читать»");
@@ -700,7 +750,7 @@ async function run() {
     delete win.Store.getDiscipline(target.id).hasShortAnswers;
     win.Store.getDiscipline(target.id).answerVariant = "auto";
     win.Store.save();
-    win.Views.setDiscTab("plan");
+    win.App.go("discipline", { id: disc.id });
   });
 
   // Импорт через окно (диалог подменён на пустой список).
@@ -774,12 +824,15 @@ async function run() {
   // Проверим, что календарь и статистика не падают при пустой библиотеке.
   win.Store.state.disciplines.forEach((d) => win.Store.removeDiscipline(d.id));
   await tick(60);
-  for (const screen of ["dashboard", "calendar", "stats", "today"]) {
+  // Пустая библиотека должна объяснять, с чего начать, на каждом экране —
+  // в том числе на «Сегодня», который раньше висел пустым календарём.
+  for (const screen of ["today", "disciplines", "settings"]) {
     win.App.go(screen);
     await tick(30);
     check("пустая библиотека: экран «" + screen + "»", () => {
       const view = win.document.getElementById("view");
       if (/Не удалось показать/.test(view.textContent)) throw new Error(view.textContent.slice(0, 300));
+      if (view.textContent.trim().length < 20) throw new Error("экран пуст: " + screen);
     });
   }
 
