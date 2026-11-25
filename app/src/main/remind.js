@@ -40,6 +40,7 @@ function createReminder(opts) {
   let at = "19:00";
   let days = null; // null — каждый день, иначе массив 0..6 (0 — воскресенье)
   let trayNumber = 0;
+  let trayBroken = false; // трей недоступен — больше не пытаемся
 
   /** Пора ли напоминать прямо сейчас. */
   function dueNow(date) {
@@ -144,20 +145,37 @@ function createReminder(opts) {
     timer = null;
   }
 
-  /** Создать значок в трее (без него уведомления всё равно работают). */
+  /**
+   * Значок в трее.
+   *
+   * Значок — удобство, а не основа работы: если картинки нет или Windows
+   * не дала создать трей, приложение обязано продолжить работу молча.
+   * Раньше здесь можно было получить исключение прямо при запуске
+   * (в собранной программе путь к .ico другой), и это выглядело как
+   * «программа не открывается».
+   */
   function attachTray() {
     if (tray) return tray;
+    if (trayBroken) return null;
     let img = null;
     try {
       img = nativeImage.createFromPath(o.iconPath);
-      if (img.isEmpty()) img = null;
+      if (!img || img.isEmpty()) img = null;
     } catch (e) {
       img = null;
     }
+    // Иконка приложения, если файла рядом нет (в сборке путь другой).
     if (!img) {
-      // Запасная иконка: пустая картинка нужного размера.
-      img = nativeImage.createEmpty();
-      if (img.isEmpty() && process.platform === "win32") return null;
+      try {
+        const chosen = typeof o.pickAppIcon === "function" ? o.pickAppIcon() : null;
+        if (chosen && !chosen.isEmpty()) img = chosen;
+      } catch (e) {
+        img = null;
+      }
+    }
+    if (!img) {
+      trayBroken = true; // второй раз не пробуем — незачем
+      return null;
     }
     try {
       tray = new Tray(img);
@@ -166,6 +184,7 @@ function createReminder(opts) {
       return tray;
     } catch (e) {
       tray = null;
+      trayBroken = true;
       return null;
     }
   }

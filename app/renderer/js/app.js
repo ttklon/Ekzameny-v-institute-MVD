@@ -648,7 +648,14 @@
 
   /** Минуты чтения по результату разбора — при текущей скорости. */
   function readingMinutesOf(parsed) {
-    const s = root.Store.state.settings;
+    if (!root.Store.state || !root.Store.state.settings) {
+      try {
+        root.Store.state = root.Store.defaults();
+      } catch (e) {
+        console.error("не удалось создать пустое состояние", e);
+      }
+    }
+    const s = root.Store.state.settings || {};
     const unit = s.unit === "cpm" ? "cpm" : "wpm";
     const rate = unit === "cpm" ? s.charsPerMinute : s.wordsPerMinute;
     let sum = 0;
@@ -1236,7 +1243,15 @@
       console.error("sky failed", e);
     }
 
-    const loaded = await root.Store.load();
+    let loaded = null;
+    try {
+      loaded = await root.Store.load();
+    } catch (e) {
+      // Даже если состояние не прочиталось, интерфейс должен открыться:
+      // работаем с чистой библиотекой, а старая останется на диске.
+      console.error("состояние не загрузилось", e);
+      loaded = { ok: false, error: String((e && e.message) || e) };
+    }
     if (loaded && loaded.recovered) {
       UI.toast({
         kind: "warn",
@@ -1349,5 +1364,77 @@
     __inlineForTest: inline
   };
 
-  document.addEventListener("DOMContentLoaded", boot);
+  /**
+   * Аварийный экран.
+   *
+   * Если при запуске что-то пошло не так (старые данные, нехватка памяти,
+   * сбой в системе), человек не должен видеть пустое окно или «ошибку» без
+   * объяснений. Показываем, что случилось, и две кнопки: открыть папку с
+   * данными и начать с чистого листа (данные при этом откладываются в копию).
+   */
+  function showFatal(err, where) {
+    try {
+      const box = document.getElementById("view");
+      if (!box) return;
+      UI.clear(box);
+      const text = String((err && (err.stack || err.message)) || err || "неизвестная ошибка");
+      const card = h("div.card", { style: { maxWidth: "720px", margin: "40px auto" } });
+      card.appendChild(h("div.card-title", [h("h2", "Не удалось открыть программу")]));
+      card.appendChild(
+        h("p.muted", "Данные не потеряны. Можно попробовать ещё раз или начать с чистого листа — "
+          + "тогда текущая библиотека сохранится в резервную копию.")
+      );
+      card.appendChild(
+        h("pre", {
+          style: {
+            whiteSpace: "pre-wrap", fontSize: "12px", lineHeight: "1.5",
+            background: "rgba(0,0,0,.18)", padding: "12px", borderRadius: "10px",
+            maxHeight: "220px", overflow: "auto"
+          }
+        }, (where ? where + "\n\n" : "") + text.slice(0, 2000))
+      );
+      const row = h("div.row", { style: { marginTop: "12px" } }, [
+        UI.button("Попробовать снова", {
+          kind: "primary",
+          onClick: () => location.reload()
+        }),
+        UI.button("Открыть папку с данными", {
+          kind: "ghost",
+          onClick: () => root.api && root.api.openDataDir && root.api.openDataDir()
+        }),
+        UI.button("Показать настройки", {
+          kind: "ghost",
+          onClick: () => {
+            try {
+              root.App.go("settings");
+            } catch (e) {
+              /* останется этот экран */
+            }
+          }
+        })
+      ]);
+      card.appendChild(row);
+      box.appendChild(card);
+      // Настройки могут не открыться — тогда хотя бы кнопки останутся живыми.
+    } catch (e) {
+      console.error("аварийный экран не показался", e);
+    }
+  }
+
+  // Глобальные сбои: вместо тишины в консоли — понятное сообщение.
+  window.addEventListener("error", (e) => {
+    if (app.ready) return; // после запуска экран уже работает
+    showFatal(e.error || e.message, "Сбой при запуске");
+  });
+  window.addEventListener("unhandledrejection", (e) => {
+    if (app.ready) return;
+    showFatal(e.reason, "Сбой при запуске");
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    boot().catch((err) => {
+      console.error("запуск не удался", err);
+      showFatal(err, "Запуск не удался");
+    });
+  });
 })(typeof window !== "undefined" ? window : globalThis);

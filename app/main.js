@@ -7,7 +7,7 @@
  */
 "use strict";
 
-const { app, BrowserWindow, ipcMain, dialog, shell, Menu, nativeTheme } = require("electron");
+const { app, BrowserWindow, ipcMain, dialog, shell, Menu, nativeTheme, nativeImage } = require("electron");
 const fs = require("fs");
 const path = require("path");
 
@@ -513,6 +513,30 @@ function startReminder() {
   reminder = createReminder({
     getTodayInfo: todayInfo,
     iconPath: path.join(__dirname, "build", "icon.ico"),
+    // В сборке файла build/icon.ico рядом с кодом нет — берём значок окна.
+    pickAppIcon: () => {
+      // Значок окна уже загружен приложением — используем его.
+      try {
+        const fromWindow = mainWindow && mainWindow.getIcon ? mainWindow.getIcon() : null;
+        if (fromWindow && !fromWindow.isEmpty()) return fromWindow;
+      } catch (e) {
+        /* пойдём дальше */
+      }
+      const candidates = [
+        path.join(process.resourcesPath || __dirname, "icon.ico"),
+        path.join(__dirname, "build", "icon.ico"),
+        path.join(__dirname, "build", "icon.png")
+      ];
+      for (const p of candidates) {
+        try {
+          const img = nativeImage.createFromPath(p);
+          if (img && !img.isEmpty()) return img;
+        } catch (e) {
+          /* следующий */
+        }
+      }
+      return null;
+    },
     onOpen: () => {
       if (!mainWindow) return createWindow();
       if (mainWindow.isMinimized()) mainWindow.restore();
@@ -581,7 +605,14 @@ function startUpdater() {
   updater.onEvent(sendUpdate);
   updater.start();
 
-  startReminder();
+  // Напоминания и трей — удобство, а не условие работы. Если Windows не дала
+  // создать значок или уведомления запрещены, окно всё равно должно открыться.
+  try {
+    startReminder();
+  } catch (e) {
+    console.error("напоминания не запустились:", e);
+    reminder = null;
+  }
 
   ipcMain.handle("update:check", async () => {
     await updater.checkOnce(true);

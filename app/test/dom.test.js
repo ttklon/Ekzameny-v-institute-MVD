@@ -734,17 +734,36 @@ async function run() {
     if (words < 20000) throw new Error("слов в ответах слишком мало: " + words);
   });
 
-  check("вопрос открывается с полным ответом из комплекта", async () => {
+  // Открытие вопроса: проверяем по-настоящему дождавшись окна, иначе тест
+  // «проходит» на провалившемся промисе и ничего не проверяет.
+  {
     const d = bwin.Store.activeDisciplines()[0];
+    const today = bwin.ExamCore.planner.todayStr();
     bwin.App.go("discipline", { id: d.id });
     await tick(60);
-    await bwin.Views.openQuestion(d.id, 0, bwin.Exams ? bwin.Exams.todayStr() : undefined);
-    await tick(300);
-    const modal = bwin.document.querySelector(".modal, .qv, [class*=modal]");
-    const text = (modal || bwin.document.body).textContent;
-    if (!/Вопрос 1/.test(text)) throw new Error("не открылось окно вопроса");
-    if (text.length < 3000) throw new Error("ответ не подгрузился, текста всего " + text.length);
-  });
+    let openError = null;
+    try {
+      await bwin.App.openQuestion(d.id, 0, today);
+    } catch (e) {
+      openError = e;
+    }
+    await tick(600);
+    // В окне вопроса разметка ответа рисуется после подгрузки текста, поэтому
+    // берём именно .modal и ждём содержимого, а не первый подходящий элемент.
+    const modal = bwin.document.querySelector("#modal-root .modal");
+    const text = (modal && modal.textContent) || "";
+    check("вопрос открывается с полным ответом из комплекта", () => {
+      if (openError) throw openError;
+      if (!/Вопрос 1/.test(text)) {
+        throw new Error(
+          "не открылось окно вопроса: modal=" + !!modal +
+          ", в modal-root " + bwin.document.getElementById("modal-root").children.length + " элементов, " +
+          "текст: " + JSON.stringify(text.slice(0, 120))
+        );
+      }
+      if (text.length < 3000) throw new Error("ответ не подгрузился, текста всего " + text.length);
+    });
+  }
 
   check("своя дисциплина с тем же названием не дублируется", () => {
     // Человек уже добавил свой файл «Криминалистика» — второй такой же из
@@ -769,6 +788,32 @@ async function run() {
     const after = bwin.Store.activeDisciplines().length;
     if (after !== before) throw new Error("дубликат: было " + before + ", стало " + after);
   });
+
+  // ---------------------------------------------------------------------
+  //  Сбои при запуске: окно должно открыться, а не остаться пустым.
+  // ---------------------------------------------------------------------
+  for (const [name, patch] of [
+    ["сбой чтения данных", { loadState: async () => { throw new Error("EACCES: доступ запрещён"); } }],
+    ["повреждённые данные", { loadState: async () => ({ state: { disciplines: "мусор", settings: null }, recovered: false }) }],
+    ["сбой сохранения", { saveState: async () => { throw new Error("диск переполнен"); } }]
+  ]) {
+    const broken = makeDom({ builtin: false });
+    Object.assign(broken.win.api, patch);
+    loadScripts(broken.win);
+    broken.win.console.error = () => {};
+    broken.win.document.dispatchEvent(new broken.win.Event("DOMContentLoaded"));
+    await tick(900);
+    const bw = broken.win;
+    check("программа открывается при сбое: " + name, () => {
+      const view = bw.document.getElementById("view");
+      const text = (view && view.textContent) || "";
+      if (!text.trim()) throw new Error("экран пустой — похоже на «ошибку» без объяснений");
+      if (/Не удалось показать экран/.test(text)) throw new Error(text.slice(0, 200));
+      // Приглашение или рабочий экран — оба годятся, главное не пустота.
+      if (text.length < 200) throw new Error("слишком мало на экране: " + text.length);
+    });
+    bw.close();
+  }
 
   console.log("\n---");
   if (failures) {
