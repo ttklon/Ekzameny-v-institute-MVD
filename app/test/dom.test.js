@@ -595,12 +595,13 @@ async function run() {
     }
     const rows = win.document.getElementById("view").querySelectorAll(".day-load-row");
     if (!rows.length) throw new Error("нет таблицы нагрузки по дням недели");
-    // Последняя строка — воскресенье, последняя клетка — «больше».
+    // Строки идут с понедельника, воскресенье — последнее. В таблице вес
+    // лежит по weekday(): 0 — воскресенье, 1 — понедельник. Последняя клетка
+    // строки — «×4», самое «больше».
     const sunRow = rows[rows.length - 1];
     const cells = sunRow.querySelectorAll(".day-load-cell");
     cells[cells.length - 1].dispatchEvent(new win.Event("click", { bubbles: true }));
     const saved = win.Store.getDiscipline(disc.id).plan.dayLoad;
-    // Последняя ступень шкалы — «×3»; главное, что день стал тяжелее обычного.
     if (!Array.isArray(saved) || !(saved[0] > 1)) {
       throw new Error("воскресенье не стало тяжёлым: " + JSON.stringify(saved));
     }

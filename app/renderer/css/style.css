@@ -1643,6 +1643,32 @@ body.theme-dusk .tag.ok {
   line-height: 1.45;
 }
 
+/* Кнопка действия в плашке: «Отменить» — чтобы ошибку можно было вернуть. */
+.toast .t-action {
+  margin-left: auto;
+  align-self: center;
+  flex: 0 0 auto;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--accent-strong, #17456f);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 650;
+  padding: 6px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.toast .t-action:hover {
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateY(-1px);
+}
+
+.toast .t-action:active {
+  transform: none;
+}
+
 /* ---------- Модальные окна ---------- */
 
 #modal-root {

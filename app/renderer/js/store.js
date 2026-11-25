@@ -434,6 +434,64 @@
     return n;
   }
 
+  /**
+   * Снять все отметки за дату (или за дату по одной дисциплине).
+   * Возвращает список снятых [{discId, qIndex}], чтобы их можно было вернуть
+   * одной кнопкой «Отменить» — ошибиться и передумать может каждый.
+   */
+  function clearReadsOn(discId, date) {
+    const out = [];
+    const discs = discId ? [getDiscipline(discId)].filter(Boolean) : store.state.disciplines;
+    for (const d of discs) {
+      if (!d || !d.reads) continue;
+      for (const key of Object.keys(d.reads)) {
+        const list = Array.isArray(d.reads[key]) ? d.reads[key] : [];
+        if (list.indexOf(date) === -1) continue;
+        const rest = list.filter((x) => x !== date);
+        if (rest.length) d.reads[key] = rest;
+        else delete d.reads[key];
+        out.push({ discId: d.id, qIndex: Number(key) });
+      }
+    }
+    if (!out.length) return out;
+    // День без отметок больше не считается активным: серия и календарь
+    // должны отражать то, что есть на самом деле, а не то, что было.
+    const st = store.state.stats;
+    if (Array.isArray(st.daysActive)) st.daysActive = st.daysActive.filter((x) => x !== date);
+    st.streak = computeStreak(st.daysActive || []);
+    save();
+    emit("reads-changed");
+    return out;
+  }
+
+  /**
+   * Вернуть снятые отметки: restoreReads([{discId, qIndex}], date).
+   * Так работает «Отменить» после «Снять всё за сегодня».
+   */
+  function restoreReads(items, date) {
+    const byDisc = new Map();
+    for (const it of items || []) {
+      if (!byDisc.has(it.discId)) byDisc.set(it.discId, []);
+      byDisc.get(it.discId).push(it.qIndex);
+    }
+    for (const [id, list] of byDisc) setReadMany(id, list, date, true);
+    return (items || []).length;
+  }
+
+  /** Все отметки за конкретный день — для списка «что уже отмечено». */
+  function readsOn(date, discId) {
+    const out = [];
+    const discs = discId ? [getDiscipline(discId)].filter(Boolean) : store.state.disciplines;
+    for (const d of discs) {
+      if (!d || !d.reads) continue;
+      for (const key of Object.keys(d.reads)) {
+        const list = Array.isArray(d.reads[key]) ? d.reads[key] : [];
+        if (list.indexOf(date) !== -1) out.push({ discId: d.id, qIndex: Number(key) });
+      }
+    }
+    return out;
+  }
+
   /** Отметить сразу несколько вопросов на дату. */
   function setReadMany(discId, indices, date, read) {
     const d = getDiscipline(discId);
@@ -505,6 +563,9 @@
     setRead,
     setReadMany,
     moveRead,
+    clearReadsOn,
+    restoreReads,
+    readsOn,
     computeStreak
   };
 })(typeof window !== "undefined" ? window : globalThis);

@@ -207,10 +207,12 @@
   function reviewDate(last, exam, doneCount, settings) {
     const ratio = Math.min(0.5, Math.max(0.05, settings.gapRatio || 0.15));
     const span = Math.max(1, daysBetween(last, exam));
-    let gap = Math.max(1, Math.round(span * ratio));
-    // Экспоненциальное растяжение интервалов: 1×, 1.8×, 3.2× …
-    gap = Math.round(gap * Math.pow(1.8, Math.max(0, doneCount - 1)));
-    gap = Math.max(1, Math.min(gap, span - 1));
+    // Первый повтор — близко (2–3 дня): именно он закрепляет прочитанное.
+    // Дальше интервал растёт: 1×, 2.5×, 5× … Так повторения нужных вопросов
+    // распределяются по всему сроку, а не сваливаются в последнюю неделю.
+    const first = Math.max(1, Math.min(span - 1, Math.max(2, Math.round(span * ratio * 0.35))));
+    let gap = first * Math.pow(2.5, Math.max(0, doneCount - 1));
+    gap = Math.max(1, Math.min(Math.round(gap), span - 1));
     return addDays(last, gap);
   }
 
@@ -448,211 +450,252 @@
 
     const dayIndex = {};
     days.forEach((d, i) => (dayIndex[d] = i));
-    const load = days.map(() => 0);
     const bucket = days.map(() => []);
-    // Последний день, куда поставлен новый вопрос: держит первый прогон
-    // строго по возрастанию номеров (1, 2, 3 … без перескоков).
-    let lastNewDay = 0;
+    const load = days.map(() => 0);
 
-    // Мягкий дневной потолок: столько минут в день стараемся не превышать.
-    const target = minLeft / Math.max(1, days.length);
+    // ------------------------------------------------------------------
+    //  Ровное распределение по вашему дневному объёму
+    // ------------------------------------------------------------------
+    // Правило простое: есть N учебных дней и X минут работы. Каждый день
+    // получает свою долю — не больше, чем вы готовы читать, и ровно столько
+    // же, сколько соседние (с поправкой на вес дня недели). Никаких «сначала
+    // густо, потом пусто». Если работы меньше места — она всё равно
+    // размазывается по всему сроку, а не сваливается в первые дни.
     const mode = plan.mode || "even";
-    let softCap = Math.max(10, target * 1.15);
-    if (mode === "minutes") softCap = Math.max(5, plan.perDayMinutes || 45);
-    if (settings.dailyCapMinutes > 0) softCap = Math.min(softCap, Math.max(10, settings.dailyCapMinutes));
-    // «По вопросам»: норма задана штуками, а не минутами. Потолок по времени
-    // снимаем, но пересчитываем в минуты эквивалент нормы — иначе последний
-    // день собирал все остатки и в нём оказывалось втрое больше вопросов.
-    if (mode === "questions") {
-      const perDayQ = Math.max(1, Number(plan.perDayQuestions) || 10);
-      const avgMin = questions.length ? minLeft / questions.length : 0;
-      // Небольшой запас: ровно N вопросов должно влезать, а не «N минус
-      // округление» — иначе часть вопросов сваливалась в последний день.
-      softCap = Math.max(5, avgMin * perDayQ * 1.1);
-    }
-    if (options.softCapMinutes && options.softCapMinutes > 0) {
-      softCap = Math.min(softCap, Math.max(5, options.softCapMinutes));
-    }
-
-    // Дневная ёмкость с учётом весов дней недели: в «тяжёлый» день влезает
-    // больше, в лёгкий — меньше. Дни с нулевым весом в days уже не попали.
-    // Личный предел чтения: если человек сказал «в обычный день 90 минут»,
-    // план старается в это укладываться и переносит остаток на дни с большим
-    // весом. Это ориентир, а не запрет: важнее успеть к экзамену.
     const comfort = Number(plan.comfortMinutes) || Number(settings.comfortMinutes) || 0;
-    if (comfort > 0) {
-      // Личный объём — это предел, а не приказ: если человек задал ещё и
-      // общий предел на день (или потолок дисциплины), побеждает меньшее.
-      // Раньше здесь стояло «= comfort», и общий предел на день молча
-      // отключался, стоило задать свой объём.
-      softCap = Math.min(softCap, Math.max(5, comfort));
-    }
     const dayFactor = days.map((d) => Math.max(0.25, weekdayFactor(plan, d)));
-    // Внимание: здесь именно вес дня, а не сам день. Раньше сюда попадала
-    // строка с датой, умножение давало NaN — и дневного потолка не было
-    // вообще: последний день собирал все остатки, а порядок вопросов ломался.
-    const cap = dayFactor.map((f) => softCap * f);
-
-    /** Первый учебный день не раньше даты, либо -1. */
-    function dayOnOrAfter(dateStr) {
-      for (let i = 0; i < days.length; i++) if (days[i] >= dateStr) return i;
-      return -1;
+    const factorTotal = dayFactor.reduce((a, b) => a + b, 0);
+    const perDayEven = Math.max(5, minLeft / Math.max(1, days.length));
+    // Сколько вы готовы в обычный день: сказали сами — берём это, иначе
+    // считаем по объёму работы (ровно столько, чтобы успеть к экзамену).
+    let baseCap = comfort > 0 ? comfort : perDayEven;
+    if (mode === "minutes") baseCap = Math.max(5, plan.perDayMinutes || baseCap);
+    if (settings.dailyCapMinutes > 0) baseCap = Math.min(baseCap, Math.max(5, settings.dailyCapMinutes));
+    if (options.softCapMinutes && options.softCapMinutes > 0) {
+      baseCap = Math.min(baseCap, Math.max(5, options.softCapMinutes));
     }
+    // Сказанное человеком — его личный объём, и он не может быть меньше
+    // доли, которая нужна, чтобы успеть: иначе половина работы просто не
+    // попадёт в план. Программа в этом случае работает на полную и честно
+    // предупреждает «не помещается», вместо того чтобы молча отбросить.
+    const planFloor = minLeft / Math.max(1, days.length);
+    baseCap = Math.max(baseCap, planFloor);
 
-    // Норма «сколько вопросов в день» в штуках. Считаем её один раз и уже по
-    // ней ограничиваем новые вопросы — иначе последний день собирал остатки
-    // (в нём оказывалось втрое больше нормы, а порядок читался как попало).
-    const perDayQuestions =
-      mode === "questions" ? Math.max(1, Number(plan.perDayQuestions) || 10) : 0;
-    const avgQuestionMinutes = questions.length ? minLeft / questions.length : 0;
-    const newCountOnDay = days.map(() => 0);
-
-    /** Куда поставить единицу работы: ближайший день после срока с наименьшей загрузкой. */
-    function place(idx, pass, prefIdx, kind) {
-      if (prefIdx < 0) return -1;
-      if (prefIdx >= days.length) prefIdx = days.length - 1;
-      // Порядок важнее ровной загрузки: новые вопросы идут строго по номерам,
-      // поэтому очередной вопрос не может встать раньше предыдущего. Без этого
-      // «свободный день» перетаскивал вопрос 40 во второй день плана.
-      if (pass === 1 && prefIdx < lastNewDay) prefIdx = lastNewDay;
-      if (pass === 1 && prefIdx >= days.length) prefIdx = days.length - 1;
-      const minutes = questionMinutes(disc, questions[idx], pass, settings);
-      // Разброс по окну: ищем день, где загрузка не превышает мягкий потолок.
-      const window = Math.max(1, Math.round(days.length * 0.1));
-      // Помещается ли ещё один вопрос в этот день: по минутам и, если норма
-      // задана штуками, по количеству.
-      const fits = (di) => {
-        if (pass === 1 && perDayQuestions > 0 && newCountOnDay[di] >= perDayQuestions) return false;
-        return load[di] + minutes <= Math.max(cap[di], minutes);
-      };
-      let best = -1;
-      for (let k = 0; k <= window && prefIdx + k < days.length; k++) {
-        const di = prefIdx + k;
-        if (fits(di)) {
-          best = di;
-          break;
-        }
-      }
-      // Новый вопрос: если в этот день уже не помещается, ставим в следующий
-      // свободный, а не в самый свободный из окна. Иначе, когда норма в день —
-      // «N вопросов», в один день сбивалось больше N, а порядок ломался.
-      if (best === -1 && pass === 1) {
-        for (let di = prefIdx; di < days.length; di++) {
-          if (fits(di)) {
-            best = di;
-            break;
-          }
-        }
-      }
-      if (best === -1) {
-        // Ничего не подошло — берём самый свободный день в окне (или срок).
-        // Свободный считаем не в минутах, а в долях от ёмкости этого дня:
-        // в день «×3» ёмкость втрое больше, и при перегрузке (объём больше,
-        // чем влезает) он всё равно должен получать втрое больше остальных.
-        // Иначе при тесном сроке веса дней пропадали и все дни уравнивались.
-        let minShare = Infinity;
-        for (let k = 0; k <= window && prefIdx + k < days.length; k++) {
-          const di = prefIdx + k;
-          const share = load[di] / Math.max(1, cap[di]);
-          if (share < minShare) {
-            minShare = share;
-            best = di;
-          }
-        }
-        if (best === -1) best = Math.min(prefIdx, days.length - 1);
-      }
-      bucket[best].push({ qIndex: idx, pass: pass, kind: kind, minutes: minutes });
-      load[best] += minutes;
-      if (pass === 1) {
-        newCountOnDay[best]++;
-        if (best > lastNewDay) lastNewDay = best;
-      }
-      return best;
-    }
-
-    // --- Фаза 1. Новый материал ----------------------------------------
-    // Новые вопросы распределяем по первым 80 % срока: каждая порция получает
-    // время на повторения до экзамена.
-    const reviewTail = Math.max(1, Math.round(days.length * 0.18));
-    const newDayCount = Math.max(1, days.length - reviewTail);
+    /** Новые вопросы — строго по порядку номеров, с первого непрочитанного. */
     const newQueue = orderedIndices(disc).filter((i) => states[i].done === 0);
-    const plannedNewDate = {};
+    let qi = 0;
 
-    // Куда поставить k-й новый вопрос: по накопленной ёмкости дней, а не по
-    // ровной сетке. Иначе «в воскресенье больше» осталось бы только словами.
-    const prefixCap = [];
-    let accCap = 0;
-    for (let i = 0; i < newDayCount; i++) {
-      accCap += dayFactor[i];
-      prefixCap.push(accCap);
-    }
-    const totalCapNew = accCap || 1;
-    function dayForNew(k) {
-      // Начало порции k в долях накопленной ёмкости. Именно начало, а не
-      // середина: иначе при ровной неделе первый день оставался бы пустым.
-      const point = (k * totalCapNew) / Math.max(1, newQueue.length);
-      for (let i = 0; i < prefixCap.length; i++) if (prefixCap[i] > point) return i;
-      return newDayCount - 1;
-    }
-
-    let unplanned = 0;
-    newQueue.forEach((idx, k) => {
-      const pref = Math.min(newDayCount - 1, Math.max(0, dayForNew(k)));
-      const di = place(idx, 1, pref, "new");
-      if (di === -1) {
-        for (let pass = 1; pass <= passes; pass++) unplanned += questionMinutes(disc, questions[idx], pass, settings);
-        return;
+    /**
+     * Сколько минут уже прочитано сегодня. Эти минуты занимают место в
+     * сегодняшнем дне: если человек прочёл больше нормы, программа не
+     * поставит ему ещё столько же, а разложит остаток тоньше.
+     */
+    const doneToday = days.map(() => 0);
+    questions.forEach((q, idx) => {
+      const di = dayIndex[today];
+      if (di === undefined) return;
+      const reads = states[idx].reads;
+      for (let k = 0; k < reads.length; k++) {
+        if (reads[k] === days[di]) doneToday[di] += questionMinutes(disc, q, k + 1, settings);
       }
-      plannedNewDate[idx] = days[di];
     });
 
-    // --- Фаза 2. Повторения по расширяющимся интервалам -----------------
-    // Порядок важен: сначала повторения для вопросов, прочитанных раньше.
-    const reviewItems = [];
+    /**
+     * Очередь повторений: когда какой вопрос «созревает».
+     * Для уже прочитанных считаем от последнего чтения, для новых — от дня,
+     * в который его поставим.
+     */
+    const due = [];
+    function addReviews(idx, fromDate, doneCount) {
+      let anchor = fromDate;
+      for (let p = doneCount + 1; p <= passes; p++) {
+        let when = reviewDate(anchor, exam, p - 1, settings);
+        // Повтор не может стоять в тот же день, что и предыдущий прогон:
+        // прочитать вопрос дважды за один вечер — не повторение, а путаница.
+        // Поэтому следующий срок считается от фактического дня, с шагом не
+        // меньше двух дней.
+        if (when < addDays(anchor, 2)) when = addDays(anchor, 2);
+        if (when > exam) when = exam;
+        due.push({ idx: idx, pass: p, due: when, minutes: questionMinutes(disc, questions[idx], p, settings) });
+        anchor = when;
+      }
+    }
+    function sortDue() {
+      due.sort((a, b) => (a.due < b.due ? -1 : a.due > b.due ? 1 : a.idx - b.idx));
+    }
     questions.forEach((q, idx) => {
       const st = states[idx];
-      if (st.done >= passes) return;
-      if (st.done === 0 && !plannedNewDate[idx]) return; // новый не поместился
-      const anchor = st.done > 0 ? (st.last || days[0]) : plannedNewDate[idx];
-      reviewItems.push({ idx: idx, done: st.done, anchor: anchor, due: anchor });
+      if (st.done > 0 && st.done < passes) addReviews(idx, st.last || days[0], st.done);
     });
-    // Сортируем по сроку первого повторения, чтобы ранние ушли в ранние дни.
-    reviewItems.sort((a, b) => {
-      const da = a.done > 0 ? (dayIndex[a.due] != null ? dayIndex[a.due] : -1) : (dayIndex[plannedNewDate[a.idx]] || 0);
-      const db = b.done > 0 ? (dayIndex[b.due] != null ? dayIndex[b.due] : -1) : (dayIndex[plannedNewDate[b.idx]] || 0);
-      return da - db;
-    });
+    sortDue();
 
-    for (const item of reviewItems) {
-      const idx = item.idx;
-      let anchorDate = item.anchor;
-      let prevIdx = dayIndex[anchorDate];
-      // Для нового вопроса первое чтение уже поставлено в фазе 1 — начинаем с pass 2.
-      // Если же вопрос уже читался, note.done — сколько раз, повторяем со следующего.
-      const firstPass = item.done > 0 ? item.done + 1 : 2;
-      for (let pass = firstPass; pass <= passes; pass++) {
-        const due = reviewDate(anchorDate, exam, pass - 1, settings);
-        let prefIdx = dayOnOrAfter(due);
-        if (prefIdx === -1) prefIdx = days.length - 1;
-        if (prevIdx !== undefined && prefIdx <= prevIdx) prefIdx = prevIdx + 1;
-        const di = place(idx, pass, prefIdx, "review");
-        if (di === -1) {
-          // Не поместилось: остаток считаем невыполненным.
-          for (let p = pass; p <= passes; p++) unplanned += questionMinutes(disc, questions[idx], p, settings);
-          break;
+    /** Поставить единицу работы в день di. */
+    function put(di, item) {
+      bucket[di].push(item);
+      load[di] += item.minutes;
+    }
+
+    /**
+     * Поставить повторение и пересчитать оставшиеся сроки этого вопроса.
+     *
+     * Раньше повтор вставал по «идеальной» дате, даже если предыдущий прогон
+     * из-за нехватки места уезжал. Теперь сроки идут от того дня, в который
+     * вопрос реально прочитан: второй прогон не может оказаться в один день
+     * с третьим, и порядок «сначала — потом» всегда соблюдается.
+     */
+    function placeReview(it, di) {
+      put(di, { qIndex: it.idx, pass: it.pass, kind: "review", minutes: it.minutes });
+      for (let k = due.length - 1; k >= 0; k--) {
+        if (due[k].idx === it.idx) due.splice(k, 1);
+      }
+      addReviews(it.idx, days[di], it.pass);
+      sortDue();
+    }
+
+    const firstReadDay = {}; // вопрос → день первого чтения
+    const quotaByDay = [];   // норма каждого дня: по ней видно ровность
+    // Сколько всего осталось разложить: с каждой отметкой это число меньше,
+    // поэтому план сам становится легче.
+    let remaining = minLeft;
+
+    /**
+     * Раскладываем работу по дням от сегодняшнего к экзамену.
+     *
+     * Норма дня — ровная полоса: весь оставшийся объём делится на все
+     * оставшиеся дни по весам. Вопрос ставится в день, только если он в эту
+     * полосу влезает; если не влезает — день остаётся легче, а норма
+     * переходит на следующий. Поэтому план одинаково ровный и для одного
+     * вопроса в неделю, и для двух часов в день, а человек, прочитавший
+     * сегодня больше нормы, завтра получит меньше — это и есть «вперёд».
+     */
+    let budget = 0;
+    for (let di = 0; di < days.length; di++) {
+      const day = days[di];
+      const f = dayFactor[di];
+      let factorLeft = 0;
+      for (let k = di; k < days.length; k++) factorLeft += dayFactor[k];
+      // Норма дня в минутах: доля остатка по весу дня.
+      const quota = factorLeft > 0 ? (remaining * f) / factorLeft : 0;
+      quotaByDay[di] = quota;
+      budget += quota;
+
+      // 1. Повторения, срок которых наступил, — первыми: они и так опаздывают.
+      for (let k = 0; k < due.length; ) {
+        const it = due[k];
+        if (it.due > day) break;
+        // Один вопрос дважды в день не читаем: «повторение» не должно
+        // оказаться в тот же вечер, что и предыдущее чтение.
+        if (firstReadDay[it.idx] === day) { k++; continue; }
+        if (it.minutes > budget + 0.001) { k++; continue; }
+        due.splice(k, 1);
+        placeReview(it, di);
+        budget -= it.minutes;
+      }
+
+      // 2. Новые вопросы — строго по порядку номеров, с первого непрочитанного.
+      //    Если полоса дня ещё не занята, берём следующий вопрос, не дожидаясь
+      //    «его» дня: это и есть чтение вперёд. Свободное место после этого
+      //    автоматически уходит следующим дням.
+      while (qi < newQueue.length) {
+        const idx = newQueue[qi];
+        const minutes = questionMinutes(disc, questions[idx], 1, settings);
+        // Сегодняшний день не оставляем пустым: если вопрос длиннее полосы,
+        // лучше прочитать его сейчас, чем открыть программу и увидеть
+        // «делать нечего». Дальше такие вопросы ждут своей нормы.
+        const todayOnly = di === 0 && load[di] === 0 && qi === 0;
+        if (minutes > budget + 0.001 && !todayOnly) break;
+        qi++;
+        put(di, { qIndex: idx, pass: 1, kind: "new", minutes: minutes });
+        budget -= minutes;
+        firstReadDay[idx] = day;
+        addReviews(idx, day, 1);
+        sortDue();
+      }
+
+      // 3. Место осталось — подтягиваем ближайшие повторения: лучше прочитать
+      //    сейчас, пока есть время, чем оставить на день, где его не будет.
+      for (let k = 0; k < due.length; ) {
+        const it = due[k];
+        if (firstReadDay[it.idx] === day) { k++; continue; }
+        if (it.minutes > budget + 0.001) { k++; continue; }
+        due.splice(k, 1);
+        placeReview(it, di);
+        budget -= it.minutes;
+      }
+
+      remaining = Math.max(0, remaining - load[di]);
+    }
+
+    // Остаток: ровно по минутам вопросы не делятся, и что-то могло не попасть
+    // в полосы. Докладываем в дни, где ещё есть место сверх нормы, — начиная
+    // с последних, чтобы первые дни не разбухали. Новые вопросы ставим только
+    // после последнего уже занятого дня: порядок важнее.
+    if (qi < newQueue.length || due.length) {
+      let lastNew = -1;
+      for (let di = 0; di < days.length; di++) {
+        if (bucket[di].some((it) => it.pass === 1)) lastNew = di;
+      }
+      for (let di = days.length - 1; di >= Math.max(0, lastNew); di--) {
+        const room = () => Math.max(0, baseCap * dayFactor[di] * 1.2 - load[di]);
+        while (due.length) {
+          const it = due[0];
+          if (firstReadDay[it.idx] === days[di] || it.minutes > room()) break;
+          due.shift();
+          placeReview(it, di);
         }
-        anchorDate = days[di];
-        prevIdx = di;
+        while (qi < newQueue.length) {
+          const idx = newQueue[qi];
+          const minutes = questionMinutes(disc, questions[idx], 1, settings);
+          if (minutes > room()) break;
+          qi++;
+          put(di, { qIndex: idx, pass: 1, kind: "new", minutes: minutes });
+          firstReadDay[idx] = days[di];
+          addReviews(idx, days[di], 1);
+          sortDue();
+        }
       }
     }
 
-    // --- Балансировка ----------------------------------------------------
-    // Если в последних днях пусто, а в первых тесно — это нормально: повторения
-    // привязаны к срокам. Но если самый тяжёлый день заметно тяжелее среднего,
-    // переносим из него единицы работы на свободные дни неподалёку.
-    balance(bucket, load, days, questionMinutes, disc, questions, settings);
+    // Последняя попытка: если место осталось хоть где-то в сроке — ставим
+    // туда. Лучше чуть плотнее, чем «вопрос не прочитан». Порядок новых
+    // вопросов при этом не ломается: их дни уже идут по возрастанию.
+    if (qi < newQueue.length || due.length) {
+      const order = days.map((d, i) => i).sort((a, b) => load[a] - load[b]);
+      for (const di of order) {
+        const room = () => Math.max(0, baseCap * dayFactor[di] * 1.5 - load[di]);
+        while (due.length) {
+          const it = due[0];
+          if (firstReadDay[it.idx] === days[di] || it.minutes > room()) break;
+          due.shift();
+          placeReview(it, di);
+        }
+        while (qi < newQueue.length) {
+          const idx = newQueue[qi];
+          const minutes = questionMinutes(disc, questions[idx], 1, settings);
+          if (minutes > room()) break;
+          qi++;
+          put(di, { qIndex: idx, pass: 1, kind: "new", minutes: minutes });
+          firstReadDay[idx] = days[di];
+          addReviews(idx, days[di], 1);
+          sortDue();
+        }
+      }
+    }
 
-    const leftQuestions = newQueue.filter((idx) => plannedNewDate[idx] === undefined).length;
+    // Что не поместилось — честно считаем невыполненным.
+    let unplanned = 0;
+    while (qi < newQueue.length) {
+      const idx = newQueue[qi++];
+      for (let p = 1; p <= passes; p++) unplanned += questionMinutes(disc, questions[idx], p, settings);
+    }
+    for (const it of due) unplanned += it.minutes;
+    // Внутри дня: сначала новые вопросы по возрастанию, потом повторения.
+    for (let di = 0; di < bucket.length; di++) {
+      bucket[di].sort((a, b) => (a.pass === 1 ? 0 : 1) - (b.pass === 1 ? 0 : 1) || a.qIndex - b.qIndex || a.pass - b.pass);
+    }
+
+    balance(bucket, load, days, questionMinutes, disc, questions, settings);
+    const leftQuestions = newQueue.filter((idx) => firstReadDay[idx] === undefined).length;
 
     // --- Итоги ----------------------------------------------------------
     const dayPlan = {};
@@ -687,7 +730,16 @@
 
     const stats = Object.assign({}, baseStats, {
       daysAvailable: days.length,
-      newDayCount: newDayCount,
+      newDayCount: days.length,
+      // Сколько выходит в обычный день и сколько всего по плану: по этим
+      // числам человек проверяет, что план ровный.
+      dayQuota: Math.round(
+        quotaByDay.reduce((a, b) => a + b, 0) / Math.max(1, quotaByDay.length)
+      ),
+      capMinutes: Math.round(baseCap * 100) / 100,
+      // Сколько места в сроке осталось неиспользованным: при ровном плане это
+      // ноль, а большой остаток значит «можно читать спокойнее».
+      unusedMinutes: Math.max(0, baseCap * factorTotal - plannedMinutes),
       perDayMinutes: perDay,
       perDayQuestions: newQuestions / Math.max(1, days.length),
       newPerDay: newQuestions / Math.max(1, days.length),
@@ -725,18 +777,20 @@
           ". Увеличьте число вопросов в день или добавьте дни."
       });
     }
-    if (peakMinutes > 0 && perDay > 0 && peakMinutes > Math.max(perDay * 1.6, perDay + 30)) {
+    // Ровность: если какой-то день выбивается из общего ритма — говорим прямо.
+    const typical = quotaByDay.reduce((a, b) => a + b, 0) / Math.max(1, quotaByDay.length);
+    if (!behind && typical > 0 && peakMinutes > Math.max(typical * 1.6, typical + 30)) {
       warnings.push({
         type: "peak",
         text:
-          "Самый тяжёлый день — " + peakDay + ": " + Math.round(peakMinutes) +
-          " мин (в среднем " + Math.round(perDay) + " мин). Так бывает, когда повторения совпадают."
+          "Один день выходит тяжелее остальных — " + peakDay + ": " + Math.round(peakMinutes) +
+          " мин при обычных " + Math.round(typical) + " мин. Так бывает, когда совпадают повторения."
       });
     }
     // Перегрузка. Порог не выдумываем за человека: если он указал, сколько
     // готов читать в обычный день, сравниваем именно с этой цифрой. Без
     // настройки предупреждаем только о совсем тяжёлом режиме (4 часа в день),
-    // потому что «2 часа» для одного нормa, а для другого много.
+    // потому что «2 часа» для одного норма, а для другого много.
     const limit = comfort > 0 ? comfort : 240;
     if (perDay > limit) {
       warnings.push({

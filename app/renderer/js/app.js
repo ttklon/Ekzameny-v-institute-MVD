@@ -844,6 +844,22 @@
             if (!isRead) root.Views.sparkleBurst();
             m.close();
             refresh();
+            // Отмена прямо в плашке: окно уже закрылось, вопрос из плана ушёл,
+            // а передумать всё ещё можно одним нажатием.
+            UI.toast({
+              kind: isRead ? "info" : "ok",
+              title: isRead ? "Отметка снята" : "№ " + q.num + " отмечен",
+              text: isRead ? "Вопрос снова в работе." : d.name + " · " + UI.dateShort(day),
+              duration: 6000,
+              action: {
+                label: isRead ? "Вернуть" : "Отменить",
+                onClick: () => {
+                  root.Store.setRead(d.id, qIndex, day, isRead);
+                  root.Sound.play(isRead ? "check" : "uncheck");
+                  refresh();
+                }
+              }
+            });
           }
         }),
         h("div.row", { style: { gap: "6px" } }, [

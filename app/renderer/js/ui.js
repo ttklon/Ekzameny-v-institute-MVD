@@ -338,7 +338,22 @@
     const iconName = kind === "ok" ? "check" : kind === "warn" ? "warn" : kind === "err" ? "warn" : "info";
     const el = h("div.toast." + kind, [
       h("span.t-icon", [icon(kind === "ok" ? "check" : iconName)]),
-      h("div", [opts.title ? h("b", opts.title) : null, h("div.t-text", opts.text || "")])
+      h("div", [opts.title ? h("b", opts.title) : null, h("div.t-text", opts.text || "")]),
+      // Действие прямо в плашке: ошибочную отметку можно вернуть одним
+      // нажатием, не разыскивая вопрос в списке.
+      opts.action
+        ? h("button.t-action", {
+            onclick: (e) => {
+              e.stopPropagation();
+              try {
+                opts.action.onClick();
+              } finally {
+                clearTimeout(timer);
+                kill();
+              }
+            }
+          }, opts.action.label)
+        : null
     ]);
     rootEl.appendChild(el);
     const life = opts.duration || 4200;

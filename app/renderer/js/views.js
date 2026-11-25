@@ -420,7 +420,38 @@
         const next = !done;
         root.Store.setRead(d.id, task.qIndex, date, next);
         root.Sound.play(next ? "check" : "uncheck");
-        if (next) celebrate(d, task.qIndex, date);
+        if (next) {
+          celebrate(d, task.qIndex, date);
+          // Плашка с отменой: отметили не тот вопрос — вернуть можно сразу.
+          UI.toast({
+            kind: "ok",
+            title: "№ " + q.num + " отмечен",
+            text: d.name + " · " + UI.dateShort(date),
+            duration: 6000,
+            action: {
+              label: "Отменить",
+              onClick: () => {
+                root.Store.setRead(d.id, task.qIndex, date, false);
+                root.Sound.play("uncheck");
+                root.App.refresh();
+              }
+            }
+          });
+        } else {
+          UI.toast({
+            kind: "info",
+            title: "Отметка снята",
+            text: "Вопрос № " + q.num + " снова в работе — план пересчитан.",
+            duration: 4200,
+            action: {
+              label: "Вернуть",
+              onClick: () => {
+                root.Store.setRead(d.id, task.qIndex, date, true);
+                root.App.refresh();
+              }
+            }
+          });
+        }
         root.App.refresh();
       }
     }, [UI.icon("check")]);
@@ -708,8 +739,11 @@
         card.appendChild(tl);
       }
       card.appendChild(
-        h("div.row", { style: { marginTop: "6px" } }, [
+        h("div.row", { style: { marginTop: "6px", gap: "8px" } }, [
           UI.button("Отметить всё", { kind: "primary", icon: "check", onClick: () => markAllOn(date) }),
+          doneCount
+            ? UI.button("Снять всё", { kind: "ghost", icon: "reset", onClick: () => clearAllOn(date) })
+            : null,
           h("div.spacer"),
           h("span.muted", { style: { fontSize: "12px" } },
             "Отметки можно снять в любой момент — план пересчитается")
@@ -718,7 +752,101 @@
     }
     wrap.appendChild(card);
 
+    // Уже отмечено за этот день. Раньше ошибочно отмеченный вопрос исчезал
+    // из списка, и снять отметку было негде — теперь он всегда на виду.
+    const marked = markedOn(date);
+    if (marked.length) wrap.appendChild(markedCard(date, marked));
+
     return wrap;
+  }
+
+  /** Вопросы, отмеченные прочитанными за день: [{discId, qIndex, rows}]. */
+  function markedOn(date) {
+    const out = [];
+    for (const it of root.Store.readsOn(date)) {
+      const d = root.Store.getDiscipline(it.discId);
+      const q = d && d.questions[it.qIndex];
+      if (!d || !q) continue;
+      out.push({ discId: d.id, qIndex: it.qIndex, num: q.num, title: q.title, disc: d });
+    }
+    out.sort((a, b) => (a.disc.name < b.disc.name ? -1 : a.disc.name > b.disc.name ? 1 : a.num - b.num));
+    return out;
+  }
+
+  /** Карточка «Уже отмечено»: список с крестиком у каждого вопроса. */
+  function markedCard(date, list) {
+    const card = h("div.card");
+    card.appendChild(
+      h("div.card-title", [
+        h("h2", "Уже отмечено · " + list.length),
+        UI.button("Снять всё", {
+          kind: "ghost",
+          size: "sm",
+          icon: "reset",
+          onClick: () => clearAllOn(date)
+        })
+      ])
+    );
+    const rows = h("div", { style: { display: "grid", gap: "6px" } });
+    for (const it of list) {
+      rows.appendChild(
+        h("div.row", {
+          style: {
+            padding: "9px 12px",
+            borderRadius: "12px",
+            background: "rgba(255,255,255,.45)",
+            gap: "10px"
+          }
+        }, [
+          h("span", {
+            style: {
+              color: accentOf(it.disc),
+              fontWeight: "700",
+              fontSize: "12px",
+              minWidth: "86px"
+            }
+          }, it.disc.name),
+          h("span", { style: { fontSize: "13px", flex: "1 1 auto" } },
+            "№ " + it.num + " · " + (it.title || "")),
+          h("button.btn.btn-ghost.btn-sm", {
+            title: "Снять отметку",
+            style: { padding: "3px 9px", fontSize: "12px" },
+            onclick: () => {
+              root.Store.setRead(it.discId, it.qIndex, date, false);
+              root.Sound.play("uncheck");
+              root.App.refresh();
+            }
+          }, "снять")
+        ])
+      );
+    }
+    card.appendChild(rows);
+    card.appendChild(
+      h("p.muted", { style: { fontSize: "11.5px", marginTop: "10px" } },
+        "Снятая отметка возвращает вопрос в план — ничего не потеряется.")
+    );
+    return card;
+  }
+
+  /** Снять все отметки за день с возможностью вернуть одним нажатием. */
+  function clearAllOn(date) {
+    const removed = root.Store.clearReadsOn(null, date);
+    if (!removed.length) return;
+    root.Sound.play("uncheck");
+    UI.toast({
+      kind: "info",
+      title: "Отметки за день сняты",
+      text: "Снято: " + removed.length + ". Вопросы снова в плане.",
+      duration: 7000,
+      action: {
+        label: "Вернуть",
+        onClick: () => {
+          root.Store.restoreReads(removed, date);
+          root.App.refresh();
+        }
+      }
+    });
+    root.App.refresh();
   }
 
   function markAllOn(date) {
@@ -729,9 +857,39 @@
       if (!byDisc.has(t.discId)) byDisc.set(t.discId, []);
       byDisc.get(t.discId).push(t.qIndex);
     }
-    for (const [discId, indices] of byDisc) root.Store.setReadMany(discId, indices, date, true);
+    const added = [];
+    for (const [discId, indices] of byDisc) {
+      // Уже отмеченное повторно не считаем: «вернуть» должно вернуть ровно то,
+      // что добавила эта кнопка.
+      const before = new Set(root.Store.readsOn(date, discId).map((x) => x.qIndex));
+      const fresh = indices.filter((i) => !before.has(i));
+      if (!fresh.length) continue;
+      root.Store.setReadMany(discId, fresh, date, true);
+      for (const qIndex of fresh) added.push({ discId: discId, qIndex: qIndex });
+    }
     root.Sound.play("complete");
     sparkleBurst();
+    if (added.length) {
+      UI.toast({
+        kind: "ok",
+        title: "Отмечено: " + added.length,
+        text: "Если это была ошибка — верните одним нажатием.",
+        duration: 6500,
+        action: {
+          label: "Отменить",
+          onClick: () => {
+            const byDisc2 = new Map();
+            for (const it of added) {
+              if (!byDisc2.has(it.discId)) byDisc2.set(it.discId, []);
+              byDisc2.get(it.discId).push(it.qIndex);
+            }
+            for (const [id, list] of byDisc2) root.Store.setReadMany(id, list, date, false);
+            root.Sound.play("uncheck");
+            root.App.refresh();
+          }
+        }
+      });
+    }
     root.App.refresh();
   }
 
