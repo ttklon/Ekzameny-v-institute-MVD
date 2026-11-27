@@ -100,6 +100,24 @@ def card(nd):
 
 def describe(f):
     """(источник в виде ссылки, что в файле, замечание для проверки)"""
+    link, text, note = describe0(f)
+    # отметки сайта на исходной странице: утрата силы, подготовленная будущая редакция
+    h = os.path.join(os.path.dirname(f), 'Исходные страницы (HTML)', os.path.basename(f)[:-4] + '.html')
+    if os.path.exists(h):
+        page = open(h, encoding='utf-8', errors='replace').read()
+        if 'Документ утратил силу или отмен' in page:
+            note = (note + '; ' if note else '') + 'на сайте отметка: документ утратил силу или отменён'
+        if 'с изменениями, не вступившими в силу' in page:
+            text += '. На сайте отметка: подготовлена редакция с изменениями, не вступившими в силу (в файл не включены)'
+    if LOST.get(os.path.basename(f)):
+        note = (note + '; ' if note else '') + LOST[os.path.basename(f)]
+    return link, text, note
+
+
+LOST = {}
+
+
+def describe0(f):
     row = LOGS.get(sha(f))
     if not row:
         return 'нет записи в журнале загрузчика', 'файл скопирован из папки другой дисциплины; редакция не установлена', 'нет записи в журнале'
