@@ -1,0 +1,2 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-27 16:30:26	consqlist	.github/downloader/npa/find11.tsv	.github/downloader/npa/found11.tsv	ok	200	20489	text/tab-separated-values; запросов с ответом: 6 из 6	35f7e1a7b08c324bd93d4b8d751e2995deaaab11761bc61f4cc2b68a7f31a63a
