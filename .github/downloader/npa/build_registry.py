@@ -98,9 +98,9 @@ def card(nd):
     return CARDS[nd]
 
 
-def describe(f):
+def describe(f, R=None):
     """(источник в виде ссылки, что в файле, замечание для проверки)"""
-    link, text, note = describe0(f)
+    link, text, note = describe0(f, R)
     # отметки сайта на исходной странице: утрата силы, подготовленная будущая редакция
     h = os.path.join(os.path.dirname(f), 'Исходные страницы (HTML)', os.path.basename(f)[:-4] + '.html')
     if os.path.exists(h):
@@ -109,16 +109,68 @@ def describe(f):
             note = (note + '; ' if note else '') + 'на сайте отметка: документ утратил силу или отменён'
         if 'с изменениями, не вступившими в силу' in page:
             text += '. На сайте отметка: подготовлена редакция с изменениями, не вступившими в силу (в файл не включены)'
+    if R is not None:
+        bad = pdfcheck(f, R)
+        if bad:
+            note = (note + '; ' if note else '') + bad
     if LOST.get(os.path.basename(f)):
         note = (note + '; ' if note else '') + LOST[os.path.basename(f)]
     return link, text, note
 
 
 LOST = {}
+# файлы, которых нет в журнале загрузчика: код <TAB> откуда <TAB> что в файле
+MANUAL = {}
+if os.path.exists(os.path.join(HERE, 'manual.tsv')):
+    for l in open(os.path.join(HERE, 'manual.tsv'), encoding='utf-8'):
+        if l.strip() and not l.startswith('#'):
+            c, a, b = l.rstrip('\n').split('\t')
+            MANUAL[c] = (a, b)
+try:
+    from pypdf import PdfReader
+except ImportError:      # без pypdf проверка текста PDF пропускается
+    PdfReader = None
+PDFCHK = {}
 
 
-def describe0(f):
+def pdfcheck(f, r):
+    """Проверка PDF: открывается ли, есть ли текст и названы ли на первых страницах реквизиты акта."""
+    if PdfReader is None:
+        return ''
+    key = sha(f)
+    if key not in PDFCHK:
+        try:
+            rd = PdfReader(f)
+            n = len(rd.pages)
+            t = ' '.join(' '.join((rd.pages[i].extract_text() or '').split()) for i in range(min(3, n)))
+            PDFCHK[key] = (n, t)
+        except Exception as e:
+            PDFCHK[key] = (0, 'ошибка: %s' % type(e).__name__)
+    n, t = PDFCHK[key]
+    if n == 0:
+        return 'PDF не открывается'
+    k = r['kind'].split(':')[0]
+    if k == 'КОН':
+        return ''
+    if len(t) < 300:
+        return 'на первых страницах PDF нет текста (скан или пустой файл), страниц: %d' % n
+    if r['kind'].endswith(':='):
+        w = re.match(r'(ГОСТ Р? ?[\d-]+|[А-Яа-яё]+ [а-яё]+)', r['title'])
+        if k != 'КОН' and w and w.group(1).lower().replace(' ', '') not in t.lower().replace(' ', ''):
+            return 'на первых страницах PDF не найдено название «%s»' % w.group(1)
+        return ''
+    if k not in ('М', 'В'):      # тексты «Законодательства России»: номер акта стоит в конце текста; реквизиты сверены загрузчиком по карточке
+        return ''
+    num = re.escape(r['num'])
+    if not re.search(r'(№|N)\s*%s(?![\dА-Яа-я-])' % num, t):
+        return 'на первых страницах PDF не найден номер акта'
+    return ''
+
+
+def describe0(f, R=None):
     row = LOGS.get(sha(f))
+    if not row and R is not None and R['code'] in MANUAL:
+        return MANUAL[R['code']] + ('',)
     if not row:
         return 'нет записи в журнале загрузчика', 'файл скопирован из папки другой дисциплины; редакция не установлена', 'нет записи в журнале'
     op, url, typ = row[1], row[2], row[7]
@@ -200,7 +252,7 @@ for d in 'GS':
         f = os.path.join(ROOT, m.path(r, d))
         fold = m.FOLD[r['kind'].split(':')[0]]
         if os.path.exists(f) and os.path.getsize(f) > 0:
-            link, text, note = describe(f)
+            link, text, note = describe(f, r)
             have[r['code']] = True
             table.append('| %s | %s | %s | %s |' % (fold, m.filename(r), link, text))
             if note:
