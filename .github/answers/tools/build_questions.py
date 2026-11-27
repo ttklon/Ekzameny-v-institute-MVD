@@ -4,8 +4,9 @@
 Использование:
     python3 .github/answers/tools/build_questions.py <код> <ожидаемое число> "<заголовок>" "<путь к итоговому .txt>"
 
-Части лежат в .github/answers/<код>/parts/NN.txt. Строка «# …» — заголовок раздела,
-строка «## …» — заголовок подраздела, любая другая непустая строка — один вопрос.
+Части лежат в .github/answers/<код>/parts/*.txt и читаются в порядке имён файлов.
+Строка «# …» — заголовок раздела, строка «## …» — заголовок подраздела (без номеров:
+номера разделов и подразделов ставит скрипт), любая другая непустая строка — один вопрос.
 Скрипт нумерует вопросы подряд, проверяет число, повторы и опечатки раскладки
 и пишет файл в кодировке UTF-8 с переводами строк CRLF, как в остальных перечнях.
 """
@@ -18,17 +19,20 @@ code, expected, title, out = sys.argv[1], int(sys.argv[2]), sys.argv[3], sys.arg
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 parts = sorted(glob.glob(os.path.join(root, code, "parts", "*.txt")))
 lines, questions, sections, errors = [title, ""], [], [], []
-n = 0
+n = sub = 0
 for p in parts:
     for raw in open(p, encoding="utf-8").read().splitlines():
         s = raw.strip()
         if not s:
             continue
         if s.startswith("## "):
-            lines += ["", s[3:], ""]
+            sub += 1
+            lines += ["", f"{len(sections)}.{sub}. {s[3:]}", ""]
         elif s.startswith("# "):
-            sections.append([s[2:], 0])
-            lines += ["", "", s[2:].upper(), ""]
+            sub = 0
+            name = f"Раздел {len(sections) + 1}. {s[2:]}"
+            sections.append([name, 0])
+            lines += ["", "", name.upper(), ""]
         else:
             n += 1
             sections[-1][1] += 1
