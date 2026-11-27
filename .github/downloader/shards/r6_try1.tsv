@@ -1,0 +1,12 @@
+pdf	https://www.un.org/ru/documents/decl_conv/conventions/code_of_conduct.shtml	.work/try/kp-un.pdf
+pdf	https://www.un.org/ru/documents/decl_conv/conventions/corruption.shtml	.work/try/oonk-un.pdf
+get	https://unece.org/DAM/trans/conventn/Conv_road_signs_2006v_RU.pdf	.work/try/vkds-unece.pdf
+get	https://unece.org/fileadmin/DAM/trans/conventn/Conv_road_signs_2006v_RU.pdf	.work/try/vkds-unece2.pdf
+get	https://www.un.org/ru/documents/decl_conv/conventions/pdf/signs.pdf	.work/try/vkds-un.pdf
+get	https://unece.org/DAM/trans/conventn/Conv_road_traffic_RU.pdf	.work/try/vk-unece.pdf
+get	https://unece.org/fileadmin/DAM/trans/conventn/Conv_road_traffic_RU.pdf	.work/try/vk-unece2.pdf
+get	https://www.un.org/ru/documents/decl_conv/conventions/pdf/traffic.pdf	.work/try/vk-un.pdf
+get	https://unece.org/DAM/trans/danger/publi/adr/adr2023/ADR2023r_Vol1.pdf	.work/try/adr-unece.pdf
+cons	https://www.consultant.ru/document/cons_doc_INT_15559/#Кодекс поведения	.work/try/kp-cons.pdf
+get	https://www.consultant.ru/cons/cgi/online.cgi?req=doc&base=STR&n=26523&demo=1	.work/try/.gost51256.html
+get	https://sudact.ru/law/gost-r-51256-2018-natsionalnyi-standart-rossiiskoi-federatsii-tekhnicheskie/	.work/try/.gost51256-sud.html
