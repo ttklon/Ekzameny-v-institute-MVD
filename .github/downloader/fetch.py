@@ -462,6 +462,10 @@ def op_cons(url, out):
         body += '\n<hr>\n' + re.sub(r'<script.*?</script>', '', part[a:min(ends)], flags=re.S)
         with open(src, 'a', encoding='utf-8') as f:
             f.write('\n<!-- ===== часть документа: %s ===== -->\n' % purl + part)
+    if len(re.sub(r'<[^>]+>', '', body).strip()) < 200 and re.search(r'расписани|в нерабочее время|в выходные', page):
+        # часть документов сайт показывает только по расписанию (вечером в будни и в выходные)
+        os.remove(src)
+        return 'ошибка: текст на сайте доступен по расписанию (будни 20–24 мск, выходные): ' + title[:80], code, 'text/html', url
     return _reference_copy(url, 'consultant.ru, некоммерческая интернет-версия КонсультантПлюс', title, body, out, src, code, expect)
 
 

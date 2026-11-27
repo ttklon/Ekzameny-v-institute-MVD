@@ -16,9 +16,14 @@ NAME = {'ФКЗ': 'ФКЗ', 'ФЗ': 'ФЗ', 'ЗРФ': 'Закон РФ', 'У': '
         'Р': 'Распоряжение Правительства РФ', 'М': 'Приказ МВД России'}
 
 
-# особые поисковые запросы (совместные приказы, международные договоры, стандарты): код <TAB> запрос#реквизиты для сверки
-QUERIES = dict(l.rstrip('\n').split('\t') for l in open(os.path.join(HERE, 'queries.tsv'), encoding='utf-8') if l.strip()) \
-    if os.path.exists(os.path.join(HERE, 'queries.tsv')) else {}
+# особые задания (совместные приказы, международные договоры, стандарты, акты с известным адресом):
+# код <TAB> операция <TAB> адрес (как в заданиях загрузчика)
+QUERIES = {}
+if os.path.exists(os.path.join(HERE, 'queries.tsv')):
+    for l in open(os.path.join(HERE, 'queries.tsv'), encoding='utf-8'):
+        if l.strip() and not l.startswith('#'):
+            c, op, u = l.rstrip('\n').split('\t')
+            QUERIES[c] = (op, u)
 
 
 def have(r):
@@ -47,6 +52,8 @@ def filename(r):
         return 'Конституция РФ (официальный текст с изменениями, опубликован 06.10.2022).pdf'
     if k == 'КОД':
         return '%s от %s № %s.pdf' % (r['title'], r['date'], r['num'])
+    if r['kind'].endswith(':='):          # название файла задано целиком (международные договоры, стандарты)
+        return r['title'] + '.pdf'
     head = NAME[k] if k != 'В' else r['kind'].split(':', 1)[1]
     base = '%s от %s № %s ' % (head, r['date'], r['num'])
     title = r['title'].replace('«', '').replace('»', '')
@@ -62,14 +69,14 @@ def path(r, d):
 
 def task(r, d):
     k = r['kind'].split(':')[0]
+    if r['code'] in QUERIES:
+        return '%s\t%s\t%s' % (QUERIES[r['code']] + (path(r, d),))
     if k == 'КОН':
         return 'get\thttp://publication.pravo.gov.ru/file/pdf?eoNumber=0001202210060013\t' + path(r, d)
     if k in ADOPT:
         adoption = '%s от %s № %s' % (ADOPT[k], r['date'], r['num'])
         url = 'http://ips.pravo.gov.ru/api/ips/legislation/search.json?query=%s&limit=10&page=1' % urllib.parse.quote_plus(adoption)
         return 'ipsact\t%s#%s\t%s' % (url, adoption, path(r, d))
-    if r['code'] in QUERIES:
-        return 'consauto\t%s\t%s' % (QUERIES[r['code']], path(r, d))
     head = 'Приказ МВД России' if k == 'М' else r['kind'].split(':', 1)[1].split(',')[0]
     return 'consauto\t%s от %s N %s#от %s N %s\t%s' % (head, r['date'], r['num'], r['date'], r['num'], path(r, d))
 
@@ -85,7 +92,7 @@ if __name__ == '__main__':
             continue
         k = r['kind'].split(':')[0]
         # акт загружается один раз (в папку первой дисциплины); во вторую папку его копирует copy_shared.py
-        (cons if k in ('М', 'В') else ips).append(task(r, r['disc'][0]))
+        (cons if k in ('М', 'В') or r['code'] in QUERIES else ips).append(task(r, r['disc'][0]))
     out = os.path.join(ROOT, '.github', 'downloader', 'shards')
     os.makedirs(out, exist_ok=True)
     def split(rows, n, tag):
