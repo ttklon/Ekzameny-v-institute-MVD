@@ -55,6 +55,13 @@ if errors:
     print("\n".join(errors))
     sys.exit(1)
 os.makedirs(os.path.dirname(out), exist_ok=True)
+clean = []
+for s in lines:  # не больше одной пустой строки подряд, перед разделом — две
+    if s == "" and clean and clean[-1] == "":
+        continue
+    if s.startswith("РАЗДЕЛ ") and clean and clean[-1] == "":
+        clean.append("")
+    clean.append(s)
 with open(out, "w", encoding="utf-8", newline="") as f:
-    f.write("\r\n".join(lines).strip() + "\r\n")
+    f.write("\r\n".join(clean).strip() + "\r\n")
 print("записано:", out)
