@@ -423,6 +423,100 @@ def op_sudact(url, out):
     return _reference_copy(purl, 'sudact.ru, версия для печати', title, body, out, src, code, expect)
 
 
+# блок страницы, в котором находится текст документа (по сайтам); если сайта в списке нет — берётся <body>
+WEB_BOX = [('meganorm.ru', r'<div[^>]*class="contener_doc"'), ('eccis.org', r'<div[^>]*class="word-page"'),
+           ('xn--b1aew.xn--p1ai', r'<div[^>]*class="(?:ln-content-holder|b-text|article)[^"]*"'),
+           ('legalacts.ru', r'<div[^>]*class="main-center-block-content[^"]*"'),
+           ('e-ecolog.ru', r'<div[^>]*class="(?:document|doc-text|content)[^"]*"')]
+
+
+def web_block(page, rx):
+    """Вырезать из страницы блок <div …>…</div>, начало которого задано выражением rx."""
+    import re
+    m = re.search(rx, page)
+    if not m:
+        return None
+    depth = 0
+    for t in re.finditer(r'<(/?)div\b', page[m.start():]):
+        depth += -1 if t.group(1) else 1
+        if depth == 0:
+            return page[m.start():m.start() + t.end()] + '>'
+    return page[m.start():]
+
+
+def op_web(url, out):
+    """Текст акта со страницы сайта (или с нескольких страниц, адреса через « | »).
+    Каждая страница сохраняется как есть в «Исходные страницы (HTML)»; из неё берётся блок с текстом
+    документа (без меню и рекламы сайта), блоки подряд печатаются в один PDF. В начале PDF указывается,
+    с каких адресов и когда взят текст. После # — слова, которые должны быть в заголовке первой страницы."""
+    import re, html as htmlmod, urllib.parse, hashlib
+    url, _, expect = url.partition('#')
+    parts = [u.strip() for u in url.split(' | ') if u.strip()]
+    folder = os.path.join(os.path.dirname(out), 'Исходные страницы (HTML)')
+    os.makedirs(folder, exist_ok=True)
+    base = os.path.basename(out)[:-4]
+    blocks, styles, titles, shas, code, ctype = [], [], [], [], '', ''
+    for i, u in enumerate(parts):
+        src = os.path.join(folder, base + ('' if i == 0 else ' (часть %d)' % (i + 1)) + '.html')
+        res, code, ctype = op_get(u, src)
+        if res != 'ok':
+            return res, code, ctype, u
+        raw = open(src, 'rb').read()
+        shas.append(hashlib.sha256(raw).hexdigest())
+        enc = re.search(rb'charset=["\']?([\w-]+)', raw[:4000])
+        page = None
+        for e in ([enc.group(1).decode()] if enc else []) + ['utf-8', 'cp1251']:
+            try:
+                page = raw.decode(e)
+                break
+            except (UnicodeDecodeError, LookupError):
+                pass
+        if page is None:
+            page = raw.decode('utf-8', 'replace')
+        t = re.search(r'<title[^>]*>(.*?)</title>', page, re.S)
+        title = ' '.join(htmlmod.unescape(t.group(1)).split()) if t else ''
+        titles.append(title)
+        if i == 0 and expect and not all(w.lower() in title.lower() for w in expect.split('&&')):
+            os.remove(src)
+            return 'ошибка: заголовок страницы не тот: %s' % title[:150], code, ctype, u
+        real = re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', u)
+        host = urllib.parse.urlparse(real).netloc
+        rx = next((r for h, r in WEB_BOX if h in host), None)
+        block = web_block(page, rx) if rx else None
+        if block is None:
+            b = re.search(r'<body[^>]*>(.*)</body>', page, re.S)
+            block = b.group(1) if b else page
+        block = re.sub(r'<(script|noscript|iframe|form|ins)\b.*?</\1>', '', block, flags=re.S)
+        block = re.sub(r'(src|href)="(?!https?:|data:|#|mailto:)([^"]*)"',
+                       lambda mm: '%s="%s"' % (mm.group(1), urllib.parse.urljoin(u, htmlmod.unescape(mm.group(2)))), block)
+        if len(' '.join(re.sub(r'<[^>]+>', ' ', block).split())) < 800:
+            return 'ошибка: на странице мало текста (%s)' % title[:100], code, ctype, u
+        head = re.search(r'<head[^>]*>(.*?)</head>', page, re.S)
+        if head and i == 0:
+            for st in re.findall(r'<link[^>]*rel="?stylesheet"?[^>]*>|<style[^>]*>.*?</style>', head.group(1), re.S):
+                styles.append(re.sub(r'href="(?!https?:)([^"]*)"',
+                                     lambda mm: 'href="%s"' % urllib.parse.urljoin(u, htmlmod.unescape(mm.group(1))), st))
+        blocks.append(block)
+        time.sleep(1.0)
+    day = time.strftime('%d.%m.%Y', time.gmtime())
+    note = '<p style="font:9pt sans-serif;color:#555;border-bottom:1px solid #999;padding-bottom:4pt">Текст взят со страниц: %s. Сохранено %s.</p>' % (
+        '; '.join(htmlmod.escape(u) for u in parts), day)
+    doc = ('<!DOCTYPE html><html><head><meta charset="utf-8"><title>%s</title>%s'
+           '<style>@page{size:A4;margin:15mm}body{background:#fff !important;color:#000;margin:0;padding:0}'
+           'img{max-width:100%%;height:auto}table{max-width:100%%}.webpart{page-break-before:always}</style></head><body>%s%s</body></html>') % (
+        htmlmod.escape(titles[0]), ''.join(styles), note,
+        ''.join('<div%s>%s</div>' % (' class="webpart"' if i else '', b) for i, b in enumerate(blocks)))
+    tmp = os.path.abspath(out + '.print.html')
+    open(tmp, 'w', encoding='utf-8').write(doc)
+    try:
+        res, c2, t2 = op_pdf('file://' + tmp, out)
+    finally:
+        os.remove(tmp)
+    if res != 'ok':
+        return res, code, ctype, parts[0]
+    return 'ok', code, 'application/pdf; web; %s; частей: %d; html sha256=%s' % (titles[0][:400], len(parts), ','.join(shas)), parts[0]
+
+
 def op_sh(cmd, out):
     """Служебная операция: выполнить команду на сборочной машине и сохранить её вывод в файл
     (проверка доступности сайтов и подбор адресов до загрузки документов)."""
@@ -961,6 +1055,8 @@ def main(tasks_path):
                     res, code, ctype, url = op_kontur(url, out)
                 elif op == 'sudact':
                     res, code, ctype, url = op_sudact(url, out)
+                elif op == 'web':
+                    res, code, ctype, url = op_web(url, out)
                 elif op == 'sh':
                     res, code, ctype, url = op_sh(url, out)
                 elif op == 'wait':
