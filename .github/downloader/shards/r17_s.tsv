@@ -1,0 +1,1 @@
+sh	bash .github/downloader/diag/d3.sh .github/downloader/diag/q6.txt	.work/diag/d6.txt
