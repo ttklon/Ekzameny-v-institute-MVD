@@ -53,7 +53,10 @@ jobs:
           git add -A
           git commit -q -m "Загрузка источников (автоматически): $(basename "${{ matrix.shard }}" .tsv)" || exit 0
           for i in 1 2 3 4 5 6 7 8 9 10; do
-            git pull -q --rebase origin "${GITHUB_REF_NAME}" && git push -q origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            # -X theirs: при совпадении служебных файлов (.work/cards) из параллельных заданий берётся свой вариант
+            git pull -q --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push -q origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            git rebase --abort 2>/dev/null || true
             sleep $((RANDOM % 40 + 10))
           done
+          echo "::error::не удалось сохранить результаты в ветку: $(git status --short | head -5 | tr '\n' ' ')"
           exit 1
