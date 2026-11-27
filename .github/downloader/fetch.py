@@ -423,6 +423,17 @@ def op_sudact(url, out):
     return _reference_copy(purl, 'sudact.ru, версия для печати', title, body, out, src, code, expect)
 
 
+def op_wait(url, out):
+    """Пауза до времени ЧЧ:ММ (UTC) — для сайтов, которые отдают тексты по расписанию."""
+    import datetime
+    h, m = [int(x) for x in url.split(':')]
+    now = datetime.datetime.utcnow()
+    t = now.replace(hour=h, minute=m, second=0, microsecond=0)
+    if t > now:
+        time.sleep((t - now).total_seconds())
+    return 'ok', '0', '', url
+
+
 def op_sudauto(url, out):
     """sudact.ru: перебор возможных адресов акта. Адрес: <имя1> <имя2> ...#<реквизиты, которые должны быть в заголовке>."""
     slugs, _, expect = url.partition('#')
@@ -939,6 +950,8 @@ def main(tasks_path):
                     res, code, ctype, url = op_kontur(url, out)
                 elif op == 'sudact':
                     res, code, ctype, url = op_sudact(url, out)
+                elif op == 'wait':
+                    res, code, ctype, url = op_wait(url, out)
                 elif op == 'sudauto':
                     res, code, ctype, url = op_sudauto(url, out)
                 elif op == 'cons':
