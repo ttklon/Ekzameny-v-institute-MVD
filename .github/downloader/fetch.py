@@ -423,6 +423,17 @@ def op_sudact(url, out):
     return _reference_copy(purl, 'sudact.ru, версия для печати', title, body, out, src, code, expect)
 
 
+def op_sh(cmd, out):
+    """Служебная операция: выполнить команду на сборочной машине и сохранить её вывод в файл
+    (проверка доступности сайтов и подбор адресов до загрузки документов)."""
+    r = subprocess.run(['bash', '-c', cmd], capture_output=True, text=True, errors='replace', timeout=1500)
+    with open(out, 'w', encoding='utf-8') as f:
+        f.write(r.stdout[-400000:])
+        if r.stderr.strip():
+            f.write('\n--- stderr ---\n' + r.stderr[-20000:])
+    return ('ok' if r.returncode == 0 else 'ошибка: код %d' % r.returncode), '', 'text/plain', cmd
+
+
 def op_wait(url, out):
     """Пауза до времени ЧЧ:ММ (UTC) — для сайтов, которые отдают тексты по расписанию."""
     import datetime
@@ -950,6 +961,8 @@ def main(tasks_path):
                     res, code, ctype, url = op_kontur(url, out)
                 elif op == 'sudact':
                     res, code, ctype, url = op_sudact(url, out)
+                elif op == 'sh':
+                    res, code, ctype, url = op_sh(url, out)
                 elif op == 'wait':
                     res, code, ctype, url = op_wait(url, out)
                 elif op == 'sudauto':
