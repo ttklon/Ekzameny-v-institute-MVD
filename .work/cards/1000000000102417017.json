@@ -1,0 +1,75 @@
+{
+    "minustdate": null,
+    "description": null,
+    "docnpa": null,
+    "suppliment": null,
+    "redactions": [
+        {
+            "size": 83690,
+            "refhash": null,
+            "redreason": null,
+            "hascontent": true,
+            "ofoper": "Оператор НТЦ \"Система\"",
+            "id": 0,
+            "rgnid": null,
+            "state": "Действует без изменений",
+            "image": "http://publication.pravo.gov.ru/document/0001201612060002",
+            "odate": null,
+            "refadoption": null,
+            "completed": true,
+            "cntcompleted": true,
+            "dtid": null,
+            "status": "актуальная",
+            "drversion": 1,
+            "docname": "Об утверждении Доктрины информационной безопасности Российской Федерации",
+            "sign": false,
+            "orgid": null,
+            "oftime": "02.02.2021",
+            "redname": "на 05.12.2016, исходная, актуальная",
+            "date": "05.12.2016",
+            "rdstid": 2,
+            "comment": null,
+            "official": true,
+            "onumber": null,
+            "refnd": null,
+            "actual": true
+        }
+    ],
+    "nd": "1000000000102417017",
+    "branches": [
+        "010140030010|Отмена, изменение и дополнение нормативных правовых актов",
+        "020030020060|Иные программы",
+        "120040020|Информационные системы, технологии и средства их обеспечения",
+        "160040030|Информационная безопасность (см. также 120.070.000)"
+    ],
+    "attributes": null,
+    "minustnum": null,
+    "state": "Действует без изменений",
+    "publications": [
+        "Собрание законодательства Российской Федерации от 12.12.2016 г., № 50, ст. 7074",
+        "Официальный интернет-портал правовой информации (www.pravo.gov.ru) от 06.12.2016 г., № 0001201612060002"
+    ],
+    "keywords": [
+        "БЕЗОПАСНОСТЬ",
+        "ДОКТРИНА",
+        "ИНТЕРНЕТ",
+        "ИНФОРМАТИЗАЦИЯ",
+        "ИНФОРМАЦИОННЫЙ",
+        "УГРОЗА",
+        "УТРАТИВШИЙ"
+    ],
+    "stateid": 2,
+    "baseid": "c000000000",
+    "officers": [
+        "В.Путин"
+    ],
+    "hash": "86e2bfa928b4f1bfa5a420559e09808d075eec69295d7ae4f5e761deb05726a3",
+    "billnumber": null,
+    "ofpubnumber": "0001201612060002",
+    "adoption": "Указ Президента Российской Федерации от 05.12.2016 № 646",
+    "type": "Указ",
+    "actualrdk": 0,
+    "docname_history": null,
+    "name": "Об утверждении Доктрины информационной безопасности Российской Федерации",
+    "comment": null
+}
