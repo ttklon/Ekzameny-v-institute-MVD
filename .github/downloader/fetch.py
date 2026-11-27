@@ -285,23 +285,23 @@ def op_consauto(url, out):
         items = re.findall(r'<li class="search-results__item[^>]*>(.*?)</li>', s, re.S)
         if items or 'ничего не найдено' in s:
             break
-    seen = []
+    seen, links = [], []
+    want = re.sub(r'[\s\u00a0\u200b\u2009]+', '', expect).replace('№', 'N').lower()
     for it in items[:8]:
         href = re.search(r'href="([^"]+)"', it)
         text = ' '.join(_h.unescape(re.sub(r'<[^>]+>', ' ', it)).split())
         seen.append(text[:70])
-        if href and re.sub(r'\s+', '', expect) in re.sub(r'\s+', '', text) and 'cons_doc_LAW_' in href.group(1):
-            link = _h.unescape(href.group(1)).split('?')[0].split('#')[0]
-            if link.startswith('//'):
-                link = 'https:' + link
-            elif link.startswith('/'):
-                link = 'https://www.consultant.ru' + link
-            m = re.search(r'(https://www\.consultant\.ru/document/cons_doc_LAW_\d+/)', link)
+        have = re.sub(r'[\s\u00a0\u200b\u2009]+', '', text).replace('№', 'N').lower()
+        if href and want in have:
+            link = _h.unescape(href.group(1))
+            links.append(link[:120])
+            # ссылка бывает двух видов: /document/cons_doc_LAW_<n>/ и /cons/cgi/online.cgi?req=doc&base=LAW&n=<n>
+            m = re.search(r'cons_doc_LAW_(\d+)', link) or re.search(r'base=LAW(?:&amp;|&|;)n=(\d+)', link)
             if not m:
                 continue
             time.sleep(1.5)
-            return op_cons(m.group(1) + '#' + expect, out)
-    return 'ошибка: в поиске нет документа с реквизитами (найдено %d: %s)' % (len(items), ' | '.join(seen[:3])), '200', 'text/html', surl
+            return op_cons('https://www.consultant.ru/document/cons_doc_LAW_%s/#%s' % (m.group(1), expect), out)
+    return 'ошибка: в поиске нет документа с реквизитами (найдено %d: %s; ссылки подходящих: %s)' % (len(items), ' | '.join(seen[:3]), ' '.join(links[:2]) or 'нет'), '200', 'text/html', surl
 
 
 def op_kontur(url, out):

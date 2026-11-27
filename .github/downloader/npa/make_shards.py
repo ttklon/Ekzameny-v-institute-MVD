@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Строит списки заданий загрузчика (.github/downloader/shards/*.tsv) по каталогу актов catalog.txt.
-Запуск: python3 make_shards.py <префикс списков> [код ...]  — без кодов берутся все акты каталога."""
+Запуск: python3 make_shards.py <префикс списков> [код ...]  — без кодов берутся все акты каталога;
+«--missing» вместо кодов — только акты, файлов которых ещё нет ни в одной из папок."""
 import sys, os, urllib.parse
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, '..', '..', '..'))
@@ -13,6 +14,20 @@ ADOPT = {'ФКЗ': 'Федеральный конституционный зак
          'Р': 'Распоряжение Правительства Российской Федерации'}
 NAME = {'ФКЗ': 'ФКЗ', 'ФЗ': 'ФЗ', 'ЗРФ': 'Закон РФ', 'У': 'Указ Президента РФ', 'П': 'Постановление Правительства РФ',
         'Р': 'Распоряжение Правительства РФ', 'М': 'Приказ МВД России'}
+
+
+# особые поисковые запросы (совместные приказы, международные договоры, стандарты): код <TAB> запрос#реквизиты для сверки
+QUERIES = dict(l.rstrip('\n').split('\t') for l in open(os.path.join(HERE, 'queries.tsv'), encoding='utf-8') if l.strip()) \
+    if os.path.exists(os.path.join(HERE, 'queries.tsv')) else {}
+
+
+def have(r):
+    """Путь уже загруженного файла акта (в папке любой из дисциплин) или None."""
+    for d in r['disc']:
+        f = os.path.join(ROOT, path(r, d))
+        if os.path.exists(f) and os.path.getsize(f) > 0:
+            return f
+    return None
 
 
 def catalog():
@@ -53,21 +68,24 @@ def task(r, d):
         adoption = '%s от %s № %s' % (ADOPT[k], r['date'], r['num'])
         url = 'http://ips.pravo.gov.ru/api/ips/legislation/search.json?query=%s&limit=10&page=1' % urllib.parse.quote_plus(adoption)
         return 'ipsact\t%s#%s\t%s' % (url, adoption, path(r, d))
+    if r['code'] in QUERIES:
+        return 'consauto\t%s\t%s' % (QUERIES[r['code']], path(r, d))
     head = 'Приказ МВД России' if k == 'М' else r['kind'].split(':', 1)[1].split(',')[0]
     return 'consauto\t%s от %s N %s#от %s N %s\t%s' % (head, r['date'], r['num'], r['date'], r['num'], path(r, d))
 
 
 if __name__ == '__main__':
     prefix, codes = sys.argv[1], set(sys.argv[2:])
+    if codes == {'--missing'}:      # только акты каталога, файлов которых ещё нет
+        codes = {r['code'] for r in catalog() if not have(r)}
+        print('нет файлов:', len(codes), ' '.join(sorted(codes)))
     ips, cons = [], []
     for r in catalog():
         if codes and r['code'] not in codes:
             continue
         k = r['kind'].split(':')[0]
-        if k in ('М', 'В'):
-            cons.append(task(r, r['disc'][0]))          # ведомственный акт загружается один раз, во вторую папку копируется
-        else:
-            ips += [task(r, d) for d in r['disc']]
+        # акт загружается один раз (в папку первой дисциплины); во вторую папку его копирует copy_shared.py
+        (cons if k in ('М', 'В') else ips).append(task(r, r['disc'][0]))
     out = os.path.join(ROOT, '.github', 'downloader', 'shards')
     os.makedirs(out, exist_ok=True)
     def split(rows, n, tag):
@@ -76,5 +94,5 @@ if __name__ == '__main__':
             if part:
                 open(os.path.join(out, '%s_%s%d.tsv' % (prefix, tag, i + 1)), 'w', encoding='utf-8').write('\n'.join(part) + '\n')
     split(ips, max(1, min(4, len(ips) // 40 + 1)), 'ips')
-    split(cons, max(1, min(3, len(cons) // 12 + 1)), 'cons')
+    split(cons, max(1, min(4, len(cons) // 10 + 1)), 'cons')
     print('ips', len(ips), 'cons', len(cons))
