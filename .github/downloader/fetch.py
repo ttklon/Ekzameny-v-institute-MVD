@@ -423,6 +423,18 @@ def op_sudact(url, out):
     return _reference_copy(purl, 'sudact.ru, версия для печати', title, body, out, src, code, expect)
 
 
+def op_sudauto(url, out):
+    """sudact.ru: перебор возможных адресов акта. Адрес: <имя1> <имя2> ...#<реквизиты, которые должны быть в заголовке>."""
+    slugs, _, expect = url.partition('#')
+    last = ('ошибка: нет вариантов адреса', '0', 'text/html', url)
+    for slug in slugs.split():
+        last = op_sudact('https://sudact.ru/law/%s/#%s' % (slug, expect), out)
+        if last[0] == 'ok':
+            return last
+        time.sleep(1.0)
+    return last
+
+
 def op_cons(url, out):
     """consultant.ru: документ, размещённый одной страницей.
     Адрес: https://www.consultant.ru/document/cons_doc_LAW_<n>/#<реквизиты, которые должны быть в заголовке>."""
@@ -462,10 +474,13 @@ def op_cons(url, out):
         body += '\n<hr>\n' + re.sub(r'<script.*?</script>', '', part[a:min(ends)], flags=re.S)
         with open(src, 'a', encoding='utf-8') as f:
             f.write('\n<!-- ===== часть документа: %s ===== -->\n' % purl + part)
-    if len(re.sub(r'<[^>]+>', '', body).strip()) < 200 and re.search(r'расписани|в нерабочее время|в выходные', page):
-        # часть документов сайт показывает только по расписанию (вечером в будни и в выходные)
+    if len(re.sub(r'<[^>]+>', '', body).strip()) < 200:
+        # часть документов сайт показывает только по расписанию (вечером в будни и в выходные) — в журнал пишется, что на странице вместо текста
+        import html as _hh
+        vis = ' '.join(_hh.unescape(re.sub(r'<[^>]+>', ' ', re.sub(r'<(script|style|head).*?</\1>', ' ', page, flags=re.S))).split())
+        i = max(vis.find(title[:25]) if title else 0, 0)
         os.remove(src)
-        return 'ошибка: текст на сайте доступен по расписанию (будни 20–24 мск, выходные): ' + title[:80], code, 'text/html', url
+        return 'ошибка: на странице нет текста документа; на странице: ' + vis[i:i + 400], code, 'text/html', url
     return _reference_copy(url, 'consultant.ru, некоммерческая интернет-версия КонсультантПлюс', title, body, out, src, code, expect)
 
 
@@ -924,6 +939,8 @@ def main(tasks_path):
                     res, code, ctype, url = op_kontur(url, out)
                 elif op == 'sudact':
                     res, code, ctype, url = op_sudact(url, out)
+                elif op == 'sudauto':
+                    res, code, ctype, url = op_sudauto(url, out)
                 elif op == 'cons':
                     res, code, ctype, url = op_cons(url, out)
                 elif op == 'consauto':
