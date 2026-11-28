@@ -98,7 +98,7 @@ DEC = {
  116: ('sci', '', '06', '', 'Современные проблемы уголовного процесса: пути решения', 'сборник', 'Сборник материалов V международной конференции (Уфа, 4–5 апреля 2024 г.)', 'УЮИ МВД', 2024),
  117: ('sci', '04', '', '', 'Теория и практика административного права и процесса', 'сборник', 'Материалы международной конференции (5 октября 2023 г.)', 'КрУ МВД', 2024),
  118: ('sci', '04', '07', '', 'Теория и практика административного права и процесса', 'сборник', 'Материалы международной конференции (6 октября 2022 г.)', 'КрУ МВД', 2023),
- 120: ('sci', '', '06', '', 'Уголовный процесс и криминалистика: правовые основы, теория, практика, дидактика. Часть 1', 'сборник', 'Сборник научных статей по материалам конференции к 75-летию профессора Б. Я. Гаврилова (Москва, 3 ноября 2023 г.), часть 1', 'Академия управления МВД', 2023),
+ 120: ('sci', '', '06', '', 'Уголовный процесс и криминалистика: правовые основы, теория, практика, дидактика', 'сборник, ч. 1', 'Сборник научных статей по материалам конференции к 75-летию профессора Б. Я. Гаврилова (Москва, 3 ноября 2023 г.), часть 1', 'Академия управления МВД', 2023),
  122: ('sci', '', '06', '', 'Уголовный процесс и криминалистика: правовые основы, теория, практика, дидактика', 'сборник', 'Сборник к 90-летию профессора В. А. Михайлова', 'Академия управления МВД', 2025),
 }
 PROC = 'общий сборник по уголовному процессу: о должностных и коррупционных преступлениях в тексте мало (меньше одного упоминания на четыре страницы)'
@@ -171,6 +171,22 @@ def pdf_info(data):
         d = fitz.open(stream=data, filetype='pdf'); n = d.page_count
         t = ' '.join(d[i].get_text() for i in range(min(3, n))); d.close(); return n, t
     except Exception: return 0, ''
+EXTRA = ['ОРМ', 'ГИБДД', 'ДПС', 'УИС', 'СМИ', 'ПДД', 'ГАИ', 'УПК', 'ФСБ', 'ОВД', 'ДТП', 'ОРД', 'МВД', 'РФ', 'УК', 'ФССП', 'СИЗО', 'ТС', 'ЕАЭС', 'СНГ']
+def art_title(t):
+    t0 = ' '.join(t.replace('\u2011', '-').replace('\u00ad', '').split()); t = S5.sentence(t0)
+    if t != t0:
+        for k in EXTRA: t = re.sub(r'(?<![а-яёa-z])%s(?![а-яёa-z])' % k.lower(), k, t)
+        t = t.replace('коап', 'КоАП').replace('эбипк', 'ЭБиПК')
+    return t
+def art_name(au, title, j, year):
+    j = S5.clean(j)
+    if len(j) > 50: j = S5.cut(j, 46)
+    tail = '. %s, %s.pdf' % (j, year); room = 110
+    while True:
+        name = '%s. %s%s' % (au, S5.cut(title, room), tail)
+        if len(name.encode('utf-8')) <= 225 or room <= 20: break
+        room -= 4
+    return name
 def run():
     cand = json.load(open(os.path.join(HERE, 'sci_cand.json'), encoding='utf-8'))
     man = []; taken = {d: {c: set() for c in FOLDER} for d in 'gs'}; st = collections.Counter(); bad = {'g': [], 's': []}
@@ -214,9 +230,7 @@ def run():
             al = [S5.author(a) for a in re.split(r'[,;]\s*', c['authors']) if a.strip()]
             au = ', '.join(al[:2]) + (' и др.' if len(al) > 2 else '')
             if len(au) > 60: au = al[0] + ' и др.'
-            title = S5.sentence(c['title']); j = S5.clean(c['journal'])
-            if len(j) > 70: j = S5.cut(j, 60).rstrip('…')
-            name = S5.fit(lambda t: '%s. %s. %s, %s.pdf' % (S5.clean(au), t, j, c['year']), title, cap=150).replace('…..', '….')
+            title = art_title(c['title']); name = art_name(S5.clean(au), title, c['journal'], c['year'])
             base, k = name, 2
             while name.lower() in taken[d]['art']: name = base[:-4] + ' (%d).pdf' % k; k += 1
             taken[d]['art'].add(name.lower())
@@ -227,9 +241,9 @@ def run():
     # --- эмпирические материалы из баз других дисциплин
     names = {p: tree(p) for p in (A5, U5)}
     for folder, start, g, s, what, src in SHARE:
-        hit = [n for n in names[folder] if os.path.basename(n).startswith(start)]
+        hit = [n for f in names for n in names[f] if os.path.basename(n).startswith(start)]
         if not hit: st['нет материала в базе другой дисциплины'] += 1; print('НЕТ', start); continue
-        path = sorted(hit, key=len)[0]; data = blob(path); name = os.path.basename(path)
+        path = sorted(hit, key=lambda n: len(os.path.basename(n)))[0]; data = blob(path); name = os.path.basename(path)
         ds = [d for d, p in (('g', g), ('s', s)) if p]
         put(data, [os.path.join(ROOT, DISC[d], D5, name) for d in ds])
         pages = pdf_info(data)[0] if name.endswith('.pdf') else 0
