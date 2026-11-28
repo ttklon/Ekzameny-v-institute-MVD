@@ -12,9 +12,11 @@ import make as m
 TODAY = '28.11.2026'
 ROOT, HERE = m.ROOT, m.HERE
 PARTS = {'G': 'gai', 'S': 'sb'}
-KINDS = [('КП', 'постановлений Конституционного Суда РФ'), ('КО', 'определений Конституционного Суда РФ'),
-         ('ПЛ', 'постановлений Пленума Верховного Суда РФ'), ('ОН', 'обзоров судебной практики Верховного Суда РФ'),
-         ('ОТ', 'тематических обзоров Президиума Верховного Суда РФ')]
+KINDS = [('КП', ('постановление Конституционного Суда РФ', 'постановления Конституционного Суда РФ', 'постановлений Конституционного Суда РФ')),
+         ('КО', ('определение Конституционного Суда РФ', 'определения Конституционного Суда РФ', 'определений Конституционного Суда РФ')),
+         ('ПЛ', ('постановление Пленума Верховного Суда РФ', 'постановления Пленума Верховного Суда РФ', 'постановлений Пленума Верховного Суда РФ')),
+         ('ОН', ('обзор судебной практики Верховного Суда РФ', 'обзора судебной практики Верховного Суда РФ', 'обзоров судебной практики Верховного Суда РФ')),
+         ('ОТ', ('тематический обзор Президиума Верховного Суда РФ', 'тематических обзора Президиума Верховного Суда РФ', 'тематических обзоров Президиума Верховного Суда РФ'))]
 
 
 def sha(f):
@@ -124,6 +126,7 @@ def main():
             assert c in CAT, (d, q, c)
             assert d in CAT[c]['disc'], ('акт не отнесён к дисциплине', d, q, c)
         MAP[(d, part, int(k))] = cs
+    MANUAL = {c: (src, t) for c, src, t in tsv('manual.tsv')}
     NOTES = {}
     for c, t in tsv('notes.tsv'):
         NOTES.setdefault(c, []).append(t)
@@ -137,13 +140,15 @@ def main():
                 notes.append('%s — файла нет' % label(r))
                 continue
             link, what, pages, chars, note = inspect(f)
+            if r['code'] in MANUAL and 'нет записи' in link:
+                link, what, note = MANUAL[r['code']][0], MANUAL[r['code']][1], note.replace('нет записи в журнале загрузки', '').strip('; ')
             have.append(r)
             table.append('| %s | %s | %s | %s | %d |' % (m.FOLD[r['kind']].split('.')[0], os.path.basename(f), link, what, pages))
             for t in ([note] if note else []) + NOTES.get(r['code'], []):
                 notes.append('%s — %s' % (label(r), t))
         used = {c for (dd, p, k), cs in MAP.items() if dd == d for c in cs}
         cnt = [(sum(1 for r in have if r['kind'] == k), nm) for k, nm in KINDS]
-        counts = ', '.join('%d %s' % c for c in cnt if c[0])
+        counts = ', '.join('%d %s' % (c[0], plural(c[0], c[1])) for c in cnt if c[0])
         Q = questions(d)
         mapped = [(p, k) for (dd, p, k) in MAP if dd == d]
         empty = [(p, k) for (dd, p, k), cs in MAP.items() if dd == d and not cs]
