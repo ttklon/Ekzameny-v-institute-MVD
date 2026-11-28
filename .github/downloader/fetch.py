@@ -427,11 +427,12 @@ def op_sudact(url, out):
 WEB_BOX = [('meganorm.ru', r'<div[^>]*class="contener_doc"'), ('eccis.org', r'<div[^>]*class="word-page"'),
            ('xn--b1aew.xn--p1ai', r'<div[^>]*class="article[^"]*"'),
            ('legalacts.ru', r'<div[^>]*class="main-center-block[^"]*"'), ('rulaws.ru', r'<div[^>]*(?:id="doc"|class="[^"]*\bdoc\b[^"]*")'),
+           ('garant.ru', r'<div[^>]*id="doc_content"'),
            ('e-ecolog.ru', r'<div[^>]*class="(?:document|doc-text|content)[^"]*"')]
 
 
 # сайты, оформление которых при печати мешает (пустые страницы, поля): печатается только текст блока
-WEB_PLAIN = ('eccis.org', 'xn--b1aew.xn--p1ai')
+WEB_PLAIN = ('eccis.org', 'xn--b1aew.xn--p1ai', 'garant.ru')
 
 
 def web_block(page, rx):
@@ -491,9 +492,10 @@ def op_web(url, out):
             b = re.search(r'<body[^>]*>(.*)</body>', page, re.S)
             block = b.group(1) if b else page
         block = re.sub(r'<(script|noscript|iframe|form|ins)\b.*?</\1>', '', block, flags=re.S)
+        block = re.sub(r'<table class="nav_bottom".*?</table>', '', block, flags=re.S)
         block = re.sub(r'(src|href)="(?!https?:|data:|#|mailto:)([^"]*)"',
                        lambda mm: '%s="%s"' % (mm.group(1), urllib.parse.urljoin(u, htmlmod.unescape(mm.group(2)))), block)
-        if len(' '.join(re.sub(r'<[^>]+>', ' ', block).split())) < 800:
+        if len(' '.join(re.sub(r'<[^>]+>', ' ', block).split())) < 300:
             return 'ошибка: на странице мало текста (%s)' % title[:100], code, ctype, u
         head = re.search(r'<head[^>]*>(.*?)</head>', page, re.S)
         if head and i == 0 and not any(h in host for h in WEB_PLAIN):
