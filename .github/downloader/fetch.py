@@ -495,6 +495,9 @@ def _op_web(url, out, saved):
             block = b.group(1) if b else page
         block = re.sub(r'<(script|noscript|iframe|form|ins)\b.*?</\1>', '', block, flags=re.S)
         block = re.sub(r'<table class="nav_bottom".*?</table>', '', block, flags=re.S)
+        ad = web_block(block, r'<div[^>]*class="transient"')      # объявление сайта о платном доступе
+        if ad:
+            block = block.replace(ad, '')
         block = re.sub(r'(src|href)="(?!https?:|data:|#|mailto:)([^"]*)"',
                        lambda mm: '%s="%s"' % (mm.group(1), urllib.parse.urljoin(u, htmlmod.unescape(mm.group(2)))), block)
         if len(' '.join(re.sub(r'<[^>]+>', ' ', block).split())) < 300:
