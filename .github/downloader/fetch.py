@@ -425,9 +425,13 @@ def op_sudact(url, out):
 
 # блок страницы, в котором находится текст документа (по сайтам); если сайта в списке нет — берётся <body>
 WEB_BOX = [('meganorm.ru', r'<div[^>]*class="contener_doc"'), ('eccis.org', r'<div[^>]*class="word-page"'),
-           ('xn--b1aew.xn--p1ai', r'<div[^>]*class="(?:ln-content-holder|b-text|article)[^"]*"'),
+           ('xn--b1aew.xn--p1ai', r'<div[^>]*class="article[^"]*"'),
            ('legalacts.ru', r'<div[^>]*class="main-center-block-content[^"]*"'),
            ('e-ecolog.ru', r'<div[^>]*class="(?:document|doc-text|content)[^"]*"')]
+
+
+# сайты, оформление которых при печати мешает (пустые страницы, поля): печатается только текст блока
+WEB_PLAIN = ('eccis.org', 'xn--b1aew.xn--p1ai')
 
 
 def web_block(page, rx):
@@ -492,7 +496,7 @@ def op_web(url, out):
         if len(' '.join(re.sub(r'<[^>]+>', ' ', block).split())) < 800:
             return 'ошибка: на странице мало текста (%s)' % title[:100], code, ctype, u
         head = re.search(r'<head[^>]*>(.*?)</head>', page, re.S)
-        if head and i == 0:
+        if head and i == 0 and not any(h in host for h in WEB_PLAIN):
             for st in re.findall(r'<link[^>]*rel="?stylesheet"?[^>]*>|<style[^>]*>.*?</style>', head.group(1), re.S):
                 styles.append(re.sub(r'href="(?!https?:)([^"]*)"',
                                      lambda mm: 'href="%s"' % urllib.parse.urljoin(u, htmlmod.unescape(mm.group(1))), st))
@@ -503,7 +507,7 @@ def op_web(url, out):
         '; '.join(htmlmod.escape(u) for u in parts), day)
     doc = ('<!DOCTYPE html><html><head><meta charset="utf-8"><title>%s</title>%s'
            '<style>@page{size:A4;margin:15mm}body{background:#fff !important;color:#000;margin:0;padding:0}'
-           'img{max-width:100%%;height:auto}table{max-width:100%%}.webpart{page-break-before:always}</style></head><body>%s%s</body></html>') % (
+           'body{font-family:serif;font-size:11pt;line-height:1.3}img{max-width:100%%;height:auto}table{max-width:100%%}.webpart{page-break-before:always}</style></head><body>%s%s</body></html>') % (
         htmlmod.escape(titles[0]), ''.join(styles), note,
         ''.join('<div%s>%s</div>' % (' class="webpart"' if i else '', b) for i, b in enumerate(blocks)))
     tmp = os.path.abspath(out + '.print.html')
