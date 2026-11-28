@@ -1,0 +1,2 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-28 14:05:12	crawllist	.github/downloader/books/crawl2.txt	.github/downloader/books/lib_c2.tsv	ok	200	281070	каталогов в списке с ошибкой: 0	b9753841ba14a1b257f59cd21bde5b28c98ed6f8e95451e75dc5975869a411ef
