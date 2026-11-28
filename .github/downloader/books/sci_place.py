@@ -133,9 +133,9 @@ SHARE = [
 # загруженное на этапе 5: файл в .work/emp: (имя, разделы G, разделы S, что это, ссылка)
 TJ = 'https://opis-cdn.tinkoffjournal.ru/mercury/'
 EMPNEW = {
- 'dtp2023.pdf': ('Дорожно-транспортная аварийность в Российской Федерации в 2023 году. Информационно-аналитический обзор. НЦ БДД МВД, 2024.pdf', '01,08,11', '', 'Информационно-аналитический обзор ФКУ «НЦ БДД МВД России», 2024: статистика ДТП за 2023 год', TJ + 'dtp-2023.pdf'),
- 'dtp2024.pdf': ('Дорожно-транспортная аварийность в Российской Федерации в 2024 году. Информационно-аналитический обзор. НЦ БДД МВД, 2025.pdf', '01,08,11', '', 'Информационно-аналитический обзор ФКУ «НЦ БДД МВД России», 2025: статистика ДТП за 2024 год', TJ + '11400230.pdf'),
- 'dtp2024h1.pdf': ('Дорожно-транспортная аварийность в Российской Федерации за 6 месяцев 2024 года. Информационно-аналитический обзор. НЦ БДД МВД, 2024.pdf', '01,08,11', '', 'Информационно-аналитический обзор ФКУ «НЦ БДД МВД России», 2024: статистика ДТП за первое полугодие 2024 года', TJ + 'dtp-2024.pdf'),
+ 'dtp2023.pdf': ('Дорожно-транспортная аварийность в РФ в 2023 году. Информационно-аналитический обзор. НЦ БДД МВД, 2024.pdf', '01,08,11', '', 'Информационно-аналитический обзор ФКУ «НЦ БДД МВД России», 2024: статистика ДТП за 2023 год', TJ + 'dtp-2023.pdf'),
+ 'dtp2024.pdf': ('Дорожно-транспортная аварийность в РФ в 2024 году. Информационно-аналитический обзор. НЦ БДД МВД, 2025.pdf', '01,08,11', '', 'Информационно-аналитический обзор ФКУ «НЦ БДД МВД России», 2025: статистика ДТП за 2024 год', TJ + '11400230.pdf'),
+ 'dtp2024h1.pdf': ('Дорожно-транспортная аварийность в РФ за 6 месяцев 2024 года. Информационно-аналитический обзор. НЦ БДД МВД, 2024.pdf', '01,08,11', '', 'Информационно-аналитический обзор ФКУ «НЦ БДД МВД России», 2024: статистика ДТП за первое полугодие 2024 года', TJ + 'dtp-2024.pdf'),
  'cdep_k3_2023.xls': (SD + 'Судимость. Число осужденных по всем составам преступлений УК РФ, 2023 год.xls', '09', '05,13', 'Форма № 10-а за 2023 год (xls): число осужденных по каждой статье УК РФ', 'https://cdep.ru/userimages/k3-svod_vse_sudy-2023.xls'),
  'cdep_k3_2025.xls': (SD + 'Судимость. Число осужденных по всем составам преступлений УК РФ, 2025 год.xls', '09', '05,13', 'Форма № 10-а за 2025 год (xls): число осужденных по каждой статье УК РФ', 'https://cdep.ru/userimages/Statistika_2025_all/k3-svod_vse_sudy-2025.xls'),
  'cdep_k4_2023.xls': (SD + 'Судимость. Привлеченные к уголовной ответственности и виды наказания, 2023 год.xls', '09', '05,13', 'Форма № 10.1 за 2023 год (xls)', 'https://cdep.ru/userimages/Statistika_2023/k4-svod_vse_sudy-2023.xls'),
@@ -144,6 +144,10 @@ EMPNEW = {
  'cdep_1041_2024.xls': (SD + 'Форма № 10.4.1. Преступления коррупционной направленности — приговоры и наказания, 2024 год.xls', '', '03,05,13', 'Форма № 10.4.1 за 2024 год (xls)', 'http://www.cdep.ru/userimages/sudebnaya_statistika/2024/10_4_1_za_2024.xls'),
  'cdep_1041_2025.xls': (SD + 'Форма № 10.4.1. Преступления коррупционной направленности — приговоры и наказания, 2025 год.xls', '', '03,05,13', 'Форма № 10.4.1 за 2025 год (xls)', 'http://www.cdep.ru/userimages/sudebnaya_statistika/2025/10_4_1_za_2025.xls'),
 }
+# статьи, снятые после просмотра названий глазами (другая сфера, другое ведомство, повтор)
+DROP_ART = {'s': '47463c 7cce80 404a4d b839cd 4cc031 7ea9ac 9a93d4 5479f2 2a8ca2 c52ffc 21e0f8 edca95 8973af 3c5916 728970 5d94a2 dc4f25 40c947 350e47 896727 fcdaf2 5c92fc 18b28e 0e9256 610f2c 75cfad '
+                 'df0cf5 67b808 315072 6ad656 d80208 545084 fe98fb 91ee32 bd2f77 2aede2 ec3e9f 36f2c5 ae8464 03e05d 03fcf2 9d1d0e 375d4a c8a7d8 ad764a aba5c4 ef9409 b8e911 af5e32 9d59b1 4724c8 5f022a'.split(),
+            'g': 'f2da5d 3aaa69 98ae71 9758a4 4075ca 4d6659 83ee92 54755b c8b0d9 1f8e3b 06399d'.split()}
 def blob(path):
     r = subprocess.run(['git', 'cat-file', 'blob', '%s:%s' % (REF, path)], capture_output=True)
     return r.stdout if r.returncode == 0 else None
@@ -169,7 +173,12 @@ def pdf_info(data):
     except Exception: return 0, ''
 def run():
     cand = json.load(open(os.path.join(HERE, 'sci_cand.json'), encoding='utf-8'))
-    man = []; taken = {d: {c: set() for c in FOLDER} for d in 'gs'}; st = collections.Counter()
+    man = []; taken = {d: {c: set() for c in FOLDER} for d in 'gs'}; st = collections.Counter(); bad = {'g': [], 's': []}
+    if os.path.exists(MAN):   # убрать разложенное прошлым запуском: имена могли измениться
+        for m in json.load(open(MAN, encoding='utf-8')):
+            for d in 'gs':
+                t = os.path.join(ROOT, DISC[d], FOLDER[m['cat']], m['name'])
+                if m[d] and os.path.exists(t): os.remove(t)
     assert not (set(DEC) & set(REJ)) and len(DEC) + len(REJ) == len(cand), (len(DEC), len(REJ), len(cand), sorted(set(range(len(cand))) - set(DEC) - set(REJ)))
     # --- издания библиотеки
     for i, x in enumerate(cand):
@@ -196,10 +205,12 @@ def run():
     for d in 'gs':
         sel = json.load(open(os.path.join(HERE, 'cyber_%s_selected.json' % d), encoding='utf-8'))
         for c in sel:
+            if c['n'][2:] in DROP_ART[d]: st['снято после просмотра названий (%s)' % d] += 1; continue
             data = blob('.work/art/%s.pdf' % c['n'])
             if not data: st['статья не загружена (%s)' % d] += 1; continue
             pages, text = pdf_info(data)
-            if not pages or len(re.findall('[а-яё]', text.lower())) < 300: st['брак статьи (%s)' % d] += 1; continue
+            if not pages or len(text.strip()) < 200: st['брак статьи (%s)' % d] += 1; bad[d].append((c['n'], 'нет текстового слоя' if pages else 'не PDF', c['title'])); continue
+            garbled = len(re.findall('[а-яё]', text.lower())) < 300
             al = [S5.author(a) for a in re.split(r'[,;]\s*', c['authors']) if a.strip()]
             au = ', '.join(al[:2]) + (' и др.' if len(al) > 2 else '')
             if len(au) > 60: au = al[0] + ' и др.'
@@ -211,14 +222,14 @@ def run():
             taken[d]['art'].add(name.lower())
             put(data, [os.path.join(ROOT, DISC[d], D4A, name)])
             e = dict(key=c['n'], cat='art', authors=au, title=title, kind='статья', what='', pub=c['journal'], year=int(c['year']), pages=pages, size=len(data), sha=hashlib.sha256(data).hexdigest(),
-                     name=name, g=[], s=[], url='https://cyberleninka.ru' + c['slug'], vak=bool(c['vak']), origin='cyberleninka.ru')
+                     name=name, g=[], s=[], url='https://cyberleninka.ru' + c['slug'], vak=bool(c['vak']), origin='cyberleninka.ru', garbled=garbled)
             e[d] = sorted(c['t']); man.append(e); st['статей (%s)' % d] += 1
     # --- эмпирические материалы из баз других дисциплин
     names = {p: tree(p) for p in (A5, U5)}
     for folder, start, g, s, what, src in SHARE:
         hit = [n for n in names[folder] if os.path.basename(n).startswith(start)]
         if not hit: st['нет материала в базе другой дисциплины'] += 1; print('НЕТ', start); continue
-        path = sorted(hit, key=len)[-1]; data = blob(path); name = os.path.basename(path)
+        path = sorted(hit, key=len)[0]; data = blob(path); name = os.path.basename(path)
         ds = [d for d, p in (('g', g), ('s', s)) if p]
         put(data, [os.path.join(ROOT, DISC[d], D5, name) for d in ds])
         pages = pdf_info(data)[0] if name.endswith('.pdf') else 0
@@ -239,6 +250,9 @@ def run():
         man.append(dict(key='emp:' + fn, cat='emp', authors='', title=name.rsplit('.', 1)[0], kind='', what=what, pub='', year=0, pages=pages, size=len(data), sha=hashlib.sha256(data).hexdigest(),
                         name=name, g=pl(g), s=pl(s), url=url, origin=re.sub(r'^https?://(www\.)?([^/]+)/.*', r'\2', url))); st['эмпирических новых'] += 1
     json.dump(man, open(MAN + '.tmp', 'w', encoding='utf-8'), ensure_ascii=False, indent=0); os.replace(MAN + '.tmp', MAN)
+    fail = {d: dict(fail=len(bad[d]), why='в файле нет текстового слоя (скан)', list=bad[d]) for d in 'gs'}
+    fail['emp'] = dict(f1041=[y for y in ('2023', '2024', '2025') if any(m['key'] == 'emp:cdep_1041_%s.xls' % y for m in man)], **{'dtp2025.pdf': False})
+    json.dump(fail, open(os.path.join(HERE, 'sci_fail.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     with open(os.path.join(HERE, 'sci_rejected.tsv') + '.tmp', 'w', encoding='utf-8') as f:
         f.write('# издания библиотеки, загруженные для этапов 4–5 и не взятые после просмотра: причина, страниц, ссылка\n')
         for i in sorted(REJ): f.write('%s\t%s\t%s\n' % (REJ[i], cand[i].get('pages', ''), cand[i]['url']))
