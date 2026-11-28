@@ -1,0 +1,2 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-28 16:24:18	cybersearch	.github/downloader/books/cyber_q_s.txt	.github/downloader/books/cyber_s.tsv	ok	200	6045786	запросов выполнено: 133 из 133	73b9895d90547b655eb86461ca23dcc5c73475c6b632631fe3e2037321dbe81c
