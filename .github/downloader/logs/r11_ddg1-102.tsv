@@ -1,0 +1,2 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-27 16:28:06	ddglist	.github/downloader/npa/ddg1.tsv	.github/downloader/npa/ddg1-found.tsv	ok	200	103401	запросов с результатами: 19 из 20	0f3f1b3c10367cdbe78d1776c7ddb8276e36f2e98f5dea7e3400501c83ee31f7

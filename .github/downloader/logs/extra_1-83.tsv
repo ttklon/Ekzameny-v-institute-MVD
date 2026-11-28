@@ -1,0 +1,6 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-16 09:53:07	kontur	https://normativ.kontur.ru/document?moduleId=1&documentId=303278	.work/d5/alt/extr.pdf	ok	200	174822	application/pdf; --headless=new; Редакция от 20.09.2012 &mdash; Действует с 01.09.2017; статус: Действует; html sha256=e6070b3d39947b872c671db08351a4dc1ab72db8e32a8c314319f55c057bfc63	74192d57484da2bfce8257b12ef04b2b26ecbfe39519372b7e82602e953a062d
+2026-11-16 09:53:11	kontur	https://normativ.kontur.ru/document?moduleId=1&documentId=36823	.work/d5/alt/mlat.pdf	ok	200	122746	application/pdf; --headless=new; Редакция от 19.04.1959 &mdash; Действует с 09.03.2000; статус: Действует; html sha256=54b19a467f1688ec5b175ecf2adc9cce91b5df1532b3896ddccce8979fbdde21	e471538be57bdb8154baa82c885ddf0b611a92e0c6313afed346b4a65ca9f334
+2026-11-16 09:53:14	cons	https://www.consultant.ru/document/cons_doc_LAW_121346/	.work/d5/cons3/extr.pdf	ошибка: на странице нет полного текста (0 знаков)	200	0	text/html	
+2026-11-16 09:53:18	cons	https://www.consultant.ru/document/cons_doc_LAW_121347/	.work/d5/cons3/mlat.pdf	ошибка: на странице нет полного текста (0 знаков)	200	0	text/html	
+2026-11-16 09:57:39	cybersearch	.github/downloader/d5/cyber_q_x4.txt	.github/downloader/d5/cyber_x4.tsv	ok	200	4461423	запросов выполнено: 107 из 107	779289df32df8ec74efe1d1aa2b549a284ddae5139d261f3f08ddd17634f9c51

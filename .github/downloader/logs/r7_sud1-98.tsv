@@ -1,0 +1,2 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-27 16:11:03	sudauto	https://sudact.ru/law/print/prikaz-mvd-rossii-ot-09102026-n-818/	.work/try/m818.pdf	ошибка: HTTP 404	404	0	text/html; charset=utf-8	

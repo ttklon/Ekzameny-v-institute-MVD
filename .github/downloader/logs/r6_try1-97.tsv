@@ -1,0 +1,13 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-27 16:10:06	pdf	https://www.un.org/ru/documents/decl_conv/conventions/code_of_conduct.shtml	.work/try/kp-un.pdf	ok		129252	application/pdf; --headless=new	a623d544b30f6f8899f3dd50cf17ca2151882aaa5b9d1d843201642091351194
+2026-11-27 16:10:08	pdf	https://www.un.org/ru/documents/decl_conv/conventions/corruption.shtml	.work/try/oonk-un.pdf	ok		434974	application/pdf; --headless=new	dc81abce3df2f0300d225a84d5d759a7cbb67655098327f0d9708c6e70180879
+2026-11-27 16:10:09	get	https://unece.org/DAM/trans/conventn/Conv_road_signs_2006v_RU.pdf	.work/try/vkds-unece.pdf	ошибка: HTTP 403	403	0	text/html; charset=UTF-8	
+2026-11-27 16:10:10	get	https://unece.org/fileadmin/DAM/trans/conventn/Conv_road_signs_2006v_RU.pdf	.work/try/vkds-unece2.pdf	ошибка: HTTP 403	403	0	text/html; charset=UTF-8	
+2026-11-27 16:10:11	get	https://www.un.org/ru/documents/decl_conv/conventions/pdf/signs.pdf	.work/try/vkds-un.pdf	ошибка: HTTP 404	404	0	text/html; charset=utf-8	
+2026-11-27 16:10:12	get	https://unece.org/DAM/trans/conventn/Conv_road_traffic_RU.pdf	.work/try/vk-unece.pdf	ошибка: HTTP 403	403	0	text/html; charset=UTF-8	
+2026-11-27 16:10:13	get	https://unece.org/fileadmin/DAM/trans/conventn/Conv_road_traffic_RU.pdf	.work/try/vk-unece2.pdf	ошибка: HTTP 403	403	0	text/html; charset=UTF-8	
+2026-11-27 16:10:15	get	https://www.un.org/ru/documents/decl_conv/conventions/pdf/traffic.pdf	.work/try/vk-un.pdf	ошибка: HTTP 404	404	0	text/html; charset=utf-8	
+2026-11-27 16:10:16	get	https://unece.org/DAM/trans/danger/publi/adr/adr2023/ADR2023r_Vol1.pdf	.work/try/adr-unece.pdf	ошибка: HTTP 403	403	0	text/html; charset=UTF-8	
+2026-11-27 16:10:18	cons	https://www.consultant.ru/document/cons_doc_INT_15559/	.work/try/kp-cons.pdf	ошибка: HTTP 404	404	0	text/html; charset=UTF-8	
+2026-11-27 16:10:20	get	https://www.consultant.ru/cons/cgi/online.cgi?req=doc&base=STR&n=26523&demo=1	.work/try/.gost51256.html	ok	200	24326	text/html;charset=utf-8	238d80eea52f5429adaadad53e2bce37cfcc9c5a405329bd30ee6ffb0fbe7004
+2026-11-27 16:10:22	get	https://sudact.ru/law/gost-r-51256-2018-natsionalnyi-standart-rossiiskoi-federatsii-tekhnicheskie/	.work/try/.gost51256-sud.html	ошибка: HTTP 404	404	0	text/html; charset=utf-8	

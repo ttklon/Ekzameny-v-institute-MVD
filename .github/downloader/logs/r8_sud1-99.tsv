@@ -1,0 +1,2 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-27 16:12:21	sudauto	https://sudact.ru/law/print/prikaz-mvd-rf-ot-16062011-n-679/	.work/try/m679.pdf	ошибка: HTTP 404	404	0	text/html; charset=utf-8	

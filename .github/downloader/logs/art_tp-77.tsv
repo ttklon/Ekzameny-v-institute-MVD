@@ -1,0 +1,3 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-15 16:27:22	get	https://cyberleninka.ru/article/n/materialnaya-otvetstvennost-kak-instrument-vozdeystviya-na-rabotnika-za-nevypolnenie-obyazannosti-po-nerazglasheniyu-ohranyaemoy/pdf	.work/d5/tp/art/t19d500.pdf	ok	200	267216	application/pdf	3bdb8369a11a82b4ce1c8d2aca4773ca3bc895c08a7e6c40effb02014cba5eee
+2026-11-15 16:27:24	get	https://cyberleninka.ru/article/n/integrirovannaya-sistema-menedzhmenta-v-oblasti-proizvodstvennoy-i-pozharnoy-bezopasnosti-bezopasnosti-dorozhnogo-dvizheniya-i/pdf	.work/d5/tp/art/t215679.pdf	ok	200	420985	application/pdf	826b386c12c97a243c7ce140d1ac4012ed2fdbfd4946ab32a99b8c12c28afaf5

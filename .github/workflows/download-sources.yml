@@ -1,0 +1,62 @@
+# Загрузка источников в репозиторий.
+# Запускается при изменении списка заданий .github/downloader/tasks.tsv или списков в .github/downloader/shards/.
+# Каждый список из shards/ выполняется отдельным заданием (параллельно), у каждого свой журнал в .github/downloader/logs/.
+# Скачанные файлы и журналы сохраняются коммитом в ту же ветку.
+name: download-sources
+on:
+  push:
+    branches: ['arena/**']
+    paths: ['.github/downloader/tasks.tsv', '.github/downloader/shards/**']
+permissions:
+  contents: write
+concurrency:
+  group: download-sources-${{ github.run_id }}
+  cancel-in-progress: false
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      shards: ${{ steps.list.outputs.shards }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github
+      - id: list
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import glob, json, os
+          files = sorted(f for f in glob.glob('.github/downloader/shards/*.tsv') if os.path.getsize(f) > 0)
+          print('shards=' + json.dumps(files or ['.github/downloader/tasks.tsv'], ensure_ascii=False))
+          PY
+  download:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 170
+    strategy:
+      fail-fast: false
+      max-parallel: 12
+      matrix:
+        shard: ${{ fromJson(needs.plan.outputs.shards) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Скачать
+        run: |
+          name="$(basename "${{ matrix.shard }}" .tsv)"
+          if [ "$name" = "tasks" ]; then log=".github/downloader/log.tsv"; else log=".github/downloader/logs/$name-${{ github.run_number }}.tsv"; fi
+          FETCH_LOG="$log" python3 .github/downloader/fetch.py "${{ matrix.shard }}"
+      - name: Сохранить в ветку
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          find . -type f -size +99M -not -path './.git/*' -print -delete
+          git add -A
+          git commit -q -m "Загрузка источников (автоматически): $(basename "${{ matrix.shard }}" .tsv)" || exit 0
+          for i in 1 2 3 4 5 6 7 8 9 10; do
+            # -X theirs: при совпадении служебных файлов (.work/cards) из параллельных заданий берётся свой вариант
+            git pull -q --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push -q origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep $((RANDOM % 40 + 10))
+          done
+          echo "::error::не удалось сохранить результаты в ветку: $(git status --short | head -5 | tr '\n' ' ')"
+          exit 1

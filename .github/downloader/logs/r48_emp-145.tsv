@@ -1,0 +1,16 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-28 16:37:22	get	https://opis-cdn.tinkoffjournal.ru/mercury/dtp-2023.pdf	.work/emp/dtp2023.pdf	ok	200	4398226	application/pdf	eba7baea70be749308f0ec3e4e84f4fadd155b530c382526ccaa9cdf8a1cd319
+2026-11-28 16:37:34	get	https://opis-cdn.tinkoffjournal.ru/mercury/11400230.pdf	.work/emp/dtp2024.pdf	ok	200	4705078	application/pdf	6b39505ad75ae4c113a329203af596348da330e501c62ca4873357f923ad7146
+2026-11-28 16:37:36	get	https://opis-cdn.tinkoffjournal.ru/mercury/dtp-2024.pdf	.work/emp/dtp2024h1.pdf	ok	200	3266314	application/pdf	87763f7195d4025325d153c0dcec823ea1a6d6649141035f1eb5595888e016e2
+2026-11-28 16:37:38	get	https://opis-cdn.tinkoffjournal.ru/mercury/dtp-2025.pdf	.work/emp/dtp2025.pdf	ошибка: HTTP 403	403	0		
+2026-11-28 16:37:41	get	https://opis-cdn.tinkoffjournal.ru/mercury/dtp-2022.pdf	.work/emp/dtp2022.pdf	ошибка: HTTP 403	403	0		
+2026-11-28 16:37:46	get	https://cdep.ru/userimages/k3-svod_vse_sudy-2023.xls	.work/emp/cdep_k3_2023.xls	ok	200	1096192	application/vnd.ms-excel	14d60ac3e91a7c1e6744e856a0feb59e53e885d02cf46e35c3cf1f1882e765c0
+2026-11-28 16:37:50	get	https://cdep.ru/userimages/Statistika_2025_all/k3-svod_vse_sudy-2025.xls	.work/emp/cdep_k3_2025.xls	ok	200	798720	application/vnd.ms-excel	e1a5299e45933c7fa74e5ada2e2f8552f9aed249e0a23345d6e9131af6044079
+2026-11-28 16:37:53	get	https://cdep.ru/userimages/Statistika_2023/k4-svod_vse_sudy-2023.xls	.work/emp/cdep_k4_2023.xls	ok	200	124416	application/vnd.ms-excel	7f39e4719986fac845daae7164c2d9b01325ba3a6c4967b5138c4d38aada3fe0
+2026-11-28 16:37:55	get	https://cdep.ru/userimages/Statistika_2025_all/k4-svod_vse_sudy-2025.xls	.work/emp/cdep_k4_2025.xls	ok	200	147456	application/vnd.ms-excel	ad9ac28a11aeca600401bf1b54a3b8717e42c7b918b3f7b3fb2c4fc5e184aac9
+2026-11-28 16:37:57	get	http://www.cdep.ru/userimages/sudebnaya_statistika/2023/10_4_1_za_2023.xls	.work/emp/cdep_1041_2023.xls	ошибка: curl: (56) Recv failure: Connection reset by peer	000	0		
+2026-11-28 16:37:59	get	http://www.cdep.ru/userimages/sudebnaya_statistika/2024/10_4_1_za_2024.xls	.work/emp/cdep_1041_2024.xls	ошибка: curl: (56) Recv failure: Connection reset by peer	000	0		
+2026-11-28 16:38:01	get	http://www.cdep.ru/userimages/sudebnaya_statistika/2025/10_4_1_za_2025.xls	.work/emp/cdep_1041_2025.xls	ошибка: curl: (56) Recv failure: Connection reset by peer	000	0		
+2026-11-28 16:38:03	get	https://cdep.ru/index.php?id=150	.work/emp/cdep_150.html	ok	200	8061	text/html; charset=windows-1251	733aae2a9775197c34903db3c7c1821f3c7fb8f5ea8b38606a336fbced29946c
+2026-11-28 16:38:05	get	https://cdep.ru/index.php?id=216	.work/emp/cdep_216.html	ok	200	7682	text/html; charset=windows-1251	a367ade3254bb3c934cab9e51bf5b74866c9a779f95a6d9aaf678f49aae6dc9e
+2026-11-28 16:38:07	get	https://cdep.ru/index.php?id=79&item=9893	.work/emp/cdep_item_9893.html	ok	200	9844	text/html; charset=windows-1251	283fc860d25c7cdd0ee808af68668e09207d5c2d923bce2eac5749bb894e51c2
