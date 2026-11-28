@@ -449,7 +449,7 @@ def web_block(page, rx):
     return page[m.start():]
 
 
-def op_web(url, out):
+def _op_web(url, out, saved):
     """Текст акта со страницы сайта (или с нескольких страниц, адреса через « | »).
     Каждая страница сохраняется как есть в «Исходные страницы (HTML)»; из неё берётся блок с текстом
     документа (без меню и рекламы сайта), блоки подряд печатаются в один PDF. В начале PDF указывается,
@@ -466,6 +466,7 @@ def op_web(url, out):
         res, code, ctype = op_get(u, src)
         if res != 'ok':
             return res, code, ctype, u
+        saved.append(src)
         raw = open(src, 'rb').read()
         shas.append(hashlib.sha256(raw).hexdigest())
         enc = re.search(rb'charset=["\']?([\w-]+)', raw[:4000])
@@ -482,8 +483,9 @@ def op_web(url, out):
         title = ' '.join(htmlmod.unescape(t.group(1)).split()) if t else ''
         titles.append(title)
         if i == 0 and expect and not all(w.lower() in title.lower() for w in expect.split('&&')):
-            os.remove(src)
             return 'ошибка: заголовок страницы не тот: %s' % title[:150], code, ctype, u
+        if 'garant.ru' in u and 'truncated-600 invisible' in page:
+            return 'ошибка: текст на странице обрезан (доступна только часть документа)', code, ctype, u
         real = re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', u)
         host = urllib.parse.urlparse(real).netloc
         rx = next((r for h, r in WEB_BOX if h in host), None)
@@ -523,6 +525,17 @@ def op_web(url, out):
     if res != 'ok':
         return res, code, ctype, parts[0]
     return 'ok', code, 'application/pdf; web; %s; частей: %d; html sha256=%s' % (titles[0][:400], len(parts), ','.join(shas)), parts[0]
+
+
+def op_web(url, out):
+    """Текст акта со страницы сайта (см. _op_web); при неудаче сохранённые страницы удаляются."""
+    saved = []
+    r = _op_web(url, out, saved)
+    if r[0] != 'ok':
+        for f in saved:
+            if os.path.exists(f):
+                os.remove(f)
+    return r
 
 
 def op_sh(cmd, out):
