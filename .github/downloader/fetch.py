@@ -426,7 +426,7 @@ def op_sudact(url, out):
 # блок страницы, в котором находится текст документа (по сайтам); если сайта в списке нет — берётся <body>
 WEB_BOX = [('meganorm.ru', r'<div[^>]*class="contener_doc"'), ('eccis.org', r'<div[^>]*class="word-page"'),
            ('xn--b1aew.xn--p1ai', r'<div[^>]*class="article[^"]*"'),
-           ('legalacts.ru', r'<div[^>]*class="main-center-block-content[^"]*"'),
+           ('legalacts.ru', r'<div[^>]*class="main-center-block[^"]*"'), ('rulaws.ru', r'<div[^>]*(?:id="doc"|class="[^"]*\bdoc\b[^"]*")'),
            ('e-ecolog.ru', r'<div[^>]*class="(?:document|doc-text|content)[^"]*"')]
 
 
@@ -500,6 +500,8 @@ def op_web(url, out):
             for st in re.findall(r'<link[^>]*rel="?stylesheet"?[^>]*>|<style[^>]*>.*?</style>', head.group(1), re.S):
                 styles.append(re.sub(r'href="(?!https?:)([^"]*)"',
                                      lambda mm: 'href="%s"' % urllib.parse.urljoin(u, htmlmod.unescape(mm.group(1))), st))
+        if any(h in host for h in WEB_PLAIN) and title and title.split(' | ')[0][:40].lower() not in re.sub(r'<[^>]+>', ' ', block).lower():
+            block = '<h1 style="font-size:14pt;text-align:center">%s</h1>' % htmlmod.escape(title.split(' | ')[0]) + block
         blocks.append(block)
         time.sleep(1.0)
     day = time.strftime('%d.%m.%Y', time.gmtime())
