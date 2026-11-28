@@ -1,0 +1,2 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-28 14:22:12	peeklist	.github/downloader/books/peek04.txt	.github/downloader/books/peek04.tsv	ok	200	469645	просмотрено: 101 из 101	35f44ca2ebeafe6500379e5dd8455f3e5a6a88a3cf42200dd8e8a1ca71a3560d
