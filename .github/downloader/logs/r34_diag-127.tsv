@@ -1,0 +1,2 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-28 10:56:14	sh	bash .github/downloader/diag/d19.sh	.work/diag/d19.txt	ошибка: код 1		0	text/plain	
