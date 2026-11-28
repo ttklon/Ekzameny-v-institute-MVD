@@ -1,0 +1,2 @@
+время_UTC	операция	адрес	файл	результат	HTTP	байт	тип	sha256
+2026-11-28 09:10:33	sh	bash .github/downloader/diag/d3.sh .github/downloader/diag/q16.txt	.work/diag/d17.txt	ok		2139	text/plain	0084247fbec3894e179a326e68d442f8a737dcfc56a0e19e6fa059324bca62ae
